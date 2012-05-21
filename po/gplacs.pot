@@ -1,0 +1,1541 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2010-09-14 17:01-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: 3rdparty/analitza/analyzer.cpp:97 3rdparty/analitza/analyzer.cpp:116
+#: 3rdparty/analitza/analyzer.cpp:140
+msgid "Must specify a correct operation"
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:114 3rdparty/analitza/analyzer.cpp:145
+msgctxt "identifier separator in error message"
+msgid "', '"
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:112 3rdparty/analitza/analyzer.cpp:143
+#, kde-format
+msgid "Unknown identifier: '%1'"
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:581
+#, kde-format
+msgid "The %1 derivative has not been implemented."
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:647
+msgctxt "Error message, no proper condition found."
+msgid "Could not find a proper choice for a condition statement."
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:927
+msgid "Type not supported for bounding."
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:930
+msgid "Incorrect domain."
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:953
+msgid "The downlimit is greater than the uplimit"
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:955
+msgid "Incorrect uplimit or downlimit."
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:1886
+msgctxt "By a cycle i mean a variable that depends on itself"
+msgid "Defined a variable cycle"
+msgstr ""
+
+#: 3rdparty/analitza/analyzer.cpp:1943
+msgid "The result is not a number"
+msgstr ""
+
+#: 3rdparty/analitza/explexer.cpp:64
+#, kde-format
+msgctxt "Error message"
+msgid "Did not understand the real value: %1"
+msgstr ""
+
+#: 3rdparty/analitza/explexer.cpp:87
+#, kde-format
+msgid "Unknown token %1"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:155
+#, kde-format
+msgid "<em>%1</em> needs at least 2 parameters"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:157
+#, kde-format
+msgid "<em>%1</em> requires %2 parameters"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:162
+#, kde-format
+msgid "Missing boundary for '%1'"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:167
+#, kde-format
+msgid "<em>%1</em> missing bounds on '%2'"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:181
+msgid "Wrong declare"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:191
+#, kde-format
+msgid "Empty container: %1"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:210
+msgctxt "there was a conditional outside a condition structure"
+msgid "We can only have conditionals inside piecewise structures."
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:225
+#, kde-format
+msgid "Cannot have two parameters with the same name like '%1'."
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:241
+msgctxt "this is an error message. otherwise is the else in a mathml condition"
+msgid "The <em>otherwise</em> parameter should be the last one"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:249
+#, kde-format
+msgctxt "there was an element that was not a conditional inside a condition"
+msgid "%1 is not a proper condition inside the piecewise"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:254
+msgid "We can only declare variables"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:260
+msgid "We can only have bounded variables"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:359
+#, kde-format
+msgid "Error while parsing: %1"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:388
+#, kde-format
+msgctxt "An error message"
+msgid "Container unknown: %1"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:394
+#, kde-format
+msgid "Cannot codify the %1 value."
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:400
+#, kde-format
+msgid "The %1 operator cannot have child contexts."
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:404
+#, kde-format
+msgid "The element '%1' is not an operator."
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:417
+msgid "Do not want empty vectors"
+msgstr ""
+
+#: 3rdparty/analitza/expression.cpp:434
+#, kde-format
+msgctxt "Error message due to an unrecognized input"
+msgid "Not supported/unknown: %1"
+msgstr ""
+
+#: exp.g:396 keomath/function/function.cpp:121
+#: keomath/function/function.cpp:161
+msgid ", "
+msgstr ""
+
+#: exp.g:396
+#, kde-format
+msgctxt "error message"
+msgid "Expected %1 instead of '%2'"
+msgstr ""
+
+#: exp.g:398
+msgid "Missing right parenthesis"
+msgstr ""
+
+#: exp.g:400
+msgid "Unbalanced right parenthesis"
+msgstr ""
+
+#: exp.g:402
+#, kde-format
+msgid "Unexpected token %1"
+msgstr ""
+
+#: 3rdparty/analitza/expressiontypechecker.cpp:505
+#, kde-format
+msgid "Invalid parameter count for '%2'. Should have 1 parameter."
+msgid_plural "Invalid parameter count for '%2'. Should have %1 parameters."
+msgstr[0] ""
+msgstr[1] ""
+
+#: 3rdparty/analitza/expressiontypechecker.cpp:549
+#, kde-format
+msgid "Could not call '%1'"
+msgstr ""
+
+#: 3rdparty/analitza/expressiontypechecker.cpp:557
+#, kde-format
+msgid "Could not solve '%1'"
+msgstr ""
+
+#: 3rdparty/analitza/expressiontypechecker.cpp:576
+msgid "Could not determine the type for piecewise"
+msgstr ""
+
+#: 3rdparty/analitza/expressiontypechecker.cpp:714
+#, kde-format
+msgid "Cannot convert '%1' to '%2'"
+msgstr ""
+
+#: 3rdparty/analitza/htmlexpressionwriter.cpp:49
+#: 3rdparty/analitza/htmlexpressionwriter.cpp:50
+#, kde-format
+msgctxt "html representation of an operator"
+msgid "<span class='op'>%1</span>"
+msgstr ""
+
+#: 3rdparty/analitza/htmlexpressionwriter.cpp:51
+#, kde-format
+msgctxt "html representation of an operator"
+msgid "<span class='keyword'>%1</span>"
+msgstr ""
+
+#: 3rdparty/analitza/mathmlpresentationlexer.cpp:88
+#, kde-format
+msgctxt "Error message"
+msgid "Unknown token %1"
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:65
+msgid "Cannot calculate the remainder on 0."
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:75
+msgid "Cannot calculate the factor on 0."
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:143
+msgid "Cannot calculate the lcm of 0."
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:285
+#, kde-format
+msgid "Could not calculate a value %1"
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:305
+#, kde-format
+msgid "Could not reduce '%1' and '%2'."
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:338 3rdparty/analitza/operations.cpp:450
+msgid "Invalid index for a container"
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:372
+msgid "Cannot operate on different sized vectors."
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:397
+#, kde-format
+msgid "Could not calculate a vector's %1"
+msgstr ""
+
+#: 3rdparty/analitza/operations.cpp:420 3rdparty/analitza/operations.cpp:435
+#, kde-format
+msgid "Could not calculate a list's %1"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:299
+#, kde-format
+msgid "Result: %1"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:312
+msgctxt "Current parameter is the bounding"
+msgid " : bounds"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:317
+#, kde-format
+msgctxt "n-ary function prototype"
+msgid "<em>%1</em>(..., <b>par%2</b>, ...)"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:321
+#: 3rdparty/analitzagui/expressionedit.cpp:350
+#, kde-format
+msgctxt "Function name in function prototype"
+msgid "<em>%1</em>("
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:322
+#, kde-format
+msgctxt "Uncorrect function name in function prototype"
+msgid "<em style='color:red'><b>%1</b></em>("
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:325
+#, kde-format
+msgctxt "Parameter in function prototype"
+msgid "par%1"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:328
+#: 3rdparty/analitzagui/expressionedit.cpp:337
+#: 3rdparty/analitzagui/expressionedit.cpp:356
+#, kde-format
+msgctxt "Current parameter in function prototype"
+msgid "<b>%1</b>"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:331
+#: 3rdparty/analitzagui/expressionedit.cpp:361
+msgctxt "Function parameter separator"
+msgid ", "
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:351
+#, kde-format
+msgctxt "Uncorrect function name in function prototype"
+msgid "<em style='color:red'>%1</em>("
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:460
+msgid "To Expression"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:462
+msgid "To MathML"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:464
+msgid "Simplify"
+msgstr ""
+
+#: 3rdparty/analitzagui/expressionedit.cpp:466
+msgid "Examples"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:79
+#: keomath/function/functionsmodel.cpp:120
+#: keomath/viewers/functionsmodel.cpp:81
+msgctxt "@title:column"
+msgid "Name"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:82
+msgctxt "@title:column"
+msgid "Description"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:85
+msgctxt "@title:column"
+msgid "Parameters"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:88
+msgctxt "@title:column"
+msgid "Example"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:121
+#, kde-format
+msgid "%1("
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:124
+#, kde-format
+msgid "%1... parameters, ...%2)"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:127
+#, kde-format
+msgid "par%1"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:140
+msgid "Addition"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:143
+msgid "Multiplication"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:146
+msgid "Division"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:149
+msgid "Subtraction"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:152
+msgid "Power"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:155
+msgid "Remainder"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:158
+msgid "Quotient"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:161
+msgid "The factor of"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:164
+msgid "Factorial. factorial(n)=n!"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:167
+msgid "Function to calculate the sine of a given angle"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:170
+msgid "Function to calculate the cosine of a given angle"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:173
+msgid "Function to calculate the tangent of a given angle"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:176
+msgid "Secant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:179
+msgid "Cosecant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:182
+msgid "Cotangent"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:185
+msgid "Hyperbolic sine"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:188
+msgid "Hyperbolic cosine"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:191
+msgid "Hyperbolic tangent"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:194
+msgid "Hyperbolic secant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:197
+msgid "Hyperbolic cosecant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:200
+msgid "Hyperbolic cotangent"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:203
+msgid "Arc sine"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:206
+msgid "Arc cosine"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:209
+msgid "Arc tangent"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:212
+msgid "Arc cotangent"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:218
+msgid "Hyperbolic arc tangent"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:221
+msgid "Summatory"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:224
+msgid "Productory"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:227
+msgid "Differentiation"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:230
+msgid "Hyperbolic arc sine"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:233
+msgid "Hyperbolic arc cosine"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:236
+msgid "Arc cosecant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:239
+msgid "Hyperbolic arc cosecant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:242
+msgid "Arc secant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:245
+msgid "Hyperbolic arc secant"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:248
+msgid "Exponent (e^x)"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:251
+msgid "Base-e logarithm"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:254
+msgid "Base-10 logarithm"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:257
+msgid "Absolute value. abs(n)=|n|"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:272
+msgid "Floor value. floor(n)=⌊n⌋"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:275
+msgid "Ceil value. ceil(n)=⌈n⌉"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:278
+msgid "Minimum"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:281
+msgid "Maximum"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:284
+msgid "Greater than. gt(a,b)=a>b"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:287
+msgid "Less than. lt(a,b)=a<b"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:290
+msgid "Equal. eq(a,b) = a=b"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:293
+msgid "Approximation. approx(a)=a±n"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:296
+msgid "Not equal. neq(a,b)=a≠b"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:299
+msgid "Greater or equal. geq(a,b)=a≥b"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:302
+msgid "Less or equal. leq(a,b)=a≤b"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:305
+msgid "Boolean and"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:308
+msgid "Boolean not"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:311
+msgid "Boolean or"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:314
+msgid "Boolean xor"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:317
+msgid "Boolean implication"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:320
+msgid "Greatest common divisor"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:323
+msgid "Least common multiple"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:326
+msgid "Root"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:329
+msgid "Cardinal"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:332
+msgid "Scalar product"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:335
+msgid "Select an element from a container"
+msgstr ""
+
+#: 3rdparty/analitzagui/operatorsmodel.cpp:338
+msgid "Joins several items of the same type"
+msgstr ""
+
+#: keomath/function/function.cpp:100 keomath/function/function.cpp:131
+msgid "Function type not recognized"
+msgstr ""
+
+#: keomath/function/function.cpp:121 keomath/function/function.cpp:161
+#, kde-format
+msgid "Function type not correct for Functions depending on %1"
+msgstr ""
+
+#: keomath/function/function.cpp:166
+msgid "The expression is not correct"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:50
+msgid "List"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:53
+msgid "New"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:107
+msgid "Cartesian Curve"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:112
+msgid "Polar Curve"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:117
+#: keomath/function/functioneditor.cpp:159
+msgid "Parametric Curve"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:122
+msgid "Implicit Curve"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:139
+msgid "Cartesian Surface"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:144
+msgid "Cilyndrical Surface"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:149
+msgid "Spherical Surface"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:154
+msgid "Parametric Surface"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:328
+msgid "&New"
+msgstr ""
+
+#: keomath/function/functioneditor.cpp:353
+msgid "&Editing"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:168
+#. i18n: ectx: property (text), widget (QRadioButton, filter2DSpaces)
+#. i18n: file: src/widgets/dashboardwidget.ui:212
+#. i18n: ectx: property (text), widget (QRadioButton, filter2DFunctions)
+#: keomath/function/functionsmodel.cpp:66 keomath/space/spacesmodel.cpp:91
+#: rc.cpp:480 rc.cpp:492
+msgid "2D"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:175
+#. i18n: ectx: property (text), widget (QRadioButton, filter3DSpaces)
+#. i18n: file: src/widgets/dashboardwidget.ui:219
+#. i18n: ectx: property (text), widget (QRadioButton, filter3DFunctions)
+#: keomath/function/functionsmodel.cpp:68 keomath/space/spacesmodel.cpp:93
+#: rc.cpp:483 rc.cpp:495
+msgid "3D"
+msgstr ""
+
+#: keomath/function/functionsmodel.cpp:124
+#: keomath/viewers/functionsmodel.cpp:84
+msgctxt "@title:column"
+msgid "Function"
+msgstr ""
+
+#: keomath/function/functionsmodel.cpp:128
+msgctxt "@title:column"
+msgid "Dimension"
+msgstr ""
+
+#: keomath/function/functionsmodel.cpp:132
+msgctxt "@title:column"
+msgid "Date"
+msgstr ""
+
+#: keomath/function/functionsmodel.cpp:168
+#: keomath/viewers/functionsmodel.cpp:120
+#, kde-format
+msgid "%1 function added"
+msgstr ""
+
+#: keomath/function/functionsview.cpp:64
+#, kde-format
+msgid "Hide '%1'"
+msgstr ""
+
+#: keomath/function/functionsview.cpp:67
+#, kde-format
+msgid "Show '%1'"
+msgstr ""
+
+#: keomath/function/functionsview.cpp:72 keomath/space/spacesview.cpp:117
+#, kde-format
+msgid "Remove '%1'"
+msgstr ""
+
+#: keomath/solvers/polarcurve.cpp:93
+msgid "Cannot have downlimit > uplimit"
+msgstr ""
+
+#: keomath/space/spacesview.cpp:116
+msgid "Show"
+msgstr ""
+
+#: keomath/viewers/view2d.cpp:532
+msgid "Selected viewport too small"
+msgstr ""
+
+#: rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr ""
+
+#: rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:16
+#. i18n: ectx: property (caption), widget (QDialog)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:13
+#. i18n: ectx: property (windowTitle), widget (QDialog, ImageInterface)
+#: rc.cpp:5 rc.cpp:61
+msgid "Image settings"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:38
+#. i18n: ectx: property (text), widget (QLabel)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:54
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:8 rc.cpp:64
+msgid "Width"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:46
+#. i18n: ectx: property (suffix), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:74
+#. i18n: ectx: property (suffix), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:64
+#. i18n: ectx: property (suffix), widget (QSpinBox, imgWidth)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:100
+#. i18n: ectx: property (suffix), widget (QSpinBox, imgHeight)
+#: rc.cpp:11 rc.cpp:21 rc.cpp:70 rc.cpp:79
+msgid " px"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:55
+#. i18n: ectx: property (toolTip), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:61
+#. i18n: ectx: property (toolTip), widget (QSpinBox, imgWidth)
+#: rc.cpp:14 rc.cpp:67
+msgid "Width of the image (in pixels)"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:63
+#. i18n: ectx: property (text), widget (QLabel)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:90
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:17 rc.cpp:73
+msgid "Height"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:83
+#. i18n: ectx: property (toolTip), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:97
+#. i18n: ectx: property (toolTip), widget (QSpinBox, imgHeight)
+#: rc.cpp:24 rc.cpp:76
+msgid "Height of the image (in pixels)"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:101
+#. i18n: ectx: property (text), widget (QLabel)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:132
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: rc.cpp:27 rc.cpp:82
+msgid "Image quality"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:112
+#. i18n: ectx: property (toolTip), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:139
+#. i18n: ectx: property (toolTip), widget (QSpinBox, imgQuality)
+#: rc.cpp:30 rc.cpp:85
+msgid "Between 0 (smallest files) and 100 (highest quality)"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:147
+#. i18n: ectx: property (text), widget (QLabel)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:184
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:33 rc.cpp:88
+msgid "Oversampling"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:158
+#. i18n: ectx: property (prefix), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:194
+#. i18n: ectx: property (prefix), widget (QDoubleSpinBox, oversampling)
+#: rc.cpp:37 rc.cpp:94
+msgid "x "
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:167
+#. i18n: ectx: property (toolTip), widget (QSpinBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:191
+#. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, oversampling)
+#: rc.cpp:40 rc.cpp:91
+msgid "Antialiases image (when larger then 1.0)"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:194
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:234
+#. i18n: ectx: property (text), widget (QCheckBox, whiteBackground)
+#: rc.cpp:43 rc.cpp:100
+msgid "Use white background"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:197
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:231
+#. i18n: ectx: property (toolTip), widget (QCheckBox, whiteBackground)
+#: rc.cpp:46 rc.cpp:97
+msgid "Use white as background color"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:205
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:244
+#. i18n: ectx: property (text), widget (QCheckBox, expandFrustum)
+#: rc.cpp:49 rc.cpp:106
+msgid "Expand frustum if needed"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:208
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:241
+#. i18n: ectx: property (toolTip), widget (QCheckBox, expandFrustum)
+#: rc.cpp:52 rc.cpp:103
+msgid ""
+"When image aspect ratio differs from viewer's one, expand frustum as needed. "
+"Fits inside current frustum otherwise."
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:241
+#. i18n: ectx: property (text), widget (QPushButton)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:294
+#. i18n: ectx: property (text), widget (QPushButton, okButton)
+#: rc.cpp:55 rc.cpp:109
+msgid "OK"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt3.ui:249
+#. i18n: ectx: property (text), widget (QPushButton)
+#. i18n: file: 3rdparty/QGLViewer/ImageInterface.Qt4.ui:301
+#. i18n: ectx: property (text), widget (QPushButton, cancelButton)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:179
+#. i18n: ectx: property (text), widget (QPushButton)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:183
+#. i18n: ectx: property (text), widget (QPushButton, CancelButton)
+#. i18n: file: keomath/function/functioneditorwidget.ui:797
+#. i18n: ectx: property (text), widget (QPushButton, clearBtn)
+#: rc.cpp:58 rc.cpp:112 rc.cpp:172 rc.cpp:232 rc.cpp:379
+msgid "Cancel"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:16
+#. i18n: ectx: property (caption), widget (QDialog)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:13
+#. i18n: ectx: property (windowTitle), widget (QDialog, VRenderInterface)
+#: rc.cpp:115 rc.cpp:175
+msgid "Vectorial rendering options"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:33
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:37
+#. i18n: ectx: property (text), widget (QCheckBox, includeHidden)
+#: rc.cpp:118 rc.cpp:181
+msgid "Include hidden parts"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:36
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:34
+#. i18n: ectx: property (toolTip), widget (QCheckBox, includeHidden)
+#: rc.cpp:121 rc.cpp:178
+msgid "Hidden polygons are also included in the output (usually twice bigger)"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:44
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:47
+#. i18n: ectx: property (text), widget (QCheckBox, cullBackFaces)
+#: rc.cpp:124 rc.cpp:187
+msgid "Cull back faces"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:47
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:44
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cullBackFaces)
+#: rc.cpp:127 rc.cpp:184
+msgid "Back faces (non clockwise point ordering) are removed from the output"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:55
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:57
+#. i18n: ectx: property (text), widget (QCheckBox, blackAndWhite)
+#: rc.cpp:130 rc.cpp:193
+msgid "Black and white"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:58
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:54
+#. i18n: ectx: property (toolTip), widget (QCheckBox, blackAndWhite)
+#: rc.cpp:133 rc.cpp:190
+msgid "Black and white rendering"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:66
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:67
+#. i18n: ectx: property (text), widget (QCheckBox, colorBackground)
+#: rc.cpp:136 rc.cpp:199
+msgid "Color background"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:69
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:64
+#. i18n: ectx: property (toolTip), widget (QCheckBox, colorBackground)
+#: rc.cpp:139 rc.cpp:196
+msgid "Use current background color instead of white"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:77
+#. i18n: ectx: property (text), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:77
+#. i18n: ectx: property (text), widget (QCheckBox, tightenBBox)
+#: rc.cpp:142 rc.cpp:205
+msgid "Tighten bounding box"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:80
+#. i18n: ectx: property (toolTip), widget (QCheckBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:74
+#. i18n: ectx: property (toolTip), widget (QCheckBox, tightenBBox)
+#: rc.cpp:145 rc.cpp:202
+msgid "Fit output bounding box to current display"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:96
+#. i18n: ectx: property (text), widget (QLabel)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:104
+#. i18n: ectx: property (text), widget (QLabel, sortLabel)
+#: rc.cpp:148 rc.cpp:211
+msgid "Sort method:"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:99
+#. i18n: ectx: property (toolTip), widget (QLabel)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:130
+#. i18n: ectx: property (toolTip), item, widget (QComboBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:101
+#. i18n: ectx: property (toolTip), widget (QLabel, sortLabel)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:111
+#. i18n: ectx: property (toolTip), widget (QComboBox, sortMethod)
+#: rc.cpp:151 rc.cpp:166 rc.cpp:208 rc.cpp:214
+msgid "Polygon depth sorting method"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:105
+#. i18n: ectx: property (text), item, widget (QComboBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:118
+#. i18n: ectx: property (text), item, widget (QComboBox, sortMethod)
+#: rc.cpp:154 rc.cpp:217
+msgid "No sorting"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:110
+#. i18n: ectx: property (text), item, widget (QComboBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:123
+#. i18n: ectx: property (text), item, widget (QComboBox, sortMethod)
+#: rc.cpp:157 rc.cpp:220
+msgid "BSP"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:115
+#. i18n: ectx: property (text), item, widget (QComboBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:128
+#. i18n: ectx: property (text), item, widget (QComboBox, sortMethod)
+#: rc.cpp:160 rc.cpp:223
+msgid "Topological"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:120
+#. i18n: ectx: property (text), item, widget (QComboBox)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:133
+#. i18n: ectx: property (text), item, widget (QComboBox, sortMethod)
+#: rc.cpp:163 rc.cpp:226
+msgid "Advanced topological"
+msgstr ""
+
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt3.ui:171
+#. i18n: ectx: property (text), widget (QPushButton)
+#. i18n: file: 3rdparty/QGLViewer/VRenderInterface.Qt4.ui:176
+#. i18n: ectx: property (text), widget (QPushButton, SaveButton)
+#: rc.cpp:169 rc.cpp:229
+msgid "Save"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:21
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#. i18n: file: keomath/function/functioneditorwidget.ui:31
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: rc.cpp:235 rc.cpp:238
+msgid "Page"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:37
+#. i18n: ectx: property (text), widget (QPushButton, createNewPlot)
+#: rc.cpp:241
+msgid "Create"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:66
+#. i18n: ectx: attribute (title), widget (QWidget, tab_10)
+#. i18n: file: keomath/function/functioneditorwidget.ui:159
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_18)
+#. i18n: file: keomath/function/functioneditorwidget.ui:182
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_21)
+#. i18n: file: keomath/function/functioneditorwidget.ui:226
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_26)
+#. i18n: file: keomath/function/functioneditorwidget.ui:356
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_14)
+#. i18n: file: keomath/function/functioneditorwidget.ui:385
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_20)
+#. i18n: file: keomath/function/functioneditorwidget.ui:414
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_22)
+#. i18n: file: keomath/function/functioneditorwidget.ui:443
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_23)
+#. i18n: file: keomath/function/functioneditorwidget.ui:486
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_25)
+#: rc.cpp:244 rc.cpp:256 rc.cpp:262 rc.cpp:274 rc.cpp:292 rc.cpp:298
+#: rc.cpp:304 rc.cpp:310 rc.cpp:322
+msgid "Definition"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:89
+#. i18n: ectx: attribute (title), widget (QWidget, tab_11)
+#: rc.cpp:247
+msgid "Derivatives"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:97
+#. i18n: ectx: property (text), widget (QCheckBox, showDerivative1)
+#: rc.cpp:250
+msgid "Show 1st derivative"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:125
+#. i18n: ectx: property (text), widget (QCheckBox, showDerivative2)
+#: rc.cpp:253
+msgid "Show 2nd derivative"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:165
+#. i18n: ectx: property (text), widget (QLabel, label_33)
+#: rc.cpp:259
+msgid "Donde q es la variable indepentiente, R(q)"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:188
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:265
+msgid "Variable independiente: t, x=F(t) e y=F(t)"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:197
+#. i18n: ectx: property (text), widget (QLabel, textLabelX_5)
+#. i18n: file: keomath/function/functioneditorwidget.ui:492
+#. i18n: ectx: property (text), widget (QLabel, textLabelX_4)
+#: rc.cpp:268 rc.cpp:325
+msgid "x=F(t)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:207
+#. i18n: ectx: property (text), widget (QLabel, textLabelY_7)
+#. i18n: file: keomath/function/functioneditorwidget.ui:508
+#. i18n: ectx: property (text), widget (QLabel, textLabelY_5)
+#: rc.cpp:271 rc.cpp:328
+msgid "y=F(t)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:232
+#. i18n: ectx: property (text), widget (QLabel, textLabel4_5)
+#: rc.cpp:277
+msgid "Una expresion que sera igualada a 0, F(x,y)=0"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:249
+#. i18n: ectx: property (title), widget (QGroupBox, appearanceCurve)
+#. i18n: file: keomath/function/functioneditorwidget.ui:529
+#. i18n: ectx: property (title), widget (QGroupBox, appearanceSurface)
+#: rc.cpp:280 rc.cpp:334
+msgid "Appearance"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:263
+#. i18n: ectx: property (text), widget (QLabel, label_41)
+#: rc.cpp:283
+msgid "Resolution"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:307
+#. i18n: ectx: property (text), widget (QLabel, label_40)
+#: rc.cpp:286
+msgid "Line width:"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:323
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, curveLineWidth)
+#: rc.cpp:289
+msgid " mm"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:368
+#. i18n: ectx: property (text), widget (QLabel, textLabel4_3)
+#: rc.cpp:295
+msgid "F(x,y)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:397
+#. i18n: ectx: property (text), widget (QLabel, textLabel4_6)
+#: rc.cpp:301
+msgid "Z(r,t)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:426
+#. i18n: ectx: property (text), widget (QLabel, textLabel4_7)
+#: rc.cpp:307
+msgid "R(t,s)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:449
+#. i18n: ectx: property (text), widget (QLabel, textLabelX_3)
+#: rc.cpp:313
+msgid "x=F(u,v)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:465
+#. i18n: ectx: property (text), widget (QLabel, textLabelY_3)
+#: rc.cpp:316
+msgid "y=F(u,v)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:472
+#. i18n: ectx: property (text), widget (QLabel, textLabelY_4)
+#: rc.cpp:319
+msgid "z=F(u,v)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:515
+#. i18n: ectx: property (text), widget (QLabel, textLabelY_6)
+#: rc.cpp:331
+msgid "z=F(t)="
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:537
+#. i18n: ectx: property (text), widget (QLabel, label_28)
+#: rc.cpp:337
+msgid "Drawing type:"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:551
+#. i18n: ectx: property (text), item, widget (KComboBox, surfaceDrawingType)
+#: rc.cpp:340
+msgid "Solid"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:556
+#. i18n: ectx: property (text), item, widget (KComboBox, surfaceDrawingType)
+#: rc.cpp:343
+msgid "Wired"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:561
+#. i18n: ectx: property (text), item, widget (KComboBox, surfaceDrawingType)
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:162
+#. i18n: ectx: property (text), item, widget (KComboBox, coordinateSystems_2)
+#: rc.cpp:346 rc.cpp:413
+msgid "Dots"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:579
+#. i18n: ectx: property (text), widget (QLabel, label_19)
+#: rc.cpp:349
+msgid "Accuracy:"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:600
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:352
+msgid "Color"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:636
+#. i18n: ectx: property (title), widget (QGroupBox, domain)
+#: rc.cpp:355
+msgid "Domain"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:654
+#. i18n: ectx: property (text), widget (QLabel, arg1)
+#: rc.cpp:358
+msgid "X"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:667
+#. i18n: ectx: property (text), widget (QLabel, arg2)
+#: rc.cpp:361
+msgid "Y"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:726
+#. i18n: ectx: property (text), widget (QLabel, label_23)
+#: rc.cpp:364
+msgid "Min"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:739
+#. i18n: ectx: property (text), widget (QLabel, label_34)
+#: rc.cpp:367
+msgid "Max"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:752
+#. i18n: ectx: property (title), widget (QGroupBox, functionInfo)
+#: rc.cpp:370
+msgid "Function information"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:758
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:373
+msgid "Name"
+msgstr ""
+
+#. i18n: file: keomath/function/functioneditorwidget.ui:790
+#. i18n: ectx: property (text), widget (QPushButton, okBtn)
+#: rc.cpp:376
+msgid "Ok"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:14
+#. i18n: ectx: property (windowTitle), widget (QWidget, Viewer2DWidget)
+#. i18n: file: keomath/viewers/viewer3dwidget.ui:14
+#. i18n: ectx: property (windowTitle), widget (QWidget, Viewer3DWidget)
+#: rc.cpp:382 rc.cpp:431
+msgid "Form"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:55
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#. i18n: file: keomath/viewers/viewer3dwidget.ui:52
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: rc.cpp:385 rc.cpp:434
+msgid "Title"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:73
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#. i18n: file: keomath/viewers/viewer3dwidget.ui:70
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: rc.cpp:388 rc.cpp:437
+msgid "Description"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:84
+#. i18n: ectx: property (html), widget (KTextEdit, spaceDescription)
+#. i18n: file: keomath/viewers/viewer3dwidget.ui:81
+#. i18n: ectx: property (html), widget (KTextEdit, spaceDescription)
+#: rc.cpp:391 rc.cpp:440
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-"
+"size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
+"size:8pt;\"></p></body></html>"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:124
+#. i18n: ectx: property (text), widget (QLabel, labelCoordSys)
+#: rc.cpp:398
+msgid "Coordinate System:"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:132
+#. i18n: ectx: property (text), item, widget (KComboBox, coordinateSystems)
+#: rc.cpp:401
+msgid "Cartesian"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:137
+#. i18n: ectx: property (text), item, widget (KComboBox, coordinateSystems)
+#: rc.cpp:404
+msgid "Polar"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:149
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:407
+msgid "Coordinate System options"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:157
+#. i18n: ectx: property (text), item, widget (KComboBox, coordinateSystems_2)
+#: rc.cpp:410
+msgid "Lines"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:172
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: rc.cpp:416
+msgid "Nombre de ejes"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:180
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:419
+msgid "Eje X"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:194
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:422
+msgid "Eje Y"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:208
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: rc.cpp:425
+msgid "Escala"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer2dwidget.ui:222
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: rc.cpp:428
+msgid "TextLabel"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer3dwidget.ui:116
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: rc.cpp:447
+msgid "Show axis"
+msgstr ""
+
+#. i18n: file: keomath/viewers/viewer3dwidget.ui:126
+#. i18n: ectx: property (text), widget (QCheckBox, showRefPlane)
+#: rc.cpp:450
+msgid "Show reference plane"
+msgstr ""
+
+#. i18n: file: src/settings/builderconfiguration.ui:20
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: rc.cpp:453
+msgid "Input type"
+msgstr ""
+
+#. i18n: file: src/settings/builderconfiguration.ui:28
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_textInput)
+#: rc.cpp:456
+msgid "Introduce color components through text"
+msgstr ""
+
+#. i18n: file: src/settings/gplacs_settings.kcfg:9
+#. i18n: ectx: label, entry (textInput), group (Preferences)
+#: rc.cpp:459
+msgid "type of input to build a color"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:14
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: rc.cpp:462
+msgid "StackedWidget"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:83
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:465
+msgid "View type"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:97
+#. i18n: ectx: property (text), item, widget (KComboBox, viewMode)
+#: rc.cpp:468
+msgid "Thumbnails menu"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:102
+#. i18n: ectx: property (text), item, widget (KComboBox, viewMode)
+#: rc.cpp:471
+msgid "Functions list"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:136
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: file: src/widgets/dashboardwidget.ui:189
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: rc.cpp:474 rc.cpp:486
+msgid "Buscar:"
+msgstr ""
+
+#. i18n: file: src/widgets/dashboardwidget.ui:158
+#. i18n: ectx: property (text), widget (QRadioButton, filterAllSpaces)
+#. i18n: file: src/widgets/dashboardwidget.ui:202
+#. i18n: ectx: property (text), widget (QRadioButton, filterAllFunctions)
+#: rc.cpp:477 rc.cpp:489
+msgid "All"
+msgstr ""
+
+#: src/app/gplacs.cpp:103 src/app/gplacs.cpp:176
+msgid "All Supported Files"
+msgstr ""
+
+#: src/app/gplacs.cpp:104 src/app/gplacs.cpp:177
+msgid "GPLACS standard file format"
+msgstr ""
+
+#: src/app/gplacs.cpp:182
+#, kde-format
+msgid ""
+"A file named \"%1\" already exists. Are you sure you want to overwrite it?"
+msgstr ""
+
+#: src/app/gplacs.cpp:182
+msgid "Overwrite"
+msgstr ""
+
+#: src/app/main.cpp:27
+msgid "Function plotter"
+msgstr ""
+
+#: src/app/main.cpp:33
+msgid "GPLACS"
+msgstr ""
+
+#: src/app/main.cpp:34
+msgid "(C) 2010, Percy Camilo T. Aucahuasi"
+msgstr ""
+
+#: src/app/main.cpp:35
+msgid "Percy Camilo T. Aucahuasi"
+msgstr ""
+
+#: src/app/main.cpp:35
+msgid "developer"
+msgstr ""
+
+#: src/app/main.cpp:40
+msgid "Document to open"
+msgstr ""
+
+#: src/widgets/palettedescriptionwidget.cpp:128
+msgctxt "@action:button"
+msgid "Save"
+msgstr ""
+
+#: src/widgets/palettedescriptionwidget.cpp:129
+msgctxt "@action:button"
+msgid "Cancel"
+msgstr ""
+

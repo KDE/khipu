@@ -1,0 +1,15 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=GPLACS
+Name[es]=GPLACS
+GenericName=Advanced Mathematical Function Plotter
+GenericName[es]=Graficador avanzado de funciones matemáticas
+Comment=Platform for visualizing curves and surfaces
+Comment[es]=Plataforma para la visualización de curvas y superficies
+Exec=gplacs
+MimeType=application/x-gplacs;
+Icon=gplacs
+Type=Application
+X-DocPath=gplacs/index.html
+Terminal=false
+Categories=Qt;KDE;Education;Math;

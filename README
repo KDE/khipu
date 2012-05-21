@@ -1,0 +1,32 @@
+gplacs prototype 2009-2
+
+* Los scripts dentro de los cada carpeta plugin son en sumas cuentas
+los metodos de graficion por defecto que lleva la instalacion ...
+alguien puede crear un script para cierto plugin y agregar es decir
+alguien puede crear un metodo de graficacion (script) para cierto plugin
+
+* Que es plugin? El plugin es aqel componente que concede la facultad de poder graficar
+cierto elemento matematico.
+
+* Elemento matematico: Los elementos matematicos pertenecen al dominio que la app ha definido, es decir son entidades
+que estan jerarquizadas y pueden o no estar relacionadas entre si. Por ejemplo:
+
+Elemento matematico => curva implicita
+  relacion con otros elementos: none
+  jerarquia: curva 2d
+
+Elemento matematico generico: curva 2d
+  relacion con otros elementos: plano
+  jerarquia: curva
+
+Es decir:
+Curva (conjunto de todas las curvas)
+  Curva 2d (conjunto de curvas en un espacio bidimencional)
+    Curva implicita (curva 2d que se expresa mediante una ecuacion implicita)
+
+WOW esto se pone bueno tengo que versionar esto una vez la base este acabada ...
+
+gplacs release 3 (beta3) 2010-2
+aqui ya estoy integrando lo trabajado en Kaltechfork, ademas ahora
+se construira los plugins poniendo como interface a solver 
+

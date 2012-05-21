@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DashboardWidget</class>
+ <widget class="QStackedWidget" name="DashboardWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>607</width>
+    <height>413</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StackedWidget</string>
+  </property>
+  <property name="currentIndex">
+   <number>0</number>
+  </property>
+  <widget class="QWidget" name="pageMenu">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="Keomath::Button" name="openFile">
+        <property name="toolTip">
+         <string>Abrir</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="saveFile">
+        <property name="toolTip">
+         <string>Guardar</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="addSpace2D">
+        <property name="toolTip">
+         <string>Crear Nuevo Espacio 2D</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="addSpace3D">
+        <property name="toolTip">
+         <string>Crear Nuevo Espacio 3D</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showAboutAppDialog">
+        <property name="toolTip">
+         <string>Acerca de GPLACS</string>
+        </property>
+        <property name="statusTip">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QStackedWidget" name="views">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="Keomath::SpacesView" name="spaces"/>
+      <widget class="QWidget" name="views_page2">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="Keomath::FunctionsView" name="functions"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Elejir la vista:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="KComboBox" name="viewMode">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>Espacios o Grupos de Funciones</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Lista Total de Funciones</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_7">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="filterStackedWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="page">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Buscar:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="KLineEdit" name="filterTextSpaces">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="KButtonGroup" name="filterDimensionsSpaces">
+            <property name="title">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>false</bool>
+            </property>
+            <property name="current" stdset="0">
+             <number>0</number>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <item>
+              <widget class="QRadioButton" name="filterAllSpaces">
+               <property name="text">
+                <string>Todos</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="filter2DSpaces">
+               <property name="text">
+                <string>2D</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="filter3DSpaces">
+               <property name="text">
+                <string>3D</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Buscar:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="KLineEdit" name="filterTextFunctions">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="KButtonGroup" name="filterDimensionsFunctions">
+            <layout class="QHBoxLayout" name="horizontalLayout_6">
+             <item>
+              <widget class="QRadioButton" name="filterAllFunctions">
+               <property name="text">
+                <string>Todos</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="filter2DFunctions">
+               <property name="text">
+                <string>2D</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="filter3DFunctions">
+               <property name="text">
+                <string>3D</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="pageGraph2D">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="Keomath::Button" name="backFromSpace2D">
+        <property name="toolTip">
+         <string>Volver a la Vista Principal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showFunctionEditor2D">
+        <property name="toolTip">
+         <string>Administrador de Funciones</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="copySpace2DImage">
+        <property name="toolTip">
+         <string>Copiar Imagen</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="saveSpace2DImage">
+        <property name="toolTip">
+         <string>Guardar Imagen</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_9">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showSpace2DInfo">
+        <property name="toolTip">
+         <string>Información del Espacio</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showCoordSysSettings2D">
+        <property name="toolTip">
+         <string>Configuración del Área de Dibujo</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="Keomath::Viewer2D" name="space2D" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="pageGraph3D">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="Keomath::Button" name="backFromSpace3D">
+        <property name="toolTip">
+         <string>Volver a la Vista Principal</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showFunctionEditor3D">
+        <property name="toolTip">
+         <string>Administrador de Funciones</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="copySpace3DImage">
+        <property name="toolTip">
+         <string>Copiar Imagen</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="saveSpace3DImage">
+        <property name="toolTip">
+         <string>Guardar Imagen</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showSpace3DInfo">
+        <property name="toolTip">
+         <string>Información del Espacio</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Keomath::Button" name="showCoordSysSettings3D">
+        <property name="toolTip">
+         <string>Configuración del Área de Dibujo</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="Keomath::Viewer3D" name="space3D" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KButtonGroup</class>
+   <extends>QGroupBox</extends>
+   <header>kbuttongroup.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Keomath::FunctionsView</class>
+   <extends>QTreeView</extends>
+   <header>keomath/function/functionsview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Keomath::Button</class>
+   <extends>QToolButton</extends>
+   <header>keomath/widgets/button.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Keomath::SpacesView</class>
+   <extends>QWidget</extends>
+   <header>keomath/space/spacesview.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Keomath::Viewer2D</class>
+   <extends>QWidget</extends>
+   <header>keomath/viewers/viewer2d.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Keomath::Viewer3D</class>
+   <extends>QWidget</extends>
+   <header>keomath/viewers/viewer3d.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>viewMode</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>views</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>170</x>
+     <y>401</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>274</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>viewMode</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>filterStackedWidget</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>389</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>219</x>
+     <y>392</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
