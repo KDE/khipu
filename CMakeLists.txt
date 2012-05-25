@@ -22,4 +22,3 @@ add_subdirectory ( keomath ) #framework library
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc
 add_subdirectory ( po ) #spanish lang support goes to GPLACS ... :)
-
