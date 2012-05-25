@@ -38,7 +38,7 @@ static const char version[] = "RC 13";
 
 int main(int argc, char **argv)
 {
-    KAboutData about("gplacs", 0, ki18n(I18N_NOOP("GPLACS")), version, ki18n(description),
+    KAboutData about("khipu", 0, ki18n(I18N_NOOP("Khipu")), version, ki18n(description),
                      KAboutData::License_GPL, ki18n("(C) 2010, Percy Camilo Triveño Aucahuasi"));
 
     about.addAuthor(ki18n("Percy Camilo Triveño Aucahuasi"), ki18n("Jefe de Proyecto y Desarrollador Principal"), "percy.camilo.ta@gmail.com");
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 
     QApplication::setStyle(QStyleFactory::create("Oxygen"));
 
-    QApplication::setWindowIcon(KIcon("gplacs"));
+    QApplication::setWindowIcon(KIcon("khipu"));
 
 
 
@@ -92,16 +92,16 @@ int main(int argc, char **argv)
 
 
 
-    
 
-    
+
+
     if (app.isSessionRestored())
     {
         RESTORE(GPLACS::MainWindow)
     }
     else
     {
-        
+
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         if (args->count() == 0)
             mainWindow->show();

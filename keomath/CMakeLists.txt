@@ -4,7 +4,6 @@ include_directories (
   ${CMAKE_CURRENT_SOURCE_DIR}
   .
   ..
-  ../3rdparty
 )
 
 set ( keomath_SRCS
@@ -77,15 +76,15 @@ target_link_libraries ( keomath
   ${OPENGL_glu_LIBRARY}
   #${GLEW_GLEW_LIBRARY}
   #Qt
-  ${QT_QTCORE_LIBRARY}
-  ${QT_QTGUI_LIBRARY}
+  #${QT_QTCORE_LIBRARY}
+  #${QT_QTGUI_LIBRARY}
   ${QT_QTOPENGL_LIBRARY}
   ${QT_QTXML_LIBRARY}
   #KDE
-  ${KDE4_KDECORE_LIBS}
+  #${KDE4_KDECORE_LIBS}
   ${KDE4_KDEUI_LIBS}
-  QtSolutions
-  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY}
+  ${ANALITZA_LIBRARY}
+  ${ANALITZAGUI_LIBRARY}
   ${QGLVIEWER_LIBRARY}
 )
 

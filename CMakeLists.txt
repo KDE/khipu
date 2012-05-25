@@ -1,18 +1,13 @@
-project ( GPLACS )
+project ( Khipu )
 
 find_package ( KDE4 REQUIRED )
+include(KDE4Defaults)
+
 find_package ( OpenGL REQUIRED )
 find_package ( Gettext REQUIRED )
 find_package ( Analitza REQUIRED )
 
-macro_optional_find_package(OpenGL)
-
-include(KDE4Defaults)
-include(MacroLibrary)
-include(MacroOptionalAddSubdirectory)
-include(MacroBoolTo01)
-
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
 if(NOT OPENGL_GLU_FOUND)
     message(FATAL_ERROR "GLU was not found")
@@ -23,7 +18,6 @@ include_directories (
   ${CMAKE_BINARY_DIR}
 )
 
-add_subdirectory ( 3rdparty ) #dependencies
 add_subdirectory ( keomath ) #framework library
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc
