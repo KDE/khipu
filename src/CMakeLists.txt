@@ -23,7 +23,6 @@ kde4_add_executable ( khipu ${khipu_SRCS} )
 
 target_link_libraries( khipu
   ${KDE4_KFILE_LIBS}
-  QtSolutions
   ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY}
   keomath
 )
