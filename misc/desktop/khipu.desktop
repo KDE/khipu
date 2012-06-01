@@ -1,8 +1,25 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=GPLACS
+Name[cs]=GPLACS
+Name[nl]=GPLACS
+Name[pt]=GPLACS
+Name[pt_BR]=GPLACS
+Name[uk]=GPLACS
+Name[x-test]=xxGPLACSxx
 GenericName=Advanced Mathematical Function Plotter
+GenericName[cs]=Pokročilý souřadnicový zapisovač matematických funkcí
+GenericName[nl]=Geavanceerde wiskundige functieplotter
+GenericName[pt]=Desenho Avançado de Funções Matemáticas
+GenericName[pt_BR]=Desenho avançado de funções matemáticas
+GenericName[uk]=Графобудівник математичних функцій з додатковими можливостями
+GenericName[x-test]=xxAdvanced Mathematical Function Plotterxx
 Comment=Platform for visualizing curves and surfaces
+Comment[nl]=Platform voor visualiseren van krommen en oppervlakken
+Comment[pt]=Plataforma de visualização de curvas e superfícies
+Comment[pt_BR]=Plataforma de visualização de curvas e superfícies
+Comment[uk]=Платформа для візуалізації кривих та поверхонь
+Comment[x-test]=xxPlatform for visualizing curves and surfacesxx
 Exec=gplacs
 MimeType=application/x-gplacs;
 Icon=gplacs
