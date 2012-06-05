@@ -2,6 +2,7 @@
 [Desktop Entry]
 Name=GPLACS
 Name[cs]=GPLACS
+Name[et]=GPLACS
 Name[nl]=GPLACS
 Name[pt]=GPLACS
 Name[pt_BR]=GPLACS
@@ -10,6 +11,7 @@ Name[uk]=GPLACS
 Name[x-test]=xxGPLACSxx
 GenericName=Advanced Mathematical Function Plotter
 GenericName[cs]=Pokročilý souřadnicový zapisovač matematických funkcí
+GenericName[et]=Täiustatud matemaatiliste funktsioonide graafiku joonistaja
 GenericName[nl]=Geavanceerde wiskundige functieplotter
 GenericName[pt]=Desenho Avançado de Funções Matemáticas
 GenericName[pt_BR]=Desenho avançado de funções matemáticas
@@ -17,6 +19,7 @@ GenericName[sk]=Pokročilý vykresľovač matematických funkcií
 GenericName[uk]=Графобудівник математичних функцій з додатковими можливостями
 GenericName[x-test]=xxAdvanced Mathematical Function Plotterxx
 Comment=Platform for visualizing curves and surfaces
+Comment[et]=Kõverate ja pindade visualiseerimise platvorm
 Comment[nl]=Platform voor visualiseren van krommen en oppervlakken
 Comment[pt]=Plataforma de visualização de curvas e superfícies
 Comment[pt_BR]=Plataforma de visualização de curvas e superfícies
