@@ -31,6 +31,7 @@
 #include <QtGui/QLabel>
 #include <QtGui/QGraphicsScene>
 #include <QtGui/QGraphicsProxyWidget>
+#include <QLineEdit>
 #include <QDebug>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -58,8 +59,178 @@
 #include <KAboutApplicationDialog>
 #include <KMenuBar>
 #include "widgets/dashboard.h"
+
+//BEGIN fun
+
+#include "analitza/variables.h"
+#include "analitzagui/expressionedit.h"
+#include "analitzaplot/function.h"
+#include "analitzaplot/functionsmodel.h"
+//END? fun :p
+
+
 namespace GPLACS
 {
+
+///
+class FunctionGraphEditor : public QWidget
+{
+public:
+    //setmodel instead ... si quiero construir uno de estos sin modelo esta bien 
+    //la clase padre no necesariamente puede teerner el modelo en el ctor y este le puede
+    //pasar despues
+    FunctionGraphEditor(FunctionGraphModel *model, QWidget *parent = 0);
+    
+public slots:
+    void setup(const QModelIndex &index);
+    void submit();
+
+private:
+    FunctionGraphModel *m_model;
+    
+    //TODO mas adelante + alla de funciones poner esto widget en un editor superior en la jerarquia
+    class NameWidget;
+    class ExpressionWidget;
+    class FunctionExpressionWidget;
+    class ArgumentsWidget;
+    class CoordinateSystemWidget;
+    class ColorWidget;
+    class DrawingPrecisionWidget;
+    
+    NameWidget *m_nameWidget;
+    FunctionExpressionWidget *m_functionExpressionWidget;
+//     ArgumentsWidget *m_argumentsWidget;
+//     CoordinateSystemWidget *m_;
+//     ColorWidget *m_;
+//     DrawingPrecisionWidget *m_;
+};
+
+class FunctionGraphEditor::NameWidget : public QWidget
+{
+public:
+    NameWidget(QWidget *parent)
+    :QWidget(parent)
+    {
+        m_name = new QLineEdit(this);
+        
+        QHBoxLayout *layout = new QHBoxLayout(this);
+        layout->addWidget(new QLabel(i18n("Name:"), this));
+        layout->addWidget(m_name);
+    }
+    
+    QString name() const { return m_name->text(); }
+    void setName(const QString &name) { m_name->setText(name); }
+
+private:
+    QLineEdit *m_name;
+};
+
+class FunctionGraphEditor::ExpressionWidget : public QWidget
+{
+public:
+    ExpressionWidget(QWidget *parent)
+    : QWidget(parent)
+    {
+        m_expressionEdit = new ExpressionEdit(this);
+        m_label = new QLabel(this);
+        
+        QHBoxLayout *layout = new QHBoxLayout(this);
+        layout->addWidget(m_label);
+        layout->addWidget(m_expressionEdit);
+    }
+
+    void setLabel(const QString &label) { m_label->setText(label); }
+    
+    Analitza::Expression expression() const { return m_expressionEdit->expression(); }
+    void setExpression(const Analitza::Expression &expression) { m_expressionEdit->setExpression(expression); }
+
+private:
+    QLabel *m_label;
+    ExpressionEdit *m_expressionEdit;
+};
+
+class FunctionGraphEditor::FunctionExpressionWidget : public QWidget
+{
+public:
+    FunctionExpressionWidget(QWidget *parent)
+    : QWidget(parent)
+    {
+        QVBoxLayout *layout = new QVBoxLayout(this);
+
+        //hide/show this widgets segun convenga
+        for (int i = 1; i<= 3; i++)
+        {
+            ExpressionWidget *expwidget = new ExpressionWidget(this);
+            m_expressionWidgets.append(expwidget);
+            layout->addWidget(expwidget);
+        }
+    }
+    
+    void setExpressions(const QList<Analitza::Expression> &expressions) 
+    {
+        Q_ASSERT(expressions.size()>1); // no hay dim 0 para el conjunto de llegada
+        
+        switch (expressions.size()) //Rn->Rm or Rn->R"expressions.size()"
+        {
+            case 1:
+            {
+                setVisibilityForExpresions(2, false);
+                
+                m_expressionWidgets[0]->setLabel("("+expressions[0].bvarList().join(",")+")"); //TODO
+                m_expressionWidgets[0]->setExpression(expressions[0]);
+
+                break;
+            }
+            
+//             case 2:
+//             {
+//                 setVisibilityForExpresions(2, false);
+//                 
+//                 m_expressionWidgets[0]->setLabel(expressions[0].bvarList()); //TODO
+//                 m_expressionWidgets[0]->setExpression(expressions[0]);
+// 
+//                 break;
+//             }
+        }
+    }
+    
+    void reset() { setVisibilityForExpresions(1, true); }
+
+private:
+    //TODO 3 que sea private static const de esta clase ... para que se diga su significado explicitamente
+    void setVisibilityForExpresions(int n, bool visible) //set the Visibility since the n (n>=1 and n <= 3) expression
+    {
+        for (int i = n; i <= 3; ++i)
+            m_expressionWidgets[i-1]->setVisible(visible);
+    }
+
+    QList<ExpressionWidget*> m_expressionWidgets;
+};
+
+
+FunctionGraphEditor::FunctionGraphEditor(FunctionGraphModel* model, QWidget* parent)
+: QWidget(parent), m_model(model)
+, m_nameWidget(new NameWidget(this))
+, m_functionExpressionWidget(new FunctionExpressionWidget(this))
+{
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->addWidget(m_nameWidget);
+    layout->addWidget(m_functionExpressionWidget);
+    layout->addStretch();
+}
+
+void FunctionGraphEditor::setup(const QModelIndex& index)
+{
+    m_nameWidget->setName(m_model->data(index, FunctionGraphModel::NameRole).toString());
+
+}
+
+void FunctionGraphEditor::submit()
+{
+//model->setdata(...)
+}
+
+///
 
 MainWindow::MainWindow()
     : KXmlGuiWindow()
@@ -78,8 +249,25 @@ MainWindow::MainWindow()
     setupGUI();
 
     
+    
+    //BEGIN WIDGET TESTS
+    
+    Analitza::Variables *vars = new Analitza::Variables;
+        
+    PlaneCurveModel *model = new PlaneCurveModel(vars, this);
+    
+    model->addItem(Analitza::Expression("x->x*x"), "Hola", Qt::green);
 
-    setCentralWidget(m_gplacsWidget);
+    FunctionGraphEditor *feditor = new FunctionGraphEditor(model, this);
+    feditor->setup(model->index(0));
+    
+    QTabWidget *w = new QTabWidget(this);
+    w->addTab(m_gplacsWidget, "Main");
+    w->addTab(feditor, "new func editor");
+    w->setCurrentIndex(1);
+    setCentralWidget(w);
+    
+    //END WIDGET TESTS
 
 
     updateTittleWhenOpenSaveDoc();

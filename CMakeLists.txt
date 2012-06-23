@@ -1,5 +1,4 @@
-project ( Khipu )
-
+project ( khipu )
 
 find_package ( KDE4 REQUIRED )
 include(KDE4Defaults)
@@ -14,12 +13,8 @@ if(NOT OPENGL_GLU_FOUND)
     message(FATAL_ERROR "GLU was not found")
 endif(NOT OPENGL_GLU_FOUND)
 
-include_directories (
-  ${CMAKE_SOURCE_DIR}
-  ${CMAKE_BINARY_DIR}
-)
+include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${ANALITZA_INCLUDE_DIR})
 
 add_subdirectory ( keomath ) #framework library
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc
-#add_subdirectory ( po ) #spanish lang support goes to GPLACS ... :)
