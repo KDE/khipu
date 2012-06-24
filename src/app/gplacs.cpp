@@ -72,7 +72,8 @@
 namespace GPLACS
 {
 
-///
+/// pre: esta clase requier que el modelo no acepte ningun item invalido (todos los items
+// deveb de ser validos, es decir tener backends asociados y sus expresiones ser lambda)
 class FunctionGraphEditor : public QWidget
 {
 public:
@@ -90,16 +91,20 @@ private:
     
     //TODO mas adelante + alla de funciones poner esto widget en un editor superior en la jerarquia
     class NameWidget;
+    
     class ExpressionWidget;
     class FunctionExpressionWidget;
+    
+    class ArgumentWidget;
     class ArgumentsWidget;
+    
     class CoordinateSystemWidget;
     class ColorWidget;
     class DrawingPrecisionWidget;
     
     NameWidget *m_nameWidget;
     FunctionExpressionWidget *m_functionExpressionWidget;
-//     ArgumentsWidget *m_argumentsWidget;
+    ArgumentsWidget *m_argumentsWidget;
 //     CoordinateSystemWidget *m_;
 //     ColorWidget *m_;
 //     DrawingPrecisionWidget *m_;
@@ -124,6 +129,94 @@ public:
 private:
     QLineEdit *m_name;
 };
+
+class FunctionGraphEditor::ArgumentWidget : public QWidget
+{
+public:
+    ArgumentWidget(QWidget *parent)
+    : QWidget(parent)
+    {
+        m_label = new QLabel(this);
+        m_lowEndPoint = new ExpressionEdit(this);
+        m_highEndPoint = new ExpressionEdit(this);
+        
+        QHBoxLayout *layout = new QHBoxLayout(this);
+        layout->addWidget(m_label);
+        layout->addWidget(m_lowEndPoint);
+        layout->addWidget(m_highEndPoint);
+    }
+
+    void setName(const QString &name) { m_label->setText(name); }
+
+    Analitza::Expression lowEndPoint() const { return m_lowEndPoint->expression(); }
+    void setLowEndPoint(const Analitza::Expression &expression) { m_lowEndPoint->setExpression(expression); }
+
+    Analitza::Expression highEndPoint() const { return m_highEndPoint->expression(); }
+    void setHighEndPoint(const Analitza::Expression &expression) { m_highEndPoint->setExpression(expression); }
+    
+private:
+    QLabel *m_label;
+    ExpressionEdit *m_lowEndPoint;
+    ExpressionEdit *m_highEndPoint;
+};
+
+class FunctionGraphEditor::ArgumentsWidget : public QWidget
+{
+public:
+    ArgumentsWidget(QWidget *parent)
+    : QWidget(parent)
+    {
+        QVBoxLayout *layout = new QVBoxLayout(this);
+
+        //hide/show this widgets segun convenga
+        for (int i = 1; i<= 2; i++)
+        {
+            ArgumentWidget *argwidget = new ArgumentWidget(this);
+            m_argumentWidgets.append(argwidget);
+            layout->addWidget(argwidget);
+        }
+    }
+    
+    void setArguments(const QMap<QString, RealInterval> &arguments) 
+    {
+//         setVisibilityForExpresions(arguments.size());
+        
+        for (int i = 0; i < arguments.size(); ++i)
+            m_argumentWidgets[i]->setName(arguments.keys()[i]);
+        
+        for (int i = arguments.size(); i < 2; ++i)
+            m_argumentWidgets[i]->setVisible(false);
+        
+//         if (arguments.size() == )
+//         {
+//             
+//         }
+//         else
+//         {
+//             setVisibilityForExpresions(2, false);
+//             m_expressionWidgets[0]->setLabel("("+functionExpression.bvarList().join(",")+")"); //TODO
+//             m_expressionWidgets[0]->setExpression(functionExpression.lambdaBody());
+//         }
+        //TODO
+
+        
+//         Q_ASSERT(expressions.size()>1); // no hay dim 0 para el conjunto de llegada
+        
+    }
+    
+    void reset() { setVisibilityForExpresions(1, true); }
+
+private:
+    //TODO 3 que sea private static const de esta clase ... para que se diga su significado explicitamente
+    void setVisibilityForExpresions(int n, bool visible) //set the Visibility since the n (n>=1 and n <= 3) expression
+    {
+        for (int i = n; i <= 3; ++i)
+            m_argumentWidgets[i-1]->setVisible(visible);
+    }
+
+    QList<ArgumentWidget*> m_argumentWidgets;
+};
+
 
 class FunctionGraphEditor::ExpressionWidget : public QWidget
 {
@@ -166,32 +259,23 @@ public:
         }
     }
     
-    void setExpressions(const QList<Analitza::Expression> &expressions) 
+    void setExpression(const Analitza::Expression &functionExpression) 
     {
-        Q_ASSERT(expressions.size()>1); // no hay dim 0 para el conjunto de llegada
-        
-        switch (expressions.size()) //Rn->Rm or Rn->R"expressions.size()"
+        if (functionExpression.isVector())
         {
-            case 1:
-            {
-                setVisibilityForExpresions(2, false);
-                
-                m_expressionWidgets[0]->setLabel("("+expressions[0].bvarList().join(",")+")"); //TODO
-                m_expressionWidgets[0]->setExpression(expressions[0]);
-
-                break;
-            }
             
-//             case 2:
-//             {
-//                 setVisibilityForExpresions(2, false);
-//                 
-//                 m_expressionWidgets[0]->setLabel(expressions[0].bvarList()); //TODO
-//                 m_expressionWidgets[0]->setExpression(expressions[0]);
-// 
-//                 break;
-//             }
         }
+        else
+        {
+            setVisibilityForExpresions(2, false);
+            m_expressionWidgets[0]->setLabel("("+functionExpression.bvarList().join(",")+")"); //TODO
+            m_expressionWidgets[0]->setExpression(functionExpression.lambdaBody());
+        }
+        //TODO
+
+        
+//         Q_ASSERT(expressions.size()>1); // no hay dim 0 para el conjunto de llegada
+        
     }
     
     void reset() { setVisibilityForExpresions(1, true); }
@@ -212,16 +296,19 @@ FunctionGraphEditor::FunctionGraphEditor(FunctionGraphModel* model, QWidget* par
 : QWidget(parent), m_model(model)
 , m_nameWidget(new NameWidget(this))
 , m_functionExpressionWidget(new FunctionExpressionWidget(this))
+, m_argumentsWidget(new ArgumentsWidget(this))
 {
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_nameWidget);
     layout->addWidget(m_functionExpressionWidget);
+    layout->addWidget(m_argumentsWidget);
     layout->addStretch();
 }
 
 void FunctionGraphEditor::setup(const QModelIndex& index)
 {
     m_nameWidget->setName(m_model->data(index, FunctionGraphModel::NameRole).toString());
+    m_functionExpressionWidget->setExpression(Analitza::Expression(m_model->data(index, FunctionGraphModel::ExpressionRole).toString()));
 
 }
 
