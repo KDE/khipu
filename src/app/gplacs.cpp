@@ -64,8 +64,8 @@
 
 #include "analitza/variables.h"
 #include "analitzagui/expressionedit.h"
-#include "analitzaplot/function.h"
-#include "analitzaplot/functionsmodel.h"
+#include "analitzaplot/planecurve.h"
+#include "analitzaplot/planecurvesmodel.h"
 //END? fun :p
 
 
@@ -307,8 +307,10 @@ FunctionGraphEditor::FunctionGraphEditor(FunctionGraphModel* model, QWidget* par
 
 void FunctionGraphEditor::setup(const QModelIndex& index)
 {
-    m_nameWidget->setName(m_model->data(index, FunctionGraphModel::NameRole).toString());
-    m_functionExpressionWidget->setExpression(Analitza::Expression(m_model->data(index, FunctionGraphModel::ExpressionRole).toString()));
+    
+    PlaneCurveModel *model = qobject_cast< PlaneCurveModel* >(m_model);
+    m_nameWidget->setName(model->curve(index.row())->name());
+    m_functionExpressionWidget->setExpression(model->curve(index.row())->expression());
 
 }
 
@@ -343,7 +345,8 @@ MainWindow::MainWindow()
         
     PlaneCurveModel *model = new PlaneCurveModel(vars, this);
     
-    model->addItem(Analitza::Expression("x->x*x"), "Hola", Qt::green);
+    model->addCurve(Analitza::Expression("x->x*x"), "Hola", Qt::green);
+    
 
     FunctionGraphEditor *feditor = new FunctionGraphEditor(model, this);
     feditor->setup(model->index(0));
