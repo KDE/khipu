@@ -1,4 +1,4 @@
-
+/*
 
 #include "view2d.h"
 
@@ -25,7 +25,7 @@
 #include "analitza/analyzer.h"
 
 #include "function/functionsmodel.h"
-#include "solvers/solver.h"
+// #include "solvers/solver.h"
 #include <QClipboard>
 #include <QApplication>
 
@@ -1018,7 +1018,7 @@ void View2D::drawFunctions(QPaintDevice *qpd)
 
 
 
-    Function::Axe t=Function::Cartesian;
+    Function::Axe t=Cartesian;
     if(functionModel->hasSelection())
         t=functionModel->currentFunction().axeType();
     drawAxes(&finestra, t);
@@ -1088,11 +1088,12 @@ void View2D::drawFunctions(QPaintDevice *qpd)
 
 
 
-        Solver2D *solver = static_cast<Solver2D*>(it->solver());
+        //NOTE gsoc2012 DEPRECATED
+//         Solver2D *solver = static_cast<Solver2D*>(it->solver());
 
-        if (!it->isShown() || (it->dimension() == 3) || (!solver))
+        if (!it->isShown() || (it->dimension() == 3)/* || (!solver)*/)
         {
-            qDebug() << "entra dib" << it->isShown() << solver->lambda().toString();
+            qDebug() << "entra dib" << it->isShown() << it->lambda().toString();
             continue;
 
         }
@@ -1115,9 +1116,9 @@ void View2D::drawFunctions(QPaintDevice *qpd)
             if (functionModel->isSelected(k))
             {
                 selfunwidthincre = 0.4;
-                if(solver->dimension() == 2)
+                if(it->dimension() == 2)
                 {
-                    if(solver->arguments() == QStringList("t"))
+                    if(it->parameters() == QStringList("t"))
                         m_showR = false;
                     else
                         m_showR = true;
@@ -1128,9 +1129,9 @@ void View2D::drawFunctions(QPaintDevice *qpd)
         if (functionModel->isSelected(k))
         {
 
-            if(solver->dimension() == 2)
+            if(it->dimension() == 2)
             {
-                if(solver->arguments() == QStringList("t"))
+                if(it->parameters() == QStringList("t"))
                     m_showR = false;
                 else
                     m_showR = true;
@@ -1139,8 +1140,8 @@ void View2D::drawFunctions(QPaintDevice *qpd)
 
         }
 
-
-        pfunc.setWidthF(millimetersToPixels(it->lineWidth() + selfunwidthincre, qpd));
+//NOTE gsoc2012 DEPRECATED
+//         pfunc.setWidthF(millimetersToPixels(it->lineWidth() + selfunwidthincre, qpd));
 
         finestra.setPen(pfunc);
 
@@ -3028,4 +3029,4 @@ double View2D::millimetersToPixels(double width_mm, QPaintDevice *device) const
     return device->logicalDpiX() * (width_mm/25.4);
 }
 
-} 
+} */

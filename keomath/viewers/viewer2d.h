@@ -24,7 +24,9 @@
 
 #include "keomath/keomathexport.h"
 #include "keomath/space/space.h"
-#include "keomath/viewers/view2d.h"
+// #include "keomath/viewers/view2d.h"
+
+class Graph2D;
 
 namespace Analitza
 {
@@ -39,9 +41,9 @@ class Viewer2DWidget;
 class FunctionsFilterProxyModel;
 class FunctionEditor;
 class SpacesModel;
-class Function;
+// class Function;
 class FunctionsView;
-class View2D;
+// class View2D;
 
 class KEOMATH_EXPORT Viewer2D : public QWidget
 {
@@ -71,7 +73,7 @@ public:
 
     Analitza::Variables* variables() const;
 
-    View2D *view() const;
+    Graph2D *view() const;
 
 public slots:
     void toggleShownFunctionEditor();

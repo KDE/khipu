@@ -22,7 +22,7 @@
 
 #include <QtCore/QString>
 #include <QtCore/QList>
-#include <QtCore/QUuid>
+#include <QtCore/QString>
 #include <QtGui/QPixmap>
 #include <KDE/KDateTime>
 
@@ -62,12 +62,12 @@ public:
     virtual ~Space();
 
     
-    QUuid id() const
+    QString id() const
     {
         return m_id;
     }
 
-    void setId(const QUuid &newid) 
+    void setId(const QString &newid) 
     {
         m_id = newid; 
     }
@@ -109,7 +109,7 @@ public:
     }
 
 protected:
-    QUuid m_id;
+    QString m_id;
     int m_dimension;
     QPixmap m_thumbnail;
     KDateTime  m_dateTime;

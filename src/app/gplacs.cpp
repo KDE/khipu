@@ -32,6 +32,7 @@
 #include <QtGui/QGraphicsScene>
 #include <QtGui/QGraphicsProxyWidget>
 #include <QLineEdit>
+#include <qstringlistmodel.h>
 #include <QDebug>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -66,12 +67,20 @@
 #include "analitzagui/expressionedit.h"
 #include "analitzaplot/planecurve.h"
 #include "analitzaplot/planecurvesmodel.h"
+
+#include <kiconloader.h>
+
+#include <kcategorizedview.h>
+#include <kcategorydrawer.h>
+#include <kcategorizedsortfilterproxymodel.h>
+#include <QModelIndex>
+
 //END? fun :p
 
 
 namespace GPLACS
 {
-
+/*
 /// pre: esta clase requier que el modelo no acepte ningun item invalido (todos los items
 // deveb de ser validos, es decir tener backends asociados y sus expresiones ser lambda)
 class FunctionGraphEditor : public QWidget
@@ -80,14 +89,14 @@ public:
     //setmodel instead ... si quiero construir uno de estos sin modelo esta bien 
     //la clase padre no necesariamente puede teerner el modelo en el ctor y este le puede
     //pasar despues
-    FunctionGraphEditor(FunctionGraphModel *model, QWidget *parent = 0);
+    FunctionGraphEditor(FunctionGraphsModel *model, QWidget *parent = 0);
     
 public slots:
     void setup(const QModelIndex &index);
     void submit();
 
 private:
-    FunctionGraphModel *m_model;
+    FunctionGraphsModel *m_model;
     
     //TODO mas adelante + alla de funciones poner esto widget en un editor superior en la jerarquia
     class NameWidget;
@@ -292,7 +301,7 @@ private:
 };
 
 
-FunctionGraphEditor::FunctionGraphEditor(FunctionGraphModel* model, QWidget* parent)
+FunctionGraphEditor::FunctionGraphEditor(FunctionGraphsModel* model, QWidget* parent)
 : QWidget(parent), m_model(model)
 , m_nameWidget(new NameWidget(this))
 , m_functionExpressionWidget(new FunctionExpressionWidget(this))
@@ -308,7 +317,7 @@ FunctionGraphEditor::FunctionGraphEditor(FunctionGraphModel* model, QWidget* par
 void FunctionGraphEditor::setup(const QModelIndex& index)
 {
     
-    PlaneCurveModel *model = qobject_cast< PlaneCurveModel* >(m_model);
+    PlaneCurvesModel *model = qobject_cast< PlaneCurvesModel* >(m_model);
     m_nameWidget->setName(model->curve(index.row())->name());
     m_functionExpressionWidget->setExpression(model->curve(index.row())->expression());
 
@@ -320,6 +329,40 @@ void FunctionGraphEditor::submit()
 }
 
 ///
+
+
+*/
+///////////////////////
+
+
+
+
+    QStringList icons;
+
+
+class MyModel : public QStringListModel
+{
+public:
+    virtual QVariant data(const QModelIndex &index, int role) const
+    {
+        switch (role) {
+            case KCategorizedSortFilterProxyModel::CategoryDisplayRole: {
+                    return QString::number(index.row() / 10);
+                }
+            case KCategorizedSortFilterProxyModel::CategorySortRole: {
+                    return index.row() / 10;
+                }
+            case Qt::DecorationRole:
+                return DesktopIcon(icons[index.row() % 4], KIconLoader::Desktop);
+            default:
+                break;
+        }
+        return QStringListModel::data(index, role);
+    }
+};
+
+
+//////////////
 
 MainWindow::MainWindow()
     : KXmlGuiWindow()
@@ -343,18 +386,47 @@ MainWindow::MainWindow()
     
     Analitza::Variables *vars = new Analitza::Variables;
         
-    PlaneCurveModel *model = new PlaneCurveModel(vars, this);
+    PlaneCurvesModel *model = new PlaneCurvesModel(vars, this);
     
     model->addCurve(Analitza::Expression("x->x*x"), "Hola", Qt::green);
     
 
-    FunctionGraphEditor *feditor = new FunctionGraphEditor(model, this);
-    feditor->setup(model->index(0));
+//     FunctionGraphEditor *feditor = new FunctionGraphEditor(model, this);
+//     feditor->setup(model->index(0));
     
     QTabWidget *w = new QTabWidget(this);
     w->addTab(m_gplacsWidget, "Main");
-    w->addTab(feditor, "new func editor");
-    w->setCurrentIndex(1);
+//     w->addTab(feditor, "new func editor");
+    
+    
+    icons << "konqueror";
+    icons << "okular";
+    icons << "plasma";
+    icons << "system-file-manager";
+
+    KCategorizedView *listView = new KCategorizedView(this);
+    listView->setCategoryDrawer(new KCategoryDrawer());
+    listView->setViewMode(QListView::IconMode);
+    MyModel *cat_model = new MyModel();
+
+    cat_model->insertRows(0, 100);
+    for (int i = 0; i < 100; ++i)
+    {
+        cat_model->setData(cat_model->index(i, 0), QString::number(i), Qt::DisplayRole);
+    }
+    
+    KCategorizedSortFilterProxyModel *proxyModel = new KCategorizedSortFilterProxyModel();
+    proxyModel->setCategorizedModel(true);
+    proxyModel->setSourceModel(cat_model);
+
+    listView->setModel(proxyModel);
+
+    w->addTab(listView, "Cat");
+    w->setCurrentIndex(0 /*2*/);
+    
+    
+    
+//     w->setCurrentIndex(1);
     setCentralWidget(w);
     
     //END WIDGET TESTS

@@ -161,7 +161,7 @@ void SpacesView::mousePressEvent(QMouseEvent * e)
                     Keomath::SpacesModel *sm = qobject_cast<Keomath::SpacesModel*>(sp->sourceModel());
 
 
-                    m_mainFunctionsModel->removeFunctionsBySpaceId(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()).id());
+                    m_mainFunctionsModel->removeItemsBySpace(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()).id());
                 }
 
                 

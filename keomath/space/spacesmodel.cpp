@@ -170,7 +170,7 @@ QModelIndex SpacesModel::spaceIndex(const Space& space) const
     return QModelIndex();
 }
 
-const Space & SpacesModel::spaceFromId(const QUuid &id) const
+const Space & SpacesModel::spaceFromId(const QString &id) const
 {
     for (int i = 0; i < m_spaceList.size(); i+=1)
     {
@@ -352,7 +352,7 @@ const Space* SpacesModel::getSpace(int num) const
 
 
 
-bool SpacesModel::editSpace(const QUuid& toChange, const Space& func)
+bool SpacesModel::editSpace(const QString& toChange, const Space& func)
 {
     bool exist=false;
 

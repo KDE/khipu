@@ -18,6 +18,7 @@
 
 
 #include "space.h"
+#include <quuid.h>
 
 namespace Keomath
 {
@@ -30,7 +31,7 @@ Space::Space()
 Space::Space(int dimension)
     : m_dimension(dimension)
 {
-    m_id = QUuid::createUuid();
+    m_id = QUuid::createUuid().toString();
     m_dateTime = KDateTime::currentLocalDateTime(); 
 }
 

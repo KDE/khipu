@@ -27,6 +27,8 @@
 #include <QMouseEvent>
 #include "solvers/solvers3d/MarchingCubes/qtlogo.h"
 #include "solvers/solvers3d/MarchingCubes/formulas.h"
+#include <analitzaplot/mathutils.h>
+#include <analitzaplot/private/functiongraph.h>
 
 namespace Keomath
 {
@@ -69,10 +71,10 @@ class View3D : public QGLViewer
 
 private:
     
-    QMap<QUuid, int> m_displayList;
+    QMap<QString, int> m_displayList;
     unsigned int num;
     unsigned int dlnum;
-    QUuid if_quuid; 
+    QString if_quuid; 
 
 private:
     void clearDisplayLists();
@@ -80,13 +82,13 @@ private:
 
 public:
     View3D(QWidget *parent = 0);
-    void setSpaceId(const QUuid &spaceId);
+    void setSpaceId(const QString &spaceId);
     void setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel);
 
 public slots:
-    void updateSurface(const Keomath::Function &function);
-    void updateSurfaceImplicit(QUuid funId,QColor col,int index,QList<double> cons,int oct,int axi,bool solid,bool curva,bool xy,double pres);
-    void removeSurface(const QUuid &funid, const QString &funlambda);
+//     void updateSurface(const FunctionGraph &function);
+//     void updateSurfaceImplicit(QUuid funId,QColor col,int index,QList<double> cons,int oct,int axi,bool solid,bool curva,bool xy,double pres);
+    void removeSurface(const QString &funid, const QString &funlambda);
     void pintar_ejes(unsigned int modo);
     void setXRotation(int angle);
     void setYRotation(int angle);
@@ -101,9 +103,9 @@ signals:
 public:
     
     void mousePressEvent(QMouseEvent * event);
-    void cambiar_funcion(QUuid funcId,QColor col,Figuras tipo, QList<double> constantes,int oct,int axi,bool solid);
-    void graficar_curvas(QUuid funcId,int tipo, QList<double> cons, bool plano, double pres);
-    void drawGrid(float size,int nbSubdivisions);
+//     void cambiar_funcion(QString funcId,QColor col,Figuras tipo, QList<double> constantes,int oct,int axi,bool solid);
+//     void graficar_curvas(QString funcId,int tipo, QList<double> cons, bool plano, double pres);
+//     void drawGrid(float size,int nbSubdivisions);
     
     
     
@@ -126,7 +128,7 @@ private:
     QVector3D shape(float u,float v);
 
     
-    QtLogo *logo;
+//     QtLogo *logo;
     int xRot;
     int yRot;
     int zRot;
@@ -156,12 +158,12 @@ private:
 
     GLuint m_indexDisplayList;
     Solver3D *m_currentSolver;
-    Function::DrawingType m_drawingType;
+    PlotStyle m_drawingType;
     QColor m_color;
 
 private:
     FunctionsFilterProxyModel *m_functionsFilterProxyModel;
-    QUuid m_spaceId;
+    QString m_spaceId;
 };
 
 } 

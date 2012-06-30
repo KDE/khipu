@@ -30,6 +30,7 @@
 #include <QHeaderView>
 
 #include "analitza/expression.h"
+#include <analitzaplot/private/functiongraph.h>
 
 
 namespace Keomath
@@ -64,7 +65,8 @@ void FunctionsView::selectionChanged(const QItemSelection & selected, const QIte
 
 
 
-        sm->setData(sp->mapToSource(idx), QVariant(), FunctionsModel::Selection);
+//         sm->setData(sp->mapToSource(idx), QVariant(), FunctionsModel::Selection);
+        setCurrentIndex(sp->mapToSource(idx));
 
     }
 }
@@ -88,7 +90,11 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
     if(e->button()==Qt::RightButton && clickIdx.isValid())
     {
         QModelIndex nameIdx(clickIdx.sibling(clickIdx.row(), 0));
-        bool shown=model()->data(clickIdx, FunctionsModel::Shown).toBool();
+        
+        FunctionsFilterProxyModel *sp = qobject_cast<Keomath::FunctionsFilterProxyModel*>(model());
+        FunctionsModel *sm = qobject_cast<Keomath::FunctionsModel*>(sp->sourceModel());
+        
+        bool shown=sm->item(clickIdx.row())->isVisible() ;//  model()->  data(clickIdx, FunctionsModel::Shown).toBool();
         QString actuallyShown;
         QString icon;
         if(shown)
@@ -119,8 +125,8 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
         QAction* result=menu.exec(e->globalPos());
 
 
-        FunctionsFilterProxyModel *sp = qobject_cast<Keomath::FunctionsFilterProxyModel*>(model());
-        FunctionsModel *sm = qobject_cast<Keomath::FunctionsModel*>(sp->sourceModel());
+//         FunctionsFilterProxyModel *sp = qobject_cast<Keomath::FunctionsFilterProxyModel*>(model());
+//         FunctionsModel *sm = qobject_cast<Keomath::FunctionsModel*>(sp->sourceModel());
 
 
 
@@ -132,12 +138,13 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
 
 
 
-            sm->setData(sm->index(sourceRow,0), !shown, FunctionsModel::Shown);
+            ///sm->setData(sm->index(sourceRow,0), !shown, FunctionsModel::Shown);
+            sm->setVisible(sourceRow, !shown);
 
-            if (!shown)
-                emit functionShown(sm->funclist[sourceRow]);
-            else
-                emit functionHided(sm->editFunction(sourceRow)->id(), sm->editFunction(sourceRow)->lambda().toString());
+//             if (!shown)
+//                 emit functionShown(sm->funclist[sourceRow]);
+//             else
+//                 emit functionHided(sm->editFunction(sourceRow)->id(), sm->editFunction(sourceRow)->lambda().toString());
 
 
         } 
@@ -154,9 +161,9 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
             {
                 
                 
-
-                sm->editFunction(sourceRow)->setShown(true);
-                emit functionOnSpaceShown(sm->editFunction(sourceRow)->spaceId());
+                 sm->setVisible(sourceRow, true);
+//                 sm->editFunction(sourceRow)->setShown(true);
+//                 emit functionOnSpaceShown(sm->editFunction(sourceRow)->spaceId());
 
             }
 

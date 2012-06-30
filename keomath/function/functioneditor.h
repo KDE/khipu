@@ -22,11 +22,10 @@
 
 #include <QWidget>
 #include <QAbstractItemDelegate>
-#include "function.h"
 #include "space/space.h"
 
 
-
+#include "mathhelper.h"
 
 namespace Analitza
 {
@@ -155,14 +154,14 @@ private slots:
 
 
     
-    void setModAnActivo();
-    void setAnimActiva();
-    void setDirAnim();
-    void reiniciarAnimacion();
-    void llenarFuncionesR();
-    void calcularAreaR();
-    void calcularAreaE();
-    void cambiarAreaF();
+//     void setModAnActivo();
+//     void setAnimActiva();
+//     void setDirAnim();
+//     void reiniciarAnimacion();
+//     void llenarFuncionesR();
+//     void calcularAreaR();
+//     void calcularAreaE();
+//     void cambiarAreaF();
 
     
 
@@ -215,8 +214,8 @@ private:
     bool createSphericalSurface();
     bool createParametricSurface();
     bool createParametricCurve3D();
-    bool createImplicitSurface(int index);
-    QList<double> implicitparameters;
+//     bool createImplicitSurface(int index);
+//     QList<double> implicitparameters;
     void clearCartesianSurface();
     void clearCylindricalSurface();
     void clearSphericalSurface();

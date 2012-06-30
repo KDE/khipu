@@ -32,7 +32,7 @@ namespace Keomath
 {
 
 class FunctionsModel;
-class Function;
+// class Function;
 
 class KEOMATH_EXPORT FunctionsView : public QTreeView
 {
@@ -52,15 +52,15 @@ public:
     }
 
 
-signals:
+// signals:
     
     
 
-    void functionShown(const Keomath::Function &function); 
-    void functionHided(const QUuid &funid, const QString &funlambda); 
+//     void functionShown(const Keomath::Function &function); 
+//     void functionHided(const QUuid &funid, const QString &funlambda); 
 
 
-    void functionOnSpaceShown(const QUuid &spaceId);
+//     void functionOnSpaceShown(const QUuid &spaceId);
 
 
 private:

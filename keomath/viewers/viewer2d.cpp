@@ -42,7 +42,7 @@
 #include <KColorUtils>
 
 
-
+#include "analitzaplot/plotview2d.h"
 #include "function/functioneditor.h"
 #include "space/space.h"
 #include "space/spacesmodel.h"
@@ -463,8 +463,8 @@ void Viewer2D::setSpace(const Space &space)
     if ((m_functionsFilterProxyModel->rowCount() > 0))
     {
 
-
-        functionModel->setSelected(functionModel->editFunction(m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(0,0)).row())->id());
+//TODO
+//         functionModel->setSelected(functionModel->editFunction(m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(0,0)).row())->id());
     }
 
 }
@@ -473,7 +473,8 @@ void Viewer2D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxy
 {
     m_functionsFilterProxyModel = functionsFilterProxyModel;
     m_functionEditor->setFunctionsModel(m_functionsFilterProxyModel);
-    m_viewer2DWidget->view->setFunctionsModel(m_functionsFilterProxyModel);
+    //TODO
+//     m_viewer2DWidget->view->setFunctionsModel(m_functionsFilterProxyModel);
 
 
 
@@ -507,14 +508,15 @@ void Viewer2D::setSpacesModel(SpacesModel *spacesModel)
 
 void Viewer2D::toImage(const QString laurl)
 {
-    m_viewer2DWidget->view->toImage(laurl);
+    //TODO
+    //m_viewer2DWidget->view->toImage(laurl);
 }
 void Viewer2D::copyImageToClipboard()
 {
 
 
-
-    m_viewer2DWidget->view->snapshotToClipboard();
+//TODO
+    //m_viewer2DWidget->view->snapshotToClipboard();
 
 }
 
@@ -532,7 +534,7 @@ Analitza::Variables* Viewer2D::variables() const
 }
 
 
-View2D * Viewer2D::view() const
+Graph2D * Viewer2D::view() const
 {
     return m_viewer2DWidget->view;
 }
@@ -742,11 +744,12 @@ void Viewer2D::updateTick(int i)
     QVariantMap vmap = m_viewer2DWidget->tickScale->itemData(i, Qt::UserRole).toMap();
 
 
-    m_viewer2DWidget->view->updateTickScale(vmap["symbol"].toString(),
-                                            vmap["symbolValue"].toReal(),
-
-                                            vmap["numerator"].toInt(),
-                                            vmap["denominator"].toInt());
+    //TODO
+//     m_viewer2DWidget->view->updateTickScale(vmap["symbol"].toString(),
+//                                             vmap["symbolValue"].toReal(),
+// 
+//                                             vmap["numerator"].toInt(),
+//                                             vmap["denominator"].toInt());
 }
 
 void Viewer2D::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
@@ -768,9 +771,9 @@ void Viewer2D::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickSca
 void Viewer2D::updateGridColor(int i)
 {
     
-
-    QColor col = KColorUtils::lighten(m_viewer2DWidget->gridColor->color(), .35);
-    m_viewer2DWidget->view->setGridColor(col);
+//TODO
+//     QColor col = KColorUtils::lighten(m_viewer2DWidget->gridColor->color(), .35);
+//     m_viewer2DWidget->view->setGridColor(col);
 }
 
 }

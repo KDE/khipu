@@ -1,4 +1,13 @@
 
+#ifndef GRAPH2D_H
+#define GRAPH2D_H
+
+#include "analitzaplot/plotview2d.h"
+
+
+#endif
+
+/*
 
 #ifndef GRAPH2D_H
 #define GRAPH2D_H
@@ -459,4 +468,4 @@ private:
 
 } 
 
-#endif
+#endif*/

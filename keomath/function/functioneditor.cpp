@@ -35,10 +35,11 @@
 #include <math.h>
 #include "function/functionsmodel.h"
 #include "function/functionsview.h"
-#include "keomath/solvers/solver.h"
-#include "keomath/solvers/solverfactory.h"
+// #include "keomath/solvers/solver.h"
+// #include "keomath/solvers/solverfactory.h"
 #include "function/functionlibraryedit.h"
 #include "analitzagui/variablesmodel.h"
+#include <analitzaplot/private/functiongraph.h>
 
 #include <KStandardDirs>
 #include "ui_functioneditorwidget.h"
@@ -384,1332 +385,6 @@ double FunctionEditor::devFuncion(int tipo, double val)
     }
 
 }
-
-void FunctionEditor::calcularAreaR()
-{
-
-
-    double i;
-
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    QString linf;
-    QString lsup;
-    bool isNumber = false;
-    bool isN;
-
-
-    linf = m_editor->txtLimiteI->text();
-    lsup = m_editor->txtLimiteS->text();
-
-    linf.toFloat(&isNumber);
-
-    if(isNumber)
-    {
-
-        if(linf.toFloat(&isN) >= functionModel->getLimiteI())
-        {
-            liArea = linf.toFloat(&isN);
-        }
-
-    }
-
-    lsup.toFloat(&isNumber);
-
-    if(isNumber)
-    {
-        qDebug() << lsup.toFloat(&isNumber);
-        if(lsup.toFloat(&isN) <= functionModel->getLimiteS())
-        {
-            lsArea = lsup.toFloat(&isN);
-        }
-    }
-
-
-
-
-    if(m_editor->cmbFuncion1->currentIndex() != 0 && m_editor->cmbFuncion2->currentIndex() != 0)
-    {
-        QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion1(),0));
-
-        Function *itF1 = functionModel->editFunction(mi.row());
-
-        mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion2(),0));
-
-        Function *itF2 = functionModel->editFunction(mi.row());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        Solver2D *solverF1 = static_cast<Solver2D*>(itF1->solver());
-        Solver2D *solverF2 = static_cast<Solver2D*>(itF2->solver());
-        QVector<QLineF> linesArea;
-
-
-
-
-        linesArea.clear();
-        QPointF pF1;
-        QPointF pF2;
-        double r1;
-        double r2;
-
-        QVector<QPointF> puntosInt;
-        puntosInt.clear();
-
-
-        for(i=liArea; i<lsArea; i+=0.001)
-        {
-            pF1.setX(i);
-            pF1.setY(0.0);
-
-            pF2.setX(i);
-            pF2.setY(0.0);
-
-            r1 = solverF1->calc(pF1).first.y();
-            r2 = solverF2->calc(pF2).first.y();
-
-            linesArea.append(QLineF(i,r1,i,r2));
-
-            if(absF(r1,r2) <= 0.003)
-            {
-
-                puntosInt.append(QPointF(i,r1));
-            }
-
-
-
-
-        }
-
-        QVector<QPointF> puntosIntDep;
-        puntosIntDep.clear();
-        if(puntosInt.size() > 1)
-        {
-            double res1;
-            double res2;
-            puntosIntDep.append(puntosInt.at(0));
-
-            for(i = 1; i <puntosInt.size(); i++)
-            {
-
-
-                if(absF(puntosInt.at(i).x(),puntosIntDep.at(puntosIntDep.size()-1).x()) <= 0.5)
-                {
-
-                    pF1.setX(puntosInt.at(i).x());
-                    pF1.setY(0.0);
-
-                    pF2.setX(puntosInt.at(i).x());
-                    pF2.setY(0.0);
-
-                    r1 = solverF1->calc(pF1).first.y();
-                    r2 = solverF2->calc(pF2).first.y();
-
-                    res1 = absF(r1,r2);
-
-                    pF1.setX(puntosIntDep.at(puntosIntDep.size()-1).x());
-                    pF1.setY(0.0);
-
-                    pF2.setX(puntosIntDep.at(puntosIntDep.size()-1).x());
-                    pF2.setY(0.0);
-
-                    r1 = solverF1->calc(pF1).first.y();
-                    r2 = solverF2->calc(pF2).first.y();
-
-                    res2 = absF(r1,r2);
-
-                    if(res1 <= res2)
-
-                    {
-
-                        puntosIntDep.replace(puntosIntDep.size()-1, puntosInt.at(i));
-                    }
-
-
-                }
-                else
-                {
-
-
-                    puntosIntDep.append(puntosInt.at(i));
-                }
-            }
-
-        }
-
-        functionModel->setPathsArea(linesArea);
-        functionModel->setIntPoints(puntosIntDep);
-
-        double dif;
-        double area;
-        double rest;
-        double entre;
-        double div;
-        double r12;
-        double r22;
-
-
-        div = 5000;
-        dif = (lsArea - liArea) / div;
-        dif = abs2(dif);
-        area = 0.0;
-        rest = lsArea;
-
-
-        for(i=0; i<div; ++i)
-        {
-            pF1.setX(rest);
-            pF1.setY(0.0);
-
-            pF2.setX(rest);
-            pF2.setY(0.0);
-
-            r1 = solverF1->calc(pF1).first.y();
-            r2 = solverF2->calc(pF2).first.y();
-
-            pF1.setX(rest-dif);
-            pF1.setY(0.0);
-
-            pF2.setX(rest-dif);
-            pF2.setY(0.0);
-
-            r12 = solverF1->calc(pF1).first.y();
-            r22 = solverF2->calc(pF2).first.y();
-
-            entre = abs2((r1+r12)/2 - (r2+r22)/2);
-            if(!std::isnan(entre))
-            {
-                area = area + dif*(entre);
-            }
-            else
-            {
-
-            }
-            rest = rest - dif;
-
-
-        }
-
-        QString tAreaReal;
-
-        tAreaReal.setNum(area);
-
-        m_editor->lblAreaEncontrada->setText(tAreaReal);
-
-
-    }
-
-    if(m_editor->cmbFuncion1->currentIndex() != 0 && m_editor->cmbFuncion2->currentIndex() == 0)
-    {
-
-        QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion1(),0));
-
-        Function *itF1 = functionModel->editFunction(mi.row());
-
-
-
-
-
-
-
-
-        Solver2D *solverF1 = static_cast<Solver2D*>(itF1->solver());
-        QVector<QLineF> linesArea;
-
-
-        linesArea.clear();
-        QPointF pF1;
-
-        double r1;
-
-        QVector<QPointF> puntosInt;
-        puntosInt.clear();
-
-        for(i=liArea; i<lsArea; i+=0.01)
-        {
-            pF1.setX(i);
-            pF1.setY(0.0);
-
-
-            r1 = solverF1->calc(pF1).first.y();
-
-
-            linesArea.append(QLineF(i,r1,i,0.0));
-
-
-
-
-        }
-
-        functionModel->setPathsArea(linesArea);
-        functionModel->setIntPoints(puntosInt);
-
-        double dif;
-        double area;
-        double rest;
-        double entre;
-        double div;
-        double r12;
-
-
-
-        div = 5000;
-        dif = (lsArea - liArea) / div;
-        dif = abs2(dif);
-        area = 0.0;
-        rest = lsArea;
-
-
-        for(i=0; i<div; ++i)
-        {
-            pF1.setX(rest);
-            pF1.setY(0.0);
-
-
-            r1 = solverF1->calc(pF1).first.y();
-
-            pF1.setX(rest-dif);
-            pF1.setY(0.0);
-
-
-
-            r12 = solverF1->calc(pF1).first.y();
-
-
-
-            entre = abs2((r1+r12)/2);
-            if(!std::isnan(entre))
-            {
-                area = area + dif*(entre);
-            }
-            else
-            {
-
-            }
-
-            rest = rest - dif;
-
-
-        }
-
-        QString tAreaReal;
-
-        tAreaReal.setNum(area);
-
-        m_editor->lblAreaEncontrada->setText(tAreaReal);
-
-        functionModel->setMFuncion2("-");
-        functionModel->setPFuncion2(-1);
-
-
-
-    }
-
-    if(m_editor->cmbFuncion1->currentIndex() == 0 && m_editor->cmbFuncion2->currentIndex() != 0)
-    {
-        QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion2(),0));
-
-        Function *itF2 = functionModel->editFunction(mi.row());
-
-
-
-
-
-
-
-
-        Solver2D *solverF2 = static_cast<Solver2D*>(itF2->solver());
-        QVector<QLineF> linesArea;
-
-        linesArea.clear();
-        QPointF pF2;
-
-        double r2;
-
-        QVector<QPointF> puntosInt;
-        puntosInt.clear();
-
-        for(i=liArea; i<lsArea; i+=0.01)
-        {
-            pF2.setX(i);
-            pF2.setY(0.0);
-
-
-            r2 = solverF2->calc(pF2).first.y();
-
-
-            linesArea.append(QLineF(i,r2,i,0.0));
-
-
-
-
-        }
-
-        functionModel->setPathsArea(linesArea);
-        functionModel->setIntPoints(puntosInt);
-
-        double dif;
-        double area;
-        double rest;
-        double entre;
-        double div;
-        double r22;
-
-
-
-        div = 5000;
-        dif = (lsArea - liArea) / div;
-        dif = abs2(dif);
-        area = 0.0;
-        rest = lsArea;
-
-
-        for(i=0; i<div; ++i)
-        {
-            pF2.setX(rest);
-            pF2.setY(0.0);
-
-
-            r2 = solverF2->calc(pF2).first.y();
-
-            pF2.setX(rest-dif);
-            pF2.setY(0.0);
-
-
-
-            r22 = solverF2->calc(pF2).first.y();
-
-
-
-            entre = abs2((r2+r22)/2);
-            if(!std::isnan(entre))
-            {
-                area = area + dif*(entre);
-            }
-            else
-            {
-
-            }
-            rest = rest - dif;
-
-
-        }
-
-        QString tAreaReal;
-
-        tAreaReal.setNum(area);
-
-        m_editor->lblAreaEncontrada->setText(tAreaReal);
-
-        functionModel->setMFuncion1("-");
-        functionModel->setPFuncion1(-1);
-
-    }
-
-    if(m_editor->cmbFuncion1->currentIndex() == 0 && m_editor->cmbFuncion2->currentIndex() == 0)
-    {
-
-        QVector<QLineF> a;
-        QVector<QPointF> p;
-
-        a.clear();
-        p.clear();
-
-        functionModel->setPathsArea(a);
-        functionModel->setIntPoints(p);
-
-        m_editor->lblAreaEncontrada->setText("Ninguna");
-
-        functionModel->setMFuncion1("-");
-        functionModel->setPFuncion1(-1);
-
-        functionModel->setMFuncion2("-");
-        functionModel->setPFuncion2(-1);
-
-
-
-    }
-
-    functionModel->setMAreaE(false);
-
-
-
-
-
-}
-
-
-double FunctionEditor::abs2(double n)
-{
-    if(n >= 0)
-        return n;
-    else
-        return -1*n;
-}
-
-double FunctionEditor::absF(double n1, double n2)
-{
-    double r;
-    r = n1 - n2;
-    if(r < 0)
-    {
-        r = r * -1;
-    }
-
-    return r;
-
-}
-
-void FunctionEditor::calcularAreaE()
-{
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    functionModel->setMAreaE(true);
-    functionModel->setMArea(true);
-
-    double li;
-    double ls;
-    li = 0.5;
-    ls = 6.0;
-
-    if(m_editor->cmbDivEjemplo->currentIndex() == 0)
-    {
-        functionModel->setCantDiv(10);
-    }
-    if(m_editor->cmbDivEjemplo->currentIndex() == 1)
-    {
-        functionModel->setCantDiv(20);
-    }
-    if(m_editor->cmbDivEjemplo->currentIndex() == 2)
-    {
-        functionModel->setCantDiv(30);
-    }
-
-    if(m_editor->cmbEjemploArea->currentIndex() == 0)
-    {
-        QVector<QPointF> pointsCre;
-        QVector<QLineF> linesArea;
-        QVector<QLineF> linesF;
-        double i;
-        pointsCre.clear();
-        linesArea.clear();
-
-        for(i=li; i<ls; i += 0.01)
-        {
-            pointsCre.append(QPointF(i,devFuncion(5,i)));
-            linesArea.append(QLineF(i,0,i,devFuncion(5,i)));
-        }
-
-
-        linesF = buildPathsArea(pointsCre);
-        functionModel->setPathsACre(linesArea);
-        functionModel->setPathsCre(linesF);
-
-        functionModel->setAreaEjemplo(0);
-
-
-
-    }
-
-    if(m_editor->cmbEjemploArea->currentIndex() == 2)
-    {
-        QVector<QPointF> pointsDec;
-        QVector<QLineF> linesArea;
-        QVector<QLineF> linesF;
-        double i;
-        pointsDec.clear();
-        linesArea.clear();
-
-        for(i=li; i<ls; i += 0.01)
-        {
-            pointsDec.append(QPointF(i,devFuncion(6,i)));
-            linesArea.append(QLineF(i,0,i,devFuncion(6,i)));
-        }
-
-
-
-        linesF = buildPathsArea(pointsDec);
-        functionModel->setPathsDec(linesF);
-        functionModel->setPathsADec(linesArea);
-
-
-        functionModel->setAreaEjemplo(2);
-
-    }
-
-    if(m_editor->cmbEjemploArea->currentIndex() == 1)
-    {
-        QVector<QPointF> pointsEnt1;
-        QVector<QPointF> pointsEnt2;
-        QVector<QLineF> linesArea;
-        QVector<QLineF> linesF1;
-        QVector<QLineF> linesF2;
-
-        double i;
-        pointsEnt1.clear();
-        pointsEnt2.clear();
-        linesArea.clear();
-
-        for(i=li; i<ls; i += 0.01)
-        {
-            pointsEnt1.append(QPointF(i,devFuncion(1,i)));
-            pointsEnt2.append(QPointF(i,devFuncion(5,i)));
-
-            linesArea.append(QLineF(i,devFuncion(5,i),i,devFuncion(1,i)));
-        }
-
-
-
-
-
-        linesF1 = buildPathsArea(pointsEnt1);
-        linesF2 = buildPathsArea(pointsEnt2);
-
-
-
-
-
-
-
-
-        functionModel->setPathsAEnt(linesArea);
-        functionModel->setPathsEnt(linesF1);
-        functionModel->setPathsEnt2(linesF2);
-
-        functionModel->setAreaEjemplo(1);
-
-
-
-
-    }
-
-    if(m_editor->cmbEjemploArea->currentIndex() == 0 || m_editor->cmbEjemploArea->currentIndex() == 2)
-    {
-        double area, rest,dif;
-        int f,i;
-
-        if(m_editor->cmbEjemploArea->currentIndex() == 0)
-            f = 5;
-        else
-            f = 6;
-
-
-
-        dif = (ls - li) / functionModel->getCantDiv();
-        dif = abs2(dif);
-        area = 0.0;
-        rest = li;
-
-        for(i=0; i<functionModel->getCantDiv(); ++i)
-        {
-            area = area + dif*abs2(devFuncion(f,rest));
-            rest += dif;
-        }
-
-        QString resp;
-
-        resp.setNum(area);
-
-        if(m_editor->cmbEjemploArea->currentIndex() == 0)
-        {
-            m_editor->lblAreaDefecto->setText(resp);
-        }
-        else
-        {
-            m_editor->lblAreaExceso->setText(resp);
-        }
-
-        dif = (ls - li) / functionModel->getCantDiv();
-        dif = abs2(dif);
-        area = 0.0;
-        rest = ls;
-
-        for(i=0; i<functionModel->getCantDiv(); ++i)
-        {
-            area = area + dif*abs2(devFuncion(f,rest));
-            rest -= dif;
-        }
-
-        resp.setNum(area);
-
-        if(m_editor->cmbEjemploArea->currentIndex() == 0)
-        {
-            m_editor->lblAreaExceso->setText(resp);
-        }
-        else
-        {
-            m_editor->lblAreaDefecto->setText(resp);
-        }
-
-
-
-        dif = (ls - li) / functionModel->getCantDiv();
-        dif = abs2(dif);
-        area = 0.0;
-        rest = ls;
-
-        for(i=0; i<functionModel->getCantDiv(); ++i)
-        {
-            area = area + dif*((abs2(devFuncion(f,rest))+abs2(devFuncion(f,rest-dif)))/2);
-            rest = rest - dif;
-        }
-
-        resp.setNum(area);
-
-        m_editor->lblAreaMExacta->setText(resp);
-
-        int div;
-
-        div = 5000;
-        dif = (ls - li) / div;
-        dif = abs2(dif);
-        area = 0.0;
-        rest = ls;
-
-        for(i=0; i<div; ++i)
-        {
-            area = area + dif*((abs2(devFuncion(f,rest))+abs2(devFuncion(f,rest-dif)))/2);
-            rest = rest - dif;
-        }
-
-        resp.setNum(area);
-
-        m_editor->lblAreaAproximada->setText(resp);
-
-
-    }
-    else
-    {
-        double dif;
-        double area;
-        double rest;
-        double entre;
-        int i, f1, f2;
-
-        dif = (ls - li) / functionModel->getCantDiv();
-        dif = abs2(dif);
-        area = 0.0;
-        rest = ls;
-        f1 = 5;
-        f2 = 1;
-
-
-
-        for(i=0; i<functionModel->getCantDiv(); ++i)
-        {
-            entre = abs2((devFuncion(f1,rest)+devFuncion(f1,rest-dif))/2 - (devFuncion(f2,rest)+devFuncion(f2,rest-dif))/2);
-            area = area + dif*(entre);
-            rest = rest - dif;
-        }
-
-        QString resp;
-
-        resp.setNum(area);
-
-        m_editor->lblAreaMExacta->setText(resp);
-
-        int div;
-        div = 5000;
-        dif = (ls - li) / div;
-        dif = abs2(dif);
-        area = 0.0;
-        rest = ls;
-        f1 = 5;
-        f2 = 1;
-
-
-
-
-        for(i=0; i<div; ++i)
-        {
-            entre = abs2((devFuncion(f1,rest)+devFuncion(f1,rest-dif))/2 - (devFuncion(f2,rest)+devFuncion(f2,rest-dif))/2);
-            area = area + dif*(entre);
-            rest = rest - dif;
-        }
-
-
-        resp.setNum(area);
-
-        m_editor->lblAreaAproximada->setText(resp);
-
-        m_editor->lblAreaDefecto->setText("");
-        m_editor->lblAreaExceso->setText("");
-
-    }
-
-}
-
-QVector<QLineF> FunctionEditor::buildPathsArea(QVector<QPointF> &points)
-{
-    QVector<QLineF> linesRes;
-
-    linesRes.clear();
-
-    int i;
-
-    if(points.size() >= 2)
-    {
-        for (i = 1; i < points.size(); i++)
-        {
-            if (!std::isnan(points.at(i).x()) && !std::isnan(points.at(i).y()) &&
-                    !std::isnan(points.at(i-1).x()) && !std::isnan(points.at(i-1).y()))
-                linesRes.append(QLineF(points.at(i-1), points.at(i)));
-
-        }
-
-    }
-
-    return linesRes;
-
-
-}
-
-
-
-void FunctionEditor::cambiarAreaF()
-{
-    if(m_editor->cmbFuncion1->count() > 0 && m_editor->cmbFuncion2->count() > 0)
-    {
-        FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-        if(m_editor->cmbFuncion1->currentIndex() != 0)
-        {
-
-            functionModel->setMFuncion1(m_editor->cmbFuncion1->currentText());
-        }
-
-        if(m_editor->cmbFuncion2->currentIndex() != 0)
-        {
-
-            functionModel->setMFuncion2(m_editor->cmbFuncion2->currentText());
-        }
-
-
-        int k=0;
-        
-
-
-        int totalfuncs = m_functionsFilterProxyModel->rowCount();
-        int i;
-
-        for (i = 0; i < totalfuncs; i+=1)
-            
-        {
-            k = i; 
-
-            
-
-            QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(i,0));
-
-            Function *it = functionModel->editFunction(mi.row());
-            
-            
-
-
-            
-            
-
-            
-
-
-
-
-
-
-
-            Solver2D *solver = static_cast<Solver2D*>(it->solver());
-
-            if (!it->isShown() || (it->dimension() == 3) || (!solver))
-                continue;
-
-
-            
-
-
-            if((functionModel->getMFuncion1() != "-") && (it->lambda().toString() == functionModel->getMFuncion1()))
-            {
-
-                functionModel->setPFuncion1(i);
-
-
-            }
-
-
-            if((functionModel->getMFuncion2() != "-") && (it->lambda().toString() == functionModel->getMFuncion2()))
-            {
-
-                functionModel->setPFuncion2(i);
-            }
-
-
-
-
-        }
-
-        if((functionModel->getMFuncion1() == "-"))
-        {
-
-            functionModel->setPFuncion1(-1);
-
-
-        }
-
-
-        if((functionModel->getMFuncion2() == "-"))
-        {
-
-            functionModel->setPFuncion2(-1);
-        }
-
-
-
-        if(m_editor->cmbFuncion1->currentIndex() != 0 && m_editor->cmbFuncion2->currentIndex() != 0)
-        {
-            QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion1(),0));
-
-            Function *itF1 = functionModel->editFunction(mi.row());
-
-            mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion2(),0));
-
-            Function *itF2 = functionModel->editFunction(mi.row());
-
-
-
-
-            if(itF1->domain().at(0).lower() >= itF2->domain().at(0).lower())
-            {
-                liArea = itF1->domain().at(0).lower();
-
-
-            }
-            else
-            {
-                liArea = itF2->domain().at(0).lower();
-            }
-
-
-
-            if(itF1->domain().at(0).upper() <= itF2->domain().at(0).upper())
-            {
-                lsArea = itF1->domain().at(0).upper();
-            }
-            else
-            {
-                lsArea = itF2->domain().at(0).upper();
-            }
-
-
-
-
-
-
-
-
-        }
-
-        if(m_editor->cmbFuncion1->currentIndex() != 0 && m_editor->cmbFuncion2->currentIndex() == 0)
-        {
-            
-            QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion1(),0));
-
-            Function *itF1 = functionModel->editFunction(mi.row());
-
-
-
-
-            liArea = itF1->domain().at(0).lower();
-            lsArea = itF1->domain().at(0).upper();
-
-        }
-
-        if(m_editor->cmbFuncion1->currentIndex() == 0 && m_editor->cmbFuncion2->currentIndex() != 0)
-        {
-            QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(functionModel->getPFuncion2(),0));
-
-            Function *itF2 = functionModel->editFunction(mi.row());
-
-
-
-
-
-            liArea = itF2->domain().at(0).lower();
-            lsArea = itF2->domain().at(0).upper();
-
-        }
-
-        if(m_editor->cmbFuncion1->currentIndex() == 0 && m_editor->cmbFuncion2->currentIndex() == 0)
-        {
-
-            QVector<QLineF> a;
-            QVector<QPointF> p;
-
-            a.clear();
-            p.clear();
-
-            functionModel->setPathsArea(a);
-            functionModel->setIntPoints(p);
-
-            m_editor->lblAreaEncontrada->setText("Ninguna");
-
-            liArea = -1000;
-            lsArea = 1000;
-
-
-
-        }
-
-        QString linf;
-        QString lsup;
-
-        linf.setNum(liArea);
-        m_editor->txtLimiteI->setText(linf);
-
-        lsup.setNum(lsArea);
-        m_editor->txtLimiteS->setText(lsup);
-
-        functionModel->setLimiteI(liArea);
-        functionModel->setLimiteS(lsArea);
-
-    }
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-void FunctionEditor::llenarFuncionesR()
-{
-
-
-
-
-
-
-
-    if(fi > 0)
-    {
-        FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-        if(m_editor->currentIndex() == 2)
-        {
-            int i, nf;
-
-            
-
-            nf = m_functionsFilterProxyModel->rowCount();
-
-            m_editor->cmbFuncion1->clear();
-            m_editor->cmbFuncion2->clear();
-
-            m_editor->cmbFuncion1->addItem("Ninguna Funcion");
-            m_editor->cmbFuncion2->addItem("Ninguna Funcion");
-
-            for(i=0; i<nf; i++)
-            {
-                QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(i,0));
-
-                Function *it = functionModel->editFunction(mi.row());
-
-                Solver2D *solver = static_cast<Solver2D*>(it->solver());
-
-                if (!it->isShown() || (it->dimension() == 3) || (!solver))
-                    continue;
-
-                if(solver->dimension() == 2)
-                {
-                    if(solver->arguments() == QStringList("x"))
-                    {
-                        m_editor->cmbFuncion1->addItem(it->lambda().toString());
-                        m_editor->cmbFuncion2->addItem(it->lambda().toString());
-                    }
-                }
-
-            }
-
-            functionModel->setMFuncion1("-");
-            functionModel->setMFuncion2("-");
-            functionModel->setPFuncion1(-1);
-            functionModel->setPFuncion2(-1);
-            functionModel->setMArea(true);
-            QVector<QLineF> la;
-            la.clear();
-            functionModel->setPathsArea(la);
-            QVector<QPointF> lp;
-            lp.clear();
-            functionModel->setIntPoints(lp);
-
-        }
-        else
-        {
-            functionModel->setMArea(false);
-
-        }
-
-        m_editor->chkModoAnim->setChecked(false);
-        functionModel->setModAnActivo(false);
-        m_editor->clickOk->setEnabled(true);
-        m_editor->lblAreaEncontrada->setText("");
-
-
-    }
-
-
-
-
-    if(fi == 0)
-        fi++;
-
-
-
-
-
-
-
-
-
-
-}
-
-void FunctionEditor::cambiarMArea()
-{
-    bool esMArea;
-    if(m_editor->currentIndex() == 2)
-    {
-        esMArea = true;
-    }
-    else
-    {
-        esMArea = false;
-    }
-
-
-
-
-
-
-
-
-}
-
-void FunctionEditor::setModAnActivo()
-{
-
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    if(m_editor->chkModoAnim->isChecked())
-    {
-        functionModel->setModAnActivo(true);
-        m_editor->clickOk->setEnabled(false);
-        functionModel->setAnimActiva(3);
-    }
-    else
-    {
-        functionModel->setModAnActivo(false);
-        m_editor->clickOk->setEnabled(true);
-        functionModel->setAnimActiva(3);
-    }
-
-
-
-
-
-}
-
-void FunctionEditor::setAnimActiva()
-{
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    int animActiva;
-
-    animActiva = functionModel->getAnimActiva();
-
-    switch(animActiva)
-    {
-    case 1:
-        functionModel->setAnimActiva(2);
-        break;
-    case 2:
-        functionModel->setAnimActiva(1);
-        break;
-    case 3:
-        functionModel->setAnimActiva(1);
-        break;
-    default:
-        break;
-    }
-
-}
-
-void FunctionEditor::setDirAnim()
-{
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    int dirAnim;
-
-    dirAnim = m_editor->cmbTipoAnim->currentIndex();
-
-    functionModel->setAnimActiva(3);
-    switch(dirAnim)
-    {
-    case 0:
-        functionModel->setDirAnim(1);
-        break;
-    case 1:
-        functionModel->setDirAnim(2);
-        break;
-    default:
-        break;
-    }
-
-
-
-
-
-}
-
-void FunctionEditor::reiniciarAnimacion()
-{
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    functionModel->setAnimActiva(3);
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 FunctionEditor::~FunctionEditor()
 {
@@ -2432,9 +1107,9 @@ void FunctionEditor::createFunction()
     case EditingParametricCurve3D:
         valid = createParametricCurve3D();
         break;
-    case EditingImplicitSurface:
-        valid = createImplicitSurface(currentImplicitIndex);
-        break;
+//     case EditingImplicitSurface:
+//         valid = createImplicitSurface(currentImplicitIndex);
+//         break;
     }
 
     if (valid)
@@ -2549,23 +1224,32 @@ void FunctionEditor::editFunction(const QModelIndex &index)
 
     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
 
-    Function *fn = functionModel->editFunction(sourceRow);
+    const FunctionGraph *fn = functionModel->item(sourceRow);
 
     m_editor->functionName->setText(fn->name());
 
     m_currentEditFunctionId = fn->id();
-    QStringList arguments = fn->solver()->arguments();
+    QStringList arguments = fn->parameters();
 
-    if (fn->dimension() == 2)
+    if (fn->spaceDimension() == 2)
     {
-        if (fn->lambda().lambdaBody().isVector())
+        if (fn->expression().lambdaBody().isVector())
         {
             if (arguments == QStringList() << QString("t"))
             {
-                initParametricCurve2D(fn->domain());
 
-                m_editor->parametricCurve2DXExpression->setExpression(fn->lambda().lambdaBody().elementAt(0));
-                m_editor->parametricCurve2DYExpression->setExpression(fn->lambda().lambdaBody().elementAt(1));
+                //NOTE quick FIX 
+                RealInterval::List dd; 
+                foreach (const QString &param, fn->parameters())
+                {
+                    QPair<double, double> ii_ = fn->interval(param);
+                    dd << RealInterval(ii_.first, ii_.second);
+                }   
+           
+                initParametricCurve2D(dd);
+
+                m_editor->parametricCurve2DXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
+                m_editor->parametricCurve2DYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
 
 
                 setParametricCurveDomainInfo();
@@ -2578,91 +1262,93 @@ void FunctionEditor::editFunction(const QModelIndex &index)
                     (arguments == QStringList() << QString("x") << QString("y")))
             {
                 initCartesianCurve();
-                m_editor->cartesianCurveExpression->setExpression(fn->lambda().lambdaBody());
+                m_editor->cartesianCurveExpression->setExpression(fn->expression().lambdaBody());
 
                 if (arguments == QStringList() << QString("x"))
                 {
                     m_editor->cartesianCurveType->setCurrentIndex(0);
 
-                    m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                    m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+
+                    //TODO
+//                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
                 }
                 else if (arguments == QStringList() << QString("y"))
                 {
                     m_editor->cartesianCurveType->setCurrentIndex(1);
 
-                    m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                    m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+                    //TODO
+//                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
                 }
                 else if (arguments == QStringList() << QString("x") << QString("y"))
                 {
                     m_editor->cartesianCurveType->setCurrentIndex(2);
 
-                    m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                    m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+                    //TODO
+//                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
-                    m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-                    m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+                    //TODO
+//                     m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+//                     m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
 
 
                 }
             }
             else if (arguments == QStringList() << QString("q"))
             {
-                initPolarCurve(fn->domain());
-                m_editor->polarCurveExpression->setExpression(fn->lambda().lambdaBody());
+                //TODO
+//                 initPolarCurve(fn->domain());
+                m_editor->polarCurveExpression->setExpression(fn->expression().lambdaBody());
 
 
-                m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+                //TODO
+//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
 
                 setPolarCurveDomainInfo();
-
-
-
-
-
-
-
-
-
             }
         }
     }
-    else if (fn->dimension() == 3)
+    else if (fn->spaceDimension() == 3)
     {
-        if (fn->lambda().lambdaBody().isVector())
+        if (fn->expression().lambdaBody().isVector())
         {
             if (arguments == QStringList() << QString("u") << QString("v"))
             {
-                initParametricSurface(fn->domain());
+                //TODO
+//                 initParametricSurface(fn->domain());
 
-                m_editor->parametricSurfaceXExpression->setExpression(fn->lambda().lambdaBody().elementAt(0));
-                m_editor->parametricSurfaceYExpression->setExpression(fn->lambda().lambdaBody().elementAt(1));
-                m_editor->parametricSurfaceZExpression->setExpression(fn->lambda().lambdaBody().elementAt(2));
+                m_editor->parametricSurfaceXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
+                m_editor->parametricSurfaceYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
+                m_editor->parametricSurfaceZExpression->setExpression(fn->expression().lambdaBody().elementAt(2));
 
-                m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+                //TODO
+//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
-                m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-                m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
 
 
                 setParametricSurfaceDomainInfo();
             }
             else if (arguments == QStringList() << QString("t"))
             {
-                initParametricCurve3D(fn->domain());
+                //TODO
+//                 initParametricCurve3D(fn->domain());
 
-                m_editor->parametricCurve3DXExpression->setExpression(fn->lambda().lambdaBody().elementAt(0));
-                m_editor->parametricCurve3DYExpression->setExpression(fn->lambda().lambdaBody().elementAt(1));
-                m_editor->parametricCurve3DZExpression->setExpression(fn->lambda().lambdaBody().elementAt(2));
+                m_editor->parametricCurve3DXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
+                m_editor->parametricCurve3DYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
+                m_editor->parametricCurve3DZExpression->setExpression(fn->expression().lambdaBody().elementAt(2));
 
-                m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+                //TODO
+//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
 
 
@@ -2674,44 +1360,48 @@ void FunctionEditor::editFunction(const QModelIndex &index)
         {
             if ((arguments == QStringList() << QString("x") << QString("y")))
             {
-                initCartesianSurface(fn->domain());
-                m_editor->cartesianSurfaceExpression->setExpression(fn->lambda().lambdaBody());
+                //TODO
+//                 initCartesianSurface(fn->domain());
+                m_editor->cartesianSurfaceExpression->setExpression(fn->expression().lambdaBody());
 
 
-                m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+                //TODO
+//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
-                m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-                m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
 
 
                 setCartesianSurfaceDomainInfo();
             }
             else if (arguments == QStringList() << QString("r") << QString("t"))
             {
-                initCylindricalSurface(fn->domain());
-                m_editor->cylindricalSurfaceExpression->setExpression(fn->lambda().lambdaBody());
+                //TODO
+//                 initCylindricalSurface(fn->domain());
+                m_editor->cylindricalSurfaceExpression->setExpression(fn->expression().lambdaBody());
 
 
-                m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
-                m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-                m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
 
                 setCylindricalSurfaceDomainInfo();
             }
             else if (arguments == QStringList() << QString("s") << QString("t"))
             {
-                initSphericalSurface(fn->domain());
-                m_editor->sphericalSurfaceExpression->setExpression(fn->lambda().lambdaBody());
+                //TODO
+//                 initSphericalSurface(fn->domain());
+                m_editor->sphericalSurfaceExpression->setExpression(fn->expression().lambdaBody());
 
+                //TODO
+//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
 
-                m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-                m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-                m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-                m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
 
                 setSphericalSurfaceDomainInfo();
             }
@@ -2720,14 +1410,15 @@ void FunctionEditor::editFunction(const QModelIndex &index)
 
 
 
-    if (!fn->domain().isEmpty())
+    if (!fn->parameters().isEmpty())
     {
         if (arguments.size() == 1)
         {
             m_editor->argument1->setText(arguments.at(0));
 
-            m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower()), false));
-            m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper()), false));
+            //TODO
+//             m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower()), false));
+//             m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper()), false));
         }
         else if (arguments.size() == 2)
         {
@@ -2739,8 +1430,9 @@ void FunctionEditor::editFunction(const QModelIndex &index)
 
 
             {
-                m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower()), false));
-                m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper()), false));
+                //TODO
+//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower()), false));
+//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper()), false));
             }
         }
     }
@@ -2750,22 +1442,25 @@ void FunctionEditor::editFunction(const QModelIndex &index)
 
 
 
-    if (fn->dimension() == 2)
+    if (fn->spaceDimension() == 2)
     {
         m_editor->curveColor->setColor(fn->color());
-        m_editor->curveLineWidth->setValue(fn->lineWidth());
+        //NOTE gsoc2012 DEPRECATED
+//         m_editor->curveLineWidth->setValue(fn->lineWidth());
     }
-    else if (fn->dimension() == 3)
+    else if (fn->spaceDimension() == 3)
     {
         if (arguments == QStringList() << QString("t"))
         {
             m_editor->curveColor->setColor(fn->color());
-            m_editor->curveLineWidth->setValue(fn->lineWidth());
+            //NOTE gsoc2012 DEPRECATED
+//             m_editor->curveLineWidth->setValue(fn->lineWidth());
         }
         else
         {
-            m_editor->surfaceResolutionValue->setValue(fn->resolution());
-            m_editor->surfaceDrawingType->setCurrentIndex((int)fn->drawingType());
+            //NOTE gsoc2012 DEPRECATED
+//             m_editor->surfaceResolutionValue->setValue(fn->resolution());
+//             m_editor->surfaceDrawingType->setCurrentIndex((int)fn->drawingType());
             m_editor->surfaceColor->setColor(fn->color());
         }
     }
@@ -2773,23 +1468,6 @@ void FunctionEditor::editFunction(const QModelIndex &index)
 
 void FunctionEditor::showCartesianInfo()
 {
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     QString kflpath = KStandardDirs::locate("data", QString("gplacs/pics/info-cartesian-curves.png"));
     m_editor->infoFunctionPicture->setAlignment(Qt::AlignJustify);
@@ -4085,7 +2763,7 @@ bool FunctionEditor::areImplicitParametersOK(int index)
     }
     return ans;
 }
-
+/*
 bool FunctionEditor::createImplicitSurface(int index)
 {
     
@@ -4171,17 +2849,19 @@ bool FunctionEditor::createImplicitSurface(int index)
     domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
     QColor col = QColor(rand()%255+1,rand()%255+1,rand()%255+1);
     Analitza::Expression expr("x*y*0", false);
-    Function f(expr,3,domfun,m_vars,nombre,col);
+    FunctionGraph f(expr,3,domfun,m_vars,nombre,col);
     
     f.setColor(col);
-    f.setSpaceId(m_functionsFilterProxyModel->filterSpaceId());
-    f.setResolution(m_editor->surfaceResolutionValue->value());
-    f.setDrawingType(Function::Solid);
+//     f.setSpaceId(m_functionsFilterProxyModel->filterSpaceId());
+    //NOTE gsoc2012 DEPRECATED
+//     f.setResolution(m_editor->surfaceResolutionValue->value());
+//     f.setDrawingType(Function::Solid);
     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-    functionModel->addFunction(f,currentImplicitIndex,p,m_editor->octantecombobox->currentIndex(),m_editor->ejecombobox->currentIndex(),
-                               m_editor->chkboxSolido->isChecked(),m_editor->chkboxCurvas->isChecked(),m_editor->rbtnXY->isChecked(),0.2);
+//     functionModel->addFunction(f,currentImplicitIndex,p,m_editor->octantecombobox->currentIndex(),m_editor->ejecombobox->currentIndex(),
+//                                m_editor->chkboxSolido->isChecked(),m_editor->chkboxCurvas->isChecked(),m_editor->rbtnXY->isChecked(),0.2);
 
-    
+    functionModel->addItem(f.expression(), f.spaceDimension(), f.name(), f.color());
+    functionModel->setSpaceId(functionModel->rowCount()-1, m_functionsFilterProxyModel->filterSpaceId());
     
     
     
@@ -4194,6 +2874,7 @@ bool FunctionEditor::createImplicitSurface(int index)
 
     return true;
 }
+*/
 
 void FunctionEditor::clearCartesianSurface()
 {
@@ -4245,10 +2926,6 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
 
     if (quickname=="implicit")
     {
-
-        
-        
-        
     }
 
     QColor col;
@@ -4278,8 +2955,6 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
         }
     }
 
-    
-
     QString namefun;
     RealInterval::List domfun;
 
@@ -4307,76 +2982,64 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
         domfun = domain;
     }
 
-    Function f(newExp, dimension, domfun, m_vars, namefun, col);
-    f.setSpaceId(m_functionsFilterProxyModel->filterSpaceId());
+    FunctionGraph f(newExp, dimension/*, domfun, m_vars*/, namefun, col);
 
     if(dimension == 3)
     {
         f.setName(newExp.toString());
 
     }
-
-
-
     
     {
         if (dimension == 2)
         {
-            f.setLineWidth(m_editor->curveLineWidth->value());
+            //NOTE gsoc2012 DEPRECATED
+//             f.setLineWidth(m_editor->curveLineWidth->value());
             
 
-            f.setResolution(m_editor->curveResolutionValue->value());
+//             f.setResolution(m_editor->curveResolutionValue->value());
         }
         else if (dimension == 3)
         {
 
             if (m_state == EditingParametricCurve3D)
             {
-                f.setLineWidth(m_editor->curveLineWidth->value());
+                //NOTE gsoc2012 DEPRECATED
+//                 f.setLineWidth(m_editor->curveLineWidth->value());
                 
 
-                f.setResolution(m_editor->curveResolutionValue->value());
+//                 f.setResolution(m_editor->curveResolutionValue->value());
             }
             else
             {
-                Function::DrawingType dt;
-
-                
-
-                
+                PlotStyle dt;
 
                 switch (m_editor->surfaceDrawingType->currentIndex())
                 {
                 case 0:
-                    dt = Function::Solid;
+                    dt = Solid;
                     break;
                 case 1:
-                    dt = Function::Wired;
+                    dt = Wired;
                     break;
                 case 2:
-                    dt = Function::Dots;
+                    dt = Dots;
                     break;
                 }
 
-                f.setResolution(m_editor->surfaceResolutionValue->value());
-                f.setDrawingType(dt);
+                //NOTE gsoc2012 DEPRECATED
+//                 f.setResolution(m_editor->surfaceResolutionValue->value());
+//                 f.setDrawingType(dt);
 
-                if (useDefaults)
-                    f.setDrawingType(Function::Solid);
+//                 if (useDefaults)
+                    //NOTE gsoc2012 DEPRECATED
+//                     f.setDrawingType(Function::Solid);
 
 
                 
             }
         }
     }
-    
-    {
-
-
-
-
-    }
-
 
     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
 
@@ -4385,11 +3048,19 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
     if (f.isCorrect() && (m_errors.isEmpty()))
     {
 
+        RealInterval::List spaceBounds;
+        spaceBounds<< RealInterval(-6,6) << RealInterval(-6,6);
+        QRect viewport__;
+        viewport__.setLeft(spaceBounds[0].lower());
+        viewport__.setRight(spaceBounds[0].upper());
+        viewport__.setBottom(spaceBounds[1].lower());
+        viewport__.setTop(spaceBounds[1].upper());
         
+        
+        //TODO
+        //f.update(viewport__);
 
-        f.solver()->solve(RealInterval::List() << RealInterval(-6,6) << RealInterval(-6,6));
-
-        if (!f.solver()->errors().isEmpty())
+        if (!f.errors().isEmpty())
         {
             m_errors << f.errors();
             return false;
@@ -4397,11 +3068,14 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
         }
         
 
-        if (m_isEditing)
-            functionModel->editFunction(m_currentEditFunctionId, f);
-        else
-            functionModel->addFunction(f);
+        //TODO
+//         if (m_isEditing)
+//             functionModel->editFunction(m_currentEditFunctionId, f);
+//         else
+//             functionModel->addFunction(f);
 
+//         functionModel->setSpaceId(m_functionsFilterProxyModel->filterSpaceId());
+        
         return true;
     }
     else
@@ -4412,8 +3086,6 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
 
 void FunctionEditor::initDomainInfo(const QStringList &arguments, const RealInterval::List &functionDomain)
 {
-
-
 
     if (arguments.isEmpty())
         return ; 

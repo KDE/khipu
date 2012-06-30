@@ -39,6 +39,7 @@
 #include "ui_dashboardwidget.h"
 #include <QDomDocument>
 #include <analitza/analyzer.h>
+#include <analitzaplot/plotview2d.h>
 #include <QTextCodec>
 #include <QBuffer>
 namespace GPLACS
@@ -228,9 +229,10 @@ bool Dashboard::save(const QString &m_fileName)
 
 
 
+//TODO no se ha definido el formato aun
 
 
-
+/*
     QFile device(m_fileName);
 
     if (!device.open(QFile::WriteOnly | QFile::Text))
@@ -278,7 +280,7 @@ bool Dashboard::save(const QString &m_fileName)
         dateElement.appendChild(textDateElement);
 
         QDomElement idElement = domDocument.createElement("id");
-        text = m_spacesModel->spaceFromIndex(i).id().toString();
+        text = m_spacesModel->spaceFromIndex(i).id();
         QDomText textidElement = domDocument.createTextNode(text);
         idElement.appendChild(textidElement);
 
@@ -429,7 +431,7 @@ bool Dashboard::save(const QString &m_fileName)
     m_modified = false;
     m_saved = true;
     m_file = m_fileName;
-
+*/
 
 
     return true;
@@ -469,8 +471,8 @@ QPixmap Dashboard::utf8ToPixmap(const QString &pixdata) const
 bool Dashboard::load(const QString &file)
 {
 
-
-
+//TODO no se a definido el formato
+/*
     m_dashboardWidget->setCurrentIndex(1);
     m_dashboardWidget->setCurrentIndex(2);
     m_dashboardWidget->setCurrentIndex(0);
@@ -496,16 +498,9 @@ bool Dashboard::load(const QString &file)
         return false;
     }
 
-
-    
-    
-
-    
-    
-
     m_spacesModel->clear();
-    m_functionsModel->clear();
-
+    //TODO
+//     m_functionsModel->clear();
     
 
     QString errorStr;
@@ -532,15 +527,7 @@ bool Dashboard::load(const QString &file)
         QDomNodeList spaceDataElements = spaceElement.childNodes();
 
         Keomath::Space space(spaceDataElements.at(2).toElement().text().toInt());
-
-
-
-
         space.setName(spaceDataElements.at(0).toElement().text());
-
-
-
-
         space.setDescription(spaceDataElements.at(1).toElement().text());
         space.setThumbnail(utf8ToPixmap(spaceDataElements.at(3).toElement().text().toUtf8()));
         space.setDate(spaceDataElements.at(4).toElement().text());
@@ -550,24 +537,6 @@ bool Dashboard::load(const QString &file)
 
         spaceElement = spaceElement.nextSiblingElement();
     }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     QDomElement functionsElement = spacesElement.nextSiblingElement();
 
@@ -623,7 +592,7 @@ bool Dashboard::load(const QString &file)
         functionElement = functionElement.nextSiblingElement();
     }
 
-    m_file = file;
+    m_file = file;*/
 
     return true;
 }

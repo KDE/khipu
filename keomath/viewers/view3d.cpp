@@ -29,7 +29,7 @@
 
 
 #include "function/functionsmodel.h"
-#include "solvers/solver.h"
+// #include "solvers/solver.h"
 #include "solvers/solvers3d/MarchingCubes/ctab.h"
 #include "solvers/solvers3d/MarchingCubes/glwidget.h"
 
@@ -42,13 +42,13 @@ namespace Keomath
 
 View3D::View3D(QWidget *parent)
     : QGLViewer(parent)
-    , m_drawingType(Function::Solid)
+    , m_drawingType(Solid)
     , m_color(Qt::white)
 {
     
 
 
-    logo = 0;
+//     logo = 0;
     xRot = 0;
     yRot = 0;
     zRot = 0;
@@ -56,7 +56,7 @@ View3D::View3D(QWidget *parent)
     
     camara_x = camara_y = 0;
     camara_z = -5;
-    logo = NULL;
+//     logo = NULL;
     
     
     num=1000;
@@ -78,28 +78,28 @@ void View3D::clearDisplayLists()
     m_displayList.clear();
 }
 
-
-void View3D::drawGrid(float size,int nbSubdivisions)
-{
-
-    GLboolean lighting;
-    glGetBooleanv(GL_LIGHTING, &lighting);
-    glDisable(GL_LIGHTING);
-    glBegin(GL_LINES);
-    for (int i=0; i<=nbSubdivisions; ++i)
-    {
-        const float pos = size*(2.0*i/nbSubdivisions-1.0);
-        glVertex2f(pos, -size);
-        glVertex2f(pos, +size);
-        glVertex2f(-size, pos);
-        glVertex2f( size, pos);
-    }
-    glEnd();
-    if (lighting)
-        glEnable(GL_LIGHTING);
-
-
-}
+// // // /*
+// // // void View3D::drawGrid(float size,int nbSubdivisions)
+// // // {
+// // // 
+// // //     GLboolean lighting;
+// // //     glGetBooleanv(GL_LIGHTING, &lighting);
+// // //     glDisable(GL_LIGHTING);
+// // //     glBegin(GL_LINES);
+// // //     for (int i=0; i<=nbSubdivisions; ++i)
+// // //     {
+// // //         const float pos = size*(2.0*i/nbSubdivisions-1.0);
+// // //         glVertex2f(pos, -size);
+// // //         glVertex2f(pos, +size);
+// // //         glVertex2f(-size, pos);
+// // //         glVertex2f( size, pos);
+// // //     }
+// // //     glEnd();
+// // //     if (lighting)
+// // //         glEnable(GL_LIGHTING);
+// // // 
+// // // 
+// // // }*/
 
 void View3D::generateDisplayLists()
 {
@@ -112,23 +112,24 @@ void View3D::generateDisplayLists()
         QModelIndex mi = m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(i,0));
         int sourceRow = mi.row();
 
-        Solver *tempsol = functionModel->funclist.at(sourceRow).solver();
 
-        if (tempsol->dimension() == 2) continue;
+        
+        if (functionModel->item(sourceRow)->spaceDimension() == 2) continue;
 
-        Solver3D *solver = static_cast<Solver3D*>(functionModel->funclist.at(sourceRow).solver());
+//         Solver3D *solver = static_cast<Solver3D*>(functionModel->funclist.at(sourceRow).solver());
 
-        if (!functionModel->funclist.at(sourceRow).isShown()) continue;
-
-
+        if (!functionModel->item(sourceRow)->isVisible()) continue;
 
 
-        updateSurface(functionModel->funclist.at(sourceRow));
+
+
+        //TODO
+//         updateSurface(functionModel->funclist.at(sourceRow));
 
     }
 }
 
-void View3D::setSpaceId(const QUuid &spaceId)
+void View3D::setSpaceId(const QString &spaceId)
 {
     m_spaceId = spaceId;
     m_functionsFilterProxyModel->setFilterSpaceId(m_spaceId);
@@ -152,7 +153,8 @@ void View3D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyMo
 
 
 }
-
+//TODO
+/*
 void View3D::updateSurface(const Keomath::Function &function)
 {
     
@@ -267,8 +269,8 @@ void View3D::updateSurface(const Keomath::Function &function)
 
 
 
-}
-
+}*/
+/*
 void View3D::graficar_curvas(QUuid funcId,int tipo, QList<double> cons, bool plano, double pres)
 {
     ++dlnum;
@@ -303,10 +305,10 @@ void View3D::graficar_curvas(QUuid funcId,int tipo, QList<double> cons, bool pla
     glEndList();
     num+=1;
     m_displayList.insert(funcId, dlnum);
-}
+}*/
 
 static int funcID = 0;
-
+/*
 void View3D::updateSurfaceImplicit(QUuid funId,QColor col,int index,QList<double> cons,int oct,int axi,bool solid,bool curva,bool xy,double pres)
 {
 
@@ -352,9 +354,9 @@ void View3D::updateSurfaceImplicit(QUuid funId,QColor col,int index,QList<double
         }
     }
     updateGL();
-}
+}*/
 
-void View3D::removeSurface(const QUuid &funid, const QString &funlambda)
+void View3D::removeSurface(const QString &funid, const QString &funlambda)
 {
     glDeleteLists(m_displayList.value(funid), 1);
     m_displayList.remove(funid);
@@ -388,11 +390,11 @@ void View3D::draw()
 
 
 
-
-    foreach (QUuid fid, m_displayList.keys())
-    {
-        glCallList(m_displayList.value(fid));
-    }
+//TODO
+//     foreach (QUuid fid, m_displayList.keys())
+//     {
+//         glCallList(m_displayList.value(fid));
+//     }
     
     
 }
@@ -622,14 +624,14 @@ void View3D::init()
 
     usteps=MAXALONG;
     vsteps=MAXAROUND;
-    QtLogo::constantes.clear();
-    QtLogo::constantes.append(0.5);
-    QtLogo::constantes.append(0.5);
-    QtLogo::constantes.append(0.25);
-    QtLogo::constantes.append(0.75);
-    QtLogo::constantes.append(0.25);
-    logo = new QtLogo(this, &func_cilindro);
-    logo->setColor(qtGreen.dark());
+//     QtLogo::constantes.clear();
+//     QtLogo::constantes.append(0.5);
+//     QtLogo::constantes.append(0.5);
+//     QtLogo::constantes.append(0.25);
+//     QtLogo::constantes.append(0.75);
+//     QtLogo::constantes.append(0.25);
+//     logo = new QtLogo(this, &func_cilindro);
+//     logo->setColor(qtGreen.dark());
 
     glPushMatrix();
     glTranslatef(6,5,5);
@@ -746,7 +748,8 @@ QVector3D View3D::shape(float u,float v)
 
 
 
-    ret = m_currentSolver->evalSurface(u,v);
+    //TODO
+//     ret = m_currentSolver->evalSurface(u,v);
 
     return ret;
 }
@@ -879,32 +882,15 @@ void View3D::_emit( surfpoint *buffer )
     Normal.z = diff1.x*diff2.y - diff1.y*diff2.x;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     switch (m_drawingType)
     {
-    case Function::Solid:
+    case Solid:
         glBegin(GL_POLYGON);
         break;
-    case Function::Wired:
+    case Wired:
         glBegin(GL_LINES);
         break;
-    case Function::Dots:
+    case Dots:
         glBegin(GL_POINTS);
         break;
 
@@ -939,8 +925,8 @@ QSize View3D::sizeHint() const
 {
     return QSize(400, 400);
 }
-
-void View3D::cambiar_funcion(QUuid funcId,QColor col,Figuras tipo, QList<double> constantes,int oct,int axi,bool solid)
+/*
+void View3D::cambiar_funcion(QString funcId,QColor col,Figuras tipo, QList<double> constantes,int oct,int axi,bool solid)
 {
     delete logo;
     QtLogo::constantes = constantes;
@@ -1003,7 +989,7 @@ void View3D::cambiar_funcion(QUuid funcId,QColor col,Figuras tipo, QList<double>
     setXRotation(4900);
     setYRotation(0);
     setZRotation(3600);
-}
+}*/
 
 
 

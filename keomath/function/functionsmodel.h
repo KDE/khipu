@@ -31,231 +31,36 @@
 
 #include <KDE/KLocalizedString>
 
-#include "function.h"
-
 #include "keomath/keomathexport.h"
 
+#include "analitzaplot/private/functiongraphsmodel.h"
 
+class QItemSelectionModel;
 
 namespace Keomath
 {
 
 
-class KEOMATH_EXPORT FunctionsModel : public QAbstractTableModel
+class KEOMATH_EXPORT FunctionsModel : public FunctionGraphsModel
 {
     Q_OBJECT
 public:
-    enum FunctionsModelRoles { Selection=Qt::UserRole+1, Shown=Qt::UserRole+2 };
-    typedef QList<Function>::const_iterator const_iterator;
-    friend class View2D;
-    friend class View3D;
-    friend class FunctionsView;
-
-    
     explicit FunctionsModel(QObject *parent=0);
+    FunctionsModel(Analitza::Variables *v, QObject * parent = 0);
 
-    Qt::ItemFlags flags ( const QModelIndex & index ) const;
-
-    QVariant data( const QModelIndex &index, int role=Qt::DisplayRole) const;
-    QVariant headerData(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const;
-    int rowCount(const QModelIndex &parent=QModelIndex()) const;
-    int columnCount(const QModelIndex & =QModelIndex()) const
-    {
-        return 4;
-    }
-
+    virtual ~FunctionsModel();
     
-    bool addFunction(const Function& f);
-    
-    bool addFunction(Function& func,int index,QList<double> cons,int oct,int axi,bool solid,bool curva,bool xy,double pres);
-    
-    
-    bool setSelected(const QUuid& fid);
-
-    inline bool isSelected(int i) const
-    {
-        return i==m_selectedRow;
-    }
-
-    
-    bool setShown(const QString& exp, bool shown);
-
-    
-    void editFunction(int num, const Function& func);
-
-    
-    bool editFunction(const QUuid& id, const Function& func);
-
-
-    void updateSpaceId(const QUuid& functionId, const QUuid& spaceId);
-
-    
-    Function* editFunction(int num);
-
-
-
-
-    void setResolution(uint res);
-
-    void unselect();
-
-    void clear();
-
-    void sendStatus(const QString& msg)
-    {
-        emit status(msg);
-    }
-
-    void solve(int i, const QList<Keomath::RealInterval> &spaceBounds);
-
-    const Function& currentFunction() const;
-
-    bool hasSelection() const
-    {
-        return m_selectedRow>=0 && !funclist.isEmpty();
-    }
-
-    const_iterator constBegin() const
-    {
-        return funclist.constBegin();
-    }
-    const_iterator constEnd() const
-    {
-        return funclist.constEnd();
-    }
-
-    virtual bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
-
-    virtual bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
-
-    
-    QString freeId();
-
-    void removeFunctionsBySpaceId(const QUuid &sid);
-
-    
-
-    void setAnimActiva(int flag);
-    int getAnimActiva();
-    void setModAnActivo(bool flag);
-    bool getModAnActivo();
-    void setDirAnim(int flag);
-    int getDirAnim();
-    bool getMArea();
-    void setMArea(bool flag);
-    bool getMAreaE();
-    void setMAreaE(bool flag);
-    void setMFuncion1(QString func1);
-    void setMFuncion2(QString func2);
-    QString getMFuncion1();
-    QString getMFuncion2();
-    void setPFuncion1(int pf1);
-    void setPFuncion2(int pf2);
-    int getPFuncion1();
-    int getPFuncion2();
-    void setAreaEjemplo(int ej);
-    int getAreaEjemplo();
-    void setCantDiv(int div);
-    int getCantDiv();
-    QVector<QLineF> getPathsArea();
-    void setPathsArea(QVector<QLineF> &areaLines);
-    void setIntPoints(QVector<QPointF> &puntosInt);
-    QVector<QPointF> getIntPoints();
-    void setPathsCre(QVector<QLineF> &linesCre);
-    QVector<QLineF> getPathsCre();
-    void setPathsDec(QVector<QLineF> &linesDec);
-    QVector<QLineF> getPathsDec();
-    void setPathsEnt(QVector<QLineF> &linesEnt);
-    QVector<QLineF> getPathsEnt();
-    void setPathsEnt2(QVector<QLineF> &linesEnt);
-    QVector<QLineF> getPathsEnt2();
-    void setPathsACre(QVector<QLineF> &linesACre);
-    QVector<QLineF> getPathsACre();
-    void setPathsADec(QVector<QLineF> &linesADec);
-    QVector<QLineF> getPathsADec();
-    void setPathsAEnt(QVector<QLineF> &linesAEnt);
-    QVector<QLineF> getPathsAEnt();
-    double getLimiteS();
-    double getLimiteI();
-    void setLimiteS(double ls);
-    void setLimiteI(double li);
-
-    
-
-
-
-
+    QString spaceId(int row) const;
+    int currentItem() const;
 
 public slots:
-    void setSelected(const QModelIndex& idx);
-
-protected:
-
-
+    void setSpaceId(int row, const QString& spaceId); //str sid -> str fky 
+    void removeItemsBySpace(const QString& spaceId);
     
-    int selectedRow() const
-    {
-        return m_selectedRow;
-    }
-
-
-
-signals:
-    
-    void status(const QString &msg);
-
-
-
-    void functionModified(const Keomath::Function &function);
-    
-    void functionImplicitCall(QUuid functionId,QColor col,int index,QList<double> cons,int oct,int axi,bool solid,bool curva,bool xy,double pres);
-    
-    void functionRemoved(const QUuid &functionId, const QString &functionName);
-
 private:
-    Function& currentFunction();
-
-
-
-
-
-    
-
-    FunctionList funclist;
-    int m_selectedRow;
-    int animActiva;
-    bool modAnActivo;
-    int dirAnim;
-    bool mArea;
-    bool mAreaE;
-    QString mFuncion1;
-    QString mFuncion2;
-    int pFuncion1;
-    int pFuncion2;
-    QVector<QLineF> m_pathsArea;
-    QVector<QPointF> m_pointsInt;
-    QVector<QLineF> m_pathsCre;
-    QVector<QLineF> m_pathsDec;
-    QVector<QLineF> m_pathsEnt;
-    QVector<QLineF> m_pathsEnt2;
-    QVector<QLineF> m_pathsACre;
-    QVector<QLineF> m_pathsADec;
-    QVector<QLineF> m_pathsAEnt;
-    int areaEjemplo;
-    int cantDiv;
-    double limiteS;
-    double limiteI;
-
-    
-
-
-
-    uint m_resolution;
-
-    uint m_fcount;
+    QMap<QString, QString> m_spaceIds;
+    QItemSelectionModel *m_selectionModel;
 };
-
-
 
 class KEOMATH_EXPORT FunctionsFilterProxyModel : public QSortFilterProxyModel
 {
@@ -264,11 +69,11 @@ class KEOMATH_EXPORT FunctionsFilterProxyModel : public QSortFilterProxyModel
 public:
     FunctionsFilterProxyModel(QObject *parent = 0);
 
-    QUuid filterSpaceId() const
+    QString filterSpaceId() const
     {
         return m_spaceId;
     }
-    void setFilterSpaceId(const QUuid &spaceId);
+    void setFilterSpaceId(const QString &spaceId);
 
 
     int filterDimension() const
@@ -277,14 +82,12 @@ public:
     }
     void setFilterDimension(int dimension);
 
-
-
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
     int m_dimension; 
-    QUuid m_spaceId;
+    QString m_spaceId;
 };
 
 

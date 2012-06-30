@@ -7,49 +7,50 @@ include_directories (
 )
 
 set ( keomath_SRCS
-  function/function.cpp
+#   function/function.cpp
   function/functionsmodel.cpp
   function/functionsview.cpp
   function/functiondelegate.cpp
   function/functioneditor.cpp
   function/functionlibraryedit.cpp
   function/functionlibrarymodel.cpp
+  #use analitzaplot now :) 
 
-  solvers/solver.cpp
-  solvers/solverfactory.cpp
+#   solvers/solver.cpp
+#   solvers/solverfactory.cpp
 
-  #2d solvers
-  solvers/solvers2d/cartesiancurve.cpp
-  solvers/solvers2d/polarcurve.cpp
-  solvers/solvers2d/implicitcurve.cpp
-  solvers/solvers2d/parametriccurve2d.cpp
-
-  #3d solvers
-  solvers/solvers3d/cartesiansurface.cpp
-  solvers/solvers3d/cylindricalsurface.cpp
-  solvers/solvers3d/sphericalsurface.cpp
-  solvers/solvers3d/parametricsurface.cpp
-  solvers/solvers3d/parametriccurve3d.cpp
-  solvers/solvers3d/implicitsurface.cpp
-
-  #MarchingCubes
-  solvers/solvers3d/MarchingCubes/ctab.h
-  solvers/solvers3d/MarchingCubes/ctab.cpp
-  solvers/solvers3d/MarchingCubes/formulas.h
-  solvers/solvers3d/MarchingCubes/glwidget.h
-  solvers/solvers3d/MarchingCubes/glwidget.cpp
-  solvers/solvers3d/MarchingCubes/marchingcubes.cpp
-  solvers/solvers3d/MarchingCubes/marchingcubes.h
-  solvers/solvers3d/MarchingCubes/octree.h
-  solvers/solvers3d/MarchingCubes/octree.cpp
-  solvers/solvers3d/MarchingCubes/qtlogo.h
-  solvers/solvers3d/MarchingCubes/qtlogo.cpp
+#   #2d solvers
+#   solvers/solvers2d/cartesiancurve.cpp
+#   solvers/solvers2d/polarcurve.cpp
+#   solvers/solvers2d/implicitcurve.cpp
+#   solvers/solvers2d/parametriccurve2d.cpp
+# 
+#   #3d solvers
+#   solvers/solvers3d/cartesiansurface.cpp
+#   solvers/solvers3d/cylindricalsurface.cpp
+#   solvers/solvers3d/sphericalsurface.cpp
+#   solvers/solvers3d/parametricsurface.cpp
+#   solvers/solvers3d/parametriccurve3d.cpp
+#   solvers/solvers3d/implicitsurface.cpp
+# 
+#   #MarchingCubes
+#   solvers/solvers3d/MarchingCubes/ctab.h
+#   solvers/solvers3d/MarchingCubes/ctab.cpp
+#   solvers/solvers3d/MarchingCubes/formulas.h
+#   solvers/solvers3d/MarchingCubes/glwidget.h
+#   solvers/solvers3d/MarchingCubes/glwidget.cpp
+#   solvers/solvers3d/MarchingCubes/marchingcubes.cpp
+#   solvers/solvers3d/MarchingCubes/marchingcubes.h
+#   solvers/solvers3d/MarchingCubes/octree.h
+#   solvers/solvers3d/MarchingCubes/octree.cpp
+#   solvers/solvers3d/MarchingCubes/qtlogo.h
+#   solvers/solvers3d/MarchingCubes/qtlogo.cpp
 
   space/space.cpp
   space/spacesmodel.cpp
   space/spacesview.cpp
 
-  viewers/view2d.cpp
+#   viewers/view2d.cpp use analitzaplot version
   viewers/view3d.cpp
   viewers/viewer2d.cpp
   viewers/viewer3d.cpp
@@ -85,6 +86,7 @@ target_link_libraries ( keomath
   ${KDE4_KDEUI_LIBS}
   ${ANALITZA_LIBRARY}
   ${ANALITZAGUI_LIBRARY}
+  ${ANALITZAPLOT_LIBRARY}
   ${QGLVIEWER_LIBRARY}
 )
 

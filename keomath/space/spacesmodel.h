@@ -65,46 +65,17 @@ public:
     bool addSpace(const Space& space);
 
     QModelIndex spaceIndex(const Space& space) const;
-    const Space & spaceFromId(const QUuid &id) const;
+    const Space & spaceFromId(const QString &id) const;
     const Space & spaceFromIndex(int index) const;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    bool editSpace(const QUuid& toChange, const Space& func);
+    bool editSpace(const QString& toChange, const Space& func);
 
     const Space* getSpace(int num) const;
 
-
-    
-
-
-
-
     void clear();
 
-
-
-
-
-
-
-
     virtual bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
-
-
 
 
 public slots:
