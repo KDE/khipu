@@ -17,21 +17,41 @@
  *************************************************************************************/
 
 
+#ifndef GPLACS_BUTTON_H
+#define GPLACS_BUTTON_H
 
-#ifndef KEOMATHEXPORT_H
-#define KEOMATHEXPORT_H
 
-
-#include <kdemacros.h>
-#ifndef KEOMATH_EXPORT
-# ifdef MAKE_KEOMATH_LIB
-#  define KEOMATH_EXPORT KDE_EXPORT
-# else
-#  define KEOMATH_EXPORT KDE_IMPORT
-# endif
-#endif
-
-#endif
+#include <QtGui/QToolButton>
 
 
 
+class QPaintEvent;
+class QFocusEvent ;
+
+namespace Keomath {
+
+
+class Button : public QToolButton
+{
+    Q_OBJECT
+
+    public:
+        Button(QWidget *parent = 0);
+
+    signals:
+        void mouseHovered();
+        void mouseLeft();
+
+    protected:
+        void paintEvent(QPaintEvent *event);
+        void enterEvent(QEvent *event);
+        void leaveEvent(QEvent *event);
+
+    private:
+        bool m_onHover;
+};
+
+
+} 
+
+#endif 

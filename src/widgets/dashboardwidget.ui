@@ -512,29 +512,29 @@
   <customwidget>
    <class>Keomath::FunctionsView</class>
    <extends>QTreeView</extends>
-   <header>keomath/function/functionsview.h</header>
+   <header>functionsview.h</header>
   </customwidget>
   <customwidget>
    <class>Keomath::Button</class>
    <extends>QToolButton</extends>
-   <header>keomath/widgets/button.h</header>
+   <header>button.h</header>
   </customwidget>
   <customwidget>
    <class>Keomath::SpacesView</class>
    <extends>QWidget</extends>
-   <header>keomath/space/spacesview.h</header>
+   <header>spacesview.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>Keomath::Viewer2D</class>
    <extends>QWidget</extends>
-   <header>keomath/viewers/viewer2d.h</header>
+   <header>viewer2d.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>Keomath::Viewer3D</class>
    <extends>QWidget</extends>
-   <header>keomath/viewers/viewer3d.h</header>
+   <header>viewer2d.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

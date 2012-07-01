@@ -24,7 +24,6 @@
 #include <QtCore/QPointF>
 #include <QtGui/QVector3D>
 
-#include "keomathexport.h" 
 
 #include <cmath>
 #include <QLineF>
@@ -93,7 +92,7 @@ static QLineF mirrorXY(const QLineF& l)
 
 
 
-class KEOMATH_EXPORT RealInterval
+class RealInterval
 {
 public:
     typedef QList<RealInterval> List;

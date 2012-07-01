@@ -20,8 +20,7 @@
 #include "viewer2d.h"
 
 #include <QtGui/QLayout>
-#include "function/functionsmodel.h"
-#include "function/function.h"
+#include "functionsmodel.h"
 #include "KIcon"
 #include <QPropertyAnimation>
 #include <QGraphicsProxyWidget>
@@ -43,11 +42,11 @@
 
 
 #include "analitzaplot/plotview2d.h"
-#include "function/functioneditor.h"
-#include "space/space.h"
-#include "space/spacesmodel.h"
+#include "functioneditor.h"
+#include "space.h"
+#include "spacesmodel.h"
 #include "ui_viewer2dwidget.h"
-#include "function/functionsview.h"
+#include "functionsview.h"
 namespace Keomath
 {
 

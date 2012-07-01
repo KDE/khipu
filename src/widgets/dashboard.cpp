@@ -29,12 +29,11 @@
 #include <KDE/KLineEdit>
 #include <KDE/KComboBox>
 #include <KFileDialog>
-#include "keomath/function/function.h"
-#include "keomath/function/functionsmodel.h"
-#include "keomath/space/space.h"
-#include "keomath/viewers/viewer2d.h"
-#include "keomath/viewers/viewer3d.h"
-#include "keomath/space/spacesmodel.h"
+#include "functionsmodel.h"
+#include "space.h"
+#include "viewer2d.h"
+#include "viewer3d.h"
+#include "spacesmodel.h"
 #include "analitza/variables.h"
 #include "ui_dashboardwidget.h"
 #include <QDomDocument>

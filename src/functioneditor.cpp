@@ -33,11 +33,11 @@
 #include "analitzagui/algebrahighlighter.h"
 #include <KRandom>
 #include <math.h>
-#include "function/functionsmodel.h"
-#include "function/functionsview.h"
+#include "functionsmodel.h"
+#include "functionsview.h"
 // #include "keomath/solvers/solver.h"
 // #include "keomath/solvers/solverfactory.h"
-#include "function/functionlibraryedit.h"
+#include "functionlibraryedit.h"
 #include "analitzagui/variablesmodel.h"
 #include <analitzaplot/private/functiongraph.h>
 

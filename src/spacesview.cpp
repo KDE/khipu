@@ -28,12 +28,12 @@
 #include <QMenu>
 #include <KCategoryDrawer>
 #include <QHeaderView>
-#include "function/functiondelegate.h"
+#include "functiondelegate.h"
 #include <KDE/KCursor>
 #include "spacesmodel.h"
 #include "space.h"
 
-#include "function/functionsmodel.h"
+#include "functionsmodel.h"
 namespace Keomath
 {
 

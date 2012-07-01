@@ -22,8 +22,7 @@
 
 #include <QtGui/QWidget>
 
-#include "keomath/keomathexport.h"
-#include "keomath/space/space.h"
+#include "space.h"
 namespace Analitza {
 class Variables;
 }

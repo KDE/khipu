@@ -53,10 +53,10 @@
 #include <KDE/KConfigDialog>
 #include <KDE/KStandardDirs>
 #include <KToolBar>
-#include "keomath/function/functionsmodel.h"
-#include "keomath/space/spacesmodel.h"
+#include "functionsmodel.h"
+#include "spacesmodel.h"
 #include "widgets/gplacswidget.h"
-#include "keomath/widgets/button.h"
+#include "button.h"
 #include <KAboutApplicationDialog>
 #include <KMenuBar>
 #include "widgets/dashboard.h"

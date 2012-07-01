@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>294</width>
-    <height>1356</height>
+    <height>1377</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -870,7 +870,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="curveResolutionValue" native="true">
+          <widget class="QSlider" name="curveResolutionValue">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -881,8 +881,8 @@
             <string>Resolucion al dibujar la curva</string>
            </property>
            <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-          </property>
+            <enum>Qt::Horizontal</enum>
+           </property>
           </widget>
          </item>
          <item>
@@ -1029,7 +1029,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="surfaceResolutionValue" native="true">
+          <widget class="QSlider" name="surfaceResolutionValue">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -1040,8 +1040,8 @@
             <string>Resolución de la superficie</string>
            </property>
            <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-          </property>
+            <enum>Qt::Horizontal</enum>
+           </property>
           </widget>
          </item>
          <item>
@@ -1565,12 +1565,12 @@
   <customwidget>
    <class>Keomath::FunctionsView</class>
    <extends>QTreeView</extends>
-   <header>keomath/function/functionsview.h</header>
+   <header>functionsview.h</header>
   </customwidget>
   <customwidget>
    <class>Keomath::Button</class>
    <extends>QToolButton</extends>
-   <header>keomath/widgets/button.h</header>
+   <header>button.h</header>
   </customwidget>
   <customwidget>
    <class>ExpressionEdit</class>
@@ -1580,7 +1580,7 @@
   <customwidget>
    <class>Keomath::FunctionLibraryEdit</class>
    <extends>QLineEdit</extends>
-   <header>keomath/function/functionlibraryedit.h</header>
+   <header>functionlibraryedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

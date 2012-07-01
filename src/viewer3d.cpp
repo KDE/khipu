@@ -19,8 +19,7 @@
 
 #include "viewer3d.h"
 #include <QtGui/QLayout>
-#include "function/functionsmodel.h"
-#include "function/function.h"
+#include "functionsmodel.h"
 
 
 
@@ -36,15 +35,15 @@
 
 
 
-#include "space/spacesmodel.h"
-#include "function/functioneditor.h"
-#include "function/functionsview.h"
+#include "spacesmodel.h"
+#include "functioneditor.h"
+#include "functionsview.h"
 #include <QMouseEvent>
 #include <KIconLoader>
 
 
 
-#include "space/space.h"
+#include "space.h"
 #include "ui_viewer3dwidget.h"
 
 namespace Keomath
