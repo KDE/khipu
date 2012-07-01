@@ -24,8 +24,6 @@ set ( khipu_SRCS
   viewer2d.cpp
   viewer3d.cpp
 
-  #widgets
-  button.cpp
 
 
   app/gplacs.cpp

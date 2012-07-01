@@ -21,7 +21,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="Keomath::Button" name="openFile">
+       <widget class="QToolButton" name="openFile">
         <property name="toolTip">
          <string>Abrir</string>
         </property>
@@ -31,7 +31,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="saveFile">
+       <widget class="QToolButton" name="saveFile">
         <property name="toolTip">
          <string>Guardar</string>
         </property>
@@ -54,7 +54,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="Keomath::Button" name="addSpace2D">
+       <widget class="QToolButton" name="addSpace2D">
         <property name="toolTip">
          <string>Crear Nuevo Espacio 2D</string>
         </property>
@@ -64,7 +64,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="addSpace3D">
+       <widget class="QToolButton" name="addSpace3D">
         <property name="toolTip">
          <string>Crear Nuevo Espacio 3D</string>
         </property>
@@ -87,7 +87,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showAboutAppDialog">
+       <widget class="QToolButton" name="showAboutAppDialog">
         <property name="toolTip">
          <string>Acerca de GPLACS</string>
         </property>
@@ -306,14 +306,14 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="Keomath::Button" name="backFromSpace2D">
+       <widget class="QToolButton" name="backFromSpace2D">
         <property name="toolTip">
          <string>Volver a la Vista Principal</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showFunctionEditor2D">
+       <widget class="QToolButton" name="showFunctionEditor2D">
         <property name="toolTip">
          <string>Administrador de Funciones</string>
         </property>
@@ -333,7 +333,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="Keomath::Button" name="copySpace2DImage">
+       <widget class="QToolButton" name="copySpace2DImage">
         <property name="toolTip">
          <string>Copiar Imagen</string>
         </property>
@@ -343,7 +343,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="saveSpace2DImage">
+       <widget class="QToolButton" name="saveSpace2DImage">
         <property name="toolTip">
          <string>Guardar Imagen</string>
         </property>
@@ -366,7 +366,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showSpace2DInfo">
+       <widget class="QToolButton" name="showSpace2DInfo">
         <property name="toolTip">
          <string>Información del Espacio</string>
         </property>
@@ -376,7 +376,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showCoordSysSettings2D">
+       <widget class="QToolButton" name="showCoordSysSettings2D">
         <property name="toolTip">
          <string>Configuración del Área de Dibujo</string>
         </property>
@@ -401,14 +401,14 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="Keomath::Button" name="backFromSpace3D">
+       <widget class="QToolButton" name="backFromSpace3D">
         <property name="toolTip">
          <string>Volver a la Vista Principal</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showFunctionEditor3D">
+       <widget class="QToolButton" name="showFunctionEditor3D">
         <property name="toolTip">
          <string>Administrador de Funciones</string>
         </property>
@@ -428,7 +428,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="Keomath::Button" name="copySpace3DImage">
+       <widget class="QToolButton" name="copySpace3DImage">
         <property name="toolTip">
          <string>Copiar Imagen</string>
         </property>
@@ -438,7 +438,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="saveSpace3DImage">
+       <widget class="QToolButton" name="saveSpace3DImage">
         <property name="toolTip">
          <string>Guardar Imagen</string>
         </property>
@@ -461,7 +461,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showSpace3DInfo">
+       <widget class="QToolButton" name="showSpace3DInfo">
         <property name="toolTip">
          <string>Información del Espacio</string>
         </property>
@@ -471,7 +471,7 @@
        </widget>
       </item>
       <item>
-       <widget class="Keomath::Button" name="showCoordSysSettings3D">
+       <widget class="QToolButton" name="showCoordSysSettings3D">
         <property name="toolTip">
          <string>Configuración del Área de Dibujo</string>
         </property>
@@ -513,11 +513,6 @@
    <class>Keomath::FunctionsView</class>
    <extends>QTreeView</extends>
    <header>functionsview.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Keomath::Button</class>
-   <extends>QToolButton</extends>
-   <header>button.h</header>
   </customwidget>
   <customwidget>
    <class>Keomath::SpacesView</class>

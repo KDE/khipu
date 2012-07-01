@@ -2923,7 +2923,7 @@ void FunctionEditor::clearImplicitSurface()
 bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimension,
                                   const RealInterval::List &domain, bool useDefaults, const QString &quickname, const QStringList &bvars) 
 {
-
+    
     if (quickname=="implicit")
     {
     }
@@ -3045,7 +3045,6 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
 
     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
 
-    m_errors << f.errors();
 
     if (f.isCorrect() && (m_errors.isEmpty()))
     {
@@ -3150,7 +3149,8 @@ void FunctionEditor::clearAppearanceAndDomainSettings()
 
 void FunctionEditor::showErrorMessage()
 {
-
+    if (m_errors.isEmpty()) return;
+    
     QFont errorFont = m_editor->errorMessage->font();
     errorFont.setBold(true);
 
