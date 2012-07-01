@@ -2983,6 +2983,8 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
     }
 
     FunctionGraph f(newExp, dimension/*, domfun, m_vars*/, namefun, col);
+    
+    
 
     if(dimension == 3)
     {
