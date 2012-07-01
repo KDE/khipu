@@ -157,7 +157,8 @@ void Viewer3D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxy
 
     m_functionsFilterProxyModel = functionsFilterProxyModel;
     m_functionEditor->setFunctionsModel(functionsFilterProxyModel);
-    m_viewer3DWidget->view->setFunctionsModel(functionsFilterProxyModel);
+    //TODO
+//     m_viewer3DWidget->view->setFunctionsModel(functionsFilterProxyModel);
 
 
 
@@ -193,7 +194,8 @@ void Viewer3D::setSpace(const Space &space)
 
 
 
-    m_viewer3DWidget->view->setSpaceId(space.id());
+    //TODO
+//     m_viewer3DWidget->view->setSpaceId(space.id());
     
 
 

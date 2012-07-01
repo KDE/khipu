@@ -40,7 +40,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="Keomath::View3D" name="view" native="true">
+      <widget class="View3D" name="view" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -57,7 +57,7 @@
       <widget class="QDockWidget" name="spaceInfoDock">
        <property name="minimumSize">
         <size>
-         <width>104</width>
+         <width>107</width>
          <height>160</height>
         </size>
        </property>
@@ -279,9 +279,9 @@ p, li { white-space: pre-wrap; }
    <header>ktextedit.h</header>
   </customwidget>
   <customwidget>
-   <class>Keomath::View3D</class>
+   <class>View3D</class>
    <extends>QWidget</extends>
-   <header>keomath/viewers/view3d.h</header>
+   <header>analitzaplot/plotview3d.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
