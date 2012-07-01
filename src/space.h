@@ -26,32 +26,12 @@
 #include <QtGui/QPixmap>
 #include <KDE/KDateTime>
 
-#include "keomath/keomathexport.h"
 
 namespace Keomath
 {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class KEOMATH_EXPORT Space
+class Space
 {
 public:
     typedef QList<Space> List;

@@ -35,7 +35,7 @@ class Viewer3DWidget;
 class FunctionEditor;
 class FunctionsFilterProxyModel;
 class SpacesModel;
-class KEOMATH_EXPORT Viewer3D : public QWidget
+class Viewer3D : public QWidget
 {
     Q_OBJECT
     public:

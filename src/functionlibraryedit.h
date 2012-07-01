@@ -24,15 +24,12 @@
 #include <QLabel>
 #include <QTreeView>
 
-#include "keomath/keomathexport.h"
 class QKeyEvent;
 
 namespace Keomath
 {
 
 class FunctionLibraryFilterProxyModel;
-
-
 
 class FunctionLibraryEdit : public KLineEdit
 {

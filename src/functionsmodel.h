@@ -31,7 +31,6 @@
 
 #include <KDE/KLocalizedString>
 
-#include "keomath/keomathexport.h"
 
 #include "analitzaplot/private/functiongraphsmodel.h"
 
@@ -41,7 +40,7 @@ namespace Keomath
 {
 
 
-class KEOMATH_EXPORT FunctionsModel : public FunctionGraphsModel
+class FunctionsModel : public FunctionGraphsModel
 {
     Q_OBJECT
 public:
@@ -62,7 +61,7 @@ private:
     QItemSelectionModel *m_selectionModel;
 };
 
-class KEOMATH_EXPORT FunctionsFilterProxyModel : public QSortFilterProxyModel
+class FunctionsFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 

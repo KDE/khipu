@@ -22,7 +22,6 @@
 
 #include <KDE/KCategorizedView>
 
-#include "keomath/keomathexport.h"
 
 namespace Keomath
 {
@@ -31,7 +30,7 @@ class SpacesModel;
 class Space;
 class FunctionsModel;
 
-class KEOMATH_EXPORT SpacesView : public KCategorizedView
+class SpacesView : public KCategorizedView
 {
     Q_OBJECT
 public:

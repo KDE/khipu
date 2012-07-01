@@ -24,7 +24,6 @@
 
 #include "space.h"
 
-#include "keomath/keomathexport.h"
 #include <kcategorizedsortfilterproxymodel.h>
 
 namespace Analitza
@@ -36,7 +35,7 @@ namespace Keomath
 {
 class SpacesView;
 
-class KEOMATH_EXPORT SpacesModel : public QAbstractTableModel
+class SpacesModel : public QAbstractTableModel
 {
     Q_OBJECT
 
@@ -98,16 +97,10 @@ private:
 
 
     Space::List m_spaceList;
-
-
-
 };
 
 
-
-
-
-class KEOMATH_EXPORT SpacesFilterProxyModel : public KCategorizedSortFilterProxyModel
+class SpacesFilterProxyModel : public KCategorizedSortFilterProxyModel
 {
     Q_OBJECT
 

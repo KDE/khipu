@@ -44,7 +44,7 @@ class SpacesModel;
 class FunctionsView;
 // class View2D;
 
-class KEOMATH_EXPORT Viewer2D : public QWidget
+class Viewer2D : public QWidget
 {
     Q_OBJECT
 

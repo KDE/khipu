@@ -22,12 +22,10 @@
 
 #include <QtGui/QItemDelegate>
 
-#include "keomath/keomathexport.h"
-
 namespace Keomath
 {
 
-class KEOMATH_EXPORT FunctionDelegate : public QItemDelegate
+class FunctionDelegate : public QItemDelegate
 {
     Q_OBJECT
 

@@ -23,14 +23,11 @@
 #include <QtCore/QAbstractTableModel>
 #include <QSortFilterProxyModel>
 
-#include "keomath/keomathexport.h"
 #include <QStringList>
 namespace Keomath
 {
 
-
-
-class KEOMATH_EXPORT FunctionLibraryItem
+class FunctionLibraryItem
 {
 public:
     FunctionLibraryItem();
@@ -62,14 +59,10 @@ private:
     QStringList m_arguments;
 };
 
-
-
-
-
 class QIODevice;
 
 
-class KEOMATH_EXPORT FunctionLibraryModel : public QAbstractTableModel
+class FunctionLibraryModel : public QAbstractTableModel
 {
 public:
     
@@ -91,12 +84,7 @@ private:
     QList<FunctionLibraryItem> m_items;
 };
 
-
-
-
-
-
-class KEOMATH_EXPORT FunctionLibraryFilterProxyModel : public QSortFilterProxyModel
+class FunctionLibraryFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
 

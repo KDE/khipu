@@ -23,8 +23,6 @@
 
 #include <QTreeView>
 
-#include "keomath/keomathexport.h"
-
 
 class QUuid;
 
@@ -34,7 +32,7 @@ namespace Keomath
 class FunctionsModel;
 // class Function;
 
-class KEOMATH_EXPORT FunctionsView : public QTreeView
+class FunctionsView : public QTreeView
 {
     Q_OBJECT
 

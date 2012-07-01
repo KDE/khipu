@@ -15,6 +15,5 @@ endif(NOT OPENGL_GLU_FOUND)
 
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${ANALITZA_INCLUDE_DIR})
 
-# add_subdirectory ( keomath ) #deprecated .. remove this 
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc
