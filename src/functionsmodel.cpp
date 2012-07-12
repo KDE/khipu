@@ -39,13 +39,13 @@ namespace Keomath
 
 
 FunctionsModel::FunctionsModel(QObject *parent)
-    : FunctionGraphsModel(parent)
+    : VisualItemsModel(parent)
 {
     m_selectionModel = new QItemSelectionModel(this);
 }
 
 FunctionsModel::FunctionsModel(Analitza::Variables* v, QObject* parent)
-    : FunctionGraphsModel(0, parent)
+    : VisualItemsModel(0, parent)
 
 {
 
@@ -60,7 +60,8 @@ FunctionsModel::~FunctionsModel()
 
 QString FunctionsModel::spaceId(int row) const
 {
-    return m_spaceIds.key(item(row)->id());
+//     return m_spaceIds.key(item(row)->id());
+return QString();
 }
 
 int FunctionsModel::currentItem() const
@@ -70,16 +71,16 @@ int FunctionsModel::currentItem() const
 
 void FunctionsModel::setSpaceId(int row, const QString& spaceId)
 {
-    m_spaceIds[spaceId] = item(row)->id();
+    m_spaceIds[spaceId] = item(row);
 }
 
 void FunctionsModel::removeItemsBySpace(const QString& spaceId)
 {
-    QStringList its = m_spaceIds.values(spaceId);
+    QList<VisualItem*> its = m_spaceIds.values(spaceId);
     
     for (int row = 0; row < rowCount(); ++row)
-        foreach(const QString &itemid, its)
-            if (itemid == item(row)->id())
+        foreach(VisualItem *itemid, its)
+            if (itemid == item(row))
                 removeItem(row);
 }
 

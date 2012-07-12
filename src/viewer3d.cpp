@@ -65,12 +65,12 @@ public:
 
 
 
-        view->setAxisIsDrawn(true);
+//         view->setAxisIsDrawn(true);
 
         
         
 
-        view->camera()->setPosition(qglviewer::Vec(0,0,10));
+//         view->camera()->setPosition(qglviewer::Vec(0,0,10));
         
 
 
@@ -185,7 +185,7 @@ void Viewer3D::setSpace(const Space &space)
     m_viewer3DWidget->coordSysSettingsDock->close();
     m_viewer3DWidget->spaceInfoDock->close();
     
-    m_viewer3DWidget->view->setBackgroundColor(Qt::black);
+//     m_viewer3DWidget->view->setBackgroundColor(Qt::black);
 
     m_space = space;
     m_viewer3DWidget->spaceTitle->setText(m_space.name());
@@ -255,24 +255,24 @@ void Viewer3D::resizeScene3D(int v)
 
 
 
-    m_viewer3DWidget->view->setSceneCenter(qglviewer::Vec(0.f,0.f,0.f));
-    m_viewer3DWidget->view->setSceneRadius(si);
+//     m_viewer3DWidget->view->setSceneCenter(qglviewer::Vec(0.f,0.f,0.f));
+//     m_viewer3DWidget->view->setSceneRadius(si);
 
     m_viewer3DWidget->view->updateGL();
 }
 
 void Viewer3D::toImage(const QString laurl)
 {
-    m_viewer3DWidget->view->setSnapshotQuality(100);
-    m_viewer3DWidget->view->setSnapshotFileName(i18n("Surface"));
-    m_viewer3DWidget->view->setSnapshotCounter(0);
-
-    m_viewer3DWidget->view->saveSnapshot(laurl, false);
+//     m_viewer3DWidget->view->setSnapshotQuality(100);
+//     m_viewer3DWidget->view->setSnapshotFileName(i18n("Surface"));
+//     m_viewer3DWidget->view->setSnapshotCounter(0);
+// 
+//     m_viewer3DWidget->view->saveSnapshot(laurl, false);
 }
 
 void Viewer3D::copyImageToClipboard()
 {
-    m_viewer3DWidget->view->snapshotToClipboard();
+//     m_viewer3DWidget->view->snapshotToClipboard();
 }
 
 

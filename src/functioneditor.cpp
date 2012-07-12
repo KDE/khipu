@@ -1224,11 +1224,11 @@ void FunctionEditor::editFunction(const QModelIndex &index)
 
     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
 
-    const FunctionGraph *fn = functionModel->item(sourceRow);
+    FunctionGraph *fn = (FunctionGraph *)(functionModel->item(sourceRow));
 
     m_editor->functionName->setText(fn->name());
 
-    m_currentEditFunctionId = fn->id();
+//     m_currentEditFunctionId = fn->id();
     QStringList arguments = fn->parameters();
 
     if (fn->spaceDimension() == 2)
@@ -3014,18 +3014,18 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
             }
             else
             {
-                PlotStyle dt;
+                VisualItem::PlotStyle dt;
 
                 switch (m_editor->surfaceDrawingType->currentIndex())
                 {
                 case 0:
-                    dt = Solid;
+                    dt = VisualItem::Solid;
                     break;
                 case 1:
-                    dt = Wired;
+                    dt = VisualItem::Wired;
                     break;
                 case 2:
-                    dt = Dots;
+                    dt = VisualItem::Dots;
                     break;
                 }
 

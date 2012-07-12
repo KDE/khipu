@@ -52,8 +52,9 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
 
 
 
-        return QString();
-        
+        return m_spaceList.at(index.row()).dimension();
+//         return QString();
+//        return index.row()/4;        
     }
     case KCategorizedSortFilterProxyModel::CategorySortRole:
     {

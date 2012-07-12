@@ -139,7 +139,7 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
 
 
             ///sm->setData(sm->index(sourceRow,0), !shown, FunctionsModel::Shown);
-            sm->setItemVisible(sourceRow, !shown);
+            sm->item(sourceRow)->setVisible(!shown);
 
 //             if (!shown)
 //                 emit functionShown(sm->funclist[sourceRow]);
@@ -161,7 +161,8 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
             {
                 
                 
-                 sm->setItemVisible(sourceRow, true);
+            sm->item(sourceRow)->setVisible(true);
+
 //                 sm->editFunction(sourceRow)->setShown(true);
 //                 emit functionOnSpaceShown(sm->editFunction(sourceRow)->spaceId());
 

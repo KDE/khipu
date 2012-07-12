@@ -33,6 +33,8 @@
 #include <QtGui/QGraphicsProxyWidget>
 #include <QLineEdit>
 #include <qstringlistmodel.h>
+#include <qlistview.h>
+#include <qtreeview.h>
 #include <QDebug>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -56,9 +58,10 @@
 #include "functionsmodel.h"
 #include "spacesmodel.h"
 #include "widgets/gplacswidget.h"
-#include "button.h"
 #include <KAboutApplicationDialog>
 #include <KMenuBar>
+#include <kcategorizedview.h>
+#include <kcategorydrawer.h>
 #include "widgets/dashboard.h"
 
 
@@ -88,10 +91,51 @@ MainWindow::MainWindow()
     setupActions();
     setupGUI();
 
-    
-    
-    
-    setCentralWidget(m_gplacsWidget);
+   setCentralWidget(m_gplacsWidget); 
+//     QTabWidget *tabs = new QTabWidget(this);
+//     tabs->addTab(m_gplacsWidget, "ad");
+//     
+//     VisualItemsModel *model = m_functionsModel;
+//     KCategorizedSortFilterProxyModel *proxyModel = new KCategorizedSortFilterProxyModel(this);
+//     proxyModel->setCategorizedModel( true );
+//     proxyModel->setSortCategoriesByNaturalComparison(true);
+//     proxyModel->setSourceModel( model );
+//     proxyModel->sort( 0 );
+//     
+// 
+//         
+//     KCategorizedView *categoryView = new KCategorizedView(this);
+//     KCategoryDrawerV2 *categoryDrawer = new KCategoryDrawerV2();
+//     categoryView->setSelectionMode( QAbstractItemView::SingleSelection );
+// //     categoryView->setSpacing( KDialog::spacingHint() );
+//     categoryView->setCategoryDrawer( categoryDrawer );
+// //     categoryView->setViewMode( QListView::IconMode );
+// //     categoryView->setMouseTracking( true );
+// //     categoryView->viewport()->setAttribute( Qt::WA_Hover );
+// //     categoryView->setFrameShape( QFrame::NoFrame );
+//     categoryView->setModel( proxyModel );
+//     categoryView->setGridSize(QSize(200,32));
+// 
+//     proxyModel->setCategorizedModel(false); //BEGIN NOTE IMPORTANT WARNING PRIMERO HACER UN LOCK
+// 
+//     
+//     PlaneCurve *item = model->addPlaneCurve(Analitza::Expression("x->x*x"), "para", Qt::cyan);
+//     model->addPlaneCurve(Analitza::Expression("q->q+2"), "polar simple", Qt::green);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, t+2}"), "vec", Qt::yellow);
+//     PlaneCurve *item2 = model->addPlaneCurve(Analitza::Expression("5*(x**2+y**2)**3=15*(x*y*72)**2"), "impl", Qt::red);
+//     model->addPlaneCurve(Analitza::Expression("x->2+x*x"), "otra simple", Qt::blue);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 2*t+2}"), "vec", Qt::yellow);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 3*t+2}"), "vec", Qt::yellow);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 4*t+2}"), "vec", Qt::yellow);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 4*t+2}"), "vec", Qt::yellow);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 4*t+2}"), "vec", Qt::yellow);
+//     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 4*t+2}"), "vec", Qt::yellow);
+//     proxyModel->setCategorizedModel(true); //END NOTE IMPORTANT WARNING PRIMERO HACER UN LOCK
+// 
+//     tabs->addTab(categoryView, "lis");
+//     
+//     tabs->setCurrentIndex(1);
+//     setCentralWidget(tabs);
     
 
 

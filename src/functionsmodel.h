@@ -40,7 +40,7 @@ namespace Keomath
 {
 
 
-class FunctionsModel : public FunctionGraphsModel
+class FunctionsModel : public VisualItemsModel
 {
     Q_OBJECT
 public:
@@ -57,7 +57,7 @@ public slots:
     void removeItemsBySpace(const QString& spaceId);
     
 private:
-    QMap<QString, QString> m_spaceIds;
+    QMap<QString, VisualItem*> m_spaceIds;
     QItemSelectionModel *m_selectionModel;
 };
 
