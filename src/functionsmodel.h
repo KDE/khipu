@@ -32,7 +32,7 @@
 #include <KDE/KLocalizedString>
 
 
-#include "analitzaplot/private/functiongraphsmodel.h"
+#include "analitzaplot/plotsmodel.h"
 
 class QItemSelectionModel;
 
@@ -40,7 +40,7 @@ namespace Keomath
 {
 
 
-class FunctionsModel : public VisualItemsModel
+class FunctionsModel : public PlotsModel
 {
     Q_OBJECT
 public:
@@ -57,7 +57,7 @@ public slots:
     void removeItemsBySpace(const QString& spaceId);
     
 private:
-    QMap<QString, VisualItem*> m_spaceIds;
+    QMap<QString, PlotItem*> m_spaceIds;
     QItemSelectionModel *m_selectionModel;
 };
 

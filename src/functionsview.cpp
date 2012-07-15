@@ -30,7 +30,8 @@
 #include <QHeaderView>
 
 #include "analitza/expression.h"
-#include <analitzaplot/private/functiongraph.h>
+#include <analitzaplot/plotsmodel.h>
+#include <analitzaplot/planecurve.h>
 
 
 namespace Keomath

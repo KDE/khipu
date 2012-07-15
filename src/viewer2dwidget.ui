@@ -46,7 +46,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="Graph2D" name="view" native="true">
+      <widget class="PlotsView2D" name="view" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -470,9 +470,9 @@ p, li { white-space: pre-wrap; }
    <header>ktextedit.h</header>
   </customwidget>
   <customwidget>
-   <class>Graph2D</class>
+   <class>PlotsView2D</class>
    <extends>QWidget</extends>
-   <header>analitzaplot/plotview2d.h</header>
+   <header>analitzaplot/plotsview2d.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

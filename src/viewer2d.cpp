@@ -41,7 +41,7 @@
 #include <KColorUtils>
 
 
-#include "analitzaplot/plotview2d.h"
+#include "analitzaplot/plotsview2d.h"
 #include "functioneditor.h"
 #include "space.h"
 #include "spacesmodel.h"
@@ -533,7 +533,7 @@ Analitza::Variables* Viewer2D::variables() const
 }
 
 
-Graph2D * Viewer2D::view() const
+PlotsView2D * Viewer2D::view() const
 {
     return m_viewer2DWidget->view;
 }

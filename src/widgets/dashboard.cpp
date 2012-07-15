@@ -38,7 +38,7 @@
 #include "ui_dashboardwidget.h"
 #include <QDomDocument>
 #include <analitza/analyzer.h>
-#include <analitzaplot/plotview2d.h>
+#include <analitzaplot/plotsview2d.h>
 #include <QTextCodec>
 #include <QBuffer>
 namespace GPLACS

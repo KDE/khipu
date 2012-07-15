@@ -30,7 +30,10 @@
 #include <cmath>
 // #include "solvers/solver.h"
 #include "analitza/expression.h"
-#include <analitzaplot/private/functiongraph.h>
+
+#include "analitzaplot/planecurve.h"
+#include "analitzaplot/plotsview2d.h"
+#include <analitzaplot/plotsmodel.h>
 
 namespace Keomath
 {
@@ -39,13 +42,13 @@ namespace Keomath
 
 
 FunctionsModel::FunctionsModel(QObject *parent)
-    : VisualItemsModel(parent)
+    : PlotsModel(parent)
 {
     m_selectionModel = new QItemSelectionModel(this);
 }
 
 FunctionsModel::FunctionsModel(Analitza::Variables* v, QObject* parent)
-    : VisualItemsModel(0, parent)
+    : PlotsModel(0, parent)
 
 {
 
@@ -76,10 +79,10 @@ void FunctionsModel::setSpaceId(int row, const QString& spaceId)
 
 void FunctionsModel::removeItemsBySpace(const QString& spaceId)
 {
-    QList<VisualItem*> its = m_spaceIds.values(spaceId);
+    QList<PlotItem*> its = m_spaceIds.values(spaceId);
     
     for (int row = 0; row < rowCount(); ++row)
-        foreach(VisualItem *itemid, its)
+        foreach(PlotItem *itemid, its)
             if (itemid == item(row))
                 removeItem(row);
 }

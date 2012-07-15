@@ -25,7 +25,7 @@
 #include "space.h"
 // #include "keomath/viewers/view2d.h"
 
-class Graph2D;
+class PlotsView2D;
 
 namespace Analitza
 {
@@ -72,7 +72,7 @@ public:
 
     Analitza::Variables* variables() const;
 
-    Graph2D *view() const;
+    PlotsView2D *view() const;
 
 public slots:
     void toggleShownFunctionEditor();

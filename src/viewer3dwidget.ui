@@ -40,7 +40,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="View3D" name="view" native="true">
+      <widget class="PlotsView3D" name="view" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -279,9 +279,9 @@ p, li { white-space: pre-wrap; }
    <header>ktextedit.h</header>
   </customwidget>
   <customwidget>
-   <class>View3D</class>
+   <class>PlotsView3D</class>
    <extends>QWidget</extends>
-   <header>analitzaplot/plotview3d.h</header>
+   <header>analitzaplot/plotsview3d.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

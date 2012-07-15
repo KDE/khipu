@@ -40,6 +40,7 @@
 #include "functionlibraryedit.h"
 #include "analitzagui/variablesmodel.h"
 #include <analitzaplot/private/functiongraph.h>
+#include <analitzaplot/planecurve.h>
 
 #include <KStandardDirs>
 #include "ui_functioneditorwidget.h"
@@ -3014,18 +3015,18 @@ bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimens
             }
             else
             {
-                VisualItem::PlotStyle dt;
+                PlotItem::PlotStyle dt;
 
                 switch (m_editor->surfaceDrawingType->currentIndex())
                 {
                 case 0:
-                    dt = VisualItem::Solid;
+                    dt = PlotItem::Solid;
                     break;
                 case 1:
-                    dt = VisualItem::Wired;
+                    dt = PlotItem::Wired;
                     break;
                 case 2:
-                    dt = VisualItem::Dots;
+                    dt = PlotItem::Dots;
                     break;
                 }
 
