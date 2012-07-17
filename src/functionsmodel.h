@@ -44,8 +44,7 @@ class FunctionsModel : public PlotsModel
 {
     Q_OBJECT
 public:
-    explicit FunctionsModel(QObject *parent=0);
-    FunctionsModel(Analitza::Variables *v, QObject * parent = 0);
+    FunctionsModel(QObject * parent = 0, Analitza::Variables *v = 0);
 
     virtual ~FunctionsModel();
     

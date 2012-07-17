@@ -20,6 +20,9 @@
 #include "gplacs.h"
 
 
+
+#include "analitzaplot/plotsdictionarymodel.h"
+
 #include <KDE/KApplication>
 
 

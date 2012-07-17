@@ -39,18 +39,11 @@ namespace Keomath
 {
 
 
+FunctionsModel::FunctionsModel(QObject * parent, Analitza::Variables *v)
+    : PlotsModel(parent, v)
 
-
-FunctionsModel::FunctionsModel(QObject *parent)
-    : PlotsModel(parent)
 {
     m_selectionModel = new QItemSelectionModel(this);
-}
-
-FunctionsModel::FunctionsModel(Analitza::Variables* v, QObject* parent)
-    : PlotsModel(0, parent)
-
-{
 
 }
 
