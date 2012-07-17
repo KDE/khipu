@@ -163,6 +163,7 @@ Dashboard::Dashboard(Keomath::FunctionsModel *functionsModel, Keomath::SpacesMod
 
     Analitza::Variables *vars = new Analitza::Variables;
     m_dashboardWidget->space2D->setVariables(vars);
+    m_dashboardWidget->space2D->view()->setModel(m_functionsModel);
     m_dashboardWidget->space3D->setVariables(vars);
 
 

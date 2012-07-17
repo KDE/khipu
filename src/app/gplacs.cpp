@@ -22,6 +22,7 @@
 
 
 #include "analitzaplot/plotsdictionarymodel.h"
+#include <analitza/expression.h>
 
 #include <KDE/KApplication>
 
@@ -67,7 +68,6 @@
 #include <kcategorydrawer.h>
 #include "widgets/dashboard.h"
 
-
 namespace GPLACS
 {
 
@@ -85,6 +85,9 @@ MainWindow::MainWindow()
 
 
     m_functionsModel = new Keomath::FunctionsModel(this);
+    
+    m_functionsModel->addPlaneCurve(Analitza::Expression("x*x+y*y=4"), "asdas", Qt::lightGray);
+    
     m_spacesModel = new Keomath::SpacesModel(this);
 
     m_gplacsWidget = new Dashboard(m_functionsModel, m_spacesModel, this);

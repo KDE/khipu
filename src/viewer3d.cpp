@@ -181,6 +181,8 @@ void Viewer3D::setSpacesModel(SpacesModel *spacesModel)
 void Viewer3D::setSpace(const Space &space)
 {
 
+    
+    
     m_viewer3DWidget->functionEditorDock->close();
     m_viewer3DWidget->coordSysSettingsDock->close();
     m_viewer3DWidget->spaceInfoDock->close();
@@ -258,7 +260,6 @@ void Viewer3D::resizeScene3D(int v)
 //     m_viewer3DWidget->view->setSceneCenter(qglviewer::Vec(0.f,0.f,0.f));
 //     m_viewer3DWidget->view->setSceneRadius(si);
 
-    m_viewer3DWidget->view->updateGL();
 }
 
 void Viewer3D::toImage(const QString laurl)
