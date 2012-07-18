@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
+ *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -120,38 +120,6 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
     return QVariant();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 QModelIndex SpacesModel::spaceIndex(const SpaceItem& space) const
@@ -185,22 +153,6 @@ const SpaceItem & SpacesModel::spaceFromIndex(int index) const
     
     return m_spaceList.at(index);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -265,42 +217,6 @@ bool SpacesModel::removeRows(int row, int count, const QModelIndex & parent)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void SpacesModel::clear()
 {
     if(!m_spaceList.isEmpty())
@@ -313,43 +229,11 @@ void SpacesModel::clear()
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 const SpaceItem* SpacesModel::getSpace(int num) const
 {
     Q_ASSERT(num<m_spaceList.count());
     return &m_spaceList[num];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 bool SpacesModel::editSpace(const QString& toChange, const SpaceItem& func)
 {
@@ -394,17 +278,6 @@ bool SpacesModel::setData(const QModelIndex & idx, const QVariant &value, int ro
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 Qt::ItemFlags SpacesModel::flags(const QModelIndex &idx) const
 {
 
@@ -412,38 +285,6 @@ Qt::ItemFlags SpacesModel::flags(const QModelIndex &idx) const
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
@@ -481,6 +322,3 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
     return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
             sourceModel()->data(indexDescription).toString().contains(filterRegExp()));
 }
-
-
-

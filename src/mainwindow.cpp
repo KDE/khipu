@@ -16,17 +16,13 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "mainwindow.h"
-
-
 
 #include "analitzaplot/plotsdictionarymodel.h"
 #include <analitzaplot/planecurve.h>
 #include <analitza/expression.h>
 
 #include <KDE/KApplication>
-
 
 #include <QtGui/QDropEvent>
 #include <QtGui/QPainter>
@@ -69,7 +65,7 @@
 #include <kcategorydrawer.h>
 #include "dashboard.h"
 
- 
+
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
@@ -77,14 +73,14 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     m_functionsModel = new  FunctionsModel(this);
-    
+
     m_functionsModel->addPlaneCurve(Analitza::Expression("x*x+y*y=4"), "asdas", Qt::lightGray);
-    
+
     m_spacesModel = new  SpacesModel(this);
 
     m_gplacsWidget = new Dashboard(m_functionsModel, m_spacesModel, this);
 
-    
+
 //     statusBar()->hide();
     setupActions();
 
@@ -92,19 +88,19 @@ MainWindow::MainWindow(QWidget *parent)
 
 // toolBar("fooToolBar")->setWindowTitle("edqweqewe");
 
-   setCentralWidget(m_gplacsWidget); 
+    setCentralWidget(m_gplacsWidget);
 //     QTabWidget *tabs = new QTabWidget(this);
 //     tabs->addTab(m_gplacsWidget, "ad");
-//     
+//
 //     VisualItemsModel *model = m_functionsModel;
 //     KCategorizedSortFilterProxyModel *proxyModel = new KCategorizedSortFilterProxyModel(this);
 //     proxyModel->setCategorizedModel( true );
 //     proxyModel->setSortCategoriesByNaturalComparison(true);
 //     proxyModel->setSourceModel( model );
 //     proxyModel->sort( 0 );
-//     
-// 
-//         
+//
+//
+//
 //     KCategorizedView *categoryView = new KCategorizedView(this);
 //     KCategoryDrawerV2 *categoryDrawer = new KCategoryDrawerV2();
 //     categoryView->setSelectionMode( QAbstractItemView::SingleSelection );
@@ -116,10 +112,10 @@ MainWindow::MainWindow(QWidget *parent)
 // //     categoryView->setFrameShape( QFrame::NoFrame );
 //     categoryView->setModel( proxyModel );
 //     categoryView->setGridSize(QSize(200,32));
-// 
+//
 //     proxyModel->setCategorizedModel(false); //BEGIN NOTE IMPORTANT WARNING PRIMERO HACER UN LOCK
-// 
-//     
+//
+//
 //     PlaneCurve *item = model->addPlaneCurve(Analitza::Expression("x->x*x"), "para", Qt::cyan);
 //     model->addPlaneCurve(Analitza::Expression("q->q+2"), "polar simple", Qt::green);
 //     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, t+2}"), "vec", Qt::yellow);
@@ -132,12 +128,12 @@ MainWindow::MainWindow(QWidget *parent)
 //     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 4*t+2}"), "vec", Qt::yellow);
 //     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, 4*t+2}"), "vec", Qt::yellow);
 //     proxyModel->setCategorizedModel(true); //END NOTE IMPORTANT WARNING PRIMERO HACER UN LOCK
-// 
+//
 //     tabs->addTab(categoryView, "lis");
-//     
+//
 //     tabs->setCurrentIndex(1);
 //     setCentralWidget(tabs);
-    
+
 
 
     updateTittleWhenOpenSaveDoc();
@@ -149,7 +145,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //     menuBar()->hide();
 
-    
+
 
 
 
@@ -170,48 +166,48 @@ void MainWindow::setupActions()
 
     KStandardAction::quit   (this, SLOT( close()      ), actionCollection());
 
-    
-    
-KAction* clearAction = new KAction(this);
-  clearAction->setText(i18n("&Clear"));
-  clearAction->setIcon(KIcon("document-new"));
-  clearAction->setShortcut(Qt::CTRL + Qt::Key_W);
-  actionCollection()->addAction("zoom_operations", clearAction);
-  
 
-  KAction* clearAction1 = new KAction(this);
-  clearAction1->setText(i18n("&Clear"));
-  clearAction1->setIcon(KIcon("kde"));
-  clearAction1->setShortcut(Qt::CTRL + Qt::Key_W);
-  actionCollection()->addAction("find_operations", clearAction1);
 
-  KAction* clearAction11 = new KAction(this);
-  clearAction11->setText(i18n("&Clear"));
-  clearAction11->setIcon(KIcon("list-add"));
-  clearAction11->setShortcut(Qt::CTRL + Qt::Key_W);
-  actionCollection()->addAction("new_space2d", clearAction11);
+    KAction* clearAction = new KAction(this);
+    clearAction->setText(i18n("&Clear"));
+    clearAction->setIcon(KIcon("document-new"));
+    clearAction->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("zoom_operations", clearAction);
 
-  
+
+    KAction* clearAction1 = new KAction(this);
+    clearAction1->setText(i18n("&Clear"));
+    clearAction1->setIcon(KIcon("kde"));
+    clearAction1->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("find_operations", clearAction1);
+
+    KAction* clearAction11 = new KAction(this);
+    clearAction11->setText(i18n("&Clear"));
+    clearAction11->setIcon(KIcon("list-add"));
+    clearAction11->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("new_space2d", clearAction11);
+
+
 //   KStandardAction::open(this, SLOT(configureToolbars()), actionCollection());
-  KStandardAction::open(this, SLOT(hide3dtb()), actionCollection());
-  
-  
-  
+    KStandardAction::open(this, SLOT(hide3dtb()), actionCollection());
+
+
+
 //   unplugActionList("");
 
 
-    
-    setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
-    
 
-    
+    setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
+
+
+
 //     toolBar("view2DToolbar")->setVisible(true);
-    
+
 
     connect(m_gplacsWidget, SIGNAL(saveRequest()), SLOT(saveFile()));
     connect(m_gplacsWidget, SIGNAL(openRequest()), SLOT(openFile()));
-    
-    
+
+
     //NOTE registeredCurves servira mas adelante para construir mejores mensajes al usario sobre que tipo de curva se dibujara
     // y para construir un buen functioneditor
     for (int i = 0; i < PlaneCurve::registeredCurves().size(); ++i)
@@ -225,16 +221,16 @@ void MainWindow::hide3dtb()
 //     toolBar("view2DToolbar")->setVisible(!toolBar("view2DToolbar")->isVisible());
 
 //     bool f = toolBar("view2DToolbar")->isVisible();
-    
+
 //     toolBar("view2DToolBar")->setVisible(f);
- 
+
 
     //los index del xml en los toolbars corresponden a toolbars
-    
+
 //     toolBars()[0]->setVisible(false);
 }
 
- 
+
 bool MainWindow::queryClose()
 {
     if (m_gplacsWidget->isModified())
@@ -251,11 +247,11 @@ bool MainWindow::queryClose()
         {
         case KMessageBox::Yes:
         {
-            
-            
-            
-            
-            
+
+
+
+
+
             m_gplacsWidget->showDashboard();
 
             saveFile();
@@ -264,7 +260,7 @@ bool MainWindow::queryClose()
         }
         case KMessageBox::No :
             return true;
-            
+
         default :
             return false;
         }
@@ -320,7 +316,7 @@ void MainWindow::newFile()
 
 void MainWindow::saveFile()
 {
-    
+
 
     if (!m_gplacsWidget->fileName().isEmpty())
     {
@@ -359,7 +355,7 @@ void MainWindow::saveFileAs(const QString &filename)
 
 
 
-    
+
 }
 
 
@@ -396,4 +392,4 @@ void MainWindow::updateTittleWhenOpenSaveDoc()
 void MainWindow::optionsPreferences()
 {
 
-} 
+}

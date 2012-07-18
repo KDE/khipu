@@ -16,7 +16,6 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #ifndef GPLACS_MAINWINDOW_H
 #define GPLACS_MAINWINDOW_H
 
@@ -34,49 +33,38 @@ class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 
-    public:
-        
-        MainWindow(QWidget *parent = 0);
+public:
+    MainWindow(QWidget *parent = 0);
+    virtual ~MainWindow();
 
-        
-        virtual ~MainWindow();
+public slots:
+    void openFile();
+    void showAboutAppDialog();
 
-    public slots:
-        void openFile();
-        void showAboutAppDialog();
-        
-        void hide3dtb();
+    void hide3dtb();
 
-    private slots:
-        void newFile();
-        void saveFile();
-        void saveFileAs(const QString &filename);
+private slots:
+    void newFile();
+    void saveFile();
+    void saveFileAs(const QString &filename);
 
     void optionsPreferences();
     void updateInputTypePreviewImage(bool text_input);
-
-
-
-
-        void updateTittleWhenChangeDocState();
-        void updateTittleWhenOpenSaveDoc();
-
-
+    void updateTittleWhenChangeDocState();
+    void updateTittleWhenOpenSaveDoc();
 
 private:
     void setupActions();
-        bool queryClose();
+    bool queryClose();
 
 private:
-     FunctionsModel *m_functionsModel;
-     SpacesModel *m_spacesModel;
+    FunctionsModel *m_functionsModel;
+    SpacesModel *m_spacesModel;
 
     Dashboard *m_gplacsWidget;
 
     KToggleAction *m_toolbarAction;
     KToggleAction *m_statusbarAction;
-
-
 };
 
-#endif 
+#endif
