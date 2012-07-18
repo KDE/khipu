@@ -28,7 +28,6 @@
 #include <QMenu>
 #include <KCategoryDrawer>
 #include <QHeaderView>
-#include "functiondelegate.h"
 #include <KDE/KCursor>
 #include "spacesmodel.h"
 #include "space.h"

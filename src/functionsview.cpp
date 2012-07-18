@@ -19,7 +19,6 @@
 
 
 #include "functionsview.h"
-#include "functiondelegate.h"
 #include "functionsmodel.h"
 
 #include <KDebug>
@@ -47,7 +46,7 @@ FunctionsView::FunctionsView(QWidget * parent) : QTreeView(parent)
     setRootIsDecorated(false);
     setSortingEnabled(false);
 
-    setItemDelegate(new FunctionDelegate(this));
+//     setItemDelegate(new FunctionDelegate(this));
 }
 
 void FunctionsView::selectionChanged(const QItemSelection & selected, const QItemSelection &)

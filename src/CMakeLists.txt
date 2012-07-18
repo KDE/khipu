@@ -11,7 +11,6 @@ set ( khipu_SRCS
   mathhelper.cpp
   functionsmodel.cpp
   functionsview.cpp
-  functiondelegate.cpp
   functioneditor.cpp
   functionlibraryedit.cpp
   functionlibrarymodel.cpp
@@ -28,7 +27,6 @@ set ( khipu_SRCS
   main.cpp
 
   dashboard.cpp
-  gplacswidget.cpp
 )
 
 

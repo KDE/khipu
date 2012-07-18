@@ -63,7 +63,6 @@
 #include <KToolBar>
 #include "functionsmodel.h"
 #include "spacesmodel.h"
-#include "gplacswidget.h"
 #include <KAboutApplicationDialog>
 #include <KMenuBar>
 #include <kcategorizedview.h>
