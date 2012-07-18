@@ -16,47 +16,38 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "mainwindow.h"
 
 #include <KDE/KApplication>
 #include <KDE/KAboutData>
 #include <KDE/KCmdLineArgs>
 #include <KDE/KLocale>
-#include <KDE/KIcon>
-#include <QStyleFactory>
-#include <QDebug>
-#include <QSplashScreen>
-#include <QTimer>
 
+static const char description[] = I18N_NOOP("Advanced Mathematical Function Plotter");
 
-#include <KStandardDirs>
-
-static const char description[] = I18N_NOOP("Graficador de Curvas y Superficies Matemáticas");
-
-static const char version[] = "RC 13";
+static const char version[] = "1.0";
 
 int main(int argc, char **argv)
 {
     KAboutData about("khipu", 0, ki18n(I18N_NOOP("Khipu")), version, ki18n(description),
-                     KAboutData::License_GPL, ki18n("(C) 2010, Percy Camilo Triveño Aucahuasi"));
+                     KAboutData::License_GPL, ki18n("(C) 2010-2012, Percy Camilo Triveño Aucahuasi"));
 
-    about.addAuthor(ki18n("Percy Camilo Triveño Aucahuasi"), ki18n("Jefe de Proyecto y Desarrollador Principal"), "percy.camilo.ta@gmail.com");
+    about.addAuthor(ki18n("Percy Camilo Triveño Aucahuasi"), ki18n("Main developer"), "percy.camilo.ta@gmail.com");
 
-    about.addCredit(ki18n("Manuel Álvarez Blanco"), ki18n("Asesor de Tesis - Guía y Supervisión durante la concepción del Proyecto, Apoyo Bibliográfico, Soporte en Matemática Numérica y Algoritmos (2009)"), "");
-    about.addCredit(ki18n("José Ignacio Cuevas Gonzáles"), ki18n("Asesor de Tesis - Supervisión, Guía del Producto, Promoción del Proyecto dentro del Área de Ciencias y Cliente Principal (2009-2010)"), "jose.cuevas@upc.edu.pe");
-    about.addCredit(ki18n("Eduardo Fernandini Capurro"), ki18n("Asesor de Tesis - Supervisión, Apoyo Bibliográfico, Guia del Producto y Cliente Principal (2009-2010)"), "eduardo.fernandini@upc.edu.pe");
-    about.addCredit(ki18n("Jaime Urbina Pereyra"), ki18n("Asesor de Tesis - Supervisor y Mentor Principal del Proyecto (2009-2010)"), "pcsijurb@upc.edu.pe");
+    about.addCredit(ki18n("Manuel Álvarez Blanco"), ki18n("Thesis mentor - Guide and supervision during project conception. Bibliographical support. Numeric Mathematics and Algorithms support"), "");
+    about.addCredit(ki18n("José Ignacio Cuevas Gonzáles"), ki18n("Thesis mentor - Supervision, Product Guide, Product promotion and former Client"), "jose.cuevas@upc.edu.pe");
+    about.addCredit(ki18n("Eduardo Fernandini Capurro"), ki18n("Thesis mentor - Supervision, Bibliographical Support, Product Guide and former Client"), "eduardo.fernandini@upc.edu.pe");
+    about.addCredit(ki18n("Jaime Urbina Pereyra"), ki18n("Thesis mentor - Supervision and former Main Project Mentor"), "pcsijurb@upc.edu.pe");
 
-    about.addCredit(ki18n("Aleix Pol Gonzalez"), ki18n("Autor de KAlgera y el parser Analitza, ambos vitales para GPLACS"));
+    about.addCredit(ki18n("Aleix Pol Gonzalez"), ki18n("KAlgebra and Analitza parser author, both vitals for the project"));
 
-    about.addCredit(ki18n("José Fernando Ramos Ramirez"), ki18n("Construcción de la Base de Datos de Curvas Famosas y Desarrollo del Instalador"), "ferramos1990@gmail.com");
-    about.addCredit(ki18n("Susan Pamela Rios Sarmiento"), ki18n("Construcción de la Base de Datos de Curvas Famosas y Traducción"), "susanriossarmiento@gmail.com");
+    about.addCredit(ki18n("José Fernando Ramos Ramirez"), ki18n("First version of Famous Curves Database. Build an windows installer"), "ferramos1990@gmail.com");
+    about.addCredit(ki18n("Susan Pamela Rios Sarmiento"), ki18n("First version of Famous Curves Database"), "susanriossarmiento@gmail.com");
 
-    about.addCredit(ki18n("Bertha Nérida Triveño Aucahuasi"), ki18n("Diseño del Ícono de GPLACS"));
-    about.addCredit(ki18n("Edgar Velasquez"), ki18n("Mejoras en GPLACS 2D"));
-    about.addCredit(ki18n("Elizabeth Portilla Flores"), ki18n("Mejoras en GPLACS 3D"));
-    about.addCredit(ki18n("Paul Murat Landauro Minaya"), ki18n("Mejoras en GPLACS 3D"));
+    about.addCredit(ki18n("Edgar Velasquez"), ki18n("2D Improvements"));
+    about.addCredit(ki18n("Jose Torres Cardenas"), ki18n("3D Improvements"));
+    about.addCredit(ki18n("Elizabeth Portilla Flores"), ki18n("3D Improvements"));
+    about.addCredit(ki18n("Paul Murat Landauro Minaya"), ki18n("3D Improvements"));
 
     KCmdLineArgs::init(argc, argv, &about);
 
@@ -65,35 +56,8 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
-    QCoreApplication::addLibraryPath("../lib/kde4/plugins/");
-    QCoreApplication::addLibraryPath("./lib/kde4/plugins/");
-
-
-
-    KGlobal::locale()->setLanguage("es", app.sessionConfig());
-
-    QApplication::setStyle(QStyleFactory::create("Oxygen"));
-
-    QApplication::setWindowIcon(KIcon("khipu"));
-
-
-
-
-
-
-
-
-
 
     GPLACS::MainWindow *mainWindow = new GPLACS::MainWindow;
-
-
-
-
-
-
-
-
 
     if (app.isSessionRestored())
     {
@@ -101,7 +65,6 @@ int main(int argc, char **argv)
     }
     else
     {
-
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         if (args->count() == 0)
             mainWindow->show();
@@ -115,8 +78,6 @@ int main(int argc, char **argv)
         }
         args->clear();
     }
-
-
 
     return app.exec();
 }
