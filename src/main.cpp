@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 
-#include "gplacs.h"
+#include "mainwindow.h"
 
 #include <KDE/KApplication>
 #include <KDE/KAboutData>

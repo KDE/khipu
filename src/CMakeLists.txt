@@ -24,9 +24,7 @@ set ( khipu_SRCS
   viewer2d.cpp
   viewer3d.cpp
 
-
-
-  gplacs.cpp
+  mainwindow.cpp
   main.cpp
 
   dashboard.cpp
