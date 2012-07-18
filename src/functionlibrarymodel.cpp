@@ -25,10 +25,6 @@
 #include <QFile>
 #include <QDebug>
 
-namespace Keomath
-{
-
-
 
 FunctionLibraryItem::FunctionLibraryItem()
 {
@@ -57,8 +53,6 @@ FunctionLibraryItem::~FunctionLibraryItem()
 {
 
 }
-
-
 
 
 
@@ -94,16 +88,6 @@ bool FunctionLibraryModel::loadData()
     }
 
     QDomElement root = domDocument.documentElement();
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -223,19 +207,6 @@ QVariant FunctionLibraryModel::data(const QModelIndex & index, int role) const
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
             if (m_items.at(index.row()).arguments().size() == 1)
             {
                 return QString::fromUtf8("Curva Paramétrica");
@@ -337,18 +308,6 @@ bool FunctionLibraryFilterProxyModel::filterAcceptsRow(int sourceRow, const QMod
     QModelIndex indexDimension = sourceModel()->index(sourceRow, 2, sourceParent);
     QModelIndex indexArguments = sourceModel()->index(sourceRow, 3, sourceParent);
 
-    
-
-
-
-
-
-
-    
-
-
-
-
 
     if (sourceModel()->data(indexDimension, Qt::DisplayRole).toInt() != m_dimension)
         return false;
@@ -360,6 +319,3 @@ bool FunctionLibraryFilterProxyModel::filterAcceptsRow(int sourceRow, const QMod
     return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
             sourceModel()->data(indexLambda).toString().contains(filterRegExp()));
 }
-
-} 
-

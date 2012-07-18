@@ -41,11 +41,7 @@
 #include <analitzaplot/plotsview2d.h>
 #include <QTextCodec>
 #include <QBuffer>
-namespace GPLACS
-{
-
-
-
+ 
 class DashboardWidget : public QStackedWidget, public Ui::DashboardWidget
 {
 public:
@@ -105,7 +101,7 @@ public:
 
 
 
-Dashboard::Dashboard(Keomath::FunctionsModel *functionsModel, Keomath::SpacesModel *spacesModel, QWidget *parent, Qt::WindowFlags f)
+Dashboard::Dashboard( FunctionsModel *functionsModel,  SpacesModel *spacesModel, QWidget *parent, Qt::WindowFlags f)
     : QWidget(parent, f)
     , m_functionsModel(functionsModel)
     , m_spacesModel(spacesModel)
@@ -114,7 +110,7 @@ Dashboard::Dashboard(Keomath::FunctionsModel *functionsModel, Keomath::SpacesMod
 {
     setupWidget();
 
-    m_spacesProxyModel = new Keomath::SpacesFilterProxyModel(this);
+    m_spacesProxyModel = new  SpacesFilterProxyModel(this);
     m_spacesProxyModel->setSourceModel(m_spacesModel);
     m_spacesProxyModel->setCategorizedModel(true);
 
@@ -128,7 +124,7 @@ Dashboard::Dashboard(Keomath::FunctionsModel *functionsModel, Keomath::SpacesMod
 
 
 
-    m_functionsProxyModel = new Keomath::FunctionsFilterProxyModel(this);
+    m_functionsProxyModel = new  FunctionsFilterProxyModel(this);
     m_functionsProxyModel->setSourceModel(m_functionsModel);
 
 
@@ -518,7 +514,7 @@ bool Dashboard::load(const QString &file)
     {
         QDomNodeList spaceDataElements = spaceElement.childNodes();
 
-        Keomath::Space space(spaceDataElements.at(2).toElement().text().toInt());
+         Space space(spaceDataElements.at(2).toElement().text().toInt());
         space.setName(spaceDataElements.at(0).toElement().text());
         space.setDescription(spaceDataElements.at(1).toElement().text());
         space.setThumbnail(utf8ToPixmap(spaceDataElements.at(3).toElement().text().toUtf8()));
@@ -538,7 +534,7 @@ bool Dashboard::load(const QString &file)
     {
         QDomNodeList functionDataElements = functionElement.childNodes();
 
-        Keomath::RealInterval::List domain;
+         RealInterval::List domain;
 
         for (int i = 0; i < functionDataElements.at(4).toElement().childNodes().size(); i +=1)
         {
@@ -552,12 +548,12 @@ bool Dashboard::load(const QString &file)
 
 
 
-            domain << Keomath::RealInterval(argumentDataElement.at(1).toElement().text().toDouble(), 
+            domain <<  RealInterval(argumentDataElement.at(1).toElement().text().toDouble(), 
                                             argumentDataElement.at(2).toElement().text().toDouble()); 
         }
 
 
-        Keomath::Function f(Analitza::Expression(functionDataElements.at(2).toElement().text(), false), 
+         Function f(Analitza::Expression(functionDataElements.at(2).toElement().text(), false), 
                             functionDataElements.at(3).toElement().text().toInt(), 
                             domain,
                             m_dashboardWidget->space2D->variables(), 
@@ -565,7 +561,7 @@ bool Dashboard::load(const QString &file)
                             QColor(functionDataElements.at(5).toElement().text())); 
 
         f.setSpaceId(QUuid(functionDataElements.at(0).toElement().text()));
-        f.setDrawingType((Keomath::Function::DrawingType)(functionDataElements.at(10).toElement().text().toInt()));
+        f.setDrawingType(( Function::DrawingType)(functionDataElements.at(10).toElement().text().toInt()));
 
         f.setShown(true);
 
@@ -610,8 +606,8 @@ void Dashboard::setupWidget()
 {
     m_dashboardWidget = new DashboardWidget(this);
 
-    m_proxyViewer2D = new Keomath::FunctionsFilterProxyModel(this);
-    m_proxyViewer3D = new Keomath::FunctionsFilterProxyModel(this);
+    m_proxyViewer2D = new  FunctionsFilterProxyModel(this);
+    m_proxyViewer3D = new  FunctionsFilterProxyModel(this);
 
     m_proxyViewer2D->setSourceModel(m_functionsModel);
     m_proxyViewer3D->setSourceModel(m_functionsModel);
@@ -680,7 +676,7 @@ void Dashboard::setupWidget()
 
 
 
-    connect(m_dashboardWidget->spaces, SIGNAL(spaceShown(Keomath::SpaceItem)), SLOT(showSpace(Keomath::SpaceItem)));
+    connect(m_dashboardWidget->spaces, SIGNAL(spaceShown( SpaceItem)), SLOT(showSpace( SpaceItem)));
 
 
     connect(m_dashboardWidget->functions, SIGNAL(functionOnSpaceShown(QUuid)), SLOT(showFunctionOnSpace(QUuid)));
@@ -807,7 +803,7 @@ void Dashboard::setFilterDimension(int radioButton)
 void Dashboard::showFunctionOnSpace(const QUuid &spaceId)
 {
 
-    Keomath::SpaceItem space = m_spacesModel->spaceFromId(spaceId);
+     SpaceItem space = m_spacesModel->spaceFromId(spaceId);
 
     if (space.dimension() == 2)
     {
@@ -827,7 +823,7 @@ void Dashboard::showFunctionOnSpace(const QUuid &spaceId)
 
 }
 
-void Dashboard::showSpace(const Keomath::SpaceItem &space)
+void Dashboard::showSpace(const  SpaceItem &space)
 {
     if (space.dimension() == 2)
     {
@@ -853,7 +849,7 @@ void Dashboard::showSpace(const Keomath::SpaceItem &space)
 
 void Dashboard::addSpace2D()
 {
-    Keomath::SpaceItem space(2);
+     SpaceItem space(2);
 
 
     m_dashboardWidget->setCurrentIndex(1);
@@ -867,7 +863,7 @@ void Dashboard::addSpace2D()
 
 void Dashboard::addSpace3D()
 {
-    Keomath::SpaceItem space(3);
+     SpaceItem space(3);
 
     m_dashboardWidget->setCurrentIndex(2);
     m_spacesModel->addSpace(space);
@@ -885,85 +881,3 @@ void Dashboard::addSpace3D()
     
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-} 

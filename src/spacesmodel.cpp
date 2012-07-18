@@ -30,8 +30,6 @@
 #include <QModelIndex>
 #include <kicon.h>
 
-namespace Keomath
-{
 
 SpacesModel::SpacesModel(QObject *parent)
     : QAbstractTableModel(parent)
@@ -482,8 +480,6 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
 
     return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
             sourceModel()->data(indexDescription).toString().contains(filterRegExp()));
-}
-
 }
 
 

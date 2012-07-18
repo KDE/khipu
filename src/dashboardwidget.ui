@@ -109,11 +109,11 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="Keomath::SpacesView" name="spaces"/>
+      <widget class="SpacesView" name="spaces"/>
       <widget class="QWidget" name="views_page2">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="Keomath::FunctionsView" name="functions"/>
+         <widget class="FunctionsView" name="functions"/>
         </item>
        </layout>
       </widget>
@@ -385,7 +385,7 @@
      </layout>
     </item>
     <item>
-     <widget class="Keomath::Viewer2D" name="space2D" native="true">
+     <widget class="Viewer2D" name="space2D" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -480,7 +480,7 @@
      </layout>
     </item>
     <item>
-     <widget class="Keomath::Viewer3D" name="space3D" native="true">
+     <widget class="Viewer3D" name="space3D" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -510,24 +510,24 @@
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>Keomath::FunctionsView</class>
+   <class>FunctionsView</class>
    <extends>QTreeView</extends>
    <header>functionsview.h</header>
   </customwidget>
   <customwidget>
-   <class>Keomath::SpacesView</class>
+   <class>SpacesView</class>
    <extends>QWidget</extends>
    <header>spacesview.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Keomath::Viewer2D</class>
+   <class>Viewer2D</class>
    <extends>QWidget</extends>
    <header>viewer2d.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Keomath::Viewer3D</class>
+   <class>Viewer3D</class>
    <extends>QWidget</extends>
    <header>viewer2d.h</header>
    <container>1</container>

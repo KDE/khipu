@@ -47,23 +47,6 @@
 #include "spacesmodel.h"
 #include "ui_viewer2dwidget.h"
 #include "functionsview.h"
-namespace Keomath
-{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 class Viewer2DWidget : public QWidget, public Ui::Viewer2DWidget
@@ -80,28 +63,6 @@ public:
         functionEditorDock->close();
         coordSysSettingsDock->close();
         spaceInfoDock->close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -123,34 +84,6 @@ Viewer2D::Viewer2D(QWidget *parent)
     m_viewer2DWidget->functionEditorDock->setWidget(m_functionEditor);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(m_viewer2DWidget);
 
@@ -163,40 +96,6 @@ Viewer2D::Viewer2D(QWidget *parent)
     
     connect(m_viewer2DWidget->xAxisLabel, SIGNAL(textChanged(QString)), m_viewer2DWidget->view, SLOT(setXAxisLabel(QString)));
     connect(m_viewer2DWidget->yAxisLabel, SIGNAL(textChanged(QString)), m_viewer2DWidget->view, SLOT(setYAxisLabel(QString)));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     QString sym = QString((QChar(0x03C0)));
@@ -214,61 +113,11 @@ Viewer2D::Viewer2D(QWidget *parent)
     addTickEntry("6"+sym, sym, M_PI, 6, 1);
 
 
-
-
-
-
-
     sym = QString("e");
 
     addTickEntry(sym+"/2", sym, M_E, 1, 2);
     addTickEntry(sym, sym, M_E, 1, 1);
     addTickEntry("2"+sym, sym, M_E, 2, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -288,19 +137,6 @@ Viewer2D::Viewer2D(QWidget *parent)
     addTickEntry("3"+sym, sym, symval, 3, 1);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     addTickEntry("1", QString(), 1, 1, 1);
     addTickEntry("2", QString(), 1, 2, 1);
     addTickEntry("3", QString(), 1, 3, 1);
@@ -312,39 +148,6 @@ Viewer2D::Viewer2D(QWidget *parent)
     addTickEntry("9", QString(), 1, 9, 1);
 
     m_viewer2DWidget->tickScale->setCurrentIndex(22);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -428,29 +231,6 @@ void Viewer2D::setSpace(const SpaceItem &space)
     m_viewer2DWidget->spaceDescription->setPlainText(m_space.description());
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-
-    
 
     if (!m_functionsFilterProxyModel) return;
 
@@ -539,197 +319,16 @@ PlotsView2D * Viewer2D::view() const
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void Viewer2D::saveSpace()
 {
     QPixmap thumbnail = QPixmap::grabWidget(m_viewer2DWidget->view);
     thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
-
-
-
-
-    
-    
-
-
-
-
-
-
 
     m_space.setName(m_viewer2DWidget->spaceTitle->text());
     m_space.setDescription(m_viewer2DWidget->spaceDescription->toPlainText());
     m_space.setThumbnail(thumbnail);
 
     m_spacesModel->editSpace(m_space.id(), m_space);
-
-
 
 
 
@@ -773,7 +372,5 @@ void Viewer2D::updateGridColor(int i)
 //TODO
 //     QColor col = KColorUtils::lighten(m_viewer2DWidget->gridColor->color(), .35);
 //     m_viewer2DWidget->view->setGridColor(col);
-}
-
 }
 

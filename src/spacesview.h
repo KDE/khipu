@@ -23,8 +23,6 @@
 #include <KDE/KCategorizedView>
 
 
-namespace Keomath
-{
 
 class SpacesModel;
 class SpaceItem;
@@ -43,14 +41,12 @@ public:
     void setMainFunctionsModel(FunctionsModel *fm);
 
 signals:
-    void spaceShown(const Keomath::SpaceItem &space); 
+    void spaceShown(const  SpaceItem &space); 
 
 private:
     FunctionsModel *m_mainFunctionsModel;
 
 };
-
-} 
 
 #endif 
 

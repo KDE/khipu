@@ -26,12 +26,6 @@
 #include <QtGui/QPixmap>
 #include <KDE/KDateTime>
 
-
-
-namespace Keomath
-{
-
-
 class SpaceItem
 {
 public:
@@ -98,8 +92,6 @@ protected:
     QString m_name;
     QString m_description;
 };
-
-} 
 
 #endif
 

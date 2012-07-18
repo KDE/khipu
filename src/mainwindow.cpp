@@ -69,27 +69,18 @@
 #include <kcategorydrawer.h>
 #include "dashboard.h"
 
-namespace GPLACS
-{
-
-
-
-
-
-
-//////////////
-
+ 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
 
 
 
-    m_functionsModel = new Keomath::FunctionsModel(this);
+    m_functionsModel = new  FunctionsModel(this);
     
     m_functionsModel->addPlaneCurve(Analitza::Expression("x*x+y*y=4"), "asdas", Qt::lightGray);
     
-    m_spacesModel = new Keomath::SpacesModel(this);
+    m_spacesModel = new  SpacesModel(this);
 
     m_gplacsWidget = new Dashboard(m_functionsModel, m_spacesModel, this);
 
@@ -404,28 +395,5 @@ void MainWindow::updateTittleWhenOpenSaveDoc()
 
 void MainWindow::optionsPreferences()
 {
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
 
 } 

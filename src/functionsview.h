@@ -26,8 +26,6 @@
 
 class QUuid;
 
-namespace Keomath
-{
 
 class FunctionsModel;
 // class Function;
@@ -54,7 +52,7 @@ public:
     
     
 
-//     void functionShown(const Keomath::Function &function); 
+//     void functionShown(const  Function &function); 
 //     void functionHided(const QUuid &funid, const QString &funlambda); 
 
 
@@ -64,7 +62,5 @@ public:
 private:
     bool m_mainView; 
 };
-
-} 
 
 #endif

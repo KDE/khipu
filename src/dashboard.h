@@ -25,7 +25,6 @@
 #include <QUuid>
 class QModelIndex;
 
-namespace Keomath {
 class FunctionsModel;
 class SpaceItem;
 class SpacesModel;
@@ -33,10 +32,8 @@ class Viewer2D;
 class Viewer3D;
 class SpacesFilterProxyModel;
 class FunctionsFilterProxyModel;
-}
 class KCategorizedSortFilterProxyModel;
 class QSortFilterProxyModel;
-namespace GPLACS {
 
 class DashboardWidget;
 
@@ -83,7 +80,7 @@ void saveRequest();
 void openRequest();
 
     public:    
-        Dashboard(Keomath::FunctionsModel *functionsModel, Keomath::SpacesModel *spacesModel, QWidget *parent = 0, Qt::WindowFlags f = 0);
+        Dashboard( FunctionsModel *functionsModel,  SpacesModel *spacesModel, QWidget *parent = 0, Qt::WindowFlags f = 0);
         virtual ~Dashboard();
 
     public slots:
@@ -113,7 +110,7 @@ void openRequest();
 
 void showFunctionOnSpace(const QUuid &spaceId);
 
-        void showSpace(const Keomath::SpaceItem &space);
+        void showSpace(const  SpaceItem &space);
 
 
         void setFilterDimension(int radioButton);
@@ -134,19 +131,17 @@ void showFunctionOnSpace(const QUuid &spaceId);
 
     private:
         DashboardWidget *m_dashboardWidget;
-        Keomath::FunctionsModel *m_functionsModel;
-        Keomath::SpacesModel *m_spacesModel;
+         FunctionsModel *m_functionsModel;
+         SpacesModel *m_spacesModel;
 
 
-        Keomath::FunctionsFilterProxyModel *m_functionsProxyModel;
-        Keomath::SpacesFilterProxyModel *m_spacesProxyModel;
+         FunctionsFilterProxyModel *m_functionsProxyModel;
+         SpacesFilterProxyModel *m_spacesProxyModel;
 
-        Keomath::FunctionsFilterProxyModel *m_proxyViewer2D;
-        Keomath::FunctionsFilterProxyModel *m_proxyViewer3D;
+         FunctionsFilterProxyModel *m_proxyViewer2D;
+         FunctionsFilterProxyModel *m_proxyViewer3D;
 
 
 };
-
-} 
 
 #endif 

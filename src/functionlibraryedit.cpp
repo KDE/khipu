@@ -32,8 +32,6 @@
 #include "functionlibrarymodel.h"
 #include <QKeyEvent>
 
-namespace Keomath
-{
 
 FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
     : KLineEdit(parent)
@@ -355,5 +353,3 @@ void FunctionLibraryEdit::showPopup(const QRect& rect)
     if (!m_functionLibraryView->isVisible())
         m_functionLibraryView->show();
 }
-
-} 

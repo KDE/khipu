@@ -35,8 +35,6 @@ class Expression;
 
 class ExpressionEdit;
 
-namespace Keomath
-{
 
 class FunctionEditorWidget;
 class FunctionsFilterProxyModel;
@@ -275,7 +273,5 @@ private:
 
 
 };
-
-} 
 
 #endif 

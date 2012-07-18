@@ -33,9 +33,6 @@
 #include "spaceitem.h"
 
 #include "functionsmodel.h"
-namespace Keomath
-{
-
 
 SpacesView::SpacesView(QWidget * parent)
     : KCategorizedView(parent)
@@ -138,8 +135,8 @@ void SpacesView::mousePressEvent(QMouseEvent * e)
                 
                 
 
-                SpacesFilterProxyModel *sp = qobject_cast<Keomath::SpacesFilterProxyModel*>(model());
-                Keomath::SpacesModel *sm = qobject_cast<Keomath::SpacesModel*>(sp->sourceModel());
+                SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
+                 SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
 
 
 
@@ -156,8 +153,8 @@ void SpacesView::mousePressEvent(QMouseEvent * e)
                 if (m_mainFunctionsModel)
                 {
 
-                    SpacesFilterProxyModel *sp = qobject_cast<Keomath::SpacesFilterProxyModel*>(model());
-                    Keomath::SpacesModel *sm = qobject_cast<Keomath::SpacesModel*>(sp->sourceModel());
+                    SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
+                     SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
 
 
                     m_mainFunctionsModel->removeItemsBySpace(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()).id());
@@ -170,8 +167,8 @@ void SpacesView::mousePressEvent(QMouseEvent * e)
         else if (e->button()==Qt::LeftButton)
         {
 
-            SpacesFilterProxyModel *sp = qobject_cast<Keomath::SpacesFilterProxyModel*>(model());
-            Keomath::SpacesModel *sm = qobject_cast<Keomath::SpacesModel*>(sp->sourceModel());
+            SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
+             SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
 
 
 
@@ -190,5 +187,3 @@ void SpacesView::mousePressEvent(QMouseEvent * e)
 
 
 }
-
-} 

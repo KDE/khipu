@@ -57,11 +57,11 @@ int main(int argc, char **argv)
 
     KApplication app;
 
-    GPLACS::MainWindow *mainWindow = new GPLACS::MainWindow;
+    MainWindow *mainWindow = new MainWindow;
 
     if (app.isSessionRestored())
     {
-        RESTORE(GPLACS::MainWindow)
+        RESTORE(MainWindow)
     }
     else
     {

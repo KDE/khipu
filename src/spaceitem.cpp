@@ -20,8 +20,6 @@
 #include "spaceitem.h"
 #include <quuid.h>
 
-namespace Keomath
-{
 
 SpaceItem::SpaceItem()
 {
@@ -64,8 +62,6 @@ int SpaceItem::dimension() const
 {
     return m_dimension;
 }
-
-} 
 
 
 

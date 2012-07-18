@@ -31,8 +31,7 @@ namespace Analitza
 class Expression;
 }
 
-namespace Keomath
-{
+
 class SpacesView;
 
 class SpacesModel : public QAbstractTableModel
@@ -121,15 +120,4 @@ private:
     int m_dimension; 
 };
 
-
-
-
-
-
-
-} 
-
-
 #endif 
-
-

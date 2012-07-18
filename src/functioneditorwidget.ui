@@ -28,7 +28,7 @@
    </attribute>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="Keomath::FunctionsView" name="functionsView"/>
+     <widget class="FunctionsView" name="functionsView"/>
     </item>
    </layout>
   </widget>
@@ -51,7 +51,7 @@
         </widget>
        </item>
        <item>
-        <widget class="Keomath::FunctionLibraryEdit" name="functionName">
+        <widget class="FunctionLibraryEdit" name="functionName">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -1236,7 +1236,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <widget class="Keomath::FunctionLibraryEdit" name="quickNewFunctionByName">
+       <widget class="FunctionLibraryEdit" name="quickNewFunctionByName">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -1563,7 +1563,7 @@
    <header>kcombobox.h</header>
   </customwidget>
   <customwidget>
-   <class>Keomath::FunctionsView</class>
+   <class>FunctionsView</class>
    <extends>QTreeView</extends>
    <header>functionsview.h</header>
   </customwidget>
@@ -1573,7 +1573,7 @@
    <header>analitzagui/expressionedit.h</header>
   </customwidget>
   <customwidget>
-   <class>Keomath::FunctionLibraryEdit</class>
+   <class>FunctionLibraryEdit</class>
    <extends>QLineEdit</extends>
    <header>functionlibraryedit.h</header>
   </customwidget>

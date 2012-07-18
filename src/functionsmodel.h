@@ -36,10 +36,6 @@
 
 class QItemSelectionModel;
 
-namespace Keomath
-{
-
-
 class FunctionsModel : public PlotsModel
 {
     Q_OBJECT
@@ -87,8 +83,5 @@ private:
     int m_dimension; 
     QString m_spaceId;
 };
-
-
-} 
 
 #endif

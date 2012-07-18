@@ -33,9 +33,6 @@
 #include <analitzaplot/planecurve.h>
 
 
-namespace Keomath
-{
-
 
 FunctionsView::FunctionsView(QWidget * parent) : QTreeView(parent)
     , m_mainView(false)
@@ -58,8 +55,8 @@ void FunctionsView::selectionChanged(const QItemSelection & selected, const QIte
 
         QModelIndex idx=selected.indexes().first();
 
-        FunctionsFilterProxyModel *sp = qobject_cast<Keomath::FunctionsFilterProxyModel*>(model());
-        FunctionsModel *sm = qobject_cast<Keomath::FunctionsModel*>(sp->sourceModel());
+        FunctionsFilterProxyModel *sp = qobject_cast< FunctionsFilterProxyModel*>(model());
+        FunctionsModel *sm = qobject_cast< FunctionsModel*>(sp->sourceModel());
 
 
 
@@ -91,8 +88,8 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
     {
         QModelIndex nameIdx(clickIdx.sibling(clickIdx.row(), 0));
         
-        FunctionsFilterProxyModel *sp = qobject_cast<Keomath::FunctionsFilterProxyModel*>(model());
-        FunctionsModel *sm = qobject_cast<Keomath::FunctionsModel*>(sp->sourceModel());
+        FunctionsFilterProxyModel *sp = qobject_cast< FunctionsFilterProxyModel*>(model());
+        FunctionsModel *sm = qobject_cast< FunctionsModel*>(sp->sourceModel());
         
         bool shown=sm->item(clickIdx.row())->isVisible() ;//  model()->  data(clickIdx, FunctionsModel::Shown).toBool();
         QString actuallyShown;
@@ -125,8 +122,8 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
         QAction* result=menu.exec(e->globalPos());
 
 
-//         FunctionsFilterProxyModel *sp = qobject_cast<Keomath::FunctionsFilterProxyModel*>(model());
-//         FunctionsModel *sm = qobject_cast<Keomath::FunctionsModel*>(sp->sourceModel());
+//         FunctionsFilterProxyModel *sp = qobject_cast< FunctionsFilterProxyModel*>(model());
+//         FunctionsModel *sm = qobject_cast< FunctionsModel*>(sp->sourceModel());
 
 
 
@@ -177,5 +174,3 @@ void FunctionsView::mousePressEvent(QMouseEvent * e)
         QTreeView::mousePressEvent(e);
     }
 }
-
-} 

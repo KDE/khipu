@@ -26,8 +26,6 @@
 
 class QKeyEvent;
 
-namespace Keomath
-{
 
 class FunctionLibraryFilterProxyModel;
 
@@ -65,7 +63,5 @@ private:
     bool eatFocusOut;
     bool m_clearText;
 };
-
-} 
 
 #endif

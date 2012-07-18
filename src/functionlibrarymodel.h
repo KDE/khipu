@@ -24,8 +24,6 @@
 #include <QSortFilterProxyModel>
 
 #include <QStringList>
-namespace Keomath
-{
 
 class FunctionLibraryItem
 {
@@ -111,8 +109,6 @@ private:
     int m_dimension; 
 };
 
-
-} 
 
 #endif 
 

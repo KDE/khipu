@@ -35,8 +35,6 @@
 #include "analitzaplot/plotsview2d.h"
 #include <analitzaplot/plotsmodel.h>
 
-namespace Keomath
-{
 
 
 FunctionsModel::FunctionsModel(QObject * parent, Analitza::Variables *v)
@@ -115,7 +113,7 @@ bool FunctionsFilterProxyModel::filterAcceptsRow(int sourceRow,
     else if (m_dimension == 3)
         dim = QString("3D");
 
-    Keomath::FunctionsModel *fm = static_cast<Keomath::FunctionsModel*>(sourceModel());
+     FunctionsModel *fm = static_cast< FunctionsModel*>(sourceModel());
 
 
 
@@ -132,6 +130,3 @@ bool FunctionsFilterProxyModel::filterAcceptsRow(int sourceRow,
     return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
             sourceModel()->data(indexLambda).toString().contains(filterRegExp()));
 }
-
-} 
-

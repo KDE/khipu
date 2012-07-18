@@ -52,9 +52,6 @@
 
 using namespace std;
 
-namespace Keomath
-{
-
 
 
 class FunctionEditorWidget : public QTabWidget, public Ui::FunctionEditorWidget
@@ -3235,15 +3232,3 @@ bool FunctionEditor::evalDomainExpression(ExpressionEdit *minDomainEdit, Express
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-} 

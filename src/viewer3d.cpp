@@ -46,10 +46,6 @@
 #include "spaceitem.h"
 #include "ui_viewer3dwidget.h"
 
-namespace Keomath
-{
-
-
 
 class Viewer3DWidget : public QWidget, public Ui::Viewer3DWidget
 {
@@ -162,8 +158,8 @@ void Viewer3D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxy
 
 
 
-    connect(m_functionEditor->functionsView(), SIGNAL(functionShown(Keomath::Function)),
-            m_viewer3DWidget->view, SLOT(updateSurface(Keomath::Function)));
+    connect(m_functionEditor->functionsView(), SIGNAL(functionShown( Function)),
+            m_viewer3DWidget->view, SLOT(updateSurface( Function)));
 
     connect(m_functionEditor->functionsView(), SIGNAL(functionHided(QUuid,QString)),
             m_viewer3DWidget->view, SLOT(removeSurface(QUuid,QString)));
@@ -332,10 +328,6 @@ void Viewer3D::saveSpace()
     m_space.setThumbnail(thumbnail);
 
     m_spacesModel->editSpace(m_space.id(), m_space);
-
-}
-
-
 
 }
 

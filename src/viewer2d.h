@@ -33,8 +33,6 @@ class Variables;
 }
 
 
-namespace Keomath
-{
 
 class Viewer2DWidget;
 class FunctionsFilterProxyModel;
@@ -114,8 +112,6 @@ private:
                       int tickScaleDenominator);
 
 };
-
-} 
 
 #endif
 

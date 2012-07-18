@@ -28,8 +28,6 @@ class Variables;
 }
 
 
-namespace Keomath {
-
 class View3D;
 class Viewer3DWidget;
 class FunctionEditor;
@@ -82,8 +80,4 @@ class Viewer3D : public QWidget
 
 };
 
-} 
-
 #endif
-
-

@@ -22,23 +22,13 @@
 
 #include <KDE/KXmlGuiWindow>
 
-
-
-
-
-
 class KUrl;
 class KToggleAction;
 
-namespace Keomath {
 class FunctionsModel;
 class SpacesModel;
-}
-
-namespace GPLACS {
 
 class Dashboard;
-
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -78,8 +68,8 @@ private:
         bool queryClose();
 
 private:
-    Keomath::FunctionsModel *m_functionsModel;
-    Keomath::SpacesModel *m_spacesModel;
+     FunctionsModel *m_functionsModel;
+     SpacesModel *m_spacesModel;
 
     Dashboard *m_gplacsWidget;
 
@@ -88,7 +78,5 @@ private:
 
 
 };
-
-} 
 
 #endif 
