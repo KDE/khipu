@@ -385,7 +385,7 @@
      </layout>
     </item>
     <item>
-     <widget class="Viewer2D" name="space2D" native="true">
+     <widget class="Space2DViewer" name="space2D" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -480,7 +480,7 @@
      </layout>
     </item>
     <item>
-     <widget class="Viewer3D" name="space3D" native="true">
+     <widget class="Space3DViewer" name="space3D" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -521,15 +521,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Viewer2D</class>
+   <class>Space2DViewer</class>
    <extends>QWidget</extends>
-   <header>viewer2d.h</header>
+   <header>space2dviewer.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Viewer3D</class>
+   <class>Space3DViewer</class>
    <extends>QWidget</extends>
-   <header>viewer2d.h</header>
+   <header>space3dviewer.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

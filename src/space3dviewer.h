@@ -27,17 +27,15 @@ namespace Analitza {
 class Variables;
 }
 
-
-class View3D;
 class Viewer3DWidget;
 class FunctionEditor;
 class FunctionsFilterProxyModel;
 class SpacesModel;
-class Viewer3D : public QWidget
+class Space3DViewer : public QWidget
 {
     Q_OBJECT
     public:
-        Viewer3D(QWidget *parent = 0);
+        Space3DViewer(QWidget *parent = 0);
         FunctionEditor *functionEditor() const;
         void setSpace(const SpaceItem &space);
 

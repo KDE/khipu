@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 
-#include "viewer2d.h"
+#include "space2dviewer.h"
 
 #include <QtGui/QLayout>
 #include "functionsmodel.h"
@@ -45,7 +45,7 @@
 #include "functioneditor.h"
 #include "spaceitem.h"
 #include "spacesmodel.h"
-#include "ui_viewer2dwidget.h"
+#include "ui_space2dviewer.h"
 #include "functionsview.h"
 
 
@@ -71,7 +71,7 @@ public:
 
 
 
-Viewer2D::Viewer2D(QWidget *parent)
+Space2DViewer::Space2DViewer(QWidget *parent)
     : QWidget(parent)
 {
 
@@ -192,7 +192,7 @@ Viewer2D::Viewer2D(QWidget *parent)
 
 }
 
-void Viewer2D::hideDocks()
+void Space2DViewer::hideDocks()
 {
     m_viewer2DWidget->functionEditorDock->close();
     m_viewer2DWidget->coordSysSettingsDock->close();
@@ -201,7 +201,7 @@ void Viewer2D::hideDocks()
 }
 
 
-FunctionEditor *Viewer2D::functionEditor()
+FunctionEditor *Space2DViewer::functionEditor()
 {
     return qobject_cast<FunctionEditor*>(m_viewer2DWidget->functionEditorDock->widget());
 }
@@ -210,7 +210,7 @@ FunctionEditor *Viewer2D::functionEditor()
 
 
 
-void Viewer2D::setSpace(const SpaceItem &space)
+void Space2DViewer::setSpace(const SpaceItem &space)
 {
     m_viewer2DWidget->functionEditorDock->close();
     m_viewer2DWidget->coordSysSettingsDock->close();
@@ -248,7 +248,7 @@ void Viewer2D::setSpace(const SpaceItem &space)
 
 }
 
-void Viewer2D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel)
+void Space2DViewer::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel)
 {
     m_functionsFilterProxyModel = functionsFilterProxyModel;
     m_functionEditor->setFunctionsModel(m_functionsFilterProxyModel);
@@ -260,37 +260,37 @@ void Viewer2D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxy
 
 }
 
-void Viewer2D::toggleShownFunctionEditor()
+void Space2DViewer::toggleShownFunctionEditor()
 {
     m_viewer2DWidget->functionEditorDock->setVisible(!m_viewer2DWidget->functionEditorDock->isVisible());
 }
 
-void Viewer2D::toggleShownCoordSysSettings()
+void Space2DViewer::toggleShownCoordSysSettings()
 {
     m_viewer2DWidget->coordSysSettingsDock->setVisible(!m_viewer2DWidget->coordSysSettingsDock->isVisible());
 }
 
-void Viewer2D::toggleShownSpaceInfo()
+void Space2DViewer::toggleShownSpaceInfo()
 {
     m_viewer2DWidget->spaceInfoDock->setVisible(!m_viewer2DWidget->spaceInfoDock->isVisible());
 }
 
-void Viewer2D::toggleShownAnalysisTools()
+void Space2DViewer::toggleShownAnalysisTools()
 {
 
 }
 
-void Viewer2D::setSpacesModel(SpacesModel *spacesModel)
+void Space2DViewer::setSpacesModel(SpacesModel *spacesModel)
 {
     m_spacesModel = spacesModel;
 }
 
-void Viewer2D::toImage(const QString laurl)
+void Space2DViewer::toImage(const QString laurl)
 {
     //TODO
     //m_viewer2DWidget->view->toImage(laurl);
 }
-void Viewer2D::copyImageToClipboard()
+void Space2DViewer::copyImageToClipboard()
 {
 
 
@@ -301,25 +301,25 @@ void Viewer2D::copyImageToClipboard()
 
 
 
-void Viewer2D::setVariables(Analitza::Variables* v)
+void Space2DViewer::setVariables(Analitza::Variables* v)
 {
     m_functionEditor->setVariables(v);
 }
 
 
-Analitza::Variables* Viewer2D::variables() const
+Analitza::Variables* Space2DViewer::variables() const
 {
     return m_functionEditor->variables();
 }
 
 
-PlotsView2D * Viewer2D::view() const
+PlotsView2D * Space2DViewer::view() const
 {
     return m_viewer2DWidget->view;
 }
 
 
-void Viewer2D::saveSpace()
+void Space2DViewer::saveSpace()
 {
     QPixmap thumbnail = QPixmap::grabWidget(m_viewer2DWidget->view);
     thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
@@ -337,7 +337,7 @@ void Viewer2D::saveSpace()
 
 
 
-void Viewer2D::updateTick(int i)
+void Space2DViewer::updateTick(int i)
 {
     QVariantMap vmap = m_viewer2DWidget->tickScale->itemData(i, Qt::UserRole).toMap();
 
@@ -350,7 +350,7 @@ void Viewer2D::updateTick(int i)
 //                                             vmap["denominator"].toInt());
 }
 
-void Viewer2D::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
+void Space2DViewer::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
                             int tickScaleNumerator,
                             int tickScaleDenominator)
 {
@@ -366,7 +366,7 @@ void Viewer2D::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickSca
     m_viewer2DWidget->tickScale->addItem(tick, vmap);
 }
 
-void Viewer2D::updateGridColor(int i)
+void Space2DViewer::updateGridColor(int i)
 {
     
 //TODO

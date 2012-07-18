@@ -19,8 +19,8 @@ set ( khipu_SRCS
   spacesmodel.cpp
   spacesview.cpp
 
-  viewer2d.cpp
-  viewer3d.cpp
+  space2dviewer.cpp
+  space3dviewer.cpp
 
   mainwindow.cpp
   main.cpp
@@ -31,10 +31,10 @@ set ( khipu_SRCS
 
 kde4_add_ui_files ( khipu_SRCS
   functioneditorwidget.ui
-  viewer2dwidget.ui
-  viewer3dwidget.ui
+  space2dviewer.ui
+  space3dviewer.ui
 
-  dashboardwidget.ui
+  dashboard.ui
 )
 
 

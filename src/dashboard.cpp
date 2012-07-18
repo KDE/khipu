@@ -31,11 +31,11 @@
 #include <KFileDialog>
 #include "functionsmodel.h"
 #include "spaceitem.h"
-#include "viewer2d.h"
-#include "viewer3d.h"
+#include "space2dviewer.h"
+#include "space3dviewer.h"
 #include "spacesmodel.h"
 #include "analitza/variables.h"
-#include "ui_dashboardwidget.h"
+#include "ui_dashboard.h"
 #include <QDomDocument>
 #include <analitza/analyzer.h>
 #include <analitzaplot/plotsview2d.h>

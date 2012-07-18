@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 
-#include "viewer3d.h"
+#include "space3dviewer.h"
 #include <QtGui/QLayout>
 #include "functionsmodel.h"
 
@@ -44,7 +44,7 @@
 
 
 #include "spaceitem.h"
-#include "ui_viewer3dwidget.h"
+#include "ui_space3dviewer.h"
 
 
 class Viewer3DWidget : public QWidget, public Ui::Viewer3DWidget
@@ -95,12 +95,12 @@ public:
 
 
 
-FunctionEditor *Viewer3D::functionEditor() const
+FunctionEditor *Space3DViewer::functionEditor() const
 {
     return qobject_cast<FunctionEditor*>(m_viewer3DWidget->functionEditorDock->widget());
 }
 
-Viewer3D::Viewer3D(QWidget *parent)
+Space3DViewer::Space3DViewer(QWidget *parent)
     : QWidget(parent)
 {
     m_viewer3DWidget = new Viewer3DWidget(this);
@@ -147,7 +147,7 @@ Viewer3D::Viewer3D(QWidget *parent)
 
 
 
-void Viewer3D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel)
+void Space3DViewer::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel)
 {
 
     m_functionsFilterProxyModel = functionsFilterProxyModel;
@@ -167,14 +167,14 @@ void Viewer3D::setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxy
 
 
 }
-void Viewer3D::setSpacesModel(SpacesModel *spacesModel)
+void Space3DViewer::setSpacesModel(SpacesModel *spacesModel)
 {
 
     m_spacesModel = spacesModel;
 }
 
 
-void Viewer3D::setSpace(const SpaceItem &space)
+void Space3DViewer::setSpace(const SpaceItem &space)
 {
 
     
@@ -221,22 +221,22 @@ void Viewer3D::setSpace(const SpaceItem &space)
 }
 
 
-void Viewer3D::toggleShownFunctionEditor()
+void Space3DViewer::toggleShownFunctionEditor()
 {
     m_viewer3DWidget->functionEditorDock->setVisible(!m_viewer3DWidget->functionEditorDock->isVisible());
 }
 
-void Viewer3D::toggleShownCoordSysSettings()
+void Space3DViewer::toggleShownCoordSysSettings()
 {
     m_viewer3DWidget->coordSysSettingsDock->setVisible(!m_viewer3DWidget->coordSysSettingsDock->isVisible());
 }
 
-void Viewer3D::toggleShownSpaceInfo()
+void Space3DViewer::toggleShownSpaceInfo()
 {
     m_viewer3DWidget->spaceInfoDock->setVisible(!m_viewer3DWidget->spaceInfoDock->isVisible());
 }
 
-void Viewer3D::hideDocks()
+void Space3DViewer::hideDocks()
 {
     m_viewer3DWidget->functionEditorDock->close();
     m_viewer3DWidget->coordSysSettingsDock->close();
@@ -247,7 +247,7 @@ void Viewer3D::hideDocks()
     
 }
 
-void Viewer3D::resizeScene3D(int v)
+void Space3DViewer::resizeScene3D(int v)
 {
     qreal si = (qreal)v;
 
@@ -258,7 +258,7 @@ void Viewer3D::resizeScene3D(int v)
 
 }
 
-void Viewer3D::toImage(const QString laurl)
+void Space3DViewer::toImage(const QString laurl)
 {
 //     m_viewer3DWidget->view->setSnapshotQuality(100);
 //     m_viewer3DWidget->view->setSnapshotFileName(i18n("Surface"));
@@ -267,25 +267,25 @@ void Viewer3D::toImage(const QString laurl)
 //     m_viewer3DWidget->view->saveSnapshot(laurl, false);
 }
 
-void Viewer3D::copyImageToClipboard()
+void Space3DViewer::copyImageToClipboard()
 {
 //     m_viewer3DWidget->view->snapshotToClipboard();
 }
 
 
-void Viewer3D::setVariables(Analitza::Variables* v)
+void Space3DViewer::setVariables(Analitza::Variables* v)
 {
     m_functionEditor->setVariables(v);
 }
 
 
-Analitza::Variables* Viewer3D::variables() const
+Analitza::Variables* Space3DViewer::variables() const
 {
     return m_functionEditor->variables();
 }
 
 
-void Viewer3D::saveSpace()
+void Space3DViewer::saveSpace()
 {
 
 

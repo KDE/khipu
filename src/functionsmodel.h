@@ -28,9 +28,7 @@
 #include <QVector>
 #include <QLineF>
 
-
 #include <KDE/KLocalizedString>
-
 
 #include "analitzaplot/plotsmodel.h"
 

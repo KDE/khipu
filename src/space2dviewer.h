@@ -32,17 +32,13 @@ namespace Analitza
 class Variables;
 }
 
-
-
 class Viewer2DWidget;
 class FunctionsFilterProxyModel;
 class FunctionEditor;
 class SpacesModel;
-// class Function;
 class FunctionsView;
-// class View2D;
 
-class Viewer2D : public QWidget
+class Space2DViewer : public QWidget
 {
     Q_OBJECT
 
@@ -51,7 +47,7 @@ public:
 
 
 public:
-    Viewer2D(QWidget *parent = 0);
+    Space2DViewer(QWidget *parent = 0);
     FunctionEditor *functionEditor();
     void setSpace(const SpaceItem &space);
     void setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel);
