@@ -25,11 +25,11 @@
 #include "space.h"
 
 
-#include "mathhelper.h"
 
 namespace Analitza
 {
 class Variables;
+class Expression;
 }
 
 
@@ -106,15 +106,15 @@ private:
 
 public slots:
     void initCartesianCurve();
-    void initPolarCurve(const RealInterval::List &functionDomain = RealInterval::List());
-    void initParametricCurve2D(const RealInterval::List &functionDomain = RealInterval::List());
-
-    void initCartesianSurface(const RealInterval::List &functionDomain = RealInterval::List());
-    void initCylindricalSurface(const RealInterval::List &functionDomain = RealInterval::List());
-    void initSphericalSurface(const RealInterval::List &functionDomain = RealInterval::List());
-    void initParametricSurface(const RealInterval::List &functionDomain = RealInterval::List());
-    void initParametricCurve3D(const RealInterval::List &functionDomain = RealInterval::List());
-    void initImplicitSurface(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initPolarCurve(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initParametricCurve2D(const RealInterval::List &functionDomain = RealInterval::List());
+// 
+//     void initCartesianSurface(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initCylindricalSurface(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initSphericalSurface(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initParametricSurface(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initParametricCurve3D(const RealInterval::List &functionDomain = RealInterval::List());
+//     void initImplicitSurface(const RealInterval::List &functionDomain = RealInterval::List());
 
     void createFunction();
     
@@ -226,11 +226,11 @@ private:
     int implicitfunctionsId;
     
     
-    bool saveFunction(const Analitza::Expression& newExp, int dimension,
-                      const RealInterval::List &domain, bool useDefaults = false, const QString &quickname = QString(),
-                      const QStringList &bvars = QStringList());
+//     bool saveFunction(const Analitza::Expression& newExp, int dimension,
+//                       const RealInterval::List &domain, bool useDefaults = false, const QString &quickname = QString(),
+//                       const QStringList &bvars = QStringList());
 
-    void initDomainInfo(const QStringList &arguments, const RealInterval::List &functionDomain = RealInterval::List());
+//     void initDomainInfo(const QStringList &arguments, const RealInterval::List &functionDomain = RealInterval::List());
     void clearAppearanceAndDomainSettings();
 
     void showErrorMessage();

@@ -198,7 +198,7 @@ KAction* clearAction = new KAction(this);
   clearAction11->setText(i18n("&Clear"));
   clearAction11->setIcon(KIcon("list-add"));
   clearAction11->setShortcut(Qt::CTRL + Qt::Key_W);
-  actionCollection()->addAction("new_2d", clearAction11);
+  actionCollection()->addAction("new_space2d", clearAction11);
 
   
 //   KStandardAction::open(this, SLOT(configureToolbars()), actionCollection());

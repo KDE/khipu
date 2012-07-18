@@ -8,7 +8,6 @@ include_directories (
 
 set ( khipu_SRCS
 
-  mathhelper.cpp
   functionsmodel.cpp
   functionsview.cpp
   functioneditor.cpp

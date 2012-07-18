@@ -594,146 +594,146 @@ void FunctionEditor::initCartesianCurve()
     initFunction();
 }
 
-void FunctionEditor::initPolarCurve(const RealInterval::List &functionDomain)
-{
-    m_state = EditingPolarCurve;
-
-    m_editor->functions2D->setCurrentIndex(2);
-    m_editor->polarCurveExpression->setFocus();
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-
-
-    initDomainInfo(QStringList() << "q", functionDomain);
-
-    initFunction();
-}
-
-void FunctionEditor::initParametricCurve2D(const RealInterval::List &functionDomain)
-{
-    m_state = EditingParametricCurve2D;
-
-    m_editor->functions2D->setCurrentIndex(3);
-    m_editor->parametricCurve2DXExpression->setFocus();
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-
-
-    initDomainInfo(QStringList() << "t", functionDomain);
-
-
-    initFunction();
-}
-
-
-
-
-
-
-
-
-
-
-
-void FunctionEditor::initCartesianSurface(const RealInterval::List &functionDomain)
-{
-    m_state = EditingCartesianSurface;
-
-    m_editor->functions3D->setCurrentIndex(1);
-    m_editor->cartesianSurfaceExpression->setFocus();
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-
-
-
-    initDomainInfo(QStringList() << "x" << "y", functionDomain);
-
-    initFunction();
-}
-
-void FunctionEditor::initCylindricalSurface(const RealInterval::List &functionDomain)
-{
-    m_state = EditingCylindricalSurface;
-
-    m_editor->functions3D->setCurrentIndex(2);
-    m_editor->cylindricalSurfaceExpression->setFocus();
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-
-
-    initDomainInfo(QStringList() << "r" << "t", functionDomain);
-
-    initFunction();
-}
-
-void FunctionEditor::initSphericalSurface(const RealInterval::List &functionDomain)
-{
-    m_state = EditingSphericalSurface;
-
-    m_editor->functions3D->setCurrentIndex(3);
-    m_editor->sphericalSurfaceExpression->setFocus();
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-
-    initDomainInfo(QStringList() << "s" << "t", functionDomain);
-
-    initFunction();
-}
-
-void FunctionEditor::initParametricSurface(const RealInterval::List &functionDomain)
-{
-    m_state = EditingParametricSurface;
-
-    m_editor->functions3D->setCurrentIndex(4);
-    m_editor->parametricSurfaceXExpression->setFocus();
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-
-    initDomainInfo(QStringList() << "u" << "v", functionDomain);
-
-    initFunction();
-}
-
-void FunctionEditor::initParametricCurve3D(const RealInterval::List &functionDomain)
-{
-    m_state = EditingParametricCurve3D;
-    m_editor->functions3D->setCurrentIndex(5);
-    m_editor->functionName->show();
-    m_editor->createImplicitSurface->hide();
-    initDomainInfo(QStringList() << "t", functionDomain);
-    initFunction();
-}
-
-void FunctionEditor::initImplicitSurface(const RealInterval::List &functionDomain)
-{
-    m_state = EditingImplicitSurface;
-    m_editor->createImplicitSurface->hide();
-    m_editor->label_3->hide();
-    m_editor->domain->hide();
-    m_editor->functionInfo->hide();
-    m_editor->implicitCombobox->show();
-    m_editor->gbImplicitInfo->show();
-    m_editor->functionName->hide();
-    m_editor->lblFormula->hide();
-    m_editor->argument1->hide();
-    m_editor->label_23->hide();
-    m_editor->label_34->hide();
-    m_editor->argument1MinValue->hide();
-    m_editor->argument1MaxValue->hide();
-    m_editor->argument2MinValue->hide();
-    m_editor->argument2MaxValue->hide();
-    m_editor->chkboxSolido->hide();
-    m_editor->chkboxCurvas->hide();
-    m_editor->gbCurvas->hide();
-    m_editor->functionsView->showColumn(0);
-    m_editor->functionsView->showColumn(2);
-    m_editor->functionsView->header()->resizeSection(0,200);
-    
-    
-    m_editor->groupBox_21->hide();
-    m_editor->groupBox_23->hide();
-    initFunction();
-}
+// void FunctionEditor::initPolarCurve(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingPolarCurve;
+// 
+//     m_editor->functions2D->setCurrentIndex(2);
+//     m_editor->polarCurveExpression->setFocus();
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+// 
+// 
+//     initDomainInfo(QStringList() << "q", functionDomain);
+// 
+//     initFunction();
+// }
+// 
+// void FunctionEditor::initParametricCurve2D(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingParametricCurve2D;
+// 
+//     m_editor->functions2D->setCurrentIndex(3);
+//     m_editor->parametricCurve2DXExpression->setFocus();
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+// 
+// 
+//     initDomainInfo(QStringList() << "t", functionDomain);
+// 
+// 
+//     initFunction();
+// }
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// void FunctionEditor::initCartesianSurface(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingCartesianSurface;
+// 
+//     m_editor->functions3D->setCurrentIndex(1);
+//     m_editor->cartesianSurfaceExpression->setFocus();
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+// 
+// 
+// 
+//     initDomainInfo(QStringList() << "x" << "y", functionDomain);
+// 
+//     initFunction();
+// }
+// 
+// void FunctionEditor::initCylindricalSurface(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingCylindricalSurface;
+// 
+//     m_editor->functions3D->setCurrentIndex(2);
+//     m_editor->cylindricalSurfaceExpression->setFocus();
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+// 
+// 
+//     initDomainInfo(QStringList() << "r" << "t", functionDomain);
+// 
+//     initFunction();
+// }
+// 
+// void FunctionEditor::initSphericalSurface(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingSphericalSurface;
+// 
+//     m_editor->functions3D->setCurrentIndex(3);
+//     m_editor->sphericalSurfaceExpression->setFocus();
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+// 
+//     initDomainInfo(QStringList() << "s" << "t", functionDomain);
+// 
+//     initFunction();
+// }
+// 
+// void FunctionEditor::initParametricSurface(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingParametricSurface;
+// 
+//     m_editor->functions3D->setCurrentIndex(4);
+//     m_editor->parametricSurfaceXExpression->setFocus();
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+// 
+//     initDomainInfo(QStringList() << "u" << "v", functionDomain);
+// 
+//     initFunction();
+// }
+// 
+// void FunctionEditor::initParametricCurve3D(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingParametricCurve3D;
+//     m_editor->functions3D->setCurrentIndex(5);
+//     m_editor->functionName->show();
+//     m_editor->createImplicitSurface->hide();
+//     initDomainInfo(QStringList() << "t", functionDomain);
+//     initFunction();
+// }
+// 
+// void FunctionEditor::initImplicitSurface(const RealInterval::List &functionDomain)
+// {
+//     m_state = EditingImplicitSurface;
+//     m_editor->createImplicitSurface->hide();
+//     m_editor->label_3->hide();
+//     m_editor->domain->hide();
+//     m_editor->functionInfo->hide();
+//     m_editor->implicitCombobox->show();
+//     m_editor->gbImplicitInfo->show();
+//     m_editor->functionName->hide();
+//     m_editor->lblFormula->hide();
+//     m_editor->argument1->hide();
+//     m_editor->label_23->hide();
+//     m_editor->label_34->hide();
+//     m_editor->argument1MinValue->hide();
+//     m_editor->argument1MaxValue->hide();
+//     m_editor->argument2MinValue->hide();
+//     m_editor->argument2MaxValue->hide();
+//     m_editor->chkboxSolido->hide();
+//     m_editor->chkboxCurvas->hide();
+//     m_editor->gbCurvas->hide();
+//     m_editor->functionsView->showColumn(0);
+//     m_editor->functionsView->showColumn(2);
+//     m_editor->functionsView->header()->resizeSection(0,200);
+//     
+//     
+//     m_editor->groupBox_21->hide();
+//     m_editor->groupBox_23->hide();
+//     initFunction();
+// }
 
 
 void FunctionEditor::changeCurrentImplicitIndex(int index)
@@ -1216,255 +1216,255 @@ void FunctionEditor::resetAll()
 
 void FunctionEditor::editFunction(const QModelIndex &index)
 {
-    int sourceRow = m_functionsFilterProxyModel->mapToSource(index).row();
-
-    m_isEditing = true;
-
-    m_editor->setTabText(1, i18n("&Editando"));
-    m_editor->setCurrentIndex(1);
-
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    FunctionGraph *fn = (FunctionGraph *)(functionModel->item(sourceRow));
-
-    m_editor->functionName->setText(fn->name());
-
-//     m_currentEditFunctionId = fn->id();
-    QStringList arguments = fn->parameters();
-
-    if (fn->spaceDimension() == 2)
-    {
-        if (fn->expression().lambdaBody().isVector())
-        {
-            if (arguments == QStringList() << QString("t"))
-            {
-
-                //NOTE quick FIX 
-                RealInterval::List dd; 
-                foreach (const QString &param, fn->parameters())
-                {
-                    QPair<double, double> ii_ = fn->interval(param);
-                    dd << RealInterval(ii_.first, ii_.second);
-                }   
-           
-                initParametricCurve2D(dd);
-
-                m_editor->parametricCurve2DXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
-                m_editor->parametricCurve2DYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
-
-
-                setParametricCurveDomainInfo();
-            }
-        }
-        else
-        {
-            if ((arguments == QStringList() << QString("x")) ||
-                    (arguments == QStringList() << QString("y")) ||
-                    (arguments == QStringList() << QString("x") << QString("y")))
-            {
-                initCartesianCurve();
-                m_editor->cartesianCurveExpression->setExpression(fn->expression().lambdaBody());
-
-                if (arguments == QStringList() << QString("x"))
-                {
-                    m_editor->cartesianCurveType->setCurrentIndex(0);
-
-
-                    //TODO
-//                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-                }
-                else if (arguments == QStringList() << QString("y"))
-                {
-                    m_editor->cartesianCurveType->setCurrentIndex(1);
-
-                    //TODO
-//                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-                }
-                else if (arguments == QStringList() << QString("x") << QString("y"))
-                {
-                    m_editor->cartesianCurveType->setCurrentIndex(2);
-
-                    //TODO
-//                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-                    //TODO
-//                     m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-//                     m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
-
-
-                }
-            }
-            else if (arguments == QStringList() << QString("q"))
-            {
-                //TODO
-//                 initPolarCurve(fn->domain());
-                m_editor->polarCurveExpression->setExpression(fn->expression().lambdaBody());
-
-
-                //TODO
-//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-
-                setPolarCurveDomainInfo();
-            }
-        }
-    }
-    else if (fn->spaceDimension() == 3)
-    {
-        if (fn->expression().lambdaBody().isVector())
-        {
-            if (arguments == QStringList() << QString("u") << QString("v"))
-            {
-                //TODO
-//                 initParametricSurface(fn->domain());
-
-                m_editor->parametricSurfaceXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
-                m_editor->parametricSurfaceYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
-                m_editor->parametricSurfaceZExpression->setExpression(fn->expression().lambdaBody().elementAt(2));
-
-                //TODO
-//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
-
-
-                setParametricSurfaceDomainInfo();
-            }
-            else if (arguments == QStringList() << QString("t"))
-            {
-                //TODO
-//                 initParametricCurve3D(fn->domain());
-
-                m_editor->parametricCurve3DXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
-                m_editor->parametricCurve3DYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
-                m_editor->parametricCurve3DZExpression->setExpression(fn->expression().lambdaBody().elementAt(2));
-
-                //TODO
-//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-
-
-                setParametricCurve3DDomainInfo();
-
-            }
-        }
-        else
-        {
-            if ((arguments == QStringList() << QString("x") << QString("y")))
-            {
-                //TODO
-//                 initCartesianSurface(fn->domain());
-                m_editor->cartesianSurfaceExpression->setExpression(fn->expression().lambdaBody());
-
-
-                //TODO
-//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
-
-
-                setCartesianSurfaceDomainInfo();
-            }
-            else if (arguments == QStringList() << QString("r") << QString("t"))
-            {
-                //TODO
-//                 initCylindricalSurface(fn->domain());
-                m_editor->cylindricalSurfaceExpression->setExpression(fn->expression().lambdaBody());
-
-
-//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
-
-                setCylindricalSurfaceDomainInfo();
-            }
-            else if (arguments == QStringList() << QString("s") << QString("t"))
-            {
-                //TODO
-//                 initSphericalSurface(fn->domain());
-                m_editor->sphericalSurfaceExpression->setExpression(fn->expression().lambdaBody());
-
-                //TODO
-//                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
-//                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
-
-//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
-//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
-
-                setSphericalSurfaceDomainInfo();
-            }
-        }
-    }
-
-
-
-    if (!fn->parameters().isEmpty())
-    {
-        if (arguments.size() == 1)
-        {
-            m_editor->argument1->setText(arguments.at(0));
-
-            //TODO
-//             m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower()), false));
-//             m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper()), false));
-        }
-        else if (arguments.size() == 2)
-        {
-            m_editor->argument2->setText(arguments.at(1));
-
-            m_editor->argument2->show();
-            m_editor->argument2MinValue->show();
-            m_editor->argument2MaxValue->show();
-
-
-            {
-                //TODO
-//                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower()), false));
-//                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper()), false));
-            }
-        }
-    }
-
-    
-
-
-
-
-    if (fn->spaceDimension() == 2)
-    {
-        m_editor->curveColor->setColor(fn->color());
-        //NOTE gsoc2012 DEPRECATED
-//         m_editor->curveLineWidth->setValue(fn->lineWidth());
-    }
-    else if (fn->spaceDimension() == 3)
-    {
-        if (arguments == QStringList() << QString("t"))
-        {
-            m_editor->curveColor->setColor(fn->color());
-            //NOTE gsoc2012 DEPRECATED
-//             m_editor->curveLineWidth->setValue(fn->lineWidth());
-        }
-        else
-        {
-            //NOTE gsoc2012 DEPRECATED
-//             m_editor->surfaceResolutionValue->setValue(fn->resolution());
-//             m_editor->surfaceDrawingType->setCurrentIndex((int)fn->drawingType());
-            m_editor->surfaceColor->setColor(fn->color());
-        }
-    }
+//     int sourceRow = m_functionsFilterProxyModel->mapToSource(index).row();
+// 
+//     m_isEditing = true;
+// 
+//     m_editor->setTabText(1, i18n("&Editando"));
+//     m_editor->setCurrentIndex(1);
+// 
+//     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
+// 
+//     FunctionGraph *fn = (FunctionGraph *)(functionModel->item(sourceRow));
+// 
+//     m_editor->functionName->setText(fn->name());
+// 
+// //     m_currentEditFunctionId = fn->id();
+//     QStringList arguments = fn->parameters();
+// 
+//     if (fn->spaceDimension() == 2)
+//     {
+//         if (fn->expression().lambdaBody().isVector())
+//         {
+//             if (arguments == QStringList() << QString("t"))
+//             {
+// 
+//                 //NOTE quick FIX 
+//                 RealInterval::List dd; 
+//                 foreach (const QString &param, fn->parameters())
+//                 {
+//                     QPair<double, double> ii_ = fn->interval(param);
+//                     dd << RealInterval(ii_.first, ii_.second);
+//                 }   
+//            
+//                 initParametricCurve2D(dd);
+// 
+//                 m_editor->parametricCurve2DXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
+//                 m_editor->parametricCurve2DYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
+// 
+// 
+//                 setParametricCurveDomainInfo();
+//             }
+//         }
+//         else
+//         {
+//             if ((arguments == QStringList() << QString("x")) ||
+//                     (arguments == QStringList() << QString("y")) ||
+//                     (arguments == QStringList() << QString("x") << QString("y")))
+//             {
+//                 initCartesianCurve();
+//                 m_editor->cartesianCurveExpression->setExpression(fn->expression().lambdaBody());
+// 
+//                 if (arguments == QStringList() << QString("x"))
+//                 {
+//                     m_editor->cartesianCurveType->setCurrentIndex(0);
+// 
+// 
+//                     //TODO
+// //                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+//                 }
+//                 else if (arguments == QStringList() << QString("y"))
+//                 {
+//                     m_editor->cartesianCurveType->setCurrentIndex(1);
+// 
+//                     //TODO
+// //                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+//                 }
+//                 else if (arguments == QStringList() << QString("x") << QString("y"))
+//                 {
+//                     m_editor->cartesianCurveType->setCurrentIndex(2);
+// 
+//                     //TODO
+// //                     m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                     m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+//                     //TODO
+// //                     m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+// //                     m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+// 
+// 
+//                 }
+//             }
+//             else if (arguments == QStringList() << QString("q"))
+//             {
+//                 //TODO
+// //                 initPolarCurve(fn->domain());
+//                 m_editor->polarCurveExpression->setExpression(fn->expression().lambdaBody());
+// 
+// 
+//                 //TODO
+// //                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+// 
+//                 setPolarCurveDomainInfo();
+//             }
+//         }
+//     }
+//     else if (fn->spaceDimension() == 3)
+//     {
+//         if (fn->expression().lambdaBody().isVector())
+//         {
+//             if (arguments == QStringList() << QString("u") << QString("v"))
+//             {
+//                 //TODO
+// //                 initParametricSurface(fn->domain());
+// 
+//                 m_editor->parametricSurfaceXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
+//                 m_editor->parametricSurfaceYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
+//                 m_editor->parametricSurfaceZExpression->setExpression(fn->expression().lambdaBody().elementAt(2));
+// 
+//                 //TODO
+// //                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+// //                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+// //                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+// 
+// 
+//                 setParametricSurfaceDomainInfo();
+//             }
+//             else if (arguments == QStringList() << QString("t"))
+//             {
+//                 //TODO
+// //                 initParametricCurve3D(fn->domain());
+// 
+//                 m_editor->parametricCurve3DXExpression->setExpression(fn->expression().lambdaBody().elementAt(0));
+//                 m_editor->parametricCurve3DYExpression->setExpression(fn->expression().lambdaBody().elementAt(1));
+//                 m_editor->parametricCurve3DZExpression->setExpression(fn->expression().lambdaBody().elementAt(2));
+// 
+//                 //TODO
+// //                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+// 
+// 
+//                 setParametricCurve3DDomainInfo();
+// 
+//             }
+//         }
+//         else
+//         {
+//             if ((arguments == QStringList() << QString("x") << QString("y")))
+//             {
+//                 //TODO
+// //                 initCartesianSurface(fn->domain());
+//                 m_editor->cartesianSurfaceExpression->setExpression(fn->expression().lambdaBody());
+// 
+// 
+//                 //TODO
+// //                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+// //                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+// //                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+// 
+// 
+//                 setCartesianSurfaceDomainInfo();
+//             }
+//             else if (arguments == QStringList() << QString("r") << QString("t"))
+//             {
+//                 //TODO
+// //                 initCylindricalSurface(fn->domain());
+//                 m_editor->cylindricalSurfaceExpression->setExpression(fn->expression().lambdaBody());
+// 
+// 
+// //                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+// //                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+// //                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+// 
+//                 setCylindricalSurfaceDomainInfo();
+//             }
+//             else if (arguments == QStringList() << QString("s") << QString("t"))
+//             {
+//                 //TODO
+// //                 initSphericalSurface(fn->domain());
+//                 m_editor->sphericalSurfaceExpression->setExpression(fn->expression().lambdaBody());
+// 
+//                 //TODO
+// //                 m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower())));
+// //                 m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper())));
+// 
+// //                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower())));
+// //                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper())));
+// 
+//                 setSphericalSurfaceDomainInfo();
+//             }
+//         }
+//     }
+// 
+// 
+// 
+//     if (!fn->parameters().isEmpty())
+//     {
+//         if (arguments.size() == 1)
+//         {
+//             m_editor->argument1->setText(arguments.at(0));
+// 
+//             //TODO
+// //             m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).lower()), false));
+// //             m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(0).upper()), false));
+//         }
+//         else if (arguments.size() == 2)
+//         {
+//             m_editor->argument2->setText(arguments.at(1));
+// 
+//             m_editor->argument2->show();
+//             m_editor->argument2MinValue->show();
+//             m_editor->argument2MaxValue->show();
+// 
+// 
+//             {
+//                 //TODO
+// //                 m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).lower()), false));
+// //                 m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(fn->domain().at(1).upper()), false));
+//             }
+//         }
+//     }
+// 
+//     
+// 
+// 
+// 
+// 
+//     if (fn->spaceDimension() == 2)
+//     {
+//         m_editor->curveColor->setColor(fn->color());
+//         //NOTE gsoc2012 DEPRECATED
+// //         m_editor->curveLineWidth->setValue(fn->lineWidth());
+//     }
+//     else if (fn->spaceDimension() == 3)
+//     {
+//         if (arguments == QStringList() << QString("t"))
+//         {
+//             m_editor->curveColor->setColor(fn->color());
+//             //NOTE gsoc2012 DEPRECATED
+// //             m_editor->curveLineWidth->setValue(fn->lineWidth());
+//         }
+//         else
+//         {
+//             //NOTE gsoc2012 DEPRECATED
+// //             m_editor->surfaceResolutionValue->setValue(fn->resolution());
+// //             m_editor->surfaceDrawingType->setCurrentIndex((int)fn->drawingType());
+//             m_editor->surfaceColor->setColor(fn->color());
+//         }
+//     }
 }
 
 void FunctionEditor::showCartesianInfo()
@@ -1544,19 +1544,19 @@ void FunctionEditor::clearFunctions2DInfo()
 
 void FunctionEditor::setCartesianCurveDomainInfo(int index)
 {
-    initDomainInfo(m_editor->cartesianCurveType->itemData(index, Qt::UserRole).toStringList());
+//     initDomainInfo(m_editor->cartesianCurveType->itemData(index, Qt::UserRole).toStringList());
 }
 
 void FunctionEditor::setPolarCurveDomainInfo()
 {
     m_editor->functionName->setFilterArguments(QStringList() << "q");
-    initDomainInfo(QStringList() << "q");
+//     initDomainInfo(QStringList() << "q");
 }
 
 void FunctionEditor::setParametricCurveDomainInfo()
 {
     m_editor->functionName->setFilterArguments(QStringList() << "t");
-    initDomainInfo(QStringList() << "t");
+//     initDomainInfo(QStringList() << "t");
 }
 
 void FunctionEditor::setCartesianSurfaceDomainInfo()
@@ -1605,18 +1605,18 @@ void FunctionEditor::varsContextMenu(const QPoint& p)
 void FunctionEditor::saveFromQuick(const QString & newExp, int dimension,
                                    const QString &name, const QStringList &bvars)
 {
-    Analitza::Expression expr(newExp, false);
-
-    if (!expr.isCorrect()) return ;
-
-    if (saveFunction(expr, dimension, RealInterval::List(), true, name, bvars))
-    {
-        qDebug() << "QKICKKKKK " << newExp << dimension << name;
-
-
-    }
-    else
-        qDebug() << "ERROR EN ADD QUICK ";
+//     Analitza::Expression expr(newExp, false);
+// 
+//     if (!expr.isCorrect()) return ;
+// 
+//     if (saveFunction(expr, dimension, RealInterval::List(), true, name, bvars))
+//     {
+//         qDebug() << "QKICKKKKK " << newExp << dimension << name;
+// 
+// 
+//     }
+//     else
+//         qDebug() << "ERROR EN ADD QUICK ";
 
 }
 
@@ -1635,116 +1635,116 @@ void FunctionEditor::completeFunctionInfoFromQuickName(const QString & newExp, i
 
     
 
-    Analitza::Expression lambda(newExp, false);
-
-    m_editor->functionName->setText(name);
-
-    
-    
-
-    if (dimension == 2)
-    {
-        if (lambda.lambdaBody().isVector())
-        {
-            if (arguments == QStringList() << QString("t"))
-            {
-                initParametricCurve2D();
-
-                m_editor->parametricCurve2DXExpression->setExpression(lambda.lambdaBody().elementAt(0));
-                m_editor->parametricCurve2DYExpression->setExpression(lambda.lambdaBody().elementAt(1));
-
-                setParametricCurveDomainInfo();
-            }
-        }
-        else
-        {
-            if ((arguments == QStringList() << QString("x")) ||
-                    (arguments == QStringList() << QString("y")) ||
-                    (arguments == QStringList() << QString("x") << QString("y")))
-            {
-                initCartesianCurve();
-                m_editor->cartesianCurveExpression->setExpression(lambda.lambdaBody());
-
-                if (arguments == QStringList() << QString("x"))
-                {
-                    m_editor->cartesianCurveType->setCurrentIndex(0);
-                }
-                else if (arguments == QStringList() << QString("y"))
-                {
-                    m_editor->cartesianCurveType->setCurrentIndex(1);
-                }
-                else if (arguments == QStringList() << QString("x") << QString("y"))
-                {
-                    m_editor->cartesianCurveType->setCurrentIndex(2);
-                }
-            }
-            else if (arguments == QStringList() << QString("q"))
-            {
-                initPolarCurve();
-                m_editor->polarCurveExpression->setExpression(lambda.lambdaBody());
-
-                setPolarCurveDomainInfo();
-
-
-
-
-
-
-
-
-
-            }
-        }
-    }
-    else if (dimension == 3)
-    {
-        if (lambda.lambdaBody().isVector())
-        {
-            if (arguments == QStringList() << QString("u") << QString("v"))
-            {
-                initParametricSurface();
-
-                m_editor->parametricSurfaceXExpression->setExpression(lambda.lambdaBody().elementAt(0));
-                m_editor->parametricSurfaceYExpression->setExpression(lambda.lambdaBody().elementAt(1));
-                m_editor->parametricSurfaceZExpression->setExpression(lambda.lambdaBody().elementAt(2));
-
-                setParametricSurfaceDomainInfo();
-            }
-            else if (arguments == QStringList() << QString("t"))
-            {
-                initParametricCurve3D();
-
-
-                m_editor->parametricCurve3DXExpression->setExpression(lambda.lambdaBody().elementAt(0));
-                m_editor->parametricCurve3DYExpression->setExpression(lambda.lambdaBody().elementAt(1));
-                m_editor->parametricCurve3DZExpression->setExpression(lambda.lambdaBody().elementAt(2));
-
-            }
-        }
-        else
-        {
-            if ((arguments == QStringList() << QString("x") << QString("y")))
-            {
-                initCartesianSurface();
-                m_editor->cartesianSurfaceExpression->setExpression(lambda.lambdaBody());
-                setCartesianSurfaceDomainInfo();
-            }
-            else if (arguments == QStringList() << QString("r") << QString("t"))
-            {
-                initCylindricalSurface();
-                m_editor->cylindricalSurfaceExpression->setExpression(lambda.lambdaBody());
-
-                setCylindricalSurfaceDomainInfo();
-            }
-            else if (arguments == QStringList() << QString("s") << QString("t"))
-            {
-                initSphericalSurface();
-                m_editor->sphericalSurfaceExpression->setExpression(lambda.lambdaBody());
-
-                setSphericalSurfaceDomainInfo();
-            }
-        }
-    }
+//     Analitza::Expression lambda(newExp, false);
+// 
+//     m_editor->functionName->setText(name);
+// 
+//     
+//     
+// 
+//     if (dimension == 2)
+//     {
+//         if (lambda.lambdaBody().isVector())
+//         {
+//             if (arguments == QStringList() << QString("t"))
+//             {
+//                 initParametricCurve2D();
+// 
+//                 m_editor->parametricCurve2DXExpression->setExpression(lambda.lambdaBody().elementAt(0));
+//                 m_editor->parametricCurve2DYExpression->setExpression(lambda.lambdaBody().elementAt(1));
+// 
+//                 setParametricCurveDomainInfo();
+//             }
+//         }
+//         else
+//         {
+//             if ((arguments == QStringList() << QString("x")) ||
+//                     (arguments == QStringList() << QString("y")) ||
+//                     (arguments == QStringList() << QString("x") << QString("y")))
+//             {
+//                 initCartesianCurve();
+//                 m_editor->cartesianCurveExpression->setExpression(lambda.lambdaBody());
+// 
+//                 if (arguments == QStringList() << QString("x"))
+//                 {
+//                     m_editor->cartesianCurveType->setCurrentIndex(0);
+//                 }
+//                 else if (arguments == QStringList() << QString("y"))
+//                 {
+//                     m_editor->cartesianCurveType->setCurrentIndex(1);
+//                 }
+//                 else if (arguments == QStringList() << QString("x") << QString("y"))
+//                 {
+//                     m_editor->cartesianCurveType->setCurrentIndex(2);
+//                 }
+//             }
+//             else if (arguments == QStringList() << QString("q"))
+//             {
+//                 initPolarCurve();
+//                 m_editor->polarCurveExpression->setExpression(lambda.lambdaBody());
+// 
+//                 setPolarCurveDomainInfo();
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+//             }
+//         }
+//     }
+//     else if (dimension == 3)
+//     {
+//         if (lambda.lambdaBody().isVector())
+//         {
+//             if (arguments == QStringList() << QString("u") << QString("v"))
+//             {
+//                 initParametricSurface();
+// 
+//                 m_editor->parametricSurfaceXExpression->setExpression(lambda.lambdaBody().elementAt(0));
+//                 m_editor->parametricSurfaceYExpression->setExpression(lambda.lambdaBody().elementAt(1));
+//                 m_editor->parametricSurfaceZExpression->setExpression(lambda.lambdaBody().elementAt(2));
+// 
+//                 setParametricSurfaceDomainInfo();
+//             }
+//             else if (arguments == QStringList() << QString("t"))
+//             {
+//                 initParametricCurve3D();
+// 
+// 
+//                 m_editor->parametricCurve3DXExpression->setExpression(lambda.lambdaBody().elementAt(0));
+//                 m_editor->parametricCurve3DYExpression->setExpression(lambda.lambdaBody().elementAt(1));
+//                 m_editor->parametricCurve3DZExpression->setExpression(lambda.lambdaBody().elementAt(2));
+// 
+//             }
+//         }
+//         else
+//         {
+//             if ((arguments == QStringList() << QString("x") << QString("y")))
+//             {
+//                 initCartesianSurface();
+//                 m_editor->cartesianSurfaceExpression->setExpression(lambda.lambdaBody());
+//                 setCartesianSurfaceDomainInfo();
+//             }
+//             else if (arguments == QStringList() << QString("r") << QString("t"))
+//             {
+//                 initCylindricalSurface();
+//                 m_editor->cylindricalSurfaceExpression->setExpression(lambda.lambdaBody());
+// 
+//                 setCylindricalSurfaceDomainInfo();
+//             }
+//             else if (arguments == QStringList() << QString("s") << QString("t"))
+//             {
+//                 initSphericalSurface();
+//                 m_editor->sphericalSurfaceExpression->setExpression(lambda.lambdaBody());
+// 
+//                 setSphericalSurfaceDomainInfo();
+//             }
+//         }
+//     }
 
 
 
@@ -1832,249 +1832,253 @@ void FunctionEditor::initFunction()
 
 bool FunctionEditor::createCartesianCurve()
 {
-    if (m_editor->cartesianCurveExpression->toPlainText().isEmpty())
-    {
-        m_errors << i18n("La ecuación está vacia");
-
-        return false;
-    }
-    else
-    {
-        if (m_editor->cartesianCurveExpression->expression().isCorrect())
-        {
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->cartesianCurveExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList arguments = a.expression().bvarList();
-            QString expressionLiteral = m_editor->cartesianCurveExpression->expression().toString();
-
-
-            qreal min, max;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min, max);
-
-            RealInterval::List domain;
-            domain << RealInterval(min, max);
-
-            switch (m_editor->cartesianCurveType->currentIndex())
-            {
-            case 0: 
-            {
-                if (arguments.size() > 1)
-                {
-                    m_errors << i18n("Se necesita un argumento: x");
-                }
-
-                if (arguments.size() == 1)
-                {
-                    if (!arguments.contains(QString("x")))
-                    {
-                        m_errors << i18n("El argumento debe ser x");
-                    }
-                }
-                else if (arguments.isEmpty())
-                    expressionLiteral += QString("+x*0"); 
-            }
-            break;
-
-            case 1: 
-            {
-                if (arguments.size() > 1)
-                {
-                    m_errors << i18n("Se necesita un argumento: y");
-                }
-
-                if (arguments.size() == 1)
-                {
-                    if (!arguments.contains(QString("y")))
-                    {
-                        m_errors << i18n("El argumento debe ser y");
-                    }
-                }
-                else if (arguments.isEmpty())
-                    expressionLiteral += QString("+y*0"); 
-            }
-            break;
-
-            case 2: 
-            {
-                if (arguments.size() != 2)
-                {
-                    m_errors << i18n("Se necesitan dos argumentos: x e y");
-                }
-
-                if (!arguments.contains("x") || !arguments.contains("y"))
-                {
-                    m_errors << i18n("Los argumentos deben ser x e y");
-                }
-
-                
-
-                evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
-                                     min, max);
-
-
-                domain << RealInterval(min, max);
-            }
-            break;
-            }
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 2, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+    
+    return false;
+//     if (m_editor->cartesianCurveExpression->toPlainText().isEmpty())
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if (m_editor->cartesianCurveExpression->expression().isCorrect())
+//         {
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->cartesianCurveExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList arguments = a.expression().bvarList();
+//             QString expressionLiteral = m_editor->cartesianCurveExpression->expression().toString();
+// 
+// 
+//             qreal min, max;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min, max);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min, max);
+// 
+//             switch (m_editor->cartesianCurveType->currentIndex())
+//             {
+//             case 0: 
+//             {
+//                 if (arguments.size() > 1)
+//                 {
+//                     m_errors << i18n("Se necesita un argumento: x");
+//                 }
+// 
+//                 if (arguments.size() == 1)
+//                 {
+//                     if (!arguments.contains(QString("x")))
+//                     {
+//                         m_errors << i18n("El argumento debe ser x");
+//                     }
+//                 }
+//                 else if (arguments.isEmpty())
+//                     expressionLiteral += QString("+x*0"); 
+//             }
+//             break;
+// 
+//             case 1: 
+//             {
+//                 if (arguments.size() > 1)
+//                 {
+//                     m_errors << i18n("Se necesita un argumento: y");
+//                 }
+// 
+//                 if (arguments.size() == 1)
+//                 {
+//                     if (!arguments.contains(QString("y")))
+//                     {
+//                         m_errors << i18n("El argumento debe ser y");
+//                     }
+//                 }
+//                 else if (arguments.isEmpty())
+//                     expressionLiteral += QString("+y*0"); 
+//             }
+//             break;
+// 
+//             case 2: 
+//             {
+//                 if (arguments.size() != 2)
+//                 {
+//                     m_errors << i18n("Se necesitan dos argumentos: x e y");
+//                 }
+// 
+//                 if (!arguments.contains("x") || !arguments.contains("y"))
+//                 {
+//                     m_errors << i18n("Los argumentos deben ser x e y");
+//                 }
+// 
+//                 
+// 
+//                 evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
+//                                      min, max);
+// 
+// 
+//                 domain << RealInterval(min, max);
+//             }
+//             break;
+//             }
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 2, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
 }
 
 bool FunctionEditor::createPolarCurve()
 {
-    if (m_editor->polarCurveExpression->toPlainText().isEmpty())
-    {
-        m_errors << i18n("La ecuación está vacia");
-
-        return false;
-    }
-    else
-    {
-        if (m_editor->polarCurveExpression->expression().isCorrect())
-        {
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->polarCurveExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList arguments = a.expression().bvarList();
-            QString expressionLiteral = m_editor->polarCurveExpression->expression().toString();
-
-            qreal min, max;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min, max);
-
-            RealInterval::List domain;
-            domain << RealInterval(min, max);
-
-
-
-            {
-                if (arguments.size() > 1)
-                {
-                    m_errors << i18n("Se necesita un argumento: q (theta)");
-                }
-
-                if (arguments.size() == 1)
-                {
-                    if (!arguments.contains(QString("q")))
-                    {
-                        m_errors << i18n("El argumento debe ser q (theta)");
-                    }
-                }
-                else if (arguments.isEmpty())
-                    expressionLiteral += QString("+q*0"); 
-            }
-
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 2, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+//     if (m_editor->polarCurveExpression->toPlainText().isEmpty())
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if (m_editor->polarCurveExpression->expression().isCorrect())
+//         {
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->polarCurveExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList arguments = a.expression().bvarList();
+//             QString expressionLiteral = m_editor->polarCurveExpression->expression().toString();
+// 
+//             qreal min, max;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min, max);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min, max);
+// 
+// 
+// 
+//             {
+//                 if (arguments.size() > 1)
+//                 {
+//                     m_errors << i18n("Se necesita un argumento: q (theta)");
+//                 }
+// 
+//                 if (arguments.size() == 1)
+//                 {
+//                     if (!arguments.contains(QString("q")))
+//                     {
+//                         m_errors << i18n("El argumento debe ser q (theta)");
+//                     }
+//                 }
+//                 else if (arguments.isEmpty())
+//                     expressionLiteral += QString("+q*0"); 
+//             }
+// 
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 2, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
+return false;
 }
 
 bool FunctionEditor::createParametricCurve2D()
 {
-    if (m_editor->parametricCurve2DXExpression->toPlainText().isEmpty() ||
-            m_editor->parametricCurve2DYExpression->toPlainText().isEmpty() )
-    {
-        m_errors << i18n("La ecuación está vacia");
-
-        return false;
-    }
-    else
-    {
-        if ((m_editor->parametricCurve2DXExpression->expression().isCorrect()) &&
-                (m_editor->parametricCurve2DYExpression->expression().isCorrect()))
-        {
-
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->parametricCurve2DXExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentX = a.expression().bvarList();
-            QString expressionLiteralComponentX = m_editor->parametricCurve2DXExpression->expression().toString();
-
-            a.setExpression(m_editor->parametricCurve2DYExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentY = a.expression().bvarList();
-            QString expressionLiteralComponentY = m_editor->parametricCurve2DYExpression->expression().toString();
-
-            qreal min, max;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min, max);
-
-            RealInterval::List domain;
-            domain << RealInterval(min, max);
-
-            if ((argumentsComponentX.size() > 1) || (argumentsComponentY.size() > 1) )
-            {
-                m_errors << i18n("Se necesita un argumento: t");
-            }
-
-            if ((argumentsComponentX.size() == 1) && (argumentsComponentY.size() == 1))
-            {
-                if (!argumentsComponentX.contains(QString("t")) || !argumentsComponentY.contains(QString("t")))
-                {
-                    m_errors << i18n("El argumento debe ser t");
-                }
-            }
-
-            if (argumentsComponentX.isEmpty())
-                expressionLiteralComponentX += QString("+t*0"); 
-
-            if (argumentsComponentY.isEmpty())
-                expressionLiteralComponentY += QString("+t*0"); 
-
-            QString expressionLiteral = "vector{ " + expressionLiteralComponentX + ", " +
-                                        expressionLiteralComponentY + " }";
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 2, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+//     if (m_editor->parametricCurve2DXExpression->toPlainText().isEmpty() ||
+//             m_editor->parametricCurve2DYExpression->toPlainText().isEmpty() )
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if ((m_editor->parametricCurve2DXExpression->expression().isCorrect()) &&
+//                 (m_editor->parametricCurve2DYExpression->expression().isCorrect()))
+//         {
+// 
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->parametricCurve2DXExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentX = a.expression().bvarList();
+//             QString expressionLiteralComponentX = m_editor->parametricCurve2DXExpression->expression().toString();
+// 
+//             a.setExpression(m_editor->parametricCurve2DYExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentY = a.expression().bvarList();
+//             QString expressionLiteralComponentY = m_editor->parametricCurve2DYExpression->expression().toString();
+// 
+//             qreal min, max;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min, max);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min, max);
+// 
+//             if ((argumentsComponentX.size() > 1) || (argumentsComponentY.size() > 1) )
+//             {
+//                 m_errors << i18n("Se necesita un argumento: t");
+//             }
+// 
+//             if ((argumentsComponentX.size() == 1) && (argumentsComponentY.size() == 1))
+//             {
+//                 if (!argumentsComponentX.contains(QString("t")) || !argumentsComponentY.contains(QString("t")))
+//                 {
+//                     m_errors << i18n("El argumento debe ser t");
+//                 }
+//             }
+// 
+//             if (argumentsComponentX.isEmpty())
+//                 expressionLiteralComponentX += QString("+t*0"); 
+// 
+//             if (argumentsComponentY.isEmpty())
+//                 expressionLiteralComponentY += QString("+t*0"); 
+// 
+//             QString expressionLiteral = "vector{ " + expressionLiteralComponentX + ", " +
+//                                         expressionLiteralComponentY + " }";
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 2, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
+return false;
 }
 
 
@@ -2153,263 +2157,267 @@ void FunctionEditor::clearParametricCurve2D()
 
 bool FunctionEditor::createCartesianSurface()
 {
-    if (m_editor->cartesianSurfaceExpression->toPlainText().isEmpty())
-    {
-        m_errors << i18n("La ecuación está vacia");
-
-        return false;
-    }
-    else
-    {
-        if (m_editor->cartesianSurfaceExpression->expression().isCorrect())
-        {
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->cartesianSurfaceExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList arguments = a.expression().bvarList();
-            QString expressionLiteral = m_editor->cartesianSurfaceExpression->expression().toString();
-
-            qreal min1, max1;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min1, max1);
-
-            qreal min2, max2;
-            evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
-                                 min2, max2);
-
-            RealInterval::List domain;
-            domain << RealInterval(min1, max1) << RealInterval(min2, max2);
-
-            switch (arguments.size())
-            {
-            case 0:
-            {
-                expressionLiteral += QString("+x*y*0");
-            }
-            break;
-
-            case 1:
-            {
-                if (arguments.contains("x") || arguments.contains("y"))
-                {
-                    if (arguments.contains("x"))
-                        expressionLiteral += QString("+x*y*0");
-
-                    if (arguments.contains("y"))
-                        expressionLiteral += QString("+x*y*0");
-                }
-                else
-                    m_errors << i18n("The arguments must be x or y");
-            }
-            break;
-
-            case 2:
-            {
-                if (!(arguments.contains("x") && arguments.contains("y")))
-                    m_errors << i18n("The arguments must be x or y");
-            }
-            break;
-
-            default:
-            {
-                m_errors << i18n("Wrong number of arguments for z=f(x,y)");
-
-                return false;
-            }
-            break;
-            }
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 3, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+//     if (m_editor->cartesianSurfaceExpression->toPlainText().isEmpty())
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if (m_editor->cartesianSurfaceExpression->expression().isCorrect())
+//         {
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->cartesianSurfaceExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList arguments = a.expression().bvarList();
+//             QString expressionLiteral = m_editor->cartesianSurfaceExpression->expression().toString();
+// 
+//             qreal min1, max1;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min1, max1);
+// 
+//             qreal min2, max2;
+//             evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
+//                                  min2, max2);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min1, max1) << RealInterval(min2, max2);
+// 
+//             switch (arguments.size())
+//             {
+//             case 0:
+//             {
+//                 expressionLiteral += QString("+x*y*0");
+//             }
+//             break;
+// 
+//             case 1:
+//             {
+//                 if (arguments.contains("x") || arguments.contains("y"))
+//                 {
+//                     if (arguments.contains("x"))
+//                         expressionLiteral += QString("+x*y*0");
+// 
+//                     if (arguments.contains("y"))
+//                         expressionLiteral += QString("+x*y*0");
+//                 }
+//                 else
+//                     m_errors << i18n("The arguments must be x or y");
+//             }
+//             break;
+// 
+//             case 2:
+//             {
+//                 if (!(arguments.contains("x") && arguments.contains("y")))
+//                     m_errors << i18n("The arguments must be x or y");
+//             }
+//             break;
+// 
+//             default:
+//             {
+//                 m_errors << i18n("Wrong number of arguments for z=f(x,y)");
+// 
+//                 return false;
+//             }
+//             break;
+//             }
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 3, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
+return false;
 }
 
 bool FunctionEditor::createCylindricalSurface()
 {
-    if (m_editor->cylindricalSurfaceExpression->toPlainText().isEmpty())
-    {
-        m_errors << i18n("La ecuación está vacia");
-
-        return false;
-    }
-    else
-    {
-        if (m_editor->cylindricalSurfaceExpression->expression().isCorrect())
-        {
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->cylindricalSurfaceExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList arguments = a.expression().bvarList();
-            QString expressionLiteral = m_editor->cylindricalSurfaceExpression->expression().toString();
-
-            qreal min1, max1;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min1, max1);
-
-            qreal min2, max2;
-            evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
-                                 min2, max2);
-
-            RealInterval::List domain;
-            domain << RealInterval(min1, max1) << RealInterval(min2, max2);
-
-            switch (arguments.size())
-            {
-            case 0:
-            {
-                expressionLiteral += QString("+r*t*0");
-            }
-            break;
-
-            case 1:
-            {
-                if (arguments.contains("r") || arguments.contains("t"))
-                {
-                    if (arguments.contains("r"))
-                        expressionLiteral += QString("+r*t*0");
-
-                    if (arguments.contains("t"))
-                        expressionLiteral += QString("+r*t*0");
-                }
-                else
-                    m_errors << i18n("The arguments must be r or t");
-            }
-            break;
-
-            case 2:
-            {
-                if (!(arguments.contains("r") && arguments.contains("t")))
-                    m_errors << i18n("The arguments must be r or t");
-            }
-            break;
-
-            default:
-            {
-                m_errors << i18n("Wrong number of arguments for z=f(r,t)");
-
-                return false;
-            }
-            break;
-            }
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 3, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+//     if (m_editor->cylindricalSurfaceExpression->toPlainText().isEmpty())
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if (m_editor->cylindricalSurfaceExpression->expression().isCorrect())
+//         {
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->cylindricalSurfaceExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList arguments = a.expression().bvarList();
+//             QString expressionLiteral = m_editor->cylindricalSurfaceExpression->expression().toString();
+// 
+//             qreal min1, max1;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min1, max1);
+// 
+//             qreal min2, max2;
+//             evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
+//                                  min2, max2);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min1, max1) << RealInterval(min2, max2);
+// 
+//             switch (arguments.size())
+//             {
+//             case 0:
+//             {
+//                 expressionLiteral += QString("+r*t*0");
+//             }
+//             break;
+// 
+//             case 1:
+//             {
+//                 if (arguments.contains("r") || arguments.contains("t"))
+//                 {
+//                     if (arguments.contains("r"))
+//                         expressionLiteral += QString("+r*t*0");
+// 
+//                     if (arguments.contains("t"))
+//                         expressionLiteral += QString("+r*t*0");
+//                 }
+//                 else
+//                     m_errors << i18n("The arguments must be r or t");
+//             }
+//             break;
+// 
+//             case 2:
+//             {
+//                 if (!(arguments.contains("r") && arguments.contains("t")))
+//                     m_errors << i18n("The arguments must be r or t");
+//             }
+//             break;
+// 
+//             default:
+//             {
+//                 m_errors << i18n("Wrong number of arguments for z=f(r,t)");
+// 
+//                 return false;
+//             }
+//             break;
+//             }
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 3, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
+return false;
 }
 
 bool FunctionEditor::createSphericalSurface()
 {
-    if (m_editor->sphericalSurfaceExpression->toPlainText().isEmpty())
-    {
-        m_errors << i18n("La ecuación está vacia");
+//     if (m_editor->sphericalSurfaceExpression->toPlainText().isEmpty())
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if (m_editor->sphericalSurfaceExpression->expression().isCorrect())
+//         {
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->sphericalSurfaceExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList arguments = a.expression().bvarList();
+//             QString expressionLiteral = m_editor->sphericalSurfaceExpression->expression().toString();
+// 
+//             qreal min1, max1;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min1, max1);
+// 
+//             qreal min2, max2;
+//             evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
+//                                  min2, max2);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min1, max1) << RealInterval(min2, max2);
+// 
+//             switch (arguments.size())
+//             {
+//             case 0:
+//             {
+//                 expressionLiteral += QString("+s*t*0");
+//             }
+//             break;
+// 
+//             case 1:
+//             {
+//                 if (arguments.contains("s") || arguments.contains("t"))
+//                 {
+//                     if (arguments.contains("s"))
+//                         expressionLiteral += QString("+s*t*0");
+// 
+//                     if (arguments.contains("t"))
+//                         expressionLiteral += QString("+s*t*0");
+//                 }
+//                 else
+//                     m_errors << i18n("The arguments must be s or t");
+//             }
+//             break;
+// 
+//             case 2:
+//             {
+//                 if (!(arguments.contains("s") && arguments.contains("t")))
+//                     m_errors << i18n("The arguments must be s or t");
+//             }
+//             break;
+// 
+//             default:
+//             {
+//                 m_errors << i18n("Wrong number of arguments for r=f(s,t)");
+// 
+//                 return false;
+//             }
+//             break;
+//             }
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 3, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
 
-        return false;
-    }
-    else
-    {
-        if (m_editor->sphericalSurfaceExpression->expression().isCorrect())
-        {
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->sphericalSurfaceExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList arguments = a.expression().bvarList();
-            QString expressionLiteral = m_editor->sphericalSurfaceExpression->expression().toString();
-
-            qreal min1, max1;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min1, max1);
-
-            qreal min2, max2;
-            evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
-                                 min2, max2);
-
-            RealInterval::List domain;
-            domain << RealInterval(min1, max1) << RealInterval(min2, max2);
-
-            switch (arguments.size())
-            {
-            case 0:
-            {
-                expressionLiteral += QString("+s*t*0");
-            }
-            break;
-
-            case 1:
-            {
-                if (arguments.contains("s") || arguments.contains("t"))
-                {
-                    if (arguments.contains("s"))
-                        expressionLiteral += QString("+s*t*0");
-
-                    if (arguments.contains("t"))
-                        expressionLiteral += QString("+s*t*0");
-                }
-                else
-                    m_errors << i18n("The arguments must be s or t");
-            }
-            break;
-
-            case 2:
-            {
-                if (!(arguments.contains("s") && arguments.contains("t")))
-                    m_errors << i18n("The arguments must be s or t");
-            }
-            break;
-
-            default:
-            {
-                m_errors << i18n("Wrong number of arguments for r=f(s,t)");
-
-                return false;
-            }
-            break;
-            }
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 3, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+return false;
 }
 
 bool FunctionEditor::createParametricSurface()
@@ -2443,109 +2451,110 @@ bool FunctionEditor::createParametricSurface()
 
 
 
-    if (m_editor->parametricSurfaceXExpression->toPlainText().isEmpty() ||
-            m_editor->parametricSurfaceYExpression->toPlainText().isEmpty() ||
-            m_editor->parametricSurfaceZExpression->toPlainText().isEmpty())
-    {
-        m_errors << i18n("La ecuación está vacia");
-
-        return false;
-    }
-    else
-    {
-        if ((m_editor->parametricSurfaceXExpression->expression().isCorrect()) &&
-                (m_editor->parametricSurfaceYExpression->expression().isCorrect()) &&
-                (m_editor->parametricSurfaceZExpression->expression().isCorrect()))
-        {
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->parametricSurfaceXExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentX = a.expression().bvarList();
-            QString expressionLiteralComponentX = m_editor->parametricSurfaceXExpression->expression().toString();
-
-            a.setExpression(m_editor->parametricSurfaceYExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentY = a.expression().bvarList();
-            QString expressionLiteralComponentY = m_editor->parametricSurfaceYExpression->expression().toString();
-
-            a.setExpression(m_editor->parametricSurfaceZExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentZ = a.expression().bvarList();
-            QString expressionLiteralComponentZ = m_editor->parametricSurfaceZExpression->expression().toString();
-
-            qreal min1, max1;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min1, max1);
-
-            qreal min2, max2;
-            evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
-                                 min2, max2);
-
-            RealInterval::List domain;
-            domain << RealInterval(min1, max1) << RealInterval(min2, max2);
-
-
-            if ((argumentsComponentX.size() > 2) || (argumentsComponentY.size() > 2) || (argumentsComponentZ.size() > 2))
-            {
-                m_errors << i18n("Wrong number of arguments for f(u,v)");
-            }
-
-            if ((argumentsComponentX.size() == 2) && (argumentsComponentY.size() == 2) && (argumentsComponentZ.size() == 2) )
-            {
-                if (!argumentsComponentX.contains(QString("u")) || !argumentsComponentX.contains(QString("v")) ||
-                        !argumentsComponentY.contains(QString("u")) || !argumentsComponentY.contains(QString("v")) ||
-                        !argumentsComponentZ.contains(QString("u")) || !argumentsComponentZ.contains(QString("v")) )
-                {
-                    m_errors << i18n("The arguments are u,v");
-                }
-            }
-
-            
-            if ((argumentsComponentX.size() == 1) && (argumentsComponentY.size() == 1) && (argumentsComponentZ.size() == 1) )
-            {
-                if ((argumentsComponentX == argumentsComponentY) && (argumentsComponentY == argumentsComponentZ))
-                {
-                    m_errors << i18n("Min to be a surf is 2 arguments");
-                }
-                else if (!(argumentsComponentX.contains(QString("u")) || argumentsComponentX.contains(QString("v")) &&
-                           argumentsComponentY.contains(QString("u")) || argumentsComponentY.contains(QString("v")) &&
-                           argumentsComponentZ.contains(QString("u")) || argumentsComponentZ.contains(QString("v"))))
-                {
-                    m_errors << i18n("The arguments are u,v");
-                }
-            }
-
-            if (argumentsComponentX.isEmpty())
-                expressionLiteralComponentX += QString("+u*v*0"); 
-
-            if (argumentsComponentY.isEmpty())
-                expressionLiteralComponentY += QString("+u*v*0"); 
-
-            if (argumentsComponentZ.isEmpty())
-                expressionLiteralComponentY += QString("+u*v*0"); 
-
-            QString expressionLiteral = "vector{ " + expressionLiteralComponentX + ", " +
-                                        expressionLiteralComponentY + ", " + expressionLiteralComponentZ + " }";
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 3, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+//     if (m_editor->parametricSurfaceXExpression->toPlainText().isEmpty() ||
+//             m_editor->parametricSurfaceYExpression->toPlainText().isEmpty() ||
+//             m_editor->parametricSurfaceZExpression->toPlainText().isEmpty())
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if ((m_editor->parametricSurfaceXExpression->expression().isCorrect()) &&
+//                 (m_editor->parametricSurfaceYExpression->expression().isCorrect()) &&
+//                 (m_editor->parametricSurfaceZExpression->expression().isCorrect()))
+//         {
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->parametricSurfaceXExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentX = a.expression().bvarList();
+//             QString expressionLiteralComponentX = m_editor->parametricSurfaceXExpression->expression().toString();
+// 
+//             a.setExpression(m_editor->parametricSurfaceYExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentY = a.expression().bvarList();
+//             QString expressionLiteralComponentY = m_editor->parametricSurfaceYExpression->expression().toString();
+// 
+//             a.setExpression(m_editor->parametricSurfaceZExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentZ = a.expression().bvarList();
+//             QString expressionLiteralComponentZ = m_editor->parametricSurfaceZExpression->expression().toString();
+// 
+//             qreal min1, max1;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min1, max1);
+// 
+//             qreal min2, max2;
+//             evalDomainExpression(m_editor->argument2MinValue, m_editor->argument2MaxValue,
+//                                  min2, max2);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min1, max1) << RealInterval(min2, max2);
+// 
+// 
+//             if ((argumentsComponentX.size() > 2) || (argumentsComponentY.size() > 2) || (argumentsComponentZ.size() > 2))
+//             {
+//                 m_errors << i18n("Wrong number of arguments for f(u,v)");
+//             }
+// 
+//             if ((argumentsComponentX.size() == 2) && (argumentsComponentY.size() == 2) && (argumentsComponentZ.size() == 2) )
+//             {
+//                 if (!argumentsComponentX.contains(QString("u")) || !argumentsComponentX.contains(QString("v")) ||
+//                         !argumentsComponentY.contains(QString("u")) || !argumentsComponentY.contains(QString("v")) ||
+//                         !argumentsComponentZ.contains(QString("u")) || !argumentsComponentZ.contains(QString("v")) )
+//                 {
+//                     m_errors << i18n("The arguments are u,v");
+//                 }
+//             }
+// 
+//             
+//             if ((argumentsComponentX.size() == 1) && (argumentsComponentY.size() == 1) && (argumentsComponentZ.size() == 1) )
+//             {
+//                 if ((argumentsComponentX == argumentsComponentY) && (argumentsComponentY == argumentsComponentZ))
+//                 {
+//                     m_errors << i18n("Min to be a surf is 2 arguments");
+//                 }
+//                 else if (!(argumentsComponentX.contains(QString("u")) || argumentsComponentX.contains(QString("v")) &&
+//                            argumentsComponentY.contains(QString("u")) || argumentsComponentY.contains(QString("v")) &&
+//                            argumentsComponentZ.contains(QString("u")) || argumentsComponentZ.contains(QString("v"))))
+//                 {
+//                     m_errors << i18n("The arguments are u,v");
+//                 }
+//             }
+// 
+//             if (argumentsComponentX.isEmpty())
+//                 expressionLiteralComponentX += QString("+u*v*0"); 
+// 
+//             if (argumentsComponentY.isEmpty())
+//                 expressionLiteralComponentY += QString("+u*v*0"); 
+// 
+//             if (argumentsComponentZ.isEmpty())
+//                 expressionLiteralComponentY += QString("+u*v*0"); 
+// 
+//             QString expressionLiteral = "vector{ " + expressionLiteralComponentX + ", " +
+//                                         expressionLiteralComponentY + ", " + expressionLiteralComponentZ + " }";
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 3, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
+return false;
 }
 
 bool FunctionEditor::createParametricCurve3D()
@@ -2554,92 +2563,94 @@ bool FunctionEditor::createParametricCurve3D()
 
 
 
-    if (m_editor->parametricCurve3DXExpression->toPlainText().isEmpty() ||
-            m_editor->parametricCurve3DYExpression->toPlainText().isEmpty() ||
-            m_editor->parametricCurve3DZExpression->toPlainText().isEmpty() )
-    {
-        m_errors << i18n("La ecuación está vacia");
+//     if (m_editor->parametricCurve3DXExpression->toPlainText().isEmpty() ||
+//             m_editor->parametricCurve3DYExpression->toPlainText().isEmpty() ||
+//             m_editor->parametricCurve3DZExpression->toPlainText().isEmpty() )
+//     {
+//         m_errors << i18n("La ecuación está vacia");
+// 
+//         return false;
+//     }
+//     else
+//     {
+//         if ((m_editor->parametricCurve3DXExpression->expression().isCorrect()) &&
+//                 (m_editor->parametricCurve3DYExpression->expression().isCorrect()) &&
+//                 (m_editor->parametricCurve3DZExpression->expression().isCorrect()))
+//         {
+// 
+//             Analitza::Analyzer a;
+//             a.setExpression(m_editor->parametricCurve3DXExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentX = a.expression().bvarList();
+//             QString expressionLiteralComponentX = m_editor->parametricCurve3DXExpression->expression().toString();
+// 
+//             a.setExpression(m_editor->parametricCurve3DYExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentY = a.expression().bvarList();
+//             QString expressionLiteralComponentY = m_editor->parametricCurve3DYExpression->expression().toString();
+// 
+// 
+//             a.setExpression(m_editor->parametricCurve3DZExpression->expression());
+//             a.setExpression(a.dependenciesToLambda());
+// 
+//             QStringList argumentsComponentZ = a.expression().bvarList();
+//             QString expressionLiteralComponentZ = m_editor->parametricCurve3DZExpression->expression().toString();
+// 
+// 
+//             qreal min, max;
+//             evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
+//                                  min, max);
+// 
+//             RealInterval::List domain;
+//             domain << RealInterval(min, max);
+// 
+//             if ((argumentsComponentX.size() > 1) || (argumentsComponentY.size() > 1) || (argumentsComponentZ.size() > 1))
+//             {
+//                 m_errors << i18n("Se necesita un argumento: t");
+//             }
+// 
+//             if ((argumentsComponentX.size() == 1) && (argumentsComponentY.size() == 1) && (argumentsComponentZ.size() == 1))
+//             {
+//                 if (!argumentsComponentX.contains(QString("t")) || !argumentsComponentY.contains(QString("t")) ||
+//                         !argumentsComponentZ.contains(QString("t")))
+//                 {
+//                     m_errors << i18n("El argumento debe ser t");
+//                 }
+//             }
+// 
+//             if (argumentsComponentX.isEmpty())
+//                 expressionLiteralComponentX += QString("+t*0"); 
+// 
+//             if (argumentsComponentY.isEmpty())
+//                 expressionLiteralComponentY += QString("+t*0"); 
+// 
+//             if (argumentsComponentZ.isEmpty())
+//                 expressionLiteralComponentZ += QString("+t*0"); 
+// 
+// 
+//             QString expressionLiteral = "vector{ " + expressionLiteralComponentX + ", " +
+//                                         expressionLiteralComponentY + ","+ expressionLiteralComponentZ  + "}";
+// 
+//             if (m_errors.isEmpty())
+//             {
+//                 Analitza::Expression expression(expressionLiteral, false);
+// 
+//                 return saveFunction(expression, 3, domain);
+//             }
+//             else
+//                 return false;
+//         }
+//         else
+//         {
+//             m_errors << i18n("La ecuación no es correcta");
+// 
+//             return false;
+//         }
+//     }
 
-        return false;
-    }
-    else
-    {
-        if ((m_editor->parametricCurve3DXExpression->expression().isCorrect()) &&
-                (m_editor->parametricCurve3DYExpression->expression().isCorrect()) &&
-                (m_editor->parametricCurve3DZExpression->expression().isCorrect()))
-        {
-
-            Analitza::Analyzer a;
-            a.setExpression(m_editor->parametricCurve3DXExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentX = a.expression().bvarList();
-            QString expressionLiteralComponentX = m_editor->parametricCurve3DXExpression->expression().toString();
-
-            a.setExpression(m_editor->parametricCurve3DYExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentY = a.expression().bvarList();
-            QString expressionLiteralComponentY = m_editor->parametricCurve3DYExpression->expression().toString();
-
-
-            a.setExpression(m_editor->parametricCurve3DZExpression->expression());
-            a.setExpression(a.dependenciesToLambda());
-
-            QStringList argumentsComponentZ = a.expression().bvarList();
-            QString expressionLiteralComponentZ = m_editor->parametricCurve3DZExpression->expression().toString();
-
-
-            qreal min, max;
-            evalDomainExpression(m_editor->argument1MinValue, m_editor->argument1MaxValue,
-                                 min, max);
-
-            RealInterval::List domain;
-            domain << RealInterval(min, max);
-
-            if ((argumentsComponentX.size() > 1) || (argumentsComponentY.size() > 1) || (argumentsComponentZ.size() > 1))
-            {
-                m_errors << i18n("Se necesita un argumento: t");
-            }
-
-            if ((argumentsComponentX.size() == 1) && (argumentsComponentY.size() == 1) && (argumentsComponentZ.size() == 1))
-            {
-                if (!argumentsComponentX.contains(QString("t")) || !argumentsComponentY.contains(QString("t")) ||
-                        !argumentsComponentZ.contains(QString("t")))
-                {
-                    m_errors << i18n("El argumento debe ser t");
-                }
-            }
-
-            if (argumentsComponentX.isEmpty())
-                expressionLiteralComponentX += QString("+t*0"); 
-
-            if (argumentsComponentY.isEmpty())
-                expressionLiteralComponentY += QString("+t*0"); 
-
-            if (argumentsComponentZ.isEmpty())
-                expressionLiteralComponentZ += QString("+t*0"); 
-
-
-            QString expressionLiteral = "vector{ " + expressionLiteralComponentX + ", " +
-                                        expressionLiteralComponentY + ","+ expressionLiteralComponentZ  + "}";
-
-            if (m_errors.isEmpty())
-            {
-                Analitza::Expression expression(expressionLiteral, false);
-
-                return saveFunction(expression, 3, domain);
-            }
-            else
-                return false;
-        }
-        else
-        {
-            m_errors << i18n("La ecuación no es correcta");
-
-            return false;
-        }
-    }
+return false;
 
 
 
@@ -2921,212 +2932,212 @@ void FunctionEditor::clearImplicitSurface()
 
 }
 
-bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimension,
-                                  const RealInterval::List &domain, bool useDefaults, const QString &quickname, const QStringList &bvars) 
-{
-    
-    if (quickname=="implicit")
-    {
-    }
+// bool FunctionEditor::saveFunction(const Analitza::Expression& newExp, int dimension,
+//                                   const RealInterval::List &domain, bool useDefaults, const QString &quickname, const QStringList &bvars) 
+// {
+//     
+//     if (quickname=="implicit")
+//     {
+//     }
+// 
+//     QColor col;
+// 
+//     if (useDefaults)
+//     {
+//         int ra = KRandom::random() % FNCS_PALETTE_SIZE;
+// 
+//         col = QColor(fncspal[ra][0], fncspal[ra][1], fncspal[ra][2]);
+//     }
+//     else
+//     {
+//         col = m_editor->curveColor->color();
+// 
+//         if (dimension == 3)
+//         {
+// 
+//             if (m_state == EditingParametricCurve3D)
+//             {
+// 
+//                 col = m_editor->curveColor->color();
+// 
+//             }
+//             else
+//                 col = m_editor->surfaceColor->color();
+// 
+//         }
+//     }
+// 
+//     QString namefun;
+//     RealInterval::List domfun;
+// 
+//     if (useDefaults)
+//     {
+//         namefun = quickname;
+// 
+//         if (dimension == 2)
+//         {
+//             domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
+//             if (bvars.size() == 2)
+//                 domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
+//         }
+//         else if (dimension == 3)
+//         {
+//             domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
+// 
+//             if (bvars.size() == 2)
+//                 domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
+//         }
+//     }
+//     else
+//     {
+//         namefun = m_editor->functionName->text();
+//         domfun = domain;
+//     }
+// 
+//     FunctionGraph f(newExp, dimension/*, domfun, m_vars*/, namefun, col);
+//     
+//     
+// 
+//     if(dimension == 3)
+//     {
+//         f.setName(newExp.toString());
+// 
+//     }
+//     
+//     {
+//         if (dimension == 2)
+//         {
+//             //NOTE gsoc2012 DEPRECATED
+// //             f.setLineWidth(m_editor->curveLineWidth->value());
+//             
+// 
+// //             f.setResolution(m_editor->curveResolutionValue->value());
+//         }
+//         else if (dimension == 3)
+//         {
+// 
+//             if (m_state == EditingParametricCurve3D)
+//             {
+//                 //NOTE gsoc2012 DEPRECATED
+// //                 f.setLineWidth(m_editor->curveLineWidth->value());
+//                 
+// 
+// //                 f.setResolution(m_editor->curveResolutionValue->value());
+//             }
+//             else
+//             {
+//                 PlotItem::PlotStyle dt;
+// 
+//                 switch (m_editor->surfaceDrawingType->currentIndex())
+//                 {
+//                 case 0:
+//                     dt = PlotItem::Solid;
+//                     break;
+//                 case 1:
+//                     dt = PlotItem::Wired;
+//                     break;
+//                 case 2:
+//                     dt = PlotItem::Dots;
+//                     break;
+//                 }
+// 
+//                 //NOTE gsoc2012 DEPRECATED
+// //                 f.setResolution(m_editor->surfaceResolutionValue->value());
+// //                 f.setDrawingType(dt);
+// 
+// //                 if (useDefaults)
+//                     //NOTE gsoc2012 DEPRECATED
+// //                     f.setDrawingType(Function::Solid);
+// 
+// 
+//                 
+//             }
+//         }
+//     }
+// 
+//     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
+// 
+// 
+//     if (f.isCorrect() && (m_errors.isEmpty()))
+//     {
+// 
+//         RealInterval::List spaceBounds;
+//         spaceBounds<< RealInterval(-6,6) << RealInterval(-6,6);
+//         QRect viewport__;
+//         viewport__.setLeft(spaceBounds[0].lower());
+//         viewport__.setRight(spaceBounds[0].upper());
+//         viewport__.setBottom(spaceBounds[1].lower());
+//         viewport__.setTop(spaceBounds[1].upper());
+//         
+//         
+//         //TODO
+//         //f.update(viewport__);
+// 
+//         if (!f.errors().isEmpty())
+//         {
+//             m_errors << f.errors();
+//             return false;
+// 
+//         }
+//         
+// 
+//         //TODO
+// //         if (m_isEditing)
+// //             functionModel->editFunction(m_currentEditFunctionId, f);
+// //         else
+// //             functionModel->addFunction(f);
+// 
+// //         functionModel->setSpaceId(m_functionsFilterProxyModel->filterSpaceId());
+//         
+//         return true;
+//     }
+//     else
+//     {
+//         return false;
+//     }
+// }
 
-    QColor col;
-
-    if (useDefaults)
-    {
-        int ra = KRandom::random() % FNCS_PALETTE_SIZE;
-
-        col = QColor(fncspal[ra][0], fncspal[ra][1], fncspal[ra][2]);
-    }
-    else
-    {
-        col = m_editor->curveColor->color();
-
-        if (dimension == 3)
-        {
-
-            if (m_state == EditingParametricCurve3D)
-            {
-
-                col = m_editor->curveColor->color();
-
-            }
-            else
-                col = m_editor->surfaceColor->color();
-
-        }
-    }
-
-    QString namefun;
-    RealInterval::List domfun;
-
-    if (useDefaults)
-    {
-        namefun = quickname;
-
-        if (dimension == 2)
-        {
-            domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
-            if (bvars.size() == 2)
-                domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
-        }
-        else if (dimension == 3)
-        {
-            domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
-
-            if (bvars.size() == 2)
-                domfun << RealInterval(-2.0*M_PI,2.0*M_PI);
-        }
-    }
-    else
-    {
-        namefun = m_editor->functionName->text();
-        domfun = domain;
-    }
-
-    FunctionGraph f(newExp, dimension/*, domfun, m_vars*/, namefun, col);
-    
-    
-
-    if(dimension == 3)
-    {
-        f.setName(newExp.toString());
-
-    }
-    
-    {
-        if (dimension == 2)
-        {
-            //NOTE gsoc2012 DEPRECATED
-//             f.setLineWidth(m_editor->curveLineWidth->value());
-            
-
-//             f.setResolution(m_editor->curveResolutionValue->value());
-        }
-        else if (dimension == 3)
-        {
-
-            if (m_state == EditingParametricCurve3D)
-            {
-                //NOTE gsoc2012 DEPRECATED
-//                 f.setLineWidth(m_editor->curveLineWidth->value());
-                
-
-//                 f.setResolution(m_editor->curveResolutionValue->value());
-            }
-            else
-            {
-                PlotItem::PlotStyle dt;
-
-                switch (m_editor->surfaceDrawingType->currentIndex())
-                {
-                case 0:
-                    dt = PlotItem::Solid;
-                    break;
-                case 1:
-                    dt = PlotItem::Wired;
-                    break;
-                case 2:
-                    dt = PlotItem::Dots;
-                    break;
-                }
-
-                //NOTE gsoc2012 DEPRECATED
-//                 f.setResolution(m_editor->surfaceResolutionValue->value());
-//                 f.setDrawingType(dt);
-
-//                 if (useDefaults)
-                    //NOTE gsoc2012 DEPRECATED
-//                     f.setDrawingType(Function::Solid);
-
-
-                
-            }
-        }
-    }
-
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-
-    if (f.isCorrect() && (m_errors.isEmpty()))
-    {
-
-        RealInterval::List spaceBounds;
-        spaceBounds<< RealInterval(-6,6) << RealInterval(-6,6);
-        QRect viewport__;
-        viewport__.setLeft(spaceBounds[0].lower());
-        viewport__.setRight(spaceBounds[0].upper());
-        viewport__.setBottom(spaceBounds[1].lower());
-        viewport__.setTop(spaceBounds[1].upper());
-        
-        
-        //TODO
-        //f.update(viewport__);
-
-        if (!f.errors().isEmpty())
-        {
-            m_errors << f.errors();
-            return false;
-
-        }
-        
-
-        //TODO
-//         if (m_isEditing)
-//             functionModel->editFunction(m_currentEditFunctionId, f);
-//         else
-//             functionModel->addFunction(f);
-
-//         functionModel->setSpaceId(m_functionsFilterProxyModel->filterSpaceId());
-        
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void FunctionEditor::initDomainInfo(const QStringList &arguments, const RealInterval::List &functionDomain)
-{
-
-    if (arguments.isEmpty())
-        return ; 
-
-    m_editor->functionName->setFilterArguments(arguments);
-
-    m_editor->argument1->setText(arguments.at(0));
-
-
-    if (!functionDomain.isEmpty() && (arguments.size() == 1))
-
-    {
-        m_editor->argument1->setText(arguments.at(0));
-
-        m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(0).lower()), false));
-        m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(0).upper()), false));
-    }
-
-    if (arguments.size() == 2)
-    {
-        m_editor->argument2->setText(arguments.at(1));
-
-        m_editor->argument2->show();
-        m_editor->argument2MinValue->show();
-        m_editor->argument2MaxValue->show();
-
-        if (!functionDomain.isEmpty() && (arguments.size() != functionDomain.size()))
-        {
-            m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(1).lower()), false));
-            m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(1).upper()), false));
-        }
-    }
-    else
-    {
-        m_editor->argument2->hide();
-        m_editor->argument2MinValue->hide();
-        m_editor->argument2MaxValue->hide();
-    }
-}
+// void FunctionEditor::initDomainInfo(const QStringList &arguments, const RealInterval::List &functionDomain)
+// {
+// 
+//     if (arguments.isEmpty())
+//         return ; 
+// 
+//     m_editor->functionName->setFilterArguments(arguments);
+// 
+//     m_editor->argument1->setText(arguments.at(0));
+// 
+// 
+//     if (!functionDomain.isEmpty() && (arguments.size() == 1))
+// 
+//     {
+//         m_editor->argument1->setText(arguments.at(0));
+// 
+//         m_editor->argument1MinValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(0).lower()), false));
+//         m_editor->argument1MaxValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(0).upper()), false));
+//     }
+// 
+//     if (arguments.size() == 2)
+//     {
+//         m_editor->argument2->setText(arguments.at(1));
+// 
+//         m_editor->argument2->show();
+//         m_editor->argument2MinValue->show();
+//         m_editor->argument2MaxValue->show();
+// 
+//         if (!functionDomain.isEmpty() && (arguments.size() != functionDomain.size()))
+//         {
+//             m_editor->argument2MinValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(1).lower()), false));
+//             m_editor->argument2MaxValue->setExpression(Analitza::Expression(QString::number(functionDomain.at(1).upper()), false));
+//         }
+//     }
+//     else
+//     {
+//         m_editor->argument2->hide();
+//         m_editor->argument2MinValue->hide();
+//         m_editor->argument2MaxValue->hide();
+//     }
+// }
 
 void FunctionEditor::clearAppearanceAndDomainSettings() 
 {

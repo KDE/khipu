@@ -8,8 +8,8 @@
     
 <MenuBar>
   <Menu name="edit" noMerge="1"><text>&amp;Edit</text>
-  <Action name="new_2d"/>
-  <Action name="new_3d"/>
+  <Action name="new_space2d"/>
+  <Action name="new_space3d"/>
   </Menu>
 </MenuBar>
 
@@ -53,20 +53,20 @@
   <Action name="file_save" />  
   <Separator />
   <DefineGroup name="edit_operations" />
-  <Action name="new_view2d"/>
-  <Action name="new_view3d"/>
+  <Action name="new_space2d"/>
+  <Action name="new_space3d"/>
   <Separator />
   <Action name="file_close" />
 </ToolBar>
 
 <ToolBar name="view2DToolBar" newline="false" noMerge="1" index="1" hidden="false"><text>View 2D ToolBar</text>
   <Action name="go_home" />
-  <Action name="new_2d" />
+  <Action name="new_space2d" />
 </ToolBar>
 
 <ToolBar name="view3DToolBar" newline="false" noMerge="1" index="2" hidden="false"><text>View 3D ToolBar</text>
   <Action name="go_home" />
-  <Action name="new_2d" />
+  <Action name="new_space2d" />
 </ToolBar>
 
 </gui>
