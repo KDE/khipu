@@ -30,7 +30,7 @@
 #include <QHeaderView>
 #include <KDE/KCursor>
 #include "spacesmodel.h"
-#include "space.h"
+#include "spaceitem.h"
 
 #include "functionsmodel.h"
 namespace Keomath

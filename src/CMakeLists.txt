@@ -15,7 +15,7 @@ set ( khipu_SRCS
   functionlibrarymodel.cpp
   #use analitzaplot now :) 
 
-  space.cpp
+  spaceitem.cpp
   spacesmodel.cpp
   spacesview.cpp
 

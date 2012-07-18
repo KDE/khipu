@@ -22,7 +22,7 @@
 
 #include <QtCore/QAbstractTableModel>
 
-#include "space.h"
+#include "spaceitem.h"
 
 #include <kcategorizedsortfilterproxymodel.h>
 
@@ -61,16 +61,16 @@ public:
 
 
     
-    bool addSpace(const Space& space);
+    bool addSpace(const SpaceItem& space);
 
-    QModelIndex spaceIndex(const Space& space) const;
-    const Space & spaceFromId(const QString &id) const;
-    const Space & spaceFromIndex(int index) const;
+    QModelIndex spaceIndex(const SpaceItem& space) const;
+    const SpaceItem & spaceFromId(const QString &id) const;
+    const SpaceItem & spaceFromIndex(int index) const;
 
 
-    bool editSpace(const QString& toChange, const Space& func);
+    bool editSpace(const QString& toChange, const SpaceItem& func);
 
-    const Space* getSpace(int num) const;
+    const SpaceItem* getSpace(int num) const;
 
     void clear();
 
@@ -90,13 +90,13 @@ signals:
     
 
 
-    void spaceModified(const Space& Space);
+    void spaceModified(const SpaceItem& Space);
 
 
 private:
 
 
-    Space::List m_spaceList;
+    SpaceItem::List m_spaceList;
 };
 
 

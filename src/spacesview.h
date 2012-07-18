@@ -27,7 +27,7 @@ namespace Keomath
 {
 
 class SpacesModel;
-class Space;
+class SpaceItem;
 class FunctionsModel;
 
 class SpacesView : public KCategorizedView
@@ -43,7 +43,7 @@ public:
     void setMainFunctionsModel(FunctionsModel *fm);
 
 signals:
-    void spaceShown(const Keomath::Space &space); 
+    void spaceShown(const Keomath::SpaceItem &space); 
 
 private:
     FunctionsModel *m_mainFunctionsModel;

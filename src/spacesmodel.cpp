@@ -156,11 +156,11 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
 
 }
 
-QModelIndex SpacesModel::spaceIndex(const Space& space) const
+QModelIndex SpacesModel::spaceIndex(const SpaceItem& space) const
 {
     int row = 0;
 
-    foreach (const Space &s, m_spaceList)
+    foreach (const SpaceItem &s, m_spaceList)
     {
         if (s.id() == space.id())
             return index(row, 0);
@@ -171,7 +171,7 @@ QModelIndex SpacesModel::spaceIndex(const Space& space) const
     return QModelIndex();
 }
 
-const Space & SpacesModel::spaceFromId(const QString &id) const
+const SpaceItem & SpacesModel::spaceFromId(const QString &id) const
 {
     for (int i = 0; i < m_spaceList.size(); i+=1)
     {
@@ -179,10 +179,10 @@ const Space & SpacesModel::spaceFromId(const QString &id) const
             return m_spaceList.at(i);
     }
 
-    return Space();
+    return SpaceItem();
 }
 
-const Space & SpacesModel::spaceFromIndex(int index) const
+const SpaceItem & SpacesModel::spaceFromIndex(int index) const
 {
     
     return m_spaceList.at(index);
@@ -215,7 +215,7 @@ int SpacesModel::rowCount(const QModelIndex &idx) const
     return m_spaceList.count();
 }
 
-bool SpacesModel::addSpace(const Space& space)
+bool SpacesModel::addSpace(const SpaceItem& space)
 {
     bool exists = false;
 
@@ -252,7 +252,7 @@ bool SpacesModel::removeRows(int row, int count, const QModelIndex & parent)
 
 
 
-    Space::List::iterator it=m_spaceList.begin()+row;
+    SpaceItem::List::iterator it=m_spaceList.begin()+row;
     for(int i=count-1; i>=0; i--)
     {
 
@@ -326,7 +326,7 @@ void SpacesModel::clear()
 
 
 
-const Space* SpacesModel::getSpace(int num) const
+const SpaceItem* SpacesModel::getSpace(int num) const
 {
     Q_ASSERT(num<m_spaceList.count());
     return &m_spaceList[num];
@@ -353,12 +353,12 @@ const Space* SpacesModel::getSpace(int num) const
 
 
 
-bool SpacesModel::editSpace(const QString& toChange, const Space& func)
+bool SpacesModel::editSpace(const QString& toChange, const SpaceItem& func)
 {
     bool exist=false;
 
     int i=0;
-    for (Space::List::iterator it = m_spaceList.begin(); !exist && it != m_spaceList.end(); ++it, ++i )
+    for (SpaceItem::List::iterator it = m_spaceList.begin(); !exist && it != m_spaceList.end(); ++it, ++i )
     {
         if(it->id() == toChange)
         {

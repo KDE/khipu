@@ -27,19 +27,20 @@
 #include <KDE/KDateTime>
 
 
+
 namespace Keomath
 {
 
 
-class Space
+class SpaceItem
 {
 public:
-    typedef QList<Space> List;
+    typedef QList<SpaceItem> List;
 
-    Space(); 
-    Space(int dimension);
-    Space(const Space &space);
-    virtual ~Space();
+    SpaceItem(); 
+    SpaceItem(int dimension);
+    SpaceItem(const SpaceItem &space);
+    virtual ~SpaceItem();
 
     
     QString id() const

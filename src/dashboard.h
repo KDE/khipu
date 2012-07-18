@@ -27,7 +27,7 @@ class QModelIndex;
 
 namespace Keomath {
 class FunctionsModel;
-class Space;
+class SpaceItem;
 class SpacesModel;
 class Viewer2D;
 class Viewer3D;
@@ -113,7 +113,7 @@ void openRequest();
 
 void showFunctionOnSpace(const QUuid &spaceId);
 
-        void showSpace(const Keomath::Space &space);
+        void showSpace(const Keomath::SpaceItem &space);
 
 
         void setFilterDimension(int radioButton);

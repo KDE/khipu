@@ -17,25 +17,25 @@
  *************************************************************************************/
 
 
-#include "space.h"
+#include "spaceitem.h"
 #include <quuid.h>
 
 namespace Keomath
 {
 
-Space::Space()
+SpaceItem::SpaceItem()
 {
 
 }
 
-Space::Space(int dimension)
+SpaceItem::SpaceItem(int dimension)
     : m_dimension(dimension)
 {
     m_id = QUuid::createUuid().toString();
     m_dateTime = KDateTime::currentLocalDateTime(); 
 }
 
-Space::Space(const Space &space)
+SpaceItem::SpaceItem(const SpaceItem &space)
     : m_dimension(space.dimension())
     , m_name(space.m_name)
     , m_description(space.m_description)
@@ -45,22 +45,22 @@ Space::Space(const Space &space)
 {
 }
 
-Space::~Space()
+SpaceItem::~SpaceItem()
 {
 
 }
 
-QPixmap Space::thumbnail() const
+QPixmap SpaceItem::thumbnail() const
 {
     return m_thumbnail;
 }
 
-void Space::setThumbnail(const QPixmap thumbnail)
+void SpaceItem::setThumbnail(const QPixmap thumbnail)
 {
     m_thumbnail = thumbnail;
 }
 
-int Space::dimension() const
+int SpaceItem::dimension() const
 {
     return m_dimension;
 }

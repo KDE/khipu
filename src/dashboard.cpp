@@ -30,7 +30,7 @@
 #include <KDE/KComboBox>
 #include <KFileDialog>
 #include "functionsmodel.h"
-#include "space.h"
+#include "spaceitem.h"
 #include "viewer2d.h"
 #include "viewer3d.h"
 #include "spacesmodel.h"
@@ -680,7 +680,7 @@ void Dashboard::setupWidget()
 
 
 
-    connect(m_dashboardWidget->spaces, SIGNAL(spaceShown(Keomath::Space)), SLOT(showSpace(Keomath::Space)));
+    connect(m_dashboardWidget->spaces, SIGNAL(spaceShown(Keomath::SpaceItem)), SLOT(showSpace(Keomath::SpaceItem)));
 
 
     connect(m_dashboardWidget->functions, SIGNAL(functionOnSpaceShown(QUuid)), SLOT(showFunctionOnSpace(QUuid)));
@@ -807,7 +807,7 @@ void Dashboard::setFilterDimension(int radioButton)
 void Dashboard::showFunctionOnSpace(const QUuid &spaceId)
 {
 
-    Keomath::Space space = m_spacesModel->spaceFromId(spaceId);
+    Keomath::SpaceItem space = m_spacesModel->spaceFromId(spaceId);
 
     if (space.dimension() == 2)
     {
@@ -827,7 +827,7 @@ void Dashboard::showFunctionOnSpace(const QUuid &spaceId)
 
 }
 
-void Dashboard::showSpace(const Keomath::Space &space)
+void Dashboard::showSpace(const Keomath::SpaceItem &space)
 {
     if (space.dimension() == 2)
     {
@@ -853,7 +853,7 @@ void Dashboard::showSpace(const Keomath::Space &space)
 
 void Dashboard::addSpace2D()
 {
-    Keomath::Space space(2);
+    Keomath::SpaceItem space(2);
 
 
     m_dashboardWidget->setCurrentIndex(1);
@@ -867,7 +867,7 @@ void Dashboard::addSpace2D()
 
 void Dashboard::addSpace3D()
 {
-    Keomath::Space space(3);
+    Keomath::SpaceItem space(3);
 
     m_dashboardWidget->setCurrentIndex(2);
     m_spacesModel->addSpace(space);

@@ -22,7 +22,7 @@
 
 #include <QtGui/QWidget>
 
-#include "space.h"
+#include "spaceitem.h"
 namespace Analitza {
 class Variables;
 }
@@ -41,7 +41,7 @@ class Viewer3D : public QWidget
     public:
         Viewer3D(QWidget *parent = 0);
         FunctionEditor *functionEditor() const;
-        void setSpace(const Space &space);
+        void setSpace(const SpaceItem &space);
 
 
 
@@ -73,7 +73,7 @@ class Viewer3D : public QWidget
     private:
         FunctionsFilterProxyModel *m_functionsFilterProxyModel;
 
-        Space m_space;
+        SpaceItem m_space;
         Viewer3DWidget *m_viewer3DWidget;
         FunctionEditor *m_functionEditor;
         SpacesModel *m_spacesModel;

@@ -22,7 +22,7 @@
 
 #include <QtGui/QWidget>
 
-#include "space.h"
+#include "spaceitem.h"
 // #include "keomath/viewers/view2d.h"
 
 class PlotsView2D;
@@ -55,7 +55,7 @@ public:
 public:
     Viewer2D(QWidget *parent = 0);
     FunctionEditor *functionEditor();
-    void setSpace(const Space &space);
+    void setSpace(const SpaceItem &space);
     void setFunctionsModel(FunctionsFilterProxyModel *functionsFilterProxyModel);
     void setSpacesModel(SpacesModel *spacesModel);
 
@@ -102,7 +102,7 @@ private:
     SpacesModel *m_spacesModel;
     FunctionEditor *m_functionEditor;
 
-    Space m_space;
+    SpaceItem m_space;
     Viewer2DWidget *m_viewer2DWidget;
 
     

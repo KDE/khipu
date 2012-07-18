@@ -43,7 +43,7 @@
 
 #include "analitzaplot/plotsview2d.h"
 #include "functioneditor.h"
-#include "space.h"
+#include "spaceitem.h"
 #include "spacesmodel.h"
 #include "ui_viewer2dwidget.h"
 #include "functionsview.h"
@@ -407,7 +407,7 @@ FunctionEditor *Viewer2D::functionEditor()
 
 
 
-void Viewer2D::setSpace(const Space &space)
+void Viewer2D::setSpace(const SpaceItem &space)
 {
     m_viewer2DWidget->functionEditorDock->close();
     m_viewer2DWidget->coordSysSettingsDock->close();

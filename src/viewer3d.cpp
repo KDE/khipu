@@ -43,7 +43,7 @@
 
 
 
-#include "space.h"
+#include "spaceitem.h"
 #include "ui_viewer3dwidget.h"
 
 namespace Keomath
@@ -178,7 +178,7 @@ void Viewer3D::setSpacesModel(SpacesModel *spacesModel)
 }
 
 
-void Viewer3D::setSpace(const Space &space)
+void Viewer3D::setSpace(const SpaceItem &space)
 {
 
     

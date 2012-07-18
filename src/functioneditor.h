@@ -22,7 +22,7 @@
 
 #include <QWidget>
 #include <QAbstractItemDelegate>
-#include "space.h"
+#include "spaceitem.h"
 
 
 
