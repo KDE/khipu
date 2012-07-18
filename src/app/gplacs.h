@@ -46,7 +46,7 @@ class MainWindow : public KXmlGuiWindow
 
     public:
         
-        MainWindow();
+        MainWindow(QWidget *parent = 0);
 
         
         virtual ~MainWindow();
@@ -54,6 +54,8 @@ class MainWindow : public KXmlGuiWindow
     public slots:
         void openFile();
         void showAboutAppDialog();
+        
+        void hide3dtb();
 
     private slots:
         void newFile();

@@ -1,4 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="KColorEdit" version="1">
+<gui name="khipu"
+     version="1"
+     xmlns="http://www.kde.org/standards/kxmlgui/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
+                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd" >
+    
+<MenuBar>
+  <Menu name="edit" noMerge="1"><text>&amp;Edit</text>
+  <Action name="new_2d"/>
+  <Action name="new_3d"/>
+  </Menu>
+</MenuBar>
+
+  <Menu name="view"><text>&amp;View</text>
+    <Action name="view_new_view" />
+    <Separator />
+    <DefineGroup name="switch_document" />
+    <Separator />
+    <Menu name="view-split"><text>Split View</text>
+      <Action name="go_prev_split_view"/>
+      <Action name="go_next_split_view"/>
+      <Separator />
+      <Action name="view_split_vert"/>
+      <Action name="view_split_horiz"/>
+      <Action name="view_close_current_space" />
+      <Separator />
+      <Action name="view_split_move_left" />
+      <Action name="view_split_move_right" />
+      <Action name="view_split_move_up" />
+      <Action name="view_split_move_down" />
+    </Menu>
+    <Separator/>
+    <Merge name="kate_mdi_view_actions"/>
+    <Separator />
+    <DefineGroup name="view_operations" />
+  </Menu>
+        <Menu name="go">
+            <Action name="closed_tabs" />
+        </Menu>
+        
+  <Menu name="tools"><text>&amp;Tools</text>
+    <Separator />
+    <DefineGroup name="tools_operations" />
+    <DefineGroup name="tools_operations2" />
+    <Action name="scripts"/>
+  </Menu>
+
+<ToolBar name="mainToolBar" newline="false" noMerge="1"  index="0" hidden="false"><text>Main Toolbar</text>
+  <Action name="file_new" />
+  <Action name="file_open" />
+  <Action name="file_save" />  
+  <Separator />
+  <DefineGroup name="edit_operations" />
+  <Action name="new_view2d"/>
+  <Action name="new_view3d"/>
+  <Separator />
+  <Action name="file_close" />
+</ToolBar>
+
+<ToolBar name="view2DToolBar" newline="false" noMerge="1" index="1" hidden="false"><text>View 2D ToolBar</text>
+  <Action name="go_home" />
+  <Action name="new_2d" />
+</ToolBar>
+
+<ToolBar name="view3DToolBar" newline="false" noMerge="1" index="2" hidden="false"><text>View 3D ToolBar</text>
+  <Action name="go_home" />
+  <Action name="new_2d" />
+</ToolBar>
+
 </gui>

@@ -22,6 +22,7 @@
 
 
 #include "analitzaplot/plotsdictionarymodel.h"
+#include <analitzaplot/planecurve.h>
 #include <analitza/expression.h>
 
 #include <KDE/KApplication>
@@ -40,6 +41,7 @@
 #include <qlistview.h>
 #include <qtreeview.h>
 #include <QDebug>
+#include <QDomDocument>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
 #include <KDE/KStandardDirs>
@@ -78,8 +80,8 @@ namespace GPLACS
 
 //////////////
 
-MainWindow::MainWindow()
-    : KXmlGuiWindow()
+MainWindow::MainWindow(QWidget *parent)
+    : KXmlGuiWindow(parent)
 {
 
 
@@ -93,9 +95,12 @@ MainWindow::MainWindow()
     m_gplacsWidget = new Dashboard(m_functionsModel, m_spacesModel, this);
 
     
-    statusBar()->hide();
+//     statusBar()->hide();
     setupActions();
-    setupGUI();
+
+
+
+// toolBar("fooToolBar")->setWindowTitle("edqweqewe");
 
    setCentralWidget(m_gplacsWidget); 
 //     QTabWidget *tabs = new QTabWidget(this);
@@ -152,8 +157,9 @@ MainWindow::MainWindow()
 
     connect(m_gplacsWidget, SIGNAL(dashemitShowAppInfo()), SLOT(showAboutAppDialog()));
 
-    menuBar()->hide();
+//     menuBar()->hide();
 
+    
 
 
 
@@ -176,21 +182,69 @@ void MainWindow::setupActions()
 
     
     
+KAction* clearAction = new KAction(this);
+  clearAction->setText(i18n("&Clear"));
+  clearAction->setIcon(KIcon("document-new"));
+  clearAction->setShortcut(Qt::CTRL + Qt::Key_W);
+  actionCollection()->addAction("zoom_operations", clearAction);
+  
 
+  KAction* clearAction1 = new KAction(this);
+  clearAction1->setText(i18n("&Clear"));
+  clearAction1->setIcon(KIcon("kde"));
+  clearAction1->setShortcut(Qt::CTRL + Qt::Key_W);
+  actionCollection()->addAction("find_operations", clearAction1);
+
+  KAction* clearAction11 = new KAction(this);
+  clearAction11->setText(i18n("&Clear"));
+  clearAction11->setIcon(KIcon("list-add"));
+  clearAction11->setShortcut(Qt::CTRL + Qt::Key_W);
+  actionCollection()->addAction("new_2d", clearAction11);
+
+  
+//   KStandardAction::open(this, SLOT(configureToolbars()), actionCollection());
+  KStandardAction::open(this, SLOT(hide3dtb()), actionCollection());
+  
+  
+  
+//   unplugActionList("");
 
 
     
-    
+    setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
     
 
+    
+//     toolBar("view2DToolbar")->setVisible(true);
     
 
     connect(m_gplacsWidget, SIGNAL(saveRequest()), SLOT(saveFile()));
     connect(m_gplacsWidget, SIGNAL(openRequest()), SLOT(openFile()));
+    
+    
+    //NOTE registeredCurves servira mas adelante para construir mejores mensajes al usario sobre que tipo de curva se dibujara
+    // y para construir un buen functioneditor
+    for (int i = 0; i < PlaneCurve::registeredCurves().size(); ++i)
+        qDebug() << PlaneCurve::registeredCurves().keys()[i] << PlaneCurve::registeredCurves().values()[i].first << PlaneCurve::registeredCurves().values()[i].second.toString();
 
 }
 
+void MainWindow::hide3dtb()
+{
 
+//     toolBar("view2DToolbar")->setVisible(!toolBar("view2DToolbar")->isVisible());
+
+//     bool f = toolBar("view2DToolbar")->isVisible();
+    
+//     toolBar("view2DToolBar")->setVisible(f);
+ 
+
+    //los index del xml en los toolbars corresponden a toolbars
+    
+//     toolBars()[0]->setVisible(false);
+}
+
+ 
 bool MainWindow::queryClose()
 {
     if (m_gplacsWidget->isModified())
