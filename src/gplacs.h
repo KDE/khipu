@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
+ *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -17,43 +17,78 @@
  *************************************************************************************/
 
 
-#include "gplacswidget.h"
+#ifndef GPLACS_MAINWINDOW_H
+#define GPLACS_MAINWINDOW_H
 
-#include <QtGui/QLayout>
-
-#include <KLocalizedString>
-#include <KDE/KLocale>
-#include <KDE/KPushButton>
-
-#include "widgets/dashboard.h"
-
-namespace GPLACS
-{
-
-MainWidget::MainWidget(Keomath::FunctionsModel *functionsModel, Keomath::SpacesModel *spacesModel, QWidget * parent)
-    : QWidget(parent)
-    , m_functionsModel(functionsModel)
-    , m_spacesModel(spacesModel)
-{
-    m_dashboard = new Dashboard(m_functionsModel, spacesModel, this);
-
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->addWidget(m_dashboard);
-
-    connect(m_dashboard, SIGNAL(dashemitShowAppInfo()), SIGNAL(emitShowAppInfo()));
+#include <KDE/KXmlGuiWindow>
 
 
+
+
+
+
+class KUrl;
+class KToggleAction;
+
+namespace Keomath {
+class FunctionsModel;
+class SpacesModel;
 }
 
-MainWidget::~MainWidget()
+namespace GPLACS {
+
+class Dashboard;
+
+
+class MainWindow : public KXmlGuiWindow
 {
-}
+    Q_OBJECT
 
-void MainWidget::updateSettings(QString page)
-{
-    Q_UNUSED(page);
+    public:
+        
+        MainWindow(QWidget *parent = 0);
+
+        
+        virtual ~MainWindow();
+
+    public slots:
+        void openFile();
+        void showAboutAppDialog();
+        
+        void hide3dtb();
+
+    private slots:
+        void newFile();
+        void saveFile();
+        void saveFileAs(const QString &filename);
+
+    void optionsPreferences();
+    void updateInputTypePreviewImage(bool text_input);
 
 
-}
+
+
+        void updateTittleWhenChangeDocState();
+        void updateTittleWhenOpenSaveDoc();
+
+
+
+private:
+    void setupActions();
+        bool queryClose();
+
+private:
+    Keomath::FunctionsModel *m_functionsModel;
+    Keomath::SpacesModel *m_spacesModel;
+
+    Dashboard *m_gplacsWidget;
+
+    KToggleAction *m_toolbarAction;
+    KToggleAction *m_statusbarAction;
+
+
+};
 
 } 
+
+#endif 

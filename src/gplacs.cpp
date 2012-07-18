@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
+ *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -63,12 +63,12 @@
 #include <KToolBar>
 #include "functionsmodel.h"
 #include "spacesmodel.h"
-#include "widgets/gplacswidget.h"
+#include "gplacswidget.h"
 #include <KAboutApplicationDialog>
 #include <KMenuBar>
 #include <kcategorizedview.h>
 #include <kcategorydrawer.h>
-#include "widgets/dashboard.h"
+#include "dashboard.h"
 
 namespace GPLACS
 {

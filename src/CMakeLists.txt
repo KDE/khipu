@@ -26,11 +26,11 @@ set ( khipu_SRCS
 
 
 
-  app/gplacs.cpp
-  app/main.cpp
+  gplacs.cpp
+  main.cpp
 
-  widgets/dashboard.cpp
-  widgets/gplacswidget.cpp
+  dashboard.cpp
+  gplacswidget.cpp
 )
 
 
@@ -39,7 +39,7 @@ kde4_add_ui_files ( khipu_SRCS
   viewer2dwidget.ui
   viewer3dwidget.ui
 
-  widgets/dashboardwidget.ui
+  dashboardwidget.ui
 )
 
 
