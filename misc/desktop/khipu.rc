@@ -27,7 +27,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <Menu name="tools">
             <text>&amp;Tools</text>
             <DefineGroup name="tools_dashboard_operations" />
-            <Action name="delete_currentspace"/>
+<!--             <Action name="delete_currentspace"/> -->
             <DefineGroup name="tools_space_operations" />
             <Action name="copy_snapshot"/>
             <Action name="export_snapshot"/>
