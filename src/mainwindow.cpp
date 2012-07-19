@@ -68,6 +68,7 @@
 
 #include "ui_space2dviewer.h"
 #include "ui_space3dviewer.h"
+#include "ui_functioneditorwidget.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -89,20 +90,20 @@ MainWindow::MainWindow(QWidget *parent)
     
     Ui::coordSysSettingsDock_2 uispaceItemWidget1;
     uispaceItemWidget1.setupUi(dock1);
+   
+    
+    QDockWidget *dock11 = new QDockWidget(this);
+    
+    Ui::DockWidget uispaceItemWidget11;
+    uispaceItemWidget11.setupUi(dock11);
     
     addDockWidget(Qt::RightDockWidgetArea, dock);
     addDockWidget(Qt::RightDockWidgetArea, dock1);
+    addDockWidget(Qt::LeftDockWidgetArea, dock11);
 
     updateTittleWhenOpenSaveDoc();
 
-    
-    
-    
-    
-    
-
     connect(m_dashboard, SIGNAL( modified() ), SLOT( updateTittleWhenChangeDocState() ));
-
     connect(m_dashboard, SIGNAL(dashemitShowAppInfo()), SLOT(showAboutAppDialog()));
 }
 
