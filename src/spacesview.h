@@ -16,36 +16,21 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #ifndef KEOMATH_SPACESVIEW_H
 #define KEOMATH_SPACESVIEW_H
 
-#include <KDE/KCategorizedView>
+#include <QListView>
 
-
-
-class SpacesModel;
-class SpaceItem;
-class FunctionsModel;
-
-class SpacesView : public KCategorizedView
+class SpacesView : public QListView
 {
     Q_OBJECT
 public:
     SpacesView(QWidget *parent=0);
 
-    virtual void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
+    void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
 
-    virtual void mouseMoveEvent ( QMouseEvent * event );
-    virtual void mousePressEvent ( QMouseEvent * event );
-    void setMainFunctionsModel(FunctionsModel *fm);
-
-signals:
-    void spaceShown(const  SpaceItem &space); 
-
-private:
-    FunctionsModel *m_mainFunctionsModel;
-
+    void mouseMoveEvent ( QMouseEvent * event );
+    void mousePressEvent ( QMouseEvent * event );
 };
 
 #endif 

@@ -16,26 +16,17 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "spacesmodel.h"
 
-#include <KLocale>
-#include <KApplication>
-#include <KDebug>
-#include <QPixmap>
-#include <QFont>
-#include <cmath>
-#include <kcategorizedsortfilterproxymodel.h>
-#include "analitza/expression.h"
-#include <QModelIndex>
-#include <kicon.h>
-
-
 SpacesModel::SpacesModel(QObject *parent)
-    : QAbstractTableModel(parent)
-
-
+    : QAbstractListModel(parent),  m_itemCanCallModelRemoveItem(true)
 {}
+
+
+Qt::ItemFlags SpacesModel::flags(const QModelIndex &idx) const
+{
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+}
 
 QVariant SpacesModel::data( const QModelIndex &index, int role) const
 {
@@ -44,249 +35,71 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
 
     switch (role)
     {
-    case KCategorizedSortFilterProxyModel::CategoryDisplayRole:
-    {
-
-
-
-
-        return m_spaceList.at(index.row()).dimension();
-//         return QString();
-//        return index.row()/4;        
-    }
-    case KCategorizedSortFilterProxyModel::CategorySortRole:
-    {
-
-        
-        return index.row()/4;
-    }
-    case Qt::DecorationRole:
-
-
-        return m_spaceList.at(index.row()).thumbnail();
-        break;
-
-
-
-
-
-
-    case Qt::ToolTipRole:
-        return m_spaceList.at(index.row()).dateTime().toString("%A %l:%M %p %B %Y");
-
-        break;
-
-
-    case Qt::DisplayRole:
-
-
-
-
-
-        switch(index.column())
-        {
-        case 0:
-            return m_spaceList.at(index.row()).name();
-            break;
-        case 1:
-            return m_spaceList.at(index.row()).description();
-            break;
-        case 2:
-
-            if (m_spaceList.at(index.row()).dimension() == 2)
-                return i18n("2D");
-            else if (m_spaceList.at(index.row()).dimension() == 3)
-                return i18n("3D");
-            break;
-        case 3:
-            
-            
-
-            
-            return m_spaceList.at(index.row()).dateTime().toString( KDateTime::QtTextDate);
-
-            break;
-
-        }
-
-
-
-
-        break;
-
-
+        case Qt::DecorationRole: return m_items.at(index.row())->thumbnail();
+        case Qt::ToolTipRole:  return m_items.at(index.row())->timestamp().toString("%A %l:%M %p %B %Y");
+        case Qt::DisplayRole: return m_items.at(index.row())->title();
+        case Qt::StatusTipRole: return m_items.at(index.row())->description(); //TODO GSOC agregar un prefix algo como space descrp: txttt
     }
 
     return QVariant();
-
-
 }
-
-QModelIndex SpacesModel::spaceIndex(const SpaceItem& space) const
-{
-    int row = 0;
-
-    foreach (const SpaceItem &s, m_spaceList)
-    {
-        if (s.id() == space.id())
-            return index(row, 0);
-
-        ++row;
-    }
-
-    return QModelIndex();
-}
-
-const SpaceItem & SpacesModel::spaceFromId(const QString &id) const
-{
-    for (int i = 0; i < m_spaceList.size(); i+=1)
-    {
-        if (m_spaceList.at(i).id() == id)
-            return m_spaceList.at(i);
-    }
-
-    return SpaceItem();
-}
-
-const SpaceItem & SpacesModel::spaceFromIndex(int index) const
-{
-    
-    return m_spaceList.at(index);
-}
-
-
 
 int SpacesModel::rowCount(const QModelIndex &idx) const
 {
-
-
-
-
-    return m_spaceList.count();
+    return m_items.count();
 }
 
-bool SpacesModel::addSpace(const SpaceItem& space)
+SpaceItem* SpacesModel::addSpace(int dim)
 {
-    bool exists = false;
-
-
-
-
+    Q_ASSERT(dim == 2 || dim == 3);
+    
+    SpaceItem * ret = 0;
 
     {
-        beginInsertRows (QModelIndex(), rowCount(), rowCount());
-        m_spaceList.append(space);
+        beginInsertRows (QModelIndex(), m_items.count(), m_items.count());
 
-
-
-
-
-
+        ret = new SpaceItem(dim);
+        ret->setModel(this);
+        m_items.append(ret);
 
         endInsertRows();
 
-
-
+        return ret;
     }
 
-    return exists;
+    return ret;
 }
 
-bool SpacesModel::removeRows(int row, int count, const QModelIndex & parent)
+SpaceItem* SpacesModel::item(int row) const
 {
-    Q_ASSERT(row+count-1<m_spaceList.count());
-    if(parent.isValid())
-        return false;
-    beginRemoveRows(parent, row, row+count-1);
+    Q_ASSERT(row<m_items.count());
 
+    return m_items[row];
+}
 
+void SpacesModel::removeItem(int row)
+{
+    Q_ASSERT(row<m_items.size());
 
+    beginRemoveRows(QModelIndex(), row, row);
 
-    SpaceItem::List::iterator it=m_spaceList.begin()+row;
-    for(int i=count-1; i>=0; i--)
+    SpaceItem *tmpcurve = m_items[row];
+
+    m_itemCanCallModelRemoveItem = false;
+
+    if (!tmpcurve->m_inDestructorSoDontDeleteMe)
     {
-
-        it=m_spaceList.erase(it);
-
+        delete tmpcurve;
+        tmpcurve = 0;
     }
+
+    m_itemCanCallModelRemoveItem = true;
+
+    m_items.removeAt(row);
+
     endRemoveRows();
-
-
-
-    return true;
 }
-
-
-void SpacesModel::clear()
-{
-    if(!m_spaceList.isEmpty())
-    {
-        beginRemoveRows (QModelIndex(), 0, rowCount());
-        m_spaceList.clear();
-        endRemoveRows ();
-        reset();
-    }
-}
-
-
-const SpaceItem* SpacesModel::getSpace(int num) const
-{
-    Q_ASSERT(num<m_spaceList.count());
-    return &m_spaceList[num];
-}
-
-bool SpacesModel::editSpace(const QString& toChange, const SpaceItem& func)
-{
-    bool exist=false;
-
-    int i=0;
-    for (SpaceItem::List::iterator it = m_spaceList.begin(); !exist && it != m_spaceList.end(); ++it, ++i )
-    {
-        if(it->id() == toChange)
-        {
-            exist = true;
-
-            it->setName(func.name());
-            it->setDescription(func.description());
-            it->setThumbnail(func.thumbnail());
-
-
-            QModelIndex idx=index(i, 0), idxEnd=index(i, columnCount()-1);
-            emit dataChanged(idx, idxEnd);
-            emit spaceModified(func);
-        }
-    }
-
-    return exist;
-}
-
-bool SpacesModel::setData(const QModelIndex & idx, const QVariant &value, int role)
-{
-
-
-    if(role==Qt::EditRole)
-    {
-
-        m_spaceList[idx.row()].setThumbnail(value.value<QPixmap>());
-
-
-
-        emit dataChanged(idx, idx);
-        return true;
-    }
-    return false;
-}
-
-
-Qt::ItemFlags SpacesModel::flags(const QModelIndex &idx) const
-{
-
-    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-
-
-}
-
-
+/*
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : KCategorizedSortFilterProxyModel(parent)
     , m_dimension(-1)
@@ -321,4 +134,4 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
 
     return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
             sourceModel()->data(indexDescription).toString().contains(filterRegExp()));
-}
+}*/

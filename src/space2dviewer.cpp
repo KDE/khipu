@@ -212,39 +212,32 @@ FunctionEditor *Space2DViewer::functionEditor()
 
 void Space2DViewer::setSpace(const SpaceItem &space)
 {
-    m_viewer2DWidget->functionEditorDock->close();
-    m_viewer2DWidget->coordSysSettingsDock->close();
-    m_viewer2DWidget->spaceInfoDock->close();
-
-
-
-    m_space = space;
-
-
-
-
-
-
-
-
-    m_viewer2DWidget->spaceTitle->setText(m_space.name());
-    m_viewer2DWidget->spaceDescription->setPlainText(m_space.description());
-
-
-
-    if (!m_functionsFilterProxyModel) return;
-
-    FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
-
-    if (!functionModel) return;
-
-
-    if ((m_functionsFilterProxyModel->rowCount() > 0))
-    {
-
-//TODO
-//         functionModel->setSelected(functionModel->editFunction(m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(0,0)).row())->id());
-    }
+//     m_viewer2DWidget->functionEditorDock->close();
+//     m_viewer2DWidget->coordSysSettingsDock->close();
+//     m_viewer2DWidget->spaceInfoDock->close();
+// 
+// 
+// 
+// //     m_space = space;
+// 
+//     m_viewer2DWidget->spaceTitle->setText(m_space.title());
+//     m_viewer2DWidget->spaceDescription->setPlainText(m_space.description());
+// 
+// 
+// 
+//     if (!m_functionsFilterProxyModel) return;
+// 
+//     FunctionsModel *functionModel = static_cast<FunctionsModel*>(m_functionsFilterProxyModel->sourceModel());
+// 
+//     if (!functionModel) return;
+// 
+// 
+//     if ((m_functionsFilterProxyModel->rowCount() > 0))
+//     {
+// 
+// //TODO
+// //         functionModel->setSelected(functionModel->editFunction(m_functionsFilterProxyModel->mapToSource(m_functionsFilterProxyModel->index(0,0)).row())->id());
+//     }
 
 }
 
@@ -321,14 +314,14 @@ PlotsView2D * Space2DViewer::view() const
 
 void Space2DViewer::saveSpace()
 {
-    QPixmap thumbnail = QPixmap::grabWidget(m_viewer2DWidget->view);
-    thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+//     QPixmap thumbnail = QPixmap::grabWidget(m_viewer2DWidget->view);
+//     thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+// 
+//     m_space.setName(m_viewer2DWidget->spaceTitle->text());
+//     m_space.setDescription(m_viewer2DWidget->spaceDescription->toPlainText());
+//     m_space.setThumbnail(thumbnail);
 
-    m_space.setName(m_viewer2DWidget->spaceTitle->text());
-    m_space.setDescription(m_viewer2DWidget->spaceDescription->toPlainText());
-    m_space.setThumbnail(thumbnail);
-
-    m_spacesModel->editSpace(m_space.id(), m_space);
+// // // // // //     m_spacesModel->editSpace(m_space.id(), m_space);
 
 
 

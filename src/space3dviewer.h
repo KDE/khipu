@@ -69,7 +69,7 @@ class Space3DViewer : public QWidget
     private:
         FunctionsFilterProxyModel *m_functionsFilterProxyModel;
 
-        SpaceItem m_space;
+//         SpaceItem m_space;
         Viewer3DWidget *m_viewer3DWidget;
         FunctionEditor *m_functionEditor;
         SpacesModel *m_spacesModel;

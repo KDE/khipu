@@ -23,7 +23,6 @@
 #include <QtGui/QWidget>
 
 #include "spaceitem.h"
-// #include "keomath/viewers/view2d.h"
 
 class PlotsView2D;
 
@@ -96,7 +95,7 @@ private:
     SpacesModel *m_spacesModel;
     FunctionEditor *m_functionEditor;
 
-    SpaceItem m_space;
+//     SpaceItem m_space;
     Viewer2DWidget *m_viewer2DWidget;
 
     

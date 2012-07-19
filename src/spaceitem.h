@@ -19,79 +19,54 @@
 #ifndef KEOMATH_SPACE_H
 #define KEOMATH_SPACE_H
 
-#include <QtCore/QString>
-#include <QtCore/QList>
-#include <QtCore/QString>
 #include <QtGui/QPixmap>
 #include <KDE/KDateTime>
 
+class SpacesModel;
+
 class SpaceItem
 {
+    
+friend class SpacesModel;    
+    
 public:
-    typedef QList<SpaceItem> List;
-
-    SpaceItem(); 
     SpaceItem(int dimension);
-    SpaceItem(const SpaceItem &space);
     virtual ~SpaceItem();
 
+    QString title() const { return m_name; }
+    void setTitle(const QString &name) { m_name = name; }
+
+    QString description() const { return m_description; }
+    void setDescription(const QString &description) { m_description = description; }
+
+    QPixmap thumbnail() const { return m_thumbnail; }
+    void setThumbnail(const QPixmap thumbnail) { m_thumbnail = thumbnail; }
+
+    int dimension() const { return m_dimension; }
+
+    KDateTime  timestamp() const { return m_dateTime; }
+
+    void setTimestamp(const KDateTime &date) { m_dateTime = date; }
+
+private:
+    SpaceItem() {}
+    SpaceItem(const SpaceItem &other) {}
+
+    void setModel(SpacesModel *m);
     
-    QString id() const
-    {
-        return m_id;
-    }
+    void emitDataChanged();
 
-    void setId(const QString &newid) 
-    {
-        m_id = newid; 
-    }
-
-    QString name() const
-    {
-        return m_name;
-    }
-
-    void setName(const QString &name)
-    {
-        m_name = name;
-    }
-
-    QString description() const
-    {
-        return m_description;
-    }
-
-    void setDescription(const QString &description)
-    {
-        m_description = description;
-    }
-
-    QPixmap thumbnail() const;
-    void setThumbnail(const QPixmap thumbnail);
-
-    int dimension() const;
-
-    void setDate(const QString date)
-    {
-        m_dateTime = KDateTime::fromString(date);
-    }
-
-    
-    KDateTime  dateTime() const
-    {
-        return m_dateTime;
-    }
-
-protected:
-    QString m_id;
     int m_dimension;
     QPixmap m_thumbnail;
     KDateTime  m_dateTime;
 
     QString m_name;
     QString m_description;
+    
+    SpacesModel *m_model;
+    bool m_inDestructorSoDontDeleteMe;
 };
 
+typedef QList<SpaceItem *> SpaceItemList;
+
 #endif
-
-

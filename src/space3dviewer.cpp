@@ -176,7 +176,7 @@ void Space3DViewer::setSpacesModel(SpacesModel *spacesModel)
 
 void Space3DViewer::setSpace(const SpaceItem &space)
 {
-
+/*
     
     
     m_viewer3DWidget->functionEditorDock->close();
@@ -186,7 +186,7 @@ void Space3DViewer::setSpace(const SpaceItem &space)
 //     m_viewer3DWidget->view->setBackgroundColor(Qt::black);
 
     m_space = space;
-    m_viewer3DWidget->spaceTitle->setText(m_space.name());
+    m_viewer3DWidget->spaceTitle->setText(m_space.title());
     m_viewer3DWidget->spaceDescription->setPlainText(m_space.description());
 
 
@@ -196,30 +196,11 @@ void Space3DViewer::setSpace(const SpaceItem &space)
     
 
 
-    m_viewer3DWidget->spaceTitle->setText(m_space.name());
-    m_viewer3DWidget->spaceDescription->setPlainText(m_space.description());
+    m_viewer3DWidget->spaceTitle->setText(m_space.title());
+    m_viewer3DWidget->spaceDescription->setPlainText(m_space.description());*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
 }
-
 
 void Space3DViewer::toggleShownFunctionEditor()
 {
@@ -241,17 +222,11 @@ void Space3DViewer::hideDocks()
     m_viewer3DWidget->functionEditorDock->close();
     m_viewer3DWidget->coordSysSettingsDock->close();
     m_viewer3DWidget->spaceInfoDock->close();
-
-    
-    
-    
 }
 
 void Space3DViewer::resizeScene3D(int v)
 {
     qreal si = (qreal)v;
-
-
 
 //     m_viewer3DWidget->view->setSceneCenter(qglviewer::Vec(0.f,0.f,0.f));
 //     m_viewer3DWidget->view->setSceneRadius(si);
@@ -287,20 +262,7 @@ Analitza::Variables* Space3DViewer::variables() const
 
 void Space3DViewer::saveSpace()
 {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
     hideDocks();
 
     m_viewer3DWidget->view->updateGL();
@@ -311,23 +273,11 @@ void Space3DViewer::saveSpace()
 
     QPixmap thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
     thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
-
-
-
-
-
-
-    
-
-
-
-
-
     m_space.setName(m_viewer3DWidget->spaceTitle->text());
     m_space.setDescription(m_viewer3DWidget->spaceDescription->toPlainText());
     m_space.setThumbnail(thumbnail);
 
-    m_spacesModel->editSpace(m_space.id(), m_space);
+    m_spacesModel->editSpace(m_space.id(), m_space);*/
 
 }
 

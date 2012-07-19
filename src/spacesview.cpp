@@ -16,50 +16,27 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "spacesview.h"
-
-
 
 #include <KDebug>
 #include <KLocale>
 #include <KIcon>
 #include <QMouseEvent>
 #include <QMenu>
-#include <KCategoryDrawer>
 #include <QHeaderView>
 #include <KDE/KCursor>
 #include "spacesmodel.h"
 #include "spaceitem.h"
 
-#include "functionsmodel.h"
-
 SpacesView::SpacesView(QWidget * parent)
-    : KCategorizedView(parent)
-    , m_mainFunctionsModel(0)
+    : QListView(parent)
 {
-
-
     setSelectionBehavior(QAbstractItemView::SelectItems);
     setSelectionMode(QAbstractItemView::SingleSelection);
-
-
-
-
+    setViewMode(QListView::IconMode);
     setMouseTracking(true);
 
-    
-    int marg = 10;
-
-    setGridSizeOwn(QSize(256 + marg,256 + marg));
-
-    
-
-    setCategoryDrawer(new KCategoryDrawerV2());
-    setViewMode(QListView::IconMode);
-
-
-
+    //TODO GSOC configirar el setgridsize
 }
 
 void SpacesView::selectionChanged(const QItemSelection & selected, const QItemSelection &)
@@ -85,105 +62,89 @@ void SpacesView::mouseMoveEvent ( QMouseEvent * e )
         setCursor(Qt::ArrowCursor);
     }
 
-
-
-
-
-
-
-
-
-
-    KCategorizedView::mousePressEvent(e);
-
-
-
-}
-void SpacesView::setMainFunctionsModel(FunctionsModel *fm)
-{
-    m_mainFunctionsModel = fm;
+//     QListView;;mouseMoveEvent(e);
 }
 
 void SpacesView::mousePressEvent(QMouseEvent * e)
 {
-    QModelIndex clickIdx(indexAt(e->pos()));
-
-    if(clickIdx.isValid())
-    {
-        if (e->button()==Qt::RightButton)
-        {
-            QModelIndex nameIdx(clickIdx.sibling(clickIdx.row(), 0));
-            
-            QString actuallyShown;
-            
-            
-            
-            
-            
-            
-            
-            
-
-            QMenu menu(this);
-            
-            QAction* actionShown = menu.addAction(KIcon("user-online"), actuallyShown);
-            actionShown->setText(i18n("Mostrar Espacio"));
-            QAction* actionRemove=menu.addAction(KIcon("list-remove"), i18n("Eliminar Espacio '%1'", model()->data(nameIdx).toString()));
-            QAction* result=menu.exec(e->globalPos());
-            if(result==actionShown)
-            {
-                
-                
-
-                SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
-                 SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
-
-
-
-                emit spaceShown(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()));
-
-            }
-            else if(result == actionRemove)
-            {
-
-
-                
-                
-
-                if (m_mainFunctionsModel)
-                {
-
-                    SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
-                     SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
-
-
-                    m_mainFunctionsModel->removeItemsBySpace(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()).id());
-                }
-
-                
-                model()->removeRow(clickIdx.row());
-            }
-        }
-        else if (e->button()==Qt::LeftButton)
-        {
-
-            SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
-             SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
-
-
-
-            emit spaceShown(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()));
-
-
-
-        }
-
-
-    }
-    else
-    {
-        KCategorizedView::mousePressEvent(e);
-    }
+//     QModelIndex clickIdx(indexAt(e->pos()));
+// 
+//     if(clickIdx.isValid())
+//     {
+//         if (e->button()==Qt::RightButton)
+//         {
+//             QModelIndex nameIdx(clickIdx.sibling(clickIdx.row(), 0));
+//             
+//             QString actuallyShown;
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+//             
+// 
+//             QMenu menu(this);
+//             
+//             QAction* actionShown = menu.addAction(KIcon("user-online"), actuallyShown);
+//             actionShown->setText(i18n("Mostrar Espacio"));
+//             QAction* actionRemove=menu.addAction(KIcon("list-remove"), i18n("Eliminar Espacio '%1'", model()->data(nameIdx).toString()));
+//             QAction* result=menu.exec(e->globalPos());
+//             if(result==actionShown)
+//             {
+//                 
+//                 
+// 
+//                 SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
+//                  SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
+// 
+// 
+// 
+//                 emit spaceShown(sm->m_items.at(sp->mapToSource(clickIdx).row()));
+// 
+//             }
+//             else if(result == actionRemove)
+//             {
+// 
+// 
+//                 
+//                 
+// 
+//                 if (m_mainFunctionsModel)
+//                 {
+// 
+//                     SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
+//                      SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
+// 
+// 
+//                     m_mainFunctionsModel->removeItemsBySpace(sm->m_items.at(sp->mapToSource(clickIdx).row()).id());
+//                 }
+// 
+//                 
+//                 model()->removeRow(clickIdx.row());
+//             }
+//         }
+//         else if (e->button()==Qt::LeftButton)
+//         {
+// 
+//             SpacesFilterProxyModel *sp = qobject_cast< SpacesFilterProxyModel*>(model());
+//              SpacesModel *sm = qobject_cast< SpacesModel*>(sp->sourceModel());
+// 
+// 
+// 
+// //             emit spaceShown(sm->m_spaceList.at(sp->mapToSource(clickIdx).row()));
+// 
+// 
+// 
+//         }
+// 
+// 
+//     }
+//     else
+//     {
+//         KCategorizedView::mousePressEvent(e);
+//     }
 
 
 }

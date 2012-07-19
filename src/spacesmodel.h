@@ -20,85 +20,44 @@
 #ifndef KEOMATH_SPACESMODEL_H
 #define KEOMATH_SPACESMODEL_H
 
-#include <QtCore/QAbstractTableModel>
+#include <QtCore/QAbstractListModel>
 
 #include "spaceitem.h"
-
-#include <kcategorizedsortfilterproxymodel.h>
 
 namespace Analitza
 {
 class Expression;
 }
 
-
 class SpacesView;
 
-class SpacesModel : public QAbstractTableModel
+class SpacesModel : public QAbstractListModel 
 {
-    Q_OBJECT
+
+friend class SpaceItem;   
+Q_OBJECT
 
 public:
-
-    friend class SpacesView;
     enum SpacesModelRoles { Selection=Qt::UserRole+1 };
-
-
     
-    explicit SpacesModel(QObject *parent=0);
+    SpacesModel(QObject *parent=0);
 
     Qt::ItemFlags flags ( const QModelIndex & index ) const;
 
     QVariant data( const QModelIndex &index, int role=Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent=QModelIndex()) const;
-    int columnCount(const QModelIndex & =QModelIndex()) const
-    {
-        return 4;
-    }
 
-    virtual bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
+    SpaceItem * addSpace(int dim);
 
-
-    
-    bool addSpace(const SpaceItem& space);
-
-    QModelIndex spaceIndex(const SpaceItem& space) const;
-    const SpaceItem & spaceFromId(const QString &id) const;
-    const SpaceItem & spaceFromIndex(int index) const;
-
-
-    bool editSpace(const QString& toChange, const SpaceItem& func);
-
-    const SpaceItem* getSpace(int num) const;
-
-    void clear();
-
-    virtual bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
-
-
-public slots:
-
-
-protected:
-
-
-    
-
-
-signals:
-    
-
-
-    void spaceModified(const SpaceItem& Space);
-
+    SpaceItem * item(int row) const;
+    void removeItem(int row);
 
 private:
-
-
-    SpaceItem::List m_spaceList;
+    SpaceItemList m_items;
+    bool m_itemCanCallModelRemoveItem; // just a lock para evitar que el item llame recursivamente a removeItem
 };
 
-
+/*
 class SpacesFilterProxyModel : public KCategorizedSortFilterProxyModel
 {
     Q_OBJECT
@@ -118,6 +77,6 @@ protected:
 
 private:
     int m_dimension; 
-};
+};*/
 
 #endif 

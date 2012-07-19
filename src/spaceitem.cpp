@@ -16,53 +16,38 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "spaceitem.h"
-#include <quuid.h>
-
-
-SpaceItem::SpaceItem()
-{
-
-}
+#include "spacesmodel.h"
 
 SpaceItem::SpaceItem(int dimension)
-    : m_dimension(dimension)
+    : m_dimension(dimension), m_inDestructorSoDontDeleteMe(false)
 {
-    m_id = QUuid::createUuid().toString();
     m_dateTime = KDateTime::currentLocalDateTime(); 
-}
-
-SpaceItem::SpaceItem(const SpaceItem &space)
-    : m_dimension(space.dimension())
-    , m_name(space.m_name)
-    , m_description(space.m_description)
-    , m_id(space.id())
-    , m_thumbnail(space.thumbnail())
-    , m_dateTime(space.dateTime())
-{
 }
 
 SpaceItem::~SpaceItem()
 {
-
+    if (m_model && m_model->m_itemCanCallModelRemoveItem)
+    {
+        m_inDestructorSoDontDeleteMe = true;
+        m_model->removeItem(m_model->m_items.indexOf(this));
+        m_inDestructorSoDontDeleteMe = false;
+    }
 }
 
-QPixmap SpaceItem::thumbnail() const
+void SpaceItem::setModel(SpacesModel * m)
 {
-    return m_thumbnail;
+    Q_ASSERT(m);
+    Q_ASSERT(m != m_model);
+    
+    m_model = m;
 }
 
-void SpaceItem::setThumbnail(const QPixmap thumbnail)
+void SpaceItem::emitDataChanged()
 {
-    m_thumbnail = thumbnail;
+    if (m_model)
+    {
+        int row = m_model->m_items.indexOf(this);
+        m_model->dataChanged(m_model->index(row), m_model->index(row));
+    }
 }
-
-int SpaceItem::dimension() const
-{
-    return m_dimension;
-}
-
-
-
-

@@ -110,9 +110,9 @@ Dashboard::Dashboard( FunctionsModel *functionsModel,  SpacesModel *spacesModel,
 {
     setupWidget();
 
-    m_spacesProxyModel = new  SpacesFilterProxyModel(this);
-    m_spacesProxyModel->setSourceModel(m_spacesModel);
-    m_spacesProxyModel->setCategorizedModel(true);
+//     m_spacesProxyModel = new  SpacesFilterProxyModel(this);
+//     m_spacesProxyModel->setSourceModel(m_spacesModel);
+//     m_spacesProxyModel->setCategorizedModel(true);
 
 
 
@@ -133,7 +133,7 @@ Dashboard::Dashboard( FunctionsModel *functionsModel,  SpacesModel *spacesModel,
 
 
 
-    m_dashboardWidget->spaces->setModel(m_spacesProxyModel);
+//     m_dashboardWidget->spaces->setModel(m_spacesProxyModel);
     m_dashboardWidget->functions->setModel(m_functionsProxyModel);
 
     m_dashboardWidget->functions->setIsMainFunctionsView(true);
@@ -147,7 +147,7 @@ Dashboard::Dashboard( FunctionsModel *functionsModel,  SpacesModel *spacesModel,
 
 
 
-    m_dashboardWidget->spaces->setMainFunctionsModel(m_functionsModel);
+//     m_dashboardWidget->spaces->setMainFunctionsModel(m_functionsModel);
 
 
     
@@ -746,137 +746,137 @@ void Dashboard::copySpace3DImage()
 
 void Dashboard::setFilterText(const QString &text)
 {
-    switch (m_dashboardWidget->viewMode->currentIndex())
-    {
-    case 0: 
-        m_spacesProxyModel->setFilterRegExp(QRegExp(m_dashboardWidget->filterTextSpaces->text(),
-                                            Qt::CaseInsensitive, QRegExp::RegExp));
-        break;
-
-    case 1: 
-        m_functionsProxyModel->setFilterRegExp(QRegExp(m_dashboardWidget->filterTextFunctions->text(),
-                                               Qt::CaseInsensitive, QRegExp::RegExp));
-        break;
-    }
+//     switch (m_dashboardWidget->viewMode->currentIndex())
+//     {
+//     case 0: 
+//         m_spacesProxyModel->setFilterRegExp(QRegExp(m_dashboardWidget->filterTextSpaces->text(),
+//                                             Qt::CaseInsensitive, QRegExp::RegExp));
+//         break;
+// 
+//     case 1: 
+//         m_functionsProxyModel->setFilterRegExp(QRegExp(m_dashboardWidget->filterTextFunctions->text(),
+//                                                Qt::CaseInsensitive, QRegExp::RegExp));
+//         break;
+//     }
 }
 
 void Dashboard::setFilterDimension(int radioButton)
 {
-    switch (m_dashboardWidget->viewMode->currentIndex())
-    {
-    case 0: 
-    {
-        switch (radioButton)
-        {
-        case 0:
-            m_spacesProxyModel->setFilterDimension(-1);
-            break;
-        case 1:
-            m_spacesProxyModel->setFilterDimension(2);
-            break;
-        case 2:
-            m_spacesProxyModel->setFilterDimension(3);
-            break;
-        }
-    }
-    break;
-
-    case 1: 
-    {
-        switch (radioButton)
-        {
-        case 0:
-            m_functionsProxyModel->setFilterDimension(-1);
-            break;
-        case 1:
-            m_functionsProxyModel->setFilterDimension(2);
-            break;
-        case 2:
-            m_functionsProxyModel->setFilterDimension(3);
-            break;
-        }
-    }
-    break;
-    }
+//     switch (m_dashboardWidget->viewMode->currentIndex())
+//     {
+//     case 0: 
+//     {
+//         switch (radioButton)
+//         {
+//         case 0:
+//             m_spacesProxyModel->setFilterDimension(-1);
+//             break;
+//         case 1:
+//             m_spacesProxyModel->setFilterDimension(2);
+//             break;
+//         case 2:
+//             m_spacesProxyModel->setFilterDimension(3);
+//             break;
+//         }
+//     }
+//     break;
+// 
+//     case 1: 
+//     {
+//         switch (radioButton)
+//         {
+//         case 0:
+//             m_functionsProxyModel->setFilterDimension(-1);
+//             break;
+//         case 1:
+//             m_functionsProxyModel->setFilterDimension(2);
+//             break;
+//         case 2:
+//             m_functionsProxyModel->setFilterDimension(3);
+//             break;
+//         }
+//     }
+//     break;
+//     }
 }
 
 void Dashboard::showFunctionOnSpace(const QUuid &spaceId)
 {
 
-     SpaceItem space = m_spacesModel->spaceFromId(spaceId);
-
-    if (space.dimension() == 2)
-    {
-        m_dashboardWidget->setCurrentIndex(1);
-        m_dashboardWidget->space2D->setSpace(space);
-
-        m_proxyViewer2D->setFilterSpaceId(space.id());
-    }
-    else if (space.dimension() == 3)
-    {
-        m_dashboardWidget->setCurrentIndex(2);
-
-        m_dashboardWidget->space3D->setSpace(space);
-
-        m_proxyViewer3D->setFilterSpaceId(space.id());
-    }
+//      SpaceItem space = m_spacesModel->spaceFromId(spaceId);
+// 
+//     if (space.dimension() == 2)
+//     {
+//         m_dashboardWidget->setCurrentIndex(1);
+//         m_dashboardWidget->space2D->setSpace(space);
+// 
+//         m_proxyViewer2D->setFilterSpaceId(space.id());
+//     }
+//     else if (space.dimension() == 3)
+//     {
+//         m_dashboardWidget->setCurrentIndex(2);
+// 
+//         m_dashboardWidget->space3D->setSpace(space);
+// 
+//         m_proxyViewer3D->setFilterSpaceId(space.id());
+//     }
 
 }
 
 void Dashboard::showSpace(const  SpaceItem &space)
 {
-    if (space.dimension() == 2)
-    {
-        m_dashboardWidget->setCurrentIndex(1);
-        m_dashboardWidget->space2D->setSpace(space);
-
-        m_proxyViewer2D->setFilterSpaceId(space.id());
-
-        
-        
-        
-        m_dashboardWidget->space2D->view()->update();
-    }
-    else if (space.dimension() == 3)
-    {
-        m_dashboardWidget->setCurrentIndex(2);
-
-        m_dashboardWidget->space3D->setSpace(space);
-
-        m_proxyViewer3D->setFilterSpaceId(space.id());
-    }
+//     if (space.dimension() == 2)
+//     {
+//         m_dashboardWidget->setCurrentIndex(1);
+//         m_dashboardWidget->space2D->setSpace(space);
+// 
+//         m_proxyViewer2D->setFilterSpaceId(space.id());
+// 
+//         
+//         
+//         
+//         m_dashboardWidget->space2D->view()->update();
+//     }
+//     else if (space.dimension() == 3)
+//     {
+//         m_dashboardWidget->setCurrentIndex(2);
+// 
+//         m_dashboardWidget->space3D->setSpace(space);
+// 
+//         m_proxyViewer3D->setFilterSpaceId(space.id());
+//     }
 }
 
 void Dashboard::addSpace2D()
 {
-     SpaceItem space(2);
-
-
-    m_dashboardWidget->setCurrentIndex(1);
-    m_spacesModel->addSpace(space);
-
-    m_dashboardWidget->space2D->setSpace(space);
-    m_proxyViewer2D->setFilterSpaceId(space.id());
-
-    updateGPLACSDocument();
+//      SpaceItem space(2);
+// 
+// 
+//     m_dashboardWidget->setCurrentIndex(1);
+//     m_spacesModel->addSpace(space);
+// 
+//     m_dashboardWidget->space2D->setSpace(space);
+//     m_proxyViewer2D->setFilterSpaceId(space.id());
+// 
+//     updateGPLACSDocument();
 }
 
 void Dashboard::addSpace3D()
 {
-     SpaceItem space(3);
-
-    m_dashboardWidget->setCurrentIndex(2);
-    m_spacesModel->addSpace(space);
-
-    m_dashboardWidget->space3D->setSpace(space);
-
-    m_proxyViewer3D->setFilterSpaceId(space.id());
-
-
-
-
-
-    updateGPLACSDocument();
+//      SpaceItem space(3);
+// 
+//     m_dashboardWidget->setCurrentIndex(2);
+//     m_spacesModel->addSpace(space);
+// 
+//     m_dashboardWidget->space3D->setSpace(space);
+// 
+//     m_proxyViewer3D->setFilterSpaceId(space.id());
+// 
+// 
+// 
+// 
+// 
+//     updateGPLACSDocument();
 
     
 
