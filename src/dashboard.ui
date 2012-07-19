@@ -33,7 +33,7 @@
       <widget class="QWidget" name="views_page2">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="FunctionsView" name="functions">
+         <widget class="PlotsView" name="functions">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -269,7 +269,7 @@
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>FunctionsView</class>
+   <class>PlotsView</class>
    <extends>QTreeView</extends>
    <header>functionsview.h</header>
   </customwidget>

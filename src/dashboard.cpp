@@ -107,6 +107,7 @@ Dashboard::Dashboard(QWidget *parent)
     a.setupUi(this);
     
     
+    
     ///
 //     setupWidget();
 

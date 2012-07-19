@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class PlotsEditor;
 class KIcon;
 class KAction;
 class Document;
@@ -73,7 +74,7 @@ private:
     Document *m_document;
     Dashboard *m_dashboard;
     
-    QDockWidget *m_spacePlotsDock;
+    PlotsEditor *m_spacePlotsDock;
     QDockWidget *m_spaceInfoDock;
     QDockWidget *m_spaceOptionsDock;
     

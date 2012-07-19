@@ -65,6 +65,7 @@
 #include <kcategorydrawer.h>
 #include "dashboard.h"
 #include "document.h"
+#include "functioneditor.h"
 
 #include "ui_space2dviewer.h"
 #include "ui_space3dviewer.h"
@@ -90,6 +91,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(m_dashboard, SIGNAL( modified() ), SLOT( updateTittleWhenChangeDocState() ));
     connect(m_dashboard, SIGNAL(dashemitShowAppInfo()), SLOT(showAboutAppDialog()));
+    
+    
 }
 
 MainWindow::~MainWindow()
@@ -104,6 +107,9 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
     act->setShortcut(shortcut);
     act->setCheckable(isCheckable);
     
+    if (isCheckable) 
+        act->setChecked(true);
+        
     actionCollection()->addAction(name, act);
     
     connect(act, SIGNAL(triggered()), slot);
@@ -137,7 +143,9 @@ void MainWindow::setupActions()
     //tools space
     createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-
+    //settings
+    
+    
 //     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
 //     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
 }
@@ -151,7 +159,7 @@ void MainWindow::setupToolBars()
 
 void MainWindow::setupDocks()
 {
-    m_spacePlotsDock = new QDockWidget(this);
+    m_spacePlotsDock = new PlotsEditor(this);
     Ui::DockWidget uispaceItemWidget;
     uispaceItemWidget.setupUi(m_spacePlotsDock);
     m_spacePlotsDock->setObjectName("asdasdds");

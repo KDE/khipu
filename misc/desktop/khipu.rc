@@ -27,13 +27,19 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <Menu name="tools">
             <text>&amp;Tools</text>
             <DefineGroup name="tools_dashboard_operations" />
-<!--             <Action name="delete_currentspace"/> -->
+            <Action name="delete_currentspace"/>
             <DefineGroup name="tools_space_operations" />
             <Action name="copy_snapshot"/>
             <Action name="export_snapshot"/>
         </Menu>
     </MenuBar>
-    
+  
+  <Menu name="settings"><text>&amp;Settings</text>
+    <Action name="options_show_menubar"/>
+    <Action name="options_show_toolbar"/>
+    <Separator/>
+    <Action name="fullscreen"/>
+  </Menu>
     <ToolBar name="mainToolBar" newline="false" noMerge="1"  index="0" hidden="false">
         <text>Main Toolbar</text>
         <Action name="file_new" />

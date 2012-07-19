@@ -34,7 +34,7 @@
 
 
 
-FunctionsView::FunctionsView(QWidget * parent) : QTreeView(parent)
+PlotsView::PlotsView(QWidget * parent) : QTreeView(parent)
     , m_mainView(false)
 {
 
@@ -46,7 +46,7 @@ FunctionsView::FunctionsView(QWidget * parent) : QTreeView(parent)
 //     setItemDelegate(new FunctionDelegate(this));
 }
 
-void FunctionsView::selectionChanged(const QItemSelection & selected, const QItemSelection &)
+void PlotsView::selectionChanged(const QItemSelection & selected, const QItemSelection &)
 {
 //     if(!selected.indexes().isEmpty())
 //     {
@@ -68,7 +68,7 @@ void FunctionsView::selectionChanged(const QItemSelection & selected, const QIte
 //     }
 }
 
-void FunctionsView::mousePressEvent(QMouseEvent * e)
+void PlotsView::mousePressEvent(QMouseEvent * e)
 {
 //     QModelIndex clickIdx(indexAt(e->pos()));
 //     QModelIndex nameIdx(clickIdx.sibling(clickIdx.row(), 0));

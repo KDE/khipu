@@ -30,14 +30,14 @@ class QUuid;
 // class FunctionsModel;
 // class Function;
 
-class FunctionsView : public QTreeView
+class PlotsView : public QTreeView
 {
     Q_OBJECT
 
 
 
 public:
-    FunctionsView(QWidget *parent=0);
+    PlotsView(QWidget *parent=0);
 
     virtual void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
     virtual void mousePressEvent ( QMouseEvent * event );
