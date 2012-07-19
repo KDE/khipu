@@ -21,6 +21,8 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class KIcon;
+class KAction;
 class Document;
 class KUrl;
 class KToggleAction;
@@ -39,22 +41,42 @@ public:
     virtual ~MainWindow();
 
 public slots:
+    void newFile();
     void openFile();
-    void showAboutAppDialog();
 
 private slots:
-    void newFile();
+    //helpers
+    void activateDashboardUi();
+    void activateSpaceUi();
+    
+    //app
+    void addSpace2D();
+    void addSpace3D();
+    void goHome();
+    
+    
+    
 
+    
+    
     void updateTittleWhenChangeDocState();
     void updateTittleWhenOpenSaveDoc();
 
 private:
+    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const char *slot);
     void setupActions();
+    void setupToolBars();
+    void setupDocks();
     bool queryClose();
 
 private:
     Document *m_document;
     Dashboard *m_dashboard;
+    
+    QDockWidget *m_spacePlotsDock;
+    QDockWidget *m_spaceInfoDock;
+    QDockWidget *m_spaceOptionsDock;
+    
 };
 
 #endif

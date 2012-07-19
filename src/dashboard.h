@@ -20,6 +20,7 @@
 #define GPLACS_DASHBOARD_H
 
 #include <QtGui/QWidget>
+#include <QStackedWidget>
 
 #include <QModelIndex>
 
@@ -29,7 +30,7 @@ class QSortFilterProxyModel;
 
 class DashboardWidget;
 
-class Dashboard : public QWidget
+class Dashboard : public QStackedWidget
 {
     Q_OBJECT
 

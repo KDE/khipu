@@ -41,59 +41,59 @@
 #include <QTextCodec>
 #include <QBuffer>
  
-class DashboardWidget : public QStackedWidget, public Ui::DashboardWidget
-{
-public:
-    DashboardWidget(QWidget *parent = 0)
-        : QStackedWidget(parent)
-    {
-        setupUi(this);
-
-        
-/*
-        openFile->setIcon(KIcon("document-open"));
-        saveFile->setIcon(KIcon("document-save"));
-
-
-        addSpace2D->setIcon(KIcon("add-space2d"));
-        addSpace3D->setIcon(KIcon("add-space3d"));
-        backFromSpace2D->setIcon(KIcon("go-previous"));
-        backFromSpace3D->setIcon(KIcon("go-previous"));
-
-        filterAllSpaces->setIcon(KIcon("format-justify-fill"));
-
-        filter2DSpaces->setIcon(KIcon("office-chart-line"));
-        filter3DSpaces->setIcon(KIcon("office-chart-ring"));
-
-        filterAllFunctions->setIcon(KIcon("format-justify-fill"));
-        filter2DFunctions->setIcon(KIcon("office-chart-line"));
-        filter3DFunctions->setIcon(KIcon("office-chart-ring"));
-
-        showCoordSysSettings2D->setIcon(KIcon("configure"));
-        showCoordSysSettings3D->setIcon(KIcon("configure"));
-
-        showFunctionEditor2D->setIcon(KIcon("address-book-new"));
-        showFunctionEditor3D->setIcon(KIcon("address-book-new"));
-
-
-
-        showSpace2DInfo->setIcon(KIcon("document-edit"));
-        showSpace3DInfo->setIcon(KIcon("document-edit"));
-
-        saveSpace2DImage->setIcon(KIcon("view-preview"));
-        saveSpace3DImage->setIcon(KIcon("view-preview"));
-
-        copySpace2DImage->setIcon(KIcon("application-x-mswrite"));
-        copySpace3DImage->setIcon(KIcon("application-x-mswrite"));
-
-        showAboutAppDialog->setIcon(KIcon("help-about"));*/
-
-
-
-        filterTextFunctions->setClearButtonShown(true);
-        filterTextSpaces->setClearButtonShown(true);
-    }
-};
+// class DashboardWidget : public QStackedWidget, public Ui::DashboardWidget
+// {
+// public:
+//     DashboardWidget(QWidget *parent = 0)
+//         : QStackedWidget(parent)
+//     {
+//         setupUi(this);
+// 
+//         
+// /*
+//         openFile->setIcon(KIcon("document-open"));
+//         saveFile->setIcon(KIcon("document-save"));
+// 
+// 
+//         addSpace2D->setIcon(KIcon("add-space2d"));
+//         addSpace3D->setIcon(KIcon("add-space3d"));
+//         backFromSpace2D->setIcon(KIcon("go-previous"));
+//         backFromSpace3D->setIcon(KIcon("go-previous"));
+// 
+//         filterAllSpaces->setIcon(KIcon("format-justify-fill"));
+// 
+//         filter2DSpaces->setIcon(KIcon("office-chart-line"));
+//         filter3DSpaces->setIcon(KIcon("office-chart-ring"));
+// 
+//         filterAllFunctions->setIcon(KIcon("format-justify-fill"));
+//         filter2DFunctions->setIcon(KIcon("office-chart-line"));
+//         filter3DFunctions->setIcon(KIcon("office-chart-ring"));
+// 
+//         showCoordSysSettings2D->setIcon(KIcon("configure"));
+//         showCoordSysSettings3D->setIcon(KIcon("configure"));
+// 
+//         showFunctionEditor2D->setIcon(KIcon("address-book-new"));
+//         showFunctionEditor3D->setIcon(KIcon("address-book-new"));
+// 
+// 
+// 
+//         showSpace2DInfo->setIcon(KIcon("document-edit"));
+//         showSpace3DInfo->setIcon(KIcon("document-edit"));
+// 
+//         saveSpace2DImage->setIcon(KIcon("view-preview"));
+//         saveSpace3DImage->setIcon(KIcon("view-preview"));
+// 
+//         copySpace2DImage->setIcon(KIcon("application-x-mswrite"));
+//         copySpace3DImage->setIcon(KIcon("application-x-mswrite"));
+// 
+//         showAboutAppDialog->setIcon(KIcon("help-about"));*/
+// 
+// 
+// 
+//         filterTextFunctions->setClearButtonShown(true);
+//         filterTextSpaces->setClearButtonShown(true);
+//     }
+// };
 
 
 
@@ -101,9 +101,14 @@ public:
 
 
 Dashboard::Dashboard(QWidget *parent)
-    : QWidget(parent)
+    : QStackedWidget(parent)
 {
-    setupWidget();
+    Ui::DashboardWidget a;
+    a.setupUi(this);
+    
+    
+    ///
+//     setupWidget();
 
 //     m_dashboardWidget->spaces->setModel(m_spacesProxyModel);
 //     m_widget->functions->setModel(m_functionsProxyModel);
@@ -113,8 +118,8 @@ Dashboard::Dashboard(QWidget *parent)
 
     
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->addWidget(m_widget);
+//     QHBoxLayout *mainLayout = new QHBoxLayout(this);
+//     mainLayout->addWidget(m_widget);
 }
 
 Dashboard::~Dashboard()
@@ -269,7 +274,7 @@ void Dashboard::filterByDimension(int radioButton)
 
 void Dashboard::setupWidget()
 {
-    m_widget = new DashboardWidget(this);
+//     m_widget = new DashboardWidget(this);
 
 /*
     m_widget->space2D->setFunctionsModel(m_proxyViewer2D);
@@ -321,8 +326,8 @@ void Dashboard::setupWidget()
 
     connect(m_widget->showAboutAppDialog, SIGNAL(clicked()), SIGNAL(dashemitShowAppInfo()));*/
 
-    m_widget->viewMode->setCurrentIndex(1);
-    m_widget->viewMode->setCurrentIndex(0);
+//     m_widget->viewMode->setCurrentIndex(1);
+//     m_widget->viewMode->setCurrentIndex(0);
 
 }
 

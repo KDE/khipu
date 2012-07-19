@@ -75,31 +75,16 @@ MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
     m_document = new Document(this);
+
     m_dashboard = new Dashboard(this);
+    m_dashboard->setDocument(m_document);
 
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
     setCentralWidget(m_dashboard);
-
-    QDockWidget *dock = new QDockWidget(this);
-    
-    Ui::spaceItemWidget uispaceItemWidget;
-    uispaceItemWidget.setupUi(dock);
-    
-        QDockWidget *dock1 = new QDockWidget(this);
-    
-    Ui::coordSysSettingsDock_2 uispaceItemWidget1;
-    uispaceItemWidget1.setupUi(dock1);
-   
-    
-    QDockWidget *dock11 = new QDockWidget(this);
-    
-    Ui::DockWidget uispaceItemWidget11;
-    uispaceItemWidget11.setupUi(dock11);
-    
-    addDockWidget(Qt::RightDockWidgetArea, dock);
-    addDockWidget(Qt::RightDockWidgetArea, dock1);
-    addDockWidget(Qt::LeftDockWidgetArea, dock11);
+    setupToolBars();
+    setupDocks();
+    activateDashboardUi();
 
     updateTittleWhenOpenSaveDoc();
 
@@ -111,38 +96,79 @@ MainWindow::~MainWindow()
 {
 }
 
+KAction* MainWindow::createAction(const char* name, const QString& text, const QString& iconName, const QKeySequence& shortcut, const char* slot)
+{
+    KAction* act = new KAction(this);
+    act->setText(text);
+    act->setIcon(KIcon(iconName));
+    act->setShortcut(shortcut);
+    
+    actionCollection()->addAction(name, act);
+    
+    connect(act, SIGNAL(triggered()), slot);
+
+    return act;
+}
+
 void MainWindow::setupActions()
 {
-    KStandardAction::quit   (this, SLOT( close()      ), actionCollection());
-
-    KAction* clearAction = new KAction(this);
-    clearAction->setText(i18n("&Clear"));
-    clearAction->setIcon(KIcon("document-new"));
-    clearAction->setShortcut(Qt::CTRL + Qt::Key_W);
-    actionCollection()->addAction("zoom_operations", clearAction);
-
-
-    KAction* clearAction1 = new KAction(this);
-    clearAction1->setText(i18n("&Clear"));
-    clearAction1->setIcon(KIcon("kde"));
-    clearAction1->setShortcut(Qt::CTRL + Qt::Key_W);
-    actionCollection()->addAction("find_operations", clearAction1);
-
-    KAction* clearAction11 = new KAction(this);
-    clearAction11->setText(i18n("&Clear"));
-    clearAction11->setIcon(KIcon("list-add"));
-    clearAction11->setShortcut(Qt::CTRL + Qt::Key_W);
-    actionCollection()->addAction("new_space2d", clearAction11);
-
-
-//   KStandardAction::open(this, SLOT(configureToolbars()), actionCollection());
+    //file
+    KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
     KStandardAction::open(this, SLOT(hide3dtb()), actionCollection());
-//   unplugActionList("");
-//     toolBar("view2DToolbar")->setVisible(true);
+    KStandardAction::save(this, SLOT(hide3dtb()), actionCollection());
+    KStandardAction::saveAs(this, SLOT(hide3dtb()), actionCollection());
+    KStandardAction::close(this, SLOT(hide3dtb()), actionCollection());
+    KStandardAction::quit(this, SLOT(close()), actionCollection());
+    //edit - dashboard
+    createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    //view - dashboard //TODO Show Plots Dictionary
+    createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    //view - space
+    createAction("show_space_plots", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("show_space_info", i18n("&Show Space Information"), "document-edit", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("show_space_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    //go
+    KStandardAction::home(this, SLOT(goHome()), actionCollection());
+    //tools dashboard
+    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    //tools space
+    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
 
+//     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
+//     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
+}
 
-    connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
-    connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
+void MainWindow::setupToolBars()
+{
+//     hideSpaceToolBar();
+    
+//     qDebug() << action("add_space2d")->isCheckable();
+}
+
+void MainWindow::setupDocks()
+{
+    m_spacePlotsDock = new QDockWidget(this);
+    Ui::DockWidget uispaceItemWidget;
+    uispaceItemWidget.setupUi(m_spacePlotsDock);
+    m_spacePlotsDock->setObjectName("asdasdds");
+
+    m_spaceInfoDock = new QDockWidget(this);
+    Ui::spaceItemWidget uispaceItemWidget1;
+    uispaceItemWidget1.setupUi(m_spaceInfoDock);
+    m_spacePlotsDock->setObjectName("asdasdds222");
+    
+    m_spaceOptionsDock = new QDockWidget(this);
+    Ui::coordSysSettingsDock_2 uispaceItemWidget11;
+    uispaceItemWidget11.setupUi(m_spaceOptionsDock);
+    m_spacePlotsDock->setObjectName("a33sdasdds");
+
+        
+    addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
+    addDockWidget(Qt::RightDockWidgetArea, m_spaceInfoDock);
+    addDockWidget(Qt::RightDockWidgetArea, m_spaceOptionsDock);
 }
 
 bool MainWindow::queryClose()
@@ -182,23 +208,53 @@ bool MainWindow::queryClose()
 
     return true;
 }
-
+void MainWindow::newFile()
+{
+    MainWindow * newWnd = new MainWindow();
+    newWnd->show();
+}
 void MainWindow::openFile()
 {
  
 }
 
-void MainWindow::showAboutAppDialog()
+void MainWindow::activateDashboardUi()
 {
-    const KAboutData *aboutData = KGlobal::mainComponent().aboutData();
-    KAboutApplicationDialog a(aboutData, KAboutApplicationDialog::HideTranslators, this);
-    a.exec();
+    toolBar("spaceToolBar")->hide();
+    toolBar("mainToolBar")->show();
+
+    m_spacePlotsDock->hide();
+    m_spaceInfoDock->hide();
+    m_spaceOptionsDock->hide();
 }
 
-void MainWindow::newFile()
+void MainWindow::activateSpaceUi()
 {
-    MainWindow * newWnd = new MainWindow();
-    newWnd->show();
+    toolBar("mainToolBar")->hide();
+    toolBar("spaceToolBar")->show();
+
+    m_spacePlotsDock->show();
+    m_spaceInfoDock->show();
+    m_spaceOptionsDock->show();
+}
+
+
+void MainWindow::addSpace2D()
+{
+    m_dashboard->setCurrentIndex(1);
+    activateSpaceUi();
+}
+
+void MainWindow::addSpace3D()
+{
+    m_dashboard->setCurrentIndex(2);
+    activateSpaceUi();
+}
+
+void MainWindow::goHome()
+{
+    m_dashboard->setCurrentIndex(0);
+    activateDashboardUi();
 }
 
 void MainWindow::updateTittleWhenChangeDocState()
