@@ -11,7 +11,7 @@ set ( khipu_SRCS
 
 
   functionsmodel.cpp
-  functionsview.cpp
+  plotsview.cpp
   functioneditor.cpp
   functionlibraryedit.cpp
   functionlibrarymodel.cpp
@@ -34,7 +34,7 @@ set ( khipu_SRCS
 
 
 kde4_add_ui_files ( khipu_SRCS
-  functioneditorwidget.ui
+  plotseditor.ui
   space2dviewer.ui
   space3dviewer.ui
 

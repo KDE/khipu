@@ -18,7 +18,7 @@
  *************************************************************************************/
 
 
-#include "functionsview.h"
+#include "plotsview.h"
 #include "functionsmodel.h"
 
 #include <KDebug>

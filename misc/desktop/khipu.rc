@@ -19,9 +19,9 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
             <Action name="show_plots"/>
             <Action name="show_spaces"/>
             <DefineGroup name="view_dashboard_operations" />
-            <Action name="show_space_plots"/>
+            <Action name="show_plots_editor"/>
             <Action name="show_space_info"/> 
-            <Action name="show_space_options"/>
+            <Action name="show_plotter_options"/>
         </Menu>
         
         <Menu name="tools">
@@ -57,9 +57,9 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="go_operations" />
         <Action name="go_home" />
         <DefineGroup name="view_operations" />
-        <Action name="show_space_plots"/>
+        <Action name="show_plots_editor"/>
         <Action name="show_space_info"/> 
-        <Action name="show_space_options"/>
+        <Action name="show_plotter_options"/>
         <DefineGroup name="tools_operations" />
         <DefineGroup name="view_operations" />
         <Action name="copy_snapshot"/>

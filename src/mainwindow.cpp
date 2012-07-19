@@ -133,9 +133,9 @@ void MainWindow::setupActions()
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     //view - space
-    createAction("show_space_plots", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
+    createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
     createAction("show_space_info", i18n("&Show Space Information"), "document-edit", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
-    createAction("show_space_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
+    createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
     //go
     KStandardAction::home(this, SLOT(goHome()), actionCollection());
     //tools dashboard
@@ -236,9 +236,9 @@ void MainWindow::activateDashboardUi()
     //view
     action("show_plots")->setVisible(true);
     action("show_spaces")->setVisible(true);
-    action("show_space_plots")->setVisible(false);
+    action("show_plots_editor")->setVisible(false);
     action("show_space_info")->setVisible(false);
-    action("show_space_options")->setVisible(false);
+    action("show_plotter_options")->setVisible(false);
     //tools
     action("copy_snapshot")->setVisible(false);
     action("export_snapshot")->setVisible(false);
@@ -262,9 +262,9 @@ void MainWindow::activateSpaceUi()
     //view
     action("show_plots")->setVisible(false);
     action("show_spaces")->setVisible(false);
-    action("show_space_plots")->setVisible(true);
+    action("show_plots_editor")->setVisible(true);
     action("show_space_info")->setVisible(true);
-    action("show_space_options")->setVisible(true);
+    action("show_plotter_options")->setVisible(true);
     //tools
     action("copy_snapshot")->setVisible(true);
     action("export_snapshot")->setVisible(true);

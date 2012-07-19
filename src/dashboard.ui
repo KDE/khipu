@@ -271,7 +271,7 @@
   <customwidget>
    <class>PlotsView</class>
    <extends>QTreeView</extends>
-   <header>functionsview.h</header>
+   <header>plotsview.h</header>
   </customwidget>
   <customwidget>
    <class>SpacesView</class>

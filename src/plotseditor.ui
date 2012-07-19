@@ -24,14 +24,14 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QListView" name="listView"/>
+           <widget class="PlotsView" name="listView"/>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
@@ -429,6 +429,11 @@
    <class>ExpressionEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>analitzagui/expressionedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>PlotsView</class>
+   <extends>QListView</extends>
+   <header>plotsview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

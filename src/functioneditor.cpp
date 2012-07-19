@@ -30,7 +30,7 @@
 #include <KRandom>
 #include <math.h>
 #include "functionsmodel.h"
-#include "functionsview.h"
+#include "plotsview.h"
 // #include "keomath/solvers/solver.h"
 // #include "keomath/solvers/solverfactory.h"
 #include "functionlibraryedit.h"
