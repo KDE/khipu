@@ -36,48 +36,6 @@
 #include <analitzaplot/plotsmodel.h>
 
 
-
-FunctionsModel::FunctionsModel(QObject * parent, Analitza::Variables *v)
-    : PlotsModel(parent, v)
-
-{
-    m_selectionModel = new QItemSelectionModel(this);
-
-}
-
-
-FunctionsModel::~FunctionsModel()
-{
-
-}
-
-
-QString FunctionsModel::spaceId(int row) const
-{
-//     return m_spaceIds.key(item(row)->id());
-return QString();
-}
-
-int FunctionsModel::currentItem() const
-{
-    return m_selectionModel->currentIndex().row();
-}
-
-void FunctionsModel::setSpaceId(int row, const QString& spaceId)
-{
-    m_spaceIds[spaceId] = item(row);
-}
-
-void FunctionsModel::removeItemsBySpace(const QString& spaceId)
-{
-    QList<PlotItem*> its = m_spaceIds.values(spaceId);
-    
-    for (int row = 0; row < rowCount(); ++row)
-        foreach(PlotItem *itemid, its)
-            if (itemid == item(row))
-                removeItem(row);
-}
-
 ///
 
 FunctionsFilterProxyModel::FunctionsFilterProxyModel(QObject *parent)
@@ -102,31 +60,32 @@ void FunctionsFilterProxyModel::setFilterDimension(int dimension)
 bool FunctionsFilterProxyModel::filterAcceptsRow(int sourceRow,
         const QModelIndex &sourceParent) const
 {
-    QModelIndex indexName = sourceModel()->index(sourceRow, 0, sourceParent);
-    QModelIndex indexLambda = sourceModel()->index(sourceRow, 1, sourceParent);
-    QModelIndex indexDimension = sourceModel()->index(sourceRow, 2, sourceParent);
-
-    QString dim;
-
-    if (m_dimension == 2)
-        dim = QString("2D");
-    else if (m_dimension == 3)
-        dim = QString("3D");
-
-     FunctionsModel *fm = static_cast< FunctionsModel*>(sourceModel());
-
-
-
-    if (!m_spaceId.isNull())
-        if (fm->spaceId(sourceRow) != m_spaceId)
-            return false;
-
-
-    if (m_dimension != -1) 
-        if (sourceModel()->data(indexDimension, Qt::DisplayRole).toString() != dim)
-            return false;
-
-
-    return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
-            sourceModel()->data(indexLambda).toString().contains(filterRegExp()));
+//     QModelIndex indexName = sourceModel()->index(sourceRow, 0, sourceParent);
+//     QModelIndex indexLambda = sourceModel()->index(sourceRow, 1, sourceParent);
+//     QModelIndex indexDimension = sourceModel()->index(sourceRow, 2, sourceParent);
+// 
+//     QString dim;
+// 
+//     if (m_dimension == 2)
+//         dim = QString("2D");
+//     else if (m_dimension == 3)
+//         dim = QString("3D");
+// 
+//      FunctionsModel *fm = static_cast< FunctionsModel*>(sourceModel());
+// 
+// 
+// 
+//     if (!m_spaceId.isNull())
+//         if (fm->spaceId(sourceRow) != m_spaceId)
+//             return false;
+// 
+// 
+//     if (m_dimension != -1) 
+//         if (sourceModel()->data(indexDimension, Qt::DisplayRole).toString() != dim)
+//             return false;
+// 
+// 
+//     return (sourceModel()->data(indexName).toString().contains(filterRegExp()) ||
+//             sourceModel()->data(indexLambda).toString().contains(filterRegExp()));
+return true;
 }

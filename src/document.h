@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
+ *  Copyright (C) 2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -16,52 +16,64 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef GPLACS_DASHBOARD_H
-#define GPLACS_DASHBOARD_H
+#ifndef KHIPU_DOCUMENT_H
+#define KHIPU_DOCUMENT_H
 
-#include <QtGui/QWidget>
+#include <QObject>
+#include <QMap>
+#include <QPixmap>
+#include <kurl.h>
 
-#include <QModelIndex>
+namespace Analitza {
+class Variables;
+}
 
-class Document;
+class PlotItem;
+class SpaceItem;
+class PlotsModel;
+class SpacesModel;
 
-class QSortFilterProxyModel;
-
-class DashboardWidget;
-
-class Dashboard : public QWidget
+//NOTE one app <-> one doc ... kiss ;)
+//contiene los modelos y las funciones de guardar load etc
+class Document : public QObject
 {
     Q_OBJECT
 
 public:
+    Document(QObject *parent = 0);
+    virtual ~Document();
+    
+    KUrl fileUrl() const { return m_fileUrl; }
+    bool isModified() const { return m_modified; }
 
-    Dashboard(QWidget *parent = 0);
-    ~Dashboard();
-
-    void setDocument(Document *doc) { m_document; }
+    PlotsModel *plotsModel() const { return m_plotsModel; }
+    SpacesModel *spacesModel() const { return m_spacesModel; }
     
 public slots:
-    void goHome();
-    void addSpace2D();
-    void addSpace3D();
-    void removeCurrentSpace();
+    void load(const KUrl& fileUrl);
+    void save();
+    void saveAs(const KUrl& fileUrl);
+    void setModified(bool mod = true) { m_modified = mod; }
 
-    void exportSpace2DSnapshot();
-    void exportSpace3DSnapshot();
-    void copySpace2DSnapshotToClipboard();
-    void copySpace3DSnapshotToClipboard();
-
-private slots:
-    void removeSpace(const QModelIndex & index);
-    
-    void filterByText(const QString &text); // any text on the title or description
-    void filterByDimension(int radioButtonid);
+signals:
+    void loaded(bool isok);
+    void saved(bool isok);
+    void modified();
 
 private:
-    void setupWidget();
+    QByteArray pixmapToUtf8(const QPixmap &pix) const;
+    QPixmap utf8ToPixmap(const QString &pixdata) const;
+    
+    
+    KUrl m_fileUrl;
+    bool m_modified;
+    
+    PlotsModel *m_plotsModel;
+    SpacesModel *m_spacesModel;
+    Analitza::Variables *m_variables;
 
-    Document * m_document;
-    DashboardWidget *m_widget;
+    //one to many
+    QMap<SpaceItem *, PlotItem *> m_maps;
 };
 
-#endif
+#endif // KHIPU_DOCUMENT_H

@@ -8,24 +8,28 @@ include_directories (
 
 set ( khipu_SRCS
 
+
+
   functionsmodel.cpp
   functionsview.cpp
   functioneditor.cpp
   functionlibraryedit.cpp
   functionlibrarymodel.cpp
+  space2dviewer.cpp
+  space3dviewer.cpp
+
   #use analitzaplot now :) 
 
   spaceitem.cpp
   spacesmodel.cpp
   spacesview.cpp
 
-  space2dviewer.cpp
-  space3dviewer.cpp
+  document.cpp
 
+  dashboard.cpp
   mainwindow.cpp
   main.cpp
 
-  dashboard.cpp
 )
 
 

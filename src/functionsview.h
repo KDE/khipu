@@ -27,7 +27,7 @@
 class QUuid;
 
 
-class FunctionsModel;
+// class FunctionsModel;
 // class Function;
 
 class FunctionsView : public QTreeView

@@ -51,7 +51,7 @@ public:
 
     SpaceItem * item(int row) const;
     void removeItem(int row);
-
+    
 private:
     SpaceItemList m_items;
     bool m_itemCanCallModelRemoveItem; // just a lock para evitar que el item llame recursivamente a removeItem

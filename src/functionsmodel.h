@@ -34,26 +34,6 @@
 
 class QItemSelectionModel;
 
-class FunctionsModel : public PlotsModel
-{
-    Q_OBJECT
-public:
-    FunctionsModel(QObject * parent = 0, Analitza::Variables *v = 0);
-
-    virtual ~FunctionsModel();
-    
-    QString spaceId(int row) const;
-    int currentItem() const;
-
-public slots:
-    void setSpaceId(int row, const QString& spaceId); //str sid -> str fky 
-    void removeItemsBySpace(const QString& spaceId);
-    
-private:
-    QMap<QString, PlotItem*> m_spaceIds;
-    QItemSelectionModel *m_selectionModel;
-};
-
 class FunctionsFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT

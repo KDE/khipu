@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class Document;
 class KUrl;
 class KToggleAction;
 
@@ -41,15 +42,9 @@ public slots:
     void openFile();
     void showAboutAppDialog();
 
-    void hide3dtb();
-
 private slots:
     void newFile();
-    void saveFile();
-    void saveFileAs(const QString &filename);
 
-    void optionsPreferences();
-    void updateInputTypePreviewImage(bool text_input);
     void updateTittleWhenChangeDocState();
     void updateTittleWhenOpenSaveDoc();
 
@@ -58,13 +53,8 @@ private:
     bool queryClose();
 
 private:
-    FunctionsModel *m_functionsModel;
-    SpacesModel *m_spacesModel;
-
-    Dashboard *m_gplacsWidget;
-
-    KToggleAction *m_toolbarAction;
-    KToggleAction *m_statusbarAction;
+    Document *m_document;
+    Dashboard *m_dashboard;
 };
 
 #endif

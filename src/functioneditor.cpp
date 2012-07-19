@@ -39,7 +39,7 @@
 // #include "keomath/solvers/solverfactory.h"
 #include "functionlibraryedit.h"
 #include "analitzagui/variablesmodel.h"
-#include <analitzaplot/private/functiongraph.h>
+#include <analitzaplot/functiongraph.h>
 #include <analitzaplot/planecurve.h>
 
 #include <KStandardDirs>
@@ -70,25 +70,6 @@ public:
         cartesianCurveType->setItemData(2, QStringList() << QString("x") << QString("y"), Qt::UserRole);
 
 
-
-
-
-
-
-
-        
-
-
-
-
-
-
-        
-
-
-
-
-        
 
         cmbTipoAnim->addItem("AntiHoraria");
         cmbTipoAnim->addItem("Horaria");
