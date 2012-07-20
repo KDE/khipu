@@ -50,11 +50,9 @@ void Dashboard::setDocument(Document* doc)
     
     m_widget->spacesView->setModel(doc->spacesModel());
     m_widget->plotsView->setModel(doc->plotsModel());
+    m_widget->plotsView2D->setModel(doc->plotsModel());
+    //TODO conn 3d
 
-//     connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
-//         m_document, SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
-//     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
-//             m_document, SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     
     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
@@ -226,7 +224,7 @@ void Dashboard::filterByDimension(int radioButton)
 void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected)
 {
     setCurrentIndex(1);
-//     emit spaceActivated();
+
     emit spaceActivated(selected.indexes().first().row());
     
     
@@ -250,7 +248,10 @@ void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSele
 //luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current
 void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 {
-    m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
+//     qDebug() << "sadasadadsd ads";
+//     m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
+
+    m_widget->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
 }
 
 

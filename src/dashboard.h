@@ -38,6 +38,10 @@ namespace Ui
     class DashboardWidget;
 }
 
+//dashboard solo se encarga de cambiar el space actual al momento de que el main window
+//agrega un space (osea al momento de rowsinsertedelspacemodel)
+//luego de eso envia una signal activatespace que llegua a document y a mainaplication
+
 class Dashboard : public QStackedWidget
 {
     Q_OBJECT
@@ -61,6 +65,8 @@ public slots:
     void exportSpace3DSnapshot();
     void copySpace2DSnapshotToClipboard();
     void copySpace3DSnapshotToClipboard();
+    
+    
 
 private slots:
     void removeSpace(const QModelIndex & index);
@@ -72,7 +78,7 @@ private slots:
     void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
     
 signals:
-    void spaceActivated(int spaceidx = 2); // hacia el mainwind para que prepare los toolbars etc
+    void spaceActivated(int spaceidx); // hacia el mainwind para que prepare los toolbars etc
 
 private:
     void setupWidget();

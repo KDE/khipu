@@ -24,18 +24,13 @@
 
 #include <KDE/KApplication>
 
-#include <QtGui/QDropEvent>
 #include <QtGui/QPainter>
-#include <QtGui/QPrinter>
 #include <QtGui/QDockWidget>
 #include <QtGui/QLayout>
-#include <QtGui/QLabel>
 #include <QtGui/QGraphicsScene>
 #include <QtGui/QGraphicsProxyWidget>
 #include <QLineEdit>
 #include <qstringlistmodel.h>
-#include <qlistview.h>
-#include <qtreeview.h>
 #include <QDebug>
 #include <QDomDocument>
 #include <KDE/KLocale>
@@ -45,24 +40,16 @@
 #include <KDE/KActionCollection>
 #include <KDE/KStandardAction>
 #include <KDE/KStatusBar>
-#include <KDE/KConfigDialog>
-#include <KDE/KPageWidget>
-#include <KDE/KPageModel>
-#include <KDE/KPushButton>
 #include <KDE/KFileDialog>
 #include <KDE/KMessageBox>
 #include <KIO/NetAccess>
 #include <KDE/KMessageBox>
-#include <KDE/KRecentFilesAction>
-#include <KDE/KConfigDialog>
 #include <KDE/KStandardDirs>
 #include <KToolBar>
 #include "functionsmodel.h"
 #include "spacesmodel.h"
 #include <KAboutApplicationDialog>
 #include <KMenuBar>
-#include <kcategorizedview.h>
-#include <kcategorydrawer.h>
 #include "dashboard.h"
 #include "document.h"
 #include "plotseditor.h"
@@ -80,15 +67,19 @@ MainWindow::MainWindow(QWidget *parent)
     m_dashboard = new Dashboard(this);
     m_dashboard->setDocument(m_document);
     
-    connect(m_dashboard, SIGNAL(spaceActivated(int)), SLOT(setPlotsEditorProfile(int)));
-
+    //para main de dashboard
+    connect(m_dashboard, SIGNAL(spaceActivated(int)), SLOT(activateSpace(int)));
+    
+    //para document de dashboard
+    connect(m_dashboard, SIGNAL(spaceActivated(int)), m_document , SIGNAL(spaceActivated(int)));
+    
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
     setCentralWidget(m_dashboard);
     setupToolBars();
     setupDocks();
     activateDashboardUi();
-
+    
     updateTittleWhenOpenSaveDoc();
 }
 
@@ -157,7 +148,8 @@ void MainWindow::setupToolBars()
 void MainWindow::setupDocks()
 {
     m_spacePlotsDock = new PlotsEditor(this);
-    m_spacePlotsDock->setModel(m_document->plotsModel());
+    m_spacePlotsDock->setDocument(m_document);
+    connect(m_document, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     m_spaceInfoDock = new QDockWidget(this);
     Ui::spaceItemWidget uispaceItemWidget1;
@@ -222,6 +214,13 @@ void MainWindow::openFile()
  
 }
 
+void MainWindow::activateSpace(int spaceidx)
+{
+    activateSpaceUi();
+    
+    m_spacePlotsDock->reset();
+}
+
 void MainWindow::activateDashboardUi()
 {
     //menubar
@@ -279,20 +278,13 @@ void MainWindow::activateSpaceUi()
     
 }
 
-void MainWindow::setPlotsEditorProfile(int spaceidx)
-{
-    m_spacePlotsDock->setDimensionProfile(m_document->spacesModel()->item(spaceidx)->dimension()); 
-
-    activateSpaceUi();
-}
-
-
 void MainWindow::addSpace2D()
 {
     activateSpaceUi();
     
     m_dashboard->showPlotsView2D();
     m_document->spacesModel()->addSpace(2);
+    
 }
 
 void MainWindow::addSpace3D()
@@ -301,6 +293,7 @@ void MainWindow::addSpace3D()
     
     m_dashboard->showPlotsView3D();
     m_document->spacesModel()->addSpace(3);
+    
 }
 
 void MainWindow::goHome()

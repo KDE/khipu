@@ -36,6 +36,8 @@
 // #include "keomath/solvers/solver.h"
 // #include "keomath/solvers/solverfactory.h"
 #include "functionlibraryedit.h"
+#include "document.h"
+#include "spacesmodel.h"
 #include "analitzagui/variablesmodel.h"
 #include <analitzaplot/functiongraph.h>
 #include <analitzaplot/planecurve.h>
@@ -43,7 +45,7 @@
 #include "ui_plotseditor.h"
 
 PlotsEditor::PlotsEditor(QWidget * parent)
-    : QDockWidget(parent), m_dimensionProfile(2)
+    : QDockWidget(parent)
 {
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
@@ -58,6 +60,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     //cons
     connect(m_widget->typesDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showTypes()));
+    connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
 
     connect(m_widget->createCartesianCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createCartesianCurve()));
     connect(m_widget->createPolarCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createPolarCurve()));
@@ -80,9 +83,24 @@ PlotsEditor::~PlotsEditor()
     delete m_widget;
 }
 
-void PlotsEditor::setDimensionProfile(int dim)
+void PlotsEditor::setDocument(Document* doc)
 {
-    switch (dim)
+    m_document  = doc;
+    
+    m_widget->plotsView->setModel(m_document->plotsModel());
+
+}
+
+void PlotsEditor::setCurrentSpace(int spaceidx)
+{
+    
+    qDebug() << m_document->currentSpace();
+    //set dim profile ... esto depende del space actual
+    int dim = m_document->spacesModel()->item(m_document->currentSpace())->dimension();
+    
+    
+    
+ switch (dim)
     {
         case 2:
         {
@@ -104,9 +122,26 @@ void PlotsEditor::setDimensionProfile(int dim)
     }
 }
 
-void PlotsEditor::setModel(PlotsModel* m)
+
+void PlotsEditor::reset()
 {
-    m_widget->plotsView->setModel(m);
+    //clear widgets //TODO GSOC
+    m_widget->f->clear();
+    m_widget->g->clear();
+    m_widget->h->clear();
+    m_widget->minx->clear();
+    m_widget->maxx->clear();
+    m_widget->miny->clear();
+    m_widget->maxy->clear();
+    m_widget->minz->clear();
+    m_widget->maxx->clear();
+    
+    
+    //reset widgets
+    m_widget->widgets->setCurrentIndex(0);
+//     m_widget->preview3D->camera()/*->centerScene*/;
+    m_widget->preview3D->stopAnimation();
+    
     
 }
 
@@ -185,6 +220,11 @@ void PlotsEditor::createParametricSurface()
 {
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
+}
+
+void PlotsEditor::savePlot()
+{
+    m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
 }
 
 void PlotsEditor::removePlot()

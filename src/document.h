@@ -47,6 +47,8 @@ public:
     
     KUrl fileUrl() const { return m_fileUrl; }
     bool isModified() const { return m_modified; }
+    
+    int currentSpace() const { return m_currentSpace; }
 
     SpacesModel *spacesModel() { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
@@ -57,11 +59,9 @@ public slots:
     void saveAs(const KUrl& fileUrl);
     void setModified(bool mod = true) { m_modified = mod; }
     
-    void setCurrentSpace(int spaceidx);
-    void setCurrentSpace(const QModelIndex & current, const QModelIndex & previous);
-    void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected);
 
 private slots:
+    void setCurrentSpace(int spaceidx);
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
     void unmapPlot(const QModelIndex & parent, int start, int end); // cuando se borra un plot del modelo 
     
@@ -70,6 +70,8 @@ signals:
     void saved(bool isok);
     void modified();
 
+    void spaceActivated(int spaceidx);
+    
 private:
     QByteArray pixmapToUtf8(const QPixmap &pix) const;
     QPixmap utf8ToPixmap(const QString &pixdata) const;

@@ -46,6 +46,7 @@ Document::Document(QObject* parent)
     
     m_plotsModel = new PlotsModel(this, m_variables);
     
+    connect(this, SIGNAL(spaceActivated(int)), SLOT(setCurrentSpace(int)));
     
     connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
     connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
@@ -491,21 +492,13 @@ void Document::setCurrentSpace(int spaceidx)
     m_currentSpace = spaceidx;
 }
 
-void Document::setCurrentSpace(const QModelIndex & current, const QModelIndex & previous)
-{
-    if (current.isValid()) // assert
-        m_currentSpace = current.row();
-}
-
-void Document::setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected)
-{
-    if (selected.indexes().first().isValid()) // assert
-        m_currentSpace = selected.indexes().first().row();
-}
-
 void Document::mapPlot(const QModelIndex & parent, int start, int end)
 {
+    
+    //aserto si se esta agregando un plot de dim != al space 
     m_maps[m_currentSpace] = start;
+    
+//     qDebug() << m_currentSpace << start;
 }
 //asrtos para verificar que no existan un plot asociado a mas de un space
 void Document::unmapPlot(const QModelIndex& parent, int start, int end)

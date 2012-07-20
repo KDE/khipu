@@ -22,6 +22,7 @@
 #include <QDockWidget>
 #include <QModelIndex>
 
+class Document;
 class PlotsModel;
 class QStackedWidget;
 class QTreeView;
@@ -40,8 +41,11 @@ public:
     PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
-    void setDimensionProfile(int dim); // 2d no muestra ningun widget de 3d ... y 3d nada de 2d
-    void setModel(PlotsModel *m);
+    void setDocument(Document *doc);
+
+public slots:
+    void setCurrentSpace(int spaceidx);
+    void reset(); // clear fields and reset the widgets like view3d /view2d (centrandolos etc))
 
 private slots:
     void showList();
@@ -59,6 +63,8 @@ private slots:
     void createSphericalSurface();
     void createParametricSurface();
     
+    void savePlot();
+    
     void removePlot();
     
 signals:
@@ -68,7 +74,7 @@ signals:
 private:
     Ui::PlotsEditorWidget *m_widget;
     PlotsModel *m_localModel; // usado solo para los previews
-    int m_dimensionProfile;
+    Document *m_document;
 };
 
 #endif 
