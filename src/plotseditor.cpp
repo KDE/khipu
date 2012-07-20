@@ -43,7 +43,7 @@
 #include "ui_plotseditor.h"
 
 PlotsEditor::PlotsEditor(QWidget * parent)
-    : QDockWidget(parent)
+    : QDockWidget(parent), m_dimensionProfile(2)
 {
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
@@ -78,6 +78,30 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 PlotsEditor::~PlotsEditor()
 {
     delete m_widget;
+}
+
+void PlotsEditor::setDimensionProfile(int dim)
+{
+    switch (dim)
+    {
+        case 2:
+        {
+            m_widget->planeCurvesLinks->show();
+            m_widget->spaceCurvesLinks->hide();
+            m_widget->surfacesLinks->hide();
+            m_widget->previews->setCurrentIndex(0);
+            break;
+        }
+        
+        case 3:
+        {
+            m_widget->surfacesLinks->show();
+            m_widget->spaceCurvesLinks->show();
+            m_widget->planeCurvesLinks->hide();
+            m_widget->previews->setCurrentIndex(1);
+            break;
+        }
+    }
 }
 
 void PlotsEditor::setModel(PlotsModel* m)

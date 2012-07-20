@@ -49,6 +49,7 @@ private slots:
     //helpers
     void activateDashboardUi();
     void activateSpaceUi();
+    void setPlotsEditorProfile(int spaceidx);
     
     //app
     void addSpace2D();

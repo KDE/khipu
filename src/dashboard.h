@@ -72,8 +72,8 @@ private slots:
     void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
     
 signals:
-    void spaceActivated(); // hacia el mainwind para que prepare los toolbars etc
-    
+    void spaceActivated(int spaceidx = 2); // hacia el mainwind para que prepare los toolbars etc
+
 private:
     void setupWidget();
 

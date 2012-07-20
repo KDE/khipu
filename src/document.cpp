@@ -484,7 +484,13 @@ void Document::saveAs(const KUrl& fileUrl)
 {
 ///emit
 }
- 
+
+void Document::setCurrentSpace(int spaceidx)
+{
+//TODO aser  limites
+    m_currentSpace = spaceidx;
+}
+
 void Document::setCurrentSpace(const QModelIndex & current, const QModelIndex & previous)
 {
     if (current.isValid()) // assert

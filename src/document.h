@@ -57,6 +57,7 @@ public slots:
     void saveAs(const KUrl& fileUrl);
     void setModified(bool mod = true) { m_modified = mod; }
     
+    void setCurrentSpace(int spaceidx);
     void setCurrentSpace(const QModelIndex & current, const QModelIndex & previous);
     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected);
 

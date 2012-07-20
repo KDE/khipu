@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_dashboard = new Dashboard(this);
     m_dashboard->setDocument(m_document);
     
-    connect(m_dashboard, SIGNAL(spaceActivated()), SLOT(activateSpaceUi()));
+    connect(m_dashboard, SIGNAL(spaceActivated(int)), SLOT(setPlotsEditorProfile(int)));
 
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
@@ -125,7 +125,7 @@ void MainWindow::setupActions()
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     //edit - dashboard
     createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace3D()));
     //view - dashboard //TODO Show Plots Dictionary
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
@@ -274,6 +274,16 @@ void MainWindow::activateSpaceUi()
     m_spacePlotsDock->show();
     m_spaceInfoDock->show();
     m_spaceOptionsDock->show();
+    
+    ///
+    
+}
+
+void MainWindow::setPlotsEditorProfile(int spaceidx)
+{
+    m_spacePlotsDock->setDimensionProfile(m_document->spacesModel()->item(spaceidx)->dimension()); 
+
+    activateSpaceUi();
 }
 
 

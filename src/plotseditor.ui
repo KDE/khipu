@@ -154,7 +154,7 @@
       <widget class="QWidget" name="page_2">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QGroupBox" name="groupBox_2">
+         <widget class="QGroupBox" name="planeCurvesLinks">
           <property name="title">
            <string>Create a Plane Curve</string>
           </property>
@@ -184,7 +184,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_3">
+         <widget class="QGroupBox" name="spaceCurvesLinks">
           <property name="title">
            <string>Create a Space Curve</string>
           </property>
@@ -200,7 +200,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="surfacesLinks">
           <property name="title">
            <string>Create a Surface</string>
           </property>

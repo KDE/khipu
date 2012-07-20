@@ -40,6 +40,7 @@ public:
     PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
+    void setDimensionProfile(int dim); // 2d no muestra ningun widget de 3d ... y 3d nada de 2d
     void setModel(PlotsModel *m);
 
 private slots:
@@ -67,6 +68,7 @@ signals:
 private:
     Ui::PlotsEditorWidget *m_widget;
     PlotsModel *m_localModel; // usado solo para los previews
+    int m_dimensionProfile;
 };
 
 #endif 

@@ -51,10 +51,10 @@ void Dashboard::setDocument(Document* doc)
     m_widget->spacesView->setModel(doc->spacesModel());
     m_widget->plotsView->setModel(doc->plotsModel());
 
-    connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
-        m_document, SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
-    connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
-            m_document, SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
+//     connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
+//         m_document, SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
+//     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
+//             m_document, SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     
     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
@@ -90,6 +90,7 @@ void Dashboard::showPlotsView2D()
 
 void Dashboard::showPlotsView3D()
 {
+    qDebug() << "3ddd";
     m_widget->plotsViews->setCurrentIndex(1);
 }
 
@@ -225,7 +226,25 @@ void Dashboard::filterByDimension(int radioButton)
 void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected)
 {
     setCurrentIndex(1);
-    emit spaceActivated();
+//     emit spaceActivated();
+    emit spaceActivated(selected.indexes().first().row());
+    
+    
+    switch (m_document->spacesModel()->item(selected.indexes().first().row())->dimension())
+    {
+        case 2: 
+        {
+            m_widget->plotsViews->setCurrentIndex(0); 
+            
+            break;
+        }
+        
+        case 3: 
+        {
+            m_widget->plotsViews->setCurrentIndex(1); 
+            break;
+        }
+    }
 }
 
 //luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current
