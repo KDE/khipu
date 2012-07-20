@@ -32,7 +32,29 @@
       <widget class="SpacesView" name="spaces">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QListView" name="spacesView"/>
+         <widget class="QListView" name="spacesView">
+          <property name="mouseTracking">
+           <bool>true</bool>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="tabKeyNavigation">
+           <bool>true</bool>
+          </property>
+          <property name="resizeMode">
+           <enum>QListView::Adjust</enum>
+          </property>
+          <property name="gridSize">
+           <size>
+            <width>260</width>
+            <height>270</height>
+           </size>
+          </property>
+          <property name="viewMode">
+           <enum>QListView::IconMode</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>

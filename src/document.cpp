@@ -34,7 +34,13 @@ Document::Document(QObject* parent)
 {
     m_spacesModel = new SpacesModel(this);
     
-    SpaceItem *space = m_spacesModel->addSpace(2, "adasd", "333", KIcon("kde").pixmap(QSize(64,64)));
+    m_spacesModel->addSpace(2, "adasd", "333", KIcon("kde").pixmap(QSize(256,256)));
+    m_spacesModel->addSpace(3, "123 2 234 424 23424 adaadad ad a ada adad sadassd", "333", KIcon("list-add").pixmap(QSize(256,256)));
+    m_spacesModel->addSpace(2, "adasd", "333", KIcon("roll").pixmap(QSize(256,256)));
+    m_spacesModel->addSpace(3, "adasd", "333", KIcon("list-remove").pixmap(QSize(256,256)));
+    m_spacesModel->addSpace(3, "adasd", "333", KIcon("oxygen").pixmap(QSize(256,256)));
+    m_spacesModel->addSpace(3, "adasd", "333", KIcon("okular").pixmap(QSize(256,256)));
+    m_spacesModel->addSpace(2, "adasd", "333", KIcon("dolphin").pixmap(QSize(256,256)));
     
     m_plotsModel = new PlotsModel(this, m_variables);
     
