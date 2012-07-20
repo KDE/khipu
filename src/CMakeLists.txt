@@ -54,7 +54,7 @@ target_link_libraries( khipu
   ${QT_QTOPENGL_LIBRARY}
   ${QT_QTXML_LIBRARY}
   ${QGLVIEWER_LIBRARY}
-#   keomath # remove this for next iters
+  ${QTMML_LIBRARY}
 )
 
 install (TARGETS khipu ${INSTALL_TARGETS_DEFAULT_ARGS} )

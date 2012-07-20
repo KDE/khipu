@@ -29,7 +29,7 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="SpacesView" name="spaces">
+      <widget class="QWidget" name="spaces">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QListView" name="spacesView">
@@ -361,9 +361,9 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QStackedWidget" name="views_2">
-         <widget class="QWidget" name="page_3"/>
-         <widget class="QWidget" name="page_4"/>
+        <widget class="QStackedWidget" name="plotsViews">
+         <widget class="PlotsView2D" name="plotsView2D"/>
+         <widget class="PlotsView3D" name="plotsView3D"/>
         </widget>
        </item>
       </layout>
@@ -390,9 +390,15 @@
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>SpacesView</class>
+   <class>PlotsView2D</class>
    <extends>QWidget</extends>
-   <header>spacesview.h</header>
+   <header>analitzaplot/plotsview2d.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PlotsView3D</class>
+   <extends>QWidget</extends>
+   <header>analitzaplot/plotsview3d.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

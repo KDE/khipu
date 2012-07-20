@@ -6,6 +6,12 @@ include(KDE4Defaults)
 find_package ( OpenGL REQUIRED )
 find_package ( Gettext REQUIRED )
 find_package ( Analitza REQUIRED )
+find_package(LibKdeEdu)
+find_library(QTMML_LIBRARY qtmmlwidget)
+
+include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${LIBKDEEDU_INCLUDE_DIR}/qtmml ${ANALITZA_INCLUDE_DIR})
+
+macro_log_feature(QTMML_LIBRARY "QtMathML Widget" "Supports displaying some formulas in a mathematic form" "http://doc.qt.nokia.com/solutions/4/qtmmlwidget/qtmmlwidget.html" FALSE "" "")
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 

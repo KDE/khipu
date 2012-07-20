@@ -30,6 +30,8 @@
 #include <KRandom>
 #include <math.h>
 #include <QStringListModel>
+#include <QPushButton>
+#include <libkdeedu/qtmml/QtMmlWidget>
 #include "plotsview.h"
 // #include "keomath/solvers/solver.h"
 // #include "keomath/solvers/solverfactory.h"
@@ -43,68 +45,131 @@
 PlotsEditor::PlotsEditor(QWidget * parent)
     : QDockWidget(parent)
 {
-    Ui::DockWidget dd;
-    dd.setupUi(this);
+    m_widget = new Ui::PlotsEditorWidget;
+    m_widget->setupUi(this);
     setObjectName("adasdds");
     
-    m_plotsView = dd.plotsView;
+    Analitza::Expression e("x*x+3");
+    
+    m_widget->plotExample->setContent(e.toMathMLPresentation());
+    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(32,32));
 // costri r el selecto cmunto para view 
     
     //cons
+    connect(m_widget->typesDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
+    connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showTypes()));
+
+    connect(m_widget->createCartesianCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createCartesianCurve()));
+    connect(m_widget->createPolarCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createPolarCurve()));
+    connect(m_widget->createParametricCurve2D, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricCurve2D()));
+    connect(m_widget->createParametricCurve3D, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricCurve3D()));
+    connect(m_widget->createCartesianSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createCartesianSurface()));
+    connect(m_widget->createCylindricalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createCylindricalSurface()));
+    connect(m_widget->createSphericalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createSphericalSurface()));
+    connect(m_widget->createParametricSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricSurface()));
     
-    connect(dd.addRandomPlot, SIGNAL(pressed()), SLOT(addPlot()));
-    connect(dd.removePlot, SIGNAL(pressed()), SLOT(removePlot()));
+    connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(showTypes()));
+    
+    connect(m_widget->roolPlot, SIGNAL(pressed()), SLOT(addPlots()));
+    connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     
 }
 
 PlotsEditor::~PlotsEditor()
 {
-
+    delete m_widget;
 }
 
 void PlotsEditor::setModel(PlotsModel* m)
 {
-    
-    
-    m_plotsView->setModel(m);
-
+    m_widget->plotsView->setModel(m);
     
 }
 
 
 void PlotsEditor::showList()
 {
+    m_widget->widgets->setCurrentIndex(0);
 }
 
-void PlotsEditor::showCreateByName()
+void PlotsEditor::showTypes()
 {
-
-}
-
-void PlotsEditor::showCreateByExpression()
-{
-
+    m_widget->widgets->setCurrentIndex(1);
 }
 
 void PlotsEditor::showEditor()
 {
-
+        /// clear actions 
+    m_widget->widgets->setCurrentIndex(2);
 }
 
-void PlotsEditor::addPlot()
+void PlotsEditor::addPlots()
 {
+//     setCurrentIndex(1);
+    
+    
     //asert view-Zmodel not null
     
-    PlotsModel *model = qobject_cast< PlotsModel *>(m_plotsView->model());
+//     PlotsModel *model = qobject_cast< PlotsModel *>(m_plotsView->model());
     
-    model->addPlaneCurve(Analitza::Expression("x=y*y"), "adasd", Qt::red);
+//     model->addPlaneCurve(Analitza::Expression("x=y*y"), "adasd", Qt::red);
+}
+
+void PlotsEditor::createCartesianCurve()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(0); //2d preview
+}
+
+void PlotsEditor::createPolarCurve()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(0); //2d preview
+}
+
+void PlotsEditor::createParametricCurve2D()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(0); //2d preview
+}
+
+void PlotsEditor::createParametricCurve3D()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(1); //3d preview
+}
+
+void PlotsEditor::createCartesianSurface()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(1); //3d preview
+}
+
+void PlotsEditor::createCylindricalSurface()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(1); //3d preview
+}
+
+void PlotsEditor::createSphericalSurface()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(1); //3d preview
+}
+
+void PlotsEditor::createParametricSurface()
+{
+    showEditor();
+    m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
 void PlotsEditor::removePlot()
 {
-    if (m_plotsView->selectionModel()->hasSelection())
+    
+    if (m_widget->plotsView->selectionModel()->hasSelection())
     {
-        static_cast<PlotsModel*>(m_plotsView->model())->removeItem(m_plotsView->selectionModel()->currentIndex().row());
+        static_cast<PlotsModel*>(m_widget->plotsView->model())->removeItem(
+            m_widget->plotsView->selectionModel()->currentIndex().row());
     }
 }
 

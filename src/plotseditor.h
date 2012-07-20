@@ -22,9 +22,16 @@
 #include <QDockWidget>
 #include <QModelIndex>
 
+class PlotsModel;
+class QStackedWidget;
 class QTreeView;
 class PlotsModel;
 class PlotsView;
+
+namespace Ui
+{
+    class PlotsEditorWidget;
+}
 
 class PlotsEditor : public QDockWidget
 {
@@ -37,11 +44,20 @@ public:
 
 private slots:
     void showList();
-    void showCreateByName();
-    void showCreateByExpression();
+    void showTypes();
     void showEditor();
     
-    void addPlot(); // test method
+    void addPlots(); // test method
+    
+    void createCartesianCurve();
+    void createPolarCurve();
+    void createParametricCurve2D();
+    void createParametricCurve3D();
+    void createCartesianSurface();
+    void createCylindricalSurface();
+    void createSphericalSurface();
+    void createParametricSurface();
+    
     void removePlot();
     
 signals:
@@ -49,7 +65,8 @@ signals:
     void plotRemoved(const QModelIndex &index);  // emit when item != 0
 
 private:
-    QTreeView *m_plotsView;
+    Ui::PlotsEditorWidget *m_widget;
+    PlotsModel *m_localModel; // usado solo para los previews
 };
 
 #endif 

@@ -71,6 +71,7 @@
 #include "ui_space3dviewer.h"
 
 
+
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
@@ -239,7 +240,7 @@ void MainWindow::activateDashboardUi()
     
     //toolbars
     toolBar("spaceToolBar")->hide();
-//     toolBar("mainToolBar")->show();
+    toolBar("mainToolBar")->show();
 
     //docks
     m_spacePlotsDock->hide();
@@ -266,7 +267,7 @@ void MainWindow::activateSpaceUi()
     action("export_snapshot")->setVisible(true);
     
     //toolbars
-//     toolBar("mainToolBar")->hide();
+    toolBar("mainToolBar")->hide();
     toolBar("spaceToolBar")->show();
 
     //docks
@@ -280,6 +281,7 @@ void MainWindow::addSpace2D()
 {
     activateSpaceUi();
     
+    m_dashboard->showPlotsView2D();
     m_document->spacesModel()->addSpace(2);
 }
 
@@ -287,6 +289,7 @@ void MainWindow::addSpace3D()
 {
     activateSpaceUi();
     
+    m_dashboard->showPlotsView3D();
     m_document->spacesModel()->addSpace(3);
 }
 

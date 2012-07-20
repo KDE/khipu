@@ -23,6 +23,7 @@
 #include <QStackedWidget>
 
 #include <QModelIndex>
+#include "plotseditor.h"
 
 class QListView;
 class QTreeView;
@@ -31,6 +32,11 @@ class Document;
 class QSortFilterProxyModel;
 class QItemSelection;
 class DashboardWidget;
+
+namespace Ui
+{
+    class DashboardWidget;
+}
 
 class Dashboard : public QStackedWidget
 {
@@ -45,6 +51,8 @@ public:
     
 public slots:
     void goHome();
+    void showPlotsView2D();
+    void showPlotsView3D();
     void addSpace2D();
     void addSpace3D();
     void removeCurrentSpace();
@@ -70,10 +78,7 @@ private:
     void setupWidget();
 
     Document * m_document;
-    DashboardWidget *m_widget;
-    
-    QListView *m_spacesView;
-    QTreeView *m_plotsView;
+    Ui::DashboardWidget *m_widget;
 };
 
 #endif

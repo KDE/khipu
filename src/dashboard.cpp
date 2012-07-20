@@ -29,17 +29,16 @@
 #include <QDebug>
 
 Dashboard::Dashboard(QWidget *parent)
-    : QStackedWidget(parent), m_spacesView(0), m_plotsView(0)
+    : QStackedWidget(parent)
 {
-    Ui::DashboardWidget a;
-    a.setupUi(this);
+    m_widget = new  Ui::DashboardWidget;
+    m_widget->setupUi(this);
     
-    m_plotsView = a.plotsView;
-    m_spacesView = a.spacesView;
 }
 
 Dashboard::~Dashboard()
 {
+    delete m_widget;
 }
 
 void Dashboard::setDocument(Document* doc)
@@ -48,15 +47,16 @@ void Dashboard::setDocument(Document* doc)
     
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
 
-    m_spacesView->setModel(doc->spacesModel());
-    m_plotsView->setModel(doc->plotsModel());
+    
+    m_widget->spacesView->setModel(doc->spacesModel());
+    m_widget->plotsView->setModel(doc->plotsModel());
 
-    connect(m_spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
+    connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
         m_document, SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
-    connect(m_spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
+    connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
             m_document, SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     
-    connect(m_spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
+    connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     
     
@@ -81,6 +81,16 @@ void Dashboard::goHome()
 // 
 // 
 //     m_widget->setCurrentIndex(0);
+}
+
+void Dashboard::showPlotsView2D()
+{
+    m_widget->plotsViews->setCurrentIndex(0);
+}
+
+void Dashboard::showPlotsView3D()
+{
+    m_widget->plotsViews->setCurrentIndex(1);
 }
 
 
@@ -221,7 +231,7 @@ void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSele
 //luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current
 void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 {
-    m_spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
+    m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
 }
 
 
