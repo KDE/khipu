@@ -18,88 +18,15 @@
 
 #include "dashboard.h"
 
-
-#include <QtGui/QLayout>
-#include <QtGui/QStackedWidget>
-#include <QtGui/QLabel>
-#include <QtGui/QRadioButton>
-#include <QDebug>
-#include <KDE/KPushButton>
-#include <KDE/KLineEdit>
-#include <KDE/KComboBox>
-#include <KFileDialog>
-#include "functionsmodel.h"
 #include "spaceitem.h"
 #include "space2dviewer.h"
 #include "space3dviewer.h"
 #include "spacesmodel.h"
 #include "document.h"
 #include "analitza/variables.h"
+#include <analitzaplot/plotsmodel.h>
 #include "ui_dashboard.h"
-#include <QDomDocument>
-#include <analitza/analyzer.h>
-#include <analitzaplot/plotsview2d.h>
-#include <QTextCodec>
-#include <QBuffer>
- 
-// class DashboardWidget : public QStackedWidget, public Ui::DashboardWidget
-// {
-// public:
-//     DashboardWidget(QWidget *parent = 0)
-//         : QStackedWidget(parent)
-//     {
-//         setupUi(this);
-// 
-//         
-// /*
-//         openFile->setIcon(KIcon("document-open"));
-//         saveFile->setIcon(KIcon("document-save"));
-// 
-// 
-//         addSpace2D->setIcon(KIcon("add-space2d"));
-//         addSpace3D->setIcon(KIcon("add-space3d"));
-//         backFromSpace2D->setIcon(KIcon("go-previous"));
-//         backFromSpace3D->setIcon(KIcon("go-previous"));
-// 
-//         filterAllSpaces->setIcon(KIcon("format-justify-fill"));
-// 
-//         filter2DSpaces->setIcon(KIcon("office-chart-line"));
-//         filter3DSpaces->setIcon(KIcon("office-chart-ring"));
-// 
-//         filterAllFunctions->setIcon(KIcon("format-justify-fill"));
-//         filter2DFunctions->setIcon(KIcon("office-chart-line"));
-//         filter3DFunctions->setIcon(KIcon("office-chart-ring"));
-// 
-//         showCoordSysSettings2D->setIcon(KIcon("configure"));
-//         showCoordSysSettings3D->setIcon(KIcon("configure"));
-// 
-//         showFunctionEditor2D->setIcon(KIcon("address-book-new"));
-//         showFunctionEditor3D->setIcon(KIcon("address-book-new"));
-// 
-// 
-// 
-//         showSpace2DInfo->setIcon(KIcon("document-edit"));
-//         showSpace3DInfo->setIcon(KIcon("document-edit"));
-// 
-//         saveSpace2DImage->setIcon(KIcon("view-preview"));
-//         saveSpace3DImage->setIcon(KIcon("view-preview"));
-// 
-//         copySpace2DImage->setIcon(KIcon("application-x-mswrite"));
-//         copySpace3DImage->setIcon(KIcon("application-x-mswrite"));
-// 
-//         showAboutAppDialog->setIcon(KIcon("help-about"));*/
-// 
-// 
-// 
-//         filterTextFunctions->setClearButtonShown(true);
-//         filterTextSpaces->setClearButtonShown(true);
-//     }
-// };
-
-
-
-
-
+#include <QDebug>
 
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent), m_spacesView(0), m_plotsView(0)
@@ -109,21 +36,6 @@ Dashboard::Dashboard(QWidget *parent)
     
     m_plotsView = a.plotsView;
     m_spacesView = a.spacesView;
-    
-    
-    ///
-//     setupWidget();
-
-//     m_dashboardWidget->spaces->setModel(m_spacesProxyModel);
-//     m_widget->functions->setModel(m_functionsProxyModel);
-
-//     m_widget->functions->setIsMainFunctionsView(true);
-
-
-    
-
-//     QHBoxLayout *mainLayout = new QHBoxLayout(this);
-//     mainLayout->addWidget(m_widget);
 }
 
 Dashboard::~Dashboard()
@@ -132,13 +44,27 @@ Dashboard::~Dashboard()
 
 void Dashboard::setDocument(Document* doc)
 {
+    m_document = doc;
+    
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
 
     m_spacesView->setModel(doc->spacesModel());
     m_plotsView->setModel(doc->plotsModel());
 
+    connect(m_spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
+        m_document, SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
+    connect(m_spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
+            m_document, SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
+    
+    connect(m_spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
+            SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
+    
+    
+    SpacesModel * m = m_document->spacesModel();
+    
+    connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int,int)));
+    
 }
-
 
 void Dashboard::goHome()
 {
@@ -285,6 +211,19 @@ void Dashboard::filterByDimension(int radioButton)
 //     break;
 //     }
 }
+
+void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected)
+{
+    setCurrentIndex(1);
+    emit spaceActivated();
+}
+
+//luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current
+void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
+{
+    m_spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
+}
+
 
 void Dashboard::setupWidget()
 {

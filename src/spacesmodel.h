@@ -21,6 +21,7 @@
 #define KEOMATH_SPACESMODEL_H
 
 #include <QtCore/QAbstractListModel>
+#include <KIcon>
 
 #include "spaceitem.h"
 
@@ -48,7 +49,7 @@ public:
     int rowCount(const QModelIndex &parent=QModelIndex()) const;
 
     SpaceItem * addSpace(int dim, const QString & title = QString(), const QString &description = QString(), 
-                         const QPixmap &thumbnail=QPixmap());
+                         const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
 
     SpaceItem * item(int row) const;
     void removeItem(int row);

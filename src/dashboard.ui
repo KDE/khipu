@@ -33,6 +33,9 @@
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QListView" name="spacesView">
+          <property name="cursor" stdset="0">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="mouseTracking">
            <bool>true</bool>
           </property>

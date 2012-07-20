@@ -35,11 +35,13 @@ public:
     
     void setModel(PlotsModel *m);
 
-public slots:
+private slots:
     void showList();
     void showCreateByName();
     void showCreateByExpression();
     void showEditor();
+    
+    void addPlot(); // test method
     
 signals:
     void plotAdded(const QModelIndex &index);  // emit when item != 0

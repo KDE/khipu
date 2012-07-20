@@ -67,7 +67,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QToolButton" name="toolButton">
+             <widget class="QToolButton" name="addRandomPlot">
               <property name="text">
                <string/>
               </property>

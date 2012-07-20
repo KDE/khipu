@@ -78,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_dashboard = new Dashboard(this);
     m_dashboard->setDocument(m_document);
+    
+    connect(m_dashboard, SIGNAL(spaceActivated()), SLOT(activateSpaceUi()));
 
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
@@ -87,11 +89,6 @@ MainWindow::MainWindow(QWidget *parent)
     activateDashboardUi();
 
     updateTittleWhenOpenSaveDoc();
-
-    connect(m_dashboard, SIGNAL( modified() ), SLOT( updateTittleWhenChangeDocState() ));
-    connect(m_dashboard, SIGNAL(dashemitShowAppInfo()), SLOT(showAboutAppDialog()));
-    
-    
 }
 
 MainWindow::~MainWindow()
@@ -120,10 +117,10 @@ void MainWindow::setupActions()
 {
     //file
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
-    KStandardAction::open(this, SLOT(hide3dtb()), actionCollection());
-    KStandardAction::save(this, SLOT(hide3dtb()), actionCollection());
-    KStandardAction::saveAs(this, SLOT(hide3dtb()), actionCollection());
-    KStandardAction::close(this, SLOT(hide3dtb()), actionCollection());
+    KStandardAction::open(this, SLOT(newFile()), actionCollection());
+    KStandardAction::save(this, SLOT(newFile()), actionCollection());
+    KStandardAction::saveAs(this, SLOT(newFile()), actionCollection());
+    KStandardAction::close(this, SLOT(newFile()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     //edit - dashboard
     createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
@@ -252,6 +249,8 @@ void MainWindow::activateDashboardUi()
 
 void MainWindow::activateSpaceUi()
 {
+    m_dashboard->setCurrentIndex(1);
+
     //menu
     //edit
     action("add_space2d")->setVisible(false);
@@ -280,14 +279,16 @@ void MainWindow::activateSpaceUi()
 
 void MainWindow::addSpace2D()
 {
-    m_dashboard->setCurrentIndex(1);
     activateSpaceUi();
+    
+    m_document->spacesModel()->addSpace(2);
 }
 
 void MainWindow::addSpace3D()
 {
-    m_dashboard->setCurrentIndex(2);
     activateSpaceUi();
+    
+    m_document->spacesModel()->addSpace(3);
 }
 
 void MainWindow::goHome()

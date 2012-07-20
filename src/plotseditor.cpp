@@ -50,6 +50,10 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_plotsView = dd.plotsView;
 // costri r el selecto cmunto para view 
     
+    //cons
+    
+    connect(dd.addRandomPlot, SIGNAL(pressed()), SLOT(addPlot()));
+    
 }
 
 PlotsEditor::~PlotsEditor()
@@ -84,6 +88,15 @@ void PlotsEditor::showCreateByExpression()
 void PlotsEditor::showEditor()
 {
 
+}
+
+void PlotsEditor::addPlot()
+{
+    //asert view-Zmodel not null
+    
+    PlotsModel *model = qobject_cast< PlotsModel *>(m_plotsView->model());
+    
+    model->addPlaneCurve(Analitza::Expression("x=y*y"), "adasd", Qt::red);
 }
 
 

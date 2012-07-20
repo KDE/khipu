@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QMap>
 #include <QPixmap>
+#include <qitemselectionmodel.h>
 #include <kurl.h>
 
 class QModelIndex;
@@ -47,7 +48,7 @@ public:
     KUrl fileUrl() const { return m_fileUrl; }
     bool isModified() const { return m_modified; }
 
-    SpacesModel *spacesModel() const { return m_spacesModel; }
+    SpacesModel *spacesModel() { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
 
 public slots:
@@ -55,7 +56,12 @@ public slots:
     void save();
     void saveAs(const KUrl& fileUrl);
     void setModified(bool mod = true) { m_modified = mod; }
-    void mapPlot(const QModelIndex &plotIndex); // mapea el plot con el spacio actual
+    
+    void setCurrentSpace(const QModelIndex & current, const QModelIndex & previous);
+    void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected);
+
+private slots:
+    void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
 
 signals:
     void loaded(bool isok);
@@ -73,8 +79,9 @@ private:
     PlotsModel *m_plotsModel;
     Analitza::Variables *m_variables;
 
-    //one to many
-    QMap<SpaceItem *, PlotItem *> m_maps;
+    //one to many -- space index -> many plots index
+    int m_currentSpace; // curr space index 
+    QMap<int, int> m_maps;
 };
 
 #endif // KHIPU_DOCUMENT_H

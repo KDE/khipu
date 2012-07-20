@@ -29,7 +29,7 @@ class QTreeView;
 class Document;
 
 class QSortFilterProxyModel;
-
+class QItemSelection;
 class DashboardWidget;
 
 class Dashboard : public QStackedWidget
@@ -60,6 +60,12 @@ private slots:
     void filterByText(const QString &text); // any text on the title or description
     void filterByDimension(int radioButtonid);
 
+    void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
+    void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
+    
+signals:
+    void spaceActivated(); // hacia el mainwind para que prepare los toolbars etc
+    
 private:
     void setupWidget();
 
