@@ -49,23 +49,23 @@ int SpacesModel::rowCount(const QModelIndex &idx) const
     return m_items.count();
 }
 
-SpaceItem* SpacesModel::addSpace(int dim)
+SpaceItem* SpacesModel::addSpace(int dim, const QString & title, const QString &description, const QPixmap &thumbnail)
 {
     Q_ASSERT(dim == 2 || dim == 3);
     
     SpaceItem * ret = 0;
+    
+    beginInsertRows (QModelIndex(), m_items.count(), m_items.count());
 
-    {
-        beginInsertRows (QModelIndex(), m_items.count(), m_items.count());
+    ret = new SpaceItem(dim);
+    ret->setTitle(title);
+    ret->setDescription(description);
+    ret->setThumbnail(thumbnail);
+    ret->setModel(this);
+    
+    m_items.append(ret);
 
-        ret = new SpaceItem(dim);
-        ret->setModel(this);
-        m_items.append(ret);
-
-        endInsertRows();
-
-        return ret;
-    }
+    endInsertRows();
 
     return ret;
 }

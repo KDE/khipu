@@ -102,12 +102,13 @@
 
 
 Dashboard::Dashboard(QWidget *parent)
-    : QStackedWidget(parent)
+    : QStackedWidget(parent), m_spacesView(0), m_plotsView(0)
 {
     Ui::DashboardWidget a;
     a.setupUi(this);
     
     m_plotsView = a.plotsView;
+    m_spacesView = a.spacesView;
     
     
     ///
@@ -132,6 +133,8 @@ Dashboard::~Dashboard()
 void Dashboard::setDocument(Document* doc)
 {
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
+
+    m_spacesView->setModel(doc->spacesModel());
     m_plotsView->setModel(doc->plotsModel());
 
 }

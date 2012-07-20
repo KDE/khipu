@@ -25,29 +25,34 @@
 
 #include <QDomImplementation>
 #include <QBuffer>
+#include <kicon.h>
 
 
 Document::Document(QObject* parent)
 : QObject(parent)
 , m_variables(new Analitza::Variables)
 {
+    m_spacesModel = new SpacesModel(this);
+    
+    SpaceItem *space = m_spacesModel->addSpace(2, "adasd", "333", KIcon("kde").pixmap(QSize(64,64)));
+    
     m_plotsModel = new PlotsModel(this, m_variables);
     
+    
+    //test code
     PlotsModel *model = m_plotsModel;
 
-    PlaneCurve *item = model->addPlaneCurve(Analitza::Expression("x->x*x"), "para", Qt::cyan);
+    model->addPlaneCurve(Analitza::Expression("x->x*x"), "para", Qt::cyan);
     model->addPlaneCurve(Analitza::Expression("q->q+2"), "polar simple", Qt::green);
     model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, t+2}"), "vec", Qt::yellow);
-    PlaneCurve *item2 = model->addPlaneCurve(Analitza::Expression("5*(x**2+y**2)**3=15*(x*y*72)**2"), "impl", Qt::red);
+    model->addPlaneCurve(Analitza::Expression("5*(x**2+y**2)**3=15*(x*y*72)**2"), "impl", Qt::red);
     model->addPlaneCurve(Analitza::Expression("x->2+x*x"), "otra simple", Qt::blue);
-//     
     model->addPlaneCurve(Analitza::Expression("(x**2+y**2)**3=4*(x**2)*(y**2)"), "otra simple", Qt::lightGray);
     model->addPlaneCurve(Analitza::Expression("(y-x**2)**2=x*y**3"), "otra simple", Qt::lightGray);
     model->addPlaneCurve(Analitza::Expression("sin(x)*sin(y)=1/2"), "otra simple", Qt::yellow);    
+    model->addPlaneCurve(Analitza::Expression("x->x*x+2"), "asdads", Qt::yellow);
     
-    qDebug() << m_plotsModel->addPlaneCurve(Analitza::Expression("x->x*x+2"), "asdads", Qt::yellow);
-    
-    m_spacesModel = new SpacesModel(this);
+
 }
 
 Document::~Document()
@@ -460,6 +465,11 @@ void Document::save()
 void Document::saveAs(const KUrl& fileUrl)
 {
 ///emit
+}
+
+void Document::mapPlot(const QModelIndex& plotIndex)
+{
+
 }
 
 QByteArray Document::pixmapToUtf8(const QPixmap &thumbnail) const

@@ -24,6 +24,7 @@
 
 #include <QModelIndex>
 
+class QListView;
 class QTreeView;
 class Document;
 
@@ -64,6 +65,8 @@ private:
 
     Document * m_document;
     DashboardWidget *m_widget;
+    
+    QListView *m_spacesView;
     QTreeView *m_plotsView;
 };
 

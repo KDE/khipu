@@ -33,6 +33,8 @@ public:
     SpaceItem(int dimension);
     virtual ~SpaceItem();
 
+    int dimension() const { return m_dimension; }
+    
     QString title() const { return m_name; }
     void setTitle(const QString &name) { m_name = name; }
 
@@ -41,8 +43,6 @@ public:
 
     QPixmap thumbnail() const { return m_thumbnail; }
     void setThumbnail(const QPixmap thumbnail) { m_thumbnail = thumbnail; }
-
-    int dimension() const { return m_dimension; }
 
     KDateTime  timestamp() const { return m_dateTime; }
 

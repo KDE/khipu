@@ -24,14 +24,15 @@
 #include <QPixmap>
 #include <kurl.h>
 
+class QModelIndex;
 namespace Analitza {
 class Variables;
 }
 
 class PlotItem;
 class SpaceItem;
-class PlotsModel;
 class SpacesModel;
+class PlotsModel;
 
 //NOTE one app <-> one doc ... kiss ;)
 //contiene los modelos y las funciones de guardar load etc
@@ -46,14 +47,15 @@ public:
     KUrl fileUrl() const { return m_fileUrl; }
     bool isModified() const { return m_modified; }
 
-    PlotsModel *plotsModel() const { return m_plotsModel; }
     SpacesModel *spacesModel() const { return m_spacesModel; }
-    
+    PlotsModel *plotsModel() const { return m_plotsModel; }
+
 public slots:
     void load(const KUrl& fileUrl);
     void save();
     void saveAs(const KUrl& fileUrl);
     void setModified(bool mod = true) { m_modified = mod; }
+    void mapPlot(const QModelIndex &plotIndex); // mapea el plot con el spacio actual
 
 signals:
     void loaded(bool isok);
@@ -64,12 +66,11 @@ private:
     QByteArray pixmapToUtf8(const QPixmap &pix) const;
     QPixmap utf8ToPixmap(const QString &pixdata) const;
     
-    
     KUrl m_fileUrl;
     bool m_modified;
     
-    PlotsModel *m_plotsModel;
     SpacesModel *m_spacesModel;
+    PlotsModel *m_plotsModel;
     Analitza::Variables *m_variables;
 
     //one to many

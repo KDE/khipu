@@ -47,7 +47,8 @@ public:
     QVariant data( const QModelIndex &index, int role=Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent=QModelIndex()) const;
 
-    SpaceItem * addSpace(int dim);
+    SpaceItem * addSpace(int dim, const QString & title = QString(), const QString &description = QString(), 
+                         const QPixmap &thumbnail=QPixmap());
 
     SpaceItem * item(int row) const;
     void removeItem(int row);
