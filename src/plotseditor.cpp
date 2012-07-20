@@ -53,6 +53,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     //cons
     
     connect(dd.addRandomPlot, SIGNAL(pressed()), SLOT(addPlot()));
+    connect(dd.removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     
 }
 
@@ -98,6 +99,15 @@ void PlotsEditor::addPlot()
     
     model->addPlaneCurve(Analitza::Expression("x=y*y"), "adasd", Qt::red);
 }
+
+void PlotsEditor::removePlot()
+{
+    if (m_plotsView->selectionModel()->hasSelection())
+    {
+        static_cast<PlotsModel*>(m_plotsView->model())->removeItem(m_plotsView->selectionModel()->currentIndex().row());
+    }
+}
+
 
 
 

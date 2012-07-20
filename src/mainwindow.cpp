@@ -239,7 +239,7 @@ void MainWindow::activateDashboardUi()
     
     //toolbars
     toolBar("spaceToolBar")->hide();
-    toolBar("mainToolBar")->show();
+//     toolBar("mainToolBar")->show();
 
     //docks
     m_spacePlotsDock->hide();
@@ -265,9 +265,8 @@ void MainWindow::activateSpaceUi()
     action("copy_snapshot")->setVisible(true);
     action("export_snapshot")->setVisible(true);
     
-    
     //toolbars
-    toolBar("mainToolBar")->hide();
+//     toolBar("mainToolBar")->hide();
     toolBar("spaceToolBar")->show();
 
     //docks

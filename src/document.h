@@ -62,7 +62,8 @@ public slots:
 
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
-
+    void unmapPlot(const QModelIndex & parent, int start, int end); // cuando se borra un plot del modelo 
+    
 signals:
     void loaded(bool isok);
     void saved(bool isok);

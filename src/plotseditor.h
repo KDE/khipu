@@ -42,6 +42,7 @@ private slots:
     void showEditor();
     
     void addPlot(); // test method
+    void removePlot();
     
 signals:
     void plotAdded(const QModelIndex &index);  // emit when item != 0

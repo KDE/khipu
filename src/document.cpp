@@ -48,7 +48,8 @@ Document::Document(QObject* parent)
     
     
     connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
-    
+    connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
+
 //     connect(m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
 //         this, SLOT(updateFuncs(QModelIndex,QModelIndex)));
 //     connect(m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
@@ -498,13 +499,18 @@ void Document::setCurrentSpace(const QItemSelection & selected, const QItemSelec
 
 void Document::mapPlot(const QModelIndex & parent, int start, int end)
 {
-//     m_maps[m_spacesModel->item(m_spacesSelectionModel->currentIndex().row())] = m_plotsModel->item(start);
-//     
-//     qDebug() << "espacio " << m_spacesModel->item(m_spacesSelectionModel->currentIndex().row())->title() << "mapeado con " <<
-//     m_plotsModel->item(start)->name();
-
-    
-    qDebug() << m_currentSpace << start;
+    m_maps[m_currentSpace] = start;
+}
+//asrtos para verificar que no existan un plot asociado a mas de un space
+void Document::unmapPlot(const QModelIndex& parent, int start, int end)
+{
+    for (int i = 0; i < m_maps.values().size(); ++i)
+        if (m_maps.values().at(i) == start)
+        {
+            m_maps.remove(m_maps.key(start));
+            
+            break;
+        }
 }
 
 QByteArray Document::pixmapToUtf8(const QPixmap &thumbnail) const
