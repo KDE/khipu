@@ -12,7 +12,7 @@ set ( khipu_SRCS
 
   functionsmodel.cpp
   plotsview.cpp
-  functioneditor.cpp
+  plotseditor.cpp
   functionlibraryedit.cpp
   functionlibrarymodel.cpp
   space2dviewer.cpp

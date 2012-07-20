@@ -32,7 +32,7 @@ public:
     PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
-    void setModel(PlotsModel *m) { m_model = m; }
+    void setModel(PlotsModel *m);
 
 public slots:
     void showList();
@@ -45,7 +45,6 @@ signals:
     void plotRemoved(const QModelIndex &index);  // emit when item != 0
 
 private:
-    PlotsModel *m_model;
     PlotsView *m_plotsView;
 };
 

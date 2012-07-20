@@ -65,11 +65,10 @@
 #include <kcategorydrawer.h>
 #include "dashboard.h"
 #include "document.h"
-#include "functioneditor.h"
+#include "plotseditor.h"
 
 #include "ui_space2dviewer.h"
 #include "ui_space3dviewer.h"
-#include "ui_functioneditorwidget.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -160,9 +159,7 @@ void MainWindow::setupToolBars()
 void MainWindow::setupDocks()
 {
     m_spacePlotsDock = new PlotsEditor(this);
-    Ui::DockWidget uispaceItemWidget;
-    uispaceItemWidget.setupUi(m_spacePlotsDock);
-    m_spacePlotsDock->setObjectName("asdasdds");
+    m_spacePlotsDock->setModel(m_document->plotsModel());
 
     m_spaceInfoDock = new QDockWidget(this);
     Ui::spaceItemWidget uispaceItemWidget1;

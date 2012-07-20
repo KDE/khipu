@@ -19,7 +19,9 @@
 #include "document.h"
 #include "spacesmodel.h"
 #include <analitzaplot/plotsmodel.h>
+#include <analitzaplot/planecurve.h>
 #include <analitza/variables.h>
+#include <analitza/expression.h>
 
 #include <QDomImplementation>
 #include <QBuffer>
@@ -30,6 +32,9 @@ Document::Document(QObject* parent)
 , m_variables(new Analitza::Variables)
 {
     m_plotsModel = new PlotsModel(this, m_variables);
+    
+    qDebug() << m_plotsModel->addPlaneCurve(Analitza::Expression("x->x*x+2"), "asdads", Qt::yellow);
+    
     m_spacesModel = new SpacesModel(this);
 }
 

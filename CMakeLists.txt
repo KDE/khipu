@@ -7,7 +7,6 @@ find_package ( OpenGL REQUIRED )
 find_package ( Gettext REQUIRED )
 find_package ( Analitza REQUIRED )
 
-
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
 if(NOT OPENGL_GLU_FOUND)
