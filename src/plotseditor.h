@@ -22,6 +22,7 @@
 #include <QDockWidget>
 #include <QModelIndex>
 
+class QTreeView;
 class PlotsModel;
 class PlotsView;
 
@@ -45,7 +46,7 @@ signals:
     void plotRemoved(const QModelIndex &index);  // emit when item != 0
 
 private:
-    PlotsView *m_plotsView;
+    QTreeView *m_plotsView;
 };
 
 #endif 

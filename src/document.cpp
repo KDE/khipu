@@ -33,6 +33,18 @@ Document::Document(QObject* parent)
 {
     m_plotsModel = new PlotsModel(this, m_variables);
     
+    PlotsModel *model = m_plotsModel;
+
+    PlaneCurve *item = model->addPlaneCurve(Analitza::Expression("x->x*x"), "para", Qt::cyan);
+    model->addPlaneCurve(Analitza::Expression("q->q+2"), "polar simple", Qt::green);
+    model->addPlaneCurve(Analitza::Expression("t->vector{t*t+1, t+2}"), "vec", Qt::yellow);
+    PlaneCurve *item2 = model->addPlaneCurve(Analitza::Expression("5*(x**2+y**2)**3=15*(x*y*72)**2"), "impl", Qt::red);
+    model->addPlaneCurve(Analitza::Expression("x->2+x*x"), "otra simple", Qt::blue);
+//     
+    model->addPlaneCurve(Analitza::Expression("(x**2+y**2)**3=4*(x**2)*(y**2)"), "otra simple", Qt::lightGray);
+    model->addPlaneCurve(Analitza::Expression("(y-x**2)**2=x*y**3"), "otra simple", Qt::lightGray);
+    model->addPlaneCurve(Analitza::Expression("sin(x)*sin(y)=1/2"), "otra simple", Qt::yellow);    
+    
     qDebug() << m_plotsModel->addPlaneCurve(Analitza::Expression("x->x*x+2"), "asdads", Qt::yellow);
     
     m_spacesModel = new SpacesModel(this);

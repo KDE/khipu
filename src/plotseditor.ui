@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>346</width>
+    <width>282</width>
     <height>732</height>
    </rect>
   </property>
@@ -67,23 +67,73 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QToolButton" name="toolButton">
               <property name="text">
-               <string>PushButton</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset theme="roll"/>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="text">
-               <string>PushButton</string>
+             <widget class="ExpressionEdit" name="plainTextEdit_10">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QToolButton" name="toolButton_2">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset theme="list-add"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>foc</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_3">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButton_5">
               <property name="text">
                <string>PushButton</string>
+              </property>
+              <property name="icon">
+               <iconset theme="formula"/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButton_3">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset theme="list-remove"/>
               </property>
              </widget>
             </item>
@@ -409,6 +459,9 @@
         </item>
         <item>
          <widget class="QStackedWidget" name="stackedWidget_2">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
           <widget class="QWidget" name="page_6"/>
           <widget class="QWidget" name="page_7"/>
          </widget>
