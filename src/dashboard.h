@@ -24,6 +24,7 @@
 
 #include <QModelIndex>
 
+class QTreeView;
 class Document;
 
 class QSortFilterProxyModel;
@@ -39,7 +40,7 @@ public:
     Dashboard(QWidget *parent = 0);
     ~Dashboard();
 
-    void setDocument(Document *doc) { m_document; }
+    void setDocument(Document *doc);
     
 public slots:
     void goHome();
@@ -63,6 +64,7 @@ private:
 
     Document * m_document;
     DashboardWidget *m_widget;
+    QTreeView *m_plotsView;
 };
 
 #endif

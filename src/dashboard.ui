@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>606</width>
-    <height>580</height>
+    <width>701</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,34 +27,188 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="SpacesView" name="spaces"/>
-      <widget class="QWidget" name="views_page2">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+      <widget class="SpacesView" name="spaces">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QTreeView" name="functions">
+         <widget class="QListView" name="spacesView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="views_page2">
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QTreeView" name="plotsView">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="mouseTracking">
+             <bool>true</bool>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="tabKeyNavigation">
+             <bool>true</bool>
+            </property>
+            <property name="showDropIndicator" stdset="0">
+             <bool>false</bool>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="rootIsDecorated">
+             <bool>false</bool>
+            </property>
+            <property name="itemsExpandable">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="expandsOnDoubleClick">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QStackedWidget" name="stackedWidget_2">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="currentIndex">
+               <number>0</number>
+              </property>
+              <widget class="QWidget" name="page_5">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QPushButton" name="pushButton">
+                  <property name="text">
+                   <string>Show plot in psace</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="editPlot">
+                  <property name="text">
+                   <string>Edit</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="formula">
+                    <normaloff/>
+                   </iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="removePlot">
+                  <property name="text">
+                   <string>Remove plot</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="list-remove">
+                    <normaloff/>
+                   </iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="exporttodictionary">
+                  <property name="text">
+                   <string>Export</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>in dictionary</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_6">
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item>
+                 <widget class="QPushButton" name="editPlot_2">
+                  <property name="text">
+                   <string>Show details</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="formula">
+                    <normaloff/>
+                   </iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line_4">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="exporttodictionary_2">
+                  <property name="text">
+                   <string>import</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>in currentdoc</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="stackedWidget">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="mouseTracking">
-           <bool>true</bool>
-          </property>
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="rootIsDecorated">
-           <bool>false</bool>
-          </property>
-          <property name="itemsExpandable">
-           <bool>false</bool>
-          </property>
-          <property name="expandsOnDoubleClick">
-           <bool>false</bool>
-          </property>
+          <widget class="QWidget" name="page"/>
+          <widget class="QWidget" name="page_2"/>
          </widget>
         </item>
        </layout>
@@ -66,7 +220,7 @@
       <item>
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Elejir la vista:</string>
+         <string>View and Tools:</string>
         </property>
        </widget>
       </item>
@@ -80,18 +234,28 @@
         </property>
         <item>
          <property name="text">
-          <string>Espacios o Grupos de Funciones</string>
+          <string>Spaces</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Lista Total de Funciones</string>
+          <string>Plots</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Dictionary</string>
+         </property>
+         <property name="icon">
+          <iconset theme="accessories-dictionary">
+           <normaloff/>
+          </iconset>
          </property>
         </item>
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_7">
+       <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -104,139 +268,56 @@
        </spacer>
       </item>
       <item>
-       <widget class="QStackedWidget" name="filterStackedWidget">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Find</string>
         </property>
-        <property name="currentIndex">
-         <number>1</number>
+       </widget>
+      </item>
+      <item>
+       <widget class="KLineEdit" name="filterTextFunctions">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
         </property>
-        <widget class="QWidget" name="page">
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Buscar:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="KLineEdit" name="filterTextSpaces">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="KButtonGroup" name="filterDimensionsSpaces">
-            <property name="title">
-             <string/>
-            </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
-            <property name="current" stdset="0">
-             <number>0</number>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_5">
-             <item>
-              <widget class="QRadioButton" name="filterAllSpaces">
-               <property name="text">
-                <string>Todos</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="filter2DSpaces">
-               <property name="text">
-                <string>2D</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="filter3DSpaces">
-               <property name="text">
-                <string>3D</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QWidget" name="page_2">
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Buscar:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="KLineEdit" name="filterTextFunctions">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="KButtonGroup" name="filterDimensionsFunctions">
-            <layout class="QHBoxLayout" name="horizontalLayout_6">
-             <item>
-              <widget class="QRadioButton" name="filterAllFunctions">
-               <property name="text">
-                <string>Todos</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="filter2DFunctions">
-               <property name="text">
-                <string>2D</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="filter3DFunctions">
-               <property name="text">
-                <string>3D</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="KButtonGroup" name="filterDimensionsFunctions">
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QRadioButton" name="filterAllFunctions">
+           <property name="text">
+            <string>Todos</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="filter2DFunctions">
+           <property name="text">
+            <string>2D</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="filter3DFunctions">
+           <property name="text">
+            <string>3D</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -292,22 +373,6 @@
  </customwidgets>
  <resources/>
  <connections>
-  <connection>
-   <sender>viewMode</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>filterStackedWidget</receiver>
-   <slot>setCurrentIndex(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>143</x>
-     <y>389</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>219</x>
-     <y>392</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>viewMode</sender>
    <signal>currentIndexChanged(int)</signal>

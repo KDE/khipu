@@ -33,6 +33,7 @@
 #include "space2dviewer.h"
 #include "space3dviewer.h"
 #include "spacesmodel.h"
+#include "document.h"
 #include "analitza/variables.h"
 #include "ui_dashboard.h"
 #include <QDomDocument>
@@ -106,6 +107,7 @@ Dashboard::Dashboard(QWidget *parent)
     Ui::DashboardWidget a;
     a.setupUi(this);
     
+    m_plotsView = a.plotsView;
     
     
     ///
@@ -126,6 +128,14 @@ Dashboard::Dashboard(QWidget *parent)
 Dashboard::~Dashboard()
 {
 }
+
+void Dashboard::setDocument(Document* doc)
+{
+//     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
+    m_plotsView->setModel(doc->plotsModel());
+
+}
+
 
 void Dashboard::goHome()
 {

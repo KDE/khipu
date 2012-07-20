@@ -47,7 +47,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     dd.setupUi(this);
     setObjectName("adasdds");
     
-    m_plotsView = dd.treeView;
+    m_plotsView = dd.plotsView;
 // costri r el selecto cmunto para view 
     
 }
