@@ -49,11 +49,17 @@ void Dashboard::setDocument(Document* doc)
 
     
     m_widget->spacesView->setModel(doc->spacesModel());
-    m_widget->plotsView->setModel(doc->plotsModel());
-    m_widget->plotsView2D->setModel(doc->plotsModel());
-    //TODO conn 3d
 
+    //este necesita otro proxy del modelo
+//     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
     
+    m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(2);
+    m_widget->plotsView2D->setModel(m_document->spacePlotsFilterProxyModel());
+    m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(3);
+    m_widget->plotsView3D->setModel(m_document->spacePlotsFilterProxyModel());
+//     m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(-1); //TODO hacks para evitar los asertos de setmodel... enums?
+    m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(2);
+
     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     

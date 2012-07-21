@@ -30,7 +30,8 @@
 
 
 Document::Document(QObject* parent)
-: QObject(parent), m_currentSpace(-1)
+: QObject(parent)
+, m_currentSpace(-1)
 {
     m_spacesModel = new SpacesModel(this);
 
@@ -45,6 +46,9 @@ Document::Document(QObject* parent)
     m_variables = new Analitza::Variables;
     
     m_plotsModel = new PlotsModel(this, m_variables);
+    // 
+    m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
+    m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
     
     connect(this, SIGNAL(spaceActivated(int)), SLOT(setCurrentSpace(int)));
     
@@ -539,3 +543,30 @@ QPixmap Document::utf8ToPixmap(const QString &pixdata) const
 
     return QPixmap::fromImage(rimg);
 }
+
+///
+
+
+
+SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(QObject* parent): PlotsFilterProxyModel(parent)
+{
+    
+}
+
+SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
+{
+
+}
+
+void SpacePlotsFilterProxyModel::setFilterSpace(const SpaceItem* space)
+{
+    m_space = space;
+    
+    invalidateFilter();
+}
+
+bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
+{
+    return true;
+}
+

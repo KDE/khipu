@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class SpacePlotsFilterProxyModel;
 class PlotsEditor;
 class KIcon;
 class KAction;

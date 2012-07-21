@@ -51,6 +51,8 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
     
+    
+    
     Analitza::Expression e("x*x+3");
     
     m_widget->plotExample->setContent(e.toMathMLPresentation());
@@ -86,19 +88,18 @@ PlotsEditor::~PlotsEditor()
 void PlotsEditor::setDocument(Document* doc)
 {
     m_document  = doc;
-    
-    m_widget->plotsView->setModel(m_document->plotsModel());
+    m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
 
 }
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
+    //proxy config
+    m_document->spacePlotsFilterProxyModel()->setFilterSpace(m_document->spacesModel()->item(spaceidx));
     
-    qDebug() << m_document->currentSpace();
+//     qDebug() << m_document->currentSpace();
     //set dim profile ... esto depende del space actual
-    int dim = m_document->spacesModel()->item(m_document->currentSpace())->dimension();
-    
-    
+    int dim = m_document->spacesModel()->item(spaceidx)->dimension();
     
  switch (dim)
     {
@@ -224,6 +225,8 @@ void PlotsEditor::createParametricSurface()
 
 void PlotsEditor::savePlot()
 {
+    qDebug() << "asd 5" << PlaneCurve::canDraw(m_widget->f->expression());
+    
     m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
 }
 

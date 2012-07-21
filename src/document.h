@@ -35,6 +35,34 @@ class SpaceItem;
 class SpacesModel;
 class PlotsModel;
 
+#include "analitzaplot/plotsfilterproxymodel.h"
+
+class DataStore : public QObject
+{
+    
+};
+
+
+//ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
+class SpacePlotsFilterProxyModel : public PlotsFilterProxyModel
+{
+    Q_OBJECT
+
+    public:
+        SpacePlotsFilterProxyModel(QObject *parent = 0);
+        virtual ~SpacePlotsFilterProxyModel();
+
+        const SpaceItem* filterSpace() const { return m_space; }
+        void setFilterSpace(const SpaceItem *space);
+
+    protected:
+        virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+
+    private:
+        const SpaceItem *m_space;
+        SpacesModel * m_spacesModel;
+};
+
 //NOTE one app <-> one doc ... kiss ;)
 //contiene los modelos y las funciones de guardar load etc
 class Document : public QObject
@@ -48,10 +76,14 @@ public:
     KUrl fileUrl() const { return m_fileUrl; }
     bool isModified() const { return m_modified; }
     
-    int currentSpace() const { return m_currentSpace; }
+    //este metodo publico era necesario para el editor ... pero el main window ya le avisa al edito cuando se activa un space
+//     int currentSpace() const { return m_currentSpace; }
 
-    SpacesModel *spacesModel() { return m_spacesModel; }
+    SpacesModel *spacesModel() const { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
+    
+    // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
+    SpacePlotsFilterProxyModel * spacePlotsFilterProxyModel() const { return m_spacePlotsFilterProxyModel; }
 
 public slots:
     void load(const KUrl& fileUrl);
@@ -59,7 +91,6 @@ public slots:
     void saveAs(const KUrl& fileUrl);
     void setModified(bool mod = true) { m_modified = mod; }
     
-
 private slots:
     void setCurrentSpace(int spaceidx);
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
@@ -81,11 +112,23 @@ private:
     
     SpacesModel *m_spacesModel;
     PlotsModel *m_plotsModel;
+    SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
+    
     Analitza::Variables *m_variables;
 
     //one to many -- space index -> many plots index
     int m_currentSpace; // curr space index 
     QMap<int, int> m_maps;
 };
+
+
+
+
+
+
+
+
+
+
 
 #endif // KHIPU_DOCUMENT_H
