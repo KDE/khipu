@@ -37,11 +37,46 @@ class PlotsModel;
 
 #include "analitzaplot/plotsfilterproxymodel.h"
 
+class SpacePlotsFilterProxyModel;
+
 class DataStore : public QObject
 {
-    
-};
+    Q_OBJECT
 
+public:
+    DataStore(QObject *parent = 0);
+    ~DataStore();
+    
+    //este metodo publico era necesario para el editor ... pero el main window ya le avisa al edito cuando se activa un space
+//     int currentSpace() const { return m_currentSpace; }
+
+    SpacesModel *spacesModel() const { return m_spacesModel; }
+    PlotsModel *plotsModel() const { return m_plotsModel; }
+    
+    // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
+    SpacePlotsFilterProxyModel * spacePlotsFilterProxyModel() const { return m_spacePlotsFilterProxyModel; }
+
+private slots:
+    void setCurrentSpace(int spaceidx);
+    void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
+    void unmapPlot(const QModelIndex & parent, int start, int end); // cuando se borra un plot del modelo 
+    
+signals:
+//     void modified(); ... TODO to document???
+
+    void spaceActivated(int spaceidx);
+
+private:
+    SpacesModel *m_spacesModel;
+    PlotsModel *m_plotsModel;
+    SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
+    
+    Analitza::Variables *m_variables;
+
+    //one to many -- space index -> many plots index
+    int m_currentSpace; // curr space index 
+    QMap<int, int> m_maps;
+};
 
 //ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
 class SpacePlotsFilterProxyModel : public PlotsFilterProxyModel
@@ -71,54 +106,28 @@ class Document : public QObject
 
 public:
     Document(QObject *parent = 0);
-    virtual ~Document();
+    ~Document();
     
     KUrl fileUrl() const { return m_fileUrl; }
     bool isModified() const { return m_modified; }
     
-    //este metodo publico era necesario para el editor ... pero el main window ya le avisa al edito cuando se activa un space
-//     int currentSpace() const { return m_currentSpace; }
-
-    SpacesModel *spacesModel() const { return m_spacesModel; }
-    PlotsModel *plotsModel() const { return m_plotsModel; }
-    
-    // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
-    SpacePlotsFilterProxyModel * spacePlotsFilterProxyModel() const { return m_spacePlotsFilterProxyModel; }
-
 public slots:
     void load(const KUrl& fileUrl);
     void save();
     void saveAs(const KUrl& fileUrl);
     void setModified(bool mod = true) { m_modified = mod; }
     
-private slots:
-    void setCurrentSpace(int spaceidx);
-    void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
-    void unmapPlot(const QModelIndex & parent, int start, int end); // cuando se borra un plot del modelo 
-    
 signals:
     void loaded(bool isok);
     void saved(bool isok);
     void modified();
 
-    void spaceActivated(int spaceidx);
-    
 private:
     QByteArray pixmapToUtf8(const QPixmap &pix) const;
     QPixmap utf8ToPixmap(const QString &pixdata) const;
     
     KUrl m_fileUrl;
     bool m_modified;
-    
-    SpacesModel *m_spacesModel;
-    PlotsModel *m_plotsModel;
-    SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
-    
-    Analitza::Variables *m_variables;
-
-    //one to many -- space index -> many plots index
-    int m_currentSpace; // curr space index 
-    QMap<int, int> m_maps;
 };
 
 

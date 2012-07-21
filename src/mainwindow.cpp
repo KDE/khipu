@@ -62,7 +62,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
 {
-    m_document = new Document(this);
+    m_document = new DataStore(this);
 
     m_dashboard = new Dashboard(this);
     m_dashboard->setDocument(m_document);

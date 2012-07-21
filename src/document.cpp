@@ -29,7 +29,8 @@
 #include <kicon.h>
 
 
-Document::Document(QObject* parent)
+
+DataStore::DataStore(QObject* parent)
 : QObject(parent)
 , m_currentSpace(-1)
 {
@@ -78,9 +79,80 @@ Document::Document(QObject* parent)
 
 }
 
-Document::~Document()
+DataStore::~DataStore()
 {
     delete m_variables;
+}
+
+void DataStore::setCurrentSpace(int spaceidx)
+{
+//TODO aser  limites
+    m_currentSpace = spaceidx;
+}
+
+void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
+{
+    
+    //aserto si se esta agregando un plot de dim != al space 
+    m_maps[m_currentSpace] = start;
+    
+//     qDebug() << m_currentSpace << start;
+}
+//asrtos para verificar que no existan un plot asociado a mas de un space
+void DataStore::unmapPlot(const QModelIndex& parent, int start, int end)
+{
+    for (int i = 0; i < m_maps.values().size(); ++i)
+        if (m_maps.values().at(i) == start)
+        {
+            m_maps.remove(m_maps.key(start));
+            
+            break;
+        }
+}
+
+
+///
+
+
+
+///
+
+
+
+SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(QObject* parent): PlotsFilterProxyModel(parent)
+{
+    
+}
+
+SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
+{
+
+}
+
+void SpacePlotsFilterProxyModel::setFilterSpace(const SpaceItem* space)
+{
+    m_space = space;
+    
+    invalidateFilter();
+}
+
+bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
+{
+    return true;
+}
+
+
+
+
+///
+
+Document::Document(QObject* parent)
+: QObject(parent)
+{
+}
+
+Document::~Document()
+{
 }
 
 void Document::load(const KUrl& fileUrl)
@@ -490,32 +562,6 @@ void Document::saveAs(const KUrl& fileUrl)
 ///emit
 }
 
-void Document::setCurrentSpace(int spaceidx)
-{
-//TODO aser  limites
-    m_currentSpace = spaceidx;
-}
-
-void Document::mapPlot(const QModelIndex & parent, int start, int end)
-{
-    
-    //aserto si se esta agregando un plot de dim != al space 
-    m_maps[m_currentSpace] = start;
-    
-//     qDebug() << m_currentSpace << start;
-}
-//asrtos para verificar que no existan un plot asociado a mas de un space
-void Document::unmapPlot(const QModelIndex& parent, int start, int end)
-{
-    for (int i = 0; i < m_maps.values().size(); ++i)
-        if (m_maps.values().at(i) == start)
-        {
-            m_maps.remove(m_maps.key(start));
-            
-            break;
-        }
-}
-
 QByteArray Document::pixmapToUtf8(const QPixmap &thumbnail) const
 {
     QImage image = thumbnail.toImage();
@@ -543,30 +589,3 @@ QPixmap Document::utf8ToPixmap(const QString &pixdata) const
 
     return QPixmap::fromImage(rimg);
 }
-
-///
-
-
-
-SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(QObject* parent): PlotsFilterProxyModel(parent)
-{
-    
-}
-
-SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
-{
-
-}
-
-void SpacePlotsFilterProxyModel::setFilterSpace(const SpaceItem* space)
-{
-    m_space = space;
-    
-    invalidateFilter();
-}
-
-bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
-{
-    return true;
-}
-

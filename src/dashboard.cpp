@@ -41,7 +41,7 @@ Dashboard::~Dashboard()
     delete m_widget;
 }
 
-void Dashboard::setDocument(Document* doc)
+void Dashboard::setDocument(DataStore* doc)
 {
     m_document = doc;
     

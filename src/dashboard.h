@@ -24,6 +24,7 @@
 
 #include <QModelIndex>
 #include "plotseditor.h"
+#include "document.h"
 
 class QListView;
 class QTreeView;
@@ -51,7 +52,7 @@ public:
     Dashboard(QWidget *parent = 0);
     ~Dashboard();
 
-    void setDocument(Document *doc);
+    void setDocument(DataStore *doc);
     
 public slots:
     void goHome();
@@ -83,7 +84,7 @@ signals:
 private:
     void setupWidget();
 
-    Document * m_document;
+    DataStore * m_document;
     Ui::DashboardWidget *m_widget;
 };
 

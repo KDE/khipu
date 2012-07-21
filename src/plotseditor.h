@@ -22,6 +22,7 @@
 #include <QDockWidget>
 #include <QModelIndex>
 
+class DataStore;
 class Document;
 class PlotsModel;
 class QStackedWidget;
@@ -41,7 +42,7 @@ public:
     PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
-    void setDocument(Document *doc);
+    void setDocument(DataStore *doc);
 
 public slots:
     void setCurrentSpace(int spaceidx);
@@ -74,7 +75,7 @@ signals:
 private:
     Ui::PlotsEditorWidget *m_widget;
     PlotsModel *m_localModel; // usado solo para los previews
-    Document *m_document;
+    DataStore *m_document;
 };
 
 #endif 

@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class DataStore;
 class SpacePlotsFilterProxyModel;
 class PlotsEditor;
 class KIcon;
@@ -73,7 +74,7 @@ private:
     bool queryClose();
 
 private:
-    Document *m_document;
+    DataStore *m_document;
     Dashboard *m_dashboard;
     
     PlotsEditor *m_spacePlotsDock;

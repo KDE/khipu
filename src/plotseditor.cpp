@@ -85,7 +85,7 @@ PlotsEditor::~PlotsEditor()
     delete m_widget;
 }
 
-void PlotsEditor::setDocument(Document* doc)
+void PlotsEditor::setDocument(DataStore* doc)
 {
     m_document  = doc;
     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
