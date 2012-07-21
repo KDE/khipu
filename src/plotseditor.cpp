@@ -89,14 +89,14 @@ PlotsEditor::~PlotsEditor()
 void PlotsEditor::setDocument(DataStore* doc)
 {
     m_document  = doc;
-    m_widget->plotsView->setModel(m_document->spacePlotsProxyModel());
-
+    m_widget->plotsView->setModel(m_document->currentPlots());
+    m_widget->plotsView->setSelectionModel(m_document->currentSelectionModel());
 }
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
     //proxy config
-    m_document->spacePlotsProxyModel()->setFilterSpace(m_document->spacesModel()->item(spaceidx));
+    m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(spaceidx));
     
 //     qDebug() << m_document->currentSpace();
     //set dim profile ... esto depende del space actual

@@ -54,10 +54,15 @@ void Dashboard::setDocument(DataStore* doc)
     //este necesita otro proxy del modelo
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
     
-    m_document->spacePlotsProxyModel()->setFilterSpaceDimension(2);
-    m_widget->plotsView2D->setModel(m_document->spacePlotsProxyModel());
-    m_document->spacePlotsProxyModel()->setFilterSpaceDimension(3);
-    m_widget->plotsView3D->setModel(m_document->spacePlotsProxyModel());
+    //NOTE AQUI cambiamos los models y selects de los plotsview2d/3d
+    m_document->currentPlots()->setFilterSpaceDimension(2);
+    m_widget->plotsView2D->setModel(m_document->currentPlots());
+    m_widget->plotsView2D->setSelectionModel(m_document->currentSelectionModel());
+    
+    m_document->currentPlots()->setFilterSpaceDimension(3);
+    m_widget->plotsView3D->setModel(m_document->currentPlots());
+    m_widget->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
+    
 //     m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(-1); //TODO hacks para evitar los asertos de setmodel... enums?
 
     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
@@ -267,8 +272,8 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
     m_widget->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
     
     //solo se cambia el filtro aqui porque es cuando se agrega un space ... luego todo cambio sera en datastore::setCurrentSpace
-    m_document->spacePlotsProxyModel()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
-    m_document->spacePlotsProxyModel()->setFilterSpace(m_document->spacesModel()->item(row));
+    m_document->currentPlots()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
+    m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
     
 //     qDebug() << row;
 }

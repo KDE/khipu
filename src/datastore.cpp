@@ -24,6 +24,7 @@
 #include <analitzaplot/planecurve.h>
 #include <analitza/variables.h>
 #include <analitza/expression.h>
+#include <qitemselectionmodel.h>
 
 DataStore::DataStore(QObject* parent)
 : QObject(parent)
@@ -57,6 +58,7 @@ DataStore::DataStore(QObject* parent)
     m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
     m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
     
+    m_currentSelectionModel = new QItemSelectionModel(m_spacePlotsFilterProxyModel);
     
 //     connect(m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
 //         this, SLOT(updateFuncs(QModelIndex,QModelIndex)));

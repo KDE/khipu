@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QMap>
 
+class QItemSelectionModel;
 class SpaceItem;
 class QModelIndex;
 namespace Analitza {
@@ -49,7 +50,8 @@ public:
     PlotsModel *plotsModel() const { return m_plotsModel; }
     
     // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
-    SpacePlotsFilterProxyModel * spacePlotsProxyModel() const { return m_spacePlotsFilterProxyModel; }
+    SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
+    QItemSelectionModel *currentSelectionModel() const { return m_currentSelectionModel; }
 
     bool isMapped(SpaceItem *space, PlotItem *plot) const;
 
@@ -66,7 +68,9 @@ signals:
 private:
     SpacesModel *m_spacesModel;
     PlotsModel *m_plotsModel;
+    
     SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
+    QItemSelectionModel *m_currentSelectionModel;
     
     Analitza::Variables *m_variables;
 
