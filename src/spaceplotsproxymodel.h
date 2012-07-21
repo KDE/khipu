@@ -16,53 +16,33 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef KHIPU_DOCUMENT_H
-#define KHIPU_DOCUMENT_H
+#ifndef KHIPU_DOCUMENT_H_h_
+#define KHIPU_DOCUMENT_H_h_
 
-#include <QObject>
-#include <QPixmap>
-#include <kurl.h>
+#include "analitzaplot/plotsproxymodel.h"
 
-//NOTE one app <-> one doc ... kiss ;)
-//contiene los modelos y las funciones de guardar load etc
-class Document : public QObject
+class SpaceItem;
+class SpacesModel;
+
+//ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
+class SpacePlotsFilterProxyModel : public PlotsProxyModel
 {
     Q_OBJECT
 
-public:
-    Document(QObject *parent = 0);
-    ~Document();
-    
-    KUrl fileUrl() const { return m_fileUrl; }
-    bool isModified() const { return m_modified; }
-    
-public slots:
-    void load(const KUrl& fileUrl);
-    void save();
-    void saveAs(const KUrl& fileUrl);
-    void setModified(bool mod = true) { m_modified = mod; }
-    
-signals:
-    void loaded(bool isok);
-    void saved(bool isok);
-    void modified();
+    public:
+        SpacePlotsFilterProxyModel(QObject *parent = 0);
+        virtual ~SpacePlotsFilterProxyModel();
 
-private:
-    QByteArray pixmapToUtf8(const QPixmap &pix) const;
-    QPixmap utf8ToPixmap(const QString &pixdata) const;
-    
-    KUrl m_fileUrl;
-    bool m_modified;
+        const SpaceItem* filterSpace() const { return m_space; }
+        void setFilterSpace(const SpaceItem *space);
+
+    protected:
+        virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+
+    private:
+        const SpaceItem *m_space;
+        SpacesModel * m_spacesModel;
 };
 
 
-
-
-
-
-
-
-
-
-
-#endif // KHIPU_DOCUMENT_H
+#endif

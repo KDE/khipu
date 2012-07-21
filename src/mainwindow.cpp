@@ -53,6 +53,7 @@
 #include "dashboard.h"
 #include "document.h"
 #include "plotseditor.h"
+#include "datastore.h"
 
 #include "ui_space2dviewer.h"
 #include "ui_space3dviewer.h"

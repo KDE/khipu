@@ -16,53 +16,27 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef KHIPU_DOCUMENT_H
-#define KHIPU_DOCUMENT_H
+#include "spaceplotsproxymodel.h"
 
-#include <QObject>
-#include <QPixmap>
-#include <kurl.h>
-
-//NOTE one app <-> one doc ... kiss ;)
-//contiene los modelos y las funciones de guardar load etc
-class Document : public QObject
+SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(QObject* parent): PlotsProxyModel(parent)
 {
-    Q_OBJECT
-
-public:
-    Document(QObject *parent = 0);
-    ~Document();
     
-    KUrl fileUrl() const { return m_fileUrl; }
-    bool isModified() const { return m_modified; }
+}
+
+SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
+{
+
+}
+
+void SpacePlotsFilterProxyModel::setFilterSpace(const SpaceItem* space)
+{
+    m_space = space;
     
-public slots:
-    void load(const KUrl& fileUrl);
-    void save();
-    void saveAs(const KUrl& fileUrl);
-    void setModified(bool mod = true) { m_modified = mod; }
-    
-signals:
-    void loaded(bool isok);
-    void saved(bool isok);
-    void modified();
+    invalidateFilter();
+}
 
-private:
-    QByteArray pixmapToUtf8(const QPixmap &pix) const;
-    QPixmap utf8ToPixmap(const QString &pixdata) const;
-    
-    KUrl m_fileUrl;
-    bool m_modified;
-};
+bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
+{
+    return true;
+}
 
-
-
-
-
-
-
-
-
-
-
-#endif // KHIPU_DOCUMENT_H

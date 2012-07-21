@@ -36,8 +36,9 @@
 // #include "keomath/solvers/solver.h"
 // #include "keomath/solvers/solverfactory.h"
 #include "functionlibraryedit.h"
-#include "document.h"
+#include "datastore.h"
 #include "spacesmodel.h"
+#include "spaceplotsproxymodel.h"
 #include "analitzagui/variablesmodel.h"
 #include <analitzaplot/functiongraph.h>
 #include <analitzaplot/planecurve.h>

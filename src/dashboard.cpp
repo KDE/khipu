@@ -22,7 +22,8 @@
 #include "space2dviewer.h"
 #include "space3dviewer.h"
 #include "spacesmodel.h"
-#include "document.h"
+#include "datastore.h"
+#include "spaceplotsproxymodel.h"
 #include "analitza/variables.h"
 #include <analitzaplot/plotsmodel.h>
 #include "ui_dashboard.h"

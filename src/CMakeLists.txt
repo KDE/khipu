@@ -20,10 +20,13 @@ set ( khipu_SRCS
 
   #use analitzaplot now :) 
 
+  spaceplotsproxymodel.cpp
+  
   spaceitem.cpp
   spacesmodel.cpp
   spacesview.cpp
-
+  
+  datastore.cpp
   document.cpp
 
   dashboard.cpp

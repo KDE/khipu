@@ -16,53 +16,61 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef KHIPU_DOCUMENT_H
-#define KHIPU_DOCUMENT_H
+#ifndef KHIPU_DOCUMENT_H_ds
+#define KHIPU_DOCUMENT_H_ds
 
 #include <QObject>
-#include <QPixmap>
-#include <kurl.h>
+#include <QMap>
 
-//NOTE one app <-> one doc ... kiss ;)
-//contiene los modelos y las funciones de guardar load etc
-class Document : public QObject
+class QModelIndex;
+namespace Analitza {
+class Variables;
+}
+
+class PlotItem;
+class SpacesModel;
+class PlotsModel;
+
+class SpacePlotsFilterProxyModel;
+
+class DataStore : public QObject
 {
     Q_OBJECT
 
 public:
-    Document(QObject *parent = 0);
-    ~Document();
+    DataStore(QObject *parent = 0);
+    ~DataStore();
     
-    KUrl fileUrl() const { return m_fileUrl; }
-    bool isModified() const { return m_modified; }
+    //este metodo publico era necesario para el editor ... pero el main window ya le avisa al edito cuando se activa un space
+//     int currentSpace() const { return m_currentSpace; }
+
+    SpacesModel *spacesModel() const { return m_spacesModel; }
+    PlotsModel *plotsModel() const { return m_plotsModel; }
     
-public slots:
-    void load(const KUrl& fileUrl);
-    void save();
-    void saveAs(const KUrl& fileUrl);
-    void setModified(bool mod = true) { m_modified = mod; }
+    // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
+    SpacePlotsFilterProxyModel * spacePlotsFilterProxyModel() const { return m_spacePlotsFilterProxyModel; }
+
+private slots:
+    void setCurrentSpace(int spaceidx);
+    void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
+    void unmapPlot(const QModelIndex & parent, int start, int end); // cuando se borra un plot del modelo 
     
 signals:
-    void loaded(bool isok);
-    void saved(bool isok);
-    void modified();
+//     void modified(); ... TODO to document???
+
+    void spaceActivated(int spaceidx);
 
 private:
-    QByteArray pixmapToUtf8(const QPixmap &pix) const;
-    QPixmap utf8ToPixmap(const QString &pixdata) const;
+    SpacesModel *m_spacesModel;
+    PlotsModel *m_plotsModel;
+    SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
     
-    KUrl m_fileUrl;
-    bool m_modified;
+    Analitza::Variables *m_variables;
+
+    //one to many -- space index -> many plots index
+    int m_currentSpace; // curr space index 
+    QMap<int, int> m_maps;
 };
 
 
-
-
-
-
-
-
-
-
-
-#endif // KHIPU_DOCUMENT_H
+#endif
