@@ -43,14 +43,21 @@ DataStore::DataStore(QObject* parent)
     
     m_plotsModel = new PlotsModel(this, m_variables);
     // 
-    m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
-    m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
-    
+
+    //EL ORDEN DE los  connect IMPORTA
+
+    //primero nuestro datastore debe saber cual es el currentspace
     connect(this, SIGNAL(spaceActivated(int)), SLOT(setCurrentSpace(int)));
     
+    //luego nuestro data store debe mapear los items a un space
     connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
     connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
 
+    //luego se debe permitir que los connect del proxy actuen cuando se agrega un row al modelo otiginal
+    m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
+    m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
+    
+    
 //     connect(m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
 //         this, SLOT(updateFuncs(QModelIndex,QModelIndex)));
 //     connect(m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
@@ -79,31 +86,40 @@ DataStore::~DataStore()
     delete m_variables;
 }
 
+bool DataStore::isMapped(SpaceItem* space, PlotItem* plot) const
+{
+//     qDebug() << space << plot << m_maps.values(space).contains(plot);
+//     return true;//m_maps.values(space).contains(plot);
+
+//     qDebug() << m_maps;
+
+    return m_maps.values(space).contains(plot);
+}
+
 void DataStore::setCurrentSpace(int spaceidx)
 {
 //TODO aser  limites
     m_currentSpace = spaceidx;
+    
+    //cambiar el filtro tambien hacer esto en el dashboard pero solo al agregar un nuevo space
+    m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->item(spaceidx)->dimension());
+    m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->item(spaceidx));
 }
 
 void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
-    
+    //TODO assert si el current forma un buen item
     //aserto si se esta agregando un plot de dim != al space 
-    m_maps[m_currentSpace] = start;
+//     qDebug() << m_currentSpace << start;
+
+    //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
+    m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));
     
 //     qDebug() << m_currentSpace << start;
 }
 //asrtos para verificar que no existan un plot asociado a mas de un space
 void DataStore::unmapPlot(const QModelIndex& parent, int start, int end)
 {
-    for (int i = 0; i < m_maps.values().size(); ++i)
-        if (m_maps.values().at(i) == start)
-        {
-            m_maps.remove(m_maps.key(start));
-            
-            break;
-        }
+    //TODO assert si el start genera un buen key
+    m_maps.remove(m_maps.key(m_plotsModel->item(start)));
 }
-
-
-///

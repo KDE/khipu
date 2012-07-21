@@ -54,12 +54,11 @@ void Dashboard::setDocument(DataStore* doc)
     //este necesita otro proxy del modelo
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
     
-    m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(2);
-    m_widget->plotsView2D->setModel(m_document->spacePlotsFilterProxyModel());
-    m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(3);
-    m_widget->plotsView3D->setModel(m_document->spacePlotsFilterProxyModel());
+    m_document->spacePlotsProxyModel()->setFilterSpaceDimension(2);
+    m_widget->plotsView2D->setModel(m_document->spacePlotsProxyModel());
+    m_document->spacePlotsProxyModel()->setFilterSpaceDimension(3);
+    m_widget->plotsView3D->setModel(m_document->spacePlotsProxyModel());
 //     m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(-1); //TODO hacks para evitar los asertos de setmodel... enums?
-    m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(2);
 
     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
@@ -95,7 +94,7 @@ void Dashboard::showPlotsView2D()
 
 void Dashboard::showPlotsView3D()
 {
-    qDebug() << "3ddd";
+//     qDebug() << "3ddd";
     m_widget->plotsViews->setCurrentIndex(1);
 }
 
@@ -230,6 +229,13 @@ void Dashboard::filterByDimension(int radioButton)
 
 void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected)
 {
+//     m_document->spacePlotsProxyModel()->setFilterSpaceDimension(m_document->spacesModel()->item(selected.indexes().first().row())->dimension());
+
+    ///
+    
+    
+    ///
+
     setCurrentIndex(1);
 
     emit spaceActivated(selected.indexes().first().row());
@@ -259,6 +265,12 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 //     m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
 
     m_widget->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
+    
+    //solo se cambia el filtro aqui porque es cuando se agrega un space ... luego todo cambio sera en datastore::setCurrentSpace
+    m_document->spacePlotsProxyModel()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
+    m_document->spacePlotsProxyModel()->setFilterSpace(m_document->spacesModel()->item(row));
+    
+//     qDebug() << row;
 }
 
 

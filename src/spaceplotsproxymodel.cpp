@@ -17,8 +17,12 @@
  *************************************************************************************/
 
 #include "spaceplotsproxymodel.h"
+#include "spaceitem.h"
+#include "datastore.h"
+#include <analitzaplot/plotsmodel.h>
 
-SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(QObject* parent): PlotsProxyModel(parent)
+SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(DataStore *ds, QObject* parent): PlotsProxyModel(parent)
+, m_dataStore(ds)
 {
     
 }
@@ -28,7 +32,7 @@ SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
 
 }
 
-void SpacePlotsFilterProxyModel::setFilterSpace(const SpaceItem* space)
+void SpacePlotsFilterProxyModel::setFilterSpace(SpaceItem* space)
 {
     m_space = space;
     
@@ -37,6 +41,5 @@ void SpacePlotsFilterProxyModel::setFilterSpace(const SpaceItem* space)
 
 bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-    return true;
+    return m_dataStore->isMapped(m_space, m_dataStore->plotsModel()->item(sourceRow));
 }
-

@@ -23,6 +23,7 @@
 
 class SpaceItem;
 class SpacesModel;
+class DataStore;
 
 //ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
 class SpacePlotsFilterProxyModel : public PlotsProxyModel
@@ -30,18 +31,18 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
     Q_OBJECT
 
     public:
-        SpacePlotsFilterProxyModel(QObject *parent = 0);
+        SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = 0);
         virtual ~SpacePlotsFilterProxyModel();
 
-        const SpaceItem* filterSpace() const { return m_space; }
-        void setFilterSpace(const SpaceItem *space);
+        SpaceItem* filterSpace() const { return m_space; }
+        void setFilterSpace(SpaceItem *space);
 
     protected:
         virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
     private:
-        const SpaceItem *m_space;
-        SpacesModel * m_spacesModel;
+        SpaceItem *m_space;
+        DataStore *m_dataStore; // tiene los maps: space ->items
 };
 
 

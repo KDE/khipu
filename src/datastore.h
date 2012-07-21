@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QMap>
 
+class SpaceItem;
 class QModelIndex;
 namespace Analitza {
 class Variables;
@@ -48,7 +49,9 @@ public:
     PlotsModel *plotsModel() const { return m_plotsModel; }
     
     // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
-    SpacePlotsFilterProxyModel * spacePlotsFilterProxyModel() const { return m_spacePlotsFilterProxyModel; }
+    SpacePlotsFilterProxyModel * spacePlotsProxyModel() const { return m_spacePlotsFilterProxyModel; }
+
+    bool isMapped(SpaceItem *space, PlotItem *plot) const;
 
 private slots:
     void setCurrentSpace(int spaceidx);
@@ -69,7 +72,7 @@ private:
 
     //one to many -- space index -> many plots index
     int m_currentSpace; // curr space index 
-    QMap<int, int> m_maps;
+    QMap<SpaceItem*, PlotItem*> m_maps;
 };
 
 
