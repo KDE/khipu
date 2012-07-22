@@ -12,6 +12,7 @@ set ( khipu_SRCS
 
   functionsmodel.cpp
   plotsview.cpp
+  plotsbuilder.cpp
   plotseditor.cpp
   functionlibraryedit.cpp
   functionlibrarymodel.cpp

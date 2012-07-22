@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
+ *  Copyright (C) 2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -16,26 +16,18 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef FUNCTIONEDITOR_H
-#define FUNCTIONEDITOR_H
 
-#include <QDockWidget>
-#include <QModelIndex>
+#ifndef FUNCTIONEDITOR_H_builder
+#define FUNCTIONEDITOR_H_builder
 
-class DataStore;
-class Document;
-class PlotsModel;
-class QStackedWidget;
-class QTreeView;
-class PlotsModel;
-class PlotsView;
+#include <QWidget>
 
 namespace Ui
 {
-    class PlotsEditorWidget;
+    class PlotsBuilderWidget;
 }
 
-class PlotsEditor : public QDockWidget
+class PlotsBuilder : public QWidget
 {
     Q_OBJECT
 public:
@@ -54,46 +46,13 @@ public:
         EditingImplicitSurface,
     };
     
-    PlotsEditor(QWidget *parent);
-    ~ PlotsEditor();
+    PlotsBuilder(QWidget *parent);
+    ~ PlotsBuilder();
     
-    void setDocument(DataStore *doc);
-
-public slots:
-    void setCurrentSpace(int spaceidx);
-    void reset(); // clear fields and reset the widgets like view3d /view2d (centrandolos etc))
-
-private slots:
-    void showList();
-    void showTypes();
-    void showEditor();
-    
-    void addPlots(); // test method
-    
-    void createCartesianCurve();
-    void createPolarCurve();
-    void createParametricCurve2D();
-    void createParametricCurve3D();
-    void createCartesianSurface();
-    void createCylindricalSurface();
-    void createSphericalSurface();
-    void createImplicitSurface();
-    void createParametricSurface();
-    
-    void savePlot();
-    
-    void removePlot();
-    
-signals:
-    void plotAdded(const QModelIndex &index);  // emit when item != 0
-    void plotRemoved(const QModelIndex &index);  // emit when item != 0
-
 private:
-    Ui::PlotsEditorWidget *m_widget;
-    PlotsModel *m_localModel; // usado solo para los previews
-    DataStore *m_document;
-    
-    State m_state;
+    Ui::PlotsBuilderWidget *m_widget;
 };
 
 #endif 
+
+

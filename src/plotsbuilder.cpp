@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
+ *  Copyright (C) 2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -16,73 +16,17 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef GPLACS_MAINWINDOW_H
-#define GPLACS_MAINWINDOW_H
+#include "plotsbuilder.h"
 
-#include <KDE/KXmlGuiWindow>
+#include "ui_plotsbuilder.h"
 
-class PlotsBuilder;
-class DataStore;
-class SpacePlotsFilterProxyModel;
-class PlotsEditor;
-class KIcon;
-class KAction;
-class Document;
-class KUrl;
-class KToggleAction;
-
-class FunctionsModel;
-class SpacesModel;
-
-class Dashboard;
-
-class MainWindow : public KXmlGuiWindow
+PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
 {
-    Q_OBJECT
+    m_widget = new Ui::PlotsBuilderWidget;
+    m_widget->setupUi(this);
+}
 
-public:
-    MainWindow(QWidget *parent = 0);
-    virtual ~MainWindow();
-
-public slots:
-    void newFile();
-    void openFile();
-    void activateSpace(int);
-
-private slots:
-    //helpers
-    void activateDashboardUi();
-    void activateSpaceUi();
-    
-    //app
-    void addSpace2D();
-    void addSpace3D();
-    void goHome();
-    
-    
-    
-
-    
-    
-    void updateTittleWhenChangeDocState();
-    void updateTittleWhenOpenSaveDoc();
-
-private:
-    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut,const char *slot, bool isCheckable = false);
-    void setupActions();
-    void setupToolBars();
-    void setupDocks();
-    bool queryClose();
-
-private:
-    DataStore *m_document;
-    Dashboard *m_dashboard;
-    
-    QDockWidget *m_plotsBuilderDock;
-    PlotsEditor *m_spacePlotsDock;
-    QDockWidget *m_spaceInfoDock;
-    QDockWidget *m_spaceOptionsDock;
-    
-};
-
-#endif
+PlotsBuilder::~PlotsBuilder()
+{
+    delete m_widget;
+}

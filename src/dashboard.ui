@@ -243,43 +243,6 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>View and Tools:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KComboBox" name="viewMode">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <item>
-         <property name="text">
-          <string>Spaces</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Plots</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Dictionary</string>
-         </property>
-         <property name="icon">
-          <iconset theme="accessories-dictionary">
-           <normaloff/>
-          </iconset>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -295,7 +258,7 @@
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Find</string>
+         <string>Find:</string>
         </property>
        </widget>
       </item>
@@ -321,7 +284,7 @@
          <item>
           <widget class="QRadioButton" name="filterAllFunctions">
            <property name="text">
-            <string>Todos</string>
+            <string>All  Dimensions</string>
            </property>
            <property name="checked">
             <bool>true</bool>
@@ -380,11 +343,6 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
@@ -403,22 +361,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>viewMode</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>views</receiver>
-   <slot>setCurrentIndex(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>170</x>
-     <y>401</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>274</x>
-     <y>216</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

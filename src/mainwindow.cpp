@@ -54,6 +54,7 @@
 #include "document.h"
 #include "plotseditor.h"
 #include "datastore.h"
+#include "plotsbuilder.h"
 
 #include "ui_space2dviewer.h"
 #include "ui_space3dviewer.h"
@@ -150,6 +151,10 @@ void MainWindow::setupToolBars()
 
 void MainWindow::setupDocks()
 {
+    m_plotsBuilderDock = new QDockWidget(this);
+    m_plotsBuilderDock->setWidget(new PlotsBuilder(this)); // plotsbuilder debe ser miembro
+    m_plotsBuilderDock->setObjectName("dsfs");
+    
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
     
@@ -165,7 +170,7 @@ void MainWindow::setupDocks()
     uispaceItemWidget11.setupUi(m_spaceOptionsDock);
     m_spacePlotsDock->setObjectName("a33sdasdds");
 
-        
+    addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
     addDockWidget(Qt::RightDockWidgetArea, m_spaceInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, m_spaceOptionsDock);
@@ -237,6 +242,8 @@ void MainWindow::activateDashboardUi()
     action("show_plots_editor")->setVisible(false);
     action("show_space_info")->setVisible(false);
     action("show_plotter_options")->setVisible(false);
+    //go
+    action("go_home")->setVisible(false);
     //tools
     action("copy_snapshot")->setVisible(false);
     action("export_snapshot")->setVisible(false);
@@ -265,6 +272,8 @@ void MainWindow::activateSpaceUi()
     action("show_plots_editor")->setVisible(true);
     action("show_space_info")->setVisible(true);
     action("show_plotter_options")->setVisible(true);
+    //go
+    action("go_home")->setVisible(true);    
     //tools
     action("copy_snapshot")->setVisible(true);
     action("export_snapshot")->setVisible(true);
