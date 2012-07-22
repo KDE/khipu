@@ -36,17 +36,16 @@ public:
     int dimension() const { return m_dimension; }
     
     QString title() const { return m_name; }
-    void setTitle(const QString &name) { m_name = name; }
-
+    void setTitle(const QString &name);
+    
     QString description() const { return m_description; }
-    void setDescription(const QString &description) { m_description = description; }
+    void setDescription(const QString &description);
 
     QPixmap thumbnail() const { return m_thumbnail; }
-    void setThumbnail(const QPixmap thumbnail) { m_thumbnail = thumbnail; }
+    void setThumbnail(const QPixmap thumbnail);
 
     KDateTime  timestamp() const { return m_dateTime; }
-
-    void setTimestamp(const KDateTime &date) { m_dateTime = date; }
+    void stamp(); //marka el tiempo actual 
 
 private:
     SpaceItem() {}
@@ -65,6 +64,7 @@ private:
     
     SpacesModel *m_model;
     bool m_inDestructorSoDontDeleteMe;
+    bool m_callingCtrFromMode; // true en ctor y false en setmodel
 };
 
 typedef QList<SpaceItem *> SpaceItemList;

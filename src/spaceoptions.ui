@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>coordSysSettingsDock_2</class>
- <widget class="QDockWidget" name="coordSysSettingsDock_2">
+ <class>SpaceOptionsWidget</class>
+ <widget class="QDockWidget" name="SpaceOptionsWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,10 +29,10 @@
    </size>
   </property>
   <property name="features">
-   <set>QDockWidget::DockWidgetClosable</set>
+   <set>QDockWidget::AllDockWidgetFeatures</set>
   </property>
   <property name="allowedAreas">
-   <set>Qt::RightDockWidgetArea</set>
+   <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
   </property>
   <property name="windowTitle">
    <string>Configuración del Área de Dibujo</string>

@@ -42,9 +42,9 @@ class DataStore : public QObject
 public:
     DataStore(QObject *parent = 0);
     ~DataStore();
-    
-    //este metodo publico era necesario para el editor ... pero el main window ya le avisa al edito cuando se activa un space
-//     int currentSpace() const { return m_currentSpace; }
+
+    //es necesario para casos en donde no se esta dentro de un slot que tiene el space actua: ejemplo mainwnd::go_slot
+    int currentSpace() const { return m_currentSpace; }
 
     SpacesModel *spacesModel() const { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }

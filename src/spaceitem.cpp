@@ -20,9 +20,35 @@
 #include "spacesmodel.h"
 
 SpaceItem::SpaceItem(int dimension)
-    : m_dimension(dimension), m_inDestructorSoDontDeleteMe(false)
+    : m_dimension(dimension), m_inDestructorSoDontDeleteMe(false), m_callingCtrFromMode(true)
 {
     m_dateTime = KDateTime::currentLocalDateTime(); 
+}
+
+void SpaceItem::setTitle(const QString& name)
+{
+    m_name = name;
+    
+    emitDataChanged();
+}
+
+void SpaceItem::setDescription(const QString& description)
+{
+    m_description = description; 
+    
+    emitDataChanged();
+}
+
+void SpaceItem::setThumbnail(const QPixmap thumbnail)
+{
+    m_thumbnail = thumbnail;
+}
+
+void SpaceItem::stamp()
+{
+    m_dateTime = KDateTime::currentLocalDateTime(); 
+    
+    emitDataChanged(); // actualimos las vistas itemviews
 }
 
 SpaceItem::~SpaceItem()
@@ -41,13 +67,21 @@ void SpaceItem::setModel(SpacesModel * m)
     Q_ASSERT(m != m_model);
     
     m_model = m;
+    
+    m_callingCtrFromMode = false;
 }
 
 void SpaceItem::emitDataChanged()
 {
+    if (m_callingCtrFromMode)
+        return ; // no emitir la signal datachange cuando se esta agregando un item desde el model
+    
     if (m_model)
     {
-        int row = m_model->m_items.indexOf(this);
-        m_model->dataChanged(m_model->index(row), m_model->index(row));
+        if (m_model->rowCount()>0)
+        {
+            int row = m_model->m_items.indexOf(this);
+            m_model->dataChanged(m_model->index(row), m_model->index(row));
+        }
     }
 }

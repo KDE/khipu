@@ -47,11 +47,8 @@
 #include "plotseditor.h"
 #include "datastore.h"
 #include "plotsbuilder.h"
-
-#include "ui_spaceinformation.h"
-#include "ui_spaceoptions.h"
-
-
+#include "spaceinformation.h"
+#include "spaceoptions.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
@@ -117,18 +114,9 @@ void MainWindow::setupDocks()
     
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
-    m_spaceInfoDock = new QDockWidget(this);
-    Ui::spaceItemWidget uispaceItemWidget1;
-    uispaceItemWidget1.setupUi(m_spaceInfoDock);
-    m_spacePlotsDock->setObjectName("asdasdds222");
+    m_spaceInfoDock = new SpaceInformation(this);
     
-    
-    
-    
-    m_spaceOptionsDock = new QDockWidget(this);
-    Ui::coordSysSettingsDock_2 uispaceItemWidget11;
-    uispaceItemWidget11.setupUi(m_spaceOptionsDock);
-    m_spacePlotsDock->setObjectName("a33sdasdds");
+    m_spaceOptionsDock = new SpaceOptions(this);
 
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
@@ -234,8 +222,9 @@ void MainWindow::activateSpace(int spaceidx)
     m_spacePlotsDock->reset(true);
     
     //clear space infor widget 
-    
-    
+//     m_spaceInfoDock->clear();
+    SpaceItem *space = m_document->spacesModel()->item(spaceidx);
+    m_spaceInfoDock->setInformation(space->title(), space->description());
 }
 
 void MainWindow::activateDashboardUi()
@@ -259,8 +248,8 @@ void MainWindow::activateDashboardUi()
     action("export_snapshot")->setVisible(false);
     
     //toolbars
-    toolBar("spaceToolBar")->hide();
     toolBar("mainToolBar")->show();
+    toolBar("spaceToolBar")->hide();
 
     //docks
     // primero oculto los widgets sino el size de los que voy a ocultar interfieren y la mainwnd se muestra muy grande
@@ -325,8 +314,21 @@ void MainWindow::addSpace3D()
     
 }
 
+
+//NOTE se emite cuando se regresa de un space ... aqui se debe guardar la imforacion del space
 void MainWindow::goHome()
 {
+    ///guardando space info
+    
+    SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
+
+    space->stamp(); // marcamos la fecha y hora de ingreso al space
+    space->setTitle(m_spaceInfoDock->title());
+    space->setDescription(m_spaceInfoDock->description());
+//     space->tumbnal ... del dashboard
+    
+    ///
+    
     m_dashboard->setCurrentIndex(0);
     activateDashboardUi();
 }
