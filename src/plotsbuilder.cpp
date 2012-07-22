@@ -42,6 +42,25 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
     
     //clear
     connect(m_widget->buildCartesianGraphCurve, SIGNAL(leftUrl()), SLOT(clearInfoWidget()));
+    
+    //BEGIN setup icons
+    #define setTypeIcon(tname, iconame) m_widget->build##tname##Icon->setPixmap(KIcon( iconame ).pixmap(16,16));
+
+    setTypeIcon(CartesianGraphCurve, "draw-bezier-curves");
+    setTypeIcon(CartesianImplicitCurve, "draw-bezier-curves");
+    setTypeIcon(CartesianParametricCurve2D, "draw-bezier-curves");
+    setTypeIcon(PolarGraphCurve, "draw-spiral");
+    setTypeIcon(CartesianParametricCurve3D, "draw-bezier-curves");
+    setTypeIcon(CartesianGraphSurface, "draw-spiral");
+    setTypeIcon(CartesianImplicitSurface, "draw-spiral");
+    setTypeIcon(CartesianParametricSurface, "draw-spiral");
+    setTypeIcon(CylindricalGraphSurface, "draw-spiral");
+    setTypeIcon(SphericalGraphSurface, "draw-spiral");
+    
+    
+    
+    
+    //END setup icons
 }
 
 PlotsBuilder::~PlotsBuilder()
