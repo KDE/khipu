@@ -130,6 +130,9 @@ void MainWindow::setupDocks()
     uispaceItemWidget1.setupUi(m_spaceInfoDock);
     m_spacePlotsDock->setObjectName("asdasdds222");
     
+    
+    
+    
     m_spaceOptionsDock = new QDockWidget(this);
     Ui::coordSysSettingsDock_2 uispaceItemWidget11;
     uispaceItemWidget11.setupUi(m_spaceOptionsDock);
@@ -237,6 +240,10 @@ void MainWindow::activateSpace(int spaceidx)
     activateSpaceUi();
     
     m_spacePlotsDock->reset(true);
+    
+    //clear space infor widget 
+    
+    
 }
 
 void MainWindow::activateDashboardUi()

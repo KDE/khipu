@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>271</width>
+    <width>291</width>
     <height>160</height>
    </rect>
   </property>
@@ -29,7 +29,7 @@
    <set>Qt::RightDockWidgetArea</set>
   </property>
   <property name="windowTitle">
-   <string>Información del Espacio</string>
+   <string>Space Information</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -38,7 +38,7 @@
       <item>
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Titulo</string>
+         <string>Title:</string>
         </property>
        </widget>
       </item>
@@ -68,7 +68,7 @@
       <item>
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Descripción</string>
+         <string>Description:</string>
         </property>
        </widget>
       </item>
