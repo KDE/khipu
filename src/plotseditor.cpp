@@ -44,6 +44,8 @@
 #include <analitzaplot/planecurve.h>
 #include "analitzaplot/plotsmodel.h"
 #include "ui_plotseditor.h"
+#include <../analitza/analitzaplot/spacecurve.h>
+#include <../analitza/analitzaplot/surface.h>
 
 PlotsEditor::PlotsEditor(QWidget * parent)
     : QDockWidget(parent)
@@ -51,8 +53,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
     setObjectName("adasdds");
-    
-    
     
     Analitza::Expression e("x*x+3");
     
@@ -95,8 +95,9 @@ void PlotsEditor::setDocument(DataStore* doc)
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
+//     qDebug() << "2dd";
     //proxy config
-    m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(spaceidx));
+//     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(spaceidx));
     
 //     qDebug() << m_document->currentSpace();
     //set dim profile ... esto depende del space actual
@@ -178,60 +179,173 @@ void PlotsEditor::addPlots()
 
 void PlotsEditor::createCartesianCurve()
 {
+    m_state = EditingCartesianCurve;
+    
     showEditor();
     m_widget->previews->setCurrentIndex(0); //2d preview
 }
 
 void PlotsEditor::createPolarCurve()
 {
+    m_state = EditingPolarCurve;
     showEditor();
     m_widget->previews->setCurrentIndex(0); //2d preview
 }
 
 void PlotsEditor::createParametricCurve2D()
 {
+    m_state = EditingParametricCurve2D;
     showEditor();
     m_widget->previews->setCurrentIndex(0); //2d preview
 }
 
 void PlotsEditor::createParametricCurve3D()
 {
+    m_state = EditingParametricCurve3D;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
 void PlotsEditor::createCartesianSurface()
 {
+    m_state = EditingCartesianSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
 void PlotsEditor::createCylindricalSurface()
 {
+    m_state = EditingCylindricalSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
 void PlotsEditor::createSphericalSurface()
 {
+    m_state = EditingSphericalSurface;
+    showEditor();
+    m_widget->previews->setCurrentIndex(1); //3d preview
+}
+
+void PlotsEditor::createImplicitSurface()
+{
+    m_state = EditingImplicitSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
 void PlotsEditor::createParametricSurface()
 {
+    m_state = EditingParametricSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
 void PlotsEditor::savePlot()
 {
-//     qDebug() << "asd 5" << PlaneCurve::canDraw(m_widget->f->expression());
+    QStringList errors;
     
-    m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
+    switch (m_state)
+    {
+        case EditingCartesianCurve:
+        case EditingPolarCurve:
+            PlaneCurve::canDraw(m_widget->f->expression(), errors);
+            break;
+        case EditingParametricCurve2D:
+        {
+            QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+                m_widget->g->expression().toString()+"}";
+            
+            PlaneCurve::canDraw(Analitza::Expression(es), errors);
+            break;
+        }
+
+        // 3D
+        case EditingParametricCurve3D:
+        {
+            QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+                m_widget->g->expression().toString()+","+
+                m_widget->h->expression().toString()+"}";
+            
+            SpaceCurve::canDraw(Analitza::Expression(es), errors);
+            break;
+        }
+
+        case EditingCartesianSurface:
+        case EditingCylindricalSurface:
+        case EditingSphericalSurface:
+        case EditingImplicitSurface:
+                Surface::canDraw(m_widget->f->expression(), errors);
+            break;
+        case EditingParametricSurface:
+        {
+            QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
+                m_widget->g->expression().toString()+","+
+                m_widget->h->expression().toString()+"}";
+            
+            Surface::canDraw(Analitza::Expression(es), errors);
+            break;
+        }
+    }
     
-    reset();
-    showList();
+    if (errors.isEmpty())
+    {
+        switch (m_state)
+        {
+            case EditingCartesianCurve:
+            case EditingPolarCurve:
+            {
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
+                break;
+            }
+            case EditingParametricCurve2D:
+            {
+                QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+                    m_widget->g->expression().toString()+"}";
+                
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(es), m_widget->plotName->text(), m_widget->plotColor->color());
+                break;
+            }
+
+            // 3D
+            case EditingParametricCurve3D:
+            {
+                QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+                    m_widget->g->expression().toString()+","+
+                    m_widget->h->expression().toString()+"}";
+                
+                SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(es), m_widget->plotName->text(), m_widget->plotColor->color());
+                break;
+            }
+
+            case EditingCartesianSurface:
+            case EditingCylindricalSurface:
+            case EditingSphericalSurface:
+            case EditingImplicitSurface:
+            {
+                Surface::canDraw(m_widget->f->expression(), errors);
+                Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
+
+                break;
+            }
+            case EditingParametricSurface:
+            {
+                QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
+                    m_widget->g->expression().toString()+","+
+                    m_widget->h->expression().toString()+"}";
+                
+                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(es), m_widget->plotName->text(), m_widget->plotColor->color());
+                break;
+            }
+        }
+        
+        reset();
+        showList();
+    }    
+    else
+    {
+//         setStatusTip(errors);
+    }
 }
 
 void PlotsEditor::removePlot()

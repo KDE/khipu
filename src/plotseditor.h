@@ -39,6 +39,21 @@ class PlotsEditor : public QDockWidget
 {
     Q_OBJECT
 public:
+    enum State
+    {
+        //2D
+        EditingCartesianCurve = 0,
+        EditingPolarCurve,
+        EditingParametricCurve2D,
+        //3D
+        EditingCartesianSurface,
+        EditingCylindricalSurface,
+        EditingSphericalSurface,
+        EditingParametricSurface,
+        EditingParametricCurve3D,
+        EditingImplicitSurface,
+    };
+    
     PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
@@ -62,6 +77,7 @@ private slots:
     void createCartesianSurface();
     void createCylindricalSurface();
     void createSphericalSurface();
+    void createImplicitSurface();
     void createParametricSurface();
     
     void savePlot();
@@ -76,6 +92,8 @@ private:
     Ui::PlotsEditorWidget *m_widget;
     PlotsModel *m_localModel; // usado solo para los previews
     DataStore *m_document;
+    
+    State m_state;
 };
 
 #endif 

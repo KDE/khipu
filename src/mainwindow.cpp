@@ -150,7 +150,8 @@ void MainWindow::setupDocks()
 {
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
-    connect(m_document, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
+    
+    connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     m_spaceInfoDock = new QDockWidget(this);
     Ui::spaceItemWidget uispaceItemWidget1;

@@ -112,7 +112,7 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
     //TODO assert si el current forma un buen item
     //aserto si se esta agregando un plot de dim != al space 
-//     qDebug() << m_currentSpace << start;
+    qDebug() << m_maps;
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
     m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));

@@ -273,9 +273,10 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
     m_widget->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
     
     //solo se cambia el filtro aqui porque es cuando se agrega un space ... luego todo cambio sera en datastore::setCurrentSpace
-    m_document->currentPlots()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
-    m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
+//     m_document->currentPlots()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
+//     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
     
+    emit spaceActivated(row);
 //     qDebug() << row;
 }
 
