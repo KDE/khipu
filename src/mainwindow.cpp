@@ -75,11 +75,11 @@ MainWindow::MainWindow(QWidget *parent)
     //para document de dashboard
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_document , SIGNAL(spaceActivated(int)));
     
+    setupDocks();
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
     setCentralWidget(m_dashboard);
     setupToolBars();
-    setupDocks();
     activateDashboardUi();
     
     updateTittleWhenOpenSaveDoc();
@@ -89,7 +89,7 @@ MainWindow::~MainWindow()
 {
 }
 
-KAction* MainWindow::createAction(const char* name, const QString& text, const QString& iconName, const QKeySequence& shortcut, const char* slot, bool isCheckable)
+KAction* MainWindow::createAction(const char* name, const QString& text, const QString& iconName, const QKeySequence& shortcut, QObject* sender, const char* slot, bool isCheckable)
 {
     KAction* act = new KAction(this);
     act->setText(text);
@@ -98,55 +98,17 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
     act->setCheckable(isCheckable);
     
     if (isCheckable) 
+    {
         act->setChecked(true);
+            connect(act, SIGNAL(toggled(bool)), sender, slot);
+    }
+    else
+        connect(act, SIGNAL(triggered()), sender, slot);
+
         
     actionCollection()->addAction(name, act);
-    
-    connect(act, SIGNAL(triggered()), slot);
 
     return act;
-}
-
-void MainWindow::setupActions()
-{
-    //file
-    KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
-    KStandardAction::open(this, SLOT(newFile()), actionCollection());
-    KStandardAction::save(this, SLOT(newFile()), actionCollection());
-    KStandardAction::saveAs(this, SLOT(newFile()), actionCollection());
-    KStandardAction::close(this, SLOT(newFile()), actionCollection());
-    KStandardAction::quit(this, SLOT(close()), actionCollection());
-    //edit - dashboard
-    createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace3D()));
-    //view - dashboard //TODO Show Plots Dictionary
-    createAction("show_plotsbuilder", i18n("&Plots Builder"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    createAction("show_plotsdictionary", i18n("&Show Plots Dictionary"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    //view - space
-    createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
-    createAction("show_space_info", i18n("&Show Space Information"), "document-edit", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
-    createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
-    //go
-    KStandardAction::home(this, SLOT(goHome()), actionCollection());
-    //tools dashboard
-    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    //tools space
-    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
-    //settings
-    
-    
-//     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
-//     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
-}
-
-void MainWindow::setupToolBars()
-{
-//     hideSpaceToolBar();
-    
-//     qDebug() << action("add_space2d")->isCheckable();
 }
 
 void MainWindow::setupDocks()
@@ -154,6 +116,9 @@ void MainWindow::setupDocks()
     m_plotsBuilderDock = new QDockWidget(this);
     m_plotsBuilderDock->setWidget(new PlotsBuilder(this)); // plotsbuilder debe ser miembro
     m_plotsBuilderDock->setObjectName("dsfs");
+    m_plotsBuilderDock->setFloating(false);
+    m_plotsBuilderDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable);
     
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
@@ -175,6 +140,50 @@ void MainWindow::setupDocks()
     addDockWidget(Qt::RightDockWidgetArea, m_spaceInfoDock);
     addDockWidget(Qt::RightDockWidgetArea, m_spaceOptionsDock);
 }
+
+void MainWindow::setupActions()
+{
+    //file
+    KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
+    KStandardAction::open(this, SLOT(newFile()), actionCollection());
+    KStandardAction::save(this, SLOT(newFile()), actionCollection());
+    KStandardAction::saveAs(this, SLOT(newFile()), actionCollection());
+    KStandardAction::close(this, SLOT(newFile()), actionCollection());
+    KStandardAction::quit(this, SLOT(close()), actionCollection());
+    //edit - dashboard
+    createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
+    //view - dashboard //TODO Show Plots Dictionary
+    createAction("show_plotsbuilder", i18n("&Plots Builder"), "list-add", Qt::CTRL + Qt::Key_W, m_plotsBuilderDock->toggleViewAction(), 
+                 SLOT(toggle()), true);
+    createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("show_plotsdictionary", i18n("&Show Plots Dictionary"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    //view - space
+    createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
+    createAction("show_space_info", i18n("&Show Space Information"), "document-edit", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
+    createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
+    //go
+    KStandardAction::home(this, SLOT(goHome()), actionCollection());
+    //tools dashboard
+    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    //tools space
+    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    //settings
+    
+    
+//     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
+//     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
+}
+
+void MainWindow::setupToolBars()
+{
+//     hideSpaceToolBar();
+    
+//     qDebug() << action("add_space2d")->isCheckable();
+}
+
 
 bool MainWindow::queryClose()
 {
@@ -237,8 +246,10 @@ void MainWindow::activateDashboardUi()
     action("add_space2d")->setVisible(true);
     action("add_space3d")->setVisible(true);
     //view
+    action("show_plotsbuilder")->setVisible(true);
     action("show_plots")->setVisible(true);
     action("show_spaces")->setVisible(true);
+    action("show_plotsdictionary")->setVisible(true);    
     action("show_plots_editor")->setVisible(false);
     action("show_space_info")->setVisible(false);
     action("show_plotter_options")->setVisible(false);
@@ -253,6 +264,7 @@ void MainWindow::activateDashboardUi()
     toolBar("mainToolBar")->show();
 
     //docks
+    m_plotsBuilderDock->show();
     m_spacePlotsDock->hide();
     m_spaceInfoDock->hide();
     m_spaceOptionsDock->hide();
@@ -267,8 +279,10 @@ void MainWindow::activateSpaceUi()
     action("add_space2d")->setVisible(false);
     action("add_space3d")->setVisible(false);
     //view
+    action("show_plotsbuilder")->setVisible(false);
     action("show_plots")->setVisible(false);
     action("show_spaces")->setVisible(false);
+    action("show_plotsdictionary")->setVisible(false); 
     action("show_plots_editor")->setVisible(true);
     action("show_space_info")->setVisible(true);
     action("show_plotter_options")->setVisible(true);
@@ -283,6 +297,7 @@ void MainWindow::activateSpaceUi()
     toolBar("spaceToolBar")->show();
 
     //docks
+    m_plotsBuilderDock->hide();
     m_spacePlotsDock->show();
     m_spaceInfoDock->show();
     m_spaceOptionsDock->show();

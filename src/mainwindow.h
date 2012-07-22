@@ -68,10 +68,10 @@ private slots:
     void updateTittleWhenOpenSaveDoc();
 
 private:
-    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut,const char *slot, bool isCheckable = false);
+    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, QObject * sender, const char *slot, bool isCheckable = false);
+    void setupDocks();
     void setupActions();
     void setupToolBars();
-    void setupDocks();
     bool queryClose();
 
 private:

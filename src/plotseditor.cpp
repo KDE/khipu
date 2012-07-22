@@ -56,11 +56,11 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     
     Analitza::Expression e("x*x+3");
     
-    m_widget->plotExample->setContent(e.toMathMLPresentation());
+//     m_widget->plotExample->setContent(e.toMathMLPresentation());
 // costri r el selecto cmunto para view 
     
     //cons
-    connect(m_widget->typesDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
+    connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showTypes()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
 
@@ -107,7 +107,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
         case 2:
         {
 //             m_widget->planeCurvesLinks->show();
-            m_widget->spaceCurvesLinks->hide();
+//             m_widget->spaceCurvesLinks->hide();
 //             m_widget->surfacesLinks->hide();
             m_widget->previews->setCurrentIndex(0);
             break;
@@ -116,7 +116,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
         case 3:
         {
 //             m_widget->surfacesLinks->show();
-            m_widget->spaceCurvesLinks->show();
+//             m_widget->spaceCurvesLinks->show();
 //             m_widget->planeCurvesLinks->hide();
             m_widget->previews->setCurrentIndex(1);
             break;

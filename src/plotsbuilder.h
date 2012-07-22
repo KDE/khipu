@@ -49,6 +49,10 @@ public:
     PlotsBuilder(QWidget *parent);
     ~ PlotsBuilder();
     
+    //map to slots
+    //hide by dim or other filder
+    //enum aviable plots 
+    
 private:
     Ui::PlotsBuilderWidget *m_widget;
 };

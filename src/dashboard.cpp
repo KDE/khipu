@@ -34,7 +34,7 @@ Dashboard::Dashboard(QWidget *parent)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
-    
+    m_widget->findIcon->setPixmap(KIcon("edit-find").pixmap(16,16));
 }
 
 Dashboard::~Dashboard()

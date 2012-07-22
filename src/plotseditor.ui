@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>430</width>
+    <width>274</width>
     <height>732</height>
    </rect>
   </property>
@@ -154,351 +154,14 @@
       <widget class="QWidget" name="page_2">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QGroupBox" name="cartesianCurvesLinks">
-          <property name="title">
-           <string>Create a Cartesian Curve</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_15">
-           <item>
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianGraphCurve">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Graph</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianImplicitCurve">
-             <property name="text">
-              <string>Implicit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianParametricCurve2D">
-             <property name="text">
-              <string>Parametric</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
+         <widget class="PlotsBuilder" name="widget" native="true"/>
         </item>
         <item>
-         <widget class="QGroupBox" name="polarCurvesLinks">
-          <property name="title">
-           <string>Create a Polar Curve</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="label_8">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createPloarGraphCurve">
-             <property name="text">
-              <string>Graph</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="dasdasdad">
-             <property name="text">
-              <string>Implicit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="kurllabel_2">
-             <property name="text">
-              <string>Parametric</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="spaceCurvesLinks">
-          <property name="title">
-           <string>Create a Curve</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_13">
-           <item>
-            <widget class="QLabel" name="label_11">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianParametricCurve3D">
-             <property name="text">
-              <string>Parametric</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="cartesianSurfacesLinks">
-          <property name="title">
-           <string>Create a Cartesian Surface</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QLabel" name="label_12">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianGraphSurface">
-             <property name="text">
-              <string>Graph</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_13">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianImplicitSurface">
-             <property name="text">
-              <string>Implicit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_14">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCartesianParametricSurface">
-             <property name="text">
-              <string>Parametric</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="cylindricalSurfacesLinks">
-          <property name="title">
-           <string>Create a Cylindrical Surface</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_16">
-           <item>
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createCylindricalGraphSurface">
-             <property name="text">
-              <string>Graph</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="kurllabel_6">
-             <property name="text">
-              <string>Implicit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="kurllabel_5">
-             <property name="text">
-              <string>Parametric</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="sphericalSurfacesLinks">
-          <property name="title">
-           <string>Create a Spherical Surface</string>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_17">
-           <item>
-            <widget class="QLabel" name="label_16">
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="createSphericalGraphSurface">
-             <property name="text">
-              <string>Graph</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="kurllabel_8">
-             <property name="text">
-              <string>Implicit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="KUrlLabel" name="kurllabel_7">
-             <property name="text">
-              <string>Parametric</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="advancedPlots">
-          <property name="title">
-           <string>Create an Advanced Plot</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="4" column="0">
-            <widget class="KUrlLabel" name="kurllabel_10">
-             <property name="text">
-              <string>Scalar Field</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="KUrlLabel" name="kurllabel_9">
-             <property name="text">
-              <string>Ball</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="KUrlLabel" name="kurllabel_12">
-             <property name="text">
-              <string>Linear System</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="KUrlLabel" name="kurllabel_11">
-             <property name="text">
-              <string>Vector Field</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="KUrlLabel" name="kurllabel_16">
-             <property name="text">
-              <string>Nonlinear System</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="inequalitiesPlots">
-          <property name="title">
-           <string>Inequalities Plots</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="2" column="0">
-            <widget class="KUrlLabel" name="kurllabel_18">
-             <property name="text">
-              <string>Nonlinear System</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="KUrlLabel" name="kurllabel_19">
-             <property name="text">
-              <string>Cartesian</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="KUrlLabel" name="kurllabel_20">
-             <property name="text">
-              <string>Linear System</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Hover to see the description:</string>
+         <widget class="KDialogButtonBox" name="builderDialogBox">
+          <property name="standardButtons">
+           <set>QDialogButtonBox::Cancel</set>
           </property>
          </widget>
-        </item>
-        <item>
-         <widget class="QtMmlWidget" name="plotExample">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="frameShape">
-           <enum>QFrame::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Raised</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
-          <item>
-           <widget class="KDialogButtonBox" name="typesDialogBox">
-            <property name="standardButtons">
-             <set>QDialogButtonBox::Cancel</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
         </item>
        </layout>
       </widget>
@@ -857,11 +520,6 @@
    <header>kdialogbuttonbox.h</header>
   </customwidget>
   <customwidget>
-   <class>KUrlLabel</class>
-   <extends>QLabel</extends>
-   <header>kurllabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>ExpressionEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>analitzagui/expressionedit.h</header>
@@ -882,6 +540,12 @@
    <class>PlotsView3D</class>
    <extends>QWidget</extends>
    <header>analitzaplot/plotsview3d.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PlotsBuilder</class>
+   <extends>QWidget</extends>
+   <header>plotsbuilder.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
