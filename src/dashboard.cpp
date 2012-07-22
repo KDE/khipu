@@ -62,11 +62,18 @@ void Dashboard::setDocument(DataStore* doc)
     m_document->currentPlots()->setFilterSpaceDimension(3);
     m_widget->plotsView3D->setModel(m_document->currentPlots());
     m_widget->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
+
+    //al insertar nuevos plots que el current sea el ultimo insertado ... esto es necesario
+    //para que los plotsview se enteren ...
+    connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int,int)));
+    
     
 //     m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(-1); //TODO hacks para evitar los asertos de setmodel... enums?
 
-    connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
-            SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
+    
+//     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
+//             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
+    connect(m_widget->spacesView, SIGNAL(activated(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
     
     
     SpacesModel * m = m_document->spacesModel();
@@ -232,21 +239,15 @@ void Dashboard::filterByDimension(int radioButton)
 //     }
 }
 
-void Dashboard::setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected)
+void Dashboard::setCurrentSpace(const QModelIndex &index)
 {
 //     m_document->spacePlotsProxyModel()->setFilterSpaceDimension(m_document->spacesModel()->item(selected.indexes().first().row())->dimension());
 
-    ///
-    
-    
-    ///
-
     setCurrentIndex(1);
 
-    emit spaceActivated(selected.indexes().first().row());
+    emit spaceActivated(index.row());
     
-    
-    switch (m_document->spacesModel()->item(selected.indexes().first().row())->dimension())
+    switch (m_document->spacesModel()->item(index.row())->dimension())
     {
         case 2: 
         {
@@ -276,6 +277,15 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
     
 //     qDebug() << row;
+}
+
+void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
+{
+//     qDebug() << start << "??";
+    
+    m_document->currentSelectionModel()->clear();
+    m_document->currentSelectionModel()->setCurrentIndex(m_document->currentPlots()->index(start,0), QItemSelectionModel::SelectCurrent );
+
 }
 
 

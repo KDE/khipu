@@ -75,9 +75,14 @@ private slots:
     void filterByText(const QString &text); // any text on the title or description
     void filterByDimension(int radioButtonid);
 
-    void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
+//     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
+    void setCurrentSpace(const QModelIndex &index);
     void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
     
+    //al agregar un plot notificar que es el ultimo seleccionado a los view2d3}
+    //los index son del proxy 
+    void setCurrentPlot(const QModelIndex & parent, int start, int end);
+
 signals:
     void spaceActivated(int spaceidx); // hacia el mainwind para que prepare los toolbars etc
 

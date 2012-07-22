@@ -226,9 +226,12 @@ void PlotsEditor::createParametricSurface()
 
 void PlotsEditor::savePlot()
 {
-    qDebug() << "asd 5" << PlaneCurve::canDraw(m_widget->f->expression());
+//     qDebug() << "asd 5" << PlaneCurve::canDraw(m_widget->f->expression());
     
     m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
+    
+    reset();
+    showList();
 }
 
 void PlotsEditor::removePlot()

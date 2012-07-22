@@ -107,7 +107,7 @@ void DataStore::setCurrentSpace(int spaceidx)
     m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->item(spaceidx)->dimension());
     m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->item(spaceidx));
 }
-
+//esto se dispara cuendo se interta un plot al modelo total
 void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
     //TODO assert si el current forma un buen item
@@ -118,6 +118,12 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
     m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));
     
 //     qDebug() << m_currentSpace << start;
+    
+    //NOTE marcar como selectionado el ultimo plot que se interta
+    
+//     m_currentSelectionModel->select(m_spacePlotsFilterProxyModel->mapFromSource(m_plotsModel->index(start)), QItemSelectionModel::SelectCurrent);
+//     m_currentSelectionModel->select(m_spacePlotsFilterProxyModel->index(0,0), QItemSelectionModel::SelectCurrent);
+//     m_currentSelectionModel->setCurrentIndex(m_spacePlotsFilterProxyModel->index(m_spacePlotsFilterProxyModel->rowCount()-1,0), QItemSelectionModel::SelectCurrent);
 }
 //asrtos para verificar que no existan un plot asociado a mas de un space
 void DataStore::unmapPlot(const QModelIndex& parent, int start, int end)
