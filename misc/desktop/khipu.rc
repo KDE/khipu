@@ -16,8 +16,10 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <Menu name="view">
             <text>&amp;View</text>
             <DefineGroup name="view_dashboard_operations" />
+            <Action name="show_plotsbuilder"/>
             <Action name="show_plots"/>
             <Action name="show_spaces"/>
+            <Action name="show_plotsdictionary"/>
             <DefineGroup name="view_dashboard_operations" />
             <Action name="show_plots_editor"/>
             <Action name="show_space_info"/> 
@@ -50,6 +52,11 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="edit_operations" />
         <Action name="add_space2d"/>
         <Action name="add_space3d"/>
+        <DefineGroup name="view_operations" />
+        <Action name="show_plotsbuilder"/>
+        <Action name="show_plots"/>
+        <Action name="show_spaces"/>
+        <Action name="show_plotsdictionary"/>
     </ToolBar>
     
     <ToolBar name="spaceToolBar" newline="false" noMerge="1" index="1" hidden="false">

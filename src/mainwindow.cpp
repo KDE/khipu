@@ -119,8 +119,10 @@ void MainWindow::setupActions()
     createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace3D()));
     //view - dashboard //TODO Show Plots Dictionary
+    createAction("show_plotsbuilder", i18n("&Plots Builder"), "list-add", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
+    createAction("show_plotsdictionary", i18n("&Show Plots Dictionary"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()));
     //view - space
     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);
     createAction("show_space_info", i18n("&Show Space Information"), "document-edit", Qt::CTRL + Qt::Key_W, SLOT(addSpace2D()), true);

@@ -37,6 +37,7 @@ set ( khipu_SRCS
 
 
 kde4_add_ui_files ( khipu_SRCS
+  plotsbuilder.ui
   plotseditor.ui
   space2dviewer.ui
   space3dviewer.ui
