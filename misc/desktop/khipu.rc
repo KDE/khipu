@@ -52,6 +52,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="edit_operations" />
         <Action name="add_space2d"/>
         <Action name="add_space3d"/>
+        <Separator />
         <DefineGroup name="view_operations" />
         <Action name="show_plotsbuilder"/>
         <Action name="show_plots"/>

@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 
     about.addCredit(ki18n("Aleix Pol Gonzalez"), ki18n("KAlgebra and Analitza parser author, both vitals for the project"));
 
-    about.addCredit(ki18n("José Fernando Ramos Ramirez"), ki18n("First version of Famous Curves Database. Build an windows installer"), "ferramos1990@gmail.com");
+    about.addCredit(ki18n("José Fernando Ramos Ramirez"), ki18n("First version of Famous Curves Database. Build former windows installer"), "ferramos1990@gmail.com");
     about.addCredit(ki18n("Susan Pamela Rios Sarmiento"), ki18n("First version of Famous Curves Database"), "susanriossarmiento@gmail.com");
 
     about.addCredit(ki18n("Edgar Velasquez"), ki18n("2D Improvements"));
