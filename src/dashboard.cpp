@@ -19,8 +19,8 @@
 #include "dashboard.h"
 
 #include "spaceitem.h"
-#include "space2dviewer.h"
-#include "space3dviewer.h"
+#include "spaceinformation.h"
+#include "spaceoptions.h"
 #include "spacesmodel.h"
 #include "datastore.h"
 #include "spaceplotsproxymodel.h"

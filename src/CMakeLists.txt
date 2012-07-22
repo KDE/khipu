@@ -8,24 +8,17 @@ include_directories (
 
 set ( khipu_SRCS
 
-
-
-  functionsmodel.cpp
-  plotsview.cpp
   plotsbuilder.cpp
   plotseditor.cpp
   functionlibraryedit.cpp
   functionlibrarymodel.cpp
-  space2dviewer.cpp
-  space3dviewer.cpp
-
-  #use analitzaplot now :) 
+  spaceinformation.cpp
+  spaceoptions.cpp
 
   spaceplotsproxymodel.cpp
   
   spaceitem.cpp
   spacesmodel.cpp
-  spacesview.cpp
   
   datastore.cpp
   document.cpp
@@ -40,9 +33,8 @@ set ( khipu_SRCS
 kde4_add_ui_files ( khipu_SRCS
   plotsbuilder.ui
   plotseditor.ui
-  space2dviewer.ui
-  space3dviewer.ui
-
+  spaceinformation.ui
+  spaceoptions.ui
   dashboard.ui
 )
 

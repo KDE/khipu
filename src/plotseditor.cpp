@@ -32,9 +32,6 @@
 #include <QStringListModel>
 #include <QPushButton>
 #include <libkdeedu/qtmml/QtMmlWidget>
-#include "plotsview.h"
-// #include "keomath/solvers/solver.h"
-// #include "keomath/solvers/solverfactory.h"
 #include "functionlibraryedit.h"
 #include "datastore.h"
 #include "spacesmodel.h"
@@ -44,8 +41,8 @@
 #include <analitzaplot/planecurve.h>
 #include "analitzaplot/plotsmodel.h"
 #include "ui_plotseditor.h"
-#include <../analitza/analitzaplot/spacecurve.h>
-#include <../analitza/analitzaplot/surface.h>
+#include <analitzaplot/spacecurve.h>
+#include <analitzaplot/surface.h>
 
 PlotsEditor::PlotsEditor(QWidget * parent)
     : QDockWidget(parent)

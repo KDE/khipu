@@ -24,15 +24,9 @@
 
 #include <KDE/KApplication>
 
-#include <QtGui/QPainter>
 #include <QtGui/QDockWidget>
 #include <QtGui/QLayout>
-#include <QtGui/QGraphicsScene>
-#include <QtGui/QGraphicsProxyWidget>
-#include <QLineEdit>
-#include <qstringlistmodel.h>
 #include <QDebug>
-#include <QDomDocument>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
 #include <KDE/KStandardDirs>
@@ -46,9 +40,7 @@
 #include <KDE/KMessageBox>
 #include <KDE/KStandardDirs>
 #include <KToolBar>
-#include "functionsmodel.h"
 #include "spacesmodel.h"
-#include <KAboutApplicationDialog>
 #include <KMenuBar>
 #include "dashboard.h"
 #include "document.h"
@@ -56,8 +48,8 @@
 #include "datastore.h"
 #include "plotsbuilder.h"
 
-#include "ui_space2dviewer.h"
-#include "ui_space3dviewer.h"
+#include "ui_spaceinformation.h"
+#include "ui_spaceoptions.h"
 
 
 

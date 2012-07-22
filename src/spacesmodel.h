@@ -30,7 +30,6 @@ namespace Analitza
 class Expression;
 }
 
-class SpacesView;
 
 class SpacesModel : public QAbstractListModel 
 {
