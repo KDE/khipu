@@ -21,6 +21,7 @@
 
 #include <QDockWidget>
 #include <QModelIndex>
+#include "plotsbuilder.h"
 
 class DataStore;
 class Document;
@@ -39,21 +40,6 @@ class PlotsEditor : public QDockWidget
 {
     Q_OBJECT
 public:
-    enum State
-    {
-        //2D
-        EditingCartesianCurve = 0,
-        EditingPolarCurve,
-        EditingParametricCurve2D,
-        //3D
-        EditingCartesianSurface,
-        EditingCylindricalSurface,
-        EditingSphericalSurface,
-        EditingParametricSurface,
-        EditingParametricCurve3D,
-        EditingImplicitSurface,
-    };
-    
     PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
@@ -73,16 +59,18 @@ private slots:
     
     void addPlots(); // test method
     
-    void createCartesianCurve();
-    void createPolarCurve();
-    void createParametricCurve2D();
-    void createParametricCurve3D();
-    void createCartesianSurface();
-    void createCylindricalSurface();
-    void createSphericalSurface();
-    void createImplicitSurface();
-    void createParametricSurface();
-    
+    void buildCartesianGraphCurve();
+    void buildCartesianImplicitCurve();
+    void buildCartesianParametricCurve2D();
+    void buildPolarGraphCurve();
+    //3D
+    void buildCartesianParametricCurve3D();
+    void buildCartesianGraphSurface();
+    void buildCartesianImplicitSurface();
+    void buildCartesianParametricSurface();
+    void buildCylindricalGraphSurface();
+    void buildSphericalGraphSurface();
+
     void savePlot();
     
     void removePlot();
@@ -96,7 +84,7 @@ private:
     PlotsModel *m_localModel; // usado solo para los previews
     DataStore *m_document;
     
-    State m_state;
+    PlotsBuilder::PlotType m_currentType; // tipo actual que se esta editando o creando
 };
 
 #endif 

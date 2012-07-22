@@ -78,7 +78,7 @@ void PlotsBuilder::setupTypes(PlotsBuilder::PlotTypes t)
 
 void PlotsBuilder::mapConnection(PlotsBuilder::PlotType pt, QObject* recvr, const char* slot)
 {
-    #define caseType(tname) case ##tname: connect(m_widget->build##tname, SIGNAL(leftClickedUrl()), recvr, slot); break;
+    #define caseType(tname) case tname : connect(m_widget->build##tname , SIGNAL(leftClickedUrl()), recvr, slot); break;
     
     switch (pt)
     {

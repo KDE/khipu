@@ -72,7 +72,19 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 //     connect(m_widget->createCylindricalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createCylindricalSurface()));
 //     connect(m_widget->createSphericalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createSphericalSurface()));
 //     connect(m_widget->createParametricSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricSurface()));
+//lo de arriba ya no va ahora todo es por el builderplots ... mira el metodo map y el siguiente codigo
     
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianGraphCurve, this, SLOT(buildCartesianGraphCurve()));
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianImplicitCurve, this, SLOT(buildCartesianImplicitCurve()));
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianParametricCurve2D, this, SLOT(buildCartesianParametricCurve2D()));
+    m_widget->builder->mapConnection(PlotsBuilder::PolarGraphCurve, this, SLOT(buildPolarGraphCurve()));
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianParametricCurve3D, this, SLOT(buildCartesianParametricCurve3D()));
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianGraphSurface, this, SLOT(buildCartesianGraphSurface()));
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianImplicitSurface, this, SLOT(buildCartesianImplicitSurface()));
+    m_widget->builder->mapConnection(PlotsBuilder::CartesianParametricSurface, this, SLOT(buildCartesianParametricSurface()));
+    m_widget->builder->mapConnection(PlotsBuilder::CylindricalGraphSurface, this, SLOT(buildCylindricalGraphSurface()));
+    m_widget->builder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
+
     connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(showTypes()));
     
     connect(m_widget->roolPlot, SIGNAL(pressed()), SLOT(addPlots()));
@@ -194,66 +206,78 @@ void PlotsEditor::addPlots()
 //     model->addPlaneCurve(Analitza::Expression("x=y*y"), "adasd", Qt::red);
 }
 
-void PlotsEditor::createCartesianCurve()
+
+void PlotsEditor::buildCartesianGraphCurve()
 {
-    m_state = EditingCartesianCurve;
+    setWindowIcon(KIcon("kde"));
     
+    m_currentType = PlotsBuilder::CartesianGraphCurve;
     showEditor();
     m_widget->previews->setCurrentIndex(0); //2d preview
 }
 
-void PlotsEditor::createPolarCurve()
+void PlotsEditor::buildCartesianImplicitCurve()
 {
-    m_state = EditingPolarCurve;
+    m_currentType = PlotsBuilder::CartesianImplicitCurve;
     showEditor();
     m_widget->previews->setCurrentIndex(0); //2d preview
 }
 
-void PlotsEditor::createParametricCurve2D()
+void PlotsEditor::buildCartesianParametricCurve2D()
 {
-    m_state = EditingParametricCurve2D;
+    m_currentType = PlotsBuilder::CartesianParametricCurve2D;
     showEditor();
     m_widget->previews->setCurrentIndex(0); //2d preview
 }
 
-void PlotsEditor::createParametricCurve3D()
+void PlotsEditor::buildPolarGraphCurve()
 {
-    m_state = EditingParametricCurve3D;
+    m_currentType = PlotsBuilder::PolarGraphCurve;
+    showEditor();
+    m_widget->previews->setCurrentIndex(0); //2d preview
+}
+
+//3D
+void PlotsEditor::buildCartesianParametricCurve3D()
+{
+    m_currentType = PlotsBuilder::CartesianParametricCurve3D;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
-void PlotsEditor::createCartesianSurface()
+void PlotsEditor::buildCartesianGraphSurface()
 {
-    m_state = EditingCartesianSurface;
+    m_currentType = PlotsBuilder::CartesianGraphSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
-void PlotsEditor::createCylindricalSurface()
+void PlotsEditor::buildCartesianImplicitSurface()
 {
-    m_state = EditingCylindricalSurface;
+    m_currentType = PlotsBuilder::CartesianImplicitSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
-void PlotsEditor::createSphericalSurface()
+void PlotsEditor::buildCartesianParametricSurface()
 {
-    m_state = EditingSphericalSurface;
+    m_currentType = PlotsBuilder::CartesianParametricSurface;
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
-void PlotsEditor::createImplicitSurface()
+void PlotsEditor::buildCylindricalGraphSurface()
 {
-    m_state = EditingImplicitSurface;
+    m_currentType = PlotsBuilder::CylindricalGraphSurface;
+
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
-void PlotsEditor::createParametricSurface()
+void PlotsEditor::buildSphericalGraphSurface()
 {
-    m_state = EditingParametricSurface;
+    m_currentType = PlotsBuilder::SphericalGraphSurface;
+    
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
@@ -262,13 +286,14 @@ void PlotsEditor::savePlot()
 {
     QStringList errors;
     
-    switch (m_state)
+    switch (m_currentType)
     {
-        case EditingCartesianCurve:
-        case EditingPolarCurve:
+        case PlotsBuilder::CartesianGraphCurve:
+        case PlotsBuilder::CartesianImplicitCurve:
+        case PlotsBuilder::PolarGraphCurve:
             PlaneCurve::canDraw(m_widget->f->expression(), errors);
             break;
-        case EditingParametricCurve2D:
+        case PlotsBuilder::CartesianParametricCurve2D:
         {
             QString es = "t->vector{"+m_widget->f->expression().toString()+","+
                 m_widget->g->expression().toString()+"}";
@@ -278,7 +303,7 @@ void PlotsEditor::savePlot()
         }
 
         // 3D
-        case EditingParametricCurve3D:
+        case PlotsBuilder::CartesianParametricCurve3D:
         {
             QString es = "t->vector{"+m_widget->f->expression().toString()+","+
                 m_widget->g->expression().toString()+","+
@@ -288,13 +313,13 @@ void PlotsEditor::savePlot()
             break;
         }
 
-        case EditingCartesianSurface:
-        case EditingCylindricalSurface:
-        case EditingSphericalSurface:
-        case EditingImplicitSurface:
+        case PlotsBuilder::CartesianGraphSurface:
+        case PlotsBuilder::CartesianImplicitSurface:
+        case PlotsBuilder::CylindricalGraphSurface:
+        case PlotsBuilder::SphericalGraphSurface:
                 Surface::canDraw(m_widget->f->expression(), errors);
             break;
-        case EditingParametricSurface:
+        case PlotsBuilder::CartesianParametricSurface:
         {
             QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
                 m_widget->g->expression().toString()+","+
@@ -307,15 +332,16 @@ void PlotsEditor::savePlot()
     
     if (errors.isEmpty())
     {
-        switch (m_state)
+        switch (m_currentType)
         {
-            case EditingCartesianCurve:
-            case EditingPolarCurve:
+            case PlotsBuilder::CartesianGraphCurve:
+            case PlotsBuilder::CartesianImplicitCurve:
+            case PlotsBuilder::PolarGraphCurve:
             {
                 PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
                 break;
             }
-            case EditingParametricCurve2D:
+            case PlotsBuilder::CartesianParametricCurve2D:
             {
                 QString es = "t->vector{"+m_widget->f->expression().toString()+","+
                     m_widget->g->expression().toString()+"}";
@@ -325,7 +351,7 @@ void PlotsEditor::savePlot()
             }
 
             // 3D
-            case EditingParametricCurve3D:
+            case PlotsBuilder::CartesianParametricCurve3D:
             {
                 QString es = "t->vector{"+m_widget->f->expression().toString()+","+
                     m_widget->g->expression().toString()+","+
@@ -335,17 +361,17 @@ void PlotsEditor::savePlot()
                 break;
             }
 
-            case EditingCartesianSurface:
-            case EditingCylindricalSurface:
-            case EditingSphericalSurface:
-            case EditingImplicitSurface:
+            case PlotsBuilder::CartesianGraphSurface:
+            case PlotsBuilder::CartesianImplicitSurface:
+            case PlotsBuilder::CylindricalGraphSurface:
+            case PlotsBuilder::SphericalGraphSurface:
             {
                 Surface::canDraw(m_widget->f->expression(), errors);
                 Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
 
                 break;
             }
-            case EditingParametricSurface:
+            case PlotsBuilder::CartesianParametricSurface:
             {
                 QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
                     m_widget->g->expression().toString()+","+
