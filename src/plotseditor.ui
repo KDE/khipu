@@ -154,7 +154,7 @@
       <widget class="QWidget" name="page_2">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="PlotsBuilder" name="widget" native="true"/>
+         <widget class="PlotsBuilder" name="builder" native="true"/>
         </item>
         <item>
          <widget class="KDialogButtonBox" name="builderDialogBox">

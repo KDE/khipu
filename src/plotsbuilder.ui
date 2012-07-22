@@ -28,10 +28,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianGraphCurve">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
+       <widget class="KUrlLabel" name="buildCartesianGraphCurve">
         <property name="text">
          <string>Graph</string>
         </property>
@@ -45,7 +42,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianImplicitCurve">
+       <widget class="KUrlLabel" name="buildCartesianImplicitCurve">
         <property name="text">
          <string>Implicit</string>
         </property>
@@ -59,7 +56,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianParametricCurve2D">
+       <widget class="KUrlLabel" name="buildCartesianParametricCurve2D">
         <property name="text">
          <string>Parametric</string>
         </property>
@@ -82,23 +79,9 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createPloarGraphCurve">
+       <widget class="KUrlLabel" name="buildPolarGraphCurve">
         <property name="text">
          <string>Graph</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KUrlLabel" name="dasdasdad">
-        <property name="text">
-         <string>Implicit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KUrlLabel" name="kurllabel_2">
-        <property name="text">
-         <string>Parametric</string>
         </property>
        </widget>
       </item>
@@ -119,7 +102,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianParametricCurve3D">
+       <widget class="KUrlLabel" name="buildCartesianParametricCurve3D">
         <property name="text">
          <string>Parametric</string>
         </property>
@@ -142,7 +125,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianGraphSurface">
+       <widget class="KUrlLabel" name="buildCartesianGraphSurface">
         <property name="text">
          <string>Graph</string>
         </property>
@@ -156,7 +139,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianImplicitSurface">
+       <widget class="KUrlLabel" name="buildCartesianImplicitSurface">
         <property name="text">
          <string>Implicit</string>
         </property>
@@ -170,7 +153,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCartesianParametricSurface">
+       <widget class="KUrlLabel" name="buildCartesianParametricSurface">
         <property name="text">
          <string>Parametric</string>
         </property>
@@ -193,23 +176,9 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createCylindricalGraphSurface">
+       <widget class="KUrlLabel" name="buildCylindricalGraphSurface">
         <property name="text">
          <string>Graph</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KUrlLabel" name="kurllabel_6">
-        <property name="text">
-         <string>Implicit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KUrlLabel" name="kurllabel_5">
-        <property name="text">
-         <string>Parametric</string>
         </property>
        </widget>
       </item>
@@ -230,97 +199,9 @@
        </widget>
       </item>
       <item>
-       <widget class="KUrlLabel" name="createSphericalGraphSurface">
+       <widget class="KUrlLabel" name="buildSphericalGraphSurface">
         <property name="text">
          <string>Graph</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KUrlLabel" name="kurllabel_8">
-        <property name="text">
-         <string>Implicit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="KUrlLabel" name="kurllabel_7">
-        <property name="text">
-         <string>Parametric</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="advancedPlots">
-     <property name="title">
-      <string>Build an Advanced Plot</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="4" column="0">
-       <widget class="KUrlLabel" name="kurllabel_10">
-        <property name="text">
-         <string>Scalar Field</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="KUrlLabel" name="kurllabel_9">
-        <property name="text">
-         <string>Ball</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="KUrlLabel" name="kurllabel_12">
-        <property name="text">
-         <string>Linear System</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="KUrlLabel" name="kurllabel_11">
-        <property name="text">
-         <string>Vector Field</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="KUrlLabel" name="kurllabel_16">
-        <property name="text">
-         <string>Nonlinear System</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="inequalitiesPlots">
-     <property name="title">
-      <string>Inequalities Plots</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="0">
-       <widget class="KUrlLabel" name="kurllabel_18">
-        <property name="text">
-         <string>Nonlinear System</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="KUrlLabel" name="kurllabel_19">
-        <property name="text">
-         <string>Cartesian</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="KUrlLabel" name="kurllabel_20">
-        <property name="text">
-         <string>Linear System</string>
         </property>
        </widget>
       </item>
@@ -361,7 +242,7 @@
   <customwidget>
    <class>QtMmlWidget</class>
    <extends>QFrame</extends>
-   <header>QtMmlWidget</header>
+   <header>qtmmlwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

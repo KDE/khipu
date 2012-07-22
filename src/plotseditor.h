@@ -61,7 +61,10 @@ public:
 
 public slots:
     void setCurrentSpace(int spaceidx);
-    void reset(); // clear fields and reset the widgets like view3d /view2d (centrandolos etc))
+    
+    //el caso de clearbuilder true es si es llamado desde afuera de este widget ... por ejemplo desde el mainwnd es necesario resetar lon links del builer antes de entrar al editor
+    void reset(bool clearBuilder = false); // clear fields and reset the widgets like view3d /view2d (centrandolos etc))
+    
 
 private slots:
     void showList();

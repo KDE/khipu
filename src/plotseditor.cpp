@@ -109,7 +109,17 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
 //             m_widget->planeCurvesLinks->show();
 //             m_widget->spaceCurvesLinks->hide();
 //             m_widget->surfacesLinks->hide();
-            m_widget->previews->setCurrentIndex(0);
+//lo de arriba que esta comentado se paso al builder
+                m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve | 
+                PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D | 
+                    PlotsBuilder::PolarGraphCurve);
+
+///
+
+
+                m_widget->previews->setCurrentIndex(0);
+            
+            
             break;
         }
         
@@ -118,6 +128,11 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
 //             m_widget->surfacesLinks->show();
 //             m_widget->spaceCurvesLinks->show();
 //             m_widget->planeCurvesLinks->hide();
+
+            m_widget->builder->setupTypes(PlotsBuilder::CartesianParametricCurve3D | PlotsBuilder::CartesianGraphSurface | 
+                PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
+                PlotsBuilder::SphericalGraphSurface);
+
             m_widget->previews->setCurrentIndex(1);
             break;
         }
@@ -125,7 +140,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
 }
 
 
-void PlotsEditor::reset()
+void PlotsEditor::reset(bool clearBuilder)
 {
     //clear widgets //TODO GSOC
     m_widget->f->clear();
@@ -143,8 +158,11 @@ void PlotsEditor::reset()
     m_widget->widgets->setCurrentIndex(0);
 //     m_widget->preview3D->camera()/*->centerScene*/;
     m_widget->preview3D->stopAnimation();
-    
-    
+
+    if (clearBuilder)
+        //// escondo todos los links solo muestro los necesario dependiendo del tipo de spac : 2d o 3d .. ver editorplots.setcurrentspace
+        m_widget->builder->hideAllTypes(); 
+
 }
 
 

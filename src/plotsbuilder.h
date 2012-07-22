@@ -21,6 +21,7 @@
 #define FUNCTIONEDITOR_H_builder
 
 #include <QWidget>
+#include <analitza/expression.h>
 
 namespace Ui
 {
@@ -31,31 +32,54 @@ class PlotsBuilder : public QWidget
 {
     Q_OBJECT
 public:
-    enum State
+    //NOTE AvailablePlots ... more to come .. in the future
+    enum PlotType
     {
         //2D
-        EditingCartesianCurve = 0,
-        EditingPolarCurve,
-        EditingParametricCurve2D,
+        CartesianGraphCurve = 0x1,
+        CartesianImplicitCurve = 0x2,
+        CartesianParametricCurve2D = 0x4,
+        PolarGraphCurve = 0x8,
         //3D
-        EditingCartesianSurface,
-        EditingCylindricalSurface,
-        EditingSphericalSurface,
-        EditingParametricSurface,
-        EditingParametricCurve3D,
-        EditingImplicitSurface,
+        CartesianParametricCurve3D = 0x10,
+        CartesianGraphSurface = 0x20,
+        CartesianImplicitSurface = 0x40,
+        CartesianParametricSurface = 0x80,
+        CylindricalGraphSurface = 0x100,
+        SphericalGraphSurface = 0x200,
+        //profiles
     };
     
+    Q_DECLARE_FLAGS(PlotTypes, PlotType)
+    
+
     PlotsBuilder(QWidget *parent);
     ~ PlotsBuilder();
+
+    void setupTypes(PlotTypes t);
+    PlotTypes types() const { return m_types; }
+    void mapConnection(PlotType pt, QObject *recvr, const char * slot);
     
-    //map to slots
-    //hide by dim or other filder
-    //enum aviable plots 
+public slots:
+    void showAllTypes(); // show all types
+    void hideAllTypes(); // hide all types
+    
+private slots: // better names
+    void setupCartesianGraphCurveInfo();
+    
+    
+    void clearInfoWidget();
     
 private:
+    void setupTypes();
+    
+    
     Ui::PlotsBuilderWidget *m_widget;
+    PlotTypes m_types;
+    Analitza::Expression m_example;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(PlotsBuilder::PlotTypes)
 
 #endif 
 

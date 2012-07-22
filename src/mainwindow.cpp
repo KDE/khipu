@@ -236,7 +236,7 @@ void MainWindow::activateSpace(int spaceidx)
 {
     activateSpaceUi();
     
-    m_spacePlotsDock->reset();
+    m_spacePlotsDock->reset(true);
 }
 
 void MainWindow::activateDashboardUi()
@@ -264,10 +264,11 @@ void MainWindow::activateDashboardUi()
     toolBar("mainToolBar")->show();
 
     //docks
-    m_plotsBuilderDock->show();
+    // primero oculto los widgets sino el size de los que voy a ocultar interfieren y la mainwnd se muestra muy grande
     m_spacePlotsDock->hide();
     m_spaceInfoDock->hide();
     m_spaceOptionsDock->hide();
+    m_plotsBuilderDock->show(); //al final ya muestro el widget
 }
 
 void MainWindow::activateSpaceUi()
@@ -297,6 +298,7 @@ void MainWindow::activateSpaceUi()
     toolBar("spaceToolBar")->show();
 
     //docks
+    //lo mismo ... primero hides luego show
     m_plotsBuilderDock->hide();
     m_spacePlotsDock->show();
     m_spaceInfoDock->show();
