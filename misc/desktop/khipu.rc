@@ -49,16 +49,17 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <Action name="file_open" />
         <Action name="file_save" />  
         <Separator />
+        <DefineGroup name="view_operations" />
+        <Action name="show_plotsdictionary"/>
+        <Action name="show_plotsbuilder"/>
+        <Separator />
         <DefineGroup name="edit_operations" />
         <Action name="add_space2d"/>
         <Action name="add_space3d"/>
-        <Separator />
-        <DefineGroup name="view_operations" />
-        <Action name="show_plotsbuilder"/>
-        <Action name="show_plotsdictionary"/>
+        <Action name="delete_currentspace"/>
     </ToolBar>
     
-    <ToolBar name="spaceToolBar" newline="false" noMerge="1" index="1" hidden="false">
+    <ToolBar name="spaceToolBar" newline="false" noMerge="1" index="2" hidden="false">
         <text>Space ToolBar</text>
         <DefineGroup name="go_operations" />
         <Action name="go_home" />
@@ -72,6 +73,6 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <Action name="export_snapshot"/>
         <Separator />
     </ToolBar>
-    
+
 </gui>
     

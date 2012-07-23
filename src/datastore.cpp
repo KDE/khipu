@@ -22,6 +22,7 @@
 #include "spaceplotsproxymodel.h"
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/planecurve.h>
+#include <analitzaplot/plotsdictionarymodel.h>
 #include <analitza/variables.h>
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>
@@ -30,6 +31,8 @@ DataStore::DataStore(QObject* parent)
 : QObject(parent)
 , m_currentSpace(-1)
 {
+    m_plotsDictionaryModel = new PlotsDictionaryModel(this);
+
     m_spacesModel = new SpacesModel(this);
 
     m_variables = new Analitza::Variables;

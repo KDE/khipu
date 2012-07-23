@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QMap>
 
+class PlotsDictionaryModel;
 class QItemSelectionModel;
 class SpaceItem;
 class QModelIndex;
@@ -47,6 +48,7 @@ public:
     //o dashboard currentsnapshot
     int currentSpace() const { return m_currentSpace; }
 
+    PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
     SpacesModel *spacesModel() const { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
     
@@ -67,6 +69,7 @@ signals:
     void spaceActivated(int spaceidx);
 
 private:
+    PlotsDictionaryModel *m_plotsDictionaryModel;
     SpacesModel *m_spacesModel;
     PlotsModel *m_plotsModel;
     

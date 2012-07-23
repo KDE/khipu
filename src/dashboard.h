@@ -57,6 +57,7 @@ public:
     QPixmap currentPlotsViewSnapshot() const;
 
 public slots:
+    void setVisibleDictionary(bool t);
     void showPlotsView2D();
     void showPlotsView3D();
     void removeCurrentSpace();

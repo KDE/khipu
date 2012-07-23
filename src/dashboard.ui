@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>701</width>
-    <height>650</height>
+    <width>638</width>
+    <height>581</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -114,7 +114,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QStackedWidget" name="stackedWidget_2">
+             <widget class="QStackedWidget" name="plotsViewOptions">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -122,7 +122,7 @@
                </sizepolicy>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="page_5">
                <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -146,7 +146,7 @@
                    <string>Edit</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="formula">
+                   <iconset theme="document-edit">
                     <normaloff/>
                    </iconset>
                   </property>
@@ -176,6 +176,9 @@
                   <property name="text">
                    <string>Export</string>
                   </property>
+                  <property name="icon">
+                   <iconset theme="arrow-up"/>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -195,7 +198,7 @@
                    <string>Show details</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="formula">
+                   <iconset theme="dialog-information">
                     <normaloff/>
                    </iconset>
                   </property>
@@ -212,6 +215,15 @@
                  <widget class="QPushButton" name="exporttodictionary_2">
                   <property name="text">
                    <string>import</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="arrow-down"/>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>16</width>
+                    <height>16</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -237,6 +249,9 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
           </property>
           <widget class="QWidget" name="page"/>
           <widget class="QWidget" name="page_2"/>

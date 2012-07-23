@@ -56,10 +56,12 @@ private slots:
     void activateSpaceUi();
     
     //app
+    void setVisibleDictionary(bool t); // este llama a dashboard void setVisibleDictionary(bool t);
     void addSpace2D();
     void addSpace3D();
     void goHome();
     
+
     
     
 
@@ -69,7 +71,7 @@ private slots:
     void updateTittleWhenOpenSaveDoc();
 
 private:
-    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, QObject * sender, const char *slot, bool isCheckable = false);
+    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
     void setupDocks();
     void setupActions();
     void setupToolBars();
@@ -84,6 +86,10 @@ private:
     SpaceInformation *m_spaceInfoDock;
     QDockWidget *m_spaceOptionsDock;
     
+    //remove this
+    
+private slots:
+    void testSlot(bool t = false);
 };
 
 #endif

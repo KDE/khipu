@@ -148,7 +148,7 @@ void PlotsBuilder::hideAllTypes()
 
 void PlotsBuilder::setupCartesianGraphCurveInfo()
 {
-    m_example = Analitza::Expression("x->x*x");
+    m_example = Analitza::Expression("x->x**2-sin(x)");
     
     m_widget->plotExample->setContent(m_example.toMathMLPresentation());
 }
