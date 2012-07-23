@@ -31,6 +31,7 @@
 #include <math.h>
 #include <QStringListModel>
 #include <QPushButton>
+#include <qstyleditemdelegate.h>
 #include <libkdeedu/qtmml/QtMmlWidget>
 #include "functionlibraryedit.h"
 #include "datastore.h"
@@ -44,6 +45,149 @@
 #include <analitzaplot/spacecurve.h>
 #include <analitzaplot/surface.h>
 
+
+
+ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
+{
+    connect(this, SIGNAL(currentIndexChanged(QString)), SLOT(setupCache(QString)));
+}
+
+QSize ComboBox::sizeHint() const
+{
+   //TODO GSOC fix magic numbers heres
+
+    QStringList funcs = m_cacheText.split(",");
+    QString mmlhelper;
+    
+    foreach(const QString &func, funcs)
+    {
+        mmlhelper.append("<mi>"+func+"</mi>");
+        
+        if (func != funcs.last()) // no agregar comas al final
+            mmlhelper.append("<mtext>,</mtext>");
+    }
+    
+    QtMmlDocument mathMLRenderer;
+    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+    
+// return QSize(258, 32);
+    qDebug() << mathMLRenderer.size() << funcs << m_cacheText;
+    
+    //TODO add the combo arrow size properly
+//     QStyleOptionComboBox opt;
+//     opt.initFrom(this);
+    
+    return QSize(mathMLRenderer.size().width()+24, mathMLRenderer.size().height()+8);
+}
+
+void ComboBox::paintEvent(QPaintEvent* e)
+{
+    //TODO GSOC fix magic numbers heres
+
+    QPainter p(this);
+ 
+    QStringList funcs = currentText().split(",");
+    QString mmlhelper;
+    
+    foreach(const QString &func, funcs)
+    {
+        mmlhelper.append("<mi>"+func+"</mi>");
+        
+        if (func != funcs.last()) // no agregar comas al final
+            mmlhelper.append("<mtext>,</mtext>");
+    }
+    
+    QtMmlDocument mathMLRenderer;
+    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+    
+    QStyleOptionComboBox opt;
+    opt.initFrom(this);
+
+    mathMLRenderer.paint(&p, opt.rect.topLeft()+QPoint(4,4));
+    
+    //dibujo el combo pero borrando el texto temporalmente, luego reinserto el texto ... la idea es dibujar el combo sin el text
+    QString itemtext = currentText();
+    m_cacheText = itemtext;
+    setItemText(currentIndex(), "");
+    QComboBox::paintEvent(e);
+    setItemText(currentIndex(), itemtext);    
+}
+
+void ComboBox::setupCache(const QString& currtext)
+{
+    m_cacheText = currtext;
+    qDebug() << m_cacheText;
+    setMinimumSize(sizeHint());
+    update();
+//     resize(sizeHint());
+//     update();
+}
+
+class FunctionDelegate : public QStyledItemDelegate
+{
+    public:
+        FunctionDelegate(ComboBox *parent = 0);
+        QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
+        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+};
+
+FunctionDelegate::FunctionDelegate(ComboBox* parent): QStyledItemDelegate(parent)
+{
+
+}
+
+QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    QStringList funcs = index.data().toString().split(",");
+    QString mmlhelper;
+    
+    
+    foreach(const QString &func, funcs)
+    {
+        mmlhelper.append("<mi>"+func+"</mi>");
+        
+        if (func != funcs.last()) // no agregar comas al final
+            mmlhelper.append("<mtext>,</mtext>");
+    }
+    
+    QtMmlDocument mathMLRenderer;
+    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+
+    return QSize(258, 32);
+    return QSize(mathMLRenderer.size().width(), mathMLRenderer.size().height()+8);
+}
+
+void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    QStringList funcs = index.data().toString().split(",");
+    QString mmlhelper;
+    
+    foreach(const QString &func, funcs)
+    {
+        mmlhelper.append("<mi>"+func+"</mi>");
+        
+        if (func != funcs.last()) // no agregar comas al final
+            mmlhelper.append("<mtext>,</mtext>");
+    }
+
+    if (option.state & QStyle::State_Selected) 
+    {
+        painter->save();
+        painter->setPen(option.palette.highlight().color());
+        painter->setBrush(option.palette.highlight());
+
+        QRect selRect = static_cast<ComboBox*>(parent())->view()->visualRect(index);
+        selRect.setHeight(selRect.height() - 1); //TODO see above
+        painter->drawRect(selRect);
+        painter->restore();
+        painter->setPen(option.palette.highlightedText().color());
+    }
+    
+    QtMmlDocument mathMLRenderer;
+    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+    mathMLRenderer.paint(painter, QPoint(option.rect.left()+2, option.rect.top()+4));
+}    
+
 PlotsEditor::PlotsEditor(QWidget * parent)
     : QDockWidget(parent)
 {
@@ -51,6 +195,15 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
     
+//     m_widget->fname->setMouseTracking(true);
+//     m_widget->fname->view()->setMouseTracking(true);
+    m_widget->fname->setItemDelegate(new FunctionDelegate(m_widget->fname));
+
+    connect(m_widget->fname, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
+    
+    
+    m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
+
     //cons
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showTypes()));
@@ -82,6 +235,8 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     
 }
+
+
 
 PlotsEditor::~PlotsEditor()
 {
@@ -200,25 +355,29 @@ void PlotsEditor::addPlots()
 
 void PlotsEditor::buildCartesianGraphCurve()
 {
-    setWindowIcon(KIcon("kde"));
-    
     m_currentType = PlotsBuilder::CartesianGraphCurve;
-    showEditor();
-    m_widget->previews->setCurrentIndex(0); //2d preview
+    
+    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+
+    setupExpressionType(QStringList() << "x" << "y", QStringList() << "x");
 }
 
 void PlotsEditor::buildCartesianImplicitCurve()
 {
     m_currentType = PlotsBuilder::CartesianImplicitCurve;
-    showEditor();
-    m_widget->previews->setCurrentIndex(0); //2d preview
+
+    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+
+    setupExpressionType(QStringList(), QStringList() << "x" << "y", true);
 }
 
 void PlotsEditor::buildCartesianParametricCurve2D()
 {
     m_currentType = PlotsBuilder::CartesianParametricCurve2D;
-    showEditor();
-    m_widget->previews->setCurrentIndex(0); //2d preview
+
+    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+
+    setupExpressionType(QStringList(), QStringList() << "t", false, true, 2);
 }
 
 void PlotsEditor::buildPolarGraphCurve()
@@ -239,8 +398,10 @@ void PlotsEditor::buildCartesianParametricCurve3D()
 void PlotsEditor::buildCartesianGraphSurface()
 {
     m_currentType = PlotsBuilder::CartesianGraphSurface;
-    showEditor();
-    m_widget->previews->setCurrentIndex(1); //3d preview
+    
+    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+
+    setupExpressionType(QStringList() << "x,y" << "x,z" << "y,z", QStringList() << "x" << "y");
 }
 
 void PlotsEditor::buildCartesianImplicitSurface()
@@ -392,6 +553,89 @@ void PlotsEditor::removePlot()
     }
 }
 
+void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)
+{
+    m_currentFunctionGraphs = txt.split(",");
+    
+    //mostramos a demanda las variables usadas
+    for (int var = 1; var <=m_currentFunctionGraphs.size(); ++var)
+        setupVarName(var, m_currentFunctionGraphs[var-1]);
+}
+
+void PlotsEditor::setupVarName(int var, const QString &vvalue)
+{
+    switch (var)
+    {
+        case 1: 
+        {
+            m_widget->x->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>"); 
+            break;
+        }
+        case 2: 
+        {
+            m_widget->yinterval->show();
+            m_widget->y->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>"); 
+            break;
+        }
+        case 3: 
+        {
+            m_widget->zinterval->show();
+            m_widget->z->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>"); 
+            break;
+        }
+    }
+}
+
+void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringList &vvalues, bool isimplicit, bool isvectorValued, bool m_vectorSize)
+{
+    if (!isimplicit && !isvectorValued) // es decir, si es realvalued ... osea un graph
+    {
+        m_widget->farrow->show();
+        m_widget->fname->show();
+        m_widget->fname->clear();
+        m_widget->fname->addItems(fvalues);
+
+    }
+    else
+    {
+        m_widget->farrow->hide();
+        m_widget->fname->hide();
+    }
+
+    if (!isvectorValued || !isimplicit)
+    {
+        m_widget->gexpression->hide();
+        m_widget->hexpression->hide();
+        
+        m_widget->yinterval->hide();
+        m_widget->zinterval->hide();
+    }
+
+    //mostramos a demanda las variables usadas
+    for (int var = 1; var <=vvalues.size(); ++var)
+        setupVarName(var, vvalues[var-1]);
+        
+    if (isvectorValued)
+    {
+        if (m_vectorSize == 2)
+        {
+            m_widget->gexpression->show();
+            m_widget->hexpression->hide();
+        }
+        else
+        {
+            m_widget->gexpression->show();
+            m_widget->hexpression->show();
+        }
+    }
+    
+    if ((isvectorValued && m_vectorSize == 2) || (isimplicit && vvalues.size() == 2) ||(!isimplicit && !isimplicit && vvalues.size() == 1))
+        m_widget->previews->setCurrentIndex(0); //2d preview
+    else // 3D
+        m_widget->previews->setCurrentIndex(1); //3d preview
+
+    showEditor();
+}
 
 
 

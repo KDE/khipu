@@ -20,6 +20,7 @@
 #define FUNCTIONEDITOR_H
 
 #include <QDockWidget>
+#include <qcombobox.h>
 #include <QModelIndex>
 #include "plotsbuilder.h"
 
@@ -50,15 +51,8 @@ public slots:
     
     //el caso de clearbuilder true es si es llamado desde afuera de este widget ... por ejemplo desde el mainwnd es necesario resetar lon links del builer antes de entrar al editor
     void reset(bool clearBuilder = false); // clear fields and reset the widgets like view3d /view2d (centrandolos etc))
-    
 
-private slots:
-    void showList();
-    void showTypes();
-    void showEditor();
-    
-    void addPlots(); // test method
-    
+    //NOTE para que el dock plotbuilder del mainwnd se conecte con estos slots
     void buildCartesianGraphCurve();
     void buildCartesianImplicitCurve();
     void buildCartesianParametricCurve2D();
@@ -71,20 +65,54 @@ private slots:
     void buildCylindricalGraphSurface();
     void buildSphericalGraphSurface();
 
+private slots:
+    void showList();
+    void showTypes();
+    void showEditor();
+    
+    void addPlots(); // test method
+    
     void savePlot();
     
     void removePlot();
+    
+    //este slot se coneta con el combo
+    void setCurrentFunctionGraphs(const QString &txt); /// see m_currentFunctionGraphs
     
 signals:
     void plotAdded(const QModelIndex &index);  // emit when item != 0
     void plotRemoved(const QModelIndex &index);  // emit when item != 0
 
 private:
+    //helpers para configurar los widgets f,g,h y x,y,...
+    void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
+    void setupExpressionType(const QStringList &funvalues, const QStringList &varsvalues, bool isimplicit = false, bool isvectorValued = false, bool m_vectorSize = 2);
+
     Ui::PlotsEditorWidget *m_widget;
     PlotsModel *m_localModel; // usado solo para los previews
     DataStore *m_document;
     
-    PlotsBuilder::PlotType m_currentType; // tipo actual que se esta editando o creando
+    PlotsBuilder::PlotType m_currentType; //NOTE  tipo actual que se esta editando o creando
+    QStringList m_currentFunctionGraphs; // NOTE en el setupexptyp los graph no usaran funvalues, sino esta variable, pues esta se actualiza con el combobox
 };
+
+class ComboBox : public QComboBox
+{
+Q_OBJECT
+
+public:
+    explicit ComboBox(QWidget* parent = 0);
+    
+    QSize sizeHint() const;
+    void paintEvent(QPaintEvent* e);
+private slots:
+    void setupCache(const QString &currtext);
+    
+private:
+    QString m_cacheText; // paint llama a sizehint y se necesita el texto actual para sugerir el size
+    
+    
+};
+
 
 #endif 
