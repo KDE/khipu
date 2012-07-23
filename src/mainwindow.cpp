@@ -129,6 +129,7 @@ void MainWindow::setupActions()
     //file
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
     KStandardAction::open(this, SLOT(newFile()), actionCollection());
+    KStandardAction::openRecent(this, SLOT(newFile()), actionCollection());    
     KStandardAction::save(this, SLOT(newFile()), actionCollection());
     KStandardAction::saveAs(this, SLOT(newFile()), actionCollection());
     KStandardAction::close(this, SLOT(newFile()), actionCollection());
@@ -138,7 +139,7 @@ void MainWindow::setupActions()
     createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
     createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
     //view - dashboard //TODO Show Plots Dictionary
-    createAction("show_plotsbuilder", i18n("&Plots Builder"), "list-add", Qt::CTRL + Qt::Key_W, m_plotsBuilderDock->toggleViewAction(), 
+    createAction("show_plotsbuilder", i18n("&Plots Builder"), "formula", Qt::CTRL + Qt::Key_W, m_plotsBuilderDock->toggleViewAction(), 
                  SLOT(toggle()), true);
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
@@ -171,9 +172,9 @@ void MainWindow::setupActions()
     createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     //settings
+    KStandardAction::showMenubar(this, SLOT(close()), actionCollection());
     KStandardAction::fullScreen(this, SLOT(close()), this ,actionCollection());
 
-    
 //     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
 //     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
 }
