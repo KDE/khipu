@@ -44,6 +44,7 @@ public:
     ~DataStore();
 
     //es necesario para casos en donde no se esta dentro de un slot que tiene el space actua: ejemplo mainwnd::go_slot
+    //o dashboard currentsnapshot
     int currentSpace() const { return m_currentSpace; }
 
     SpacesModel *spacesModel() const { return m_spacesModel; }

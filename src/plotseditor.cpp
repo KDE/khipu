@@ -51,11 +51,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
     
-    Analitza::Expression e("x*x+3");
-    
-//     m_widget->plotExample->setContent(e.toMathMLPresentation());
-// costri r el selecto cmunto para view 
-    
     //cons
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showTypes()));
@@ -84,7 +79,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 
     connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(showTypes()));
     
-    connect(m_widget->roolPlot, SIGNAL(pressed()), SLOT(addPlots()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     
 }

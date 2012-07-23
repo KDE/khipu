@@ -54,12 +54,11 @@ public:
 
     void setDocument(DataStore *doc);
     
+    QPixmap currentPlotsViewSnapshot() const;
+
 public slots:
-    void goHome();
     void showPlotsView2D();
     void showPlotsView3D();
-    void addSpace2D();
-    void addSpace3D();
     void removeCurrentSpace();
 
     void exportSpace2DSnapshot();

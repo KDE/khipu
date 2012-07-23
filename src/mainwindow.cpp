@@ -107,11 +107,11 @@ void MainWindow::setupDocks()
     m_plotsBuilderDock->setObjectName("dsfs");
     m_plotsBuilderDock->setFloating(false);
     m_plotsBuilderDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable);
-    
+    m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
-    
+
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     m_spaceInfoDock = new SpaceInformation(this);
@@ -136,6 +136,7 @@ void MainWindow::setupActions()
     //edit - dashboard
     createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
+    createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
     //view - dashboard //TODO Show Plots Dictionary
     createAction("show_plotsbuilder", i18n("&Plots Builder"), "list-add", Qt::CTRL + Qt::Key_W, m_plotsBuilderDock->toggleViewAction(), 
                  SLOT(toggle()), true);
@@ -144,9 +145,25 @@ void MainWindow::setupActions()
     createAction("show_plotsdictionary", i18n("&Show Plots Dictionary"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     //view - space
     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
-    createAction("show_space_info", i18n("&Show Space Information"), "document-edit", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
+    createAction("show_space_info", i18n("&Show Space Information"), "draw-freehand", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
     //go
+    KAction *act = KStandardAction::firstPage(this, SLOT(addSpace2D()), actionCollection());
+    act->setText(i18n("&Go First Space"));
+    act->setIcon(KIcon("go-first-view"));
+
+    act = KStandardAction::prior(this, SLOT(addSpace2D()), actionCollection());
+    act->setText(i18n("&Go Previous Space"));
+    act->setIcon(KIcon("go-previous-view"));
+
+    act = KStandardAction::next(this, SLOT(addSpace2D()), actionCollection());
+    act->setText(i18n("&Go Next Space"));
+    act->setIcon(KIcon("go-next-view"));
+    
+    act = KStandardAction::lastPage(this, SLOT(addSpace2D()), actionCollection());
+    act->setText(i18n("&Go Last Space"));
+    act->setIcon(KIcon("go-last-view"));
+
     KStandardAction::home(this, SLOT(goHome()), actionCollection());
     //tools dashboard
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
@@ -154,7 +171,8 @@ void MainWindow::setupActions()
     createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     //settings
-    
+    KStandardAction::fullScreen(this, SLOT(close()), this ,actionCollection());
+
     
 //     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
 //     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
@@ -233,6 +251,7 @@ void MainWindow::activateDashboardUi()
     //edit
     action("add_space2d")->setVisible(true);
     action("add_space3d")->setVisible(true);
+    action("add_random_plot")->setVisible(false);
     //view
     action("show_plotsbuilder")->setVisible(true);
     action("show_plots")->setVisible(true);
@@ -267,6 +286,7 @@ void MainWindow::activateSpaceUi()
     //edit
     action("add_space2d")->setVisible(false);
     action("add_space3d")->setVisible(false);
+    action("add_random_plot")->setVisible(true);
     //view
     action("show_plotsbuilder")->setVisible(false);
     action("show_plots")->setVisible(false);

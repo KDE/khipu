@@ -28,6 +28,10 @@ namespace Ui
     class PlotsBuilderWidget;
 }
 
+
+//TODO ANALITZAPLOT
+// typename deberia devolver una lista de cadenas no una cadena: Superfices, SuperficesEsfericas ... etc en vez de solo SurfaEs
+//...de esta manera se forma un arbol de categorias, de tipos de plots que la libreria puede dibujar
 class PlotsBuilder : public QWidget
 {
     Q_OBJECT

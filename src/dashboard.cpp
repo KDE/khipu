@@ -82,21 +82,15 @@ void Dashboard::setDocument(DataStore* doc)
     
 }
 
-void Dashboard::goHome()
+QPixmap Dashboard::currentPlotsViewSnapshot() const
 {
-    
-//     if (m_widget->currentIndex() == 2)
+//     switch (m_document->spacesModel()->item(m_document->currentSpace())->dimension())
 //     {
-// 
-// 
-//         m_widget->space3D->saveSpace();
+//         case 2:
+//             return m_widget->plotsView2D;
 //     }
-//     else if (m_widget->currentIndex() == 1) 
-//         m_widget->space2D->saveSpace();
-// 
-// 
-// 
-//     m_widget->setCurrentIndex(0);
+
+return QPixmap();
 }
 
 void Dashboard::showPlotsView2D()
@@ -108,42 +102,6 @@ void Dashboard::showPlotsView3D()
 {
 //     qDebug() << "3ddd";
     m_widget->plotsViews->setCurrentIndex(1);
-}
-
-
-void Dashboard::addSpace2D()
-{
-//      SpaceItem space(2);
-// 
-// 
-//     m_dashboardWidget->setCurrentIndex(1);
-//     m_spacesModel->addSpace(space);
-// 
-//     m_dashboardWidget->space2D->setSpace(space);
-//     m_proxyViewer2D->setFilterSpaceId(space.id());
-// 
-//     updateGPLACSDocument();
-}
-
-void Dashboard::addSpace3D()
-{
-//      SpaceItem space(3);
-// 
-//     m_dashboardWidget->setCurrentIndex(2);
-//     m_spacesModel->addSpace(space);
-// 
-//     m_dashboardWidget->space3D->setSpace(space);
-// 
-//     m_proxyViewer3D->setFilterSpaceId(space.id());
-// 
-// 
-// 
-// 
-// 
-//     updateGPLACSDocument();
-
-    
-
 }
 
 void Dashboard::removeCurrentSpace()
