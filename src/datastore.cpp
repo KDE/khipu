@@ -47,7 +47,9 @@ DataStore::DataStore(QObject* parent)
     
     //luego nuestro data store debe mapear los items a un space
     connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
-    connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
+    // no sirve mapear una vez eliminado el item no es posible consultar 
+    /// see unmap para eliminar un item/plot
+//     connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
 
     //luego se debe permitir que los connect del proxy actuen cuando se agrega un row al modelo otiginal
     m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
@@ -93,7 +95,7 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
     //TODO assert si el current forma un buen item
     //aserto si se esta agregando un plot de dim != al space 
-    qDebug() << m_maps;
+//     qDebug() << m_maps;
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
     m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));
@@ -107,8 +109,26 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 //     m_currentSelectionModel->setCurrentIndex(m_spacePlotsFilterProxyModel->index(m_spacePlotsFilterProxyModel->rowCount()-1,0), QItemSelectionModel::SelectCurrent);
 }
 //asrtos para verificar que no existan un plot asociado a mas de un space
-void DataStore::unmapPlot(const QModelIndex& parent, int start, int end)
+void DataStore::unmapPlot(const QModelIndex & proxyindex )
 {
     //TODO assert si el start genera un buen key
-    m_maps.remove(m_maps.key(m_plotsModel->item(start)));
+//     m_maps.remove(m_maps.key(m_plotsModel->item(start)));
+// como es multimap se debe hacer una busqueda lineal
+
+
+    int realrow = m_spacePlotsFilterProxyModel->mapToSource(proxyindex).row();
+
+    QMap<SpaceItem*, PlotItem*>::iterator i = m_maps.begin();
+    
+    while (i != m_maps.end())
+    {
+        if (i.value() == m_plotsModel->item(realrow))
+        {
+            m_maps.erase(i);
+            break;
+        }
+        ++i;
+    }
+    
+    m_plotsModel->removeItem(realrow);
 }

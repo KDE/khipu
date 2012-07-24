@@ -61,8 +61,10 @@ public:
 private slots:
     void setCurrentSpace(int spaceidx);
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
-    void unmapPlot(const QModelIndex & parent, int start, int end); // cuando se borra un plot del modelo 
     
+public slots: //NOTA esta es la foma de borrar un plot
+    void unmapPlot(const QModelIndex & proxyindex /*or viewindex*/); // cuando se borra un plot del modelo ... el viewindex es el index del view es decir del proxy
+
 signals:
 //     void modified(); ... TODO to document???
 

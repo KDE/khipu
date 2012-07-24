@@ -71,7 +71,7 @@ QSize ComboBox::sizeHint() const
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
     
 // return QSize(258, 32);
-    qDebug() << mathMLRenderer.size() << funcs << m_cacheText;
+//     qDebug() << mathMLRenderer.size() << funcs << m_cacheText;
     
     //TODO add the combo arrow size properly
 //     QStyleOptionComboBox opt;
@@ -116,7 +116,7 @@ void ComboBox::paintEvent(QPaintEvent* e)
 void ComboBox::setupCache(const QString& currtext)
 {
     m_cacheText = currtext;
-    qDebug() << m_cacheText;
+//     qDebug() << m_cacheText;
     setMinimumSize(sizeHint());
     update();
 //     resize(sizeHint());
@@ -236,8 +236,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     
 }
-
-
 
 PlotsEditor::~PlotsEditor()
 {
@@ -491,6 +489,11 @@ void PlotsEditor::savePlot()
         }
     }
     
+    QString name = m_widget->plotName->text();
+    
+    if (name.isEmpty())
+        name = "f"+QString::number(m_document->currentPlots()->rowCount()+1);
+
     if (errors.isEmpty())
     {
         switch (m_currentType)
@@ -499,7 +502,7 @@ void PlotsEditor::savePlot()
             case PlotsBuilder::CartesianImplicitCurve:
             case PlotsBuilder::PolarGraphCurve:
             {
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());
                 break;
             }
             case PlotsBuilder::CartesianParametricCurve2D:
@@ -507,7 +510,7 @@ void PlotsEditor::savePlot()
                 QString es = "t->vector{"+m_widget->f->expression().toString()+","+
                     m_widget->g->expression().toString()+"}";
                 
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(es), m_widget->plotName->text(), m_widget->plotColor->color());
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(es), name, m_widget->plotColor->color());
                 break;
             }
 
@@ -518,7 +521,7 @@ void PlotsEditor::savePlot()
                     m_widget->g->expression().toString()+","+
                     m_widget->h->expression().toString()+"}";
                 
-                SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(es), m_widget->plotName->text(), m_widget->plotColor->color());
+                SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(es), name, m_widget->plotColor->color());
                 break;
             }
 
@@ -528,7 +531,7 @@ void PlotsEditor::savePlot()
             case PlotsBuilder::SphericalGraphSurface:
             {
                 Surface::canDraw(m_widget->f->expression(), errors);
-                Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), m_widget->plotName->text(), m_widget->plotColor->color());
+                Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());
 
                 break;
             }
@@ -538,7 +541,7 @@ void PlotsEditor::savePlot()
                     m_widget->g->expression().toString()+","+
                     m_widget->h->expression().toString()+"}";
                 
-                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(es), m_widget->plotName->text(), m_widget->plotColor->color());
+                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(es), name, m_widget->plotColor->color());
                 break;
             }
         }
@@ -557,8 +560,14 @@ void PlotsEditor::removePlot()
     
     if (m_widget->plotsView->selectionModel()->hasSelection())
     {
-        static_cast<PlotsModel*>(m_widget->plotsView->model())->removeItem(
-            m_widget->plotsView->selectionModel()->currentIndex().row());
+//         static_cast<PlotsModel*>(m_widget->plotsView->model())->removeItem(
+//             m_widget->plotsView->selectionModel()->currentIndex().row());
+//     qDebug() << m_widget->plotsView->selectionModel()->currentIndex();
+//     qDebug() << m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row();
+    
+//         m_document->plotsModel()->removeItem(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
+//         m_document->currentPlots()->removeRows(m_widget->plotsView->selectionModel()->currentIndex().row(),1);
+        m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
     }
 }
 
