@@ -97,7 +97,7 @@ private:
     //remove this
     
 private slots:
-    void testSlot(bool t = false);
+    void fooSlot(bool t = false);
 };
 
 #endif

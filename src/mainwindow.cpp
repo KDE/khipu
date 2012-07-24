@@ -149,68 +149,68 @@ void MainWindow::setupActions()
 {
     //file
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
-    KStandardAction::open(this, SLOT(newFile()), actionCollection());
-    KStandardAction::openRecent(this, SLOT(newFile()), actionCollection());    
-    KStandardAction::save(this, SLOT(newFile()), actionCollection());
-    KStandardAction::saveAs(this, SLOT(newFile()), actionCollection());
-    KStandardAction::close(this, SLOT(newFile()), actionCollection());
+    KStandardAction::open(this, SLOT(fooSlot()), actionCollection());
+    KStandardAction::openRecent(this, SLOT(fooSlot()), actionCollection());    
+    KStandardAction::save(this, SLOT(fooSlot()), actionCollection());
+    KStandardAction::saveAs(this, SLOT(fooSlot()), actionCollection());
+    KStandardAction::close(this, SLOT(close()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     //edit - dashboard
     createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
-    createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
+    createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //view - dashboard //TODO Show Plots Dictionary
     m_plotsBuilderDock->toggleViewAction()->setIcon(KIcon("formula"));
     m_plotsBuilderDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
     actionCollection()->addAction("show_plotsbuilder", m_plotsBuilderDock->toggleViewAction());
     
-    createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
-    createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+    createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, 
                  SLOT(setVisibleDictionary(bool)), true, false);
 
     //view - space
-    createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
-    createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
-    createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
+    createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
+    createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
+    createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     //go
-    KAction *act = KStandardAction::firstPage(this, SLOT(addSpace2D()), actionCollection());
+    KAction *act = KStandardAction::firstPage(this, SLOT(fooSlot()), actionCollection());
     act->setText(i18n("&Go First Space"));
     act->setIcon(KIcon("go-first-view"));
     act->setEnabled(false);
 
-    act = KStandardAction::prior(this, SLOT(addSpace2D()), actionCollection());
+    act = KStandardAction::prior(this, SLOT(fooSlot()), actionCollection());
     act->setText(i18n("&Go Previous Space"));
     act->setIcon(KIcon("go-previous-view"));
     act->setEnabled(false);
 
-    act = KStandardAction::next(this, SLOT(addSpace2D()), actionCollection());
+    act = KStandardAction::next(this, SLOT(fooSlot()), actionCollection());
     act->setText(i18n("&Go Next Space"));
     act->setIcon(KIcon("go-next-view"));
     act->setEnabled(false);
     
-    act = KStandardAction::lastPage(this, SLOT(addSpace2D()), actionCollection());
+    act = KStandardAction::lastPage(this, SLOT(fooSlot()), actionCollection());
     act->setText(i18n("&Go Last Space"));
     act->setIcon(KIcon("go-last-view"));
     act->setEnabled(false);
 
     KStandardAction::home(this, SLOT(goHome()), actionCollection());
     //tools dashboard
-    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //tools space
-    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
-    createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+    createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
-    KStandardAction::showMenubar(this, SLOT(close()), actionCollection());
-    KStandardAction::fullScreen(this, SLOT(close()), this ,actionCollection());
+    KStandardAction::showMenubar(this, SLOT(fooSlot()), actionCollection());
+    KStandardAction::fullScreen(this, SLOT(fooSlot()), this ,actionCollection());
 
 //     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
 //     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
 }
 
-void MainWindow::testSlot(bool t)
+void MainWindow::fooSlot(bool t)
 {
-    qDebug() << "test slot" << t;
+//     qDebug() << "test slot" << t;
 }
 
 
@@ -261,8 +261,8 @@ bool MainWindow::queryClose()
 }
 void MainWindow::newFile()
 {
-    MainWindow * newWnd = new MainWindow();
-    newWnd->show();
+//     MainWindow * newWnd = new MainWindow();
+//     newWnd->show();
 }
 void MainWindow::openFile()
 {
