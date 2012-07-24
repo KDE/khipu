@@ -87,7 +87,8 @@ signals:
 
     //for mainwnd
     void goHome();
-    
+    void sendStatus(const QString &stat, int mstimeout = 0);
+
 private:
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...

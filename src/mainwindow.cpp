@@ -130,6 +130,8 @@ void MainWindow::setupDocks()
     m_spacePlotsDock->setDocument(m_document);
 
     connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
+    connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
+    
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     
