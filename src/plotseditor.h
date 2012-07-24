@@ -72,8 +72,10 @@ private slots:
     void showTypes(); /// cambiar de nombre pues ahora se usa ademas m_cancelIsGoHome
     void showEditor();
     
-    void addPlots(); // test method
-    
+    void cancelEditor();
+    void addPlots();
+    void editPlot(const QModelIndex &index = QModelIndex()); // si el usuario elije editar un plot de la lista
+
     void savePlot();
     
     void removePlot();
@@ -92,7 +94,7 @@ signals:
 private:
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
-    void setupFuncName(int var, const QString &vvalue, const QStringList &vars); //var: fname,gname ... NO USAR CON fnameForGraphs
+    void setupFuncName(int var, const QString &vvalue, const QStringList &vars, bool withparenthesis = true); //var: fname,gname ... NO USAR CON fnameForGraphs
     void setupExpressionType(const QStringList &funvalues, const QStringList &varsvalues, bool isimplicit = false, bool isvectorValued = false);
 
     Ui::PlotsEditorWidget *m_widget;
@@ -110,6 +112,10 @@ private:
     bool m_currentIsImplicit;
     bool m_currentIsVectorValued;
     int m_currentVectorSize;
+    
+    //flag para indicar que se encuentra editando, por ende no se agrega nada sino se modifica 
+    //ademas el cancel va a la lista no al builder
+    bool isEditing;
 };
 
 class ComboBox : public QComboBox

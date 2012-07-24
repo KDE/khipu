@@ -189,7 +189,7 @@ void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 }    
 
 PlotsEditor::PlotsEditor(QWidget * parent)
-    : QDockWidget(parent)
+    : QDockWidget(parent), isEditing(false)
 {
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
@@ -207,7 +207,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 
     //cons
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
-    connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showTypes()));
+    connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(cancelEditor()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
 
 //     connect(m_widget->createCartesianCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createCartesianCurve()));
@@ -232,9 +232,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->builder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
 
     connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(addPlots()));
-    
+    connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
+    connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
-    
 }
 
 PlotsEditor::~PlotsEditor()
@@ -308,8 +308,7 @@ void PlotsEditor::reset(bool clearBuilder)
     m_widget->miny->clear();
     m_widget->maxy->clear();
     m_widget->minz->clear();
-    m_widget->maxx->clear();
-    
+    m_widget->maxz->clear();
     
     //reset widgets
     m_widget->widgets->setCurrentIndex(0);
@@ -331,12 +330,7 @@ void PlotsEditor::showList()
 
 void PlotsEditor::showTypes()
 {
-    if (m_cancelIsGoHome) // si he llegado desde el dock del mainwnd => el cancel regresa al mainwnd 
-    {
-        emit goHome();
-    }
-    else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
-        m_widget->widgets->setCurrentIndex(1);
+m_widget->widgets->setCurrentIndex(1);
 }
 
 void PlotsEditor::showEditor()
@@ -345,22 +339,100 @@ void PlotsEditor::showEditor()
     m_widget->widgets->setCurrentIndex(2);
 }
 
+void PlotsEditor::cancelEditor()
+{
+    if (isEditing)
+    {
+        showList();
+         isEditing = false;
+        return;
+    }
+        if (m_cancelIsGoHome) // si he llegado desde el dock del mainwnd => el cancel regresa al mainwnd 
+        {
+            emit goHome();
+        }
+        else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
+            showTypes();
+        
+}
+
+
 void PlotsEditor::addPlots()
 {
     m_cancelIsGoHome = false; 
     
     showTypes();
-    
-//     setCurrentIndex(1);
-    
-    
-    //asert view-Zmodel not null
-    
-//     PlotsModel *model = qobject_cast< PlotsModel *>(m_plotsView->model());
-    
-//     model->addPlaneCurve(Analitza::Expression("x=y*y"), "adasd", Qt::red);
 }
 
+void PlotsEditor::editPlot(const QModelIndex &index)
+{
+    isEditing = true;
+    
+    reset();
+    
+    if (m_widget->plotsView->selectionModel()->hasSelection())
+    {
+        PlotItem *item = m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
+        
+        if (dynamic_cast<PlaneCurve*>(item))
+        {
+            PlaneCurve *curve = dynamic_cast<PlaneCurve*>(item);
+            
+            if (curve->expression().isEquation()) // implicit
+            {
+                m_widget->f->setExpression(curve->expression());
+                
+                buildCartesianImplicitCurve();
+            }
+            else 
+                if (curve->expression().lambdaBody().isVector()) //vectorvalued
+                {
+                    m_widget->f->setExpression(curve->expression().lambdaBody().elementAt(0));
+                    m_widget->g->setExpression(curve->expression().lambdaBody().elementAt(1));
+
+                    buildCartesianParametricCurve2D();
+                }
+                else //graph
+                {
+                    m_widget->f->setExpression(curve->expression().lambdaBody());
+                    
+                    if (curve->parameters().first() == "p")
+                        buildPolarGraphCurve();
+                    else
+                    {
+                        buildCartesianGraphCurve();
+                        
+                        if (curve->parameters().first() == "x")
+                        {
+                            m_currentVars = QStringList() << "x";
+                            // no mostramos el combo pues ya el tipo de la func esta elejido
+                            m_widget->fnameForGraphs->hide();
+                            setupFuncName(1, "", QStringList() << "x", false); 
+                            m_widget->fname->show();
+                        }
+                        else
+                            if (curve->parameters().first() == "y")
+                            {
+                                m_currentVars = QStringList() << "y";
+                                m_widget->fnameForGraphs->hide();
+                                setupFuncName(1, "", QStringList() << "y", false); 
+                                m_widget->fname->show();                                
+                            }
+                    }
+                }
+        }
+        else
+            if (dynamic_cast<SpaceCurve*>(item))
+            {
+                
+            }
+            else
+                if (dynamic_cast<Surface*>(item))
+                {
+                    
+                }
+    }
+}
 
 void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 {
@@ -489,7 +561,15 @@ void PlotsEditor::savePlot()
         {
             if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), errors))
             {
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), 
+                PlaneCurve *item = 0;
+                
+                if (isEditing)
+                {
+                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
+                }
+                else
+                    item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), 
                                                                      name, m_widget->plotColor->color());                
             } 
             
@@ -501,8 +581,16 @@ void PlotsEditor::savePlot()
         {
             if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
             {
-                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), 
-                                                                     name, m_widget->plotColor->color());                
+                Surface *item  = 0;
+                
+                if (isEditing)
+                {
+                }
+                    else
+                {
+                    item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), 
+                                                                     name, m_widget->plotColor->color());    
+                }
             }
             
             break;
@@ -512,7 +600,15 @@ void PlotsEditor::savePlot()
         {
             if (PlaneCurve::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
             {
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());                
+                PlaneCurve *item  = 0;
+                
+                if (isEditing)
+                {
+                }
+                    else
+                {
+                    item  = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());   
+                }
             } 
             
             break;
@@ -522,7 +618,15 @@ void PlotsEditor::savePlot()
         {
             if (Surface::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
             {
-                Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());                
+                Surface *item  = 0;
+                
+                if (isEditing)
+                {
+                }
+                    else
+                {
+                    item  = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());          
+                }
             } 
             
             break;
@@ -533,9 +637,17 @@ void PlotsEditor::savePlot()
             if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                 m_widget->g->expression().toString()+"}")), errors))
             {
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                PlaneCurve *item  = 0;
+                
+                if (isEditing)
+                {
+                }
+                    else
+                {
+                    item  = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
                 m_widget->f->expression().toString()+", "+
-                m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());                
+                m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());             
+                }
             } 
             
             break;
@@ -545,9 +657,17 @@ void PlotsEditor::savePlot()
             if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                 m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
             {
-                SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                SpaceCurve *item  = 0;
+                
+                if (isEditing)
+                {
+                }
+                    else
+                {
+                    item  = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                 m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), 
-                                                                     name, m_widget->plotColor->color());                
+                                                                     name, m_widget->plotColor->color());   
+                }
             } 
             
             break;
@@ -558,8 +678,16 @@ void PlotsEditor::savePlot()
             if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
                 m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
             {
-                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
-                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")),name, m_widget->plotColor->color());                
+                Surface *item =0;
+                
+                if (isEditing)
+                {
+                }
+                else
+                {
+                    item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")),name, m_widget->plotColor->color());           
+                }
             } 
             break;
         }
@@ -567,6 +695,7 @@ void PlotsEditor::savePlot()
 
     if (errors.isEmpty())
     {
+        isEditing = false;
         reset();
         showList();
     }    
@@ -597,6 +726,8 @@ void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)
 {
     m_currentFunctionGraphs = txt.split(",");
     
+    m_currentVars = m_currentFunctionGraphs;
+    
     //mostramos a demanda las variables usadas
     for (int var = 1; var <=m_currentFunctionGraphs.size(); ++var)
         setupVarName(var, m_currentFunctionGraphs[var-1]);
@@ -626,11 +757,13 @@ void PlotsEditor::setupVarName(int var, const QString &vvalue)
     }
 }
 
-void PlotsEditor::setupFuncName(int func, const QString &funcvalue, const QStringList &vars)
+void PlotsEditor::setupFuncName(int var, const QString& vvalue, const QStringList& vars, bool withparenthesis)
 {
     QString mmlhelper;
-    mmlhelper.append("<mi>"+funcvalue+"</mi>");
-    mmlhelper.append("<mo>(</mo>");
+    mmlhelper.append("<mi>"+vvalue+"</mi>");
+    
+    if (withparenthesis)
+        mmlhelper.append("<mo>(</mo>");
         
     foreach(const QString &var, vars)
     {
@@ -639,26 +772,29 @@ void PlotsEditor::setupFuncName(int func, const QString &funcvalue, const QStrin
         if (var != vars.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
+    
+    if (withparenthesis)
+        mmlhelper.append("<mo>)</mo>");
 
-    switch (func)
+    switch (var)
     {
         case 1: 
         {
-            m_widget->fname->setContent("<math display='block'><mrow>"+mmlhelper+"<mo>)</mo></mrow></math>");
+            m_widget->fname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
             m_widget->gexpression->hide();
             m_widget->hexpression->hide();
             break;
         }
         case 2: 
         {
-            m_widget->gname->setContent("<math display='block'><mrow>"+mmlhelper+"<mo>)</mo></mrow></math>");
+            m_widget->gname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
             m_widget->gexpression->show();
             m_widget->hexpression->hide();
             break;
         }
         case 3: 
         {
-            m_widget->hname->setContent("<math display='block'><mrow>"+mmlhelper+"<mo>)</mo></mrow></math>");
+            m_widget->hname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
             m_widget->hexpression->show();
             break;
         }
@@ -716,17 +852,6 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         
     if (isvectorValued)
     {
-//         if (m_vectorSize == 2)
-//         {
-//             m_widget->gexpression->show();
-//             m_widget->hexpression->hide();
-//         }
-//         else
-//         {
-//             m_widget->gexpression->show();
-//             m_widget->hexpression->show();
-//         }
-//         
         m_widget->fnameForGraphs->hide();
         
         m_widget->farrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
