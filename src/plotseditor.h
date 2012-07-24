@@ -92,7 +92,7 @@ private:
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
     void setupFuncName(int var, const QString &vvalue, const QStringList &vars); //var: fname,gname ... NO USAR CON fnameForGraphs
-    void setupExpressionType(const QStringList &funvalues, const QStringList &varsvalues, bool isimplicit = false, bool isvectorValued = false, bool m_vectorSize = 2);
+    void setupExpressionType(const QStringList &funvalues, const QStringList &varsvalues, bool isimplicit = false, bool isvectorValued = false);
 
     Ui::PlotsEditorWidget *m_widget;
     PlotsModel *m_localModel; // usado solo para los previews
@@ -103,6 +103,12 @@ private:
     
     //utils for mainwnd
     bool m_cancelIsGoHome;
+    
+    //track current status when edit/create a plotsbuilder
+    QStringList m_currentVars;
+    bool m_currentIsImplicit;
+    bool m_currentIsVectorValued;
+    int m_currentVectorSize;
 };
 
 class ComboBox : public QComboBox

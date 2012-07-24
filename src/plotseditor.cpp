@@ -392,7 +392,7 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
 
-    setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true, 2);
+    setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true);
 }
 
 void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
@@ -415,7 +415,7 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
     
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
 
-    setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true, 3);
+    setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true);
 }
 
 void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
@@ -448,7 +448,7 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
     
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
 
-    setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true, 3);
+    setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true);
 }
 
 void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
@@ -457,8 +457,9 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
     
     m_currentType = PlotsBuilder::CylindricalGraphSurface;
 
-    showEditor();
-    m_widget->previews->setCurrentIndex(1); //3d preview
+    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+
+    setupExpressionType(QStringList() << "r,p", QStringList() << "r" << "p");
 }
 
 void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
@@ -467,122 +468,204 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
     
     m_currentType = PlotsBuilder::SphericalGraphSurface;
     
-    showEditor();
-    m_widget->previews->setCurrentIndex(1); //3d preview
+    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+
+    setupExpressionType(QStringList() << "a,p", QStringList() << "a" << "p");
 }
 
 void PlotsEditor::savePlot()
 {
     QStringList errors;
     
-    switch (m_currentType)
-    {
-        case PlotsBuilder::CartesianGraphCurve:
-        case PlotsBuilder::CartesianImplicitCurve:
-        case PlotsBuilder::PolarGraphCurve:
-            PlaneCurve::canDraw(m_widget->f->expression(), errors);
-            break;
-        case PlotsBuilder::CartesianParametricCurve2D:
-        {
-            QString es = "t->vector{"+m_widget->f->expression().toString()+","+
-                m_widget->g->expression().toString()+"}";
-            
-            PlaneCurve::canDraw(Analitza::Expression(es), errors);
-            break;
-        }
-
-        // 3D
-        case PlotsBuilder::CartesianParametricCurve3D:
-        {
-            QString es = "t->vector{"+m_widget->f->expression().toString()+","+
-                m_widget->g->expression().toString()+","+
-                m_widget->h->expression().toString()+"}";
-            
-            SpaceCurve::canDraw(Analitza::Expression(es), errors);
-            break;
-        }
-
-        case PlotsBuilder::CartesianGraphSurface:
-        case PlotsBuilder::CartesianImplicitSurface:
-        case PlotsBuilder::CylindricalGraphSurface:
-        case PlotsBuilder::SphericalGraphSurface:
-                Surface::canDraw(m_widget->f->expression(), errors);
-            break;
-        case PlotsBuilder::CartesianParametricSurface:
-        {
-            QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
-                m_widget->g->expression().toString()+","+
-                m_widget->h->expression().toString()+"}";
-            
-            Surface::canDraw(Analitza::Expression(es), errors);
-            break;
-        }
-    }
-    
     QString name = m_widget->plotName->text();
     
     if (name.isEmpty())
         name = "f"+QString::number(m_document->currentPlots()->rowCount()+1);
-
-    if (errors.isEmpty())
+    
+    switch (m_currentType)
     {
-        switch (m_currentType)
+        case PlotsBuilder::CartesianGraphCurve:
+        case PlotsBuilder::PolarGraphCurve:
         {
-            case PlotsBuilder::CartesianGraphCurve:
-            case PlotsBuilder::CartesianImplicitCurve:
-            case PlotsBuilder::PolarGraphCurve:
+            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString()))))
             {
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());
-                break;
-            }
-            case PlotsBuilder::CartesianParametricCurve2D:
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), 
+                                                                     name, m_widget->plotColor->color());                
+            } 
+            
+            break;
+        }
+        case PlotsBuilder::CartesianGraphSurface:
+        case PlotsBuilder::CylindricalGraphSurface:
+        case PlotsBuilder::SphericalGraphSurface:
+        {
+            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString()))))
             {
-                QString es = "t->vector{"+m_widget->f->expression().toString()+","+
-                    m_widget->g->expression().toString()+"}";
-                
-                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(es), name, m_widget->plotColor->color());
-                break;
+                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), 
+                                                                     name, m_widget->plotColor->color());                
             }
-
-            // 3D
-            case PlotsBuilder::CartesianParametricCurve3D:
-            {
-                QString es = "t->vector{"+m_widget->f->expression().toString()+","+
-                    m_widget->g->expression().toString()+","+
-                    m_widget->h->expression().toString()+"}";
-                
-                SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(es), name, m_widget->plotColor->color());
-                break;
-            }
-
-            case PlotsBuilder::CartesianGraphSurface:
-            case PlotsBuilder::CartesianImplicitSurface:
-            case PlotsBuilder::CylindricalGraphSurface:
-            case PlotsBuilder::SphericalGraphSurface:
-            {
-                Surface::canDraw(m_widget->f->expression(), errors);
-                Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());
-
-                break;
-            }
-            case PlotsBuilder::CartesianParametricSurface:
-            {
-                QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
-                    m_widget->g->expression().toString()+","+
-                    m_widget->h->expression().toString()+"}";
-                
-                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(es), name, m_widget->plotColor->color());
-                break;
-            }
+            
+            break;
         }
         
-        reset();
-        showList();
-    }    
-    else
-    {
-//         setStatusTip(errors);
+        case PlotsBuilder::CartesianImplicitCurve:
+        {
+            if (PlaneCurve::canDraw(m_widget->f->expression()))
+            {
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());                
+            } 
+            
+            break;
+        }
+
+        case PlotsBuilder::CartesianImplicitSurface:
+        {
+            if (Surface::canDraw(m_widget->f->expression()))
+            {
+                Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());                
+            } 
+            
+            break;
+        }
+
+        case PlotsBuilder::CartesianParametricCurve2D:
+        {
+            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+"}"))))
+            {
+                PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());                
+            } 
+            
+            break;
+        }
+        case PlotsBuilder::CartesianParametricCurve3D:
+        {
+            if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}"))))
+            {
+                SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), 
+                                                                     name, m_widget->plotColor->color());                
+            } 
+            
+            break;
+        }
+
+        case PlotsBuilder::CartesianParametricSurface:
+        {
+            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}"))))
+            {
+                Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")),name, m_widget->plotColor->color());                
+            } 
+            break;
+        }
+
+            
+            
+//         case PlotsBuilder::CartesianImplicitCurve:
+//         case PlotsBuilder::PolarGraphCurve:
+//             PlaneCurve::canDraw(m_widget->f->expression(), errors);
+//             break;
+//         case PlotsBuilder::CartesianParametricCurve2D:
+//         {
+//             QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+//                 m_widget->g->expression().toString()+"}";
+//             
+//             PlaneCurve::canDraw(Analitza::Expression(es), errors);
+//             break;
+//         }
+// 
+//         // 3D
+//         case PlotsBuilder::CartesianParametricCurve3D:
+//         {
+//             QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+//                 m_widget->g->expression().toString()+","+
+//                 m_widget->h->expression().toString()+"}";
+//             
+//             SpaceCurve::canDraw(Analitza::Expression(es), errors);
+//             break;
+//         }
+// 
+//         case PlotsBuilder::CartesianGraphSurface:
+//         case PlotsBuilder::CartesianImplicitSurface:
+//         case PlotsBuilder::CylindricalGraphSurface:
+//         case PlotsBuilder::SphericalGraphSurface:
+//                 Surface::canDraw(m_widget->f->expression(), errors);
+//             break;
+//         case PlotsBuilder::CartesianParametricSurface:
+//         {
+//             QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
+//                 m_widget->g->expression().toString()+","+
+//                 m_widget->h->expression().toString()+"}";
+//             
+//             Surface::canDraw(Analitza::Expression(es), errors);
+//             break;
+//         }
     }
+
+//     if (errors.isEmpty())
+//     {
+//         switch (m_currentType)
+//         {
+//             case PlotsBuilder::CartesianGraphCurve:
+//             case PlotsBuilder::CartesianImplicitCurve:
+//             case PlotsBuilder::PolarGraphCurve:
+//             {
+//                 PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());
+//                 break;
+//             }
+//             case PlotsBuilder::CartesianParametricCurve2D:
+//             {
+//                 QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+//                     m_widget->g->expression().toString()+"}";
+//                 
+//                 PlaneCurve *item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(es), name, m_widget->plotColor->color());
+//                 break;
+//             }
+// 
+//             // 3D
+//             case PlotsBuilder::CartesianParametricCurve3D:
+//             {
+//                 QString es = "t->vector{"+m_widget->f->expression().toString()+","+
+//                     m_widget->g->expression().toString()+","+
+//                     m_widget->h->expression().toString()+"}";
+//                 
+//                 SpaceCurve *item = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(es), name, m_widget->plotColor->color());
+//                 break;
+//             }
+// 
+//             case PlotsBuilder::CartesianGraphSurface:
+//             case PlotsBuilder::CartesianImplicitSurface:
+//             case PlotsBuilder::CylindricalGraphSurface:
+//             case PlotsBuilder::SphericalGraphSurface:
+//             {
+//                 Surface::canDraw(m_widget->f->expression(), errors);
+//                 Surface *item = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());
+// 
+//                 break;
+//             }
+//             case PlotsBuilder::CartesianParametricSurface:
+//             {
+//                 QString es = "(u,v)->vector{"+m_widget->f->expression().toString()+","+
+//                     m_widget->g->expression().toString()+","+
+//                     m_widget->h->expression().toString()+"}";
+//                 
+//                 Surface *item = m_document->plotsModel()->addSurface(Analitza::Expression(es), name, m_widget->plotColor->color());
+//                 break;
+//             }
+//         }
+        
+//         reset();
+//         showList();
+//     }    
+//     else
+//     {
+//         setStatusTip(errors);
+//     }
 }
 
 void PlotsEditor::removePlot()
@@ -673,8 +756,16 @@ void PlotsEditor::setupFuncName(int func, const QString &funcvalue, const QStrin
     }
 }
 
-void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringList &vvalues, bool isimplicit, bool isvectorValued, bool m_vectorSize)
+void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringList &vvalues, bool isimplicit, bool isvectorValued)
 {
+    //this vars track current type of plot (see saveslot)
+    m_currentVars = vvalues;
+    m_currentIsImplicit = isimplicit;
+    m_currentIsVectorValued = isvectorValued;
+    m_currentVectorSize = isvectorValued?fvalues.size():-1;
+
+    
+    //
     m_widget->farrow->show();
 
     if (!isimplicit && !isvectorValued) // es decir, si es realvalued ... osea un graph
