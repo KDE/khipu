@@ -86,6 +86,7 @@ signals:
 private:
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
+    void setupFuncName(int var, const QString &vvalue, const QStringList &vars); //var: fname,gname ... NO USAR CON fnameForGraphs
     void setupExpressionType(const QStringList &funvalues, const QStringList &varsvalues, bool isimplicit = false, bool isvectorValued = false, bool m_vectorSize = 2);
 
     Ui::PlotsEditorWidget *m_widget;

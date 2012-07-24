@@ -195,14 +195,15 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
     
-//     m_widget->fname->setMouseTracking(true);
-//     m_widget->fname->view()->setMouseTracking(true);
-    m_widget->fname->setItemDelegate(new FunctionDelegate(m_widget->fname));
+//     m_widget->fnameForGraphs->setMouseTracking(true);
+//     m_widget->fnameForGraphs->view()->setMouseTracking(true);
+    m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
-    connect(m_widget->fname, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
-    
+    connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
     
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
+    m_widget->garrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
+    m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
 
     //cons
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
@@ -377,22 +378,26 @@ void PlotsEditor::buildCartesianParametricCurve2D()
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
 
-    setupExpressionType(QStringList(), QStringList() << "t", false, true, 2);
+    setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true, 2);
 }
 
 void PlotsEditor::buildPolarGraphCurve()
 {
     m_currentType = PlotsBuilder::PolarGraphCurve;
-    showEditor();
-    m_widget->previews->setCurrentIndex(0); //2d preview
+
+    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+
+    setupExpressionType(QStringList()<<"p", QStringList() << "p");
 }
 
 //3D
 void PlotsEditor::buildCartesianParametricCurve3D()
 {
     m_currentType = PlotsBuilder::CartesianParametricCurve3D;
-    showEditor();
-    m_widget->previews->setCurrentIndex(1); //3d preview
+    
+    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+
+    setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true, 3);
 }
 
 void PlotsEditor::buildCartesianGraphSurface()
@@ -407,15 +412,19 @@ void PlotsEditor::buildCartesianGraphSurface()
 void PlotsEditor::buildCartesianImplicitSurface()
 {
     m_currentType = PlotsBuilder::CartesianImplicitSurface;
-    showEditor();
-    m_widget->previews->setCurrentIndex(1); //3d preview
+
+    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+
+    setupExpressionType(QStringList(), QStringList() << "x" << "y" << "z", true);
 }
 
 void PlotsEditor::buildCartesianParametricSurface()
 {
     m_currentType = PlotsBuilder::CartesianParametricSurface;
-    showEditor();
-    m_widget->previews->setCurrentIndex(1); //3d preview
+    
+    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+
+    setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true, 3);
 }
 
 void PlotsEditor::buildCylindricalGraphSurface()
@@ -586,20 +595,64 @@ void PlotsEditor::setupVarName(int var, const QString &vvalue)
     }
 }
 
+void PlotsEditor::setupFuncName(int func, const QString &funcvalue, const QStringList &vars)
+{
+    QString mmlhelper;
+    mmlhelper.append("<mi>"+funcvalue+"</mi>");
+    mmlhelper.append("<mo>(</mo>");
+        
+    foreach(const QString &var, vars)
+    {
+        mmlhelper.append("<mi>"+var+"</mi>");
+        
+        if (var != vars.last()) // no agregar comas al final
+            mmlhelper.append("<mtext>,</mtext>");
+    }
+
+    switch (func)
+    {
+        case 1: 
+        {
+            m_widget->fname->setContent("<math display='block'><mrow>"+mmlhelper+"<mo>)</mo></mrow></math>");
+            m_widget->gexpression->hide();
+            m_widget->hexpression->hide();
+            break;
+        }
+        case 2: 
+        {
+            m_widget->gname->setContent("<math display='block'><mrow>"+mmlhelper+"<mo>)</mo></mrow></math>");
+            m_widget->gexpression->show();
+            m_widget->hexpression->hide();
+            break;
+        }
+        case 3: 
+        {
+            m_widget->hname->setContent("<math display='block'><mrow>"+mmlhelper+"<mo>)</mo></mrow></math>");
+            m_widget->hexpression->show();
+            break;
+        }
+    }
+}
+
 void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringList &vvalues, bool isimplicit, bool isvectorValued, bool m_vectorSize)
 {
+    m_widget->farrow->show();
+
     if (!isimplicit && !isvectorValued) // es decir, si es realvalued ... osea un graph
     {
-        m_widget->farrow->show();
-        m_widget->fname->show();
-        m_widget->fname->clear();
-        m_widget->fname->addItems(fvalues);
+        m_widget->fnameForGraphs->show();
+        m_widget->fname->hide();
+//         m_widget->farrow->show();
+        m_widget->fnameForGraphs->clear();
+        m_widget->fnameForGraphs->addItems(fvalues);
 
     }
     else
     {
-        m_widget->farrow->hide();
-        m_widget->fname->hide();
+        m_widget->fnameForGraphs->hide();
+        m_widget->fname->show();
+//         m_widget->farrow->hide();
+        
     }
 
     if (!isvectorValued || !isimplicit)
@@ -611,24 +664,47 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         m_widget->zinterval->hide();
     }
 
+    if (isimplicit)
+    {
+        m_widget->fnameForGraphs->hide();
+        m_widget->fname->hide();
+        m_widget->farrow->hide();
+    }
+    
     //mostramos a demanda las variables usadas
     for (int var = 1; var <=vvalues.size(); ++var)
         setupVarName(var, vvalues[var-1]);
         
     if (isvectorValued)
     {
-        if (m_vectorSize == 2)
+//         if (m_vectorSize == 2)
+//         {
+//             m_widget->gexpression->show();
+//             m_widget->hexpression->hide();
+//         }
+//         else
+//         {
+//             m_widget->gexpression->show();
+//             m_widget->hexpression->show();
+//         }
+//         
+        m_widget->fnameForGraphs->hide();
+        
+        m_widget->farrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
+
+        for (int func = 1; func <= fvalues.size(); ++func)
         {
-            m_widget->gexpression->show();
-            m_widget->hexpression->hide();
-        }
-        else
-        {
-            m_widget->gexpression->show();
-            m_widget->hexpression->show();
+             setupFuncName(func, fvalues[func-1], vvalues);
         }
     }
-    
+    else 
+    {
+        if (!isimplicit) //flechas en ves de = pues es un graph
+        {
+            m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
+        }
+    }
+
     if ((isvectorValued && m_vectorSize == 2) || (isimplicit && vvalues.size() == 2) ||(!isimplicit && !isimplicit && vvalues.size() == 1))
         m_widget->previews->setCurrentIndex(0); //2d preview
     else // 3D

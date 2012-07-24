@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>274</width>
-    <height>738</height>
+    <height>750</height>
    </rect>
   </property>
   <property name="features">
@@ -24,7 +24,7 @@
     <item>
      <widget class="QStackedWidget" name="widgets">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -178,7 +178,7 @@
          <widget class="QWidget" name="fexpression" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="ComboBox" name="fname">
+            <widget class="ComboBox" name="fnameForGraphs">
              <property name="minimumSize">
               <size>
                <width>32</width>
@@ -197,11 +197,42 @@
             </widget>
            </item>
            <item>
+            <widget class="QtMmlWidget" name="fname">
+             <property name="minimumSize">
+              <size>
+               <width>58</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>58</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QtMmlWidget" name="farrow">
              <property name="minimumSize">
               <size>
                <width>24</width>
                <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>24</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="frameShape">
@@ -230,9 +261,46 @@
         </item>
         <item>
          <widget class="QWidget" name="gexpression" native="true">
-          <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
             <widget class="QtMmlWidget" name="gname">
+             <property name="minimumSize">
+              <size>
+               <width>58</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>58</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QtMmlWidget" name="garrow">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>24</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -259,9 +327,46 @@
         </item>
         <item>
          <widget class="QWidget" name="hexpression" native="true">
-          <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
            <item>
             <widget class="QtMmlWidget" name="hname">
+             <property name="minimumSize">
+              <size>
+               <width>58</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>58</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QtMmlWidget" name="harrow">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>24</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
