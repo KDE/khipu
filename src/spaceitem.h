@@ -21,6 +21,7 @@
 
 #include <QtGui/QPixmap>
 #include <KDE/KDateTime>
+#include <analitzaplot/private/utils/mathutils.h>
 
 class SpacesModel;
 
@@ -30,10 +31,10 @@ class SpaceItem
 friend class SpacesModel;    
     
 public:
-    SpaceItem(int dimension);
+    SpaceItem(Dimension dimension);
     virtual ~SpaceItem();
 
-    int dimension() const { return m_dimension; }
+    Dimension dimension() const { return m_dimension; }
     
     QString title() const { return m_name; }
     void setTitle(const QString &name);
@@ -55,7 +56,7 @@ private:
     
     void emitDataChanged();
 
-    int m_dimension;
+    Dimension m_dimension;
     QPixmap m_thumbnail;
     KDateTime  m_dateTime;
 

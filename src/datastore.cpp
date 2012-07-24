@@ -31,7 +31,8 @@ DataStore::DataStore(QObject* parent)
 : QObject(parent)
 , m_currentSpace(-1)
 {
-    m_plotsDictionaryModel = new PlotsDictionaryModel(this);
+//     m_plotsDictionaryModel = new PlotsDictionaryModel(this);
+    m_plotsDictionaryModel = getDictionary(this); //load with a thread
 
     m_spacesModel = new SpacesModel(this);
 
@@ -118,6 +119,7 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
 
     int realrow = m_spacePlotsFilterProxyModel->mapToSource(proxyindex).row();
 
+//     qDebug() << realrow << proxyindex;
     QMap<SpaceItem*, PlotItem*>::iterator i = m_maps.begin();
     
     while (i != m_maps.end())

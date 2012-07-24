@@ -19,7 +19,7 @@
 #include "spaceitem.h"
 #include "spacesmodel.h"
 
-SpaceItem::SpaceItem(int dimension)
+SpaceItem::SpaceItem(Dimension dimension)
     : m_dimension(dimension), m_inDestructorSoDontDeleteMe(false), m_callingCtrFromMode(true)
 {
     m_dateTime = KDateTime::currentLocalDateTime(); 

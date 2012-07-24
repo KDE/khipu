@@ -60,11 +60,19 @@ private slots:
     void addSpace2D();
     void addSpace3D();
     void goHome();
-    
 
-    
-    
-
+    //builder dock actions: shortcuts ... first add the space then show the editor
+    void buildCartesianGraphCurve();
+    void buildCartesianImplicitCurve();
+    void buildCartesianParametricCurve2D();
+    void buildPolarGraphCurve();
+    //3D
+    void buildCartesianParametricCurve3D();
+    void buildCartesianGraphSurface();
+    void buildCartesianImplicitSurface();
+    void buildCartesianParametricSurface();
+    void buildCylindricalGraphSurface();
+    void buildSphericalGraphSurface();
     
     
     void updateTittleWhenChangeDocState();

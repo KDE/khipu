@@ -231,7 +231,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->builder->mapConnection(PlotsBuilder::CylindricalGraphSurface, this, SLOT(buildCylindricalGraphSurface()));
     m_widget->builder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
 
-    connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(showTypes()));
+    connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(addPlots()));
     
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     
@@ -320,8 +320,9 @@ void PlotsEditor::reset(bool clearBuilder)
         //// escondo todos los links solo muestro los necesario dependiendo del tipo de spac : 2d o 3d .. ver editorplots.setcurrentspace
         m_widget->builder->hideAllTypes(); 
 
+    //focus
+    m_widget->f->setFocus();
 }
-
 
 void PlotsEditor::showList()
 {
@@ -330,7 +331,12 @@ void PlotsEditor::showList()
 
 void PlotsEditor::showTypes()
 {
-    m_widget->widgets->setCurrentIndex(1);
+    if (m_cancelIsGoHome) // si he llegado desde el dock del mainwnd => el cancel regresa al mainwnd 
+    {
+        emit goHome();
+    }
+    else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
+        m_widget->widgets->setCurrentIndex(1);
 }
 
 void PlotsEditor::showEditor()
@@ -341,6 +347,10 @@ void PlotsEditor::showEditor()
 
 void PlotsEditor::addPlots()
 {
+    m_cancelIsGoHome = false; 
+    
+    showTypes();
+    
 //     setCurrentIndex(1);
     
     
@@ -352,8 +362,10 @@ void PlotsEditor::addPlots()
 }
 
 
-void PlotsEditor::buildCartesianGraphCurve()
+void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianGraphCurve;
     
     m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
@@ -361,8 +373,10 @@ void PlotsEditor::buildCartesianGraphCurve()
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "x");
 }
 
-void PlotsEditor::buildCartesianImplicitCurve()
+void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianImplicitCurve;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -370,8 +384,10 @@ void PlotsEditor::buildCartesianImplicitCurve()
     setupExpressionType(QStringList(), QStringList() << "x" << "y", true);
 }
 
-void PlotsEditor::buildCartesianParametricCurve2D()
+void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianParametricCurve2D;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -379,8 +395,10 @@ void PlotsEditor::buildCartesianParametricCurve2D()
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true, 2);
 }
 
-void PlotsEditor::buildPolarGraphCurve()
+void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::PolarGraphCurve;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -389,8 +407,10 @@ void PlotsEditor::buildPolarGraphCurve()
 }
 
 //3D
-void PlotsEditor::buildCartesianParametricCurve3D()
+void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianParametricCurve3D;
     
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -398,8 +418,10 @@ void PlotsEditor::buildCartesianParametricCurve3D()
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true, 3);
 }
 
-void PlotsEditor::buildCartesianGraphSurface()
+void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianGraphSurface;
     
     m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
@@ -407,8 +429,10 @@ void PlotsEditor::buildCartesianGraphSurface()
     setupExpressionType(QStringList() << "x,y" << "x,z" << "y,z", QStringList() << "x" << "y");
 }
 
-void PlotsEditor::buildCartesianImplicitSurface()
+void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianImplicitSurface;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -416,8 +440,10 @@ void PlotsEditor::buildCartesianImplicitSurface()
     setupExpressionType(QStringList(), QStringList() << "x" << "y" << "z", true);
 }
 
-void PlotsEditor::buildCartesianParametricSurface()
+void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CartesianParametricSurface;
     
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -425,16 +451,20 @@ void PlotsEditor::buildCartesianParametricSurface()
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true, 3);
 }
 
-void PlotsEditor::buildCylindricalGraphSurface()
+void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::CylindricalGraphSurface;
 
     showEditor();
     m_widget->previews->setCurrentIndex(1); //3d preview
 }
 
-void PlotsEditor::buildSphericalGraphSurface()
+void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 {
+    m_cancelIsGoHome = cancelIsGoHome;
+    
     m_currentType = PlotsBuilder::SphericalGraphSurface;
     
     showEditor();
@@ -714,10 +744,11 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         }
     }
 
-    if ((isvectorValued && m_vectorSize == 2) || (isimplicit && vvalues.size() == 2) ||(!isimplicit && !isimplicit && vvalues.size() == 1))
-        m_widget->previews->setCurrentIndex(0); //2d preview
-    else // 3D
-        m_widget->previews->setCurrentIndex(1); //3d preview
+    //clear this next iter
+//     if (isvectorValued && m_vectorSize == 2 || (isimplicit && vvalues.size() == 2) || (!isimplicit && !isimplicit && vvalues.size() == 1))
+//         m_widget->previews->setCurrentIndex(0); //2d preview
+//     else // 3D
+//         m_widget->previews->setCurrentIndex(1); //3d preview
 
     showEditor();
 }

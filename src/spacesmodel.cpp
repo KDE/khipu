@@ -49,10 +49,10 @@ int SpacesModel::rowCount(const QModelIndex &idx) const
     return m_items.count();
 }
 
-SpaceItem* SpacesModel::addSpace(int dim, const QString & title, const QString &description, const QPixmap &thumbnail)
+SpaceItem* SpacesModel::addSpace(Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
 {
-    Q_ASSERT(dim == 2 || dim == 3);
-    
+    Q_ASSERT(dim == Dim2D || dim == Dim3D);
+
     SpaceItem * ret = 0;
     
     beginInsertRows (QModelIndex(), m_items.count(), m_items.count());

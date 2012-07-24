@@ -103,18 +103,36 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
 
 void MainWindow::setupDocks()
 {
+    PlotsBuilder *plotsBuilder = new PlotsBuilder(this);
     m_plotsBuilderDock = new QDockWidget(i18n("Build Plots"), this);
-    m_plotsBuilderDock->setWidget(new PlotsBuilder(this)); // plotsbuilder debe ser miembro
+    m_plotsBuilderDock->setWidget(plotsBuilder); // plotsbuilder debe ser miembro
     m_plotsBuilderDock->setObjectName("dsfs");
     m_plotsBuilderDock->setFloating(false);
     m_plotsBuilderDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianGraphCurve, this, SLOT(buildCartesianGraphCurve()));
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianImplicitCurve, this, SLOT(buildCartesianImplicitCurve()));
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianParametricCurve2D, this, SLOT(buildCartesianParametricCurve2D()));
+    plotsBuilder->mapConnection(PlotsBuilder::PolarGraphCurve, this, SLOT(buildPolarGraphCurve()));
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianParametricCurve3D, this, SLOT(buildCartesianParametricCurve3D()));
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianGraphSurface, this, SLOT(buildCartesianGraphSurface()));
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianImplicitSurface, this, SLOT(buildCartesianImplicitSurface()));
+    plotsBuilder->mapConnection(PlotsBuilder::CartesianParametricSurface, this, SLOT(buildCartesianParametricSurface()));
+    plotsBuilder->mapConnection(PlotsBuilder::CylindricalGraphSurface, this, SLOT(buildCylindricalGraphSurface()));
+    plotsBuilder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
+    
+    
+    ///
+    
+    
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
 
+    connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
+    
     m_spaceInfoDock = new SpaceInformation(this);
     
     m_spaceOptionsDock = new SpaceOptions(this);
@@ -146,11 +164,12 @@ void MainWindow::setupActions()
     
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
-    createAction("show_plotsdictionary", i18n("&Show Plots Dictionary"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, 
+    createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, 
                  SLOT(setVisibleDictionary(bool)), true, false);
+
     //view - space
     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
-    createAction("show_space_info", i18n("&Show Space Information"), "draw-freehand", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
+    createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()), true);
     //go
     KAction *act = KStandardAction::firstPage(this, SLOT(addSpace2D()), actionCollection());
@@ -383,7 +402,7 @@ void MainWindow::addSpace2D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView2D();
-    m_document->spacesModel()->addSpace(2);
+    m_document->spacesModel()->addSpace(Dim2D);
 }
 
 void MainWindow::addSpace3D()
@@ -391,7 +410,7 @@ void MainWindow::addSpace3D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView3D();
-    m_document->spacesModel()->addSpace(3);
+    m_document->spacesModel()->addSpace(Dim3D);
     
 }
 
@@ -413,6 +432,84 @@ void MainWindow::goHome()
     m_dashboard->setCurrentIndex(0);
     activateDashboardUi();
 }
+
+void MainWindow::buildCartesianGraphCurve()
+{
+    addSpace2D();
+    m_spacePlotsDock->buildCartesianGraphCurve(true);
+}
+
+void MainWindow::buildCartesianImplicitCurve()
+{
+    addSpace2D();
+    m_spacePlotsDock->buildCartesianImplicitCurve(true);
+    
+}
+
+
+void MainWindow::buildCartesianParametricCurve2D()
+{
+    addSpace2D();
+    m_spacePlotsDock->buildCartesianParametricCurve2D(true);
+    
+}
+
+void MainWindow::buildPolarGraphCurve()
+{
+    addSpace2D();
+    m_spacePlotsDock->buildPolarGraphCurve(true);
+    
+}
+
+
+void MainWindow::buildCartesianParametricCurve3D()
+{
+    addSpace3D();
+    m_spacePlotsDock->buildCartesianParametricCurve3D(true);
+    
+}
+
+
+void MainWindow::buildCartesianGraphSurface()
+{
+    addSpace3D();
+    m_spacePlotsDock->buildCartesianGraphSurface(true);
+    
+}
+
+
+void MainWindow::buildCartesianImplicitSurface()
+{
+    addSpace3D();
+    m_spacePlotsDock->buildCartesianImplicitSurface(true);
+    
+}
+
+
+void MainWindow::buildCartesianParametricSurface()
+{
+    addSpace3D();
+    m_spacePlotsDock->buildCartesianParametricSurface(true);
+    
+}
+
+
+void MainWindow::buildCylindricalGraphSurface()
+{
+    addSpace3D();
+    m_spacePlotsDock->buildCylindricalGraphSurface(true);
+    
+}
+
+
+void MainWindow::buildSphericalGraphSurface()
+{
+    addSpace3D();
+    
+    m_spacePlotsDock->buildSphericalGraphSurface(true);
+    
+}
+
 
 void MainWindow::updateTittleWhenChangeDocState()
 {

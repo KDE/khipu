@@ -53,21 +53,23 @@ public slots:
     void reset(bool clearBuilder = false); // clear fields and reset the widgets like view3d /view2d (centrandolos etc))
 
     //NOTE para que el dock plotbuilder del mainwnd se conecte con estos slots
-    void buildCartesianGraphCurve();
-    void buildCartesianImplicitCurve();
-    void buildCartesianParametricCurve2D();
-    void buildPolarGraphCurve();
+    // si es false se queda en el editor, ... se queda editando el space acutaul y no regresa a home
+    //if cancelisgohome true then al presionar cancel se regresara al dashboard
+    void buildCartesianGraphCurve(bool cancelIsGoHome = false); 
+    void buildCartesianImplicitCurve(bool cancelIsGoHome = false);
+    void buildCartesianParametricCurve2D(bool cancelIsGoHome = false);
+    void buildPolarGraphCurve(bool cancelIsGoHome = false);
     //3D
-    void buildCartesianParametricCurve3D();
-    void buildCartesianGraphSurface();
-    void buildCartesianImplicitSurface();
-    void buildCartesianParametricSurface();
-    void buildCylindricalGraphSurface();
-    void buildSphericalGraphSurface();
+    void buildCartesianParametricCurve3D(bool cancelIsGoHome = false);
+    void buildCartesianGraphSurface(bool cancelIsGoHome = false);
+    void buildCartesianImplicitSurface(bool cancelIsGoHome = false);
+    void buildCartesianParametricSurface(bool cancelIsGoHome = false);
+    void buildCylindricalGraphSurface(bool cancelIsGoHome = false);
+    void buildSphericalGraphSurface(bool cancelIsGoHome = false);
 
 private slots:
     void showList();
-    void showTypes();
+    void showTypes(); /// cambiar de nombre pues ahora se usa ademas m_cancelIsGoHome
     void showEditor();
     
     void addPlots(); // test method
@@ -83,6 +85,9 @@ signals:
     void plotAdded(const QModelIndex &index);  // emit when item != 0
     void plotRemoved(const QModelIndex &index);  // emit when item != 0
 
+    //for mainwnd
+    void goHome();
+    
 private:
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
@@ -95,6 +100,9 @@ private:
     
     PlotsBuilder::PlotType m_currentType; //NOTE  tipo actual que se esta editando o creando
     QStringList m_currentFunctionGraphs; // NOTE en el setupexptyp los graph no usaran funvalues, sino esta variable, pues esta se actualiza con el combobox
+    
+    //utils for mainwnd
+    bool m_cancelIsGoHome;
 };
 
 class ComboBox : public QComboBox

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>638</width>
-    <height>581</height>
+    <width>647</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -72,6 +72,100 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>Mathematical Objects Manager</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download new mathematical objects from internet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Get Mathematical Objects...</string>
+               </property>
+               <property name="icon">
+                <iconset theme="get-hot-new-stuff">
+                 <normaloff/>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_3">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Install a dictionary from a local file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Import Mathematical objects...</string>
+               </property>
+               <property name="icon">
+                <iconset theme="document-import">
+                 <normaloff/>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_4">
+               <property name="text">
+                <string>Create a Collection of Mathematical Objects</string>
+               </property>
+               <property name="icon">
+                <iconset theme="document-new">
+                 <normaloff/>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_9">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Collection:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox">
+                 <item>
+                  <property name="text">
+                   <string>Main</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Famous Algebraic Curves</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>...</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
            <widget class="QTreeView" name="plotsView">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -103,8 +197,11 @@
             <property name="itemsExpandable">
              <bool>false</bool>
             </property>
-            <property name="wordWrap">
+            <property name="sortingEnabled">
              <bool>true</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
             </property>
             <property name="expandsOnDoubleClick">
              <bool>false</bool>
@@ -177,7 +274,9 @@
                    <string>Export</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="arrow-up"/>
+                   <iconset theme="arrow-up">
+                    <normaloff/>
+                   </iconset>
                   </property>
                  </widget>
                 </item>
@@ -193,31 +292,14 @@
               <widget class="QWidget" name="page_6">
                <layout class="QHBoxLayout" name="horizontalLayout_8">
                 <item>
-                 <widget class="QPushButton" name="editPlot_2">
-                  <property name="text">
-                   <string>Show details</string>
-                  </property>
-                  <property name="icon">
-                   <iconset theme="dialog-information">
-                    <normaloff/>
-                   </iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="Line" name="line_4">
-                  <property name="orientation">
-                   <enum>Qt::Vertical</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="exporttodictionary_2">
                   <property name="text">
-                   <string>import</string>
+                   <string>Import to Current Document</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="arrow-down"/>
+                   <iconset theme="go-bottom">
+                    <normaloff/>
+                   </iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -228,9 +310,27 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="label_4">
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="editPlot_2">
                   <property name="text">
-                   <string>in currentdoc</string>
+                   <string>Show Details</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="dialog-information">
+                    <normaloff/>
+                   </iconset>
                   </property>
                  </widget>
                 </item>
@@ -245,7 +345,7 @@
         <item>
          <widget class="QStackedWidget" name="stackedWidget">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -253,8 +353,8 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="QWidget" name="page"/>
-          <widget class="QWidget" name="page_2"/>
+          <widget class="PlotsView2D" name="page"/>
+          <widget class="PlotsView3D" name="page_2"/>
          </widget>
         </item>
        </layout>

@@ -36,6 +36,7 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
     m_widget->findIcon->setPixmap(KIcon("edit-find").pixmap(16,16));
+    
 }
 
 Dashboard::~Dashboard()
@@ -56,11 +57,11 @@ void Dashboard::setDocument(DataStore* doc)
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
     
     //NOTE AQUI cambiamos los models y selects de los plotsview2d/3d
-    m_document->currentPlots()->setFilterSpaceDimension(2);
+    m_document->currentPlots()->setFilterSpaceDimension(Dim2D);
     m_widget->plotsView2D->setModel(m_document->currentPlots());
     m_widget->plotsView2D->setSelectionModel(m_document->currentSelectionModel());
     
-    m_document->currentPlots()->setFilterSpaceDimension(3);
+    m_document->currentPlots()->setFilterSpaceDimension(Dim3D);
     m_widget->plotsView3D->setModel(m_document->currentPlots());
     m_widget->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
 
