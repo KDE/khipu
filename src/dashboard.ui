@@ -226,7 +226,7 @@
                 <item>
                  <widget class="QPushButton" name="pushButton">
                   <property name="text">
-                   <string>Show plot in psace</string>
+                   <string>Show plot in space</string>
                   </property>
                  </widget>
                 </item>
