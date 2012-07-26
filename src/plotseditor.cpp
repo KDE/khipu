@@ -32,6 +32,7 @@
 #include <QStringListModel>
 #include <QPushButton>
 #include <qstyleditemdelegate.h>
+#include <QPainter>
 #include <libkdeedu/qtmml/QtMmlWidget>
 #include "functionlibraryedit.h"
 #include "datastore.h"
@@ -195,6 +196,8 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
     
+    m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
+    
 //     m_widget->fnameForGraphs->setMouseTracking(true);
 //     m_widget->fnameForGraphs->view()->setMouseTracking(true);
     m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
@@ -274,7 +277,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
 ///
 
 
-                m_widget->previews->setCurrentIndex(0);
+//                 m_widget->previews->setCurrentIndex(0);
             
             
             break;
@@ -290,7 +293,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
                 PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
                 PlotsBuilder::SphericalGraphSurface);
 
-            m_widget->previews->setCurrentIndex(1);
+//             m_widget->previews->setCurrentIndex(1);
             break;
         }
     }
@@ -313,7 +316,7 @@ void PlotsEditor::reset(bool clearBuilder)
     //reset widgets
     m_widget->widgets->setCurrentIndex(0);
 //     m_widget->preview3D->camera()/*->centerScene*/;
-    m_widget->preview3D->stopAnimation();
+//     m_widget->preview3D->stopAnimation();
 
     if (clearBuilder)
         //// escondo todos los links solo muestro los necesario dependiendo del tipo de spac : 2d o 3d .. ver editorplots.setcurrentspace
