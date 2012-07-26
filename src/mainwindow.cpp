@@ -21,6 +21,7 @@
 #include "analitzaplot/plotsdictionarymodel.h"
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsview2d.h>
+#include <analitzaplot/plotsview3d.h>
 #include <analitza/expression.h>
 
 #include <KDE/KApplication>
@@ -445,14 +446,35 @@ void MainWindow::goHome()
 {
     ///guardando space info
     
+    
     SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
 
     space->stamp(); // marcamos la fecha y hora de ingreso al space
     space->setTitle(m_spaceInfoDock->title());
     space->setDescription(m_spaceInfoDock->description());
-//     space->tumbnal ... del dashboard
     
-    ///
+    QPixmap thumbnail; 
+
+    switch (space->dimension())
+    {
+        case 2: thumbnail = QPixmap::grabWidget(m_dashboard->view2d()); break;
+        case 3:
+        {
+            m_dashboard->view3d()->updateGL();
+            m_dashboard->view3d()->setFocus();
+            m_dashboard->view3d()->makeCurrent();
+            m_dashboard->view3d()->raise();
+    
+            QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
+
+            thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
+
+            break;
+        }
+    }
+
+    thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);   
+    space->setThumbnail(thumbnail);
     
     m_dashboard->setCurrentIndex(0);
     activateDashboardUi();
