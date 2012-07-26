@@ -54,6 +54,8 @@ private slots:
     //helpers - space
     void activateDashboardUi();
     void activateSpaceUi();
+    void copySnapshot();
+    void exportSnapShot();
     
     //app
     void setVisibleDictionary(bool t); // este llama a dashboard void setVisibleDictionary(bool t);

@@ -8,6 +8,7 @@ find_package ( Gettext REQUIRED )
 find_package ( Analitza REQUIRED )
 find_package(LibKdeEdu)
 find_library(QTMML_LIBRARY qtmmlwidget)
+find_library(QGLVIEWER_LIBRARY NAMES qglviewer-qt4 QGLViewer)
 
 include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${LIBKDEEDU_INCLUDE_DIR}/qtmml ${ANALITZA_INCLUDE_DIR})
 

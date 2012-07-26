@@ -223,7 +223,7 @@ void MainWindow::setupActions()
     //tools dashboard
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, m_document, SLOT(removeCurrentSpace()));
     //tools space
-    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(fooSlot()), actionCollection());
@@ -378,6 +378,21 @@ void MainWindow::activateSpaceUi()
     ///
 }
 
+void MainWindow::copySnapshot()
+{
+    SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
+
+    switch (space->dimension())
+    {
+        case 3: m_dashboard->view3d()->snapshotToClipboard();
+    }
+}
+
+void MainWindow::exportSnapShot()
+{
+
+}
+
 void MainWindow::setVisibleDictionary(bool t)
 {
     if (t)
@@ -473,7 +488,7 @@ void MainWindow::goHome()
         }
     }
 
-    thumbnail = thumbnail.scaled(QSize(240, 240), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);   
+    thumbnail = thumbnail.scaled(QSize(220, 220), Qt::KeepAspectRatioByExpanding,Qt::SmoothTransformation);   
     space->setThumbnail(thumbnail);
     
     m_dashboard->setCurrentIndex(0);

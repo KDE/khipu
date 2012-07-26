@@ -52,6 +52,7 @@ target_link_libraries( khipu
   ${QT_QTXML_LIBRARY}
   ${QGLVIEWER_LIBRARY}
   ${QTMML_LIBRARY}
+  ${QGLVIEWER_LIBRARY}
 )
 
 install (TARGETS khipu ${INSTALL_TARGETS_DEFAULT_ARGS} )
