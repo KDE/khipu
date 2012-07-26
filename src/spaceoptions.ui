@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>300</width>
-    <height>398</height>
+    <height>522</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>300</width>
-    <height>398</height>
+    <height>522</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -35,7 +35,7 @@
    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
   </property>
   <property name="windowTitle">
-   <string>Configuración del Área de Dibujo</string>
+   <string>Diagram Appearance</string>
   </property>
   <widget class="QWidget" name="spaceSettingsDockWidget_3">
    <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -60,7 +60,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>Sistema de Coordenadas</string>
+             <string>Grid Style</string>
             </property>
            </widget>
           </item>
@@ -72,14 +72,22 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="currentIndex">
+             <number>1</number>
+            </property>
             <item>
              <property name="text">
-              <string>Cartesianas</string>
+              <string>None</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Polares</string>
+              <string>Lines</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Polar</string>
              </property>
             </item>
            </widget>
@@ -87,7 +95,7 @@
          </layout>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_6">
+         <widget class="QGroupBox" name="options">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
             <horstretch>0</horstretch>
@@ -95,18 +103,39 @@
            </sizepolicy>
           </property>
           <property name="title">
-           <string>Propiedades</string>
+           <string>Options</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_20">
            <item>
-            <widget class="QCheckBox" name="showMeshGrid_3">
-             <property name="text">
-              <string>Dibujar fondo</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_23">
+             <item>
+              <widget class="QLabel" name="label_15">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Background Color:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="KColorCombo" name="backgroundColor">
+               <property name="currentIndex">
+                <number>-1</number>
+               </property>
+               <property name="color">
+                <color>
+                 <red>85</red>
+                 <green>190</green>
+                 <blue>255</blue>
+                </color>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_22">
@@ -119,12 +148,12 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Escala:</string>
+                <string>Scale:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="KComboBox" name="tickScale_3">
+              <widget class="KComboBox" name="scale">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -146,43 +175,12 @@
               </widget>
              </item>
              <item>
-              <widget class="QCheckBox" name="useSymbols_3">
+              <widget class="QCheckBox" name="useSymbols">
                <property name="text">
-                <string>Usar símbolos</string>
+                <string>Use Simbols</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_23">
-             <item>
-              <widget class="QLabel" name="label_15">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Color:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="KColorCombo" name="gridColor_3">
-               <property name="currentIndex">
-                <number>-1</number>
-               </property>
-               <property name="color">
-                <color>
-                 <red>85</red>
-                 <green>190</green>
-                 <blue>255</blue>
-                </color>
                </property>
               </widget>
              </item>
@@ -192,114 +190,119 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupBox_7">
+         <widget class="QGroupBox" name="moreOptions">
           <property name="title">
-           <string>Opciones de los ejes</string>
+           <string>More Options</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_21">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_24">
-             <item>
-              <widget class="QCheckBox" name="showXAxis_3">
-               <property name="text">
-                <string>Eje x:</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="KLineEdit" name="xAxisLabel_3">
-               <property name="text">
-                <string>x</string>
-               </property>
-               <property name="showClearButton" stdset="0">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_25">
-             <item>
-              <widget class="QCheckBox" name="showYAxis_3">
-               <property name="text">
-                <string>Eje y:</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="KLineEdit" name="yAxisLabel_3">
-               <property name="text">
-                <string>y</string>
-               </property>
-               <property name="showClearButton" stdset="0">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="showHTicks_3">
-             <property name="text">
-              <string>Mostrar marcas horizontales</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="showVTicks_3">
-             <property name="text">
-              <string>Mostrar marcas verticales</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="lblFuncAct_3">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="text">
-              <string>No disponible para curvas paramétricas:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="showRTang_3">
-             <property name="text">
-              <string>Mostrar Recta Tangente</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="showRNorm_3">
-             <property name="text">
-              <string>Mostrar Recta Normal</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
+            <widget class="QWidget" name="moreOptionsContainer" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <item>
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="showXAxis_3">
+                  <property name="text">
+                   <string>Horizontal Label:</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="KLineEdit" name="horizontalLabel">
+                  <property name="text">
+                   <string>x</string>
+                  </property>
+                  <property name="showClearButton" stdset="0">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="showYAxis_3">
+                  <property name="text">
+                   <string>Vertical Label:</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="KLineEdit" name="verticalLabel">
+                  <property name="text">
+                   <string>y</string>
+                  </property>
+                  <property name="showClearButton" stdset="0">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="horizontalMarks">
+                <property name="text">
+                 <string>Horizontal Marks</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="verticalLabel_2">
+                <property name="text">
+                 <string>Vertical Marks</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="tangentLine">
+                <property name="text">
+                 <string>Draw Tangent Line</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="normalLine">
+                <property name="text">
+                 <string>Draw Normal Line</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
          </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -314,7 +317,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Mostrar ejes</string>
+         <string>Axis</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -330,7 +333,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Mostrar plano de referencia XY</string>
+         <string>Grid</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -349,7 +352,7 @@
          <item>
           <widget class="QLabel" name="label_16">
            <property name="text">
-            <string>Tamaño del espacio:</string>
+            <string>Size:</string>
            </property>
           </widget>
          </item>
@@ -375,40 +378,6 @@
            </property>
            <property name="tickInterval">
             <number>10</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLCDNumber" name="lcdNumber_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="smallDecimalPoint">
-            <bool>false</bool>
-           </property>
-           <property name="numDigits">
-            <number>2</number>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-           <property name="intValue" stdset="0">
-            <number>5</number>
            </property>
           </widget>
          </item>
@@ -438,5 +407,22 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>moreOptions</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>moreOptionsContainer</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>149</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>149</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

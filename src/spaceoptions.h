@@ -37,9 +37,13 @@ public:
     ~ SpaceOptions();
 
 public slots:
-    void clear();
+    void reset();
     
 private:
+    void addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
+        /*bool tickScaleUseSymbols, */int tickScaleNumerator,
+        int tickScaleDenominator);
+    
     Ui::SpaceOptionsWidget *m_widget;
 };
 

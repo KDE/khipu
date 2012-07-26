@@ -238,6 +238,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
     connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
+    
+    
+    
 }
 
 PlotsEditor::~PlotsEditor()
