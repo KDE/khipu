@@ -38,11 +38,25 @@ public:
 
 public slots:
     void reset();
+
+signals: //TODO better names for signals
+    void updateGridStyle(int i);
+    void updateGridColor(const QColor &col);
+    void setXAxisLabel(const QString &label);
+    void setYAxisLabel(const QString &label);
+    void updateTickScale(QString m_tickScaleSymbol, qreal m_tickScaleSymbolValue, int m_tickScaleNumerator, int m_tickScaleDenominator);
+    void setUseTickSymbols(bool flag);
+    void showHTicks(bool flag);
+    void showVTicks(bool flag);
+    void showHAxes(bool flag);
+    void showVAxes(bool flag);
+
+private slots:
+    void updateScale(int i);
+    void setGridStyle(int i);
     
 private:
-    void addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
-        /*bool tickScaleUseSymbols, */int tickScaleNumerator,
-        int tickScaleDenominator);
+    void addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue, int tickScaleNumerator, int tickScaleDenominator);
     
     Ui::SpaceOptionsWidget *m_widget;
 };

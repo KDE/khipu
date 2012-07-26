@@ -21,6 +21,7 @@
 #include "ui_spaceoptions.h"
 
 #include <cmath>
+#include <kcolorutils.h>
 
 SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 {
@@ -30,13 +31,6 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     
     setObjectName("a33sdasdds");
 
-/// confuro el combo de escale le ponmgo datas y adeamas hago las coneccioneseis con view2d
-
-
-//RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA
-//RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA
-//RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA RECUERDAAAAAAA
-//
 //symbolValue es el valor del simbolo ... no del texto del combobox ...
 //
 //si el texto del como es pi/2 entonces symval es el valor del simbolo pi ... no es pi/2
@@ -44,7 +38,6 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 
 
 //            //pi
-//            PiDividedBy6,
 //            PiDividedBy5,
 //            PiDividedBy4,
 //            PiDividedBy3,
@@ -53,22 +46,11 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 //            PiTimes2,
 //            PiTimes3,
 //            PiTimes4,
-//            PiTimes5,
-//            PiTimes6,
 
     QString sym = QString((QChar(0x03C0)));
 
-    addTickEntry(sym+"/6", sym, M_PI, 1, 6);
-    addTickEntry(sym+"/5", sym, M_PI, 1, 5);
-    addTickEntry(sym+"/4", sym, M_PI, 1, 4);
-    addTickEntry(sym+"/3", sym, M_PI, 1, 3);
     addTickEntry(sym+"/2", sym, M_PI, 1, 2);
     addTickEntry(sym, sym, M_PI, 1, 1);
-    addTickEntry("2"+sym, sym, M_PI, 2, 1);
-    addTickEntry("3"+sym, sym, M_PI, 3, 1);
-    addTickEntry("4"+sym, sym, M_PI, 4, 1);
-    addTickEntry("5"+sym, sym, M_PI, 5, 1);
-    addTickEntry("6"+sym, sym, M_PI, 6, 1);
 
 
 //            //e
@@ -78,9 +60,7 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 
     sym = QString("e");
 
-    addTickEntry(sym+"/2", sym, M_E, 1, 2);
     addTickEntry(sym, sym, M_E, 1, 1);
-    addTickEntry("2"+sym, sym, M_E, 2, 1);
 
 //            //sqrt constants
 
@@ -132,17 +112,11 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 
     sym = QString((QChar(0x221A)))+"2";
     qreal symval = sqrt(2);
-    addTickEntry(sym+"/2", sym, symval, 1, 2);
     addTickEntry(sym, sym, symval, 1, 1);
-    addTickEntry("2"+sym, sym, symval, 2, 1);
 
     sym = QString((QChar(0x221A)))+"3";
     symval = sqrt(3);
-    addTickEntry(sym+"/3", sym, symval, 1, 3);
-    addTickEntry(sym+"/2", sym, symval, 1, 2);
     addTickEntry(sym, sym, symval, 1, 1);
-    addTickEntry("2"+sym, sym, symval, 2, 1);
-    addTickEntry("3"+sym, sym, symval, 3, 1);
 
 
 //            // decimals 0 - 1
@@ -159,17 +133,9 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 // el symval por defecto cuando no hay simbo sera 1
 
     addTickEntry("1", QString(), 1, 1, 1);
-    addTickEntry("2", QString(), 1, 2, 1);
-    addTickEntry("3", QString(), 1, 3, 1);
-    addTickEntry("4", QString(), 1, 4, 1);
-    addTickEntry("5", QString(), 1, 5, 1);
-    addTickEntry("6", QString(), 1, 6, 1);
-    addTickEntry("7", QString(), 1, 7, 1);
-    addTickEntry("8", QString(), 1, 8, 1);
-    addTickEntry("9", QString(), 1, 9, 1);
 
-    m_widget->scale->setCurrentIndex(22);
-
+    m_widget->scale->setCurrentIndex(m_widget->scale->count()-1);
+    m_widget->useSymbols->hide(); // como el valor por defecto es 1 se esconde el chekcbos para usar simbolos
 
 //            // number and decimals from 0.5 in 0.5 1 - 10
 
@@ -205,6 +171,18 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 //            Integer100,
 //        };
 
+//signals
+    
+    connect(m_widget->gridStyle, SIGNAL(currentIndexChanged(int)), SLOT(setGridStyle(int)));
+    connect(m_widget->backgroundColor, SIGNAL(activated(QColor)), SIGNAL(updateGridColor(QColor)));
+    connect(m_widget->horizontalLabel, SIGNAL(textChanged(QString)), SIGNAL(setXAxisLabel(QString)));
+    connect(m_widget->verticalLabel, SIGNAL(textChanged(QString)), SIGNAL(setYAxisLabel(QString)));
+    connect(m_widget->scale, SIGNAL(currentIndexChanged(int)), SLOT(updateScale(int)));
+    connect(m_widget->useSymbols, SIGNAL(toggled(bool)), SIGNAL(setUseTickSymbols(bool)));
+    connect(m_widget->horizontalMarks, SIGNAL(toggled(bool)), SIGNAL(showHTicks(bool)));
+    connect(m_widget->verticalMarks, SIGNAL(toggled(bool)), SIGNAL(showVTicks(bool)));
+    connect(m_widget->showXAxis, SIGNAL(toggled(bool)), SIGNAL(showHAxes(bool)));
+    connect(m_widget->showYAxis, SIGNAL(toggled(bool)), SIGNAL(showVAxes(bool)));
 }
 
 SpaceOptions::~SpaceOptions()
@@ -217,6 +195,33 @@ void SpaceOptions::reset()
 
 }
 
+void SpaceOptions::updateScale(int i)
+{
+    QVariantMap vmap = m_widget->scale->itemData(i, Qt::UserRole).toMap();
+
+    emit updateTickScale(vmap["symbol"].toString(),
+    vmap["symbolValue"].toReal(),
+    vmap["numerator"].toInt(),
+    vmap["denominator"].toInt());
+    
+    // si se eliji un valor diferete de 1 aparece la pcion de usar simbolos o usar los valores
+    // es decir si la opcion elegida es 1 (que es el ultimo item del combo) se oculta el check de simbolos
+    //caso contrario se muestra
+    if (i == m_widget->scale->count()-1) // si el valor elejido es uno se oculata la opcion de usar simbolos
+        m_widget->useSymbols->hide();
+    else 
+        m_widget->useSymbols->show();
+}
+
+void SpaceOptions::setGridStyle(int i)
+{
+    emit updateGridStyle(i);
+    
+    if (i == 0) // none ... no mostrar color del gridStyle
+        m_widget->backgroundColor->hide();
+    else
+        m_widget->backgroundColor->show();
+}
 
 void SpaceOptions::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
         /*bool tickScaleUseSymbols, */int tickScaleNumerator,
@@ -233,3 +238,6 @@ void SpaceOptions::addTickEntry(QString tick, QString tickScaleSymbol, qreal tic
 
     m_widget->scale->addItem(tick, vmap);
 }
+
+    
+    

@@ -26,6 +26,8 @@
 #include "plotseditor.h"
 #include "document.h"
 
+class PlotsView3D;
+class PlotsView2D;
 class QListView;
 class QTreeView;
 class Document;
@@ -55,6 +57,11 @@ public:
     void setDocument(DataStore *doc);
     
     QPixmap currentPlotsViewSnapshot() const;
+    
+    //views
+    
+    PlotsView2D *view2d();
+    PlotsView3D *view3d();
 
 public slots:
     void setVisibleDictionary(bool t);
@@ -77,6 +84,7 @@ private slots:
 
 //     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
     void setCurrentSpace(const QModelIndex &index);
+    void setCurrentSpace(const QModelIndex &index, const QModelIndex &old); // este solo emite el spaceactivate para que se entere el datasotre ... no hace cambios en la ui
     void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
     
     //al agregar un plot notificar que es el ultimo seleccionado a los view2d3}

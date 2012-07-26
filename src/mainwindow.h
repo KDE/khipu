@@ -51,7 +51,7 @@ public slots:
     void activateSpace(int);
 
 private slots:
-    //helpers
+    //helpers - space
     void activateDashboardUi();
     void activateSpaceUi();
     

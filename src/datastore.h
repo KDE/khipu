@@ -48,6 +48,7 @@ public:
     //o dashboard currentsnapshot
     int currentSpace() const { return m_currentSpace; }
 
+
     PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
     SpacesModel *spacesModel() const { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
@@ -55,14 +56,18 @@ public:
     // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
     SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
     QItemSelectionModel *currentSelectionModel() const { return m_currentSelectionModel; }
+    QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
+
 
     bool isMapped(SpaceItem *space, PlotItem *plot) const;
 
 private slots:
-    void setCurrentSpace(int spaceidx);
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
     
-public slots: //NOTA esta es la foma de borrar un plot
+public slots: 
+    void setCurrentSpace(int spaceidx);
+    void removeCurrentSpace();
+    //NOTA esta es la foma de borrar un plot
     void unmapPlot(const QModelIndex & proxyindex /*or viewindex*/); // cuando se borra un plot del modelo ... el viewindex es el index del view es decir del proxy
 
 signals:
@@ -77,6 +82,7 @@ private:
     
     SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
     QItemSelectionModel *m_currentSelectionModel;
+    QItemSelectionModel *m_currentSpaceSelectionModel;
     
     Analitza::Variables *m_variables;
 

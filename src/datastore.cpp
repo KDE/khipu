@@ -28,8 +28,8 @@
 #include <qitemselectionmodel.h>
 
 DataStore::DataStore(QObject* parent)
-: QObject(parent)
-, m_currentSpace(-1)
+    : QObject(parent)
+    , m_currentSpace(-1)
 {
 //     m_plotsDictionaryModel = new PlotsDictionaryModel(this);
     m_plotsDictionaryModel = getDictionary(this); //load with a thread
@@ -37,27 +37,28 @@ DataStore::DataStore(QObject* parent)
     m_spacesModel = new SpacesModel(this);
 
     m_variables = new Analitza::Variables;
-    
+
     m_plotsModel = new PlotsModel(this, m_variables);
-    // 
+    //
 
     //EL ORDEN DE los  connect IMPORTA
 
     //primero nuestro datastore debe saber cual es el currentspace
     connect(this, SIGNAL(spaceActivated(int)), SLOT(setCurrentSpace(int)));
-    
+
     //luego nuestro data store debe mapear los items a un space
     connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
-    // no sirve mapear una vez eliminado el item no es posible consultar 
+    // no sirve mapear una vez eliminado el item no es posible consultar
     /// see unmap para eliminar un item/plot
 //     connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
 
     //luego se debe permitir que los connect del proxy actuen cuando se agrega un row al modelo otiginal
     m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
     m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
-    
+
     m_currentSelectionModel = new QItemSelectionModel(m_spacePlotsFilterProxyModel);
-    
+    m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
+
 //     connect(m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
 //         this, SLOT(updateFuncs(QModelIndex,QModelIndex)));
 //     connect(m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
@@ -84,31 +85,50 @@ bool DataStore::isMapped(SpaceItem* space, PlotItem* plot) const
 
 void DataStore::setCurrentSpace(int spaceidx)
 {
+    if (m_spacesModel->index(spaceidx).isValid())
+    {
 //TODO aser  limites
-    m_currentSpace = spaceidx;
-    
-    //cambiar el filtro tambien hacer esto en el dashboard pero solo al agregar un nuevo space
-    m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->item(spaceidx)->dimension());
-    m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->item(spaceidx));
+        m_currentSpace = spaceidx;
+
+//     qDebug() << m_currentSpace;
+
+        //cambiar el filtro tambien hacer esto en el dashboard pero solo al agregar un nuevo space
+        m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->item(spaceidx)->dimension());
+        m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->item(spaceidx));
+    }
 }
 //esto se dispara cuendo se interta un plot al modelo total
 void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
     //TODO assert si el current forma un buen item
-    //aserto si se esta agregando un plot de dim != al space 
+    //aserto si se esta agregando un plot de dim != al space
 //     qDebug() << m_maps;
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
     m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));
-    
+
 //     qDebug() << m_currentSpace << start;
-    
+
     //NOTE marcar como selectionado el ultimo plot que se interta
-    
+
 //     m_currentSelectionModel->select(m_spacePlotsFilterProxyModel->mapFromSource(m_plotsModel->index(start)), QItemSelectionModel::SelectCurrent);
 //     m_currentSelectionModel->select(m_spacePlotsFilterProxyModel->index(0,0), QItemSelectionModel::SelectCurrent);
 //     m_currentSelectionModel->setCurrentIndex(m_spacePlotsFilterProxyModel->index(m_spacePlotsFilterProxyModel->rowCount()-1,0), QItemSelectionModel::SelectCurrent);
 }
+
+
+void DataStore::removeCurrentSpace()
+{
+    if (m_currentSpaceSelectionModel->hasSelection())
+    {
+        m_maps.remove(m_spacesModel->item(m_currentSpace));
+
+        m_spacesModel->removeItem(m_currentSpace);
+
+        m_currentSpaceSelectionModel->clear();
+    }
+}
+
 //asrtos para verificar que no existan un plot asociado a mas de un space
 void DataStore::unmapPlot(const QModelIndex & proxyindex )
 {
@@ -121,7 +141,7 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
 
 //     qDebug() << realrow << proxyindex;
     QMap<SpaceItem*, PlotItem*>::iterator i = m_maps.begin();
-    
+
     while (i != m_maps.end())
     {
         if (i.value() == m_plotsModel->item(realrow))
@@ -131,6 +151,6 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         }
         ++i;
     }
-    
+
     m_plotsModel->removeItem(realrow);
 }

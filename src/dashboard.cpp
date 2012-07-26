@@ -50,8 +50,8 @@ void Dashboard::setDocument(DataStore* doc)
     
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
 
-    
     m_widget->spacesView->setModel(doc->spacesModel());
+    m_widget->spacesView->setSelectionModel(doc->currentSpaceSelectionModel());
 
     //este necesita otro proxy del modelo
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
@@ -76,6 +76,9 @@ void Dashboard::setDocument(DataStore* doc)
 //     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), 
 //             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     connect(m_widget->spacesView, SIGNAL(activated(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
+    connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
+    
+
     
     
     SpacesModel * m = m_document->spacesModel();
@@ -94,6 +97,17 @@ QPixmap Dashboard::currentPlotsViewSnapshot() const
 
 return QPixmap();
 }
+
+PlotsView2D* Dashboard::view2d()
+{
+    return m_widget->plotsView2D;
+}
+
+PlotsView3D* Dashboard::view3d()
+{
+    return m_widget->plotsView3D;
+}
+
 
 void Dashboard::setVisibleDictionary(bool t)
 {
@@ -237,6 +251,11 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
             break;
         }
     }
+}
+
+void Dashboard::setCurrentSpace(const QModelIndex& index, const QModelIndex& old)
+{
+    m_document->setCurrentSpace(index.row());
 }
 
 //luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current

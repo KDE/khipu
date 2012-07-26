@@ -20,6 +20,7 @@
 
 #include "analitzaplot/plotsdictionarymodel.h"
 #include <analitzaplot/planecurve.h>
+#include <analitzaplot/plotsview2d.h>
 #include <analitza/expression.h>
 
 #include <KDE/KApplication>
@@ -138,7 +139,17 @@ void MainWindow::setupDocks()
     m_spaceInfoDock = new SpaceInformation(this);
     
     m_spaceOptionsDock = new SpaceOptions(this);
-
+    connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
+    connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard->view2d(), SLOT(updateGridColor(QColor)));
+    connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
+    connect(m_spaceOptionsDock, SIGNAL(setYAxisLabel(QString)), m_dashboard->view2d(), SLOT(setYAxisLabel(QString)));
+    connect(m_spaceOptionsDock, SIGNAL(updateTickScale(QString,qreal,int,int)), m_dashboard->view2d(), SLOT(updateTickScale(QString,qreal,int,int)));
+    connect(m_spaceOptionsDock, SIGNAL(setUseTickSymbols(bool)), m_dashboard->view2d(), SLOT(setUseTickSymbols(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(showHTicks(bool)), m_dashboard->view2d(), SLOT(showHTicks(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(showVTicks(bool)), m_dashboard->view2d(), SLOT(showVTicks(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(showHAxes(bool)), m_dashboard->view2d(), SLOT(showHAxes(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(showVAxes(bool)), m_dashboard->view2d(), SLOT(showVAxes(bool)));
+    
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
     addDockWidget(Qt::RightDockWidgetArea, m_spaceInfoDock);
@@ -170,9 +181,22 @@ void MainWindow::setupActions()
                  SLOT(setVisibleDictionary(bool)), true, false);
 
     //view - space
-    createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
+//     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
+    m_spacePlotsDock->toggleViewAction()->setIcon(KIcon("address-book-new"));
+    m_spacePlotsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("show_plots_editor", m_spacePlotsDock->toggleViewAction());    
+    
+//     createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
+    m_spaceInfoDock->toggleViewAction()->setIcon(KIcon("document-properties"));
+    m_spaceInfoDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
+    
+//     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
+    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("configure"));
+    m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());       
+    
+    
     //go
     KAction *act = KStandardAction::firstPage(this, SLOT(fooSlot()), actionCollection());
     act->setText(i18n("&Go First Space"));
@@ -196,7 +220,7 @@ void MainWindow::setupActions()
 
     KStandardAction::home(this, SLOT(goHome()), actionCollection());
     //tools dashboard
-    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, m_document, SLOT(removeCurrentSpace()));
     //tools space
     createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
@@ -351,7 +375,6 @@ void MainWindow::activateSpaceUi()
     m_spaceOptionsDock->show();
     
     ///
-    
 }
 
 void MainWindow::setVisibleDictionary(bool t)
