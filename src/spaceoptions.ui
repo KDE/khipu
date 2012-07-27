@@ -153,7 +153,7 @@
            <item>
             <widget class="QCheckBox" name="useSymbols">
              <property name="text">
-              <string>Use Simbols</string>
+              <string>Use Symbols</string>
              </property>
              <property name="checked">
               <bool>true</bool>
