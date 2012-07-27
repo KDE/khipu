@@ -64,6 +64,9 @@ public:
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
     
+    void plotDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight ); // actualiza el combo de coords
+    
+    
 public slots: 
     void setCurrentSpace(int spaceidx);
     void removeCurrentSpace();
@@ -74,7 +77,7 @@ signals:
 //     void modified(); ... TODO to document???
 
     void spaceActivated(int spaceidx);
-
+    void gridStyleChanged(int i); // 1 cartesian 2 polar
 private:
     PlotsDictionaryModel *m_plotsDictionaryModel;
     SpacesModel *m_spacesModel;

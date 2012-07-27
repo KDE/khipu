@@ -195,6 +195,17 @@ void SpaceOptions::reset()
 
 }
 
+void SpaceOptions::setGridStyleIndex(int i)
+{
+//     qDebug() << "i" << i;
+    m_widget->gridStyle->setCurrentIndex(i);
+}
+
+void SpaceOptions::setDimension(int d)
+{
+    m_widget->options->setCurrentIndex(d-2); //-2 porque si dim es 2 se muestra las optiones cero (para el view2d)
+}
+
 void SpaceOptions::updateScale(int i)
 {
     QVariantMap vmap = m_widget->scale->itemData(i, Qt::UserRole).toMap();

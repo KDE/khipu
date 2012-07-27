@@ -38,6 +38,8 @@ public:
 
 public slots:
     void reset();
+    void setGridStyleIndex(int i);
+    void setDimension(int d); // d muestra opciones para el view2d 3 para el 3d
 
 signals: //TODO better names for signals
     void updateGridStyle(int i);

@@ -59,8 +59,7 @@ DataStore::DataStore(QObject* parent)
     m_currentSelectionModel = new QItemSelectionModel(m_spacePlotsFilterProxyModel);
     m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
 
-//     connect(m_model, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
-//         this, SLOT(updateFuncs(QModelIndex,QModelIndex)));
+    connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex,QModelIndex)));
 //     connect(m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
 //         this, SLOT(addFuncs(QModelIndex,int,int)));
 //     connect(m_model, SIGNAL(rowsRemoved(QModelIndex,int,int)),
@@ -101,19 +100,35 @@ void DataStore::setCurrentSpace(int spaceidx)
 void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
     //TODO assert si el current forma un buen item
-    //aserto si se esta agregando un plot de dim != al space
-//     qDebug() << m_maps;
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
     m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));
 
-//     qDebug() << m_currentSpace << start;
+    int i = 0;
+    
+    switch (m_plotsModel->item(start)->coordinateSystem())
+    {
+        case Cartesian: i = 1; break;
+        case Polar: i = 2; break;
+    }
+    
+    emit gridStyleChanged(i);
+}
 
-    //NOTE marcar como selectionado el ultimo plot que se interta
+void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+{
+    int start = topLeft.row();
 
-//     m_currentSelectionModel->select(m_spacePlotsFilterProxyModel->mapFromSource(m_plotsModel->index(start)), QItemSelectionModel::SelectCurrent);
-//     m_currentSelectionModel->select(m_spacePlotsFilterProxyModel->index(0,0), QItemSelectionModel::SelectCurrent);
-//     m_currentSelectionModel->setCurrentIndex(m_spacePlotsFilterProxyModel->index(m_spacePlotsFilterProxyModel->rowCount()-1,0), QItemSelectionModel::SelectCurrent);
+    int i = 0;
+    
+    switch (m_plotsModel->item(start)->coordinateSystem())
+    {
+        case Cartesian: i = 1; break;
+        case Polar: i = 2; break;
+    }
+    
+    emit gridStyleChanged(i);
+
 }
 
 

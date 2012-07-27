@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class SpaceOptions;
 class SpaceInformation;
 class PlotsBuilder;
 class DataStore;
@@ -94,7 +95,7 @@ private:
     QDockWidget *m_plotsBuilderDock;
     PlotsEditor *m_spacePlotsDock;
     SpaceInformation *m_spaceInfoDock;
-    QDockWidget *m_spaceOptionsDock;
+    SpaceOptions *m_spaceOptionsDock;
     
     //remove this
     

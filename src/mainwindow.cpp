@@ -140,6 +140,8 @@ void MainWindow::setupDocks()
     m_spaceInfoDock = new SpaceInformation(this);
     
     m_spaceOptionsDock = new SpaceOptions(this);
+    connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
+    
     connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
     connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard->view2d(), SLOT(updateGridColor(QColor)));
     connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
@@ -304,6 +306,8 @@ void MainWindow::activateSpace(int spaceidx)
 //     m_spaceInfoDock->clear();
     SpaceItem *space = m_document->spacesModel()->item(spaceidx);
     m_spaceInfoDock->setInformation(space->title(), space->description());
+    
+    m_spaceOptionsDock->setDimension(space->dimension());
 }
 
 void MainWindow::activateDashboardUi()
@@ -384,8 +388,11 @@ void MainWindow::copySnapshot()
 
     switch (space->dimension())
     {
-        case 3: m_dashboard->view3d()->snapshotToClipboard();
+        case 2: m_dashboard->view2d()->snapshotToClipboard(); break;
+        case 3: m_dashboard->view3d()->snapshotToClipboard(); break;
     }
+    
+    statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
 }
 
 void MainWindow::exportSnapShot()

@@ -37,22 +37,22 @@
   <property name="windowTitle">
    <string>Diagram Appearance</string>
   </property>
-  <widget class="QWidget" name="spaceSettingsDockWidget_3">
+  <widget class="QWidget" name="mainContainer">
    <layout class="QVBoxLayout" name="verticalLayout_18">
     <item>
-     <widget class="QStackedWidget" name="stackedWidget_3">
+     <widget class="QStackedWidget" name="options">
       <property name="currentIndex">
        <number>0</number>
       </property>
       <widget class="QWidget" name="page_13">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QWidget" name="" native="true">
+         <widget class="QWidget" name="widget" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout"/>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="">
+         <widget class="QGroupBox" name="groupBox">
           <property name="title">
            <string>Grid Options</string>
           </property>
