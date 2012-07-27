@@ -52,6 +52,11 @@ signals: //TODO better names for signals
     void showVTicks(bool flag);
     void showHAxes(bool flag);
     void showVAxes(bool flag);
+    
+    //3d
+    void gridIsDrawn(bool);
+    void axisIsDrawn(bool);
+    void sceneResized(int);
 
 private slots:
     void updateScale(int i);

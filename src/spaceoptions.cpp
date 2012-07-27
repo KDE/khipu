@@ -183,6 +183,11 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     connect(m_widget->verticalMarks, SIGNAL(toggled(bool)), SIGNAL(showVTicks(bool)));
     connect(m_widget->showXAxis, SIGNAL(toggled(bool)), SIGNAL(showHAxes(bool)));
     connect(m_widget->showYAxis, SIGNAL(toggled(bool)), SIGNAL(showVAxes(bool)));
+    
+    //3d
+    connect(m_widget->showAxis, SIGNAL(toggled(bool)), SIGNAL(axisIsDrawn(bool)));
+    connect(m_widget->showGrid, SIGNAL(toggled(bool)), SIGNAL(gridIsDrawn(bool)));
+    connect(m_widget->sceneSize, SIGNAL(valueChanged(int)), SIGNAL(sceneResized(int)));
 }
 
 SpaceOptions::~SpaceOptions()

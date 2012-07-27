@@ -261,7 +261,7 @@
        </layout>
       </widget>
       <widget class="QWidget" name="page_14">
-       <widget class="QCheckBox" name="showAxis_3">
+       <widget class="QCheckBox" name="showAxis">
         <property name="geometry">
          <rect>
           <x>4</x>
@@ -277,7 +277,7 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QCheckBox" name="showRefPlane_3">
+       <widget class="QCheckBox" name="showGrid">
         <property name="geometry">
          <rect>
           <x>4</x>
@@ -311,7 +311,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="space3DSize_3">
+          <widget class="QSlider" name="sceneSize">
            <property name="minimum">
             <number>1</number>
            </property>

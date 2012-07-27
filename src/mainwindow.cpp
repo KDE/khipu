@@ -141,7 +141,7 @@ void MainWindow::setupDocks()
     
     m_spaceOptionsDock = new SpaceOptions(this);
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
-    
+    //2d view
     connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
     connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard->view2d(), SLOT(updateGridColor(QColor)));
     connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
@@ -152,7 +152,13 @@ void MainWindow::setupDocks()
     connect(m_spaceOptionsDock, SIGNAL(showVTicks(bool)), m_dashboard->view2d(), SLOT(showVTicks(bool)));
     connect(m_spaceOptionsDock, SIGNAL(showHAxes(bool)), m_dashboard->view2d(), SLOT(showHAxes(bool)));
     connect(m_spaceOptionsDock, SIGNAL(showVAxes(bool)), m_dashboard->view2d(), SLOT(showVAxes(bool)));
+    //3d view
+    connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(sceneResized(int)), m_dashboard->view3d(), SLOT(resizeScene(int)));
     
+    
+
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
     addDockWidget(Qt::RightDockWidgetArea, m_spaceInfoDock);
