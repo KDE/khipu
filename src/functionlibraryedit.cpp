@@ -30,6 +30,7 @@
 #include <KLocale>
 #include <QScrollBar>
 #include "functionlibrarymodel.h"
+#include <analitzaplot/plotsdictionarymodel.h>
 #include <QKeyEvent>
 
 
@@ -38,80 +39,51 @@ FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
 {
     setClearButtonShown(true);
 
-    FunctionLibraryModel *m_functionLibraryModel = new FunctionLibraryModel(this);
-    m_functionLibraryModel->loadData();
 
-
-    m_proxyModel = new FunctionLibraryFilterProxyModel(this);
-    m_proxyModel->setSourceModel(m_functionLibraryModel);
-
-    m_functionLibraryView = new QTreeView;
+    m_functionLibraryView = new QTreeView(this);
     m_functionLibraryView->setWindowFlags(Qt::Popup);
     m_functionLibraryView->setFocusPolicy(Qt::NoFocus);
     m_functionLibraryView->setFocusProxy(this);
     m_functionLibraryView->installEventFilter(this);
-    m_functionLibraryView->setModel(m_proxyModel);
+//     m_functionLibraryView->setModel(m_proxyModel);
     m_functionLibraryView->setRootIsDecorated(false);
     m_functionLibraryView->header()->hide();
-    m_functionLibraryView->resizeColumnToContents(1);
+//     m_functionLibraryView->resizeColumnToContents(1);
     m_functionLibraryView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_functionLibraryView->setMinimumWidth(350);
-    m_functionLibraryView->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-    m_functionLibraryView->showColumn(0);
 
-    m_functionLibraryView->hideColumn(1);
-    m_functionLibraryView->hideColumn(2);
-    m_functionLibraryView->hideColumn(3);
 
-    
-    
     connect(this, SIGNAL(textEdited(QString)), SLOT(setFilterText(QString)));
 
     connect(m_functionLibraryView, SIGNAL(clicked(QModelIndex)), SLOT(emitSelFunction(QModelIndex)));
-
-
 
 }
 
 FunctionLibraryEdit::~FunctionLibraryEdit()
 {
-
 }
 
 void FunctionLibraryEdit::setFilterArguments(const QStringList args)
 {
-    m_proxyModel->setFilterArguments(args);
+//     m_proxyModel->setFilterArguments(args);
 }
 
-void FunctionLibraryEdit::setFilterDimension(int dim)
+void FunctionLibraryEdit::setFilterDimension(Dimension dim)
 {
-    m_proxyModel->setFilterDimension(dim);
+    m_proxyModel->setFilterSpaceDimension(dim);
+}
+
+void FunctionLibraryEdit::setModel(PlotsDictionaryModel* model)
+{
+    m_proxyModel = model;
+    m_functionLibraryView->setModel(m_proxyModel);
+    m_functionLibraryView->setColumnWidth(0,0);
+    m_functionLibraryView->showColumn(0);
+    m_functionLibraryView->hideColumn(1);
 }
 
 void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 {
-
-
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     QString indexName = m_proxyModel->index(index.row(), 0).data().toString();
     QString indexLambda = m_proxyModel->index(index.row(), 1).data().toString();
@@ -125,14 +97,9 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
     else if (indexArguments.size() == 1)
         finalLambda = indexArguments.at(0) + "->" + indexLambda;
 
-
-
-
     setText(indexName);
 
-    qDebug() << "q index prev al quick ? " << index.row() << indexName << finalLambda << indexDimension << indexArguments;
-
-
+//     qDebug() << "q index prev al quick ? " << index.row() << indexName << finalLambda << indexDimension << indexArguments;
 
     m_functionLibraryView->hide();
 
@@ -175,15 +142,7 @@ bool FunctionLibraryEdit::eventFilter(QObject *o, QEvent *e)
         QModelIndexList selList = m_functionLibraryView->selectionModel()->selectedIndexes();
 
         const int key = ke->key();
-        
-        
-        
-        
-        
-        
-
-        
-        
+     
         switch (key)
         {
         case Qt::Key_End:
@@ -228,8 +187,6 @@ bool FunctionLibraryEdit::eventFilter(QObject *o, QEvent *e)
             return false;
         }
 
-        
-        
         eatFocusOut = false;
         (static_cast<QObject *>(this))->event(ke);
         eatFocusOut = true;
@@ -242,7 +199,6 @@ bool FunctionLibraryEdit::eventFilter(QObject *o, QEvent *e)
                 return true;
         }
 
-        
         switch (key)
         {
         case Qt::Key_Return:
@@ -251,8 +207,7 @@ bool FunctionLibraryEdit::eventFilter(QObject *o, QEvent *e)
 
             if (m_functionLibraryView->currentIndex().isValid())
                 emitSelFunction(m_functionLibraryView->currentIndex());
-            
-            
+
             break;
 
         case Qt::Key_F4:
@@ -308,6 +263,11 @@ bool FunctionLibraryEdit::eventFilter(QObject *o, QEvent *e)
 
 void FunctionLibraryEdit::showPopup(const QRect& rect)
 {
+    m_functionLibraryView->resizeColumnToContents(1);
+    m_functionLibraryView->header()->setResizeMode(0, QHeaderView::ResizeToContents);
+    m_functionLibraryView->showColumn(0);
+    m_functionLibraryView->hideColumn(1);
+    
     const QRect screen = QApplication::desktop()->availableGeometry(this);
     Qt::LayoutDirection dir = this->layoutDirection();
     QPoint pos;

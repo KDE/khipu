@@ -23,11 +23,12 @@
 #include <KLineEdit>
 #include <QLabel>
 #include <QTreeView>
+#include <analitzaplot/private/utils/mathutils.h>
 
 class QKeyEvent;
 
 
-class FunctionLibraryFilterProxyModel;
+class PlotsDictionaryModel;
 
 class FunctionLibraryEdit : public KLineEdit
 {
@@ -38,9 +39,9 @@ public:
     ~FunctionLibraryEdit();
 
     void setFilterArguments(const QStringList args);
-    void setFilterDimension(int dim);
+    void setFilterDimension(Dimension dim);
 
-    
+    void setModel(PlotsDictionaryModel *model);
 
 signals:
     void selectedFunction(const QString & newExp, int dimension, const QString &name, const QStringList &bvars);
@@ -56,7 +57,7 @@ private:
     void showPopup(const QRect& rect = QRect());
 
 private:
-    FunctionLibraryFilterProxyModel *m_proxyModel;
+    PlotsDictionaryModel *m_proxyModel;
 
     QTreeView *m_functionLibraryView;
 

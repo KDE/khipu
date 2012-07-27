@@ -36,7 +36,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
             <Action name="show_plotsdictionary"/>
             <DefineGroup name="tools_space_operations" />
             <Action name="copy_snapshot"/>
-            <Action name="export_snapshot"/>
+<!--             <Action name="export_snapshot"/> -->
         </Menu>
     </MenuBar>
   
@@ -70,7 +70,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="tools_operations" />
         <DefineGroup name="view_operations" />
         <Action name="copy_snapshot"/>
-        <Action name="export_snapshot"/>
+<!--         <Action name="export_snapshot"/> -->
         <Separator />
     </ToolBar>
 

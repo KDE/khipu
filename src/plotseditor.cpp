@@ -55,29 +55,29 @@ ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 
 QSize ComboBox::sizeHint() const
 {
-   //TODO GSOC fix magic numbers heres
+    //TODO GSOC fix magic numbers heres
 
     QStringList funcs = m_cacheText.split(",");
     QString mmlhelper;
-    
+
     foreach(const QString &func, funcs)
     {
         mmlhelper.append("<mi>"+func+"</mi>");
-        
+
         if (func != funcs.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
-    
+
     QtMmlDocument mathMLRenderer;
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-    
+
 // return QSize(258, 32);
 //     qDebug() << mathMLRenderer.size() << funcs << m_cacheText;
-    
+
     //TODO add the combo arrow size properly
 //     QStyleOptionComboBox opt;
 //     opt.initFrom(this);
-    
+
     return QSize(mathMLRenderer.size().width()+24, mathMLRenderer.size().height()+8);
 }
 
@@ -86,32 +86,32 @@ void ComboBox::paintEvent(QPaintEvent* e)
     //TODO GSOC fix magic numbers heres
 
     QPainter p(this);
- 
+
     QStringList funcs = currentText().split(",");
     QString mmlhelper;
-    
+
     foreach(const QString &func, funcs)
     {
         mmlhelper.append("<mi>"+func+"</mi>");
-        
+
         if (func != funcs.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
-    
+
     QtMmlDocument mathMLRenderer;
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-    
+
     QStyleOptionComboBox opt;
     opt.initFrom(this);
 
     mathMLRenderer.paint(&p, opt.rect.topLeft()+QPoint(4,4));
-    
+
     //dibujo el combo pero borrando el texto temporalmente, luego reinserto el texto ... la idea es dibujar el combo sin el text
     QString itemtext = currentText();
     m_cacheText = itemtext;
     setItemText(currentIndex(), "");
     QComboBox::paintEvent(e);
-    setItemText(currentIndex(), itemtext);    
+    setItemText(currentIndex(), itemtext);
 }
 
 void ComboBox::setupCache(const QString& currtext)
@@ -126,10 +126,10 @@ void ComboBox::setupCache(const QString& currtext)
 
 class FunctionDelegate : public QStyledItemDelegate
 {
-    public:
-        FunctionDelegate(ComboBox *parent = 0);
-        QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
-        void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+public:
+    FunctionDelegate(ComboBox *parent = 0);
+    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 };
 
 FunctionDelegate::FunctionDelegate(ComboBox* parent): QStyledItemDelegate(parent)
@@ -141,16 +141,16 @@ QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QMode
 {
     QStringList funcs = index.data().toString().split(",");
     QString mmlhelper;
-    
-    
+
+
     foreach(const QString &func, funcs)
     {
         mmlhelper.append("<mi>"+func+"</mi>");
-        
+
         if (func != funcs.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
-    
+
     QtMmlDocument mathMLRenderer;
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
 
@@ -162,16 +162,16 @@ void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 {
     QStringList funcs = index.data().toString().split(",");
     QString mmlhelper;
-    
+
     foreach(const QString &func, funcs)
     {
         mmlhelper.append("<mi>"+func+"</mi>");
-        
+
         if (func != funcs.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
 
-    if (option.state & QStyle::State_Selected) 
+    if (option.state & QStyle::State_Selected)
     {
         painter->save();
         painter->setPen(option.palette.highlight().color());
@@ -183,11 +183,11 @@ void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
         painter->restore();
         painter->setPen(option.palette.highlightedText().color());
     }
-    
+
     QtMmlDocument mathMLRenderer;
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
     mathMLRenderer.paint(painter, QPoint(option.rect.left()+2, option.rect.top()+4));
-}    
+}
 
 PlotsEditor::PlotsEditor(QWidget * parent)
     : QDockWidget(parent), isEditing(false)
@@ -195,15 +195,15 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
     setObjectName("adasdds");
-    
+
     m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
-    
+
 //     m_widget->fnameForGraphs->setMouseTracking(true);
 //     m_widget->fnameForGraphs->view()->setMouseTracking(true);
     m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
     connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
-    
+
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
     m_widget->garrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
     m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
@@ -222,7 +222,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 //     connect(m_widget->createSphericalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createSphericalSurface()));
 //     connect(m_widget->createParametricSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricSurface()));
 //lo de arriba ya no va ahora todo es por el builderplots ... mira el metodo map y el siguiente codigo
-    
+
     m_widget->builder->mapConnection(PlotsBuilder::CartesianGraphCurve, this, SLOT(buildCartesianGraphCurve()));
     m_widget->builder->mapConnection(PlotsBuilder::CartesianImplicitCurve, this, SLOT(buildCartesianImplicitCurve()));
     m_widget->builder->mapConnection(PlotsBuilder::CartesianParametricCurve2D, this, SLOT(buildCartesianParametricCurve2D()));
@@ -238,9 +238,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
     connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
-    
-    
-    
+
+
+
 }
 
 PlotsEditor::~PlotsEditor()
@@ -253,50 +253,30 @@ void PlotsEditor::setDocument(DataStore* doc)
     m_document  = doc;
     m_widget->plotsView->setModel(m_document->currentPlots());
     m_widget->plotsView->setSelectionModel(m_document->currentSelectionModel());
+    m_widget->quickPlot->setModel(m_document->plotsDictionaryModel());
 }
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
-//     qDebug() << "2dd";
-    //proxy config
-//     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(spaceidx));
+    m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->item(spaceidx)->dimension());
     
-//     qDebug() << m_document->currentSpace();
-    //set dim profile ... esto depende del space actual
-    int dim = m_document->spacesModel()->item(spaceidx)->dimension();
-    
- switch (dim)
+    switch (m_document->spacesModel()->item(spaceidx)->dimension())
     {
-        case 2:
+        case Dim2D:
         {
-//             m_widget->planeCurvesLinks->show();
-//             m_widget->spaceCurvesLinks->hide();
-//             m_widget->surfacesLinks->hide();
-//lo de arriba que esta comentado se paso al builder
-                m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve | 
-                PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D | 
-                    PlotsBuilder::PolarGraphCurve);
-
-///
-
-
-//                 m_widget->previews->setCurrentIndex(0);
-            
-            
+            m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve |
+                                        PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D |
+                                        PlotsBuilder::PolarGraphCurve);
             break;
         }
-        
-        case 3:
+
+        case Dim3D:
         {
-//             m_widget->surfacesLinks->show();
-//             m_widget->spaceCurvesLinks->show();
-//             m_widget->planeCurvesLinks->hide();
 
-            m_widget->builder->setupTypes(PlotsBuilder::CartesianParametricCurve3D | PlotsBuilder::CartesianGraphSurface | 
-                PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
-                PlotsBuilder::SphericalGraphSurface);
+            m_widget->builder->setupTypes(PlotsBuilder::CartesianParametricCurve3D | PlotsBuilder::CartesianGraphSurface |
+                                        PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
+                                        PlotsBuilder::SphericalGraphSurface);
 
-//             m_widget->previews->setCurrentIndex(1);
             break;
         }
     }
@@ -307,7 +287,7 @@ void PlotsEditor::reset(bool clearBuilder)
 {
     //clear widgets //TODO GSOC
     m_widget->plotName->clear();
-    
+
     m_widget->f->clear();
     m_widget->g->clear();
     m_widget->h->clear();
@@ -317,7 +297,7 @@ void PlotsEditor::reset(bool clearBuilder)
     m_widget->maxy->clear();
     m_widget->minz->clear();
     m_widget->maxz->clear();
-    
+
     //reset widgets
     m_widget->widgets->setCurrentIndex(0);
 //     m_widget->preview3D->camera()/*->centerScene*/;
@@ -325,7 +305,7 @@ void PlotsEditor::reset(bool clearBuilder)
 
     if (clearBuilder)
         //// escondo todos los links solo muestro los necesario dependiendo del tipo de spac : 2d o 3d .. ver editorplots.setcurrentspace
-        m_widget->builder->hideAllTypes(); 
+        m_widget->builder->hideAllTypes();
 
     //focus
     m_widget->plotName->setFocus();
@@ -338,12 +318,12 @@ void PlotsEditor::showList()
 
 void PlotsEditor::showTypes()
 {
-m_widget->widgets->setCurrentIndex(1);
+    m_widget->widgets->setCurrentIndex(1);
 }
 
 void PlotsEditor::showEditor()
 {
-        /// clear actions 
+    /// clear actions
     m_widget->widgets->setCurrentIndex(2);
 }
 
@@ -352,167 +332,158 @@ void PlotsEditor::cancelEditor()
     if (isEditing)
     {
         showList();
-         isEditing = false;
+        isEditing = false;
         return;
     }
-        if (m_cancelIsGoHome) // si he llegado desde el dock del mainwnd => el cancel regresa al mainwnd 
-        {
-            emit goHome();
-            
-            //NOTE eliminamos el ultimo espacio si el usuario cancelo y no hay nuevosplos
-            m_document->removeCurrentSpace(); 
-        }
-        else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
-            showTypes();
-        
-}
+    if (m_cancelIsGoHome) // si he llegado desde el dock del mainwnd => el cancel regresa al mainwnd
+    {
+        emit goHome();
 
+        //NOTE eliminamos el ultimo espacio si el usuario cancelo y no hay nuevosplos
+        m_document->removeCurrentSpace();
+    }
+    else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
+        showTypes();
+
+}
 
 void PlotsEditor::addPlots()
 {
-    m_cancelIsGoHome = false; 
-    
+    m_cancelIsGoHome = false;
+
     showTypes();
 }
 
 void PlotsEditor::editPlot(const QModelIndex &index)
 {
     isEditing = true;
-    
+
     reset();
-    
+
     if (m_widget->plotsView->selectionModel()->hasSelection())
     {
         PlotItem *item = m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
-        
+
         if (dynamic_cast<PlaneCurve*>(item))
         {
             PlaneCurve *curve = dynamic_cast<PlaneCurve*>(item);
-            
+
             if (curve->expression().isEquation()) // implicit
             {
                 m_widget->f->setExpression(curve->expression());
-                
+
                 buildCartesianImplicitCurve();
             }
-            else 
-                if (curve->expression().lambdaBody().isVector()) //vectorvalued
-                {
-                    m_widget->f->setExpression(curve->expression().lambdaBody().elementAt(0));
-                    m_widget->g->setExpression(curve->expression().lambdaBody().elementAt(1));
-
-                    buildCartesianParametricCurve2D();
-                }
-                else //graph
-                {
-                    m_widget->f->setExpression(curve->expression().lambdaBody());
-                    
-                    if (curve->parameters().first() == "p")
-                        buildPolarGraphCurve();
-                    else
-                    {
-                        buildCartesianGraphCurve();
-                        
-                        if (curve->parameters().first() == "x")
-                        {
-                            m_currentVars = QStringList() << "x";
-                            // no mostramos el combo pues ya el tipo de la func esta elejido
-                            m_widget->fnameForGraphs->hide();
-                            setupFuncName(1, "", QStringList() << "x", false); 
-                            m_widget->fname->show();
-                        }
-                        else
-                            if (curve->parameters().first() == "y")
-                            {
-                                m_currentVars = QStringList() << "y";
-                                m_widget->fnameForGraphs->hide();
-                                setupFuncName(1, "", QStringList() << "y", false); 
-                                m_widget->fname->show();                                
-                            }
-                    }
-                }
-        }
-        else
-            if (dynamic_cast<SpaceCurve*>(item))
+            else if (curve->expression().lambdaBody().isVector()) //vectorvalued
             {
-                SpaceCurve *curve = dynamic_cast<SpaceCurve*>(item);
-                
                 m_widget->f->setExpression(curve->expression().lambdaBody().elementAt(0));
                 m_widget->g->setExpression(curve->expression().lambdaBody().elementAt(1));
-                m_widget->h->setExpression(curve->expression().lambdaBody().elementAt(2));
 
-                buildCartesianParametricCurve3D();
+                buildCartesianParametricCurve2D();
             }
-            else
-                if (dynamic_cast<Surface*>(item))
+            else //graph
+            {
+                m_widget->f->setExpression(curve->expression().lambdaBody());
+
+                if (curve->parameters().first() == "p")
+                    buildPolarGraphCurve();
+                else
                 {
-                    Surface *surface = dynamic_cast<Surface*>(item);
-                    
-                    if (surface->expression().isEquation()) // implicit
+                    buildCartesianGraphCurve();
+
+                    if (curve->parameters().first() == "x")
                     {
-                        m_widget->f->setExpression(surface->expression());
-                        
-                        buildCartesianImplicitSurface();
+                        m_currentVars = QStringList() << "x";
+                        // no mostramos el combo pues ya el tipo de la func esta elejido
+                        m_widget->fnameForGraphs->hide();
+                        setupFuncName(1, "", QStringList() << "x", false);
+                        m_widget->fname->show();
                     }
-                    else 
-                        if (surface->expression().lambdaBody().isVector()) //vectorvalued
-                        {
-                            m_widget->f->setExpression(surface->expression().lambdaBody().elementAt(0));
-                            m_widget->g->setExpression(surface->expression().lambdaBody().elementAt(1));
-                            m_widget->h->setExpression(surface->expression().lambdaBody().elementAt(2));
-                            
-                            buildCartesianParametricSurface();
-                        }
-                        else //graph
-                        {
-                            m_widget->f->setExpression(surface->expression().lambdaBody());
-                            
-                            if (surface->parameters() == QStringList() << "r" << "p")
-                                buildCylindricalGraphSurface();
-                            else 
-                                if (surface->parameters() == QStringList() << "t" << "p")
-                                    buildSphericalGraphSurface();
-                                else
-                                {
-                                    buildCartesianGraphSurface();
-                                    
-                                    if (surface->parameters() == QStringList() << "x" << "y")
-                                    {
-                                        m_currentVars = QStringList() << "x" << "y";
-                                        // no mostramos el combo pues ya el tipo de la func esta elejido
-                                        m_widget->fnameForGraphs->hide();
-                                        setupFuncName(1, "", QStringList() << "x" << "y", false); 
-                                        m_widget->fname->show();
-                                    }
-                                    else
-                                        if (surface->parameters() == QStringList() << "x" << "z")
-                                        {
-                                            m_currentVars = QStringList() << "x" << "z";
-                                            m_widget->fnameForGraphs->hide();
-                                            setupFuncName(1, "", QStringList() << "x" << "z", false); 
-                                            m_widget->fname->show();                                
-                                        }
-                                        else
-                                            if (surface->parameters() == QStringList() << "y" << "z")
-                                            {
-                                                m_currentVars = QStringList() << "y" << "z";
-                                                m_widget->fnameForGraphs->hide();
-                                                setupFuncName(1, "", QStringList() << "y" << "z", false); 
-                                                m_widget->fname->show();                                
-                                            }
-                                }
-                        }
+                    else if (curve->parameters().first() == "y")
+                    {
+                        m_currentVars = QStringList() << "y";
+                        m_widget->fnameForGraphs->hide();
+                        setupFuncName(1, "", QStringList() << "y", false);
+                        m_widget->fname->show();
+                    }
                 }
+            }
+        }
+        else if (dynamic_cast<SpaceCurve*>(item))
+        {
+            SpaceCurve *curve = dynamic_cast<SpaceCurve*>(item);
+
+            m_widget->f->setExpression(curve->expression().lambdaBody().elementAt(0));
+            m_widget->g->setExpression(curve->expression().lambdaBody().elementAt(1));
+            m_widget->h->setExpression(curve->expression().lambdaBody().elementAt(2));
+
+            buildCartesianParametricCurve3D();
+        }
+        else if (dynamic_cast<Surface*>(item))
+        {
+            Surface *surface = dynamic_cast<Surface*>(item);
+
+            if (surface->expression().isEquation()) // implicit
+            {
+                m_widget->f->setExpression(surface->expression());
+
+                buildCartesianImplicitSurface();
+            }
+            else if (surface->expression().lambdaBody().isVector()) //vectorvalued
+            {
+                m_widget->f->setExpression(surface->expression().lambdaBody().elementAt(0));
+                m_widget->g->setExpression(surface->expression().lambdaBody().elementAt(1));
+                m_widget->h->setExpression(surface->expression().lambdaBody().elementAt(2));
+
+                buildCartesianParametricSurface();
+            }
+            else //graph
+            {
+                m_widget->f->setExpression(surface->expression().lambdaBody());
+
+                if (surface->parameters() == QStringList() << "r" << "p")
+                    buildCylindricalGraphSurface();
+                else if (surface->parameters() == QStringList() << "t" << "p")
+                    buildSphericalGraphSurface();
+                else
+                {
+                    buildCartesianGraphSurface();
+
+                    if (surface->parameters() == QStringList() << "x" << "y")
+                    {
+                        m_currentVars = QStringList() << "x" << "y";
+                        // no mostramos el combo pues ya el tipo de la func esta elejido
+                        m_widget->fnameForGraphs->hide();
+                        setupFuncName(1, "", QStringList() << "x" << "y", false);
+                        m_widget->fname->show();
+                    }
+                    else if (surface->parameters() == QStringList() << "x" << "z")
+                    {
+                        m_currentVars = QStringList() << "x" << "z";
+                        m_widget->fnameForGraphs->hide();
+                        setupFuncName(1, "", QStringList() << "x" << "z", false);
+                        m_widget->fname->show();
+                    }
+                    else if (surface->parameters() == QStringList() << "y" << "z")
+                    {
+                        m_currentVars = QStringList() << "y" << "z";
+                        m_widget->fnameForGraphs->hide();
+                        setupFuncName(1, "", QStringList() << "y" << "z", false);
+                        m_widget->fname->show();
+                    }
+                }
+            }
+        }
     }
-    
+
 }
 
 void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianGraphCurve;
-    
+
     m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "x");
@@ -521,7 +492,7 @@ void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianImplicitCurve;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -532,7 +503,7 @@ void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianParametricCurve2D;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -543,7 +514,7 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::PolarGraphCurve;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -555,9 +526,9 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianParametricCurve3D;
-    
+
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true);
@@ -566,9 +537,9 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianGraphSurface;
-    
+
     m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x,y" << "x,z" << "y,z", QStringList() << "x" << "y");
@@ -577,7 +548,7 @@ void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianImplicitSurface;
 
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
@@ -588,9 +559,9 @@ void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CartesianParametricSurface;
-    
+
     m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true);
@@ -599,7 +570,7 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::CylindricalGraphSurface;
 
     m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
@@ -610,9 +581,9 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 {
     m_cancelIsGoHome = cancelIsGoHome;
-    
+
     m_currentType = PlotsBuilder::SphericalGraphSurface;
-    
+
     m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
 
     setupExpressionType(QStringList() << "t,p", QStringList() << "t" << "p");
@@ -621,164 +592,164 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 void PlotsEditor::savePlot()
 {
     QStringList errors;
-    
+
     QString name = m_widget->plotName->text();
-    
+
     if (name.isEmpty())
         name = "f"+QString::number(m_document->currentPlots()->rowCount()+1);
-    
+
     switch (m_currentType)
     {
-        case PlotsBuilder::CartesianGraphCurve:
-        case PlotsBuilder::PolarGraphCurve:
+    case PlotsBuilder::CartesianGraphCurve:
+    case PlotsBuilder::PolarGraphCurve:
+    {
+        if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), errors))
         {
-            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), errors))
+            PlaneCurve *item = 0;
+
+            if (isEditing)
             {
-                PlaneCurve *item = 0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
-                }
-                else
-                    item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), 
-                                                                     name, m_widget->plotColor->color());                
-            } 
-            
-            break;
-        }
-        case PlotsBuilder::CartesianGraphSurface:
-        case PlotsBuilder::CylindricalGraphSurface:
-        case PlotsBuilder::SphericalGraphSurface:
-        {
-            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
-            {
-                Surface *item  = 0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
-                }
-                else
-                {
-                    item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), 
-                                                                     name, m_widget->plotColor->color());    
-                }
+                item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
             }
-            
-            break;
-        }
-        
-        case PlotsBuilder::CartesianImplicitCurve:
-        {
-            if (PlaneCurve::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
-            {
-                PlaneCurve *item  = 0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(m_widget->f->expression());
-                }
-                else
-                {
-                    item  = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());   
-                }
-            } 
-            
-            break;
+            else
+                item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())),
+                        name, m_widget->plotColor->color());
         }
 
-        case PlotsBuilder::CartesianImplicitSurface:
+        break;
+    }
+    case PlotsBuilder::CartesianGraphSurface:
+    case PlotsBuilder::CylindricalGraphSurface:
+    case PlotsBuilder::SphericalGraphSurface:
+    {
+        if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
         {
-            if (Surface::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
+            Surface *item  = 0;
+
+            if (isEditing)
             {
-                Surface *item  = 0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(m_widget->f->expression());
-                }
-                else
-                {
-                    item  = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());          
-                }
-            } 
-            
-            break;
+                item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
+            }
+            else
+            {
+                item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())),
+                        name, m_widget->plotColor->color());
+            }
         }
 
-        case PlotsBuilder::CartesianParametricCurve2D:
+        break;
+    }
+
+    case PlotsBuilder::CartesianImplicitCurve:
+    {
+        if (PlaneCurve::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
         {
-            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
-                m_widget->g->expression().toString()+"}")), errors))
+            PlaneCurve *item  = 0;
+
+            if (isEditing)
             {
-                PlaneCurve *item  = 0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
-                            m_widget->f->expression().toString()+", "+
-                            m_widget->g->expression().toString()+"}")));                    
-                }
-                else
-                {
-                    item  = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
-                            m_widget->f->expression().toString()+", "+
-                            m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());             
-                }
-            } 
-            
-            break;
-        }
-        case PlotsBuilder::CartesianParametricCurve3D:
-        {
-            if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
-                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
+                item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(m_widget->f->expression());
+            }
+            else
             {
-                SpaceCurve *item  = 0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<SpaceCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
-                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));   
-                }
-                else
-                {
-                    item  = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
-                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());   
-                }
-            } 
-            
-            break;
+                item  = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());
+            }
         }
 
-        case PlotsBuilder::CartesianParametricSurface:
+        break;
+    }
+
+    case PlotsBuilder::CartesianImplicitSurface:
+    {
+        if (Surface::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
         {
-            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
-                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
+            Surface *item  = 0;
+
+            if (isEditing)
             {
-                Surface *item =0;
-                
-                if (isEditing)
-                {
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
-                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));   
-                }
-                else
-                {
-                    item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
-                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")),name, m_widget->plotColor->color());           
-                }
-            } 
-            break;
+                item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(m_widget->f->expression());
+            }
+            else
+            {
+                item  = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());
+            }
         }
+
+        break;
+    }
+
+    case PlotsBuilder::CartesianParametricCurve2D:
+    {
+        if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                                m_widget->g->expression().toString()+"}")), errors))
+        {
+            PlaneCurve *item  = 0;
+
+            if (isEditing)
+            {
+                item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                                                 m_widget->f->expression().toString()+", "+
+                                                 m_widget->g->expression().toString()+"}")));
+            }
+            else
+            {
+                item  = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                        m_widget->f->expression().toString()+", "+
+                        m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());
+            }
+        }
+
+        break;
+    }
+    case PlotsBuilder::CartesianParametricCurve3D:
+    {
+        if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
+        {
+            SpaceCurve *item  = 0;
+
+            if (isEditing)
+            {
+                item = dynamic_cast<SpaceCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                                                 m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
+            }
+            else
+            {
+                item  = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                        m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());
+            }
+        }
+
+        break;
+    }
+
+    case PlotsBuilder::CartesianParametricSurface:
+    {
+        if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
+        {
+            Surface *item =0;
+
+            if (isEditing)
+            {
+                item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                item->reset(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                                                 m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
+            }
+            else
+            {
+                item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                        m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")),name, m_widget->plotColor->color());
+            }
+        }
+        break;
+    }
     }
 
     if (errors.isEmpty())
@@ -786,7 +757,7 @@ void PlotsEditor::savePlot()
         isEditing = false;
         reset();
         showList();
-    }    
+    }
     else
     {
 //         setStatusTip(errors);
@@ -796,26 +767,16 @@ void PlotsEditor::savePlot()
 
 void PlotsEditor::removePlot()
 {
-    
     if (m_widget->plotsView->selectionModel()->hasSelection())
-    {
-//         static_cast<PlotsModel*>(m_widget->plotsView->model())->removeItem(
-//             m_widget->plotsView->selectionModel()->currentIndex().row());
-//     qDebug() << m_widget->plotsView->selectionModel()->currentIndex();
-//     qDebug() << m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row();
-    
-//         m_document->plotsModel()->removeItem(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
-//         m_document->currentPlots()->removeRows(m_widget->plotsView->selectionModel()->currentIndex().row(),1);
         m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
-    }
 }
 
 void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)
 {
     m_currentFunctionGraphs = txt.split(",");
-    
+
     m_currentVars = m_currentFunctionGraphs;
-    
+
     //mostramos a demanda las variables usadas
     for (int var = 1; var <=m_currentFunctionGraphs.size(); ++var)
         setupVarName(var, m_currentFunctionGraphs[var-1]);
@@ -825,23 +786,23 @@ void PlotsEditor::setupVarName(int var, const QString &vvalue)
 {
     switch (var)
     {
-        case 1: 
-        {
-            m_widget->x->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>"); 
-            break;
-        }
-        case 2: 
-        {
-            m_widget->yinterval->show();
-            m_widget->y->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>"); 
-            break;
-        }
-        case 3: 
-        {
-            m_widget->zinterval->show();
-            m_widget->z->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>"); 
-            break;
-        }
+    case 1:
+    {
+        m_widget->x->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>");
+        break;
+    }
+    case 2:
+    {
+        m_widget->yinterval->show();
+        m_widget->y->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>");
+        break;
+    }
+    case 3:
+    {
+        m_widget->zinterval->show();
+        m_widget->z->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>");
+        break;
+    }
     }
 }
 
@@ -849,43 +810,43 @@ void PlotsEditor::setupFuncName(int var, const QString& vvalue, const QStringLis
 {
     QString mmlhelper;
     mmlhelper.append("<mi>"+vvalue+"</mi>");
-    
+
     if (withparenthesis)
         mmlhelper.append("<mo>(</mo>");
-        
+
     foreach(const QString &var, vars)
     {
         mmlhelper.append("<mi>"+var+"</mi>");
-        
+
         if (var != vars.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
-    
+
     if (withparenthesis)
         mmlhelper.append("<mo>)</mo>");
 
     switch (var)
     {
-        case 1: 
-        {
-            m_widget->fname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-            m_widget->gexpression->hide();
-            m_widget->hexpression->hide();
-            break;
-        }
-        case 2: 
-        {
-            m_widget->gname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-            m_widget->gexpression->show();
-            m_widget->hexpression->hide();
-            break;
-        }
-        case 3: 
-        {
-            m_widget->hname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-            m_widget->hexpression->show();
-            break;
-        }
+    case 1:
+    {
+        m_widget->fname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+        m_widget->gexpression->hide();
+        m_widget->hexpression->hide();
+        break;
+    }
+    case 2:
+    {
+        m_widget->gname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+        m_widget->gexpression->show();
+        m_widget->hexpression->hide();
+        break;
+    }
+    case 3:
+    {
+        m_widget->hname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
+        m_widget->hexpression->show();
+        break;
+    }
     }
 }
 
@@ -897,7 +858,7 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
     m_currentIsVectorValued = isvectorValued;
     m_currentVectorSize = isvectorValued?fvalues.size():-1;
 
-    
+
     //
     m_widget->farrow->show();
 
@@ -915,14 +876,14 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         m_widget->fnameForGraphs->hide();
         m_widget->fname->show();
 //         m_widget->farrow->hide();
-        
+
     }
 
     if (!isvectorValued || !isimplicit)
     {
         m_widget->gexpression->hide();
         m_widget->hexpression->hide();
-        
+
         m_widget->yinterval->hide();
         m_widget->zinterval->hide();
     }
@@ -933,23 +894,23 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         m_widget->fname->hide();
         m_widget->farrow->hide();
     }
-    
+
     //mostramos a demanda las variables usadas
     for (int var = 1; var <=vvalues.size(); ++var)
         setupVarName(var, vvalues[var-1]);
-        
+
     if (isvectorValued)
     {
         m_widget->fnameForGraphs->hide();
-        
+
         m_widget->farrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
 
         for (int func = 1; func <= fvalues.size(); ++func)
         {
-             setupFuncName(func, fvalues[func-1], vvalues);
+            setupFuncName(func, fvalues[func-1], vvalues);
         }
     }
-    else 
+    else
     {
         if (!isimplicit) //flechas en ves de = pues es un graph
         {

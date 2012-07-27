@@ -226,7 +226,7 @@ void MainWindow::setupActions()
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, m_document, SLOT(removeCurrentSpace()));
     //tools space
     createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
-    createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+//     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(fooSlot()), actionCollection());
     KStandardAction::fullScreen(this, SLOT(fooSlot()), this ,actionCollection());
@@ -330,7 +330,7 @@ void MainWindow::activateDashboardUi()
     action("go_home")->setVisible(false);
     //tools
     action("copy_snapshot")->setVisible(false);
-    action("export_snapshot")->setVisible(false);
+//     action("export_snapshot")->setVisible(false);
     
     //toolbars
     toolBar("mainToolBar")->show();
@@ -366,7 +366,7 @@ void MainWindow::activateSpaceUi()
     action("go_home")->setVisible(true);    
     //tools
     action("copy_snapshot")->setVisible(true);
-    action("export_snapshot")->setVisible(true);
+//     action("export_snapshot")->setVisible(true);
     
     //toolbars
     toolBar("mainToolBar")->hide();
@@ -422,7 +422,7 @@ void MainWindow::setVisibleDictionary(bool t)
         action("go_home")->setVisible(false);    
         //tools
         action("copy_snapshot")->setVisible(false);
-        action("export_snapshot")->setVisible(false);
+//         action("export_snapshot")->setVisible(false);
         
         //toolbars
         toolBar("mainToolBar")->show();

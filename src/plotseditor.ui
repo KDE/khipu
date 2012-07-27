@@ -31,14 +31,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="ExpressionEdit" name="quickPlot">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
+           <widget class="FunctionLibraryEdit" name="quickPlot"/>
           </item>
           <item>
            <widget class="QToolButton" name="addPlots">
@@ -606,10 +599,6 @@
                </widget>
               </item>
              </layout>
-             <zorder>xinterval</zorder>
-             <zorder>xinterval</zorder>
-             <zorder>yinterval</zorder>
-             <zorder>zinterval</zorder>
             </widget>
            </item>
           </layout>
@@ -682,6 +671,11 @@
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>plotseditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FunctionLibraryEdit</class>
+   <extends>QLineEdit</extends>
+   <header>functionlibraryedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
