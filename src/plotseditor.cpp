@@ -196,7 +196,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
 
-    m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
+//     m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
 
 //     m_widget->fnameForGraphs->setMouseTracking(true);
 //     m_widget->fnameForGraphs->view()->setMouseTracking(true);
@@ -484,7 +484,7 @@ void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianGraphCurve;
 
-    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newfunction").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "x");
 }
@@ -495,7 +495,7 @@ void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianImplicitCurve;
 
-    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newimplicit").pixmap(16.16));
 
     setupExpressionType(QStringList(), QStringList() << "x" << "y", true);
 }
@@ -506,7 +506,7 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianParametricCurve2D;
 
-    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newparametric").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true);
 }
@@ -517,7 +517,7 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::PolarGraphCurve;
 
-    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("draw-spiral").pixmap(16.16));
 
     setupExpressionType(QStringList()<<"p", QStringList() << "p");
 }
@@ -529,7 +529,7 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianParametricCurve3D;
 
-    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newparametric3d").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true);
 }
@@ -540,7 +540,7 @@ void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianGraphSurface;
 
-    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newfunction3d").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x,y" << "x,z" << "y,z", QStringList() << "x" << "y");
 }
@@ -551,7 +551,7 @@ void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianImplicitSurface;
 
-    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("draw-square-inverted-corners").pixmap(16.16));
 
     setupExpressionType(QStringList(), QStringList() << "x" << "y" << "z", true);
 }
@@ -562,7 +562,7 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CartesianParametricSurface;
 
-    m_widget->plotIcon->setPixmap(KIcon("list-add").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("draw-donut").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true);
 }
@@ -573,7 +573,7 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::CylindricalGraphSurface;
 
-    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newcylindrical").pixmap(16.16));
 
     setupExpressionType(QStringList() << "r,p", QStringList() << "r" << "p");
 }
@@ -584,7 +584,7 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 
     m_currentType = PlotsBuilder::SphericalGraphSurface;
 
-    m_widget->plotIcon->setPixmap(KIcon("kde").pixmap(16.16));
+    m_widget->plotIcon->setPixmap(KIcon("newspherical").pixmap(16.16));
 
     setupExpressionType(QStringList() << "t,p", QStringList() << "t" << "p");
 }

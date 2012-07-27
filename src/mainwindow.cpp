@@ -170,8 +170,8 @@ void MainWindow::setupActions()
     KStandardAction::close(this, SLOT(close()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     //edit - dashboard
-    createAction("add_space2d", i18n("&Add Space 2D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
-    createAction("add_space3d", i18n("&Add Space 3D"), "list-add", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
+    createAction("add_space2d", i18n("&Add Space 2D"), "add-space2d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
+    createAction("add_space3d", i18n("&Add Space 3D"), "add-space3d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
     createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //view - dashboard //TODO Show Plots Dictionary
     m_plotsBuilderDock->toggleViewAction()->setIcon(KIcon("formula"));
@@ -195,7 +195,7 @@ void MainWindow::setupActions()
     actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
     
 //     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("configure"));
+    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("coord-settings"));
     m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
     actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());       
     

@@ -45,20 +45,18 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
     
     //BEGIN setup icons
     #define setTypeIcon(tname, iconame) m_widget->build##tname##Icon->setPixmap(KIcon( iconame ).pixmap(16,16));
+    
 
-    setTypeIcon(CartesianGraphCurve, "draw-bezier-curves");
-    setTypeIcon(CartesianImplicitCurve, "draw-bezier-curves");
-    setTypeIcon(CartesianParametricCurve2D, "draw-bezier-curves");
+    setTypeIcon(CartesianGraphCurve, "newfunction");
+    setTypeIcon(CartesianImplicitCurve, "newimplicit");
+    setTypeIcon(CartesianParametricCurve2D, "newparametric");
     setTypeIcon(PolarGraphCurve, "draw-spiral");
-    setTypeIcon(CartesianParametricCurve3D, "draw-bezier-curves");
-    setTypeIcon(CartesianGraphSurface, "draw-spiral");
-    setTypeIcon(CartesianImplicitSurface, "draw-spiral");
-    setTypeIcon(CartesianParametricSurface, "draw-spiral");
-    setTypeIcon(CylindricalGraphSurface, "draw-spiral");
-    setTypeIcon(SphericalGraphSurface, "draw-spiral");
-    
-    
-    
+    setTypeIcon(CartesianParametricCurve3D, "newparametric3d");
+    setTypeIcon(CartesianGraphSurface, "newfunction3d");
+    setTypeIcon(CartesianImplicitSurface, "draw-square-inverted-corners");
+    setTypeIcon(CartesianParametricSurface, "draw-donut");
+    setTypeIcon(CylindricalGraphSurface, "newcylindrical");
+    setTypeIcon(SphericalGraphSurface, "newspherical");
     
     //END setup icons
 }
