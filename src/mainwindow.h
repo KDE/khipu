@@ -62,6 +62,7 @@ private slots:
     void setVisibleDictionary(bool t); // este llama a dashboard void setVisibleDictionary(bool t);
     void addSpace2D();
     void addSpace3D();
+    void removeCurrentSpace();
     void goHome();
 
     //builder dock actions: shortcuts ... first add the space then show the editor

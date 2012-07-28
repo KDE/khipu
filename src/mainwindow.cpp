@@ -229,7 +229,7 @@ void MainWindow::setupActions()
 
     KStandardAction::home(this, SLOT(goHome()), actionCollection());
     //tools dashboard
-    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, m_document, SLOT(removeCurrentSpace()));
+    createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(removeCurrentSpace()))->setVisible(false);;
     //tools space
     createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
 //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
@@ -322,7 +322,10 @@ void MainWindow::activateDashboardUi()
     //edit
     action("add_space2d")->setVisible(true);
     action("add_space3d")->setVisible(true);
-    action("delete_currentspace")->setVisible(true);        
+    
+    if (m_document->spacesModel()->rowCount()>0)
+        action("delete_currentspace")->setVisible(true);        
+    
     action("add_random_plot")->setVisible(false);
     //view
     action("show_plotsbuilder")->setVisible(true);
@@ -465,7 +468,15 @@ void MainWindow::addSpace3D()
     
     m_dashboard->showPlotsView3D();
     m_document->spacesModel()->addSpace(Dim3D);
+}
+
+
+void MainWindow::removeCurrentSpace()
+{
+    m_document->removeCurrentSpace();
     
+    if (m_document->spacesModel()->rowCount() == 0)
+        action("delete_currentspace")->setVisible(false);
 }
 
 
