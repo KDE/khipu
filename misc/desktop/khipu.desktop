@@ -1,6 +1,7 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Khipu
+Name[de]=Khipu
 Name[es]=Khipu
 Name[et]=Khipu
 Name[fr]=Khipu
@@ -13,6 +14,7 @@ Name[uk]=Khipu
 Name[x-test]=xxKhipuxx
 GenericName=Advanced Mathematical Function Plotter
 GenericName[cs]=Pokročilý souřadnicový zapisovač matematických funkcí
+GenericName[de]=Fortgeschrittener mathematischer Funktionsplotter
 GenericName[es]=Trazador avanzado de funciones matemáticas
 GenericName[et]=Täiustatud matemaatiliste funktsioonide graafiku joonistaja
 GenericName[fr]=Traceur de fonctions mathématiques avancé
