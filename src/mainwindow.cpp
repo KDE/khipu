@@ -106,12 +106,13 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
 void MainWindow::setupDocks()
 {
     PlotsBuilder *plotsBuilder = new PlotsBuilder(this);
-    m_plotsBuilderDock = new QDockWidget(i18n("Build Plots"), this);
+    m_plotsBuilderDock = new QDockWidget(i18n("Shortcuts"), this);
     m_plotsBuilderDock->setWidget(plotsBuilder); // plotsbuilder debe ser miembro
     m_plotsBuilderDock->setObjectName("dsfs");
     m_plotsBuilderDock->setFloating(false);
     m_plotsBuilderDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+    m_plotsBuilderDock->hide();
 
     plotsBuilder->mapConnection(PlotsBuilder::CartesianGraphCurve, this, SLOT(buildCartesianGraphCurve()));
     plotsBuilder->mapConnection(PlotsBuilder::CartesianImplicitCurve, this, SLOT(buildCartesianImplicitCurve()));
@@ -124,9 +125,7 @@ void MainWindow::setupDocks()
     plotsBuilder->mapConnection(PlotsBuilder::CylindricalGraphSurface, this, SLOT(buildCylindricalGraphSurface()));
     plotsBuilder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
     
-    
     ///
-    
     
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
@@ -135,7 +134,6 @@ void MainWindow::setupDocks()
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
     
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
-
     
     m_spaceInfoDock = new SpaceInformation(this);
     
@@ -156,8 +154,6 @@ void MainWindow::setupDocks()
     connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(sceneResized(int)), m_dashboard->view3d(), SLOT(resizeScene(int)));
-    
-    
 
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
@@ -175,6 +171,7 @@ void MainWindow::setupActions()
     KStandardAction::saveAs(this, SLOT(fooSlot()), actionCollection());
     KStandardAction::close(this, SLOT(close()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
+    
     //edit - dashboard
     createAction("add_space2d", i18n("&Add Space 2D"), "add-space2d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("&Add Space 3D"), "add-space3d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
@@ -182,8 +179,9 @@ void MainWindow::setupActions()
     //view - dashboard //TODO Show Plots Dictionary
     m_plotsBuilderDock->toggleViewAction()->setIcon(KIcon("formula"));
     m_plotsBuilderDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    m_plotsBuilderDock->toggleViewAction()->setToolTip(i18n("Create a plot in a new space"));
     actionCollection()->addAction("show_plotsbuilder", m_plotsBuilderDock->toggleViewAction());
-    
+
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, 
@@ -350,7 +348,7 @@ void MainWindow::activateDashboardUi()
     m_spacePlotsDock->hide();
     m_spaceInfoDock->hide();
     m_spaceOptionsDock->hide();
-    m_plotsBuilderDock->show(); //al final ya muestro el widget
+    m_plotsBuilderDock->hide(); 
 }
 
 void MainWindow::activateSpaceUi()
