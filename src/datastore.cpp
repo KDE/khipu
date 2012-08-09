@@ -57,8 +57,10 @@ DataStore::DataStore(QObject* parent)
     m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
 
     m_currentSelectionModel = new QItemSelectionModel(m_spacePlotsFilterProxyModel);
-    m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
+    connect(m_currentSelectionModel, SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(selectCurrentPlot(QModelIndex,QModelIndex)));
 
+    m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
+    
     connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex,QModelIndex)));
 //     connect(m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
 //         this, SLOT(addFuncs(QModelIndex,int,int)));
@@ -112,6 +114,24 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
         case Polar: i = 2; break;
     }
     
+    emit gridStyleChanged(i);
+}
+
+void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
+{
+    if (!curr.isValid()) return ;
+    
+    int start = curr.row();
+
+    int i = 0;
+    
+    switch (m_plotsModel->item(start)->coordinateSystem())
+    {
+        //TODO for 3d
+        case Cartesian: i = 1; break;
+        case Polar: i = 2; break;
+    }
+
     emit gridStyleChanged(i);
 }
 

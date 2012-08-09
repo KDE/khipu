@@ -63,7 +63,7 @@ public:
 
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
-    
+    void selectCurrentPlot(const QModelIndex & curr, const QModelIndex & prev );
     void plotDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight ); // actualiza el combo de coords
     
     
