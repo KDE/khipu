@@ -64,7 +64,8 @@ public:
     PlotsView3D *view3d();
 
 public slots:
-    void setVisibleDictionary(bool t);
+    void goHome();
+    void showDictionary();
     void showPlotsView2D();
     void showPlotsView3D();
     void removeCurrentSpace();

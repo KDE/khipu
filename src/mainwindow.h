@@ -59,7 +59,7 @@ private slots:
     void exportSnapShot();
     
     //app
-    void setVisibleDictionary(bool t); // este llama a dashboard void setVisibleDictionary(bool t);
+    void setVisibleDictionary(); // este llama a dashboard void setVisibleDictionary(bool t);
     void addSpace2D();
     void addSpace3D();
     void removeCurrentSpace();

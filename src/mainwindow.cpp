@@ -187,7 +187,7 @@ void MainWindow::setupActions()
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, 
-                 SLOT(setVisibleDictionary(bool)), true, false);
+                 SLOT(setVisibleDictionary()));
 
     //view - space
 //     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
@@ -409,10 +409,9 @@ void MainWindow::exportSnapShot()
 
 }
 
-void MainWindow::setVisibleDictionary(bool t)
+void MainWindow::setVisibleDictionary()
 {
-    if (t)
-    {
+    
         //menu
         //edit 
         action("add_space2d")->setVisible(false);
@@ -423,19 +422,20 @@ void MainWindow::setVisibleDictionary(bool t)
         action("show_plotsbuilder")->setVisible(false);
         action("show_plots")->setVisible(false);
         action("show_spaces")->setVisible(false);
-        action("show_plotsdictionary")->setVisible(true); 
         action("show_plots_editor")->setVisible(false);
         action("show_space_info")->setVisible(false);
         action("show_plotter_options")->setVisible(false);
         //go
-        action("go_home")->setVisible(false);    
+        action("show_plotsdictionary")->setVisible(false); 
+        action("go_home")->setVisible(true);  
+        
         //tools
         action("copy_snapshot")->setVisible(false);
 //         action("export_snapshot")->setVisible(false);
         
         //toolbars
         toolBar("mainToolBar")->show();
-        toolBar("spaceToolBar")->hide();
+        toolBar("spaceToolBar")->show();
 
         //docks
         //lo mismo ... primero hides luego show
@@ -444,15 +444,8 @@ void MainWindow::setVisibleDictionary(bool t)
         m_spaceInfoDock->hide();
         m_spaceOptionsDock->hide();
     
-    }
-    else
-    {
-        activateDashboardUi();
-    }
-    
-    m_dashboard->setVisibleDictionary(t);
+    m_dashboard->showDictionary();
 }
-
 
 void MainWindow::addSpace2D()
 {
@@ -483,39 +476,41 @@ void MainWindow::removeCurrentSpace()
 //NOTE se emite cuando se regresa de un space ... aqui se debe guardar la imforacion del space
 void MainWindow::goHome()
 {
-    ///guardando space info
-    
-    
-    SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
-
-    space->stamp(); // marcamos la fecha y hora de ingreso al space
-    space->setTitle(m_spaceInfoDock->title());
-    space->setDescription(m_spaceInfoDock->description());
-    
-    QPixmap thumbnail; 
-
-    switch (space->dimension())
+    if (m_dashboard->currentIndex() != 0) // si no esta en modo dashboard
     {
-        case 2: thumbnail = QPixmap::grabWidget(m_dashboard->view2d()); break;
-        case 3:
+        ///guardando space info
+        
+        SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
+
+        space->stamp(); // marcamos la fecha y hora de ingreso al space
+        space->setTitle(m_spaceInfoDock->title());
+        space->setDescription(m_spaceInfoDock->description());
+        
+        QPixmap thumbnail; 
+
+        switch (space->dimension())
         {
-            m_dashboard->view3d()->updateGL();
-            m_dashboard->view3d()->setFocus();
-            m_dashboard->view3d()->makeCurrent();
-            m_dashboard->view3d()->raise();
-    
-            QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
+            case 2: thumbnail = QPixmap::grabWidget(m_dashboard->view2d()); break;
+            case 3:
+            {
+                m_dashboard->view3d()->updateGL();
+                m_dashboard->view3d()->setFocus();
+                m_dashboard->view3d()->makeCurrent();
+                m_dashboard->view3d()->raise();
+        
+                QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
 
-            thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
+                thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
 
-            break;
+                break;
+            }
         }
+
+        thumbnail = thumbnail.scaled(QSize(220, 220), Qt::KeepAspectRatioByExpanding,Qt::SmoothTransformation);   
+        space->setThumbnail(thumbnail);
     }
 
-    thumbnail = thumbnail.scaled(QSize(220, 220), Qt::KeepAspectRatioByExpanding,Qt::SmoothTransformation);   
-    space->setThumbnail(thumbnail);
-    
-    m_dashboard->setCurrentIndex(0);
+    m_dashboard->goHome();
     activateDashboardUi();
 }
 

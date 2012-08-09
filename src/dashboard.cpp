@@ -108,20 +108,18 @@ PlotsView3D* Dashboard::view3d()
     return m_widget->plotsView3D;
 }
 
-
-void Dashboard::setVisibleDictionary(bool t)
+void Dashboard::goHome()
 {
-    if (t)
-    {        
+    setCurrentIndex(0);
+    m_widget->views->setCurrentIndex(0);
+    m_widget->plotsViewOptions->setCurrentIndex(0);
+}
+
+void Dashboard::showDictionary()
+{
         m_widget->views->setCurrentIndex(1);
         m_widget->plotsViewOptions->setCurrentIndex(1);
         m_widget->plotsView->setModel(m_document->plotsDictionaryModel());
-    }
-    else // regreso a home
-    {
-        m_widget->views->setCurrentIndex(0);
-        m_widget->plotsViewOptions->setCurrentIndex(0);
-    }
 }
 
 void Dashboard::showPlotsView2D()
