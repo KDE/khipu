@@ -548,7 +548,7 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true);
     
-    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->minx->setExpression(Analitza::Expression("-pi"));
     m_widget->maxx->setExpression(Analitza::Expression("pi"));
 }
 
@@ -710,25 +710,6 @@ void PlotsEditor::savePlot()
         {
             if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
             {
-//                 Surface *item  = 0;
-// 
-//                 if (isEditing)
-//                 {
-//                     item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-//                     item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
-//                     item->setColor(m_widget->plotColor->color());
-//                 }
-//                 else
-//                 {
-//                     item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())),
-//                             name, m_widget->plotColor->color());
-//                 }
-//                 
-//                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-//                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
-//                 
-                ///*
-                
                 Surface *item = 0;
 
                 if (isEditing)
@@ -754,21 +735,23 @@ void PlotsEditor::savePlot()
         {
             if (PlaneCurve::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
             {
-                PlaneCurve *item  = 0;
+                PlaneCurve *item = 0;
 
                 if (isEditing)
-                {
                     item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->setExpression(m_widget->f->expression());
-                    item->setColor(m_widget->plotColor->color());
-                }
                 else
-                {
-                    item  = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());
-                }
-                
-                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item = new PlaneCurve(m_widget->f->expression());
+
+                item->setName(m_widget->plotName->text());
+                item->setColor(m_widget->plotColor->color());
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+
+                if (isEditing)
+                    item->setExpression(m_widget->f->expression());
+                else
+                    m_document->plotsModel()->addItem(item);
+
             }
 
             break;
@@ -778,22 +761,23 @@ void PlotsEditor::savePlot()
         {
             if (Surface::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
             {
-                Surface *item  = 0;
+                Surface *item = 0;
 
                 if (isEditing)
-                {
                     item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->setExpression(m_widget->f->expression());
-                    item->setColor(m_widget->plotColor->color());
-                }
                 else
-                {
-                    item  = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());
-                }
-                
-                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item = new Surface(m_widget->f->expression());
+
+                item->setName(m_widget->plotName->text());
+                item->setColor(m_widget->plotColor->color());
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
                 item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
+
+                if (isEditing)
+                    item->setExpression(m_widget->f->expression());
+                else
+                    m_document->plotsModel()->addItem(item);
             }
 
             break;
@@ -802,27 +786,27 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianParametricCurve2D:
         {
             if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+"}")), errors))
+                                    m_widget->g->expression().toString()+"}")), errors))            
             {
-                PlaneCurve *item  = 0;
+                PlaneCurve *item = 0;
 
                 if (isEditing)
-                {
                     item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                else
+                    item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                            m_widget->f->expression().toString()+", "+
+                            m_widget->g->expression().toString()+"}")));
+
+                item->setName(m_widget->plotName->text());
+                item->setColor(m_widget->plotColor->color());
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+
+                if (isEditing)
                     item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
                                                     m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+"}")));
-                    item->setColor(m_widget->plotColor->color());
-                }
                 else
-                {
-                    item  = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
-                            m_widget->f->expression().toString()+", "+
-                            m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());
-                    item->setColor(m_widget->plotColor->color());
-                }
-                
-                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                    m_document->plotsModel()->addItem(item);
             }
 
             break;
