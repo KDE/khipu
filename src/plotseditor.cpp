@@ -373,6 +373,10 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                 m_widget->f->setExpression(curve->expression());
 
                 buildCartesianImplicitCurve();
+                
+                QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().at(1), false);
+                m_widget->miny->setExpression(interval.first);
+                m_widget->maxy->setExpression(interval.second);
             }
             else if (curve->expression().lambdaBody().isVector()) //vectorvalued
             {
@@ -408,6 +412,10 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                     }
                 }
             }
+
+            QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
+            m_widget->minx->setExpression(interval.first);
+            m_widget->maxx->setExpression(interval.second);
         }
         else if (dynamic_cast<SpaceCurve*>(item))
         {
@@ -418,6 +426,10 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             m_widget->h->setExpression(curve->expression().lambdaBody().elementAt(2));
 
             buildCartesianParametricCurve3D();
+            
+            QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
+            m_widget->minx->setExpression(interval.first);
+            m_widget->maxx->setExpression(interval.second);
         }
         else if (dynamic_cast<Surface*>(item))
         {
@@ -428,6 +440,10 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                 m_widget->f->setExpression(surface->expression());
 
                 buildCartesianImplicitSurface();
+
+                QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().at(2), false);
+                m_widget->minz->setExpression(interval.first);
+                m_widget->maxz->setExpression(interval.second);
             }
             else if (surface->expression().lambdaBody().isVector()) //vectorvalued
             {
@@ -473,6 +489,14 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                     }
                 }
             }
+            
+            QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().first(), false);
+            m_widget->minx->setExpression(interval.first);
+            m_widget->maxx->setExpression(interval.second);
+            
+            interval = surface->interval(surface->parameters().at(1), false);
+            m_widget->miny->setExpression(interval.first);
+            m_widget->maxy->setExpression(interval.second);
         }
     }
 
@@ -487,6 +511,9 @@ void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newfunction").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "x");
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
 
 void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
@@ -498,6 +525,12 @@ void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newimplicit").pixmap(16.16));
 
     setupExpressionType(QStringList(), QStringList() << "x" << "y", true);
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
+    
+    m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
 
 void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
@@ -509,6 +542,9 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newparametric").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true);
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->maxx->setExpression(Analitza::Expression("pi"));
 }
 
 void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
@@ -520,6 +556,9 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("draw-spiral").pixmap(16.16));
 
     setupExpressionType(QStringList()<<"p", QStringList() << "p");
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->maxx->setExpression(Analitza::Expression("2*pi"));
 }
 
 //3D
@@ -532,6 +571,9 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newparametric3d").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true);
+    
+    m_widget->minx->setExpression(Analitza::Expression("-pi"));
+    m_widget->maxx->setExpression(Analitza::Expression("pi"));
 }
 
 void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
@@ -543,6 +585,12 @@ void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newfunction3d").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x,y" << "x,z" << "y,z", QStringList() << "x" << "y");
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
+    
+    m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
 
 void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
@@ -554,6 +602,15 @@ void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("draw-square-inverted-corners").pixmap(16.16));
 
     setupExpressionType(QStringList(), QStringList() << "x" << "y" << "z", true);
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
+    
+    m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
+    
+    m_widget->minz->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxz->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
 
 void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
@@ -565,6 +622,12 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("draw-donut").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true);
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
+    
+    m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
+    m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
 
 void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
@@ -576,6 +639,12 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newcylindrical").pixmap(16.16));
 
     setupExpressionType(QStringList() << "r,p", QStringList() << "r" << "p");
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
+    
+    m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->maxy->setExpression(Analitza::Expression("2*pi"));
 }
 
 void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
@@ -587,6 +656,12 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newspherical").pixmap(16.16));
 
     setupExpressionType(QStringList() << "t,p", QStringList() << "t" << "p");
+    
+    m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->maxx->setExpression(Analitza::Expression("2*pi"));
+
+    m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(0)));
+    m_widget->maxy->setExpression(Analitza::Expression("pi"));
 }
 
 void PlotsEditor::savePlot()
