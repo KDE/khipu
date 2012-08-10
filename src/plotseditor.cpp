@@ -267,6 +267,9 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
             m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve |
                                         PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D |
                                         PlotsBuilder::PolarGraphCurve);
+            
+            m_widget->styleWidget->hide();
+            
             break;
         }
 
@@ -277,6 +280,8 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
                                         PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
                                         PlotsBuilder::SphericalGraphSurface);
 
+            m_widget->styleWidget->show();
+            
             break;
         }
     }
@@ -683,14 +688,18 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                {
                     item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
-                    item->setColor(m_widget->plotColor->color());
-                }
                 else
-                    item = m_document->plotsModel()->addPlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())),
-                            name, m_widget->plotColor->color());
+                    item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
+
+                item->setName(m_widget->plotName->text());
+                item->setColor(m_widget->plotColor->color());
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+
+                if (isEditing)
+                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
+                else
+                    m_document->plotsModel()->addItem(item);
             }
 
             break;
@@ -701,19 +710,41 @@ void PlotsEditor::savePlot()
         {
             if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
             {
-                Surface *item  = 0;
+//                 Surface *item  = 0;
+// 
+//                 if (isEditing)
+//                 {
+//                     item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+//                     item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
+//                     item->setColor(m_widget->plotColor->color());
+//                 }
+//                 else
+//                 {
+//                     item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())),
+//                             name, m_widget->plotColor->color());
+//                 }
+//                 
+//                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+//                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+//                 
+                ///*
+                
+                Surface *item = 0;
 
                 if (isEditing)
-                {
                     item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
-                    item->setColor(m_widget->plotColor->color());
-                }
                 else
-                {
-                    item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())),
-                            name, m_widget->plotColor->color());
-                }
+                    item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
+
+                item->setName(m_widget->plotName->text());
+                item->setColor(m_widget->plotColor->color());
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+
+                if (isEditing)
+                    item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
+                else
+                    m_document->plotsModel()->addItem(item);
             }
 
             break;
@@ -728,13 +759,16 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                 {
                     item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(m_widget->f->expression());
+                    item->setExpression(m_widget->f->expression());
                     item->setColor(m_widget->plotColor->color());
                 }
                 else
                 {
                     item  = m_document->plotsModel()->addPlaneCurve(m_widget->f->expression(), name, m_widget->plotColor->color());
                 }
+                
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
             }
 
             break;
@@ -749,13 +783,17 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                 {
                     item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(m_widget->f->expression());
+                    item->setExpression(m_widget->f->expression());
                     item->setColor(m_widget->plotColor->color());
                 }
                 else
                 {
                     item  = m_document->plotsModel()->addSurface(m_widget->f->expression(), name, m_widget->plotColor->color());
                 }
+                
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
             }
 
             break;
@@ -771,7 +809,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                 {
                     item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
                                                     m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+"}")));
                     item->setColor(m_widget->plotColor->color());
@@ -783,6 +821,8 @@ void PlotsEditor::savePlot()
                             m_widget->g->expression().toString()+"}")), name, m_widget->plotColor->color());
                     item->setColor(m_widget->plotColor->color());
                 }
+                
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
             }
 
             break;
@@ -797,7 +837,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                 {
                     item = dynamic_cast<SpaceCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
                     item->setColor(m_widget->plotColor->color());
                 }
@@ -806,6 +846,8 @@ void PlotsEditor::savePlot()
                     item  = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());
                 }
+                
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
             }
 
             break;
@@ -821,7 +863,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                 {
                     item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
-                    item->reset(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
                     item->setColor(m_widget->plotColor->color());
                 }
@@ -830,6 +872,9 @@ void PlotsEditor::savePlot()
                     item  = m_document->plotsModel()->addSurface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")),name, m_widget->plotColor->color());
                 }
+                
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
             }
             break;
         }

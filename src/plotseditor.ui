@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>274</width>
-    <height>792</height>
+    <width>294</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="features">
@@ -393,40 +393,65 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Color:</string>
+           <widget class="QWidget" name="colorWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Color:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="KColorCombo" name="plotColor"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QWidget" name="styleWidget" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="text">
+                <string>Style</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="plotStyle">
+               <item>
+                <property name="text">
+                 <string>Solid</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Wired</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Dots</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="KColorCombo" name="plotColor"/>
-          </item>
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Style</string>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="plotStyle">
-            <item>
-             <property name="text">
-              <string>Solid</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Wired</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Dots</string>
-             </property>
-            </item>
-           </widget>
+           </spacer>
           </item>
          </layout>
         </item>
