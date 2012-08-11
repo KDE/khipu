@@ -450,7 +450,7 @@ void MainWindow::addSpace2D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView2D();
-    m_document->spacesModel()->addSpace(Dim2D);
+    m_document->spacesModel()->addSpace(Dim2D, i18n("Untitled %1").arg(m_document->spacesModel()->rowCount()+1));
 }
 
 void MainWindow::addSpace3D()
@@ -458,9 +458,8 @@ void MainWindow::addSpace3D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView3D();
-    m_document->spacesModel()->addSpace(Dim3D);
+    m_document->spacesModel()->addSpace(Dim3D, i18n("Untitled %1").arg(m_document->spacesModel()->rowCount()+1));
 }
-
 
 void MainWindow::removeCurrentSpace()
 {
