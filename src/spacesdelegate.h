@@ -47,33 +47,9 @@ class DashboardWidget;
 
 class QFocusEvent;
 class QToolButton;
-
-//BEGIN widgets
 class KLineEdit;
 
-#include <ksqueezedtextlabel.h>
-
-class EditableLabel : public KSqueezedTextLabel
-{
-    Q_OBJECT;
-    
-public:
-    EditableLabel(QWidget *parent=0);
-    ~EditableLabel();
-    
-signals:
-    void editingFinished();
-    
-private:
-    void keyPressEvent ( QKeyEvent * e );
-    void focusOutEvent(QFocusEvent *e);
-};
-
-//END widgets
-
-//BEGIN SpacesGridViewDelegate
-
-class SpacesGridViewDelegate : public KWidgetItemDelegate
+class SpacesDelegate : public KWidgetItemDelegate
 {
     Q_OBJECT
 
@@ -81,8 +57,8 @@ public:
     static const int FrameThickness = 5;
     static const int ItemMargin = 4;
 
-    SpacesGridViewDelegate(QListView *itemView, QObject *parent = 0);
-    ~SpacesGridViewDelegate();
+    SpacesDelegate(QListView *itemView, QObject *parent = 0);
+    ~SpacesDelegate();
 
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
@@ -117,30 +93,5 @@ private:
     //listmode
     QSize m_buttonSize;
 };
-
-//END SpacesGridViewDelegate
-
-//BEGIN SpacesDetailsViewDelegate
-
-class SpacesDetailsViewDelegate : public KWidgetItemDelegate
-{
-    Q_OBJECT
-
-public:
-    SpacesDetailsViewDelegate(QListView *itemView, QObject *parent = 0);
-    ~SpacesDetailsViewDelegate();
-
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-
-private:
-    QList<QWidget*> createItemWidgets() const;
-    void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const;
-
-private:
-    QSize m_buttonSize;
-};
-
-//END SpacesDetailsViewDelegate
 
 #endif

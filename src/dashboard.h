@@ -27,7 +27,7 @@
 #include "document.h"
 
 class KWidgetItemDelegate;
-class SpacesGridViewDelegate;
+class SpacesDelegate;
 class SpacesDetailsViewDelegate;
 class PlotsView3D;
 class PlotsView2D;

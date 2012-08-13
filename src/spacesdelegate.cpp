@@ -49,42 +49,9 @@
 #include <kicon.h>
 #include <kwidgetitemdelegate.h>
 #include <KLocalizedString>
+#include <ksqueezedtextlabel.h>
 
-//BEGIN widgets
-
-EditableLabel::EditableLabel(QWidget* parent): KSqueezedTextLabel(parent)
-{
-
-}
-
-EditableLabel::~EditableLabel()
-{
-
-}
-
-void EditableLabel::keyPressEvent(QKeyEvent* event)
-{
-    if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
-        emit editingFinished();
-
-    return KSqueezedTextLabel::keyPressEvent(event);
-}
-
-void EditableLabel::focusOutEvent(QFocusEvent* e)
-{
-    Qt::FocusReason reason = e->reason();
-    
-    if (reason != Qt::PopupFocusReason || !(QApplication::activePopupWidget() && QApplication::activePopupWidget()->parentWidget() == this)) 
-        emit editingFinished();
-
-    KSqueezedTextLabel::focusOutEvent(e);
-}
-
-//END widgets
-
-//BEGIN SpacesGridViewDelegate
-
-SpacesGridViewDelegate::SpacesGridViewDelegate(QListView *itemView, QObject *parent)
+SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : KWidgetItemDelegate(itemView, parent)
 , m_isEditing(false)
 , m_iconMode(false) // el default en el listvieew es listmode no el iconmode
@@ -147,7 +114,7 @@ SpacesGridViewDelegate::SpacesGridViewDelegate(QListView *itemView, QObject *par
     }
 }
 
-SpacesGridViewDelegate::~SpacesGridViewDelegate()
+SpacesDelegate::~SpacesDelegate()
 {
     if (m_iconMode)
     {
@@ -157,7 +124,7 @@ SpacesGridViewDelegate::~SpacesGridViewDelegate()
     }
 }
 
-QSize SpacesGridViewDelegate::sizeHint(const QStyleOptionViewItem &option,
+QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option,
                                        const QModelIndex &index) const
 {
     Q_UNUSED(option);
@@ -180,7 +147,7 @@ QSize SpacesGridViewDelegate::sizeHint(const QStyleOptionViewItem &option,
     return size;
 }
 
-void SpacesGridViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     if (m_iconMode)
     {
@@ -226,11 +193,11 @@ void SpacesGridViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem
     }
 }
 
-QList<QWidget*> SpacesGridViewDelegate::createItemWidgets() const
+QList<QWidget*> SpacesDelegate::createItemWidgets() const
 {
     if (m_iconMode)
     {
-        KSqueezedTextLabel  *title = new EditableLabel ();
+        KSqueezedTextLabel  *title = new KSqueezedTextLabel ();
         title->setSelection(0,0);
         title->setTextElideMode(Qt::ElideRight);
         title->setWordWrap(true);
@@ -256,27 +223,27 @@ QList<QWidget*> SpacesGridViewDelegate::createItemWidgets() const
     
 }
 
-void SpacesGridViewDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
+void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
 {
     if (m_iconMode)
     {
         int elementYPos = PreviewHeight + ItemMargin + FrameThickness*2;
 
-        EditableLabel  * rating = qobject_cast<EditableLabel *>(widgets.first());
+        KSqueezedTextLabel  * title = qobject_cast<KSqueezedTextLabel *>(widgets.first());
 
-        if (rating) 
+        if (title) 
         {
             if (m_isEditing && m_currentEditingIndex == index)
             {
-                rating->hide();
+                title->hide();
             }
             else
             {
-                rating->setTextInteractionFlags(Qt::TextSelectableByMouse /*| Qt::TextSelectableByKeyboard*/);
-                rating->setText(index.data().toString());
-                rating->resize(QSize(option.rect.width() - (ItemMargin * 2), option.fontMetrics.height()));
-                rating->move((PreviewWidth-rating->width())/2, elementYPos);
-                rating->show();
+                title->setTextInteractionFlags(Qt::TextSelectableByMouse /*| Qt::TextSelectableByKeyboard*/);
+                title->setText(index.data().toString());
+                title->resize(QSize(option.rect.width() - (ItemMargin * 2), option.fontMetrics.height()));
+                title->move((PreviewWidth-title->width())/2, elementYPos);
+                title->show();
             }
         }
     }
@@ -335,7 +302,7 @@ void SpacesGridViewDelegate::updateItemWidgets(const QList<QWidget*> widgets, co
     }
 }
 
-bool SpacesGridViewDelegate::eventFilter(QObject *watched, QEvent *event)
+bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 {
     if (m_iconMode)
     {
@@ -397,14 +364,14 @@ bool SpacesGridViewDelegate::eventFilter(QObject *watched, QEvent *event)
    return KWidgetItemDelegate::eventFilter(watched, event);
 }
 
-void SpacesGridViewDelegate::dummyUpdate()
+void SpacesDelegate::dummyUpdate()
 {
     //TODO
     for (int i = 0; i < itemView()->model()->rowCount(); ++i)
         itemView()->model()->setData(static_cast<SpacesModel*>(itemView()->model())->index(i), static_cast<SpacesModel*>(itemView()->model())->index(i).data());
 }
 
-void SpacesGridViewDelegate::setCurrentSpace(const QModelIndex& index)
+void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 {
     if (m_isEditing) return;
     
@@ -423,7 +390,7 @@ void SpacesGridViewDelegate::setCurrentSpace(const QModelIndex& index)
     }
 }
 
-void SpacesGridViewDelegate::removeCurrentSpace()
+void SpacesDelegate::removeCurrentSpace()
 {
     if (!itemView()->currentIndex().isValid()) return;
 
@@ -442,7 +409,7 @@ void SpacesGridViewDelegate::removeCurrentSpace()
     }
 }
 
-void SpacesGridViewDelegate::editCurrentSpace()
+void SpacesDelegate::editCurrentSpace()
 {
     if (!itemView()->currentIndex().isValid()) return;
     
@@ -469,13 +436,13 @@ void SpacesGridViewDelegate::editCurrentSpace()
     }
 }
 
-void SpacesGridViewDelegate::showCurrentSpace()
+void SpacesDelegate::showCurrentSpace()
 {
     if (!itemView()->currentIndex().isValid()) return;
     
 }
 
-void SpacesGridViewDelegate::finishEditing(const QString &newtitle )
+void SpacesDelegate::finishEditing(const QString &newtitle )
 {
     if (!itemView()->currentIndex().isValid()) return;
 
@@ -511,7 +478,7 @@ void SpacesGridViewDelegate::finishEditing(const QString &newtitle )
     }
 }
 
-void SpacesGridViewDelegate::invalidClick(const QModelIndex& index)
+void SpacesDelegate::invalidClick(const QModelIndex& index)
 {
     if (m_iconMode)
     {
@@ -532,137 +499,3 @@ void SpacesGridViewDelegate::invalidClick(const QModelIndex& index)
         
     }
 }
-
-
-//END SpacesGridViewDelegate
-
-
-//BEGIN SpacesDetailsViewDelegate
-
-SpacesDetailsViewDelegate::SpacesDetailsViewDelegate(QListView* itemView, QObject* parent)
-    : KWidgetItemDelegate(itemView, parent)
-{
-    //BEGIN  here? o afuera?
-    
-    itemView->setViewMode(QListView::ListMode);
-//     itemView->setMouseTracking(true);
-    itemView->setSelectionMode(QListView::NoSelection);
-
-    //END  here? o afuera?
-}
-
-SpacesDetailsViewDelegate::~SpacesDetailsViewDelegate()
-{
-}
-
-QSize SpacesDetailsViewDelegate::sizeHint(const QStyleOptionViewItem &option,
-        const QModelIndex &index) const
-{
-    Q_UNUSED(option);
-    Q_UNUSED(index);
-
-    QSize size;
-
-    size.setWidth(option.fontMetrics.height() * 4);
-//         size.setHeight(qMax(option.fontMetrics.height() * 7, PreviewHeight)); // up to 6 lines of text, and two margins
-    size.setHeight(PreviewHeight+0.8*option.fontMetrics.height()); // up to PreviewHeight and two margins
-    return size;
-}
-
-void SpacesDetailsViewDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
-{
-    int margin = option.fontMetrics.height() / 2;
-
-    QStyle *style = QApplication::style();
-    style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
-
-    painter->save();
-
-    if (option.state & QStyle::State_Selected) {
-        painter->setPen(QPen(option.palette.highlightedText().color()));
-    } else {
-        painter->setPen(QPen(option.palette.text().color()));
-    }
-
-    int height = option.rect.height();
-    QPoint point(option.rect.left() + margin, option.rect.top() + ((height - PreviewHeight) / 2));
-
-    QPixmap image = index.data(Qt::DecorationRole).value<QPixmap>();
-//         point.setX((PreviewWidth - image.width())/2 + 5);
-//         point.setY(option.rect.top() + ((height - image.height()) / 2));
-    painter->drawPixmap(point, image);
-
-    painter->restore();
-}
-
-QList<QWidget*> SpacesDetailsViewDelegate::createItemWidgets() const
-{
-    QLabel *info = new QLabel();
-
-    QToolButton *show = new QToolButton();
-    QToolButton *edit = new QToolButton();
-    QToolButton *remove = new QToolButton();
-
-    show->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    edit->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    remove->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-
-    return QList<QWidget*>() << info << show << edit << remove;
-}
-
-void SpacesDetailsViewDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
-{
-    // setup the install button
-//         int margin = option.fontMetrics.height() / 2;
-    int margin = 0.8*option.fontMetrics.height();
-
-    int right = option.rect.width();
-
-    QToolButton * installButton = qobject_cast<QToolButton*>(widgets.at(1));
-    if (installButton != 0)
-    {
-        installButton->setText(i18n("Show"));
-        installButton->setIcon(KIcon("kig"));
-    }
-
-    QToolButton* detailsButton = qobject_cast<QToolButton*>(widgets.at(2));
-    if (detailsButton) {
-        detailsButton->setText(i18n("Edit"));
-        detailsButton->setIcon(KIcon("document-edit"));
-    }
-
-    if (installButton && detailsButton) {
-        if (m_buttonSize.width() < installButton->sizeHint().width()) {
-            const_cast<QSize&>(m_buttonSize) = QSize(
-                                                   qMax(option.fontMetrics.height() * 7,
-                                                           qMax(installButton->sizeHint().width(), detailsButton->sizeHint().width())),
-                                                   installButton->sizeHint().height());
-        }
-        installButton->resize(m_buttonSize);
-        installButton->move(right - installButton->width() - margin, option.rect.height()/2 - installButton->height()*1.5);
-        detailsButton->resize(m_buttonSize);
-        detailsButton->move(right - installButton->width() - margin, option.rect.height()/2 - installButton->height()/2);
-    }
-
-    QToolButton * rating = qobject_cast<QToolButton*>(widgets.at(3));
-    if (rating)
-    {
-        rating->setText(i18n("Remove"));
-        rating->setIcon(KIcon("list-remove"));
-
-        // put the rating label below the install button
-        rating->move(right - installButton->width() - margin, option.rect.height()/2 + installButton->height()/2);
-        rating->resize(m_buttonSize);
-    }
-
-    QLabel * infoLabel = qobject_cast<QLabel*>(widgets.at(0));
-    infoLabel->setWordWrap(true);
-    if (infoLabel != NULL) {
-        infoLabel->move(PreviewWidth + margin * 3, 0);
-        infoLabel->resize(QSize(option.rect.width() - PreviewWidth - (margin * 6) - m_buttonSize.width(), option.fontMetrics.height() * 7));
-        infoLabel->setText(index.data().toString());
-    }
-}
-
-//BEGIN SpacesDetailsViewDelegate
-
