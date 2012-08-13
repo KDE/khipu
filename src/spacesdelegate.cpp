@@ -58,8 +58,7 @@
 
 LineEdit::LineEdit(QWidget* parent): KLineEdit(parent)
 {
-    
-    
+
     connect(this, SIGNAL(editingFinished()), SLOT(procsSditingFinished()));
 }
 
@@ -74,26 +73,25 @@ void LineEdit::procsSditingFinished()
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : KWidgetItemDelegate(itemView, parent)
 , m_isEditing(false)
-, m_iconMode(true) //TODO el default en el listvieew es listmode no el iconmode
+, m_iconMode(false) // el default en el listvieew es listmode no el iconmode
 , m_operationBar(0)
 , m_titleEditor(0)
 {
-    //TODO debe ser m_iconMode no true
-    setIconMode(true);
+    setIconMode(m_iconMode);
 
-    //TODO
-//     if (itemView->viewMode() == QListView::IconMode)
-//         setIconMode(true);
+    if (itemView->viewMode() == QListView::IconMode)
+        setIconMode(true);
     
     itemView->setMouseTracking(true);
     itemView->setSelectionMode(QListView::NoSelection);
     
     itemView->viewport()->installEventFilter(this);
 
+        connect(this, SIGNAL(showSpace(QModelIndex)), itemView, SIGNAL(doubleClicked(QModelIndex)));
+
 //     connect(itemView, SIGNAL(entered(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
 //     connect(itemView, SIGNAL(clicked(QModelIndex)), SLOT(invalidClick(QModelIndex)));
     
-    connect(this, SIGNAL(showSpace(QModelIndex)), itemView, SIGNAL(doubleClicked(QModelIndex)));
     
 }
 
@@ -109,8 +107,7 @@ SpacesDelegate::~SpacesDelegate()
 
 void SpacesDelegate::setIconMode(bool im)
 {
-    //TODO
-//     if (im == m_iconMode) return ;
+    if (im == m_iconMode) return ;
 
     //TODO
     m_iconMode = im;
@@ -144,7 +141,6 @@ void SpacesDelegate::setIconMode(bool im)
             m_showButton->setToolTip(i18n("Show"));
             m_showButton->setIcon(KIcon("kig"));
             connect(m_showButton, SIGNAL(pressed()), SLOT(showCurrentSpace()));
-
 
             QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
 
@@ -268,11 +264,9 @@ QList<QWidget*> SpacesDelegate::createItemWidgets() const
     edit->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     remove->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
-//     setBlockedEventTypes(show, QList<QEvent::Type>() << QEvent::MouseButtonPress << QEvent::MouseButtonRelease << QEvent::MouseButtonDblClick);
-    
     connect(remove, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
     connect(edit, SIGNAL(pressed()), SLOT(editCurrentSpace()));
-    connect(show, SIGNAL(pressed()), SLOT(showCurrentSpace()));
+
     
     //editors
     LineEdit *titleEditor = new LineEdit();
@@ -412,68 +406,71 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
 
 bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 {
-    switch (event->type())
     {
-        case QEvent::MouseMove:
+        switch (event->type())
         {
-            QMouseEvent *e = static_cast<QMouseEvent*>(event);
-        
-            m_currentCurPos = e->pos();
-            QModelIndex index = itemView()->indexAt(e->pos());
-
-            if (!index.isValid() && !m_isEditing)
+            case QEvent::MouseMove:
             {
-//                 itemView()->setCurrentIndex(QModelIndex());
-                
-                if (m_iconMode && m_operationBar && m_titleEditor)
+                QMouseEvent *e = static_cast<QMouseEvent*>(event);
+            
+                m_currentCurPos = e->pos();
+                QModelIndex index = itemView()->indexAt(e->pos());
+
+                if (!index.isValid() && !m_isEditing)
                 {
-                    m_operationBar->hide();
-                    m_titleEditor->hide();
+                    itemView()->setCurrentIndex(QModelIndex());
+                    
+                    if (m_iconMode && m_operationBar && m_titleEditor)
+                    {
+                        m_operationBar->hide();
+                        m_titleEditor->hide();
+                    }
+                    else //listmode
+                    {
+                        
+                    }
                 }
-                else //listmode
+                else 
+                    if (index.isValid())
+                    {
+                        setCurrentSpace(index);
+                    }
+            
+                return true;
+            }
+            break;
+            
+            case QEvent::MouseButtonPress:
+            {
+                
+                QMouseEvent *e = static_cast<QMouseEvent*>(event);
+                        
+                QModelIndex index = itemView()->indexAt(e->pos());
+                
+                if (!index.isValid())
                 {
                     
-                }
-            }
-            else 
-                if (index.isValid())
-                {
-                    setCurrentSpace(index);
-                }
-        
-            return true;
-        }
-        break;
-        
-        case QEvent::MouseButtonPress:
-        {
-            
-            QMouseEvent *e = static_cast<QMouseEvent*>(event);
+                    m_isEditing = false;
                     
-            QModelIndex index = itemView()->indexAt(e->pos());
-            
-            if (!index.isValid())
-            {
-                m_isEditing = false;
-                
-                if (m_iconMode && m_operationBar && m_titleEditor)
-                {
-                    m_operationBar->hide();
-                    m_titleEditor->hide();
-                    m_titleEditor->clear();
+                    if (m_iconMode && m_operationBar && m_titleEditor)
+                    {
+                        m_operationBar->hide();
+                        m_titleEditor->hide();
+                        m_titleEditor->clear();
+                    }
                 }
-            }
-            else
-            {
-                invalidClick(index);
-            }
+                else
+                {
+                    invalidClick(index);
+                }
 
-            //forzamos a que se ejecute el updateItemWidgets del delegate
-            dummyUpdate();
-            
-            return true;
+                //forzamos a que se ejecute el updateItemWidgets del delegate
+                dummyUpdate();
+                
+                return true;
+            }
+            break;
         }
-        break;
     }
 
    return KWidgetItemDelegate::eventFilter(watched, event);
@@ -490,7 +487,7 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 {
     if (m_isEditing) return;
     
-//     itemView()->setCurrentIndex(index);
+    itemView()->setCurrentIndex(index);
     
     if (m_iconMode && m_operationBar && m_titleEditor)
     {
@@ -507,9 +504,9 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 
 void SpacesDelegate::removeCurrentSpace()
 {
-    if (!focusedIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid()) return;
 
-    itemView()->model()->removeRow(focusedIndex().row());
+    itemView()->model()->removeRow(itemView()->currentIndex().row());
 
     m_isEditing = false;
     
@@ -526,9 +523,9 @@ void SpacesDelegate::removeCurrentSpace()
 
 void SpacesDelegate::editCurrentSpace()
 {
-    if (!focusedIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid()) return;
     
-    m_currentEditingIndex = focusedIndex();
+    m_currentEditingIndex = itemView()->currentIndex();
 
     m_isEditing = true;
     
@@ -536,9 +533,9 @@ void SpacesDelegate::editCurrentSpace()
     
     if (m_iconMode)
     {
-        QRect rect = itemView()->visualRect(focusedIndex());
+        QRect rect = itemView()->visualRect(itemView()->currentIndex());
 
-        m_titleEditor->setText(focusedIndex().data().toString());
+        m_titleEditor->setText(itemView()->currentIndex().data().toString());
         m_titleEditor->resize(rect.width(), m_titleEditor->height());
         m_titleEditor->move(rect.left()/*+(PreviewWidth-m_operationBar->width())/2*/,rect.top() + rect.height() - m_operationBar->height() - .8*m_titleEditor->height());
         m_titleEditor->selectAll();
@@ -553,20 +550,19 @@ void SpacesDelegate::editCurrentSpace()
 
 void SpacesDelegate::showCurrentSpace()
 {
-    if (!focusedIndex().isValid()) return; 
+    if (!itemView()->currentIndex().isValid()) return;
     
-    emit showSpace(focusedIndex());
 }
 
 void SpacesDelegate::finishEditingTitle(const QString &newtitle )
 {
-    if (!focusedIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid()) return;
 
     m_isEditing = false;
 
     if (m_iconMode)
     {
-        itemView()->model()->setData(focusedIndex(), m_titleEditor->text());
+        itemView()->model()->setData(itemView()->currentIndex(), m_titleEditor->text());
         
         m_titleEditor->hide();
         
@@ -591,7 +587,7 @@ void SpacesDelegate::finishEditingTitle(const QString &newtitle )
     else
     {
 //         static_cast<SpacesModel*>(itemView()->model())->item(itemView()->currentIndex().row())->set;
-        itemView()->model()->setData(focusedIndex(), newtitle);
+        itemView()->model()->setData(itemView()->currentIndex(), newtitle);
     }
 }
 
