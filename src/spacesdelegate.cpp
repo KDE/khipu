@@ -58,7 +58,8 @@
 
 LineEdit::LineEdit(QWidget* parent): KLineEdit(parent)
 {
-
+    
+    
     connect(this, SIGNAL(editingFinished()), SLOT(procsSditingFinished()));
 }
 
@@ -70,14 +71,19 @@ void LineEdit::procsSditingFinished()
 
 ///
 
-
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : KWidgetItemDelegate(itemView, parent)
 , m_isEditing(false)
-, m_iconMode(false) // el default en el listvieew es listmode no el iconmode
+, m_iconMode(true) //TODO el default en el listvieew es listmode no el iconmode
+, m_operationBar(0)
+, m_titleEditor(0)
 {
-    if (itemView->viewMode() == QListView::IconMode)
-        m_iconMode = true;
+    //TODO debe ser m_iconMode no true
+    setIconMode(true);
+
+    //TODO
+//     if (itemView->viewMode() == QListView::IconMode)
+//         setIconMode(true);
     
     itemView->setMouseTracking(true);
     itemView->setSelectionMode(QListView::NoSelection);
@@ -87,51 +93,8 @@ SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
 //     connect(itemView, SIGNAL(entered(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
 //     connect(itemView, SIGNAL(clicked(QModelIndex)), SLOT(invalidClick(QModelIndex)));
     
-    //BEGIN btns
+    connect(this, SIGNAL(showSpace(QModelIndex)), itemView, SIGNAL(doubleClicked(QModelIndex)));
     
-    if (m_iconMode)
-    {
-        m_operationBar = new QWidget(itemView->viewport());
-    //     m_operationBar->setFocusPolicy(Qt::NoFocus);
-
-        QToolButton *m_removeButton = new QToolButton(m_operationBar);
-        m_removeButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        m_removeButton->setAutoRepeat(false);
-        m_removeButton->setToolTip(i18n("Remove"));
-        m_removeButton->setIcon(KIcon("list-remove"));
-        connect(m_removeButton, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
-
-        QToolButton *m_editButton = new QToolButton(m_operationBar);
-        m_editButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        m_editButton->setAutoRepeat(false);
-        m_editButton->setToolTip(i18n("Edit"));
-        m_editButton->setIcon(KIcon("document-edit"));
-        connect(m_editButton, SIGNAL(pressed()), SLOT(editCurrentSpace()));
-
-        QToolButton *m_showButton = new QToolButton(m_operationBar);
-        m_showButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
-        m_showButton->setAutoRepeat(false);
-        m_showButton->setToolTip(i18n("Show"));
-        m_showButton->setIcon(KIcon("kig"));
-    //         connect(m_detailsButton, SIGNAL(clicked()), this, SLOT(slotDetailsClicked()));
-
-        QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
-
-        layout->setSpacing(1);
-        layout->addWidget(m_removeButton);
-        layout->addWidget(m_editButton);
-        layout->addWidget(m_showButton);
-
-        m_operationBar->adjustSize();
-        m_operationBar->hide();
-        //END btns
-        
-        m_titleEditor = new LineEdit(itemView->viewport());
-        m_titleEditor->setClearButtonShown(true);
-        m_titleEditor->hide();
-        
-        connect(m_titleEditor, SIGNAL(editingFinished(QString)), SLOT(finishEditingTitle(QString)));
-    }
 }
 
 SpacesDelegate::~SpacesDelegate()
@@ -142,6 +105,67 @@ SpacesDelegate::~SpacesDelegate()
         m_operationBar->deleteLater();
         m_titleEditor->deleteLater();
     }
+}
+
+void SpacesDelegate::setIconMode(bool im)
+{
+    //TODO
+//     if (im == m_iconMode) return ;
+
+    //TODO
+    m_iconMode = im;
+    
+    //BEGIN btns
+    
+    if (m_iconMode)
+    {
+//         if (!m_operationBar && ! m_titleEditor)
+        {
+            m_operationBar = new QWidget(itemView()->viewport());
+        //     m_operationBar->setFocusPolicy(Qt::NoFocus);
+
+            QToolButton *m_removeButton = new QToolButton(m_operationBar);
+            m_removeButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+            m_removeButton->setAutoRepeat(false);
+            m_removeButton->setToolTip(i18n("Remove"));
+            m_removeButton->setIcon(KIcon("list-remove"));
+            connect(m_removeButton, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
+
+            QToolButton *m_editButton = new QToolButton(m_operationBar);
+            m_editButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+            m_editButton->setAutoRepeat(false);
+            m_editButton->setToolTip(i18n("Edit"));
+            m_editButton->setIcon(KIcon("document-edit"));
+            connect(m_editButton, SIGNAL(pressed()), SLOT(editCurrentSpace()));
+
+            QToolButton *m_showButton = new QToolButton(m_operationBar);
+            m_showButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+            m_showButton->setAutoRepeat(false);
+            m_showButton->setToolTip(i18n("Show"));
+            m_showButton->setIcon(KIcon("kig"));
+            connect(m_showButton, SIGNAL(pressed()), SLOT(showCurrentSpace()));
+
+
+            QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
+
+            layout->setSpacing(1);
+            layout->addWidget(m_removeButton);
+            layout->addWidget(m_editButton);
+            layout->addWidget(m_showButton);
+
+            m_operationBar->adjustSize();
+            m_operationBar->hide();
+            //END btns
+            
+            m_titleEditor = new LineEdit(itemView()->viewport());
+            m_titleEditor->setClearButtonShown(true);
+            m_titleEditor->hide();
+            
+            connect(m_titleEditor, SIGNAL(editingFinished(QString)), SLOT(finishEditingTitle(QString)));
+        }
+    }
+    
+    dummyUpdate(); 
 }
 
 QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option,
@@ -244,9 +268,11 @@ QList<QWidget*> SpacesDelegate::createItemWidgets() const
     edit->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     remove->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
+//     setBlockedEventTypes(show, QList<QEvent::Type>() << QEvent::MouseButtonPress << QEvent::MouseButtonRelease << QEvent::MouseButtonDblClick);
+    
     connect(remove, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
     connect(edit, SIGNAL(pressed()), SLOT(editCurrentSpace()));
-
+    connect(show, SIGNAL(pressed()), SLOT(showCurrentSpace()));
     
     //editors
     LineEdit *titleEditor = new LineEdit();
@@ -350,6 +376,7 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
                 descriptionEditor->move(2*PreviewWidth + margin, margin*.5 + titleEditor->height());
                 descriptionEditor->resize(QSize(option.rect.width() - 2*PreviewWidth - (margin * 2) - m_buttonSize.width(), 
                                                 option.rect.size().height() - titleEditor->height() - 2*margin));
+                descriptionEditor->setHtml(static_cast<SpacesModel*>(itemView()->model())->item(index.row())->description());
                 descriptionEditor->show();
             }
         }
@@ -364,10 +391,19 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
             KSqueezedTextLabel * infoLabel = qobject_cast<KSqueezedTextLabel*>(widgets.at(0));
             if (infoLabel) 
             {
+                QString text = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+                    "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; margin:0 0 0 0;}\n"
+                    "</style></head><body><p><b>";
+
+                    text += index.data().toString();
+
+                text += "</b></p>\n";
+
+                
                 infoLabel->setWordWrap(true);
                 infoLabel->move(PreviewWidth + margin * 3, margin*.5);
                 infoLabel->resize(QSize(option.rect.width() - PreviewWidth - (margin * 6) - m_buttonSize.width(), option.fontMetrics.height() * 7));
-                infoLabel->setText(index.data().toString());
+                infoLabel->setText(text);
                 infoLabel->show();
             }    
         }
@@ -376,71 +412,68 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
 
 bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 {
+    switch (event->type())
     {
-        switch (event->type())
+        case QEvent::MouseMove:
         {
-            case QEvent::MouseMove:
-            {
-                QMouseEvent *e = static_cast<QMouseEvent*>(event);
-            
-                m_currentCurPos = e->pos();
-                QModelIndex index = itemView()->indexAt(e->pos());
+            QMouseEvent *e = static_cast<QMouseEvent*>(event);
+        
+            m_currentCurPos = e->pos();
+            QModelIndex index = itemView()->indexAt(e->pos());
 
-                if (!index.isValid() && !m_isEditing)
-                {
-                    itemView()->setCurrentIndex(QModelIndex());
-                    
-                    if (m_iconMode)
-                    {
-                        m_operationBar->hide();
-                        m_titleEditor->hide();
-                    }
-                    else //listmode
-                    {
-                        
-                    }
-                }
-                else 
-                    if (index.isValid())
-                    {
-                        setCurrentSpace(index);
-                    }
-            
-                return true;
-            }
-            break;
-            
-            case QEvent::MouseButtonPress:
+            if (!index.isValid() && !m_isEditing)
             {
+//                 itemView()->setCurrentIndex(QModelIndex());
                 
-                QMouseEvent *e = static_cast<QMouseEvent*>(event);
-                        
-                QModelIndex index = itemView()->indexAt(e->pos());
-                
-                if (!index.isValid())
+                if (m_iconMode && m_operationBar && m_titleEditor)
+                {
+                    m_operationBar->hide();
+                    m_titleEditor->hide();
+                }
+                else //listmode
                 {
                     
-                    m_isEditing = false;
-                    
-                    if (m_iconMode)
-                    {
-                        m_operationBar->hide();
-                        m_titleEditor->hide();
-                        m_titleEditor->clear();
-                    }
                 }
-                else
-                {
-                    invalidClick(index);
-                }
-
-                //forzamos a que se ejecute el updateItemWidgets del delegate
-                dummyUpdate();
-                
-                return true;
             }
-            break;
+            else 
+                if (index.isValid())
+                {
+                    setCurrentSpace(index);
+                }
+        
+            return true;
         }
+        break;
+        
+        case QEvent::MouseButtonPress:
+        {
+            
+            QMouseEvent *e = static_cast<QMouseEvent*>(event);
+                    
+            QModelIndex index = itemView()->indexAt(e->pos());
+            
+            if (!index.isValid())
+            {
+                m_isEditing = false;
+                
+                if (m_iconMode && m_operationBar && m_titleEditor)
+                {
+                    m_operationBar->hide();
+                    m_titleEditor->hide();
+                    m_titleEditor->clear();
+                }
+            }
+            else
+            {
+                invalidClick(index);
+            }
+
+            //forzamos a que se ejecute el updateItemWidgets del delegate
+            dummyUpdate();
+            
+            return true;
+        }
+        break;
     }
 
    return KWidgetItemDelegate::eventFilter(watched, event);
@@ -457,9 +490,9 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 {
     if (m_isEditing) return;
     
-    itemView()->setCurrentIndex(index);
+//     itemView()->setCurrentIndex(index);
     
-    if (m_iconMode)
+    if (m_iconMode && m_operationBar && m_titleEditor)
     {
         QRect rect = itemView()->visualRect(index);
         
@@ -474,9 +507,9 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 
 void SpacesDelegate::removeCurrentSpace()
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!focusedIndex().isValid()) return;
 
-    itemView()->model()->removeRow(itemView()->currentIndex().row());
+    itemView()->model()->removeRow(focusedIndex().row());
 
     m_isEditing = false;
     
@@ -493,9 +526,9 @@ void SpacesDelegate::removeCurrentSpace()
 
 void SpacesDelegate::editCurrentSpace()
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!focusedIndex().isValid()) return;
     
-    m_currentEditingIndex = itemView()->currentIndex();
+    m_currentEditingIndex = focusedIndex();
 
     m_isEditing = true;
     
@@ -503,9 +536,9 @@ void SpacesDelegate::editCurrentSpace()
     
     if (m_iconMode)
     {
-        QRect rect = itemView()->visualRect(itemView()->currentIndex());
+        QRect rect = itemView()->visualRect(focusedIndex());
 
-        m_titleEditor->setText(itemView()->currentIndex().data().toString());
+        m_titleEditor->setText(focusedIndex().data().toString());
         m_titleEditor->resize(rect.width(), m_titleEditor->height());
         m_titleEditor->move(rect.left()/*+(PreviewWidth-m_operationBar->width())/2*/,rect.top() + rect.height() - m_operationBar->height() - .8*m_titleEditor->height());
         m_titleEditor->selectAll();
@@ -520,19 +553,20 @@ void SpacesDelegate::editCurrentSpace()
 
 void SpacesDelegate::showCurrentSpace()
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!focusedIndex().isValid()) return; 
     
+    emit showSpace(focusedIndex());
 }
 
 void SpacesDelegate::finishEditingTitle(const QString &newtitle )
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!focusedIndex().isValid()) return;
 
     m_isEditing = false;
 
     if (m_iconMode)
     {
-        itemView()->model()->setData(itemView()->currentIndex(), m_titleEditor->text());
+        itemView()->model()->setData(focusedIndex(), m_titleEditor->text());
         
         m_titleEditor->hide();
         
@@ -557,7 +591,7 @@ void SpacesDelegate::finishEditingTitle(const QString &newtitle )
     else
     {
 //         static_cast<SpacesModel*>(itemView()->model())->item(itemView()->currentIndex().row())->set;
-        itemView()->model()->setData(itemView()->currentIndex(), newtitle);
+        itemView()->model()->setData(focusedIndex(), newtitle);
     }
 }
 
@@ -565,14 +599,11 @@ void SpacesDelegate::invalidClick(const QModelIndex& index)
 {
         if (index != m_currentEditingIndex)
         {
-
-        
-
             m_isEditing = false;
-            if (m_iconMode)
+            if (m_iconMode && m_operationBar && m_titleEditor)
             {
-            m_titleEditor->hide();
-            m_titleEditor->clear();
+                m_titleEditor->hide();
+                m_titleEditor->clear();
                 
             }
             else // listmode

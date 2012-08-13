@@ -74,10 +74,17 @@ public:
 
     SpacesDelegate(QListView *itemView, QObject *parent = 0);
     ~SpacesDelegate();
-
+    
+private: // TODO hacer public
+    void setIconMode(bool im);
+public:
+    
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
+signals:
+    void showSpace(const QModelIndex &index);
+    
 private:
     QList<QWidget*> createItemWidgets() const;
     void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const;

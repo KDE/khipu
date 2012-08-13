@@ -40,13 +40,13 @@ QString SpaceInformation::title() const
 
 QString SpaceInformation::description() const
 {
-    return m_widget->spaceDescription->toPlainText();
+    return m_widget->spaceDescription->toCleanHtml();
 }
 
 void SpaceInformation::setInformation(const QString& title, const QString& description)
 {
     m_widget->spaceTitle->setText(title);
-    m_widget->spaceDescription->setPlainText(description);
+    m_widget->spaceDescription->setHtml(description);
 }
 
 void SpaceInformation::clear()

@@ -72,9 +72,11 @@ void Dashboard::setDocument(DataStore* doc)
     m_widget->spacesView->setSelectionModel(doc->currentSpaceSelectionModel());
 
     //BUG qt? memory leak ... no acepta ponerle this as parent
-//     m_widget->spacesView->setViewMode(QListView::IconMode);
-    m_widget->spacesView->setItemDelegate(new SpacesDelegate(m_widget->spacesView));
+    m_widget->spacesView->setViewMode(QListView::IconMode);
+    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView);
+    m_widget->spacesView->setItemDelegate(delegate);
     
+//     delegate->setIconMode(true);
     //este necesita otro proxy del modelo
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
 
