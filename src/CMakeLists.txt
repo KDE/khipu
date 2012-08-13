@@ -19,7 +19,8 @@ set ( khipu_SRCS
   
   spaceitem.cpp
   spacesmodel.cpp
-  
+  spacesdelegate.cpp
+
   datastore.cpp
   document.cpp
 

@@ -45,13 +45,17 @@ public:
     Qt::ItemFlags flags ( const QModelIndex & index ) const;
 
     QVariant data( const QModelIndex &index, int role=Qt::DisplayRole) const;
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     int rowCount(const QModelIndex &parent=QModelIndex()) const;
+    //TODO implementar removeRows en analitzaplot (plotsmodel)
+    bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
     SpaceItem * addSpace(Dimension dim, const QString & title = QString(), const QString &description = QString(), 
                          const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
 
     SpaceItem * item(int row) const;
-    void removeItem(int row);
+    //DEPRECATED
+//     void removeItem(int row);
     
 private:
     SpaceItemList m_items;

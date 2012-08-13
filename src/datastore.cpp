@@ -158,7 +158,7 @@ void DataStore::removeCurrentSpace()
     {
         m_maps.remove(m_spacesModel->item(m_currentSpace));
 
-        m_spacesModel->removeItem(m_currentSpace);
+        m_spacesModel->removeRow(m_currentSpace);
 
         m_currentSpaceSelectionModel->clear();
     }

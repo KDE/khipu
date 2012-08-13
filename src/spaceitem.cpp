@@ -56,7 +56,7 @@ SpaceItem::~SpaceItem()
     if (m_model && m_model->m_itemCanCallModelRemoveItem)
     {
         m_inDestructorSoDontDeleteMe = true;
-        m_model->removeItem(m_model->m_items.indexOf(this));
+        m_model->removeRow(m_model->m_items.indexOf(this));
         m_inDestructorSoDontDeleteMe = false;
     }
 }

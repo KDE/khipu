@@ -503,7 +503,7 @@ void MainWindow::goHome()
             }
         }
 
-        thumbnail = thumbnail.scaled(QSize(220, 220), Qt::KeepAspectRatioByExpanding,Qt::SmoothTransformation);   
+        thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);   
         space->setThumbnail(thumbnail);
     }
 

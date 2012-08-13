@@ -23,6 +23,10 @@
 #include <KDE/KDateTime>
 #include <analitzaplot/private/utils/mathutils.h>
 
+
+static const int PreviewWidth = 200;
+static const int PreviewHeight = 200;
+
 class SpacesModel;
 
 class SpaceItem

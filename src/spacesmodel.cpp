@@ -25,7 +25,7 @@ SpacesModel::SpacesModel(QObject *parent)
 
 Qt::ItemFlags SpacesModel::flags(const QModelIndex &idx) const
 {
-    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
 
 QVariant SpacesModel::data( const QModelIndex &index, int role) const
@@ -37,6 +37,7 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
     {
         case Qt::DecorationRole: return m_items.at(index.row())->thumbnail();
         case Qt::ToolTipRole:  return m_items.at(index.row())->timestamp().toString("%A %l:%M %p %B %Y");
+        case Qt::EditRole: 
         case Qt::DisplayRole: return m_items.at(index.row())->title();
         case Qt::StatusTipRole: return m_items.at(index.row())->description(); //TODO GSOC agregar un prefix algo como space descrp: txttt
     }
@@ -44,9 +45,48 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
     return QVariant();
 }
 
+bool SpacesModel::setData(const QModelIndex& index, const QVariant& value, int role)
+{
+    if (index.isValid() && role == Qt::EditRole) 
+    {
+        m_items[index.row()]->setTitle(value.toString());
+        emit dataChanged(index, index);
+        return true;
+    }
+    return false;
+}
+
 int SpacesModel::rowCount(const QModelIndex &idx) const
 {
     return m_items.count();
+}
+
+bool SpacesModel::removeRows(int row, int count, const QModelIndex& parent)
+{
+    Q_ASSERT(row<m_items.size());
+
+    beginRemoveRows(QModelIndex(), row, row+count-1);
+
+    for (int i = 0; i < count; ++i) 
+    {
+        SpaceItem *tmpcurve = m_items[row];
+
+        m_itemCanCallModelRemoveItem = false;
+
+        if (!tmpcurve->m_inDestructorSoDontDeleteMe)
+        {
+            delete tmpcurve;
+            tmpcurve = 0;
+        }
+
+        m_itemCanCallModelRemoveItem = true;
+
+        m_items.removeAt(row);
+    }
+
+    endRemoveRows();
+    
+    return true;
 }
 
 SpaceItem* SpacesModel::addSpace(Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
@@ -77,28 +117,28 @@ SpaceItem* SpacesModel::item(int row) const
     return m_items[row];
 }
 
-void SpacesModel::removeItem(int row)
-{
-    Q_ASSERT(row<m_items.size());
-
-    beginRemoveRows(QModelIndex(), row, row);
-
-    SpaceItem *tmpcurve = m_items[row];
-
-    m_itemCanCallModelRemoveItem = false;
-
-    if (!tmpcurve->m_inDestructorSoDontDeleteMe)
-    {
-        delete tmpcurve;
-        tmpcurve = 0;
-    }
-
-    m_itemCanCallModelRemoveItem = true;
-
-    m_items.removeAt(row);
-
-    endRemoveRows();
-}
+// void SpacesModel::removeItem(int row)
+// {
+//     Q_ASSERT(row<m_items.size());
+// 
+//     beginRemoveRows(QModelIndex(), row, row);
+// 
+//     SpaceItem *tmpcurve = m_items[row];
+// 
+//     m_itemCanCallModelRemoveItem = false;
+// 
+//     if (!tmpcurve->m_inDestructorSoDontDeleteMe)
+//     {
+//         delete tmpcurve;
+//         tmpcurve = 0;
+//     }
+// 
+//     m_itemCanCallModelRemoveItem = true;
+// 
+//     m_items.removeAt(row);
+// 
+//     endRemoveRows();
+// }
 /*
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : KCategorizedSortFilterProxyModel(parent)

@@ -26,9 +26,11 @@
 #include "plotseditor.h"
 #include "document.h"
 
+class KWidgetItemDelegate;
+class SpacesGridViewDelegate;
+class SpacesDetailsViewDelegate;
 class PlotsView3D;
 class PlotsView2D;
-class QListView;
 class QTreeView;
 class Document;
 
@@ -40,6 +42,8 @@ namespace Ui
 {
     class DashboardWidget;
 }
+
+#include <QtGui/QListView>
 
 //dashboard solo se encarga de cambiar el space actual al momento de que el main window
 //agrega un space (osea al momento de rowsinsertedelspacemodel)
