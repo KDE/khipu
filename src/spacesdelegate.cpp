@@ -201,26 +201,33 @@ QList<QWidget*> SpacesDelegate::createItemWidgets() const
         title->setSelection(0,0);
         title->setTextElideMode(Qt::ElideRight);
         title->setWordWrap(true);
-        title->setAlignment(Qt::AlignHCenter);
+        title->setAlignment(Qt::AlignCenter);
         title->setTextInteractionFlags(Qt::TextSelectableByMouse);
                 
         return QList<QWidget*>() << title;
     }
-    
+
     // else listmode
 
-    QLabel *info = new QLabel();
+    KSqueezedTextLabel *info = new KSqueezedTextLabel();
+    info->setSelection(0,0);
+    info->setTextElideMode(Qt::ElideRight);
+    info->setWordWrap(true);
+    info->setAlignment(Qt::AlignJustify);
+    info->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
 
-    QToolButton *show = new QToolButton();
-    QToolButton *edit = new QToolButton();
     QToolButton *remove = new QToolButton();
+    QToolButton *edit = new QToolButton();
+    QToolButton *show = new QToolButton();
 
     show->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     edit->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     remove->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
 
+    connect(remove, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
+    connect(edit, SIGNAL(pressed()), SLOT(editCurrentSpace()));
+
     return QList<QWidget*>() << info << show << edit << remove;
-    
 }
 
 void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
@@ -249,52 +256,56 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
     }
     else //listmode
     {
+        QSize m_buttonSize;
+
         // setup the install button
     //         int margin = option.fontMetrics.height() / 2;
         int margin = 0.8*option.fontMetrics.height();
 
         int right = option.rect.width();
 
-        QToolButton * installButton = qobject_cast<QToolButton*>(widgets.at(1));
-        if (installButton != 0)
+        QToolButton * showButton = qobject_cast<QToolButton*>(widgets.at(1));
+        if (showButton != 0)
         {
-            installButton->setText(i18n("Show"));
-            installButton->setIcon(KIcon("kig"));
+            showButton->setText(i18n("Show"));
+            showButton->setIcon(KIcon("kig"));
         }
 
-        QToolButton* detailsButton = qobject_cast<QToolButton*>(widgets.at(2));
-        if (detailsButton) {
-            detailsButton->setText(i18n("Edit"));
-            detailsButton->setIcon(KIcon("document-edit"));
+        QToolButton* editButton = qobject_cast<QToolButton*>(widgets.at(2));
+        if (editButton) {
+            editButton->setText(i18n("Edit"));
+            editButton->setIcon(KIcon("document-edit"));
         }
 
-        if (installButton && detailsButton) {
-            if (m_buttonSize.width() < installButton->sizeHint().width()) {
-                const_cast<QSize&>(m_buttonSize) = QSize(
-                                                    qMax(option.fontMetrics.height() * 7,
-                                                            qMax(installButton->sizeHint().width(), detailsButton->sizeHint().width())),
-                                                    installButton->sizeHint().height());
+        if (showButton && editButton) 
+        {
+            if (m_buttonSize.width() < showButton->sizeHint().width()) 
+            {
+//                 const_cast<QSize&>(m_buttonSize) = QSize(
+                m_buttonSize = QSize(qMax(option.fontMetrics.height() * 7,
+                                                            qMax(showButton->sizeHint().width(), editButton->sizeHint().width())),
+                                                    showButton->sizeHint().height());
             }
-            installButton->resize(m_buttonSize);
-            installButton->move(right - installButton->width() - margin, option.rect.height()/2 - installButton->height()*1.5);
-            detailsButton->resize(m_buttonSize);
-            detailsButton->move(right - installButton->width() - margin, option.rect.height()/2 - installButton->height()/2);
+            
+            showButton->resize(m_buttonSize);
+            showButton->move(right - showButton->width() - margin, option.rect.height()/2 - showButton->height()*1.5);
+            editButton->resize(m_buttonSize);
+            editButton->move(right - showButton->width() - margin, option.rect.height()/2 - showButton->height()/2);
         }
 
-        QToolButton * rating = qobject_cast<QToolButton*>(widgets.at(3));
-        if (rating)
+        QToolButton * removeButton = qobject_cast<QToolButton*>(widgets.at(3));
+        if (removeButton)
         {
-            rating->setText(i18n("Remove"));
-            rating->setIcon(KIcon("list-remove"));
-
-            // put the rating label below the install button
-            rating->move(right - installButton->width() - margin, option.rect.height()/2 + installButton->height()/2);
-            rating->resize(m_buttonSize);
+            removeButton->setText(i18n("Remove"));
+            removeButton->setIcon(KIcon("list-remove"));
+            removeButton->move(right - showButton->width() - margin, option.rect.height()/2 + showButton->height()/2);
+            removeButton->resize(m_buttonSize);
         }
 
-        QLabel * infoLabel = qobject_cast<QLabel*>(widgets.at(0));
-        infoLabel->setWordWrap(true);
-        if (infoLabel != NULL) {
+        KSqueezedTextLabel * infoLabel = qobject_cast<KSqueezedTextLabel*>(widgets.at(0));
+        if (infoLabel) 
+        {
+            infoLabel->setWordWrap(true);
             infoLabel->move(PreviewWidth + margin * 3, 0);
             infoLabel->resize(QSize(option.rect.width() - PreviewWidth - (margin * 6) - m_buttonSize.width(), option.fontMetrics.height() * 7));
             infoLabel->setText(index.data().toString());

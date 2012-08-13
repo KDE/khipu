@@ -89,9 +89,6 @@ private:
 
     ///
     bool m_iconMode;
-    
-    //listmode
-    QSize m_buttonSize;
 };
 
 #endif
