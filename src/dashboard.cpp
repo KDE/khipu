@@ -56,9 +56,10 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget->setupUi(this);
     m_widget->findIcon->setPixmap(KIcon("edit-find").pixmap(16,16));
     
+    m_widget->spacesView->setEditTriggers(QListView::NoEditTriggers);
     m_widget->spacesView->setViewMode(QListView::IconMode);
     //BUG qt? memory leak ... no acepta ponerle this as parent
-    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView);
+    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
     m_widget->spacesView->setItemDelegate(delegate);
 }
 

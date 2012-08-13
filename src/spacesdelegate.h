@@ -43,6 +43,7 @@ class DashboardWidget;
 }
 
 #include <QtGui/QListView>
+#include <qstyleditemdelegate.h>
 #include <KWidgetItemDelegate>
 #include <KLineEdit>
 
@@ -64,7 +65,7 @@ private slots:
     
 };
 
-class SpacesDelegate : public KWidgetItemDelegate
+class SpacesDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 
@@ -77,6 +78,8 @@ public:
     
 private: // TODO hacer public
     void setIconMode(bool im);
+    QAbstractItemView *itemView() const { return m_itemView; }
+    QAbstractItemView *m_itemView;
 public:
     
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;

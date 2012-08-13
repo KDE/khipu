@@ -71,7 +71,7 @@ void LineEdit::procsSditingFinished()
 ///
 
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
-    : KWidgetItemDelegate(itemView, parent)
+    : QStyledItemDelegate(parent), m_itemView(itemView)
 , m_isEditing(false)
 , m_iconMode(false) // el default en el listvieew es listmode no el iconmode
 , m_operationBar(0)
@@ -206,6 +206,11 @@ void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
 
         painter->drawPixmap(option.rect.topLeft()+QPoint(ItemMargin,ItemMargin), index.data(Qt::DecorationRole).value<QPixmap>());
 
+        QString text = painter->fontMetrics().elidedText(index.data().toString(), Qt::ElideRight, option.rect.width(), Qt::TextSingleLine);
+
+        painter->drawText(option.rect.topLeft()+QPoint((option.rect.width() - painter->fontMetrics().width(text))/2, 
+            PreviewHeight + 3.8*ItemMargin + FrameThickness*2), text);
+
         painter->restore();
     }
     else    // listmode
@@ -289,8 +294,6 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
 
     if (m_iconMode)
     {
-        int elementYPos = PreviewHeight + ItemMargin + FrameThickness*2;
-
         KSqueezedTextLabel  * title = qobject_cast<KSqueezedTextLabel *>(widgets[0]);
 
         if (title) 
@@ -304,7 +307,7 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
                 title->setTextInteractionFlags(Qt::TextSelectableByMouse /*| Qt::TextSelectableByKeyboard*/);
                 title->setText(index.data().toString());
                 title->resize(QSize(option.rect.width() - (ItemMargin * 2), option.fontMetrics.height()));
-                title->move((PreviewWidth-title->width())/2, elementYPos);
+                title->move((PreviewWidth-title->width())/2, PreviewHeight + ItemMargin + FrameThickness*2);
                 title->show();
             }
         }
@@ -475,7 +478,7 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
             }
     }
 
-   return KWidgetItemDelegate::eventFilter(watched, event);
+   return QStyledItemDelegate::eventFilter(watched, event);
 }
 
 void SpacesDelegate::dummyUpdate()
