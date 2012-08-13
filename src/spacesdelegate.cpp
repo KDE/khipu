@@ -29,6 +29,7 @@
 #include <analitzaplot/plotsdictionarymodel.h>
 #include <QDebug>
 #include <QApplication>
+#include <KRichTextWidget>
 ///
 #include <QtGui/QAbstractItemView>
 #include <QtGui/QListView>
@@ -42,6 +43,7 @@
 #include <QtGui/QMenu>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QTextEdit>
 
 
 #include <kpushbutton.h>
@@ -50,6 +52,24 @@
 #include <kwidgetitemdelegate.h>
 #include <KLocalizedString>
 #include <ksqueezedtextlabel.h>
+
+
+///
+
+LineEdit::LineEdit(QWidget* parent): KLineEdit(parent)
+{
+
+    connect(this, SIGNAL(editingFinished()), SLOT(procsSditingFinished()));
+}
+
+void LineEdit::procsSditingFinished()
+{
+    emit editingFinished(text());
+}
+
+
+///
+
 
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : KWidgetItemDelegate(itemView, parent)
@@ -106,11 +126,11 @@ SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
         m_operationBar->hide();
         //END btns
         
-        m_titleEditor = new KLineEdit(itemView->viewport());
+        m_titleEditor = new LineEdit(itemView->viewport());
         m_titleEditor->setClearButtonShown(true);
         m_titleEditor->hide();
         
-        connect(m_titleEditor, SIGNAL(editingFinished()), SLOT(finishEditing()));
+        connect(m_titleEditor, SIGNAL(editingFinished(QString)), SLOT(finishEditingTitle(QString)));
     }
 }
 
@@ -227,7 +247,16 @@ QList<QWidget*> SpacesDelegate::createItemWidgets() const
     connect(remove, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
     connect(edit, SIGNAL(pressed()), SLOT(editCurrentSpace()));
 
-    return QList<QWidget*>() << info << show << edit << remove;
+    
+    //editors
+    LineEdit *titleEditor = new LineEdit();
+    titleEditor->setClearButtonShown(true);
+
+    connect(titleEditor, SIGNAL(editingFinished(QString)), SLOT(finishEditingTitle(QString)));
+
+    KRichTextEdit *descriptionEditor = new KRichTextEdit();
+    
+    return QList<QWidget*>() << info << titleEditor << descriptionEditor << show << edit << remove;
 }
 
 void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
@@ -264,14 +293,14 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
 
         int right = option.rect.width();
 
-        QToolButton * showButton = qobject_cast<QToolButton*>(widgets.at(1));
+        QToolButton * showButton = qobject_cast<QToolButton*>(widgets.at(3));
         if (showButton != 0)
         {
             showButton->setText(i18n("Show"));
             showButton->setIcon(KIcon("kig"));
         }
 
-        QToolButton* editButton = qobject_cast<QToolButton*>(widgets.at(2));
+        QToolButton* editButton = qobject_cast<QToolButton*>(widgets.at(4));
         if (editButton) {
             editButton->setText(i18n("Edit"));
             editButton->setIcon(KIcon("document-edit"));
@@ -293,7 +322,7 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
             editButton->move(right - showButton->width() - margin, option.rect.height()/2 - showButton->height()/2);
         }
 
-        QToolButton * removeButton = qobject_cast<QToolButton*>(widgets.at(3));
+        QToolButton * removeButton = qobject_cast<QToolButton*>(widgets.at(5));
         if (removeButton)
         {
             removeButton->setText(i18n("Remove"));
@@ -302,20 +331,51 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
             removeButton->resize(m_buttonSize);
         }
 
-        KSqueezedTextLabel * infoLabel = qobject_cast<KSqueezedTextLabel*>(widgets.at(0));
-        if (infoLabel) 
+        if (m_isEditing && m_currentEditingIndex == index)
         {
-            infoLabel->setWordWrap(true);
-            infoLabel->move(PreviewWidth + margin * 3, 0);
-            infoLabel->resize(QSize(option.rect.width() - PreviewWidth - (margin * 6) - m_buttonSize.width(), option.fontMetrics.height() * 7));
-            infoLabel->setText(index.data().toString());
-        }    
+            KSqueezedTextLabel * infoLabel = qobject_cast<KSqueezedTextLabel*>(widgets.at(0));
+            if (infoLabel) infoLabel->hide();
+            
+            LineEdit *titleEditor = qobject_cast<LineEdit*>(widgets.at(1));
+            KRichTextEdit *descriptionEditor = qobject_cast<KRichTextEdit*>(widgets.at(2));
+
+            if (titleEditor && descriptionEditor) 
+            {
+                //el ancho de 1 PreviewWidth  (por eso el 2*PreviewWidth) sera para informacion que no se podra editar fechas caitdad de plot ets
+                titleEditor->move(2*PreviewWidth + margin, margin*.5);
+                titleEditor->resize(QSize(option.rect.width() - 2*PreviewWidth - (margin * 2) - m_buttonSize.width(), titleEditor->height()));
+                titleEditor->setText(index.data().toString());
+                titleEditor->show();
+
+                descriptionEditor->move(2*PreviewWidth + margin, margin*.5 + titleEditor->height());
+                descriptionEditor->resize(QSize(option.rect.width() - 2*PreviewWidth - (margin * 2) - m_buttonSize.width(), 
+                                                option.rect.size().height() - titleEditor->height() - 2*margin));
+                descriptionEditor->show();
+            }
+        }
+        else
+        {
+            LineEdit *titleEditor = qobject_cast<LineEdit*>(widgets.at(1));
+            if (titleEditor) titleEditor->hide();
+
+            KRichTextEdit *descriptionEditor = qobject_cast<KRichTextEdit*>(widgets.at(2));
+            if (descriptionEditor) descriptionEditor->hide();
+
+            KSqueezedTextLabel * infoLabel = qobject_cast<KSqueezedTextLabel*>(widgets.at(0));
+            if (infoLabel) 
+            {
+                infoLabel->setWordWrap(true);
+                infoLabel->move(PreviewWidth + margin * 3, margin*.5);
+                infoLabel->resize(QSize(option.rect.width() - PreviewWidth - (margin * 6) - m_buttonSize.width(), option.fontMetrics.height() * 7));
+                infoLabel->setText(index.data().toString());
+                infoLabel->show();
+            }    
+        }
     }
 }
 
 bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 {
-    if (m_iconMode)
     {
         switch (event->type())
         {
@@ -330,8 +390,15 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
                 {
                     itemView()->setCurrentIndex(QModelIndex());
                     
-                    m_operationBar->hide();
-                    m_titleEditor->hide();
+                    if (m_iconMode)
+                    {
+                        m_operationBar->hide();
+                        m_titleEditor->hide();
+                    }
+                    else //listmode
+                    {
+                        
+                    }
                 }
                 else 
                     if (index.isValid())
@@ -352,11 +419,15 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
                 
                 if (!index.isValid())
                 {
-                    m_operationBar->hide();
                     
                     m_isEditing = false;
-                    m_titleEditor->hide();
-                    m_titleEditor->clear();
+                    
+                    if (m_iconMode)
+                    {
+                        m_operationBar->hide();
+                        m_titleEditor->hide();
+                        m_titleEditor->clear();
+                    }
                 }
                 else
                 {
@@ -453,16 +524,16 @@ void SpacesDelegate::showCurrentSpace()
     
 }
 
-void SpacesDelegate::finishEditing(const QString &newtitle )
+void SpacesDelegate::finishEditingTitle(const QString &newtitle )
 {
     if (!itemView()->currentIndex().isValid()) return;
 
-    itemView()->model()->setData(itemView()->currentIndex(), m_titleEditor->text());
-    
     m_isEditing = false;
-    
+
     if (m_iconMode)
     {
+        itemView()->model()->setData(itemView()->currentIndex(), m_titleEditor->text());
+        
         m_titleEditor->hide();
         
         //NOTE como se asume que se esta editando un solo item y que el resto esta ok despues de un dummyupdate
@@ -485,28 +556,32 @@ void SpacesDelegate::finishEditing(const QString &newtitle )
     }
     else
     {
-        
+//         static_cast<SpacesModel*>(itemView()->model())->item(itemView()->currentIndex().row())->set;
+        itemView()->model()->setData(itemView()->currentIndex(), newtitle);
     }
 }
 
 void SpacesDelegate::invalidClick(const QModelIndex& index)
 {
-    if (m_iconMode)
-    {
-
         if (index != m_currentEditingIndex)
         {
+
+        
+
             m_isEditing = false;
+            if (m_iconMode)
+            {
             m_titleEditor->hide();
             m_titleEditor->clear();
+                
+            }
+            else // listmode
+            {
+                
+            }
             
             dummyUpdate();
         
             setCurrentSpace(index);
         }
-    }
-    else
-    {
-        
-    }
 }

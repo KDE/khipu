@@ -44,10 +44,25 @@ class DashboardWidget;
 
 #include <QtGui/QListView>
 #include <KWidgetItemDelegate>
+#include <KLineEdit>
 
 class QFocusEvent;
 class QToolButton;
-class KLineEdit;
+
+class LineEdit : public KLineEdit
+{
+    Q_OBJECT
+    
+public :
+    LineEdit(QWidget* parent = 0);
+    
+signals:
+    void editingFinished(const QString &newtext);
+    
+private slots:
+    void procsSditingFinished();
+    
+};
 
 class SpacesDelegate : public KWidgetItemDelegate
 {
@@ -75,13 +90,13 @@ private slots:
     void removeCurrentSpace();
     void editCurrentSpace();
     void showCurrentSpace();
-    void finishEditing(const QString &newtitle = QString()); // save current index data
+    void finishEditingTitle(const QString &newtitle = QString()); // save current index data
     void invalidClick(const QModelIndex &index);
 
 private:
     
     QWidget *m_operationBar;
-    KLineEdit *m_titleEditor;
+    LineEdit *m_titleEditor;
     
     QModelIndex m_currentEditingIndex; // current editing index
     bool m_isEditing;

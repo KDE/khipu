@@ -36,10 +36,10 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
     switch (role)
     {
         case Qt::DecorationRole: return m_items.at(index.row())->thumbnail();
-        case Qt::ToolTipRole:  return m_items.at(index.row())->timestamp().toString("%A %l:%M %p %B %Y");
+//         case Qt::ToolTipRole:  return m_items.at(index.row())->timestamp().toString("%A %l:%M %p %B %Y");
         case Qt::EditRole: 
         case Qt::DisplayRole: return m_items.at(index.row())->title();
-        case Qt::StatusTipRole: return m_items.at(index.row())->description(); //TODO GSOC agregar un prefix algo como space descrp: txttt
+//         case Qt::StatusTipRole: return m_items.at(index.row())->description(); //TODO GSOC agregar un prefix algo como space descrp: txttt
     }
 
     return QVariant();
