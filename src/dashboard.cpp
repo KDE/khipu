@@ -55,10 +55,20 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
     m_widget->findIcon->setPixmap(KIcon("edit-find").pixmap(16,16));
+    
+    m_widget->spacesView->setViewMode(QListView::IconMode);
+    //BUG qt? memory leak ... no acepta ponerle this as parent
+    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView);
+    m_widget->spacesView->setItemDelegate(delegate);
 }
 
 Dashboard::~Dashboard()
 {
+//     QAbstractItemDelegate *d = m_widget->spacesView->itemDelegate();
+//     m_widget->spacesView->setItemDelegate(0);
+// 
+//     delete d;
+//     
     delete m_widget;
 }
 
@@ -71,11 +81,6 @@ void Dashboard::setDocument(DataStore* doc)
     m_widget->spacesView->setModel(doc->spacesModel());
     m_widget->spacesView->setSelectionModel(doc->currentSpaceSelectionModel());
 
-    //BUG qt? memory leak ... no acepta ponerle this as parent
-    m_widget->spacesView->setViewMode(QListView::IconMode);
-    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView);
-    m_widget->spacesView->setItemDelegate(delegate);
-    
 //     delegate->setIconMode(true);
     //este necesita otro proxy del modelo
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
@@ -99,8 +104,6 @@ void Dashboard::setDocument(DataStore* doc)
 
 //     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
 //             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
-    
-    
     
     connect(m_widget->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
     connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));

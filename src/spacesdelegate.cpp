@@ -100,8 +100,8 @@ SpacesDelegate::~SpacesDelegate()
     if (m_iconMode)
     {
         //NOTE esto falta en kdelibs
-        m_operationBar->deleteLater();
-        m_titleEditor->deleteLater();
+//         m_operationBar->deleteLater();
+//         m_titleEditor->deleteLater();
     }
 }
 
@@ -189,6 +189,8 @@ QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option,
 
 void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    if (!index.isValid() || !itemView()->model()) return;
+
     if (m_iconMode)
     {
         QStyle *style = QApplication::style();
@@ -235,9 +237,11 @@ void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
 
 QList<QWidget*> SpacesDelegate::createItemWidgets() const
 {
+    if (!itemView()->model()) return QList<QWidget*>();
+
     if (m_iconMode)
     {
-        KSqueezedTextLabel  *title = new KSqueezedTextLabel ();
+        KSqueezedTextLabel *title = new KSqueezedTextLabel();
         title->setSelection(0,0);
         title->setTextElideMode(Qt::ElideRight);
         title->setWordWrap(true);
@@ -281,11 +285,13 @@ QList<QWidget*> SpacesDelegate::createItemWidgets() const
 
 void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const
 {
+    if (!index.isValid() || !itemView()->model() || widgets.isEmpty()) return;
+
     if (m_iconMode)
     {
         int elementYPos = PreviewHeight + ItemMargin + FrameThickness*2;
 
-        KSqueezedTextLabel  * title = qobject_cast<KSqueezedTextLabel *>(widgets.first());
+        KSqueezedTextLabel  * title = qobject_cast<KSqueezedTextLabel *>(widgets[0]);
 
         if (title) 
         {
@@ -406,41 +412,39 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
 
 bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 {
+    if (itemView()->model())
     {
-        switch (event->type())
+        if (event->type() == QEvent::MouseMove)
         {
-            case QEvent::MouseMove:
-            {
-                QMouseEvent *e = static_cast<QMouseEvent*>(event);
-            
-                m_currentCurPos = e->pos();
-                QModelIndex index = itemView()->indexAt(e->pos());
+            QMouseEvent *e = static_cast<QMouseEvent*>(event);
+        
+            m_currentCurPos = e->pos();
+            QModelIndex index = itemView()->indexAt(e->pos());
 
-                if (!index.isValid() && !m_isEditing)
+            if (!index.isValid() && !m_isEditing)
+            {
+                itemView()->setCurrentIndex(QModelIndex());
+                
+                if (m_iconMode && m_operationBar && m_titleEditor)
                 {
-                    itemView()->setCurrentIndex(QModelIndex());
-                    
-                    if (m_iconMode && m_operationBar && m_titleEditor)
-                    {
-                        m_operationBar->hide();
-                        m_titleEditor->hide();
-                    }
-                    else //listmode
-                    {
-                        
-                    }
+                    m_operationBar->hide();
+                    m_titleEditor->hide();
                 }
-                else 
-                    if (index.isValid())
-                    {
-                        setCurrentSpace(index);
-                    }
-            
-                return true;
+                else //listmode
+                {
+                    
+                }
             }
-            break;
-            
-            case QEvent::MouseButtonPress:
+            else 
+                if (index.isValid())
+                {
+                    setCurrentSpace(index);
+                }
+        
+            return true;
+        }
+        else 
+            if (event->type() == QEvent::MouseButtonPress)
             {
                 
                 QMouseEvent *e = static_cast<QMouseEvent*>(event);
@@ -469,8 +473,6 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
                 
                 return true;
             }
-            break;
-        }
     }
 
    return KWidgetItemDelegate::eventFilter(watched, event);
@@ -478,6 +480,8 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 
 void SpacesDelegate::dummyUpdate()
 {
+    if (!itemView()->model()) return ;
+        
     //TODO
     for (int i = 0; i < itemView()->model()->rowCount(); ++i)
         itemView()->model()->setData(static_cast<SpacesModel*>(itemView()->model())->index(i), static_cast<SpacesModel*>(itemView()->model())->index(i).data());
