@@ -139,7 +139,7 @@ void SpacesDelegate::setIconMode(bool im)
             m_showButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
             m_showButton->setAutoRepeat(false);
             m_showButton->setToolTip(i18n("Show"));
-            m_showButton->setIcon(KIcon("kig"));
+            m_showButton->setIcon(KIcon("layer-visible-on"));
             connect(m_showButton, SIGNAL(pressed()), SLOT(showCurrentSpace()));
 
             QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
@@ -552,6 +552,7 @@ void SpacesDelegate::showCurrentSpace()
 {
     if (!itemView()->currentIndex().isValid()) return;
     
+    emit showSpace(itemView()->currentIndex());
 }
 
 void SpacesDelegate::finishEditingTitle(const QString &newtitle )
