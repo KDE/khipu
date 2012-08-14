@@ -82,11 +82,7 @@
        </widget>
       </item>
       <item>
-       <widget class="KRichTextEdit" name="spaceDescription">
-        <property name="acceptRichText">
-         <bool>true</bool>
-        </property>
-       </widget>
+       <widget class="QPlainTextEdit" name="spaceDescription"/>
       </item>
      </layout>
     </item>
@@ -95,19 +91,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KRichTextEdit</class>
-   <extends>KTextEdit</extends>
-   <header>krichtextedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>ktextedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

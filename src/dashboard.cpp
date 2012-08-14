@@ -46,8 +46,44 @@
 #include <klineedit.h>
 #include <kicon.h>
 #include <kwidgetitemdelegate.h>
+#include <KSelectionProxyModel>
 
 #include "spacesdelegate.h"
+
+
+
+SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
+{
+    m_dimension = -1;
+    
+    setDynamicSortFilter(true);
+}
+
+void SpacesFilterProxyModel::setFilterDimension(int dimension)
+{
+    m_dimension = dimension;
+    invalidateFilter();
+}
+
+bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
+                                               const QModelIndex &sourceParent) const
+{
+    if (!sourceModel()) return false;
+
+    SpaceItem *spaceItem = static_cast<SpacesModel*>(sourceModel())->item(sourceRow);
+    
+    if (!spaceItem) return false;
+    
+    if (m_dimension != -1)
+        if (spaceItem->dimension() != (Dimension)(m_dimension))
+            return false;
+
+    return spaceItem->title().contains(filterRegExp()) || spaceItem->description().contains(filterRegExp());
+}
+
+
+///
 
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent)
@@ -55,12 +91,9 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
     m_widget->findIcon->setPixmap(KIcon("edit-find").pixmap(16,16));
+
     
-    m_widget->spacesView->setMouseTracking(true);
-    m_widget->spacesView->setAlternatingRowColors(true);
-    m_widget->spacesView->setViewMode(QListView::IconMode);
-    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
-    m_widget->spacesView->setItemDelegate(delegate);
+
 }
 
 Dashboard::~Dashboard()
@@ -79,8 +112,28 @@ void Dashboard::setDocument(DataStore* doc)
 
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
 
-    m_widget->spacesView->setModel(doc->spacesModel());
-    m_widget->spacesView->setSelectionModel(doc->currentSpaceSelectionModel());
+    m_spacesProxyModel = new SpacesFilterProxyModel(this);
+    m_spacesProxyModel->setSourceModel(doc->spacesModel());
+
+    m_widget->spacesView->setModel(m_spacesProxyModel);
+    
+    ///
+    QItemSelectionModel *selection = new QItemSelectionModel(m_spacesProxyModel);
+    
+    m_widget->spacesView->setSelectionModel(selection);
+    ///
+
+
+    m_widget->spacesView->setMouseTracking(true);
+    m_widget->spacesView->setAlternatingRowColors(true);
+    m_widget->spacesView->setViewMode(QListView::IconMode);
+//     m_widget->spacesView->setFlow(QListView::LeftToRight);
+    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
+    m_widget->spacesView->setItemDelegate(delegate);
+    
+    connect(m_widget->filters, SIGNAL(clicked(int)), SLOT(filterByDimension(int)));
+    connect(m_widget->filterText, SIGNAL(textChanged(QString)), SLOT(filterByText(QString)));
+
 
 //     delegate->setIconMode(true);
     //este necesita otro proxy del modelo
@@ -160,12 +213,6 @@ void Dashboard::showPlotsView3D()
     m_widget->plotsViews->setCurrentIndex(1);
 }
 
-void Dashboard::removeCurrentSpace()
-{
-
-}
-
-
 void Dashboard::exportSpace2DSnapshot()
 {
 //     QString path = KFileDialog::getSaveFileName(KUrl(), i18n("*.png|PNG Image File\n*.svg|SVG File"), this);
@@ -199,11 +246,13 @@ void Dashboard::copySpace3DSnapshotToClipboard()
 
 void Dashboard::filterByText(const QString &text)
 {
+   //desaparecemos los botones y editores del delegate
+    static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
+ 
 //     switch (m_dashboardWidget->viewMode->currentIndex())
 //     {
 //     case 0:
-//         m_spacesProxyModel->setFilterRegExp(QRegExp(m_dashboardWidget->filterTextSpaces->text(),
-//                                             Qt::CaseInsensitive, QRegExp::RegExp));
+        m_spacesProxyModel->setFilterRegExp(QRegExp(text, Qt::CaseInsensitive, QRegExp::RegExp));
 //         break;
 //
 //     case 1:
@@ -215,22 +264,26 @@ void Dashboard::filterByText(const QString &text)
 
 void Dashboard::filterByDimension(int radioButton)
 {
+    //desaparecemos los botones y editores del delegate
+    static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
+    
+    
 //     switch (m_dashboardWidget->viewMode->currentIndex())
 //     {
 //     case 0:
 //     {
-//         switch (radioButton)
-//         {
-//         case 0:
-//             m_spacesProxyModel->setFilterDimension(-1);
-//             break;
-//         case 1:
-//             m_spacesProxyModel->setFilterDimension(2);
-//             break;
-//         case 2:
-//             m_spacesProxyModel->setFilterDimension(3);
-//             break;
-//         }
+        switch (radioButton)
+        {
+        case 0:
+            m_spacesProxyModel->setFilterDimension(-1);
+            break;
+        case 1:
+            m_spacesProxyModel->setFilterDimension(2);
+            break;
+        case 2:
+            m_spacesProxyModel->setFilterDimension(3);
+            break;
+        }
 //     }
 //     break;
 //
@@ -297,6 +350,14 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 
     emit spaceActivated(row);
 //     qDebug() << row;
+    
+    //BUG qt el filtermodel no respeta iconviewmode al agregar los items ...
+//     if (m_document->spacesModel()->rowCount() < 2) // si esta vacio por primera actiualizo el view 
+//         m_widget->spacesView->update();
+    
+    static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
+    
+
 }
 
 void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
@@ -307,6 +368,8 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
     m_document->currentSelectionModel()->setCurrentIndex(m_document->currentPlots()->index(start,0), QItemSelectionModel::SelectCurrent );
 
 }
+
+
 
 
 void Dashboard::setupWidget()

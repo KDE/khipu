@@ -38,7 +38,26 @@
       <widget class="QWidget" name="spaces">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QListView" name="spacesView"/>
+         <widget class="QListView" name="spacesView">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="horizontalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
+          <property name="flow">
+           <enum>QListView::LeftToRight</enum>
+          </property>
+          <property name="isWrapping" stdset="0">
+           <bool>true</bool>
+          </property>
+          <property name="resizeMode">
+           <enum>QListView::Adjust</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -366,17 +385,38 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="filterTextFunctions">
+       <widget class="KLineEdit" name="filterText">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>30</height>
+          <width>128</width>
+          <height>0</height>
          </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>256</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+        <property name="clickMessage">
+         <string>Search</string>
+        </property>
+        <property name="showClearButton" stdset="0">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="KButtonGroup" name="filterDimensionsFunctions">
+       <widget class="KButtonGroup" name="filters">
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <property name="current" stdset="0">
+         <number>-1</number>
+        </property>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
           <widget class="QRadioButton" name="filterAllFunctions">
@@ -438,6 +478,11 @@
    <extends>QGroupBox</extends>
    <header>kbuttongroup.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
   </customwidget>
   <customwidget>
    <class>PlotsView2D</class>

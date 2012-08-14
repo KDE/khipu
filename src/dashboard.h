@@ -44,6 +44,26 @@ namespace Ui
 }
 
 #include <QtGui/QListView>
+#include <QSortFilterProxyModel>
+
+class SpacesFilterProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+    public:
+        SpacesFilterProxyModel(QObject *parent = 0);
+
+        int filterDimension() const { return m_dimension; }
+        void setFilterDimension(int dimension);
+
+    protected:
+        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+////        bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
+
+    private:
+        int m_dimension; // 2 => 2D, 3 => 3D, -1 => ALL
+};
+
 
 //dashboard solo se encarga de cambiar el space actual al momento de que el main window
 //agrega un space (osea al momento de rowsinsertedelspacemodel)
@@ -72,7 +92,6 @@ public slots:
     void showDictionary();
     void showPlotsView2D();
     void showPlotsView3D();
-    void removeCurrentSpace();
 
     void exportSpace2DSnapshot();
     void exportSpace3DSnapshot();
@@ -104,6 +123,8 @@ private:
 
     DataStore * m_document;
     Ui::DashboardWidget *m_widget;
+    
+    SpacesFilterProxyModel *m_spacesProxyModel;
 };
 
 #endif

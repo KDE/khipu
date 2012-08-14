@@ -100,23 +100,28 @@ public:
     SpacesDelegate(QListView *itemView, QObject *parent = 0);
     ~SpacesDelegate();
     
+public slots:
+    //NOTE ejecutar este metodo cuando se a cambiado de filtro en el proxy ... es decir ejecutarlo desde afuera de esta clase
+        void filterEvent(); // se supone que el proxy emite esta signal layoutchanged y este slots debe ocultar los botnes y editores
+    void setCurrentSpace(const QModelIndex &index, const QModelIndex &oldcurent = QModelIndex());
+
 private: // TODO hacer public
     void setIconMode(bool im);
     QAbstractItemView *itemView() const { return m_itemView; }
     QAbstractItemView *m_itemView;
 public:
     
-//     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-//     void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-//     void setEditorData(QWidget* editor, const QModelIndex& index) const;
-//     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+    void setEditorData(QWidget* editor, const QModelIndex& index) const;
+    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
     
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
 signals:
     void showSpace(const QModelIndex &index);
-    void activateSpace(const QModelIndex &index);
+//     void activateSpace(const QModelIndex &index);
     
 private:
     QList<QWidget*> createItemWidgets() const;
@@ -126,20 +131,21 @@ private:
     void dummyUpdate(); // force rowsAboutToBeRemoved ... //TODO here is ovio
 
 private slots:
-    void setCurrentSpace(const QModelIndex &index);
     void removeCurrentSpace();
     void editCurrentSpace();
     void showCurrentSpace();
     void finishEditingTitle(const QString &newtitle = QString()); // save current index data
     void invalidClick(const QModelIndex &index);
 
+    
 private:
+    
     
     QWidget *m_operationBar;
     LineEdit *m_titleEditor;
     
-    QModelIndex m_currentEditingIndex; // current editing index
-    bool m_isEditing;
+    mutable QModelIndex m_currentEditingIndex; // current editing index
+    mutable bool m_isEditing;
     QPoint m_currentCurPos;
 
     ///
