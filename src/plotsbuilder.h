@@ -21,7 +21,7 @@
 #define FUNCTIONEDITOR_H_builder
 
 #include <QWidget>
-#include <analitza/expression.h>
+#include "analitza/expression.h"
 
 namespace Ui
 {

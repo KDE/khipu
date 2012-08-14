@@ -1,5 +1,9 @@
 include_directories (
-  ${KDE4_INCLUDES}
+  ${CMAKE_SOURCE_DIR} 
+  ${CMAKE_BINARY_DIR} 
+  ${KDE4_INCLUDES} 
+  ${LIBKDEEDU_INCLUDE_DIR}/qtmml 
+  ${ANALITZA_INCLUDE_DIR}
   ${OPENGL_INCLUDE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}
   .
@@ -30,12 +34,12 @@ set ( khipu_SRCS
 
 )
 
-
 kde4_add_ui_files ( khipu_SRCS
   plotsbuilder.ui
   plotseditor.ui
   spaceinformation.ui
   spaceoptions.ui
+#   spaceeditor.ui
   dashboard.ui
 )
 

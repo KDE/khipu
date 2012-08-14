@@ -10,8 +10,6 @@ find_package(LibKdeEdu)
 find_library(QTMML_LIBRARY qtmmlwidget)
 find_library(QGLVIEWER_LIBRARY NAMES qglviewer-qt4 QGLViewer)
 
-include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${LIBKDEEDU_INCLUDE_DIR}/qtmml ${ANALITZA_INCLUDE_DIR})
-
 macro_log_feature(QTMML_LIBRARY "QtMathML Widget" "Supports displaying some formulas in a mathematic form" "http://doc.qt.nokia.com/solutions/4/qtmmlwidget/qtmmlwidget.html" FALSE "" "")
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
@@ -19,8 +17,6 @@ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DQT_USE_FAST_CONCATENATI
 if(NOT OPENGL_GLU_FOUND)
     message(FATAL_ERROR "GLU was not found")
 endif(NOT OPENGL_GLU_FOUND)
-
-include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${ANALITZA_INCLUDE_DIR})
 
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc

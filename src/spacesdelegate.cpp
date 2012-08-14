@@ -53,6 +53,30 @@
 #include <KLocalizedString>
 #include <ksqueezedtextlabel.h>
 
+// #include "ui_spaceeditor.h"
+/*
+SpaceEditor::SpaceEditor(QWidget* parent, Qt::WindowFlags f): QWidget(parent, f)
+{
+    m_widget = new Ui::SpaceEditorWidget;
+    m_widget->setupUi(this);
+}
+
+SpaceEditor::~SpaceEditor()
+{
+    delete m_widget;
+}
+
+
+void SpaceEditor::setSpace(SpaceItem* space)
+{
+    m_space = space;
+    
+    m_widget->title->setText(space->title());
+    m_widget->description->setText(space->description());    
+    m_widget->thumbnail->setPixmap(space->thumbnail());
+    m_widget->info->setText("Hola");
+    m_widget->timestamp->setText(space->timestamp().toString("%A %l:%M %p %B %Y"));
+}*/
 
 ///
 
@@ -73,21 +97,22 @@ void LineEdit::procsSditingFinished()
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : QStyledItemDelegate(parent), m_itemView(itemView)
 , m_isEditing(false)
-, m_iconMode(false) // el default en el listvieew es listmode no el iconmode
+, m_iconMode(true) // el default en el listvieew es listmode no el iconmode
 , m_operationBar(0)
 , m_titleEditor(0)
 {
-    setIconMode(m_iconMode);
+    setIconMode(true);
 
-    if (itemView->viewMode() == QListView::IconMode)
-        setIconMode(true);
+//     if (itemView->viewMode() == QListView::IconMode)
+//         setIconMode(true);
     
     itemView->setMouseTracking(true);
     itemView->setSelectionMode(QListView::NoSelection);
     
     itemView->viewport()->installEventFilter(this);
-
+    
         connect(this, SIGNAL(showSpace(QModelIndex)), itemView, SIGNAL(doubleClicked(QModelIndex)));
+//         connect(this, SIGNAL(activateSpace(QModelIndex)), itemView, SLOT(setCurrentIndex(QModelIndex)));
 
 //     connect(itemView, SIGNAL(entered(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
 //     connect(itemView, SIGNAL(clicked(QModelIndex)), SLOT(invalidClick(QModelIndex)));
@@ -107,7 +132,7 @@ SpacesDelegate::~SpacesDelegate()
 
 void SpacesDelegate::setIconMode(bool im)
 {
-    if (im == m_iconMode) return ;
+//     if (im == m_iconMode) return ;
 
     //TODO
     m_iconMode = im;
@@ -116,7 +141,9 @@ void SpacesDelegate::setIconMode(bool im)
     
     if (m_iconMode)
     {
-//         if (!m_operationBar && ! m_titleEditor)
+        itemView()->setEditTriggers(QListView::NoEditTriggers);
+
+        if (!m_operationBar && ! m_titleEditor)
         {
             m_operationBar = new QWidget(itemView()->viewport());
         //     m_operationBar->setFocusPolicy(Qt::NoFocus);
@@ -131,7 +158,7 @@ void SpacesDelegate::setIconMode(bool im)
             QToolButton *m_editButton = new QToolButton(m_operationBar);
             m_editButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
             m_editButton->setAutoRepeat(false);
-            m_editButton->setToolTip(i18n("Edit"));
+            m_editButton->setToolTip(i18n("Rename"));
             m_editButton->setIcon(KIcon("document-edit"));
             connect(m_editButton, SIGNAL(pressed()), SLOT(editCurrentSpace()));
 
@@ -160,9 +187,56 @@ void SpacesDelegate::setIconMode(bool im)
             connect(m_titleEditor, SIGNAL(editingFinished(QString)), SLOT(finishEditingTitle(QString)));
         }
     }
-    
+    else //list mode
+    {
+        itemView()->setEditTriggers(QAbstractItemView::CurrentChanged);
+    }
+
     dummyUpdate(); 
 }
+
+// QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
+// {
+//     if (!m_iconMode && index.isValid())
+//     {
+//         m_currentEditingIndex = index;
+//         m_isEditing = true;
+//         
+//         return new SpaceEditor(parent);
+//     }
+//     
+//     return QStyledItemDelegate::createEditor(parent, option, index);
+// }
+// 
+// void SpacesDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
+// {
+//     if (!index.isValid()) return ;
+// 
+//     m_currentEditingIndex = index;
+//     m_isEditing = true;
+//     
+//     editor->setGeometry(option.rect);
+// }
+// 
+// void SpacesDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
+// {
+//     if (!index.isValid()) return ;
+// 
+//     m_currentEditingIndex = index;
+//     m_isEditing = true;
+// 
+//     SpaceEditor *spaceEditor = static_cast<SpaceEditor*>(editor);
+//     
+//     spaceEditor->setSpace(static_cast<SpacesModel*>(itemView()->model())->item(index.row()));
+// }
+// 
+// void SpacesDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
+// {
+//     if (!index.isValid()) return ;    
+//     
+//     m_currentEditingIndex = QModelIndex();
+//     m_isEditing = false;
+// }
 
 QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option,
                                        const QModelIndex &index) const
@@ -189,7 +263,7 @@ QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option,
 
 void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (!index.isValid() || !itemView()->model()) return;
+    if (!index.isValid() || !itemView()->model()) return QStyledItemDelegate::paint(painter, option, index);
 
     if (m_iconMode)
     {
@@ -220,24 +294,34 @@ void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
         QStyle *style = QApplication::style();
         style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
 
-        painter->save();
+        if (!m_isEditing || m_currentEditingIndex != index)
+        {
+            painter->save();
 
-        if (option.state & QStyle::State_Selected) {
-            painter->setPen(QPen(option.palette.highlightedText().color()));
-        } else {
-            painter->setPen(QPen(option.palette.text().color()));
+            if (option.state & QStyle::State_Selected) {
+                painter->setPen(QPen(option.palette.highlightedText().color()));
+            } else {
+                painter->setPen(QPen(option.palette.text().color()));
+            }
+
+            int height = option.rect.height();
+            QPoint point(option.rect.left() + margin, option.rect.top() + ((height - PreviewHeight) / 2));
+
+            QPixmap image = index.data(Qt::DecorationRole).value<QPixmap>();
+        //         point.setX((PreviewWidth - image.width())/2 + 5);
+        //         point.setY(option.rect.top() + ((height - image.height()) / 2));
+            painter->drawPixmap(point, image);
+
+            painter->restore();
         }
-
-        int height = option.rect.height();
-        QPoint point(option.rect.left() + margin, option.rect.top() + ((height - PreviewHeight) / 2));
-
-        QPixmap image = index.data(Qt::DecorationRole).value<QPixmap>();
-    //         point.setX((PreviewWidth - image.width())/2 + 5);
-    //         point.setY(option.rect.top() + ((height - image.height()) / 2));
-        painter->drawPixmap(point, image);
-
-        painter->restore();
+        else
+        {
+            
+//             itemView()->ac
+        }
     }
+    
+//     QStyledItemDelegate::paint(painter, option, index);
 }
 
 QList<QWidget*> SpacesDelegate::createItemWidgets() const
@@ -433,15 +517,20 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
                     m_operationBar->hide();
                     m_titleEditor->hide();
                 }
-                else //listmode
-                {
-                    
-                }
-            }
-            else 
+            }else
                 if (index.isValid())
                 {
-                    setCurrentSpace(index);
+                        setCurrentSpace(index);
+                        
+//                     if (!m_iconMode)
+//                     {
+//                         itemView()->setCurrentIndex(index);
+//                         //BUG qt seleciona un area vacia no se porque
+//                         itemView()->clearSelection();
+//                         itemView()->update(index);
+//                         itemView()->viewport()->update();
+//                         itemView()->update();
+//                     }
                 }
         
             return true;
@@ -505,6 +594,7 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
     }
     else
     {
+//         emit activateSpace(index);
         
     }
 }

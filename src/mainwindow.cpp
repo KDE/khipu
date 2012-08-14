@@ -18,7 +18,7 @@
 
 #include "mainwindow.h"
 
-#include "analitzaplot/plotsdictionarymodel.h"
+#include <analitzaplot/plotsdictionarymodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsview2d.h>
 #include <analitzaplot/plotsview3d.h>

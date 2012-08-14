@@ -26,6 +26,7 @@
 #include "plotseditor.h"
 #include "document.h"
 
+class SpaceItem;
 class QLabel;
 class PlotsView3D;
 class PlotsView2D;
@@ -49,6 +50,29 @@ class DashboardWidget;
 
 class QFocusEvent;
 class QToolButton;
+
+// namespace Ui
+// {
+//     class SpaceEditorWidget;
+// }
+// 
+// 
+// class SpaceEditor : public QWidget
+// {
+//     Q_OBJECT
+//     
+// public :
+//     SpaceEditor(QWidget* parent = 0, Qt::WindowFlags f = 0);
+//     ~SpaceEditor();
+//     
+//     void setSpace(SpaceItem *space);
+//     SpaceItem *space() const { return m_space; }
+// 
+// private:
+//     SpaceItem *m_space;
+//     
+//     Ui::SpaceEditorWidget *m_widget;
+// };
 
 class LineEdit : public KLineEdit
 {
@@ -82,11 +106,17 @@ private: // TODO hacer public
     QAbstractItemView *m_itemView;
 public:
     
+//     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+//     void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+//     void setEditorData(QWidget* editor, const QModelIndex& index) const;
+//     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
+    
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
 signals:
     void showSpace(const QModelIndex &index);
+    void activateSpace(const QModelIndex &index);
     
 private:
     QList<QWidget*> createItemWidgets() const;
