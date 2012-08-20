@@ -22,8 +22,6 @@ set ( khipu_SRCS
 
   spaceplotsproxymodel.cpp
   
-  spaceitem.cpp
-  spacesmodel.cpp
   spacesdelegate.cpp
 
   datastore.cpp

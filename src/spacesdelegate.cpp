@@ -18,7 +18,6 @@
 
 #include "spacesdelegate.h"
 
-#include "spaceitem.h"
 #include "spaceinformation.h"
 #include "spaceoptions.h"
 #include "analitzaplot/dictionariesmodel.h"

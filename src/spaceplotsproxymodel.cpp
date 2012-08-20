@@ -17,7 +17,6 @@
  *************************************************************************************/
 
 #include "spaceplotsproxymodel.h"
-#include "spaceitem.h"
 #include "datastore.h"
 #include <analitzaplot/plotsmodel.h>
 
