@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 
+class Filter;
 class SpaceOptions;
 class SpaceInformation;
 class PlotsBuilder;
@@ -34,7 +35,7 @@ class KUrl;
 class KToggleAction;
 
 class FunctionsModel;
-class SpacesModel;
+class DictionariesModel;
 
 class Dashboard;
 
@@ -92,6 +93,7 @@ private:
 private:
     DataStore *m_document;
     Dashboard *m_dashboard;
+    Filter *m_filter;
     
     QDockWidget *m_plotsBuilderDock;
     PlotsEditor *m_spacePlotsDock;

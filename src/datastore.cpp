@@ -18,8 +18,9 @@
 
 #include "datastore.h"
 
-#include "spacesmodel.h"
+#include "analitzaplot/dictionariesmodel.h"
 #include "spaceplotsproxymodel.h"
+#include <../analitza/analitzaplot/plotsdictionariesmanager.h>
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsdictionarymodel.h>
@@ -32,13 +33,26 @@ DataStore::DataStore(QObject* parent)
     , m_currentSpace(-1)
 {
 //     m_plotsDictionaryModel = new PlotsDictionaryModel(this);
-    m_plotsDictionaryModel = getDictionary(this); //load with a thread
+//     m_plotsDictionaryModel = getDictionary(this); //load with a thread
 
-    m_spacesModel = new SpacesModel(this);
+
+
+
+
+    m_spacesModel = new DictionariesModel(this);
 
     m_variables = new Analitza::Variables;
 
     m_plotsModel = new PlotsModel(this, m_variables);
+    
+//     PlaneCurve *c = new PlaneCurve(Analitza::Expression("x->x*x"), "ee");
+// //     c->setSpace(spacesModel()->addSpace(Dim2D, "adsda", "eeeee"));
+//     m_plotsModel->addPlot(c);
+
+    PlotsDictionariesManager *dm = new PlotsDictionariesManager(this);
+    
+    m_plotsDictionaryModel = dm->model();
+    
     //
 
     //EL ORDEN DE los  connect IMPORTA
@@ -74,7 +88,7 @@ DataStore::~DataStore()
     delete m_variables;
 }
 
-bool DataStore::isMapped(SpaceItem* space, PlotItem* plot) const
+bool DataStore::isMapped(DictionaryItem* space, PlotItem* plot) const
 {
 //     qDebug() << space << plot << m_maps.values(space).contains(plot);
 //     return true;//m_maps.values(space).contains(plot);
@@ -94,8 +108,8 @@ void DataStore::setCurrentSpace(int spaceidx)
 //     qDebug() << m_currentSpace;
 
         //cambiar el filtro tambien hacer esto en el dashboard pero solo al agregar un nuevo space
-        m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->item(spaceidx)->dimension());
-        m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->item(spaceidx));
+        m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->space(spaceidx)->dimension());
+        m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->space(spaceidx));
     }
 }
 //esto se dispara cuendo se interta un plot al modelo total
@@ -104,11 +118,11 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
     //TODO assert si el current forma un buen item
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
-    m_maps.insertMulti(m_spacesModel->item(m_currentSpace), m_plotsModel->item(start));
+    m_maps.insertMulti(m_spacesModel->space(m_currentSpace), m_plotsModel->plot(start));
 
     int i = 0;
     
-    switch (m_plotsModel->item(start)->coordinateSystem())
+    switch (m_plotsModel->plot(start)->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
@@ -125,7 +139,7 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
 
     int i = 0;
     
-    switch (m_plotsModel->item(start)->coordinateSystem())
+    switch (m_plotsModel->plot(start)->coordinateSystem())
     {
         //TODO for 3d
         case Cartesian: i = 1; break;
@@ -141,7 +155,7 @@ void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& b
 
     int i = 0;
     
-    switch (m_plotsModel->item(start)->coordinateSystem())
+    switch (m_plotsModel->plot(start)->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
@@ -156,7 +170,7 @@ void DataStore::removeCurrentSpace()
 {
     if (m_currentSpaceSelectionModel->hasSelection())
     {
-        m_maps.remove(m_spacesModel->item(m_currentSpace));
+        m_maps.remove(m_spacesModel->space(m_currentSpace));
 
         m_spacesModel->removeRow(m_currentSpace);
 
@@ -175,11 +189,11 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
     int realrow = m_spacePlotsFilterProxyModel->mapToSource(proxyindex).row();
 
 //     qDebug() << realrow << proxyindex;
-    QMap<SpaceItem*, PlotItem*>::iterator i = m_maps.begin();
+    QMap<DictionaryItem*, PlotItem*>::iterator i = m_maps.begin();
 
     while (i != m_maps.end())
     {
-        if (i.value() == m_plotsModel->item(realrow))
+        if (i.value() == m_plotsModel->plot(realrow))
         {
             m_maps.erase(i);
             break;
@@ -187,5 +201,5 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         ++i;
     }
 
-    m_plotsModel->removeItem(realrow);
+    m_plotsModel->removePlot(realrow);
 }

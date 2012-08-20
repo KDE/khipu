@@ -22,16 +22,16 @@
 #include <QObject>
 #include <QMap>
 
-class PlotsDictionaryModel;
+class PlotsDictionariesModel;
 class QItemSelectionModel;
-class SpaceItem;
+class DictionaryItem;
 class QModelIndex;
 namespace Analitza {
 class Variables;
 }
 
 class PlotItem;
-class SpacesModel;
+class DictionariesModel;
 class PlotsModel;
 
 class SpacePlotsFilterProxyModel;
@@ -49,8 +49,8 @@ public:
     int currentSpace() const { return m_currentSpace; }
 
 
-    PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
-    SpacesModel *spacesModel() const { return m_spacesModel; }
+    PlotsDictionariesModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
+    DictionariesModel *spacesModel() const { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
     
     // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
@@ -59,7 +59,7 @@ public:
     QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
 
 
-    bool isMapped(SpaceItem *space, PlotItem *plot) const;
+    bool isMapped(DictionaryItem *space, PlotItem *plot) const;
 
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
@@ -79,8 +79,8 @@ signals:
     void spaceActivated(int spaceidx);
     void gridStyleChanged(int i); // 1 cartesian 2 polar
 private:
-    PlotsDictionaryModel *m_plotsDictionaryModel;
-    SpacesModel *m_spacesModel;
+    PlotsDictionariesModel *m_plotsDictionaryModel;
+    DictionariesModel *m_spacesModel;
     PlotsModel *m_plotsModel;
     
     SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
@@ -91,7 +91,7 @@ private:
 
     //one to many -- space index -> many plots index
     int m_currentSpace; // curr space index 
-    QMap<SpaceItem*, PlotItem*> m_maps;
+    QMap<DictionaryItem*, PlotItem*> m_maps;
 };
 
 

@@ -28,6 +28,9 @@
 
 #include <QtGui/QDockWidget>
 #include <QtGui/QLayout>
+#include <QLineEdit>
+#include <qpushbutton.h>
+#include <QToolButton>
 #include <QDebug>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -42,7 +45,7 @@
 #include <KDE/KMessageBox>
 #include <KDE/KStandardDirs>
 #include <KToolBar>
-#include "spacesmodel.h"
+#include "analitzaplot/dictionariesmodel.h"
 #include <KMenuBar>
 #include "dashboard.h"
 #include "document.h"
@@ -51,6 +54,7 @@
 #include "plotsbuilder.h"
 #include "spaceinformation.h"
 #include "spaceoptions.h"
+#include "filter.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent)
@@ -69,6 +73,14 @@ MainWindow::MainWindow(QWidget *parent)
     setupDocks();
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
+
+    m_filter = new Filter(this);
+    
+    connect(m_filter, SIGNAL(filterByDimension(Dimension)), m_dashboard, SLOT(filterByDimension(Dimension)));
+    connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
+    
+    toolBar("filterToolBar")->addWidget(m_filter);
+
     setCentralWidget(m_dashboard);
     setupToolBars();
     activateDashboardUi();
@@ -171,7 +183,9 @@ void MainWindow::setupActions()
     KStandardAction::saveAs(this, SLOT(fooSlot()), actionCollection());
     KStandardAction::close(this, SLOT(close()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
-    
+    //TODO
+//     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
+
     //edit - dashboard
     createAction("add_space2d", i18n("&Add Space 2D"), "add-space2d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("&Add Space 3D"), "add-space3d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
@@ -237,6 +251,7 @@ void MainWindow::setupActions()
 
 //     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
 //     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
+
 }
 
 void MainWindow::fooSlot(bool t)
@@ -308,7 +323,7 @@ void MainWindow::activateSpace(int spaceidx)
     
     //clear space infor widget 
 //     m_spaceInfoDock->clear();
-    SpaceItem *space = m_document->spacesModel()->item(spaceidx);
+    DictionaryItem *space = m_document->spacesModel()->space(spaceidx);
     m_spaceInfoDock->setInformation(space->title(), space->description());
     
     m_spaceOptionsDock->setDimension(space->dimension());
@@ -391,7 +406,7 @@ void MainWindow::activateSpaceUi()
 
 void MainWindow::copySnapshot()
 {
-    SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
+    DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
     switch (space->dimension())
     {
@@ -477,7 +492,7 @@ void MainWindow::goHome()
     {
         ///guardando space info
         
-        SpaceItem *space = m_document->spacesModel()->item(m_document->currentSpace());
+        DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
         space->stamp(); // marcamos la fecha y hora de ingreso al space
         space->setTitle(m_spaceInfoDock->title());

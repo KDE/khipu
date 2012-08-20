@@ -21,7 +21,7 @@
 #include "spaceitem.h"
 #include "spaceinformation.h"
 #include "spaceoptions.h"
-#include "spacesmodel.h"
+#include "analitzaplot/dictionariesmodel.h"
 #include "datastore.h"
 #include "spaceplotsproxymodel.h"
 #include "analitza/variables.h"
@@ -175,9 +175,9 @@ void SpacesDelegate::setIconMode(bool im)
             QToolButton *m_showButton = new QToolButton(m_operationBar);
             m_showButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
             m_showButton->setAutoRepeat(false);
-            m_showButton->setToolTip(i18n("Show"));
-            m_showButton->setIcon(KIcon("layer-visible-on"));
-            connect(m_showButton, SIGNAL(pressed()), SLOT(showCurrentSpace()));
+            m_showButton->setToolTip(i18n("Export as dictionary"));
+            m_showButton->setIcon(KIcon("document-export"));
+//             connect(m_showButton, SIGNAL(pressed()), SLOT(showCurrentSpace()));
 
             QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
 
@@ -268,7 +268,7 @@ void SpacesDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, co
         m_currentEditingIndex = QModelIndex();
         m_isEditing = false;
 
-    static_cast<SpacesModel*>(static_cast<SpacesFilterProxyModel*>(model)->sourceModel())->setData(index, static_cast<LineEdit*>(editor)->text());
+    static_cast<DictionariesModel*>(static_cast<SpacesFilterProxyModel*>(model)->sourceModel())->setData(index, static_cast<LineEdit*>(editor)->text());
     
 //     
 //     m_currentEditingIndex = QModelIndex();
@@ -325,6 +325,9 @@ void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
 
         QString text = painter->fontMetrics().elidedText(index.data().toString(), Qt::ElideRight, option.rect.width(), Qt::TextSingleLine);
 
+        QFont p = painter->font();
+        p.setBold(true);
+        painter->setFont(p);
         painter->drawText(option.rect.topLeft()+QPoint((option.rect.width() - painter->fontMetrics().width(text))/2, 
             PreviewHeight + 3.8*ItemMargin + FrameThickness*2), text);
 
@@ -505,7 +508,7 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
                 descriptionEditor->move(2*PreviewWidth + margin, margin*.5 + titleEditor->height());
                 descriptionEditor->resize(QSize(option.rect.width() - 2*PreviewWidth - (margin * 2) - m_buttonSize.width(), 
                                                 option.rect.size().height() - titleEditor->height() - 2*margin));
-                descriptionEditor->setHtml(static_cast<SpacesModel*>(itemView()->model())->item(index.row())->description());
+                descriptionEditor->setHtml(static_cast<DictionariesModel*>(itemView()->model())->space(index.row())->description());
                 descriptionEditor->show();
             }
         }

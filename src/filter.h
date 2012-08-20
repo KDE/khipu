@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
+ *  Copyright (C) 2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -16,53 +16,42 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
+#ifndef KEOMATH_VIEWER2D_H_OPTS_filter
+#define KEOMATH_VIEWER2D_H_OPTS_filter
 
-#ifndef KEOMATH_FUNCTIONLIBRARYEDIT_H
-#define KEOMATH_FUNCTIONLIBRARYEDIT_H
-
-#include <KLineEdit>
-#include <QLabel>
-#include <QTreeView>
+#include <QtGui/QWidget>
+#include <QDockWidget>
+#include <QModelIndex>
+#include "dashboard.h"
 #include <analitzaplot/private/utils/mathutils.h>
 
-class QKeyEvent;
-
-
-class PlotsDictionariesModel;
-
-class FunctionLibraryEdit : public KLineEdit
+namespace Ui
+{
+    class FilterWidget;
+}
+//NOTE TODO CADA WIDGET DE KHIPU QUE BUSCARA/FILTRARA COSAS DEBE IMPLEMENTAR UNA IFACE: editor(funclist), dashboard, dicsview, etc
+class Filter : public QWidget
 {
     Q_OBJECT
-
 public:
-    explicit FunctionLibraryEdit(QWidget *parent = 0);
-    ~FunctionLibraryEdit();
+    Filter(QWidget *parent);
+    ~ Filter();
 
-    void setFilterArguments(const QStringList args);
-    void setFilterDimension(Dimension dim);
+// public slots:
 
-    void setModel(PlotsDictionariesModel *model);
-
-signals:
-    void selectedFunction(const QString & newExp, int dimension, const QString &name, const QStringList &bvars);
-
-protected:
-    bool eventFilter(QObject *o, QEvent *e);
+signals: //TODO better names for signals adn slots
+    void filterByText(const QString &text); // any text on the title or description
+    void filterByDimension(Dimension radioButtonid);
 
 private slots:
-    void emitSelFunction(const QModelIndex &index);
-    void setFilterText(const QString &text);
-
+    void getDimIndex(int index);
+    
+    
 private:
-    void showPopup(const QRect& rect = QRect());
-
-private:
-    PlotsDictionariesModel *m_proxyModel;
-
-    QTreeView *m_functionLibraryView;
-
-    bool eatFocusOut;
-    bool m_clearText;
+    
+    Ui::FilterWidget *m_widget;
 };
 
 #endif
+
+

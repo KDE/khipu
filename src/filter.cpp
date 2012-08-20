@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
+ *  Copyright (C) 2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com>      *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -16,53 +16,39 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
+#include "filter.h"
 
-#ifndef KEOMATH_FUNCTIONLIBRARYEDIT_H
-#define KEOMATH_FUNCTIONLIBRARYEDIT_H
+#include "ui_filter.h"
 
-#include <KLineEdit>
-#include <QLabel>
-#include <QTreeView>
-#include <analitzaplot/private/utils/mathutils.h>
-
-class QKeyEvent;
-
-
-class PlotsDictionariesModel;
-
-class FunctionLibraryEdit : public KLineEdit
+Filter::Filter(QWidget* parent): QWidget(parent)
 {
-    Q_OBJECT
+    m_widget = new Ui::FilterWidget;
+    m_widget->setupUi(this);
+    
+    setObjectName("a33sdasddsaaa1");
 
-public:
-    explicit FunctionLibraryEdit(QWidget *parent = 0);
-    ~FunctionLibraryEdit();
+    connect(m_widget->filterText, SIGNAL(textChanged(QString)), SIGNAL(filterByText(QString)));
+    connect(m_widget->filterOptions, SIGNAL(currentIndexChanged(int)), SLOT(getDimIndex(int)));
+}
 
-    void setFilterArguments(const QStringList args);
-    void setFilterDimension(Dimension dim);
+Filter::~Filter()
+{
+    delete m_widget;
+}
 
-    void setModel(PlotsDictionariesModel *model);
+void Filter::getDimIndex(int index)
+{
+    switch (index)
+    {
+        case 0: emit filterByDimension(DimAll); break;
+        case 1: emit filterByDimension(Dim2D); break;
+        case 2: emit filterByDimension(Dim3D); break;
+    }
+}
 
-signals:
-    void selectedFunction(const QString & newExp, int dimension, const QString &name, const QStringList &bvars);
 
-protected:
-    bool eventFilter(QObject *o, QEvent *e);
 
-private slots:
-    void emitSelFunction(const QModelIndex &index);
-    void setFilterText(const QString &text);
 
-private:
-    void showPopup(const QRect& rect = QRect());
 
-private:
-    PlotsDictionariesModel *m_proxyModel;
-
-    QTreeView *m_functionLibraryView;
-
-    bool eatFocusOut;
-    bool m_clearText;
-};
-
-#endif
+    
+    

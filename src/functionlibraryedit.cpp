@@ -46,8 +46,10 @@ FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
     m_functionLibraryView->setFocusProxy(this);
     m_functionLibraryView->installEventFilter(this);
 //     m_functionLibraryView->setModel(m_proxyModel);
-    m_functionLibraryView->setRootIsDecorated(false);
-    m_functionLibraryView->header()->hide();
+    m_functionLibraryView->setRootIsDecorated(true);
+    m_functionLibraryView->setItemsExpandable(true);
+    m_functionLibraryView->setAllColumnsShowFocus(true);
+//     m_functionLibraryView->header()->hide();
 //     m_functionLibraryView->resizeColumnToContents(1);
     m_functionLibraryView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_functionLibraryView->setMinimumWidth(350);
@@ -70,16 +72,18 @@ void FunctionLibraryEdit::setFilterArguments(const QStringList args)
 
 void FunctionLibraryEdit::setFilterDimension(Dimension dim)
 {
-    m_proxyModel->setFilterSpaceDimension(dim);
+    if (!m_proxyModel) return ;
+    //TODO newdic
+//     m_proxyModel->setFilterSpaceDimension(dim);
 }
 
-void FunctionLibraryEdit::setModel(PlotsDictionaryModel* model)
+void FunctionLibraryEdit::setModel(PlotsDictionariesModel* model)
 {
     m_proxyModel = model;
     m_functionLibraryView->setModel(m_proxyModel);
-    m_functionLibraryView->setColumnWidth(0,0);
-    m_functionLibraryView->showColumn(0);
-    m_functionLibraryView->hideColumn(1);
+//     m_functionLibraryView->setColumnWidth(0,0);
+//     m_functionLibraryView->showColumn(0);
+//     m_functionLibraryView->hideColumn(1);
 }
 
 void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
@@ -110,7 +114,8 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 
 void FunctionLibraryEdit::setFilterText(const QString &text)
 {
-    m_proxyModel->setFilterRegExp(QRegExp(text, Qt::CaseInsensitive, QRegExp::RegExp));
+    //TODO new dict infr
+//     m_proxyModel->setFilterRegExp(QRegExp(text, Qt::CaseInsensitive, QRegExp::RegExp));
 
 
     if (m_proxyModel->rowCount() > 0)

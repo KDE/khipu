@@ -36,7 +36,7 @@
 #include <libkdeedu/qtmml/QtMmlWidget>
 #include "functionlibraryedit.h"
 #include "datastore.h"
-#include "spacesmodel.h"
+#include "analitzaplot/dictionariesmodel.h"
 #include "spaceplotsproxymodel.h"
 #include "analitzagui/variablesmodel.h"
 #include <analitzaplot/functiongraph.h>
@@ -50,6 +50,9 @@
 
 ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 {
+
+    
+    
     connect(this, SIGNAL(currentIndexChanged(QString)), SLOT(setupCache(QString)));
 }
 
@@ -83,6 +86,13 @@ QSize ComboBox::sizeHint() const
 
 void ComboBox::paintEvent(QPaintEvent* e)
 {
+    //dibujo el combo pero borrando el texto temporalmente, luego reinserto el texto ... la idea es dibujar el combo sin el text
+    QString itemtext = currentText();
+    m_cacheText = itemtext;
+    setItemText(currentIndex(), "");
+    QComboBox::paintEvent(e);
+    setItemText(currentIndex(), itemtext);
+
     //TODO GSOC fix magic numbers heres
 
     QPainter p(this);
@@ -106,12 +116,7 @@ void ComboBox::paintEvent(QPaintEvent* e)
 
     mathMLRenderer.paint(&p, opt.rect.topLeft()+QPoint(4,4));
 
-    //dibujo el combo pero borrando el texto temporalmente, luego reinserto el texto ... la idea es dibujar el combo sin el text
-    QString itemtext = currentText();
-    m_cacheText = itemtext;
-    setItemText(currentIndex(), "");
-    QComboBox::paintEvent(e);
-    setItemText(currentIndex(), itemtext);
+
 }
 
 void ComboBox::setupCache(const QString& currtext)
@@ -196,6 +201,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
 
+    
+
+    
 //     m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
 
 //     m_widget->fnameForGraphs->setMouseTracking(true);
@@ -258,9 +266,9 @@ void PlotsEditor::setDocument(DataStore* doc)
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
-    m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->item(spaceidx)->dimension());
+    m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->space(spaceidx)->dimension());
     
-    switch (m_document->spacesModel()->item(spaceidx)->dimension())
+    switch (m_document->spacesModel()->space(spaceidx)->dimension())
     {
         case Dim2D:
         {
@@ -367,7 +375,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     if (m_widget->plotsView->selectionModel()->hasSelection())
     {
-        PlotItem *item = m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
+        PlotItem *item = m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
 
         if (dynamic_cast<PlaneCurve*>(item))
         {
@@ -688,9 +696,12 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
+                {
                     item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
+                    item->setSpace(m_document->spacesModel()->space(m_document->currentSpace()));
+                }
 
                 item->setName(m_widget->plotName->text());
                 item->setColor(m_widget->plotColor->color());
@@ -699,7 +710,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
             }
 
             break;
@@ -713,7 +724,7 @@ void PlotsEditor::savePlot()
                 Surface *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<Surface*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
                     item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
 
@@ -725,7 +736,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
             }
 
             break;
@@ -738,7 +749,7 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
                     item = new PlaneCurve(m_widget->f->expression());
 
@@ -750,7 +761,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item->setExpression(m_widget->f->expression());
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
 
             }
 
@@ -764,7 +775,7 @@ void PlotsEditor::savePlot()
                 Surface *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<Surface*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
                     item = new Surface(m_widget->f->expression());
 
@@ -777,7 +788,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item->setExpression(m_widget->f->expression());
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
             }
 
             break;
@@ -791,7 +802,7 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
                     item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
                             m_widget->f->expression().toString()+", "+
@@ -806,7 +817,7 @@ void PlotsEditor::savePlot()
                                                     m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+"}")));
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
             }
 
             break;
@@ -819,9 +830,9 @@ void PlotsEditor::savePlot()
                 SpaceCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<SpaceCurve*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<SpaceCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
-                    item  = m_document->plotsModel()->addSpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item  = new SpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());
 
                 item->setName(m_widget->plotName->text());
@@ -832,7 +843,7 @@ void PlotsEditor::savePlot()
                     item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
             }
             
             break;
@@ -846,7 +857,7 @@ void PlotsEditor::savePlot()
                 Surface *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->item(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<Surface*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
                 else
                     item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
@@ -860,7 +871,7 @@ void PlotsEditor::savePlot()
                     item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
                 else
-                    m_document->plotsModel()->addItem(item);
+                    m_document->plotsModel()->addPlot(item);
                 
             }
             break;

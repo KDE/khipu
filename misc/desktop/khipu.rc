@@ -36,6 +36,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
             <DefineGroup name="tools_space_operations" />
             <Action name="copy_snapshot"/>
 <!--             <Action name="export_snapshot"/> -->
+<!--             <Action name="search"/> -->
         </Menu>
     </MenuBar>
   
@@ -55,21 +56,31 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="edit_operations" />
         <Action name="add_space2d"/>
         <Action name="add_space3d"/>
+        <Separator />
+        <DefineGroup name="edit_operations" />
     </ToolBar>
     
     <ToolBar name="spaceToolBar" newline="false" noMerge="1" index="2" hidden="false">
         <text>Space ToolBar</text>
+        <Separator />
         <DefineGroup name="go_operations" />
         <Action name="go_home" />
+        <Separator />
         <DefineGroup name="view_operations" />
         <Action name="show_plots_editor"/>
         <Action name="show_space_info"/> 
         <Action name="show_plotter_options"/>
+        <Separator />
         <DefineGroup name="tools_operations" />
+        <Separator />
         <DefineGroup name="view_operations" />
         <Action name="copy_snapshot"/>
 <!--         <Action name="export_snapshot"/> -->
+    </ToolBar>
+    <ToolBar name="filterToolBar" newline="false" noMerge="1" index="3" hidden="false">
+        <text>Filter ToolBar</text>
         <Separator />
+        <DefineGroup name="tool_operations" />
     </ToolBar>
 
 </gui>

@@ -18,6 +18,7 @@ set ( khipu_SRCS
   functionlibrarymodel.cpp
   spaceinformation.cpp
   spaceoptions.cpp
+  filter.cpp
 
   spaceplotsproxymodel.cpp
   
@@ -40,6 +41,7 @@ kde4_add_ui_files ( khipu_SRCS
   spaceinformation.ui
   spaceoptions.ui
 #   spaceeditor.ui
+  filter.ui
   dashboard.ui
 )
 

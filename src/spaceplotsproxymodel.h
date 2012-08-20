@@ -21,8 +21,8 @@
 
 #include "analitzaplot/plotsproxymodel.h"
 
-class SpaceItem;
-class SpacesModel;
+class DictionaryItem;
+class DictionariesModel;
 class DataStore;
 
 //ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
@@ -34,14 +34,14 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
         SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = 0);
         virtual ~SpacePlotsFilterProxyModel();
 
-        SpaceItem* filterSpace() const { return m_space; }
-        void setFilterSpace(SpaceItem *space);
+        DictionaryItem* filterSpace() const { return m_space; }
+        void setFilterSpace(DictionaryItem *space);
 
     protected:
         virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
     private:
-        SpaceItem *m_space;
+        DictionaryItem *m_space;
         DataStore *m_dataStore; // tiene los maps: space ->items
 };
 

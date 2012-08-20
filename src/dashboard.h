@@ -25,6 +25,7 @@
 #include <QModelIndex>
 #include "plotseditor.h"
 #include "document.h"
+#include <analitzaplot/private/utils/mathutils.h>
 
 class KWidgetItemDelegate;
 class SpacesDelegate;
@@ -88,6 +89,11 @@ public:
     PlotsView3D *view3d();
 
 public slots:
+    
+    void filterByText(const QString &text); // any text on the title or description
+    void filterByDimension(Dimension dim);
+    
+    
     void goHome();
     void showDictionary();
     void showPlotsView2D();
@@ -103,8 +109,7 @@ public slots:
 private slots:
     void removeSpace(const QModelIndex & index);
     
-    void filterByText(const QString &text); // any text on the title or description
-    void filterByDimension(int radioButtonid);
+
 
 //     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
     void setCurrentSpace(const QModelIndex &index);

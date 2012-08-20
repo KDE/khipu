@@ -21,7 +21,7 @@
 #include "spaceitem.h"
 #include "spaceinformation.h"
 #include "spaceoptions.h"
-#include "spacesmodel.h"
+#include "analitzaplot/dictionariesmodel.h"
 #include "datastore.h"
 #include "spaceplotsproxymodel.h"
 #include "analitza/variables.h"
@@ -71,7 +71,7 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
 {
     if (!sourceModel()) return false;
 
-    SpaceItem *spaceItem = static_cast<SpacesModel*>(sourceModel())->item(sourceRow);
+    DictionaryItem *spaceItem = static_cast<DictionariesModel*>(sourceModel())->space(sourceRow);
     
     if (!spaceItem) return false;
     
@@ -90,7 +90,6 @@ Dashboard::Dashboard(QWidget *parent)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
-    m_widget->findIcon->setPixmap(KIcon("edit-find").pixmap(16,16));
 
     
 
@@ -131,8 +130,6 @@ void Dashboard::setDocument(DataStore* doc)
     SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
     m_widget->spacesView->setItemDelegate(delegate);
     
-    connect(m_widget->filters, SIGNAL(clicked(int)), SLOT(filterByDimension(int)));
-    connect(m_widget->filterText, SIGNAL(textChanged(QString)), SLOT(filterByText(QString)));
 
 
 //     delegate->setIconMode(true);
@@ -162,7 +159,7 @@ void Dashboard::setDocument(DataStore* doc)
     connect(m_widget->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
     connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
 
-    SpacesModel * m = m_document->spacesModel();
+    DictionariesModel * m = m_document->spacesModel();
 
     connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int,int)));
 }
@@ -200,6 +197,7 @@ void Dashboard::showDictionary()
     m_widget->views->setCurrentIndex(1);
     m_widget->plotsViewOptions->setCurrentIndex(1);
     m_widget->plotsView->setModel(m_document->plotsDictionaryModel());
+//     m_widget->plotsView->setModel(m_document->spacesModel());
 }
 
 void Dashboard::showPlotsView2D()
@@ -262,7 +260,7 @@ void Dashboard::filterByText(const QString &text)
 //     }
 }
 
-void Dashboard::filterByDimension(int radioButton)
+void Dashboard::filterByDimension(Dimension dim)
 {
     //desaparecemos los botones y editores del delegate
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
@@ -272,15 +270,15 @@ void Dashboard::filterByDimension(int radioButton)
 //     {
 //     case 0:
 //     {
-        switch (radioButton)
+        switch (dim)
         {
-        case 0:
+        case DimAll:
             m_spacesProxyModel->setFilterDimension(-1);
             break;
-        case 1:
+        case Dim2D:
             m_spacesProxyModel->setFilterDimension(2);
             break;
-        case 2:
+        case Dim3D:
             m_spacesProxyModel->setFilterDimension(3);
             break;
         }
@@ -314,7 +312,7 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
 
     emit spaceActivated(index.row());
 
-    switch (m_document->spacesModel()->item(index.row())->dimension())
+    switch (m_document->spacesModel()->space(index.row())->dimension())
     {
     case 2:
     {

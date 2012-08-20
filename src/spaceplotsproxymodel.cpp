@@ -32,8 +32,10 @@ SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
 
 }
 
-void SpacePlotsFilterProxyModel::setFilterSpace(SpaceItem* space)
+void SpacePlotsFilterProxyModel::setFilterSpace(DictionaryItem* space)
 {
+    if (!space) return;
+    
     m_space = space;
     
     invalidateFilter();
@@ -41,5 +43,5 @@ void SpacePlotsFilterProxyModel::setFilterSpace(SpaceItem* space)
 
 bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-    return m_dataStore->isMapped(m_space, m_dataStore->plotsModel()->item(sourceRow));
+    return m_dataStore->isMapped(m_space, m_dataStore->plotsModel()->plot(sourceRow));
 }
