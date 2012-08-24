@@ -43,7 +43,7 @@ DataStore::DataStore(QObject* parent)
 
     m_variables = new Analitza::Variables;
 
-    m_plotsModel = new PlotsModel(this, m_variables);
+    m_plotsModel = new PlotsModel(this);
     
 //     PlaneCurve *c = new PlaneCurve(Analitza::Expression("x->x*x"), "ee");
 // //     c->setSpace(spacesModel()->addSpace(Dim2D, "adsda", "eeeee"));

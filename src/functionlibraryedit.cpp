@@ -50,7 +50,7 @@ FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
     m_functionLibraryView->setItemsExpandable(true);
     m_functionLibraryView->setAllColumnsShowFocus(true);
 //     m_functionLibraryView->header()->hide();
-//     m_functionLibraryView->resizeColumnToContents(1);
+    m_functionLibraryView->resizeColumnToContents(1);
     m_functionLibraryView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_functionLibraryView->setMinimumWidth(350);
 
@@ -270,8 +270,11 @@ void FunctionLibraryEdit::showPopup(const QRect& rect)
 {
     m_functionLibraryView->resizeColumnToContents(1);
     m_functionLibraryView->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-    m_functionLibraryView->showColumn(0);
-    m_functionLibraryView->hideColumn(1);
+    m_functionLibraryView->header()->setResizeMode(1, QHeaderView::ResizeToContents);
+    m_functionLibraryView->header()->setResizeMode(2, QHeaderView::ResizeToContents);
+
+//     m_functionLibraryView->showColumn(0);
+//     m_functionLibraryView->hideColumn(1);
     
     const QRect screen = QApplication::desktop()->availableGeometry(this);
     Qt::LayoutDirection dir = this->layoutDirection();

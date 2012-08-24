@@ -700,7 +700,7 @@ void PlotsEditor::savePlot()
                 else
                 {
                     item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
-                    item->setSpace(m_document->spacesModel()->space(m_document->currentSpace()));
+//                     item->setSpace(m_document->spacesModel()->space(m_document->currentSpace()));
                 }
 
                 item->setName(m_widget->plotName->text());
