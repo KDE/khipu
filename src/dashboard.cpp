@@ -375,10 +375,10 @@ void Dashboard::setupWidget()
 
     /*
         m_widget->space2D->setFunctionsModel(m_proxyViewer2D);
-        m_widget->space2D->setSpacesModel(m_spacesModel);
+        m_widget->space2D->setDictionariesModel(m_spacesModel);
 
         m_widget->space3D->setFunctionsModel(m_proxyViewer3D);
-        m_widget->space3D->setSpacesModel(m_spacesModel);
+        m_widget->space3D->setDictionariesModel(m_spacesModel);
 
 
         connect(m_widget->addSpace2D, SIGNAL(clicked()), SLOT(addSpace2D()));
@@ -411,7 +411,7 @@ void Dashboard::setupWidget()
         connect(m_widget->filterTextFunctions, SIGNAL(textChanged(QString)), SLOT(setFilterText(QString)));
 
 
-        connect(m_widget->spaces, SIGNAL(spaceShown( SpaceItem)), SLOT(showSpace( SpaceItem)));
+        connect(m_widget->spaces, SIGNAL(spaceShown( DictionaryItem)), SLOT(showSpace( DictionaryItem)));
 
         connect(m_widget->functions, SIGNAL(functionOnSpaceShown(QUuid)), SLOT(showFunctionOnSpace(QUuid)));
 

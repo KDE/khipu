@@ -35,7 +35,7 @@ class KUrl;
 class KToggleAction;
 
 class FunctionsModel;
-class DictionariesModel;
+class SpacesModel;
 
 class Dashboard;
 

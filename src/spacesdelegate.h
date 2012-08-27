@@ -26,7 +26,7 @@
 #include "plotseditor.h"
 #include "document.h"
 
-class DictionaryItem;
+class SpaceItem;
 class QLabel;
 class PlotsView3D;
 class PlotsView2D;

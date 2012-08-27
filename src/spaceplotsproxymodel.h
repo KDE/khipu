@@ -22,7 +22,7 @@
 #include "analitzaplot/plotsproxymodel.h"
 
 class DictionaryItem;
-class DictionariesModel;
+class SpacesModel;
 class DataStore;
 
 //ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
