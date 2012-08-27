@@ -79,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_filter, SIGNAL(filterByDimension(Dimension)), m_dashboard, SLOT(filterByDimension(Dimension)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     
-    toolBar("filterToolBar")->addWidget(m_filter);
+    toolBar("mainToolBar")->addWidget(m_filter);
 
     setCentralWidget(m_dashboard);
     setupToolBars();
@@ -121,7 +121,7 @@ void MainWindow::setupDocks()
     m_plotsBuilderDock = new QDockWidget(i18n("Shortcuts"), this);
     m_plotsBuilderDock->setWidget(plotsBuilder); // plotsbuilder debe ser miembro
     m_plotsBuilderDock->setObjectName("dsfs");
-    m_plotsBuilderDock->setFloating(false);
+//     m_plotsBuilderDock->setFloating(false);
     m_plotsBuilderDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_plotsBuilderDock->hide();
@@ -141,6 +141,9 @@ void MainWindow::setupDocks()
     
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
+//     m_spacePlotsDock->setFloating(false);
+    m_spacePlotsDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    m_spacePlotsDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
     connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
@@ -169,8 +172,12 @@ void MainWindow::setupDocks()
 
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
-    addDockWidget(Qt::RightDockWidgetArea, m_spaceInfoDock);
-    addDockWidget(Qt::RightDockWidgetArea, m_spaceOptionsDock);
+    addDockWidget(Qt::LeftDockWidgetArea, m_spaceOptionsDock);
+    addDockWidget(Qt::LeftDockWidgetArea, m_spaceInfoDock);
+    
+    tabifyDockWidget(m_plotsBuilderDock, m_spacePlotsDock);
+    tabifyDockWidget(m_spacePlotsDock, m_spaceOptionsDock);
+    tabifyDockWidget(m_spaceOptionsDock, m_spaceInfoDock);
 }
 
 void MainWindow::setupActions()
@@ -243,7 +250,7 @@ void MainWindow::setupActions()
     //tools dashboard
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(removeCurrentSpace()))->setVisible(false);;
     //tools space
-    createAction("copy_snapshot", i18n("&Copy Space Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
+    createAction("copy_snapshot", i18n("&Take Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
 //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(fooSlot()), actionCollection());
@@ -355,8 +362,8 @@ void MainWindow::activateDashboardUi()
 //     action("export_snapshot")->setVisible(false);
     
     //toolbars
-    toolBar("mainToolBar")->show();
-    toolBar("spaceToolBar")->hide();
+//     toolBar("mainToolBar")->show();
+//     toolBar("spaceToolBar")->hide();
 
     //docks
     // primero oculto los widgets sino el size de los que voy a ocultar interfieren y la mainwnd se muestra muy grande
@@ -391,8 +398,8 @@ void MainWindow::activateSpaceUi()
 //     action("export_snapshot")->setVisible(true);
     
     //toolbars
-    toolBar("mainToolBar")->hide();
-    toolBar("spaceToolBar")->show();
+//     toolBar("mainToolBar")->hide();
+//     toolBar("spaceToolBar")->show();
 
     //docks
     //lo mismo ... primero hides luego show
@@ -447,8 +454,8 @@ void MainWindow::setVisibleDictionary()
 //         action("export_snapshot")->setVisible(false);
         
         //toolbars
-        toolBar("mainToolBar")->show();
-        toolBar("spaceToolBar")->show();
+//         toolBar("mainToolBar")->show();
+//         toolBar("spaceToolBar")->show();
 
         //docks
         //lo mismo ... primero hides luego show

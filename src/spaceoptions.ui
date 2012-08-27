@@ -35,7 +35,7 @@
    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
   </property>
   <property name="windowTitle">
-   <string>Diagram Appearance</string>
+   <string>Diagram</string>
   </property>
   <widget class="QWidget" name="mainContainer">
    <layout class="QVBoxLayout" name="verticalLayout_18">

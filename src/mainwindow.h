@@ -79,7 +79,6 @@ private slots:
     void buildCylindricalGraphSurface();
     void buildSphericalGraphSurface();
     
-    
     void updateTittleWhenChangeDocState();
     void updateTittleWhenOpenSaveDoc();
 

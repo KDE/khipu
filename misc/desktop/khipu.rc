@@ -46,9 +46,9 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
   </Menu>
     <ToolBar name="mainToolBar" newline="false" noMerge="1"  index="0" hidden="false">
         <text>Main Toolbar</text>
-        <Action name="file_open" />
-        <Action name="file_save" />  
-        <Separator />
+<!--         <Action name="file_open" /> -->
+<!--         <Action name="file_save" />   -->
+<!--         <Separator /> -->
         <DefineGroup name="view_operations" />
         <Action name="show_plotsdictionary"/>
         <Action name="show_plotsbuilder"/>
@@ -56,12 +56,12 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="edit_operations" />
         <Action name="add_space2d"/>
         <Action name="add_space3d"/>
-        <Separator />
-        <DefineGroup name="edit_operations" />
-    </ToolBar>
+<!--         <Separator /> -->
+<!--         <DefineGroup name="edit_operations" /> -->
+<!--     </ToolBar> -->
     
-    <ToolBar name="spaceToolBar" newline="false" noMerge="1" index="2" hidden="false">
-        <text>Space ToolBar</text>
+<!--     <ToolBar name="spaceToolBar" newline="false" noMerge="1" index="2" hidden="false"> -->
+<!--         <text>Space ToolBar</text> -->
         <Separator />
         <DefineGroup name="go_operations" />
         <Action name="go_home" />
@@ -76,11 +76,11 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <DefineGroup name="view_operations" />
         <Action name="copy_snapshot"/>
 <!--         <Action name="export_snapshot"/> -->
-    </ToolBar>
-    <ToolBar name="filterToolBar" newline="false" noMerge="1" index="3" hidden="false">
-        <text>Filter ToolBar</text>
-        <Separator />
-        <DefineGroup name="tool_operations" />
+<!--     </ToolBar> -->
+<!--     <ToolBar name="filterToolBar" newline="false" noMerge="1" index="3" hidden="false"> -->
+<!--         <text>Filter ToolBar</text> -->
+<!--         <Separator /> -->
+<!--         <DefineGroup name="tool_operations" /> -->
     </ToolBar>
 
 </gui>
