@@ -20,10 +20,10 @@
 
 #include "analitzaplot/dictionariesmodel.h"
 #include "spaceplotsproxymodel.h"
-#include <../analitza/analitzaplot/plotsdictionariesmanager.h>
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsdictionarymodel.h>
+#include <analitzaplot/plotsdictionariesmanager.h>
 #include <analitza/variables.h>
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>
