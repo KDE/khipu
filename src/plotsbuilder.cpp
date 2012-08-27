@@ -50,7 +50,7 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
     setTypeIcon(CartesianGraphCurve, "newfunction");
     setTypeIcon(CartesianImplicitCurve, "newimplicit");
     setTypeIcon(CartesianParametricCurve2D, "newparametric");
-    setTypeIcon(PolarGraphCurve, "draw-spiral");
+    setTypeIcon(PolarGraphCurve, "newpolar");
     setTypeIcon(CartesianParametricCurve3D, "newparametric3d");
     setTypeIcon(CartesianGraphSurface, "newfunction3d");
     setTypeIcon(CartesianImplicitSurface, "draw-square-inverted-corners");

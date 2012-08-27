@@ -205,22 +205,22 @@ void MainWindow::setupActions()
 
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
-    createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "accessories-dictionary", Qt::CTRL + Qt::Key_W, this, 
+    createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "functionhelp", Qt::CTRL + Qt::Key_W, this, 
                  SLOT(setVisibleDictionary()));
 
     //view - space
 //     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    m_spacePlotsDock->toggleViewAction()->setIcon(KIcon("address-book-new"));
+    m_spacePlotsDock->toggleViewAction()->setIcon(KIcon("editplots"));
     m_spacePlotsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
     actionCollection()->addAction("show_plots_editor", m_spacePlotsDock->toggleViewAction());    
     
 //     createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    m_spaceInfoDock->toggleViewAction()->setIcon(KIcon("document-properties"));
+    m_spaceInfoDock->toggleViewAction()->setIcon(KIcon("dialog-information"));
     m_spaceInfoDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
     actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
     
 //     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("coord-settings"));
+    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("coords"));
     m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
     actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());       
     
