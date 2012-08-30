@@ -20,16 +20,15 @@
 #include "datastore.h"
 #include <analitzaplot/plotsmodel.h>
 
-SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(DataStore *ds, QObject* parent): PlotsProxyModel(parent)
-, m_dataStore(ds)
-{
-    
-}
+Q_DECLARE_METATYPE(PlotItem*);
+
+SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(DataStore *ds, QObject* parent)
+    : PlotsProxyModel(parent)
+    , m_dataStore(ds)
+{}
 
 SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
-{
-
-}
+{}
 
 void SpacePlotsFilterProxyModel::setFilterSpace(DictionaryItem* space)
 {
@@ -42,5 +41,6 @@ void SpacePlotsFilterProxyModel::setFilterSpace(DictionaryItem* space)
 
 bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-    return m_dataStore->isMapped(m_space, m_dataStore->plotsModel()->plot(sourceRow));
+    PlotItem* item = sourceModel()->index(sourceRow, 0, sourceParent).data(PlotsModel::PlotRole).value<PlotItem*>();
+    return m_dataStore->isMapped(m_space, item);
 }

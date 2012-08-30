@@ -16,7 +16,6 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "plotseditor.h"
 
 #include <KLocale>
@@ -46,7 +45,7 @@
 #include <analitzaplot/spacecurve.h>
 #include <analitzaplot/surface.h>
 
-
+Q_DECLARE_METATYPE(PlotItem*);
 
 ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 {
@@ -375,7 +374,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     if (m_widget->plotsView->selectionModel()->hasSelection())
     {
-        PlotItem *item = m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row());
+        QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
+        PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
 
         if (dynamic_cast<PlaneCurve*>(item))
         {
@@ -696,7 +696,7 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                 {
                     item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
@@ -722,9 +722,8 @@ void PlotsEditor::savePlot()
             if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
             {
                 Surface *item = 0;
-
                 if (isEditing)
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                     item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
 
@@ -749,7 +748,7 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                     item = new PlaneCurve(m_widget->f->expression());
 
@@ -775,7 +774,7 @@ void PlotsEditor::savePlot()
                 Surface *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                     item = new Surface(m_widget->f->expression());
 
@@ -802,7 +801,7 @@ void PlotsEditor::savePlot()
                 PlaneCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                     item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
                             m_widget->f->expression().toString()+", "+
@@ -830,7 +829,7 @@ void PlotsEditor::savePlot()
                 SpaceCurve *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<SpaceCurve*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<SpaceCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                     item  = new SpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());
@@ -857,7 +856,7 @@ void PlotsEditor::savePlot()
                 Surface *item = 0;
 
                 if (isEditing)
-                    item = dynamic_cast<Surface*>(m_document->plotsModel()->plot(m_document->currentPlots()->mapToSource(m_widget->plotsView->selectionModel()->currentIndex()).row()));
+                    item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
                     item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));

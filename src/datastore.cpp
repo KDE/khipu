@@ -28,6 +28,8 @@
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>
 
+Q_DECLARE_METATYPE(PlotItem*);
+
 DataStore::DataStore(QObject* parent)
     : QObject(parent)
     , m_currentSpace(-1)
@@ -35,14 +37,8 @@ DataStore::DataStore(QObject* parent)
 //     m_plotsDictionaryModel = new PlotsDictionaryModel(this);
 //     m_plotsDictionaryModel = getDictionary(this); //load with a thread
 
-
-
-
-
     m_spacesModel = new DictionariesModel(this);
-
     m_variables = new Analitza::Variables;
-
     m_plotsModel = new PlotsModel(this);
     
 //     PlaneCurve *c = new PlaneCurve(Analitza::Expression("x->x*x"), "ee");
@@ -53,8 +49,6 @@ DataStore::DataStore(QObject* parent)
     
     m_plotsDictionaryModel = dm->model();
     
-    //
-
     //EL ORDEN DE los  connect IMPORTA
 
     //primero nuestro datastore debe saber cual es el currentspace
@@ -118,11 +112,12 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
     //TODO assert si el current forma un buen item
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
-    m_maps.insertMulti(m_spacesModel->space(m_currentSpace), m_plotsModel->plot(start));
+    PlotItem* item = m_plotsModel->index(start, 0, parent).data(PlotsModel::PlotRole).value<PlotItem*>();
+    m_maps.insertMulti(m_spacesModel->space(m_currentSpace), item);
 
     int i = 0;
     
-    switch (m_plotsModel->plot(start)->coordinateSystem())
+    switch (item->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
@@ -133,13 +128,11 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
 {
-    if (!curr.isValid()) return ;
+    if (!curr.isValid())
+        return;
     
-    int start = curr.row();
-
     int i = 0;
-    
-    switch (m_plotsModel->plot(start)->coordinateSystem())
+    switch (curr.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
     {
         //TODO for 3d
         case Cartesian: i = 1; break;
@@ -151,11 +144,9 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
 
 void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
 {
-    int start = topLeft.row();
-
     int i = 0;
     
-    switch (m_plotsModel->plot(start)->coordinateSystem())
+    switch (topLeft.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
@@ -185,15 +176,12 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
 //     m_maps.remove(m_maps.key(m_plotsModel->item(start)));
 // como es multimap se debe hacer una busqueda lineal
 
-
-    int realrow = m_spacePlotsFilterProxyModel->mapToSource(proxyindex).row();
-
 //     qDebug() << realrow << proxyindex;
     QMap<DictionaryItem*, PlotItem*>::iterator i = m_maps.begin();
 
     while (i != m_maps.end())
     {
-        if (i.value() == m_plotsModel->plot(realrow))
+        if (i.value() == proxyindex.data(PlotsModel::PlotRole).value<PlotItem*>())
         {
             m_maps.erase(i);
             break;
@@ -201,5 +189,5 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         ++i;
     }
 
-    m_plotsModel->removePlot(realrow);
+    m_spacePlotsFilterProxyModel->removeRow(proxyindex.row());
 }
