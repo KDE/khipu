@@ -49,7 +49,7 @@
 
 #include "spacesdelegate.h"
 
-
+#include "ui_dictionariesviewer.h"
 
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -90,8 +90,13 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
 
+    ///
+    m_dviewer = new Ui::DictionariesViewer;
     
-
+    QWidget *item=new QWidget(this);
+    m_dviewer->setupUi(item);
+    addWidget(item);
+    setCurrentIndex(count()-1);
 }
 
 Dashboard::~Dashboard()
@@ -101,11 +106,23 @@ Dashboard::~Dashboard()
 // 
 //     delete d;
 //     
+delete m_dviewer;
     delete m_widget;
 }
 
 void Dashboard::setDocument(DataStore* doc)
 {
+    QSortFilterProxyModel *f=new QSortFilterProxyModel(this);
+    f->setSourceModel(doc->plotsDictionaryModel());
+    m_dviewer->kfilterproxysearchline->setProxy(f);
+    m_dviewer->plotsView->setModel(f);
+    
+    
+    
+    ///
+    
+    
+    
     m_document = doc;
 
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
@@ -365,8 +382,6 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
     m_document->currentSelectionModel()->setCurrentIndex(m_document->currentPlots()->index(start,0), QItemSelectionModel::SelectCurrent );
 
 }
-
-
 
 
 void Dashboard::setupWidget()
