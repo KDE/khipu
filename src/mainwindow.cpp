@@ -417,8 +417,8 @@ void MainWindow::copySnapshot()
 
     switch (space->dimension())
     {
-        case 2: m_dashboard->view2d()->snapshotToClipboard(); break;
-        case 3: m_dashboard->view3d()->snapshotToClipboard(); break;
+        case Dim2D: m_dashboard->view2d()->snapshotToClipboard(); break;
+        case Dim3D: m_dashboard->view3d()->snapshotToClipboard(); break;
     }
     
     statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
@@ -509,8 +509,10 @@ void MainWindow::goHome()
 
         switch (space->dimension())
         {
-            case 2: thumbnail = QPixmap::grabWidget(m_dashboard->view2d()); break;
-            case 3:
+            case Dim2D:
+                thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
+                break;
+            case Dim3D:
             {
                 m_dashboard->view3d()->updateGL();
                 m_dashboard->view3d()->setFocus();
