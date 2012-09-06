@@ -26,10 +26,11 @@
 #include "analitza/variables.h"
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/plotsdictionarymodel.h>
+#include <analitzaplot/dictionaryitem.h>
 #include <QDebug>
 #include <QApplication>
 #include <KRichTextWidget>
-///
+
 #include <QtGui/QAbstractItemView>
 #include <QtGui/QListView>
 #include <QtGui/QStringListModel>
@@ -267,7 +268,7 @@ void SpacesDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, co
         m_currentEditingIndex = QModelIndex();
         m_isEditing = false;
 
-    static_cast<DictionariesModel*>(static_cast<SpacesFilterProxyModel*>(model)->sourceModel())->setData(index, static_cast<LineEdit*>(editor)->text());
+    static_cast<SpacesFilterProxyModel*>(model)->sourceModel()->setData(index, static_cast<LineEdit*>(editor)->text());
     
 //     
 //     m_currentEditingIndex = QModelIndex();
@@ -275,8 +276,7 @@ void SpacesDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, co
 }
 
 
-QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option,
-                                       const QModelIndex &index) const
+QSize SpacesDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(option);
     Q_UNUSED(index);

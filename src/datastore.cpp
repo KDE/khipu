@@ -24,6 +24,7 @@
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsdictionarymodel.h>
 #include <analitzaplot/plotsdictionariesmanager.h>
+#include <analitzaplot/dictionaryitem.h>
 #include <analitza/variables.h>
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>

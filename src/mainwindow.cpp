@@ -22,6 +22,7 @@
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsview2d.h>
 #include <analitzaplot/plotsview3d.h>
+#include <analitzaplot/dictionaryitem.h>
 #include <analitza/expression.h>
 
 #include <KDE/KApplication>

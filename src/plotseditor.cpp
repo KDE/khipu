@@ -41,9 +41,10 @@
 #include <analitzaplot/functiongraph.h>
 #include <analitzaplot/planecurve.h>
 #include "analitzaplot/plotsmodel.h"
-#include "ui_plotseditor.h"
 #include <analitzaplot/spacecurve.h>
 #include <analitzaplot/surface.h>
+#include <analitzaplot/dictionaryitem.h>
+#include "ui_plotseditor.h"
 
 Q_DECLARE_METATYPE(PlotItem*);
 

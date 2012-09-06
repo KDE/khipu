@@ -26,6 +26,7 @@
 #include "analitza/variables.h"
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/plotsdictionarymodel.h>
+#include <analitzaplot/dictionaryitem.h>
 #include "ui_dashboard.h"
 #include <QDebug>
 
