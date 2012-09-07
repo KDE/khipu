@@ -796,7 +796,7 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianParametricCurve2D:
         {
-            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
                                     m_widget->g->expression().toString()+"}")), errors))            
             {
                 PlaneCurve *item = 0;
@@ -804,7 +804,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
-                    item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                    item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+
                             m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+"}")));
 
@@ -813,7 +813,7 @@ void PlotsEditor::savePlot()
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if (isEditing)
-                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+
+                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+
                                                     m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+"}")));
                 else
@@ -824,7 +824,7 @@ void PlotsEditor::savePlot()
         }
         case PlotsBuilder::CartesianParametricCurve3D:
         {
-            if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+            if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
             {
                 SpaceCurve *item = 0;
@@ -832,7 +832,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item = dynamic_cast<SpaceCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
-                    item  = new SpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item  = new SpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());
 
                 item->setName(m_widget->plotName->text());
@@ -840,7 +840,7 @@ void PlotsEditor::savePlot()
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if (isEditing)
-                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
                 else
                     m_document->plotsModel()->addPlot(item);
@@ -851,7 +851,7 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianParametricSurface:
         {
-            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
                                 m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
             {
                 Surface *item = 0;
@@ -859,7 +859,7 @@ void PlotsEditor::savePlot()
                 if (isEditing)
                     item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
                 else
-                    item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
                             m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
 
                 item->setName(m_widget->plotName->text());
@@ -868,7 +868,7 @@ void PlotsEditor::savePlot()
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                 if (isEditing)
-                    item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+"vector{"+m_widget->f->expression().toString()+", "+
+                    item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
                                                     m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
                 else
                     m_document->plotsModel()->addPlot(item);
