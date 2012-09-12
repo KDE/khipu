@@ -25,7 +25,7 @@
 #include <QModelIndex>
 #include "plotseditor.h"
 #include "document.h"
-#include <analitzaplot/private/utils/mathutils.h>
+#include <analitzaplot/plottingenums.h>
 
 class KWidgetItemDelegate;
 class SpacesDelegate;
@@ -35,10 +35,6 @@ class PlotsView2D;
 class QTreeView;
 class Document;
 
-class QSortFilterProxyModel;
-class QItemSelection;
-class DashboardWidget;
-
 namespace Ui
 {
     class DashboardWidget;
@@ -46,6 +42,7 @@ namespace Ui
 }
 
 #include <QtGui/QListView>
+#include <QtGui/QSortFilterProxyModel>
 #include <QSortFilterProxyModel>
 
 class SpacesFilterProxyModel : public QSortFilterProxyModel

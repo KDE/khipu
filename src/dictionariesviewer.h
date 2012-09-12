@@ -25,7 +25,7 @@
 #include <QModelIndex>
 #include "plotseditor.h"
 #include "document.h"
-#include <analitzaplot/private/utils/mathutils.h>
+#include <analitzaplot/plottingenums.h>
 
 class PlotsDictionariesModel;
 class KWidgetItemDelegate;

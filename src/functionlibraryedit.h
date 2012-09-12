@@ -23,7 +23,7 @@
 #include <KLineEdit>
 #include <QLabel>
 #include <QTreeView>
-#include <analitzaplot/private/utils/mathutils.h>
+#include <analitzaplot/plottingenums.h>
 
 class QKeyEvent;
 

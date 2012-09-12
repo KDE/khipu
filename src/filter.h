@@ -23,7 +23,7 @@
 #include <QDockWidget>
 #include <QModelIndex>
 #include "dashboard.h"
-#include <analitzaplot/private/utils/mathutils.h>
+#include <analitzaplot/plottingenums.h>
 
 namespace Ui
 {
