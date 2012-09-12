@@ -692,7 +692,8 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianGraphCurve:
         case PlotsBuilder::PolarGraphCurve:
         {
-            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), errors))
+            errors = PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
+            if (errors.isEmpty())
             {
                 PlaneCurve *item = 0;
 
@@ -720,7 +721,8 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CylindricalGraphSurface:
         case PlotsBuilder::SphericalGraphSurface:
         {
-            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), errors))
+            errors = Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
+            if (errors.isEmpty())
             {
                 Surface *item = 0;
                 if (isEditing)
@@ -744,7 +746,8 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianImplicitCurve:
         {
-            if (PlaneCurve::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
+            errors = PlaneCurve::canDraw(m_widget->f->expression());
+            if (errors.isEmpty() && m_widget->f->expression().isEquation())
             {
                 PlaneCurve *item = 0;
 
@@ -770,7 +773,8 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianImplicitSurface:
         {
-            if (Surface::canDraw(m_widget->f->expression(), errors) && m_widget->f->expression().isEquation())
+            errors = Surface::canDraw(m_widget->f->expression());
+            if (errors.isEmpty() && m_widget->f->expression().isEquation())
             {
                 Surface *item = 0;
 
@@ -796,8 +800,9 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianParametricCurve2D:
         {
-            if (PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+"}")), errors))            
+            errors = PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
+                                    m_widget->g->expression().toString()+"}")));
+            if (errors.isEmpty())
             {
                 PlaneCurve *item = 0;
 
@@ -824,8 +829,9 @@ void PlotsEditor::savePlot()
         }
         case PlotsBuilder::CartesianParametricCurve3D:
         {
-            if (SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
+            errors = SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
+                                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
+            if (errors.isEmpty())
             {
                 SpaceCurve *item = 0;
 
@@ -851,8 +857,9 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianParametricSurface:
         {
-            if (Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
-                                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), errors))
+            errors = Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
+                                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
+            if (errors.isEmpty())
             {
                 Surface *item = 0;
 
