@@ -161,11 +161,8 @@ void MainWindow::setupDocks()
     connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
     connect(m_spaceOptionsDock, SIGNAL(setYAxisLabel(QString)), m_dashboard->view2d(), SLOT(setYAxisLabel(QString)));
     connect(m_spaceOptionsDock, SIGNAL(updateTickScale(QString,qreal,int,int)), m_dashboard->view2d(), SLOT(updateTickScale(QString,qreal,int,int)));
-    connect(m_spaceOptionsDock, SIGNAL(setUseTickSymbols(bool)), m_dashboard->view2d(), SLOT(setUseTickSymbols(bool)));
-    connect(m_spaceOptionsDock, SIGNAL(showHTicks(bool)), m_dashboard->view2d(), SLOT(showHTicks(bool)));
-    connect(m_spaceOptionsDock, SIGNAL(showVTicks(bool)), m_dashboard->view2d(), SLOT(showVTicks(bool)));
-    connect(m_spaceOptionsDock, SIGNAL(showHAxes(bool)), m_dashboard->view2d(), SLOT(showHAxes(bool)));
-    connect(m_spaceOptionsDock, SIGNAL(showVAxes(bool)), m_dashboard->view2d(), SLOT(showVAxes(bool)));
+    connect(m_spaceOptionsDock, SIGNAL(ticksShown(QFlags<Qt::Orientation>)), m_dashboard->view2d(), SLOT(setTicksShown(QFlags<Qt::Orientation>)));
+    connect(m_spaceOptionsDock, SIGNAL(axesShown(QFlags<Qt::Orientation>)), m_dashboard->view2d(), SLOT(setAxesShown(QFlags<Qt::Orientation>)));
     //3d view
     connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));

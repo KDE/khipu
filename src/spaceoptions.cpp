@@ -18,7 +18,7 @@
 
 #include "spaceoptions.h"
 
-#include "ui_spaceoptions.h"
+#include "src/ui_spaceoptions.h"
 
 #include <cmath>
 #include <kcolorutils.h>
@@ -177,12 +177,13 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     connect(m_widget->backgroundColor, SIGNAL(activated(QColor)), SIGNAL(updateGridColor(QColor)));
     connect(m_widget->horizontalLabel, SIGNAL(textChanged(QString)), SIGNAL(setXAxisLabel(QString)));
     connect(m_widget->verticalLabel, SIGNAL(textChanged(QString)), SIGNAL(setYAxisLabel(QString)));
-    connect(m_widget->scale, SIGNAL(currentIndexChanged(int)), SLOT(updateScale(int)));
-    connect(m_widget->useSymbols, SIGNAL(toggled(bool)), SIGNAL(setUseTickSymbols(bool)));
-    connect(m_widget->horizontalMarks, SIGNAL(toggled(bool)), SIGNAL(showHTicks(bool)));
-    connect(m_widget->verticalMarks, SIGNAL(toggled(bool)), SIGNAL(showVTicks(bool)));
-    connect(m_widget->showXAxis, SIGNAL(toggled(bool)), SIGNAL(showHAxes(bool)));
-    connect(m_widget->showYAxis, SIGNAL(toggled(bool)), SIGNAL(showVAxes(bool)));
+    connect(m_widget->scale, SIGNAL(currentIndexChanged(int)), SLOT(updateScale()));
+    connect(m_widget->useSymbols, SIGNAL(toggled(bool)), SLOT(updateScale()));
+
+    connect(m_widget->horizontalMarks, SIGNAL(toggled(bool)), SLOT(updateTicks()));
+    connect(m_widget->verticalMarks, SIGNAL(toggled(bool)), SLOT(updateTicks()));
+    connect(m_widget->showXAxis, SIGNAL(toggled(bool)), SLOT(updateAxes()));
+    connect(m_widget->showYAxis, SIGNAL(toggled(bool)), SLOT(updateAxes()));
     
     //3d
     connect(m_widget->showAxis, SIGNAL(toggled(bool)), SIGNAL(axisIsDrawn(bool)));
@@ -196,13 +197,10 @@ SpaceOptions::~SpaceOptions()
 }
 
 void SpaceOptions::reset()
-{
-
-}
+{}
 
 void SpaceOptions::setGridStyleIndex(int i)
 {
-//     qDebug() << "i" << i;
     m_widget->gridStyle->setCurrentIndex(i);
 }
 
@@ -211,8 +209,9 @@ void SpaceOptions::setDimension(int d)
     m_widget->options->setCurrentIndex(d-2); //-2 porque si dim es 2 se muestra las optiones cero (para el view2d)
 }
 
-void SpaceOptions::updateScale(int i)
+void SpaceOptions::updateScale()
 {
+    int i = m_widget->scale->currentIndex();
     QVariantMap vmap = m_widget->scale->itemData(i, Qt::UserRole).toMap();
 
     emit updateTickScale(vmap["symbol"].toString(),
@@ -223,20 +222,13 @@ void SpaceOptions::updateScale(int i)
     // si se eliji un valor diferete de 1 aparece la pcion de usar simbolos o usar los valores
     // es decir si la opcion elegida es 1 (que es el ultimo item del combo) se oculta el check de simbolos
     //caso contrario se muestra
-    if (i == m_widget->scale->count()-1) // si el valor elejido es uno se oculata la opcion de usar simbolos
-        m_widget->useSymbols->hide();
-    else 
-        m_widget->useSymbols->show();
+    m_widget->useSymbols->setVisible(i != m_widget->scale->count()-1);
 }
 
 void SpaceOptions::setGridStyle(int i)
 {
     emit updateGridStyle(i);
-    
-    if (i == 0) // none ... no mostrar color del gridStyle
-        m_widget->backgroundColor->hide();
-    else
-        m_widget->backgroundColor->show();
+    m_widget->backgroundColor->setVisible(i!=0);
 }
 
 void SpaceOptions::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
@@ -255,5 +247,22 @@ void SpaceOptions::addTickEntry(QString tick, QString tickScaleSymbol, qreal tic
     m_widget->scale->addItem(tick, vmap);
 }
 
-    
-    
+void SpaceOptions::updateAxes()
+{
+    QFlags<Qt::Orientation> o;
+    if(m_widget->showXAxis->checkState()==Qt::Checked)
+        o|=Qt::Horizontal;
+    if(m_widget->showYAxis->checkState()==Qt::Checked)
+        o|=Qt::Vertical;
+    emit axesShown(o);
+}
+
+void SpaceOptions::updateTicks()
+{
+    QFlags<Qt::Orientation> o;
+    if(m_widget->horizontalMarks->checkState()==Qt::Checked)
+        o|=Qt::Horizontal;
+    if(m_widget->verticalMarks->checkState()==Qt::Checked)
+        o|=Qt::Vertical;
+    emit ticksShown(o);
+}

@@ -16,8 +16,8 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef KEOMATH_VIEWER2D_H_OPTS
-#define KEOMATH_VIEWER2D_H_OPTS
+#ifndef SPACEOPTIONS_H
+#define SPACEOPTIONS_H
 
 #include <QtGui/QWidget>
 #include <QDockWidget>
@@ -40,6 +40,8 @@ public slots:
     void reset();
     void setGridStyleIndex(int i);
     void setDimension(int d); // d muestra opciones para el view2d 3 para el 3d
+    void updateTicks();
+    void updateAxes();
 
 signals: //TODO better names for signals
     void updateGridStyle(int i);
@@ -47,11 +49,8 @@ signals: //TODO better names for signals
     void setXAxisLabel(const QString &label);
     void setYAxisLabel(const QString &label);
     void updateTickScale(QString m_tickScaleSymbol, qreal m_tickScaleSymbolValue, int m_tickScaleNumerator, int m_tickScaleDenominator);
-    void setUseTickSymbols(bool flag);
-    void showHTicks(bool flag);
-    void showVTicks(bool flag);
-    void showHAxes(bool flag);
-    void showVAxes(bool flag);
+    void ticksShown(QFlags<Qt::Orientation> o);
+    void axesShown(QFlags<Qt::Orientation> o);
     
     //3d
     void gridIsDrawn(bool);
@@ -59,7 +58,7 @@ signals: //TODO better names for signals
     void sceneResized(int);
 
 private slots:
-    void updateScale(int i);
+    void updateScale();
     void setGridStyle(int i);
     
 private:
