@@ -77,7 +77,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_filter = new Filter(this);
     
-    connect(m_filter, SIGNAL(filterByDimension(Dimension)), m_dashboard, SLOT(filterByDimension(Dimension)));
+    connect(m_filter, SIGNAL(filterByDimension(Dimensions)), m_dashboard, SLOT(filterByDimension(Dimensions)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     
     toolBar("mainToolBar")->addWidget(m_filter);

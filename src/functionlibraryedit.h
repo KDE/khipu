@@ -44,7 +44,7 @@ public:
     void setModel(PlotsDictionariesModel *model);
 
 signals:
-    void selectedFunction(const QString & newExp, int dimension, const QString &name, const QStringList &bvars);
+    void selectedFunction(const QString & newExp, Dimensions dimension, const QString &name, const QStringList &bvars);
 
 protected:
     bool eventFilter(QObject *o, QEvent *e);

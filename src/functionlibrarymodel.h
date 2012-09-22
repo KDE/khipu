@@ -21,6 +21,7 @@
 #define KEOMATH_FUNCTIONLIBRARYMODEL_H
 
 #include <QtCore/QAbstractTableModel>
+#include <analitzaplot/plottingenums.h>
 #include <QSortFilterProxyModel>
 
 #include <QStringList>
@@ -29,7 +30,7 @@ class FunctionLibraryItem
 {
 public:
     FunctionLibraryItem();
-    FunctionLibraryItem(const QString &name, const QString &lambda, int dimension, const QStringList &arguments);
+    FunctionLibraryItem(const QString &name, const QString &lambda, Dimensions dimension, const QStringList &arguments);
     FunctionLibraryItem(const FunctionLibraryItem &functionLibraryItem);
     virtual ~FunctionLibraryItem();
 
@@ -41,7 +42,7 @@ public:
     {
         return m_lambda;
     }
-    int dimension() const
+    Dimensions dimension() const
     {
         return m_dimension;
     }
@@ -53,7 +54,7 @@ public:
 private:
     QString m_name;
     QString m_lambda;
-    int m_dimension;
+    Dimensions m_dimension;
     QStringList m_arguments;
 };
 
@@ -95,18 +96,18 @@ public:
     }
     void setFilterArguments(const QStringList &args);
 
-    int filterDimension() const
+    Dimensions filterDimension() const
     {
         return m_dimension;
     }
-    void setFilterDimension(int dimension);
+    void setFilterDimension(Dimensions dimension);
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
     QStringList m_args;
-    int m_dimension; 
+    Dimensions m_dimension; 
 };
 
 

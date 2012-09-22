@@ -91,7 +91,7 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 
     QString indexName = m_proxyModel->index(index.row(), 0).data().toString();
     QString indexLambda = m_proxyModel->index(index.row(), 1).data().toString();
-    int indexDimension = m_proxyModel->index(index.row(), 2).data().toInt();
+    Dimensions indexDimension = Dimension(m_proxyModel->index(index.row(), 2).data().toInt());
     QStringList indexArguments = m_proxyModel->index(index.row(), 3).data().toStringList();
 
     QString finalLambda;

@@ -52,15 +52,14 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
     public:
         SpacesFilterProxyModel(QObject *parent = 0);
 
-        int filterDimension() const { return m_dimension; }
-        void setFilterDimension(int dimension);
+        void setFilterDimension(Dimensions dimension);
 
     protected:
         bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 ////        bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
     private:
-        int m_dimension; // 2 => 2D, 3 => 3D, -1 => ALL
+        Dimensions m_dimension;
 };
 
 
@@ -89,7 +88,7 @@ public:
 public slots:
     
     void filterByText(const QString &text); // any text on the title or description
-    void filterByDimension(Dimension dim);
+    void filterByDimension(Dimensions dim);
     
     
     void goHome();

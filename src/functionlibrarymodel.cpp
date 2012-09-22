@@ -31,7 +31,7 @@ FunctionLibraryItem::FunctionLibraryItem()
 
 }
 
-FunctionLibraryItem::FunctionLibraryItem(const QString &name, const QString &lambda, int dimension, const QStringList &arguments)
+FunctionLibraryItem::FunctionLibraryItem(const QString& name, const QString& lambda, Dimensions dimension, const QStringList& arguments)
     : m_dimension(dimension)
     , m_name(name)
     , m_lambda(lambda)
@@ -97,7 +97,7 @@ bool FunctionLibraryModel::loadData()
 
     QString name;
     QString lambda;
-    int dimension =  -1;
+    Dimensions dimension = DimAll;
     QStringList arguments;
 
     
@@ -115,7 +115,7 @@ bool FunctionLibraryModel::loadData()
 
 
         lambda = functionDataElements.at(1).toElement().text();
-        dimension = functionDataElements.at(2).toElement().text().toInt();
+        dimension = Dimension(functionDataElements.at(2).toElement().text().toInt());
         arguments.clear();
 
         for (int i = 0; i < functionDataElements.at(3).toElement().childNodes().size(); i +=1)
@@ -153,24 +153,15 @@ QVariant FunctionLibraryModel::data(const QModelIndex & index, int role) const
         {
         case 0:
             return m_items.at(index.row()).name();
-            break;
 
         case 1:
             return m_items.at(index.row()).lambda();
-            break;
 
         case 2:
-
-
-
-
-            return m_items.at(index.row()).dimension();
-
-            break;
+            return int(m_items.at(index.row()).dimension());
 
         case 3:
             return m_items.at(index.row()).arguments();
-            break;
         }
     }
     else if (role == Qt::ToolTipRole)
@@ -294,7 +285,7 @@ void FunctionLibraryFilterProxyModel::setFilterArguments(const QStringList &args
     invalidateFilter();
 }
 
-void FunctionLibraryFilterProxyModel::setFilterDimension(int dimension)
+void FunctionLibraryFilterProxyModel::setFilterDimension(Dimensions dimension)
 {
     m_dimension = dimension;
     invalidateFilter();

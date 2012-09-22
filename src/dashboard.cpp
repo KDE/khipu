@@ -55,12 +55,12 @@
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
-    m_dimension = -1;
+    m_dimension = DimAll;
     
     setDynamicSortFilter(true);
 }
 
-void SpacesFilterProxyModel::setFilterDimension(int dimension)
+void SpacesFilterProxyModel::setFilterDimension(Dimensions dimension)
 {
     m_dimension = dimension;
     invalidateFilter();
@@ -75,9 +75,8 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
     
     if (!spaceItem) return false;
     
-    if (m_dimension != -1)
-        if (spaceItem->dimension() != (Dimension)(m_dimension))
-            return false;
+    if (m_dimension != DimAll && spaceItem->dimension() != m_dimension)
+        return false;
 
     return spaceItem->title().contains(filterRegExp()) || spaceItem->description().contains(filterRegExp());
 }
@@ -185,7 +184,7 @@ QPixmap Dashboard::currentPlotsViewSnapshot() const
 {
 //     switch (m_document->spacesModel()->item(m_document->currentSpace())->dimension())
 //     {
-//         case 2:
+//         case Dim2D:
 //             return m_widget->plotsView2D;
 //     }
 
@@ -277,48 +276,11 @@ void Dashboard::filterByText(const QString &text)
 //     }
 }
 
-void Dashboard::filterByDimension(Dimension dim)
+void Dashboard::filterByDimension(Dimensions dim)
 {
     //desaparecemos los botones y editores del delegate
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
-    
-    
-//     switch (m_dashboardWidget->viewMode->currentIndex())
-//     {
-//     case 0:
-//     {
-        switch (dim)
-        {
-        case DimAll:
-            m_spacesProxyModel->setFilterDimension(-1);
-            break;
-        case Dim2D:
-            m_spacesProxyModel->setFilterDimension(2);
-            break;
-        case Dim3D:
-            m_spacesProxyModel->setFilterDimension(3);
-            break;
-        }
-//     }
-//     break;
-//
-//     case 1:
-//     {
-//         switch (radioButton)
-//         {
-//         case 0:
-//             m_functionsProxyModel->setFilterDimension(-1);
-//             break;
-//         case 1:
-//             m_functionsProxyModel->setFilterDimension(2);
-//             break;
-//         case 2:
-//             m_functionsProxyModel->setFilterDimension(3);
-//             break;
-//         }
-//     }
-//     break;
-//     }
+    m_spacesProxyModel->setFilterDimension(dim);
 }
 
 void Dashboard::setCurrentSpace(const QModelIndex &index)
@@ -331,18 +293,13 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
 
     switch (m_document->spacesModel()->space(index.row())->dimension())
     {
-    case 2:
-    {
+    case Dim2D:
         m_widget->plotsViews->setCurrentIndex(0);
-
         break;
-    }
 
-    case 3:
-    {
+    case Dim3D:
         m_widget->plotsViews->setCurrentIndex(1);
         break;
-    }
     }
 }
 
