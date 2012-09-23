@@ -32,18 +32,18 @@ FunctionLibraryItem::FunctionLibraryItem()
 }
 
 FunctionLibraryItem::FunctionLibraryItem(const QString& name, const QString& lambda, Dimensions dimension, const QStringList& arguments)
-    : m_dimension(dimension)
-    , m_name(name)
+    : m_name(name)
     , m_lambda(lambda)
+    , m_dimension(dimension)
     , m_arguments(arguments)
 {
 
 }
 
 FunctionLibraryItem::FunctionLibraryItem(const FunctionLibraryItem &functionLibraryItem)
-    : m_dimension(functionLibraryItem.m_dimension)
-    , m_name(functionLibraryItem.m_name)
+    : m_name(functionLibraryItem.m_name)
     , m_lambda(functionLibraryItem.m_lambda)
+    , m_dimension(functionLibraryItem.m_dimension)
     , m_arguments(functionLibraryItem.m_arguments)
 {
 

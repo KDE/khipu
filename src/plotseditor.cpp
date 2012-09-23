@@ -50,9 +50,6 @@ Q_DECLARE_METATYPE(PlotItem*);
 
 ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 {
-
-    
-    
     connect(this, SIGNAL(currentIndexChanged(QString)), SLOT(setupCache(QString)));
 }
 
@@ -116,7 +113,6 @@ void ComboBox::paintEvent(QPaintEvent* e)
 
     mathMLRenderer.paint(&p, opt.rect.topLeft()+QPoint(4,4));
 
-
 }
 
 void ComboBox::setupCache(const QString& currtext)
@@ -146,7 +142,6 @@ QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QMode
 {
     QStringList funcs = index.data().toString().split(",");
     QString mmlhelper;
-
 
     foreach(const QString &func, funcs)
     {
@@ -246,9 +241,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
     connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
-
-
-
 }
 
 PlotsEditor::~PlotsEditor()
@@ -294,7 +286,6 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
         }
     }
 }
-
 
 void PlotsEditor::reset(bool clearBuilder)
 {
@@ -991,7 +982,6 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
     m_currentIsVectorValued = isvectorValued;
     m_currentVectorSize = isvectorValued?fvalues.size():-1;
 
-
     //
     m_widget->farrow->show();
 
@@ -1059,7 +1049,3 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
 
     showEditor();
 }
-
-
-
-
