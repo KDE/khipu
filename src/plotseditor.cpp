@@ -44,6 +44,7 @@
 #include <analitzaplot/spacecurve.h>
 #include <analitzaplot/surface.h>
 #include <analitzaplot/dictionaryitem.h>
+#include <analitzaplot/plotsfactory.h>
 #include "ui_plotseditor.h"
 
 Q_DECLARE_METATYPE(PlotItem*);
@@ -669,6 +670,15 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
     m_widget->maxy->setExpression(Analitza::Expression("pi"));
 }
 
+FunctionGraph* PlotsEditor::editCurrentFunction(const Analitza::Expression& exp)
+{
+    QModelIndex idx = m_widget->plotsView->selectionModel()->currentIndex().sibling(idx.row(), 1);
+    m_widget->plotsView->model()->setData(idx, AnalitzaUtils::expressionToVariant(exp));
+    m_widget->plotsView->model()->setData(idx, m_widget->plotColor->color(), Qt::DecorationRole);
+    m_widget->plotsView->model()->setData(idx.sibling(idx.row(), 0), m_widget->plotName->text());
+    return static_cast<FunctionGraph*>(idx.data(PlotsModel::PlotRole).value<PlotItem*>());
+}
+
 void PlotsEditor::savePlot()
 {
     QStringList errors;
@@ -683,25 +693,19 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianGraphCurve:
         case PlotsBuilder::PolarGraphCurve:
         {
-            errors = PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
-            if (errors.isEmpty())
-            {
-                PlaneCurve *item = 0;
-
-                if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), Dim2D);
+            if (req.canDraw()) {
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
-                if (isEditing)
-                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())));
-                else
+                if(!isEditing)
                     m_document->plotsModel()->addPlot(item);
-            }
+            } else
+                errors = req.errors();
 
             break;
         }
@@ -709,166 +713,126 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CylindricalGraphSurface:
         case PlotsBuilder::SphericalGraphSurface:
         {
-            errors = Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
-            if (errors.isEmpty())
-            {
-                Surface *item = 0;
-                if (isEditing)
-                    item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), Dim3D);
+            if (req.canDraw()) {
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                 if (isEditing)
-                    item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())));
-                else
                     m_document->plotsModel()->addPlot(item);
-            }
+            } else
+                errors = req.errors();
 
             break;
         }
 
         case PlotsBuilder::CartesianImplicitCurve:
         {
-            errors = PlaneCurve::canDraw(m_widget->f->expression());
-            if (errors.isEmpty() && m_widget->f->expression().isEquation())
-            {
-                PlaneCurve *item = 0;
-
-                if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item = new PlaneCurve(m_widget->f->expression());
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+            PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
+            if (req.canDraw() && m_widget->f->expression().isEquation()) {
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else {
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                }
                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
-                if (isEditing)
-                    item->setExpression(m_widget->f->expression());
-                else
+                if (!isEditing)
                     m_document->plotsModel()->addPlot(item);
-
-            }
+            } else
+                errors = req.errors();
 
             break;
         }
 
         case PlotsBuilder::CartesianImplicitSurface:
         {
-            errors = Surface::canDraw(m_widget->f->expression());
-            if (errors.isEmpty() && m_widget->f->expression().isEquation())
-            {
-                Surface *item = 0;
-
-                if (isEditing)
-                    item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item = new Surface(m_widget->f->expression());
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+            PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
+            if (req.canDraw() && m_widget->f->expression().isEquation()) {
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else {
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                }
                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
                 item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
 
-                if (isEditing)
-                    item->setExpression(m_widget->f->expression());
-                else
+                if (!isEditing)
                     m_document->plotsModel()->addPlot(item);
-            }
+            } else
+                errors = req.errors();
 
             break;
         }
 
         case PlotsBuilder::CartesianParametricCurve2D:
         {
-            errors = PlaneCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+"}")));
-            if (errors.isEmpty())
-            {
-                PlaneCurve *item = 0;
-
-                if (isEditing)
-                    item = dynamic_cast<PlaneCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item = new PlaneCurve(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+
-                            m_widget->f->expression().toString()+", "+
-                            m_widget->g->expression().toString()+"}")));
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
+                                    m_widget->g->expression().toString()+"}")), Dim3D);
+            if (req.canDraw()) {
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else {
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                }
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
-                if (isEditing)
-                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+
-                                                    m_widget->f->expression().toString()+", "+
-                                                    m_widget->g->expression().toString()+"}")));
-                else
+                if (!isEditing)
                     m_document->plotsModel()->addPlot(item);
-            }
+            } else
+                errors = req.errors();
 
             break;
         }
         case PlotsBuilder::CartesianParametricCurve3D:
         {
-            errors = SpaceCurve::canDraw(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
-            if (errors.isEmpty())
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
+            if (req.canDraw())
             {
-                SpaceCurve *item = 0;
-
-                if (isEditing)
-                    item = dynamic_cast<SpaceCurve*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item  = new SpaceCurve(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                            m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), name, m_widget->plotColor->color());
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else {
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                }
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
-                if (isEditing)
-                    item->setExpression(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
-                else
+                if (!isEditing)
                     m_document->plotsModel()->addPlot(item);
-            }
+            } else
+                errors = req.errors();
             
             break;
         }
 
         case PlotsBuilder::CartesianParametricSurface:
         {
-            errors = Surface::canDraw(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
-                                m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
-            if (errors.isEmpty())
-            {
-                Surface *item = 0;
-
-                if (isEditing)
-                    item = dynamic_cast<Surface*>(m_widget->plotsView->selectionModel()->currentIndex().data(PlotsModel::PlotRole).value<PlotItem*>());
-                else
-                    item = new Surface(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
-                            m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
-
-                item->setName(m_widget->plotName->text());
-                item->setColor(m_widget->plotColor->color());
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
+            if (req.canDraw()) {
+                FunctionGraph *item = 0;
+                if (isEditing) {
+                    item = editCurrentFunction(req.expression());
+                } else {
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                }
                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
-                if (isEditing)
-                    item->setExpression(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+
-                                                    m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")));
-                else
+                if (!isEditing)
                     m_document->plotsModel()->addPlot(item);
                 
-            }
+            } else
+                errors = req.errors();
             break;
         }
     }
