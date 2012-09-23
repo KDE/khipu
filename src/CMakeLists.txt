@@ -11,7 +11,8 @@ include_directories (
 )
 
 set ( khipu_SRCS
-
+  dictionaryitem.cpp
+  dictionariesmodel.cpp
   plotsbuilder.cpp
   plotseditor.cpp
   functionlibraryedit.cpp

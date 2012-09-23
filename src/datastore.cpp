@@ -23,7 +23,6 @@
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsdictionarymodel.h>
-#include <analitzaplot/plotsdictionariesmanager.h>
 #include <analitzaplot/dictionaryitem.h>
 #include <analitza/variables.h>
 #include <analitza/expression.h>
@@ -46,9 +45,7 @@ DataStore::DataStore(QObject* parent)
 // //     c->setSpace(spacesModel()->addSpace(Dim2D, "adsda", "eeeee"));
 //     m_plotsModel->addPlot(c);
 
-    PlotsDictionariesManager *dm = new PlotsDictionariesManager(this);
-    
-    m_plotsDictionaryModel = dm->model();
+    m_plotsDictionaryModel = new PlotsDictionaryModel(this);
     
     //EL ORDEN DE los  connect IMPORTA
 

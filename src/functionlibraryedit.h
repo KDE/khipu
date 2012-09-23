@@ -28,7 +28,7 @@
 class QKeyEvent;
 
 
-class PlotsDictionariesModel;
+class PlotsDictionaryModel;
 
 class FunctionLibraryEdit : public KLineEdit
 {
@@ -41,7 +41,7 @@ public:
     void setFilterArguments(const QStringList args);
     void setFilterDimension(Dimension dim);
 
-    void setModel(PlotsDictionariesModel *model);
+    void setModel(PlotsDictionaryModel *model);
 
 signals:
     void selectedFunction(const QString & newExp, Dimensions dimension, const QString &name, const QStringList &bvars);
@@ -57,7 +57,7 @@ private:
     void showPopup(const QRect& rect = QRect());
 
 private:
-    PlotsDictionariesModel *m_proxyModel;
+    PlotsDictionaryModel *m_proxyModel;
 
     QTreeView *m_functionLibraryView;
 

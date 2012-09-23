@@ -27,7 +27,7 @@
 #include "document.h"
 #include <analitzaplot/plottingenums.h>
 
-class PlotsDictionariesModel;
+class PlotsDictionaryModel;
 class KWidgetItemDelegate;
 class SpacesDelegate;
 class SpacesDetailsViewDelegate;
@@ -57,7 +57,7 @@ public:
     DictionariesViewer(QWidget *parent = 0);
     ~DictionariesViewer();
 
-    void setModel(PlotsDictionariesModel *model);
+    void setModel(PlotsDictionaryModel *model);
     
 private:
     Ui::DictionariesViewer *m_widget;

@@ -22,7 +22,7 @@
 #include <QObject>
 #include <QMap>
 
-class PlotsDictionariesModel;
+class PlotsDictionaryModel;
 class QItemSelectionModel;
 class DictionaryItem;
 class QModelIndex;
@@ -49,7 +49,7 @@ public:
     int currentSpace() const { return m_currentSpace; }
 
 
-    PlotsDictionariesModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
+    PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
     DictionariesModel *spacesModel() const { return m_spacesModel; }
     PlotsModel *plotsModel() const { return m_plotsModel; }
     
@@ -79,7 +79,7 @@ signals:
     void spaceActivated(int spaceidx);
     void gridStyleChanged(int i); // 1 cartesian 2 polar
 private:
-    PlotsDictionariesModel *m_plotsDictionaryModel;
+    PlotsDictionaryModel *m_plotsDictionaryModel;
     DictionariesModel *m_spacesModel;
     PlotsModel *m_plotsModel;
     

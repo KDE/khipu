@@ -64,7 +64,7 @@ DictionariesViewer::~DictionariesViewer()
     delete m_widget;
 }
 
-void DictionariesViewer::setModel(PlotsDictionariesModel* model)
+void DictionariesViewer::setModel(PlotsDictionaryModel* model)
 {
     //TODO move QSortFilterProxyModel  as member
     QSortFilterProxyModel *f=new QSortFilterProxyModel(this);

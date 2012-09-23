@@ -77,7 +77,7 @@ void FunctionLibraryEdit::setFilterDimension(Dimension dim)
 //     m_proxyModel->setFilterSpaceDimension(dim);
 }
 
-void FunctionLibraryEdit::setModel(PlotsDictionariesModel* model)
+void FunctionLibraryEdit::setModel(PlotsDictionaryModel* model)
 {
     m_proxyModel = model;
     m_functionLibraryView->setModel(m_proxyModel);

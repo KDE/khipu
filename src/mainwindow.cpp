@@ -416,7 +416,8 @@ void MainWindow::copySnapshot()
     switch (space->dimension())
     {
         case Dim2D: m_dashboard->view2d()->snapshotToClipboard(); break;
-        case Dim3D: m_dashboard->view3d()->snapshotToClipboard(); break;
+//         case Dim3D: m_dashboard->view3d()->snapshotToClipboard(); break;
+#warning port to the new plotviewer
     }
     
     statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
