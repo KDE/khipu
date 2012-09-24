@@ -96,7 +96,7 @@ Dashboard::Dashboard(QWidget *parent)
     QWidget *item=new QWidget(this);
     m_dviewer->setupUi(item);
     addWidget(item);
-    setCurrentIndex(count()-1);
+//     setCurrentIndex(count()-1);
 }
 
 Dashboard::~Dashboard()
