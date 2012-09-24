@@ -69,6 +69,7 @@ void DictionariesViewer::setModel(PlotsDictionaryModel* model)
     QSortFilterProxyModel *f=new QSortFilterProxyModel(this);
     f->setSourceModel(model);
     m_widget->kfilterproxysearchline->setProxy(f);
-    m_widget->plotsView->setModel(model->plotModel
+    m_widget->plotsView->setModel(model->plotModel());
+
 }
 
