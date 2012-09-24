@@ -395,7 +395,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             {
                 m_widget->f->setExpression(curve->expression().lambdaBody());
 
-                if (curve->parameters().first() == "p")
+                if (curve->parameters().first() == "q")
                     buildPolarGraphCurve();
                 else
                 {
@@ -561,7 +561,7 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 
     m_widget->plotIcon->setPixmap(KIcon("draw-spiral").pixmap(16.16));
 
-    setupExpressionType(QStringList()<<"p", QStringList() << "p");
+    setupExpressionType(QStringList()<<"q", QStringList() << "q");
     
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
     m_widget->maxx->setExpression(Analitza::Expression("2*pi"));
