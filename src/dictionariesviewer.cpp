@@ -29,7 +29,6 @@
 #include "ui_dashboard.h"
 #include <QDebug>
 
-///
 #include <QtGui/QAbstractItemView>
 #include <QtGui/QListView>
 #include <QtGui/QStringListModel>
@@ -70,6 +69,6 @@ void DictionariesViewer::setModel(PlotsDictionaryModel* model)
     QSortFilterProxyModel *f=new QSortFilterProxyModel(this);
     f->setSourceModel(model);
     m_widget->kfilterproxysearchline->setProxy(f);
-    m_widget->plotsView->setModel(f);
+    m_widget->plotsView->setModel(model->plotModel
 }
 
