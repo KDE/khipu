@@ -35,7 +35,7 @@
 #include <libkdeedu/qtmml/QtMmlWidget>
 #include "functionlibraryedit.h"
 #include "datastore.h"
-#include "analitzaplot/dictionariesmodel.h"
+#include "dictionariesmodel.h"
 #include "spaceplotsproxymodel.h"
 #include "analitzagui/variablesmodel.h"
 #include <analitzaplot/functiongraph.h>
@@ -43,7 +43,7 @@
 #include "analitzaplot/plotsmodel.h"
 #include <analitzaplot/spacecurve.h>
 #include <analitzaplot/surface.h>
-#include <analitzaplot/dictionaryitem.h>
+#include <dictionaryitem.h>
 #include <analitzaplot/plotsfactory.h>
 #include "ui_plotseditor.h"
 

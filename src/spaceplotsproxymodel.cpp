@@ -22,6 +22,42 @@
 
 Q_DECLARE_METATYPE(PlotItem*);
 
+
+PlotsProxyModel::PlotsProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
+    , m_dimension(DimAll)
+{
+     setDynamicSortFilter(true);
+}
+
+PlotsProxyModel::~PlotsProxyModel()
+{
+
+}
+
+void PlotsProxyModel::setFilterSpaceDimension(Dimension dimension)
+{
+    m_dimension = dimension;
+    invalidateFilter();
+}
+
+bool PlotsProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+{
+    Q_ASSERT(sourceModel());
+    if(sourceParent.isValid())
+        return false;
+    
+    QModelIndex idx = sourceModel()->index(sourceRow, 0, sourceParent);
+    return m_dimension & idx.data(PlotsModel::DimensionRole).toInt();
+}
+
+bool PlotsProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right) const
+{
+    return QString::localeAwareCompare(left.data().toString(), right.data().toString())>=0;
+}
+
+///
+
 SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(DataStore *ds, QObject* parent)
     : PlotsProxyModel(parent)
     , m_dataStore(ds)

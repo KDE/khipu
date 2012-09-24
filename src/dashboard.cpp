@@ -20,13 +20,13 @@
 
 #include "spaceinformation.h"
 #include "spaceoptions.h"
-#include "analitzaplot/dictionariesmodel.h"
+#include "dictionariesmodel.h"
 #include "datastore.h"
 #include "spaceplotsproxymodel.h"
 #include "analitza/variables.h"
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/plotsdictionarymodel.h>
-#include <analitzaplot/dictionaryitem.h>
+#include <dictionaryitem.h>
 #include "ui_dashboard.h"
 #include <QDebug>
 

@@ -8,7 +8,6 @@ find_package ( Gettext REQUIRED )
 find_package ( Analitza REQUIRED )
 find_package(LibKdeEdu)
 find_library(QTMML_LIBRARY qtmmlwidget)
-find_library(QGLVIEWER_LIBRARY NAMES qglviewer-qt4 QGLViewer)
 
 macro_log_feature(QTMML_LIBRARY "QtMathML Widget" "Supports displaying some formulas in a mathematic form" "http://doc.qt.nokia.com/solutions/4/qtmmlwidget/qtmmlwidget.html" FALSE "" "")
 

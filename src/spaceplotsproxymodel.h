@@ -18,12 +18,39 @@
 
 #ifndef KHIPU_DOCUMENT_H_h_
 #define KHIPU_DOCUMENT_H_h_
+#include <QSortFilterProxyModel>
 
-#include "analitzaplot/plotsproxymodel.h"
+
+#include <analitzaplot/plottingenums.h>
 
 class DictionaryItem;
 class SpacesModel;
 class DataStore;
+
+
+//si no se establece ningun filter2d entonces no hay filtro y muetra todos los items sin importar que dimension
+//estoy es util para un vista (itemview) que quiera mostrar todo el modelo por ejemplo 
+class PlotsProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+    public:
+
+        PlotsProxyModel(QObject *parent = 0);
+        virtual ~PlotsProxyModel();
+
+        int filterSpaceDimension() const { return m_dimension; }
+        void setFilterSpaceDimension(Dimension dimension);
+
+        //functiontype ... if the item is a functiongraph TODO
+
+    protected:
+        virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+        virtual bool lessThan(const QModelIndex& left, const QModelIndex& right) const;
+
+    private:
+        Dimension m_dimension;
+};
 
 //ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem
 class SpacePlotsFilterProxyModel : public PlotsProxyModel

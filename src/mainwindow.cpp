@@ -22,7 +22,7 @@
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsview2d.h>
 #include <analitzaplot/plotsview3d.h>
-#include <analitzaplot/dictionaryitem.h>
+#include <dictionaryitem.h>
 #include <analitza/expression.h>
 
 #include <KDE/KApplication>
@@ -46,7 +46,7 @@
 #include <KDE/KMessageBox>
 #include <KDE/KStandardDirs>
 #include <KToolBar>
-#include "analitzaplot/dictionariesmodel.h"
+#include "dictionariesmodel.h"
 #include <KMenuBar>
 #include "dashboard.h"
 #include "document.h"
