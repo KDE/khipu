@@ -672,10 +672,12 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 
 FunctionGraph* PlotsEditor::editCurrentFunction(const Analitza::Expression& exp)
 {
-    QModelIndex idx = m_widget->plotsView->selectionModel()->currentIndex().sibling(idx.row(), 1);
+    QModelIndex idx = m_widget->plotsView->selectionModel()->currentIndex().sibling(0, 1);
+
     m_widget->plotsView->model()->setData(idx, AnalitzaUtils::expressionToVariant(exp));
     m_widget->plotsView->model()->setData(idx, m_widget->plotColor->color(), Qt::DecorationRole);
     m_widget->plotsView->model()->setData(idx.sibling(idx.row(), 0), m_widget->plotName->text());
+
     return static_cast<FunctionGraph*>(idx.data(PlotsModel::PlotRole).value<PlotItem*>());
 }
 
@@ -700,6 +702,7 @@ void PlotsEditor::savePlot()
                     item = editCurrentFunction(req.expression());
                 } else
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if(!isEditing)
