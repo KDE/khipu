@@ -30,7 +30,6 @@
 #include "ui_dashboard.h"
 #include <QDebug>
 
-///
 #include <QtGui/QAbstractItemView>
 #include <QtGui/QListView>
 #include <QtGui/QStringListModel>
@@ -49,8 +48,6 @@
 #include <KSelectionProxyModel>
 
 #include "spacesdelegate.h"
-
-#include "ui_dictionariesviewer.h"
 
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -81,22 +78,11 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
     return spaceItem->title().contains(filterRegExp()) || spaceItem->description().contains(filterRegExp());
 }
 
-
-///
-
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
-
-    ///
-    m_dviewer = new Ui::DictionariesViewer;
-    
-    QWidget *item=new QWidget(this);
-    m_dviewer->setupUi(item);
-    addWidget(item);
-//     setCurrentIndex(count()-1);
 }
 
 Dashboard::~Dashboard()
@@ -106,23 +92,11 @@ Dashboard::~Dashboard()
 // 
 //     delete d;
 //     
-delete m_dviewer;
     delete m_widget;
 }
 
 void Dashboard::setDocument(DataStore* doc)
 {
-    QSortFilterProxyModel *f=new QSortFilterProxyModel(this);
-    f->setSourceModel(doc->plotsDictionaryModel());
-    m_dviewer->kfilterproxysearchline->setProxy(f);
-    m_dviewer->plotsView->setModel(f);
-    
-    
-    
-    ///
-    
-    
-    
     m_document = doc;
 
 //     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
@@ -210,9 +184,14 @@ void Dashboard::goHome()
 
 void Dashboard::showDictionary()
 {
+    PlotsDictionaryModel* model = m_document->plotsDictionaryModel();
+    
     m_widget->views->setCurrentIndex(1);
     m_widget->plotsViewOptions->setCurrentIndex(1);
-    m_widget->plotsView->setModel(m_document->plotsDictionaryModel());
+    m_widget->plotsView->setModel(model);
+    m_widget->page->setModel(model->plotModel());
+    
+    connect(m_widget->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), model, SLOT(setCurrentIndex(QModelIndex)));
 //     m_widget->plotsView->setModel(m_document->spacesModel());
 }
 

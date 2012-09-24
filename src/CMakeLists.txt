@@ -28,7 +28,6 @@ set ( khipu_SRCS
   datastore.cpp
   document.cpp
 
-  dictionariesviewer.cpp
   dashboard.cpp
   mainwindow.cpp
   main.cpp
@@ -43,7 +42,6 @@ kde4_add_ui_files ( khipu_SRCS
 #   spaceeditor.ui
   filter.ui
   dashboard.ui
-  dictionariesviewer.ui
 )
 
 

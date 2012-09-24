@@ -27,6 +27,7 @@
 #include "document.h"
 #include <analitzaplot/plottingenums.h>
 
+class DictionariesViewer;
 class KWidgetItemDelegate;
 class SpacesDelegate;
 class SpacesDetailsViewDelegate;
@@ -38,7 +39,6 @@ class Document;
 namespace Ui
 {
     class DashboardWidget;
-    class DictionariesViewer;
 }
 
 #include <QtGui/QListView>
@@ -127,8 +127,6 @@ private:
     Ui::DashboardWidget *m_widget;
     
     SpacesFilterProxyModel *m_spacesProxyModel;
-    
-    Ui::DictionariesViewer *m_dviewer;
 };
 
 #endif
