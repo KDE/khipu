@@ -736,7 +736,7 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianImplicitCurve:
         {
-            PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
+            PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim2D);
             if (req.canDraw() && m_widget->f->expression().isEquation()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
@@ -780,7 +780,7 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianParametricCurve2D:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+"}")), Dim3D);
+                                    m_widget->g->expression().toString()+"}")), Dim2D);
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
