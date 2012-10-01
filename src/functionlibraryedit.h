@@ -26,9 +26,7 @@
 #include <analitzaplot/plottingenums.h>
 
 class QKeyEvent;
-
-
-class PlotsDictionaryModel;
+namespace Analitza { class PlotsDictionaryModel; }
 
 class FunctionLibraryEdit : public KLineEdit
 {
@@ -39,12 +37,12 @@ public:
     ~FunctionLibraryEdit();
 
     void setFilterArguments(const QStringList args);
-    void setFilterDimension(Dimension dim);
+    void setFilterDimension(Analitza::Dimensions dim);
 
-    void setModel(PlotsDictionaryModel *model);
+    void setModel(Analitza::PlotsDictionaryModel* model);
 
 signals:
-    void selectedFunction(const QString & newExp, Dimensions dimension, const QString &name, const QStringList &bvars);
+    void selectedFunction(const QString & newExp, Analitza::Dimensions dimension, const QString &name, const QStringList &bvars);
 
 protected:
     bool eventFilter(QObject *o, QEvent *e);
@@ -57,7 +55,7 @@ private:
     void showPopup(const QRect& rect = QRect());
 
 private:
-    PlotsDictionaryModel *m_proxyModel;
+    Analitza::PlotsDictionaryModel *m_proxyModel;
 
     QTreeView *m_functionLibraryView;
 

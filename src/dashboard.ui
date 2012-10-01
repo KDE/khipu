@@ -216,7 +216,7 @@
              <bool>false</bool>
             </property>
             <property name="headerHidden">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="expandsOnDoubleClick">
              <bool>false</bool>
@@ -374,8 +374,8 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
-          <widget class="PlotsView2D" name="page"/>
-          <widget class="PlotsView3D" name="page_2"/>
+          <widget class="Analitza::PlotsView2D" name="page"/>
+          <widget class="Analitza::PlotsView3D" name="page_2"/>
          </widget>
         </item>
        </layout>
@@ -400,8 +400,8 @@
          <property name="currentIndex">
           <number>1</number>
          </property>
-         <widget class="PlotsView2D" name="plotsView2D"/>
-         <widget class="PlotsView3D" name="plotsView3D"/>
+         <widget class="Analitza::PlotsView2D" name="plotsView2D"/>
+         <widget class="Analitza::PlotsView3D" name="plotsView3D"/>
         </widget>
        </item>
       </layout>
@@ -412,15 +412,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PlotsView2D</class>
+   <class>Analitza::PlotsView2D</class>
    <extends>QWidget</extends>
-   <header>analitzaplot/plotsview2d.h</header>
+   <header>analitzagui/plotsview2d.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>PlotsView3D</class>
+   <class>Analitza::PlotsView3D</class>
    <extends>QWidget</extends>
-   <header>analitzaplot/plotsview3d.h</header>
+   <header>analitzagui/plotsview3d.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -40,7 +40,7 @@ class PlotsProxyModel : public QSortFilterProxyModel
         virtual ~PlotsProxyModel();
 
         int filterSpaceDimension() const { return m_dimension; }
-        void setFilterSpaceDimension(Dimension dimension);
+        void setFilterSpaceDimension(Analitza::Dimensions dimension);
 
         //functiontype ... if the item is a functiongraph TODO
 
@@ -49,7 +49,7 @@ class PlotsProxyModel : public QSortFilterProxyModel
         virtual bool lessThan(const QModelIndex& left, const QModelIndex& right) const;
 
     private:
-        Dimension m_dimension;
+        Analitza::Dimensions m_dimension;
 };
 
 //ademas de filtrar la dimencione sta clase se encarga de filtra por space asociado al plotitem

@@ -22,18 +22,17 @@
 #include <QObject>
 #include <QMap>
 
-class PlotsDictionaryModel;
 class QItemSelectionModel;
 class DictionaryItem;
 class QModelIndex;
 namespace Analitza {
+class PlotsDictionaryModel;
 class Variables;
+class PlotsModel;
+class PlotItem;
 }
 
-class PlotItem;
 class DictionariesModel;
-class PlotsModel;
-
 class SpacePlotsFilterProxyModel;
 
 class DataStore : public QObject
@@ -49,9 +48,9 @@ public:
     int currentSpace() const { return m_currentSpace; }
 
 
-    PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
+    Analitza::PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
     DictionariesModel *spacesModel() const { return m_spacesModel; }
-    PlotsModel *plotsModel() const { return m_plotsModel; }
+    Analitza::PlotsModel *plotsModel() const { return m_plotsModel; }
     
     // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
     SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
@@ -59,7 +58,7 @@ public:
     QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
 
 
-    bool isMapped(DictionaryItem *space, PlotItem *plot) const;
+    bool isMapped(DictionaryItem *space, Analitza::PlotItem *plot) const;
 
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
@@ -79,9 +78,9 @@ signals:
     void spaceActivated(int spaceidx);
     void gridStyleChanged(int i); // 1 cartesian 2 polar
 private:
-    PlotsDictionaryModel *m_plotsDictionaryModel;
+    Analitza::PlotsDictionaryModel *m_plotsDictionaryModel;
     DictionariesModel *m_spacesModel;
-    PlotsModel *m_plotsModel;
+    Analitza::PlotsModel *m_plotsModel;
     
     SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
     QItemSelectionModel *m_currentSelectionModel;
@@ -91,7 +90,7 @@ private:
 
     //one to many -- space index -> many plots index
     int m_currentSpace; // curr space index 
-    QMap<DictionaryItem*, PlotItem*> m_maps;
+    QMap<DictionaryItem*, Analitza::PlotItem*> m_maps;
 };
 
 

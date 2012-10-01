@@ -28,7 +28,9 @@
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>
 
-Q_DECLARE_METATYPE(PlotItem*);
+using namespace Analitza;
+
+Q_DECLARE_METATYPE(Analitza::PlotItem*);
 
 DataStore::DataStore(QObject* parent)
     : QObject(parent)

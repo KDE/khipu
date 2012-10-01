@@ -24,13 +24,16 @@
 #include <QModelIndex>
 #include "plotsbuilder.h"
 
+namespace Analitza {
 class FunctionGraph;
+class PlotsModel;
+class PlotsModel;
+}
+
 class DataStore;
 class Document;
-class PlotsModel;
 class QStackedWidget;
 class QTreeView;
-class PlotsModel;
 class PlotsView;
 
 namespace Ui
@@ -93,7 +96,7 @@ signals:
     void sendStatus(const QString &stat, int mstimeout = 0);
 
 private:
-    FunctionGraph* editCurrentFunction(const Analitza::Expression& exp);
+    Analitza::FunctionGraph* editCurrentFunction(const Analitza::Expression& exp);
     
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
@@ -101,7 +104,7 @@ private:
     void setupExpressionType(const QStringList &funvalues, const QStringList &varsvalues, bool isimplicit = false, bool isvectorValued = false);
 
     Ui::PlotsEditorWidget *m_widget;
-    PlotsModel *m_localModel; // usado solo para los previews
+    Analitza::PlotsModel *m_localModel; // usado solo para los previews
     DataStore *m_document;
     
     PlotsBuilder::PlotType m_currentType; //NOTE  tipo actual que se esta editando o creando

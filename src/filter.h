@@ -41,7 +41,7 @@ public:
 
 signals: //TODO better names for signals adn slots
     void filterByText(const QString &text); // any text on the title or description
-    void filterByDimension(Dimensions radioButtonid);
+    void filterByDimension(Analitza::Dimensions radioButtonid);
 
 private slots:
     void getDimIndex(int index);

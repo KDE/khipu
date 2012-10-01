@@ -30,7 +30,7 @@ class FunctionLibraryItem
 {
 public:
     FunctionLibraryItem();
-    FunctionLibraryItem(const QString &name, const QString &lambda, Dimensions dimension, const QStringList &arguments);
+    FunctionLibraryItem(const QString &name, const QString &lambda, Analitza::Dimensions dimension, const QStringList &arguments);
     FunctionLibraryItem(const FunctionLibraryItem &functionLibraryItem);
     virtual ~FunctionLibraryItem();
 
@@ -42,7 +42,7 @@ public:
     {
         return m_lambda;
     }
-    Dimensions dimension() const
+    Analitza::Dimensions dimension() const
     {
         return m_dimension;
     }
@@ -54,7 +54,7 @@ public:
 private:
     QString m_name;
     QString m_lambda;
-    Dimensions m_dimension;
+    Analitza::Dimensions m_dimension;
     QStringList m_arguments;
 };
 
@@ -96,18 +96,18 @@ public:
     }
     void setFilterArguments(const QStringList &args);
 
-    Dimensions filterDimension() const
+    Analitza::Dimensions filterDimension() const
     {
         return m_dimension;
     }
-    void setFilterDimension(Dimensions dimension);
+    void setFilterDimension(Analitza::Dimensions dimension);
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
 private:
     QStringList m_args;
-    Dimensions m_dimension; 
+    Analitza::Dimensions m_dimension; 
 };
 
 

@@ -28,8 +28,6 @@
 
 class SpaceItem;
 class QLabel;
-class PlotsView3D;
-class PlotsView2D;
 class QTreeView;
 class Document;
 

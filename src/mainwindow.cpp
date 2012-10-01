@@ -20,8 +20,8 @@
 
 #include <analitzaplot/plotsdictionarymodel.h>
 #include <analitzaplot/planecurve.h>
-#include <analitzaplot/plotsview2d.h>
-#include <analitzaplot/plotsview3d.h>
+#include <analitzagui/plotsview2d.h>
+#include <analitzagui/plotsview3d.h>
 #include <dictionaryitem.h>
 #include <analitza/expression.h>
 
@@ -415,7 +415,7 @@ void MainWindow::copySnapshot()
 
     switch (space->dimension())
     {
-        case Dim2D: m_dashboard->view2d()->snapshotToClipboard(); break;
+        case Analitza::Dim2D: m_dashboard->view2d()->snapshotToClipboard(); break;
 //         case Dim3D: m_dashboard->view3d()->snapshotToClipboard(); break;
 #warning port to the new plotviewer
     }
@@ -471,7 +471,7 @@ void MainWindow::addSpace2D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView2D();
-    m_document->spacesModel()->addSpace(Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
+    m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
 }
 
 void MainWindow::addSpace3D()
@@ -479,7 +479,7 @@ void MainWindow::addSpace3D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView3D();
-    m_document->spacesModel()->addSpace(Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
+    m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
 }
 
 void MainWindow::removeCurrentSpace()
@@ -508,10 +508,10 @@ void MainWindow::goHome()
 
         switch (space->dimension())
         {
-            case Dim2D:
+            case Analitza::Dim2D:
                 thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
                 break;
-            case Dim3D:
+            case Analitza::Dim3D:
             {
                 m_dashboard->view3d()->updateGL();
                 m_dashboard->view3d()->setFocus();

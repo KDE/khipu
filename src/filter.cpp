@@ -40,9 +40,9 @@ void Filter::getDimIndex(int index)
 {
     switch (index)
     {
-        case 0: emit filterByDimension(DimAll); break;
-        case 1: emit filterByDimension(Dim2D); break;
-        case 2: emit filterByDimension(Dim3D); break;
+        case 0: emit filterByDimension(Analitza::DimAll); break;
+        case 1: emit filterByDimension(Analitza::Dim2D); break;
+        case 2: emit filterByDimension(Analitza::Dim3D); break;
     }
 }
 

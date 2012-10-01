@@ -19,7 +19,7 @@
 #include "dictionaryitem.h"
 #include "dictionariesmodel.h"
 
-DictionaryItem::DictionaryItem(Dimension dimension)
+DictionaryItem::DictionaryItem(Analitza::Dimension dimension)
     : m_dimension(dimension), m_model(0), m_inDestructorSoDontDeleteMe(false), m_callingCtrFromMode(true)
 {
     m_dateTime = KDateTime::currentLocalDateTime(); 

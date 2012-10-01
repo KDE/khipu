@@ -47,7 +47,9 @@
 #include <analitzaplot/plotsfactory.h>
 #include "ui_plotseditor.h"
 
-Q_DECLARE_METATYPE(PlotItem*);
+Q_DECLARE_METATYPE(Analitza::PlotItem*);
+
+using namespace Analitza;
 
 ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 {
@@ -716,7 +718,8 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CylindricalGraphSurface:
         case PlotsBuilder::SphericalGraphSurface:
         {
-            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString("("+m_currentVars.join(",")+")->"+m_widget->f->expression().toString())), Dim3D);
+            PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
+			qDebug() << "------------" << m_widget->f->text() << m_widget->f->expression().toString() << req.errors();
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
@@ -728,8 +731,9 @@ void PlotsEditor::savePlot()
 
                 if (isEditing)
                     m_document->plotsModel()->addPlot(item);
-            } else
+            } else {
                 errors = req.errors();
+			}
 
             break;
         }

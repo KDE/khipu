@@ -118,7 +118,7 @@ bool DictionariesModel::removeRows(int row, int count, const QModelIndex& parent
     return true;
 }
 
-DictionaryItem* DictionariesModel::addSpace(Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
+DictionaryItem* DictionariesModel::addSpace(Analitza::Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
 {
     DictionaryItem* ret = new DictionaryItem(dim);
     ret->setTitle(title);

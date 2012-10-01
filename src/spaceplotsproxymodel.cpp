@@ -20,8 +20,9 @@
 #include "datastore.h"
 #include <analitzaplot/plotsmodel.h>
 
-Q_DECLARE_METATYPE(PlotItem*);
+using namespace Analitza;
 
+Q_DECLARE_METATYPE(Analitza::PlotItem*);
 
 PlotsProxyModel::PlotsProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
@@ -35,7 +36,7 @@ PlotsProxyModel::~PlotsProxyModel()
 
 }
 
-void PlotsProxyModel::setFilterSpaceDimension(Dimension dimension)
+void PlotsProxyModel::setFilterSpaceDimension(Dimensions dimension)
 {
     m_dimension = dimension;
     invalidateFilter();

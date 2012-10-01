@@ -46,7 +46,7 @@ public:
     //TODO implementar removeRows en analitzaplot (plotsmodel)
     bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
-    DictionaryItem * addSpace(Dimension dim, const QString & title = QString(), const QString &description = QString(), 
+    DictionaryItem * addSpace(Analitza::Dimension dim, const QString & title = QString(), const QString &description = QString(), 
                          const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
 
     DictionaryItem * space(int row) const;

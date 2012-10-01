@@ -70,14 +70,14 @@ void FunctionLibraryEdit::setFilterArguments(const QStringList args)
 //     m_proxyModel->setFilterArguments(args);
 }
 
-void FunctionLibraryEdit::setFilterDimension(Dimension dim)
+void FunctionLibraryEdit::setFilterDimension(Analitza::Dimensions dim)
 {
     if (!m_proxyModel) return ;
     //TODO newdic
 //     m_proxyModel->setFilterSpaceDimension(dim);
 }
 
-void FunctionLibraryEdit::setModel(PlotsDictionaryModel* model)
+void FunctionLibraryEdit::setModel(Analitza::PlotsDictionaryModel* model)
 {
     m_proxyModel = model;
     m_functionLibraryView->setModel(m_proxyModel);
@@ -91,7 +91,7 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 
     QString indexName = m_proxyModel->index(index.row(), 0).data().toString();
     QString indexLambda = m_proxyModel->index(index.row(), 1).data().toString();
-    Dimensions indexDimension = Dimension(m_proxyModel->index(index.row(), 2).data().toInt());
+    Analitza::Dimensions indexDimension = Analitza::Dimension(m_proxyModel->index(index.row(), 2).data().toInt());
     QStringList indexArguments = m_proxyModel->index(index.row(), 3).data().toStringList();
 
     QString finalLambda;

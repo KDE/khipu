@@ -26,13 +26,14 @@
 #include "plotseditor.h"
 #include "document.h"
 #include <analitzaplot/plottingenums.h>
+#include <QtGui/QListView>
+#include <QtGui/QSortFilterProxyModel>
+#include <QSortFilterProxyModel>
 
 class DictionariesViewer;
 class KWidgetItemDelegate;
 class SpacesDelegate;
 class SpacesDetailsViewDelegate;
-class PlotsView3D;
-class PlotsView2D;
 class QTreeView;
 class Document;
 
@@ -40,10 +41,11 @@ namespace Ui
 {
     class DashboardWidget;
 }
-
-#include <QtGui/QListView>
-#include <QtGui/QSortFilterProxyModel>
-#include <QSortFilterProxyModel>
+namespace Analitza
+{
+    class PlotsView3D;
+    class PlotsView2D;
+}
 
 class SpacesFilterProxyModel : public QSortFilterProxyModel
 {
@@ -52,14 +54,14 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
     public:
         SpacesFilterProxyModel(QObject *parent = 0);
 
-        void setFilterDimension(Dimensions dimension);
+        void setFilterDimension(Analitza::Dimensions dimension);
 
     protected:
         bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 ////        bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
     private:
-        Dimensions m_dimension;
+        Analitza::Dimensions m_dimension;
 };
 
 
@@ -82,13 +84,13 @@ public:
     
     //views
     
-    PlotsView2D *view2d();
-    PlotsView3D *view3d();
+    Analitza::PlotsView2D *view2d();
+    Analitza::PlotsView3D *view3d();
 
 public slots:
     
     void filterByText(const QString &text); // any text on the title or description
-    void filterByDimension(Dimensions dim);
+    void filterByDimension(Analitza::Dimensions dim);
     
     
     void goHome();

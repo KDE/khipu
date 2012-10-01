@@ -36,12 +36,12 @@ class DictionaryItem
 friend class DictionariesModel;    
     
 public:
-    DictionaryItem(Dimension dimension);
+    DictionaryItem(Analitza::Dimension dimension);
     virtual ~DictionaryItem();
 
     QUuid id() const { return m_id; }
 
-    Dimension dimension() const { return m_dimension; }
+    Analitza::Dimension dimension() const { return m_dimension; }
     
     QString title() const { return m_name; }
     void setTitle(const QString &name);
@@ -63,7 +63,7 @@ private:
     
     void emitDataChanged();
 
-    Dimension m_dimension;
+    Analitza::Dimension m_dimension;
     QPixmap m_thumbnail;
     KDateTime  m_dateTime;
 

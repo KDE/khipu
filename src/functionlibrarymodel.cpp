@@ -31,7 +31,7 @@ FunctionLibraryItem::FunctionLibraryItem()
 
 }
 
-FunctionLibraryItem::FunctionLibraryItem(const QString& name, const QString& lambda, Dimensions dimension, const QStringList& arguments)
+FunctionLibraryItem::FunctionLibraryItem(const QString& name, const QString& lambda, Analitza::Dimensions dimension, const QStringList& arguments)
     : m_name(name)
     , m_lambda(lambda)
     , m_dimension(dimension)
@@ -97,7 +97,7 @@ bool FunctionLibraryModel::loadData()
 
     QString name;
     QString lambda;
-    Dimensions dimension = DimAll;
+    Analitza::Dimensions dimension = Analitza::DimAll;
     QStringList arguments;
 
     
@@ -115,7 +115,7 @@ bool FunctionLibraryModel::loadData()
 
 
         lambda = functionDataElements.at(1).toElement().text();
-        dimension = Dimension(functionDataElements.at(2).toElement().text().toInt());
+        dimension = Analitza::Dimension(functionDataElements.at(2).toElement().text().toInt());
         arguments.clear();
 
         for (int i = 0; i < functionDataElements.at(3).toElement().childNodes().size(); i +=1)
@@ -285,7 +285,7 @@ void FunctionLibraryFilterProxyModel::setFilterArguments(const QStringList &args
     invalidateFilter();
 }
 
-void FunctionLibraryFilterProxyModel::setFilterDimension(Dimensions dimension)
+void FunctionLibraryFilterProxyModel::setFilterDimension(Analitza::Dimensions dimension)
 {
     m_dimension = dimension;
     invalidateFilter();

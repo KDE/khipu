@@ -49,6 +49,8 @@
 
 #include "spacesdelegate.h"
 
+using namespace Analitza;
+
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
