@@ -246,7 +246,7 @@
             </widget>
            </item>
            <item>
-            <widget class="ExpressionEdit" name="f">
+            <widget class="Analitza::ExpressionEdit" name="f">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -312,7 +312,7 @@
             </widget>
            </item>
            <item>
-            <widget class="ExpressionEdit" name="g">
+            <widget class="Analitza::ExpressionEdit" name="g">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -378,7 +378,7 @@
             </widget>
            </item>
            <item>
-            <widget class="ExpressionEdit" name="h">
+            <widget class="Analitza::ExpressionEdit" name="h">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                <horstretch>0</horstretch>
@@ -474,7 +474,7 @@
                <widget class="QWidget" name="xinterval" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_7">
                  <item>
-                  <widget class="ExpressionEdit" name="minx">
+                  <widget class="Analitza::ExpressionEdit" name="minx">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -512,7 +512,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="ExpressionEdit" name="maxx">
+                  <widget class="Analitza::ExpressionEdit" name="maxx">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -528,7 +528,7 @@
                <widget class="QWidget" name="yinterval" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_9">
                  <item>
-                  <widget class="ExpressionEdit" name="miny">
+                  <widget class="Analitza::ExpressionEdit" name="miny">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -563,7 +563,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="ExpressionEdit" name="maxy">
+                  <widget class="Analitza::ExpressionEdit" name="maxy">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -579,7 +579,7 @@
                <widget class="QWidget" name="zinterval" native="true">
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <item>
-                  <widget class="ExpressionEdit" name="minz">
+                  <widget class="Analitza::ExpressionEdit" name="minz">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -614,7 +614,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="ExpressionEdit" name="maxz">
+                  <widget class="Analitza::ExpressionEdit" name="maxz">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -679,7 +679,7 @@
    <header>kdialogbuttonbox.h</header>
   </customwidget>
   <customwidget>
-   <class>ExpressionEdit</class>
+   <class>Analitza::ExpressionEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>analitzagui/expressionedit.h</header>
   </customwidget>
