@@ -29,7 +29,7 @@ static const char version[] = "1.0";
 
 int main(int argc, char **argv)
 {
-    KAboutData about("khipu", 0, ki18n(I18N_NOOP("Khipu")), version, ki18n(description),
+    KAboutData about("khipu", "gplacs", ki18n(I18N_NOOP("Khipu")), version, ki18n(description),
                      KAboutData::License_GPL, ki18n("(C) 2010-2012, Percy Camilo Triveño Aucahuasi"));
 
     about.addAuthor(ki18n("Percy Camilo Triveño Aucahuasi"), ki18n("Main developer"), "percy.camilo.ta@gmail.com");
