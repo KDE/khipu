@@ -117,13 +117,14 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 
     int i = 0;
     
-    switch (item->coordinateSystem())
+   /* switch (item->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
-    }
+    }*/
+    i=1;
     
-    emit gridStyleChanged(i);
+   // emit gridStyleChanged(i);
 }
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
@@ -132,14 +133,14 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
         return;
     
     int i = 0;
-    switch (curr.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
+    /*switch (curr.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
     {
         //TODO for 3d
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
-    }
-
-    emit gridStyleChanged(i);
+    }*/
+    i=1;
+    //emit gridStyleChanged(i);
 }
 
 void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
@@ -152,7 +153,7 @@ void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& b
         case Polar: i = 2; break;
     }
     
-    emit gridStyleChanged(i);
+  //  emit gridStyleChanged(i);
 
 }
 
