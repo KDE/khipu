@@ -729,7 +729,7 @@ void PlotsEditor::savePlot()
               //  item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
               //  item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
-                if (isEditing)
+                if (!isEditing)
                     m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
             } else {
                 errors = req.errors();
