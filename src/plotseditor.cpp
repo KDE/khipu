@@ -705,10 +705,10 @@ void PlotsEditor::savePlot()
                 } else
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 
-              //  item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if(!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
             } else
                 errors = req.errors();
 
@@ -726,11 +726,12 @@ void PlotsEditor::savePlot()
                     item = editCurrentFunction(req.expression());
                 } else
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-              //  item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-              //  item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+               
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                 if (!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
             } else {
                 errors = req.errors();
 			}
@@ -748,11 +749,12 @@ void PlotsEditor::savePlot()
                 } else {
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 }
-               // item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-               // item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                 if (!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
             } else
                 errors = req.errors();
 
@@ -769,12 +771,13 @@ void PlotsEditor::savePlot()
                 } else {
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 }
-           //     item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-            //    item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
-             //   item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
+                
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
 
                 if (!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
             } else
                 errors = req.errors();
 
@@ -792,15 +795,17 @@ void PlotsEditor::savePlot()
                 } else {
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 }
-           //     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+               
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if (!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
             } else
                 errors = req.errors();
 
             break;
         }
+
         case PlotsBuilder::CartesianParametricCurve3D:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
@@ -812,10 +817,11 @@ void PlotsEditor::savePlot()
                 } else {
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 }
-           //     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if (!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
             } else
                 errors = req.errors();
             
@@ -832,11 +838,12 @@ void PlotsEditor::savePlot()
                 } else {
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 }
-             //   item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-              //  item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                 if (!isEditing)
-                    m_document->plotsModel()->addPlot(req.create(m_widget->plotColor->color(), m_widget->plotName->text()));
+                    m_document->plotsModel()->addPlot(item);
                 
             } else
                 errors = req.errors();
