@@ -416,7 +416,7 @@ void MainWindow::saveFile() {
     // do this for the whole list and write at that time into a file
     int i,j;
 
-        for(i=0;i<m_savedSpaces;i++) {
+        for(i=0;i<spaceList.size();i++) {
 
              DictionaryItem* space=spaceList.at(i);
              QString spaceName = space->title();
