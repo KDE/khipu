@@ -23,6 +23,7 @@
 #include <qcombobox.h>
 #include <QModelIndex>
 #include "plotsbuilder.h"
+#include <analitzaplot/plotitem.h>
 
 namespace Analitza {
 class FunctionGraph;
@@ -88,8 +89,9 @@ private slots:
     void setCurrentFunctionGraphs(const QString &txt); /// see m_currentFunctionGraphs
     
 signals:
-    void plotAdded(const QModelIndex &index);  // emit when item != 0
-    void plotRemoved(const QModelIndex &index);  // emit when item != 0
+   // void plotAdded(const QModelIndex &index);  // emit when item != 0
+   // void plotRemoved(const QModelIndex &index);  // emit when item != 0
+    void plotAdded(Analitza::PlotItem* item);
 
     //for mainwnd
     void goHome();

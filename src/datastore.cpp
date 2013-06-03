@@ -27,6 +27,7 @@
 #include <analitza/variables.h>
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>
+#include <plotseditor.h>
 
 using namespace Analitza;
 
@@ -56,6 +57,7 @@ DataStore::DataStore(QObject* parent)
 
     //luego nuestro data store debe mapear los items a un space
     connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
+
     // no sirve mapear una vez eliminado el item no es posible consultar
     /// see unmap para eliminar un item/plot
 //     connect(m_plotsModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(unmapPlot(QModelIndex,int,int)));
@@ -112,19 +114,26 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
     //TODO assert si el current forma un buen item
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
+
     PlotItem* item = m_plotsModel->index(start, 0, parent).data(PlotsModel::PlotRole).value<PlotItem*>();
+
     m_maps.insertMulti(m_spacesModel->space(m_currentSpace), item);
 
     int i = 0;
-    
+
    /* switch (item->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
     }*/
-    i=1;
-    
-   // emit gridStyleChanged(i);
+
+     i=1;
+ /*     mapPlotFixed(PlotsEditor::getLastPlotItem());
+  */ // emit gridStyleChanged(i);
+}
+
+void DataStore::mapPlotFixed(Analitza::PlotItem* item) {
+    m_mapsFixed.insertMulti(m_spacesModel->space(m_currentSpace), item);
 }
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)

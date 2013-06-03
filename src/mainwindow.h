@@ -20,6 +20,7 @@
 #define GPLACS_MAINWINDOW_H
 
 #include <KDE/KXmlGuiWindow>
+#include <QModelIndex>
 
 class Filter;
 class SpaceOptions;
@@ -50,7 +51,9 @@ public:
 public slots:
     void newFile();
     void openFile();
+    void saveFile();
     void activateSpace(int);
+    void createPlot(const QModelIndex &ind);
 
 private slots:
     //helpers - space
@@ -88,17 +91,24 @@ private:
     void setupActions();
     void setupToolBars();
     bool queryClose();
+    QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
+    QPixmap toPixmap(const QByteArray &bytearray);
 
 private:
     DataStore *m_document;
     Dashboard *m_dashboard;
     Filter *m_filter;
-    
+    int m_currentSpaceDim;
+    int m_totalSpaces; // total hits to addspace2d + addspace3D
+    int m_savedSpaces; // total hits to home
+
     QDockWidget *m_plotsBuilderDock;
     PlotsEditor *m_spacePlotsDock;
     SpaceInformation *m_spaceInfoDock;
     SpaceOptions *m_spaceOptionsDock;
-    
+    QList<QByteArray> imageList;
+    QVariantList m_parsedSpaceDetails;
+
     //remove this
     
 private slots:

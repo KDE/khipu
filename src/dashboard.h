@@ -86,6 +86,7 @@ public:
     
     Analitza::PlotsView2D *view2d();
     Analitza::PlotsView3D *view3d();
+    bool m_openclicked;
 
 public slots:
     
@@ -121,13 +122,14 @@ private slots:
 
 signals:
     void spaceActivated(int spaceidx); // hacia el mainwind para que prepare los toolbars etc
+    void plotRequested(const QModelIndex &ind); //  for requesting the plots when double-clicked on the plot-space thumbnail.
 
 private:
     void setupWidget();
 
     DataStore * m_document;
     Ui::DashboardWidget *m_widget;
-    
+    QModelIndexList *m_spaceindexList;
     SpacesFilterProxyModel *m_spacesProxyModel;
 };
 

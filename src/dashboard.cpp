@@ -85,6 +85,8 @@ Dashboard::Dashboard(QWidget *parent)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
+    m_spaceindexList=new QModelIndexList();
+    m_openclicked=false;
 }
 
 Dashboard::~Dashboard()
@@ -282,6 +284,13 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
         m_widget->plotsViews->setCurrentIndex(1);
         break;
     }
+
+    // identification of the space
+    if(!(m_spaceindexList->contains(index)) && m_openclicked){
+        m_spaceindexList->append(index);
+        emit plotRequested(index);
+    }
+
 }
 
 void Dashboard::setCurrentSpace(const QModelIndex& index, const QModelIndex& old)

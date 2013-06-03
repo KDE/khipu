@@ -56,6 +56,7 @@ public:
     SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
     QItemSelectionModel *currentSelectionModel() const { return m_currentSelectionModel; }
     QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
+    QMap<DictionaryItem*, Analitza::PlotItem*> currentDataMap() const { return m_mapsFixed; }
 
 
     bool isMapped(DictionaryItem *space, Analitza::PlotItem *plot) const;
@@ -71,12 +72,14 @@ public slots:
     void removeCurrentSpace();
     //NOTA esta es la foma de borrar un plot
     void unmapPlot(const QModelIndex & proxyindex /*or viewindex*/); // cuando se borra un plot del modelo ... el viewindex es el index del view es decir del proxy
+    void mapPlotFixed(Analitza::PlotItem* item);
 
 signals:
 //     void modified(); ... TODO to document???
 
     void spaceActivated(int spaceidx);
     void gridStyleChanged(int i); // 1 cartesian 2 polar
+
 private:
     Analitza::PlotsDictionaryModel *m_plotsDictionaryModel;
     DictionariesModel *m_spacesModel;
@@ -90,7 +93,9 @@ private:
 
     //one to many -- space index -> many plots index
     int m_currentSpace; // curr space index 
-    QMap<DictionaryItem*, Analitza::PlotItem*> m_maps;
+    QMap<DictionaryItem*, Analitza::PlotItem *> m_maps;
+    QMap<DictionaryItem*, Analitza::PlotItem*> m_mapsFixed;
+
 };
 
 
