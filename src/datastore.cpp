@@ -155,17 +155,16 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
 void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
 {
     int i = 0;
-    
-    switch (topLeft.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
+    topLeft.data(PlotsModel::PlotRole).value<PlotItem*>();
+
+    /*switch (topLeft.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
-    }
-    
+    }*/
+    i=1;
   //  emit gridStyleChanged(i);
-
 }
-
 
 void DataStore::removeCurrentSpace()
 {
