@@ -55,7 +55,6 @@ SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)
 {
     m_dimension = DimAll;
-    
     setDynamicSortFilter(true);
 }
 
@@ -123,7 +122,6 @@ void Dashboard::setDocument(DataStore* doc)
 //     m_widget->spacesView->setFlow(QListView::LeftToRight);
     SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
     m_widget->spacesView->setItemDelegate(delegate);
-    
 
 
 //     delegate->setIconMode(true);
@@ -142,7 +140,6 @@ void Dashboard::setDocument(DataStore* doc)
     //al insertar nuevos plots que el current sea el ultimo insertado ... esto es necesario
     //para que los plotsview se enteren ...
     connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int,int)));
-
 
 //     m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(-1); //TODO hacks para evitar los asertos de setmodel... enums?
 
@@ -397,4 +394,3 @@ void Dashboard::setupWidget()
 //     m_widget->viewMode->setCurrentIndex(0);
 
 }
-

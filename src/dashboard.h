@@ -107,7 +107,6 @@ public slots:
 
 private slots:
     void removeSpace(const QModelIndex & index);
-    
 
 
 //     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
@@ -125,7 +124,6 @@ signals:
 
 private:
     void setupWidget();
-
     DataStore * m_document;
     Ui::DashboardWidget *m_widget;
     QModelIndexList *m_spaceindexList;

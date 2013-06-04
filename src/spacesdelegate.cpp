@@ -126,8 +126,6 @@ SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
 
 //     connect(itemView, SIGNAL(entered(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
 //     connect(itemView, SIGNAL(clicked(QModelIndex)), SLOT(invalidClick(QModelIndex)));
-    
-    
 }
 
 SpacesDelegate::~SpacesDelegate()
@@ -688,7 +686,6 @@ void SpacesDelegate::removeCurrentSpace()
     if (!itemView()->currentIndex().isValid()) return;
 
     itemView()->model()->removeRow(itemView()->currentIndex().row());
-
     m_isEditing = false;
     
     if (m_iconMode)

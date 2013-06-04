@@ -76,7 +76,6 @@ DataStore::DataStore(QObject* parent)
 //         this, SLOT(addFuncs(QModelIndex,int,int)));
 //     connect(m_model, SIGNAL(rowsRemoved(QModelIndex,int,int)),
 //         this, SLOT(removeFuncs(QModelIndex,int,int)));
-
 }
 
 DataStore::~DataStore()
@@ -197,6 +196,5 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         }
         ++i;
     }
-
     m_spacePlotsFilterProxyModel->removeRow(proxyindex.row());
 }

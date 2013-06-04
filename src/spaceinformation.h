@@ -43,7 +43,7 @@ public:
 
 public slots:
     void clear();
-    
+
 private:
     Ui::SpaceInformationWidget *m_widget;
 };

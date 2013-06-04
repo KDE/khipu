@@ -17,14 +17,12 @@
  *************************************************************************************/
 
 #include "spaceinformation.h"
-
 #include "ui_spaceinformation.h"
 
 SpaceInformation::SpaceInformation(QWidget* parent): QDockWidget(parent)
 {
     m_widget = new Ui::SpaceInformationWidget;
     m_widget->setupUi(this);
-    
     setObjectName("asdasdds222");
 }
 

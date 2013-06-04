@@ -21,6 +21,7 @@
 
 #include <KDE/KXmlGuiWindow>
 #include <QModelIndex>
+#include <analitzaplot/plotitem.h>
 
 class Filter;
 class SpaceOptions;
@@ -51,7 +52,8 @@ public:
 public slots:
     void newFile();
     void openFile();
-    void saveFile();
+    void saveClicked();
+    void saveAsClicked();
     void activateSpace(int);
     void createPlot(const QModelIndex &ind);
     void savePlot();
@@ -86,12 +88,16 @@ private slots:
     void updateTittleWhenChangeDocState();
     void updateTittleWhenOpenSaveDoc();
 
+signals:
+    void plotMapped(Analitza::PlotItem* item); //used to map the plot when user opens a file from the disk.
+
 private:
     KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
     void setupDocks();
     void setupActions();
     void setupToolBars();
     bool queryClose();
+    void saveFile(const QString& path);
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     QPixmap toPixmap(const QByteArray &bytearray);
 
@@ -109,7 +115,7 @@ private:
     SpaceOptions *m_spaceOptionsDock;
     QList<QByteArray> imageList;
     QVariantList m_parsedSpaceDetails;
-
+    QString m_fileLocation; // location of the current running file which is saved by the user.
     //remove this
     
 private slots:

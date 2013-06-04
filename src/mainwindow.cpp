@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_filter, SIGNAL(filterByDimension(Dimensions)), m_dashboard, SLOT(filterByDimension(Dimensions)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
-
+    connect(this,SIGNAL(plotMapped(Analitza::PlotItem*)),m_document,SLOT(mapPlotFixed(Analitza::PlotItem*)));
     toolBar("mainToolBar")->addWidget(m_filter);
 
     setCentralWidget(m_dashboard);
@@ -165,8 +165,9 @@ void MainWindow::setupDocks()
     connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
     connect(m_spacePlotsDock,SIGNAL(plotAdded(Analitza::PlotItem*)),m_document,SLOT(mapPlotFixed(Analitza::PlotItem*)));
+
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
-    
+
     m_spaceInfoDock = new SpaceInformation(this);
     
     m_spaceOptionsDock = new SpaceOptions(this);
@@ -200,8 +201,8 @@ void MainWindow::setupActions()
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
     KStandardAction::open(this, SLOT(openFile()), actionCollection());
     KStandardAction::openRecent(this, SLOT(fooSlot()), actionCollection());    
-    KStandardAction::save(this, SLOT(saveFile()), actionCollection());
-    KStandardAction::saveAs(this, SLOT(fooSlot()), actionCollection());
+    KStandardAction::save(this, SLOT(saveClicked()), actionCollection());
+    KStandardAction::saveAs(this, SLOT(saveAsClicked()), actionCollection());
     KStandardAction::close(this, SLOT(close()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
@@ -391,7 +392,7 @@ void MainWindow::openFile()
     activateDashboardUi();
 }
 
-QPixmap MainWindow::toPixmap(const QByteArray &bytearray){
+QPixmap MainWindow::toPixmap(const QByteArray &bytearray) {
 
     QByteArray *imageArray = new QByteArray(QByteArray::fromBase64(bytearray));
     QBuffer imagebuffer(imageArray);
@@ -402,7 +403,23 @@ QPixmap MainWindow::toPixmap(const QByteArray &bytearray){
 
 }
 
-void MainWindow::saveFile() {
+void MainWindow::saveClicked(){
+
+    if(m_fileLocation=="") // Intially when the data is not saved. We would not have the actual file path.
+        m_fileLocation = QFileDialog::getSaveFileName(this, tr("Save File (Please save with extension .khipu) "),"/");
+
+    saveFile(m_fileLocation);
+
+}
+
+void MainWindow::saveAsClicked(){
+    QString path;
+    path = QFileDialog::getSaveFileName(this, tr("Save File (Please save with extension .khipu) "),"/");
+    saveFile(path);
+    m_fileLocation=path;
+}
+
+void MainWindow::saveFile(const QString& path) {
 
     QMap<DictionaryItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
@@ -471,7 +488,6 @@ void MainWindow::saveFile() {
              QByteArray subjson = subserializer.serialize(subplot_list);
              plotspace.insert("plots",subjson);
              plotspace_list << plotspace;
-
         }
     }
 
@@ -551,8 +567,7 @@ void MainWindow::saveFile() {
 
 QJson::Serializer serializer;
 QByteArray json = serializer.serialize(plotspace_list);
-QString path;
-path = QFileDialog::getSaveFileName(this, tr("Save File (Please save with extension .khipu) "),"/");
+
 
     if(path==""){
          qDebug() << "error in saving file...may be path not found." ;
@@ -570,7 +585,6 @@ qDebug() << "path: " << path;
 QTextStream out(file);
 out << json;
 file->close();
-
 }
 
 void MainWindow::savePlot(){
@@ -796,7 +810,7 @@ void MainWindow::goHome()
         space->setThumbnail(thumbnail);
 
         QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
-        imageList.append(imageByteArray);
+        imageList.append(imageByteArray); // some bug here
     }
     m_savedSpaces++;
     m_dashboard->goHome();
@@ -945,6 +959,7 @@ void MainWindow::createPlot(const QModelIndex &ind) {
                 item->setInterval(item->parameters().first(), arg1min, arg1max);
 
             m_document->plotsModel()->addPlot(item);
+            emit plotMapped(item);
 
         }
 
@@ -952,3 +967,5 @@ void MainWindow::createPlot(const QModelIndex &ind) {
             errors = req.errors();
     }
 }
+
+

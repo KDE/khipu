@@ -58,15 +58,13 @@ public:
     QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
     QMap<DictionaryItem*, Analitza::PlotItem*> currentDataMap() const { return m_mapsFixed; }
 
-
     bool isMapped(DictionaryItem *space, Analitza::PlotItem *plot) const;
 
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
     void selectCurrentPlot(const QModelIndex & curr, const QModelIndex & prev );
     void plotDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight ); // actualiza el combo de coords
-    
-    
+
 public slots: 
     void setCurrentSpace(int spaceidx);
     void removeCurrentSpace();
@@ -95,7 +93,6 @@ private:
     int m_currentSpace; // curr space index 
     QMap<DictionaryItem*, Analitza::PlotItem *> m_maps;
     QMap<DictionaryItem*, Analitza::PlotItem*> m_mapsFixed;
-
 };
 
 
