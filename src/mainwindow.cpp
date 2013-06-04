@@ -204,6 +204,8 @@ void MainWindow::setupActions()
     KStandardAction::saveAs(this, SLOT(fooSlot()), actionCollection());
     KStandardAction::close(this, SLOT(close()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
+    createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
+
     //TODO
 //     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
 
@@ -562,6 +564,13 @@ QTextStream out(file);
 out << json;
 file->close();
 
+}
+
+void MainWindow::savePlot(){
+
+    Dimension dim = m_document->spacesModel()->space(m_document->currentSpace())->dimension();
+
+    m_dashboard->exportSpaceSnapshot(dim);
 }
 
 void MainWindow::activateSpace(int spaceidx)

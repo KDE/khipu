@@ -99,8 +99,7 @@ public slots:
     void showPlotsView2D();
     void showPlotsView3D();
 
-    void exportSpace2DSnapshot();
-    void exportSpace3DSnapshot();
+    void exportSpaceSnapshot(Analitza::Dimension dim);
     void copySpace2DSnapshotToClipboard();
     void copySpace3DSnapshotToClipboard();
     

@@ -7,6 +7,12 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
     http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd" >
     
     <MenuBar>
+        <Menu name="file">
+            <text>&amp;File</text>
+            <DefineGroup name="file_dashboard_operations" />
+            <Action name="save_plotImage"/>
+        </Menu>
+      
         <Menu name="edit" noMerge="1">
             <text>&amp;Edit</text>
             <DefineGroup name="edit_dashboard_operations" />

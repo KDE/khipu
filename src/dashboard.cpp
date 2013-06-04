@@ -46,7 +46,7 @@
 #include <kicon.h>
 #include <kwidgetitemdelegate.h>
 #include <KSelectionProxyModel>
-
+#include <KFileDialog>
 #include "spacesdelegate.h"
 
 using namespace Analitza;
@@ -210,18 +210,25 @@ void Dashboard::showPlotsView3D()
     m_widget->plotsViews->setCurrentIndex(1);
 }
 
-void Dashboard::exportSpace2DSnapshot()
+void Dashboard::exportSpaceSnapshot(Dimension dim)
 {
-//     QString path = KFileDialog::getSaveFileName(KUrl(), i18n("*.png|PNG Image File\n*.svg|SVG File"), this);
-//     if(!path.isEmpty())
-//         m_widget->space2D->toImage(path);
-}
+    QString path = KFileDialog::getSaveFileName(KUrl(), i18n("*.png|PNG Image File"), this);
+    if(!path.isEmpty()){
 
-void Dashboard::exportSpace3DSnapshot()
-{
-//     QString path = KFileDialog::getSaveFileName(KUrl(), i18n("*.png|PNG Image File\n*.jpg|JPG Image File"), this);
-//     if(!path.isEmpty())
-//         m_widget->space3D->toImage(path);
+        if(dim==Dim2D){
+            view2d()->toImage(path,PlotsView2D::PNG);
+        }
+
+        else if(dim==Dim3D){
+            view3d()->updateGL();
+            view3d()->setFocus();
+            view3d()->makeCurrent();
+            view3d()->raise();
+
+            QImage image(view3d()->grabFrameBuffer(true));
+            QPixmap::fromImage(image, Qt::ColorOnly).save(path,"PNG");
+        }
+    }
 }
 
 void Dashboard::copySpace2DSnapshotToClipboard()

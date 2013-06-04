@@ -54,6 +54,7 @@ public slots:
     void saveFile();
     void activateSpace(int);
     void createPlot(const QModelIndex &ind);
+    void savePlot();
 
 private slots:
     //helpers - space
