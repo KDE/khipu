@@ -113,7 +113,8 @@ private:
     PlotsEditor *m_spacePlotsDock;
     SpaceInformation *m_spaceInfoDock;
     SpaceOptions *m_spaceOptionsDock;
-    QList<QByteArray> imageList;
+    QList<QByteArray> m_imageList;
+    QList<QString> m_spacenameList;
     QVariantList m_parsedSpaceDetails;
     QString m_fileLocation; // location of the current running file which is saved by the user.
     //remove this

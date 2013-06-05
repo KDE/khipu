@@ -360,6 +360,7 @@ void MainWindow::openFile()
         exit(0);
     }
 
+    m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
     qDebug() << "parsing....";
     QJson::Parser parser;
     m_parsedSpaceDetails = parser.parse(file).toList();
@@ -454,7 +455,7 @@ void MainWindow::saveFile(const QString& path) {
              QVariantMap plotspace;
              plotspace.insert("name",spaceName);
              plotspace.insert("dimension",dim);
-             plotspace.insert("image",imageList.at(i));
+             plotspace.insert("image",m_imageList.at(i));
 
              QList<Analitza::PlotItem*> plotList=map.values(space);
 
@@ -810,9 +811,17 @@ void MainWindow::goHome()
         space->setThumbnail(thumbnail);
 
         QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
-        imageList.append(imageByteArray); // some bug here
+
+        if(!m_spacenameList.contains(space->title())){
+            m_imageList.append(imageByteArray);
+            m_spacenameList.append(space->title());
+            m_savedSpaces++;
+        }
+        else {
+           int ind=m_spacenameList.indexOf(space->title());
+           m_imageList.replace(ind,imageByteArray);
+        }
     }
-    m_savedSpaces++;
     m_dashboard->goHome();
     activateDashboardUi();
 }
