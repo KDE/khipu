@@ -334,7 +334,7 @@ void MainWindow::newFile()
 {
     // if there are not any plots added (i.e. file is completely clean)
     if(m_document->plotsModel()->rowCount()==0){
-        QMessageBox::information(this,"No need to create New Window","There are not any plots available. So, you do not need to create a new Plot Window");
+        QMessageBox::information(this,i18n("No need to create New Window"),i18n("There are not any plots available. So, you do not need to create a new Plot Window"));
         return;
     }
 

@@ -192,6 +192,7 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         if (i.value() == proxyindex.data(PlotsModel::PlotRole).value<PlotItem*>())
         {
             m_maps.erase(i);
+            m_mapsFixed.erase(i);
             break;
         }
         ++i;
