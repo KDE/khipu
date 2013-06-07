@@ -801,7 +801,7 @@ void PlotsEditor::savePlot()
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 }
                
-              //  item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if (!isEditing) {
                        m_document->plotsModel()->addPlot(item);
