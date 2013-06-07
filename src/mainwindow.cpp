@@ -93,7 +93,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_filter, SIGNAL(filterByDimension(Dimensions)), m_dashboard, SLOT(filterByDimension(Dimensions)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
-    connect(this,SIGNAL(plotMapped(Analitza::PlotItem*)),m_document,SLOT(mapPlotFixed(Analitza::PlotItem*)));
     toolBar("mainToolBar")->addWidget(m_filter);
 
     setCentralWidget(m_dashboard);
@@ -164,8 +163,6 @@ void MainWindow::setupDocks()
 
     connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
-    connect(m_spacePlotsDock,SIGNAL(plotAdded(Analitza::PlotItem*)),m_document,SLOT(mapPlotFixed(Analitza::PlotItem*)));
-
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     m_spaceInfoDock = new SpaceInformation(this);
@@ -968,8 +965,6 @@ void MainWindow::createPlot(const QModelIndex &ind) {
                 item->setInterval(item->parameters().first(), arg1min, arg1max);
 
             m_document->plotsModel()->addPlot(item);
-            emit plotMapped(item);
-
         }
 
         else

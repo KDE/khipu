@@ -88,9 +88,6 @@ private slots:
     void updateTittleWhenChangeDocState();
     void updateTittleWhenOpenSaveDoc();
 
-signals:
-    void plotMapped(Analitza::PlotItem* item); //used to map the plot when user opens a file from the disk.
-
 private:
     KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
     void setupDocks();

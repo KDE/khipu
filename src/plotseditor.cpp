@@ -47,11 +47,11 @@
 #include <analitzaplot/plotsfactory.h>
 #include "ui_plotseditor.h"
 
-Q_DECLARE_METATYPE(Analitza::PlotItem*);
+
 
 using namespace Analitza;
 
-
+Q_DECLARE_METATYPE(PlotItem*);
 
 ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 {
@@ -200,9 +200,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
     setObjectName("adasdds");
-
-    
-
     
 //     m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
 
@@ -243,8 +240,8 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->builder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
 
     connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(addPlots()));
-    connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
-    connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
+  //  connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
+  //  connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
 }
 
@@ -713,7 +710,6 @@ void PlotsEditor::savePlot()
 
                 if(!isEditing) {
                     m_document->plotsModel()->addPlot(item);
-                    emit plotAdded(item);
                 }
             } else
                 errors = req.errors();
@@ -733,13 +729,12 @@ void PlotsEditor::savePlot()
                 } else
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                
-             //   item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-             //   item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                 if (!isEditing){
                     m_document->plotsModel()->addPlot(item);
-                     emit plotAdded(item);
-                }
+               }
             } else {
                 errors = req.errors();
 			}
@@ -763,7 +758,6 @@ void PlotsEditor::savePlot()
 
                 if (!isEditing) {
                     m_document->plotsModel()->addPlot(item);
-                    emit plotAdded(item);
                 }
             } else
                 errors = req.errors();
@@ -788,7 +782,6 @@ void PlotsEditor::savePlot()
 
                 if (!isEditing){
                     m_document->plotsModel()->addPlot(item);
-                    emit plotAdded(item);
                 }
             } else
                 errors = req.errors();
@@ -812,7 +805,6 @@ void PlotsEditor::savePlot()
 
                 if (!isEditing) {
                        m_document->plotsModel()->addPlot(item);
-                       emit plotAdded(item);
                 }
             }else
                 errors = req.errors();
@@ -836,7 +828,6 @@ void PlotsEditor::savePlot()
 
                 if (!isEditing) {
                     m_document->plotsModel()->addPlot(item);
-                    emit plotAdded(item);
                 }
             } else
                 errors = req.errors();
@@ -860,7 +851,6 @@ void PlotsEditor::savePlot()
 
                 if (!isEditing) {
                     m_document->plotsModel()->addPlot(item);
-                    emit plotAdded(item);
                 }
             } else
                 errors = req.errors();

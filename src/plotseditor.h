@@ -91,7 +91,6 @@ private slots:
 signals:
     // void plotAdded(const QModelIndex &index);  // emit when item != 0
     // void plotRemoved(const QModelIndex &index);  // emit when item != 0
-    void plotAdded(Analitza::PlotItem* item);
 
     //for mainwnd
     void goHome();

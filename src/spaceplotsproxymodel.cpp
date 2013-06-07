@@ -22,7 +22,7 @@
 
 using namespace Analitza;
 
-Q_DECLARE_METATYPE(Analitza::PlotItem*);
+Q_DECLARE_METATYPE(PlotItem*);
 
 PlotsProxyModel::PlotsProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)

@@ -31,7 +31,7 @@
 
 using namespace Analitza;
 
-Q_DECLARE_METATYPE(Analitza::PlotItem*);
+Q_DECLARE_METATYPE(PlotItem*);
 
 DataStore::DataStore(QObject* parent)
     : QObject(parent)
@@ -120,19 +120,13 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 
     int i = 0;
 
-   /* switch (item->coordinateSystem())
+    switch (item->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
-    }*/
+    }
 
-     i=1;
- /*     mapPlotFixed(PlotsEditor::getLastPlotItem());
-  */ // emit gridStyleChanged(i);
-}
-
-void DataStore::mapPlotFixed(Analitza::PlotItem* item) {
-    m_mapsFixed.insertMulti(m_spacesModel->space(m_currentSpace), item);
+    emit gridStyleChanged(i);
 }
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
@@ -141,28 +135,26 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
         return;
     
     int i = 0;
-    /*switch (curr.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
+    switch (curr.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
     {
         //TODO for 3d
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
-    }*/
-    i=1;
-    //emit gridStyleChanged(i);
+    }
+
+    emit gridStyleChanged(i);
 }
 
 void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
 {
     int i = 0;
-    topLeft.data(PlotsModel::PlotRole).value<PlotItem*>();
 
-    /*switch (topLeft.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
+    switch (topLeft.data(PlotsModel::PlotRole).value<PlotItem*>()->coordinateSystem())
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
-    }*/
-    i=1;
-  //  emit gridStyleChanged(i);
+    }
+    emit gridStyleChanged(i);
 }
 
 void DataStore::removeCurrentSpace()
@@ -192,7 +184,6 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         if (i.value() == proxyindex.data(PlotsModel::PlotRole).value<PlotItem*>())
         {
             m_maps.erase(i);
-            m_mapsFixed.erase(i);
             break;
         }
         ++i;
