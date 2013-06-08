@@ -335,6 +335,14 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
 
 }
 
+void Dashboard::setGridColor(const QString &color){
+    if(color=="grey"){
+        m_widget->plotsView2D->updateGridColor(QColor(230,230,230));
+    }
+    else if(color=="white"){
+        m_widget->plotsView2D->updateGridColor(QColor(255,255,255));
+    }
+}
 
 void Dashboard::setupWidget()
 {

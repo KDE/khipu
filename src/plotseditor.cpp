@@ -243,6 +243,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
   //  connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
   //  connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
+    connect(m_widget->focusPlot,SIGNAL(stateChanged(int)),SLOT(showAxis(int)));
+    m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
+    m_widget->focusPlot->setChecked(true);
 }
 
 PlotsEditor::~PlotsEditor()
@@ -353,6 +356,15 @@ void PlotsEditor::cancelEditor()
 
 }
 
+void PlotsEditor::showAxis(int state) {
+    if (state==0){
+        emit updateGridcolor("white"); // Axis willnot be visible when the color will be white.
+    }
+    else if (state==2){
+        emit updateGridcolor("grey"); // Axis will be visible when the color will be grey.
+    }
+}
+
 void PlotsEditor::addPlots()
 {
     m_cancelIsGoHome = false;
@@ -368,7 +380,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     reset();
 
-    if (m_widget->plotsView->selectionModel()->hasSelection())
+    if (m_widget->plotsView->selectionModel()->hasSelection()) // may be the plotsview is different .!!!
     {
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();

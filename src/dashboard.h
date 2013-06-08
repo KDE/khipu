@@ -102,7 +102,7 @@ public slots:
     void exportSpaceSnapshot(Analitza::Dimension dim);
     void copySpace2DSnapshotToClipboard();
     void copySpace3DSnapshotToClipboard();
-    
+    void setGridColor(const QString &color);
     
 
 private slots:

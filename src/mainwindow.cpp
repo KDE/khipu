@@ -164,6 +164,7 @@ void MainWindow::setupDocks()
 
     connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
+    connect(m_spacePlotsDock,SIGNAL(updateGridcolor(QString)),m_dashboard,SLOT(setGridColor(QString)));
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     m_spaceInfoDock = new SpaceInformation(this);
@@ -220,7 +221,7 @@ void MainWindow::setupActions()
 
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
-    createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "functionhelp", Qt::CTRL + Qt::Key_W, this, 
+    createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "functionhelp", Qt::CTRL + Qt::Key_W, this,
                  SLOT(setVisibleDictionary()));
 
     //view - space

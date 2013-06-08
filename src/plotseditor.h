@@ -82,7 +82,7 @@ private slots:
     void editPlot(const QModelIndex &index = QModelIndex()); // si el usuario elije editar un plot de la lista
 
     void savePlot();
-    
+    void showAxis(int state);
     void removePlot();
     
     //este slot se coneta con el combo
@@ -95,6 +95,7 @@ signals:
     //for mainwnd
     void goHome();
     void sendStatus(const QString &stat, int mstimeout = 0);
+    void updateGridcolor(const QString &color);
 
 private:
     Analitza::FunctionGraph* editCurrentFunction(const Analitza::Expression& exp);
