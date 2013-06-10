@@ -164,7 +164,7 @@ void MainWindow::setupDocks()
 
     connect(m_spacePlotsDock, SIGNAL(goHome()), SLOT(goHome()));
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
-    connect(m_spacePlotsDock,SIGNAL(updateGridcolor(QString)),m_dashboard,SLOT(setGridColor(QString)));
+    connect(m_spacePlotsDock,SIGNAL(updateGridcolor(QColor)),m_dashboard,SLOT(setGridColor(QColor)));
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
 
     m_spaceInfoDock = new SpaceInformation(this);

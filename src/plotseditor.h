@@ -95,7 +95,7 @@ signals:
     //for mainwnd
     void goHome();
     void sendStatus(const QString &stat, int mstimeout = 0);
-    void updateGridcolor(const QString &color);
+    void updateGridcolor(const QColor &color);
 
 private:
     Analitza::FunctionGraph* editCurrentFunction(const Analitza::Expression& exp);

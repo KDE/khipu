@@ -358,10 +358,10 @@ void PlotsEditor::cancelEditor()
 
 void PlotsEditor::showAxis(int state) {
     if (state==0){
-        emit updateGridcolor("white"); // Axis willnot be visible when the color will be white.
+        emit updateGridcolor(QColor(255,255,255)); // Axis willnot be visible when the color will be white.
     }
     else if (state==2){
-        emit updateGridcolor("grey"); // Axis will be visible when the color will be grey.
+        emit updateGridcolor(QColor(230,230,230)); // Axis will be visible when the color will be grey.
     }
 }
 
