@@ -40,12 +40,17 @@ void Filter::getDimIndex(int index)
 {
     switch (index)
     {
-        case 0: emit filterByDimension(Analitza::DimAll); break;
-        case 1: emit filterByDimension(Analitza::Dim2D); break;
-        case 2: emit filterByDimension(Analitza::Dim3D); break;
+    case 0: m_filterDashboard->filterByDimension(Analitza::DimAll); break;
+    case 1: m_filterDashboard->filterByDimension(Analitza::Dim2D); break;
+    case 2: m_filterDashboard->filterByDimension(Analitza::Dim3D); break;
     }
 }
 
+void Filter::setFilterDashboard(Dashboard *sourceDashboard){
+    m_filterDashboard= new Dashboard(sourceDashboard);
+    m_filterDashboard->setVisible(false);
+    m_filterDashboard->setDashboardData(sourceDashboard);
+}
 
 
 

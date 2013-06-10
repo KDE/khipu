@@ -46,9 +46,12 @@ signals: //TODO better names for signals adn slots
 private slots:
     void getDimIndex(int index);
     
-    
+public:
+    void setFilterDashboard(Dashboard *sourceDashboard);
+
 private:
     
+    Dashboard *m_filterDashboard;
     Ui::FilterWidget *m_widget;
 };
 

@@ -90,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent)
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
 
     m_filter = new Filter(this);
+    m_filter->setFilterDashboard(m_dashboard);
     
     connect(m_filter, SIGNAL(filterByDimension(Dimensions)), m_dashboard, SLOT(filterByDimension(Dimensions)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));

@@ -88,6 +88,12 @@ Dashboard::Dashboard(QWidget *parent)
     m_openclicked=false;
 }
 
+void Dashboard::setDashboardData(Dashboard* source){
+    m_document=source->m_document;
+    m_widget=source->m_widget;
+    m_spacesProxyModel=source->m_spacesProxyModel;
+}
+
 Dashboard::~Dashboard()
 {
 //     QAbstractItemDelegate *d = m_widget->spacesView->itemDelegate();
@@ -95,6 +101,7 @@ Dashboard::~Dashboard()
 // 
 //     delete d;
 //     
+    m_widget=0;
     delete m_widget;
 }
 
@@ -247,6 +254,7 @@ void Dashboard::copySpace3DSnapshotToClipboard()
 
 void Dashboard::filterByText(const QString &text)
 {
+    qDebug() << "is it coming here  " << text;
    //desaparecemos los botones y editores del delegate
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
  

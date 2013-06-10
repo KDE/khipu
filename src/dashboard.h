@@ -81,7 +81,8 @@ public:
     void setDocument(DataStore *doc);
     
     QPixmap currentPlotsViewSnapshot() const;
-    
+    void setDashboardData(Dashboard* source);
+
     //views
     
     Analitza::PlotsView2D *view2d();
