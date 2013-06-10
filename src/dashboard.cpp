@@ -86,6 +86,7 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget->setupUi(this);
     m_spaceindexList=new QModelIndexList();
     m_openclicked=false;
+    m_filterText << "dimAll" << "dim2D" << "dim3D";
 }
 
 void Dashboard::setDashboardData(Dashboard* source){
@@ -254,21 +255,12 @@ void Dashboard::copySpace3DSnapshotToClipboard()
 
 void Dashboard::filterByText(const QString &text)
 {
-    qDebug() << "is it coming here  " << text;
-   //desaparecemos los botones y editores del delegate
-    static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
- 
-//     switch (m_dashboardWidget->viewMode->currentIndex())
-//     {
-//     case 0:
-        m_spacesProxyModel->setFilterRegExp(QRegExp(text, Qt::CaseInsensitive, QRegExp::RegExp));
-//         break;
-//
-//     case 1:
-//         m_functionsProxyModel->setFilterRegExp(QRegExp(m_dashboardWidget->filterTextFunctions->text(),
-//                                                Qt::CaseInsensitive, QRegExp::RegExp));
-//         break;
-//     }
+    switch (m_filterText.indexOf(text))
+    {
+        case 0: filterByDimension(Analitza::DimAll); break;
+        case 1: filterByDimension(Analitza::Dim2D); break;
+        case 2: filterByDimension(Analitza::Dim3D); break;
+    }
 }
 
 void Dashboard::filterByDimension(Dimensions dim)

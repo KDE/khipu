@@ -129,6 +129,7 @@ private:
     Ui::DashboardWidget *m_widget;
     QModelIndexList *m_spaceindexList;
     SpacesFilterProxyModel *m_spacesProxyModel;
+    QList<QString> m_filterText;
 };
 
 #endif

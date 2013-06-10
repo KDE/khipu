@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "filter.h"
-
+#include <QCompleter>
 #include "ui_filter.h"
 
 Filter::Filter(QWidget* parent): QWidget(parent)
@@ -25,6 +25,13 @@ Filter::Filter(QWidget* parent): QWidget(parent)
     m_widget = new Ui::FilterWidget;
     m_widget->setupUi(this);
     
+    QStringList wordList;
+    wordList << "dim2D" << "dim3D" << "dimAll";
+
+    QCompleter *completer = new QCompleter(wordList, this);
+    completer->setCaseSensitivity(Qt::CaseInsensitive);
+    m_widget->filterText->setCompleter(completer);
+
     setObjectName("a33sdasddsaaa1");
 
     connect(m_widget->filterText, SIGNAL(textChanged(QString)), SIGNAL(filterByText(QString)));
