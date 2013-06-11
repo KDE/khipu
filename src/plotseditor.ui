@@ -31,12 +31,9 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="FunctionLibraryEdit" name="quickPlot"/>
-          </item>
-          <item>
-           <widget class="QToolButton" name="addPlots">
+           <widget class="QPushButton" name="addPlots">
             <property name="text">
-             <string/>
+             <string>Click Here to draw Plot</string>
             </property>
             <property name="icon">
              <iconset theme="list-add">
@@ -699,11 +696,6 @@
    <class>ComboBox</class>
    <extends>QComboBox</extends>
    <header>plotseditor.h</header>
-  </customwidget>
-  <customwidget>
-   <class>FunctionLibraryEdit</class>
-   <extends>QLineEdit</extends>
-   <header>functionlibraryedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -213,8 +213,8 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->garrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
     m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
     //cons
-    connect(m_widget->quickPlot,SIGNAL(selectedFunction(QString,Analitza::Dimensions,QString,QStringList)),this,
-                SLOT(addPlotsfromDictionary(QString,Analitza::Dimensions,QString,QStringList)));
+    //connect(m_widget->quickPlot,SIGNAL(selectedFunction(QString,Analitza::Dimensions,QString,QStringList)),this,
+     //           SLOT(addPlotsfromDictionary(QString,Analitza::Dimensions,QString,QStringList)));
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(cancelEditor()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
@@ -259,12 +259,12 @@ void PlotsEditor::setDocument(DataStore* doc)
     m_document  = doc;
     m_widget->plotsView->setModel(m_document->currentPlots());
     m_widget->plotsView->setSelectionModel(m_document->currentSelectionModel());
-    m_widget->quickPlot->setModel(m_document->plotsDictionaryModel());
+    //m_widget->quickPlot->setModel(m_document->plotsDictionaryModel());
 }
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
-    m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->space(spaceidx)->dimension());
+    //m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->space(spaceidx)->dimension());
     
     switch (m_document->spacesModel()->space(spaceidx)->dimension())
     {
