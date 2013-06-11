@@ -447,7 +447,6 @@ void MainWindow::saveFile(const QString& path) {
 
              DictionaryItem* space=spaceList.at(i);
              QString spaceName = space->title();
-             QPixmap thumbnail = space->thumbnail();
              int dim = space->dimension();
 
              QVariantList subplot_list;
@@ -456,7 +455,7 @@ void MainWindow::saveFile(const QString& path) {
              QVariantMap plotspace;
              plotspace.insert("name",spaceName);
              plotspace.insert("dimension",dim);
-             plotspace.insert("image",thumbnailtoByteArray(thumbnail));
+             plotspace.insert("image",m_imageList.at(i));
 
              QList<Analitza::PlotItem*> plotList=map.values(space);
 
@@ -815,16 +814,16 @@ void MainWindow::goHome()
         thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);   
         space->setThumbnail(thumbnail);
 
-     //   QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
+        QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
 
         if(!m_spacenameList.contains(space->title())){
-      //      m_imageList.append(imageByteArray);
+            m_imageList.append(imageByteArray);
             m_spacenameList.append(space->title());
             m_savedSpaces++;
         }
         else {
-//           int ind=m_spacenameList.indexOf(space->title());
-  //         m_imageList.replace(ind,imageByteArray);
+            int ind=m_spacenameList.indexOf(space->title());
+             m_imageList.replace(ind,imageByteArray);
         }
     }
     m_dashboard->goHome();
