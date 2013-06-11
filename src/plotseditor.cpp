@@ -1044,7 +1044,7 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
 }
 
 void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args) {
-
+/*
     qDebug() << "coming in the slots";
 
 QStringList errors;
@@ -1063,5 +1063,5 @@ if (req.canDraw()) {
 else {
     errors = req.errors();
     qDebug() << errors.at(0);
-}
+}*/
 }

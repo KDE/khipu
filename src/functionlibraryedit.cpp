@@ -106,12 +106,12 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
     qDebug() << indexDimension << " " << indexArguments;
 
     QString finalLambda;
-    finalLambda=indexLambda;
-/*    if (indexArguments.size() == 2) // for x,y
+  //  finalLambda=indexLambda;
+    if (indexArguments.size() == 2) // for x,y
         finalLambda = "(" + indexArguments.join(",") + ")" + "->" + indexLambda;
     else if (indexArguments.size() == 1) // for x and t indicvidually
         finalLambda = indexArguments.at(0) + "->" + indexLambda;
-*/
+
     setText(indexName);
 
 //     qDebug() << "q index prev al quick ? " << index.row() << indexName << finalLambda << indexDimension << indexArguments;
