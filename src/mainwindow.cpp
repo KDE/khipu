@@ -476,7 +476,7 @@ void MainWindow::saveFile(const QString& path) {
 
                           Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotList.at(j));
                           double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
-                          double arg1max=functiongraph->interval(functiongraph->parameters().at(0)).second;
+                          double arg1max=functiongraph->interval(functiongraph->parameters().at(0)).second; //fix here...
                           plot.insert("arg1min",arg1min);
                           plot.insert("arg1max",arg1max);
                    }
