@@ -24,6 +24,7 @@
 #include <QLabel>
 #include <QTreeView>
 #include <analitzaplot/plottingenums.h>
+#include <plotseditor.h>
 
 class QKeyEvent;
 namespace Analitza { class PlotsDictionaryModel; }
@@ -61,6 +62,7 @@ private:
 
     bool eatFocusOut;
     bool m_clearText;
+    PlotsEditor* m_editorwidget;
 };
 
 #endif

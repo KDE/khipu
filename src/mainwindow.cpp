@@ -822,8 +822,8 @@ void MainWindow::goHome()
             m_savedSpaces++;
         }
         else {
-           int ind=m_spacenameList.indexOf(space->title());
-           m_imageList.replace(ind,imageByteArray);
+            int ind=m_spacenameList.indexOf(space->title());
+             m_imageList.replace(ind,imageByteArray);
         }
     }
     m_dashboard->goHome();

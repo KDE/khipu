@@ -72,6 +72,8 @@ public slots:
     void buildCylindricalGraphSurface(bool cancelIsGoHome = false);
     void buildSphericalGraphSurface(bool cancelIsGoHome = false);
 
+    void addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args);
+
 private slots:
     void showList();
     void showTypes(); /// cambiar de nombre pues ahora se usa ademas m_cancelIsGoHome

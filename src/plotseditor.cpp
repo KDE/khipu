@@ -212,8 +212,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
     m_widget->garrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
     m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
-
     //cons
+    connect(m_widget->quickPlot,SIGNAL(selectedFunction(QString,Analitza::Dimensions,QString,QStringList)),this,
+                SLOT(addPlotsfromDictionary(QString,Analitza::Dimensions,QString,QStringList)));
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(cancelEditor()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
@@ -740,10 +741,8 @@ void PlotsEditor::savePlot()
                     item = editCurrentFunction(req.expression());
                 } else
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-               
-                //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-                //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
-
+                    //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression())
                 if (!isEditing){
                     m_document->plotsModel()->addPlot(item);
                }
@@ -1044,4 +1043,25 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
     showEditor();
 }
 
+void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args) {
 
+    qDebug() << "coming in the slots";
+
+QStringList errors;
+int dimension ;// can get it from the current space or some other logic !!!! :)
+
+PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp),Dim2D);
+
+if (req.canDraw()) {
+
+    FunctionGraph *item = 0;
+    item = req.create(QColor(Qt::black), plotname);
+
+    m_document->plotsModel()->addPlot(item);
+}
+
+else {
+    errors = req.errors();
+    qDebug() << errors.at(0);
+}
+}

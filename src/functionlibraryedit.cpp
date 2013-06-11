@@ -32,13 +32,15 @@
 #include "functionlibrarymodel.h"
 #include <analitzaplot/plotsdictionarymodel.h>
 #include <QKeyEvent>
+#include <analitza/expressionstream.h>
 
+using namespace Analitza;
 
 FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
     : KLineEdit(parent)
 {
     setClearButtonShown(true);
-
+    qDebug() << "instantiated";
 
     m_functionLibraryView = new QTreeView(this);
     m_functionLibraryView->setWindowFlags(Qt::Popup);
@@ -54,9 +56,7 @@ FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
     m_functionLibraryView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_functionLibraryView->setMinimumWidth(350);
 
-
     connect(this, SIGNAL(textEdited(QString)), SLOT(setFilterText(QString)));
-
     connect(m_functionLibraryView, SIGNAL(clicked(QModelIndex)), SLOT(emitSelFunction(QModelIndex)));
 
 }
@@ -88,19 +88,30 @@ void FunctionLibraryEdit::setModel(Analitza::PlotsDictionaryModel* model)
 
 void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 {
-
+    qDebug() << "in emit sel function";
     QString indexName = m_proxyModel->index(index.row(), 0).data().toString();
+
     QString indexLambda = m_proxyModel->index(index.row(), 1).data().toString();
+
+   /* QTextStream stream(&indexLambda);
+    Analitza::ExpressionStream s(&stream);
+
+    Analitza::Expression expression(s.next());
+   */
+    qDebug() << index.row() << "and " ;
+    qDebug() << indexName << " " << indexLambda;
     Analitza::Dimensions indexDimension = Analitza::Dimension(m_proxyModel->index(index.row(), 2).data().toInt());
     QStringList indexArguments = m_proxyModel->index(index.row(), 3).data().toStringList();
 
+    qDebug() << indexDimension << " " << indexArguments;
+
     QString finalLambda;
-
-    if (indexArguments.size() == 2)
+    finalLambda=indexLambda;
+/*    if (indexArguments.size() == 2) // for x,y
         finalLambda = "(" + indexArguments.join(",") + ")" + "->" + indexLambda;
-    else if (indexArguments.size() == 1)
+    else if (indexArguments.size() == 1) // for x and t indicvidually
         finalLambda = indexArguments.at(0) + "->" + indexLambda;
-
+*/
     setText(indexName);
 
 //     qDebug() << "q index prev al quick ? " << index.row() << indexName << finalLambda << indexDimension << indexArguments;
@@ -119,10 +130,14 @@ void FunctionLibraryEdit::setFilterText(const QString &text)
 
 
     if (m_proxyModel->rowCount() > 0)
+     {
+        qDebug() << "comes here.!!! :) ";
         showPopup();
-    else
+    }
+    else {
+      //   qDebug() << "comes here.!!! :) ";
         m_functionLibraryView->hide();
-
+    }
     setFocus();
 }
 
