@@ -29,6 +29,7 @@
 #include <QtGui/QListView>
 #include <QtGui/QSortFilterProxyModel>
 #include <QSortFilterProxyModel>
+#include <analitzaplot/plotsdictionarymodel.h>
 
 class DictionariesViewer;
 class KWidgetItemDelegate;
@@ -45,6 +46,7 @@ namespace Analitza
 {
     class PlotsView3D;
     class PlotsView2D;
+    class PlotsDictionaryModel;
 }
 
 class SpacesFilterProxyModel : public QSortFilterProxyModel
@@ -108,8 +110,8 @@ public slots:
 
 private slots:
     void removeSpace(const QModelIndex & index);
-
-
+    void setDictionaryData(int ind);
+    void importDictionary();
 //     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
     void setCurrentSpace(const QModelIndex &index);
     void setCurrentSpace(const QModelIndex &index, const QModelIndex &old); // este solo emite el spaceactivate para que se entere el datasotre ... no hace cambios en la ui
@@ -118,18 +120,26 @@ private slots:
     //al agregar un plot notificar que es el ultimo seleccionado a los view2d3}
     //los index son del proxy 
     void setCurrentPlot(const QModelIndex & parent, int start, int end);
-
+    void setModelIndex(const QModelIndex & ind);
 signals:
     void spaceActivated(int spaceidx); // hacia el mainwind para que prepare los toolbars etc
     void plotRequested(const QModelIndex &ind); //  for requesting the plots when double-clicked on the plot-space thumbnail.
+    void showFilter(bool b);
 
 private:
     void setupWidget();
+    void setDictionaryNames();
+    void setPlotsView(Analitza::Dimension dim);
+
     DataStore * m_document;
     Ui::DashboardWidget *m_widget;
     QModelIndexList *m_spaceindexList;
     SpacesFilterProxyModel *m_spacesProxyModel;
     QList<QString> m_filterText;
+    Analitza::PlotsDictionaryModel* m_plotdictionarymodel;
+    QStringList m_dictionaryTitles;
+    QStringList m_fileList;
+    int m_totalinternalDict;
 };
 
 #endif

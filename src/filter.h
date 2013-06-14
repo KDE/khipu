@@ -37,7 +37,8 @@ public:
     Filter(QWidget *parent);
     ~ Filter();
 
-// public slots:
+public slots:
+    void setFilterVisible(bool b);
 
 signals: //TODO better names for signals adn slots
     void filterByText(const QString &text); // any text on the title or description
@@ -49,10 +50,10 @@ private slots:
 public:
     void setFilterDashboard(Dashboard *sourceDashboard);
 
+
 private:
-    
-    Dashboard *m_filterDashboard;
     Ui::FilterWidget *m_widget;
+    Dashboard *m_filterDashboard;
 };
 
 #endif

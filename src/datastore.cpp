@@ -71,6 +71,7 @@ DataStore::DataStore(QObject* parent)
 
     m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
     
+
     connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex,QModelIndex)));
 //     connect(m_model, SIGNAL(rowsInserted(QModelIndex,int,int)),
 //         this, SLOT(addFuncs(QModelIndex,int,int)));

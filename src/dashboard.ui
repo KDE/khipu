@@ -99,7 +99,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="importDictionarybutton">
                <property name="toolTip">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Install a dictionary from a local file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -398,7 +398,7 @@
        <item>
         <widget class="QStackedWidget" name="plotsViews">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="Analitza::PlotsView2D" name="plotsView2D"/>
          <widget class="Analitza::PlotsView3D" name="plotsView3D"/>

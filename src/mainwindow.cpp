@@ -84,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     //para document de dashboard
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_document , SIGNAL(spaceActivated(int)));
-    
+
     setupDocks();
     setupActions();
     setupGUI(Keys | StatusBar | Save | Create, "khipu.rc");
@@ -95,6 +95,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_filter, SIGNAL(filterByDimension(Dimensions)), m_dashboard, SLOT(filterByDimension(Dimensions)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
+    connect(m_dashboard,SIGNAL(showFilter(bool)),m_filter,SLOT(setFilterVisible(bool)));
+
     toolBar("mainToolBar")->addWidget(m_filter);
 
     setCentralWidget(m_dashboard);

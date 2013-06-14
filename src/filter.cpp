@@ -58,3 +58,8 @@ void Filter::setFilterDashboard(Dashboard *sourceDashboard){
     m_filterDashboard->setVisible(false);
     m_filterDashboard->setDashboardData(sourceDashboard);
 }
+
+void Filter::setFilterVisible(bool b) {
+    m_widget->filterText->setVisible(b);
+    m_widget->filterOptions->setVisible(b);
+}

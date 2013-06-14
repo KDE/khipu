@@ -47,8 +47,9 @@
 #include <kwidgetitemdelegate.h>
 #include <KSelectionProxyModel>
 #include <KFileDialog>
+#include <KStandardDirs>
 #include "spacesdelegate.h"
-
+#include <QFileDialog>
 using namespace Analitza;
 
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
@@ -86,7 +87,13 @@ Dashboard::Dashboard(QWidget *parent)
     m_widget->setupUi(this);
     m_spaceindexList=new QModelIndexList();
     m_openclicked=false;
+    m_totalinternalDict=0;
+
     m_filterText << "dimAll" << "dim2D" << "dim3D";
+    connect(m_widget->importDictionarybutton,SIGNAL(clicked()),this,
+            SLOT(importDictionary()));
+    setDictionaryNames();
+
 }
 
 void Dashboard::setDashboardData(Dashboard* source){
@@ -104,6 +111,24 @@ Dashboard::~Dashboard()
 //     
     m_widget=0;
     delete m_widget;
+}
+
+void Dashboard::setDictionaryNames()
+{
+
+    QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+    QDir dir(str.append("libanalitza/plots"));  // path to the dir where .plots files are installed by analitza
+    QStringList filters;
+    filters << "*.plots";
+    dir.setNameFilters(filters);
+    m_fileList=dir.entryList();
+    m_widget->comboBox->clear();
+    m_dictionaryTitles << "3Ds" << "Dictionary1" << "conics" << "polar"; // we know this , so we can set this ;)
+    m_widget->comboBox->addItems(m_dictionaryTitles);
+    m_totalinternalDict=m_dictionaryTitles.size();
+
+    connect(m_widget->comboBox,SIGNAL(activated(int)),this,SLOT(setDictionaryData(int)));
+
 }
 
 void Dashboard::setDocument(DataStore* doc)
@@ -189,19 +214,70 @@ void Dashboard::goHome()
     setCurrentIndex(0);
     m_widget->views->setCurrentIndex(0);
     m_widget->plotsViewOptions->setCurrentIndex(0);
+
+    emit showFilter(true);
 }
 
 void Dashboard::showDictionary()
 {
-    PlotsDictionaryModel* model = m_document->plotsDictionaryModel();
-    
     m_widget->views->setCurrentIndex(1);
     m_widget->plotsViewOptions->setCurrentIndex(1);
+
+    emit showFilter(false);
+}
+
+void Dashboard::setDictionaryData(int ind)
+{
+    PlotsDictionaryModel *model = m_document->plotsDictionaryModel();
+    m_plotdictionarymodel=model;
+    model->clear();
+
+    if(ind < m_totalinternalDict) { // total internal available dictionaries
+        QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+        QDir dir(str.append("libanalitza/plots"));
+        model->createDictionary(dir.path().append("/").append(m_fileList.at(ind)));
+    }
+    else {
+        model->createDictionary(m_fileList.at(ind));
+    }
+
     m_widget->plotsView->setModel(model);
     m_widget->page->setModel(model->plotModel());
-    
-    connect(m_widget->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), model, SLOT(setCurrentIndex(QModelIndex)));
-//     m_widget->plotsView->setModel(m_document->spacesModel());
+    m_widget->page_2->setModel(model->plotModel());
+    connect(m_widget->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(setModelIndex(QModelIndex)));
+}
+
+void Dashboard::setModelIndex(const QModelIndex& ind)
+{
+    m_plotdictionarymodel->setCurrentIndex(ind);
+    setPlotsView(m_plotdictionarymodel->dimension());
+}
+
+void Dashboard::setPlotsView(Analitza::Dimension dim)
+{
+    if(dim==Dim2D){
+        m_widget->page_2->setVisible(false);
+        m_widget->page->setVisible(true);
+
+    }
+    else if (dim==Dim3D){
+        m_widget->page_2->setVisible(true);
+        m_widget->page->setVisible(false);
+    }
+
+}
+
+void Dashboard::importDictionary()
+{
+    QString path = QFileDialog::getOpenFileName(this, tr("Open a .plots file"),"/",tr("Text files (*.plots)"));
+    if(path==0){
+        qDebug() << "error in opening file...may be path not found." ;
+        return;
+    }
+
+    m_widget->comboBox->addItem("ImportedDictionary");
+    m_dictionaryTitles << "ImportedDictionary";
+    m_fileList << path;
 }
 
 void Dashboard::showPlotsView2D()
