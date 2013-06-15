@@ -28,6 +28,8 @@
 #include <analitza/expression.h>
 #include <qitemselectionmodel.h>
 #include <plotseditor.h>
+#include <QFile>
+#include <QFileDialog>
 
 using namespace Analitza;
 
@@ -162,6 +164,7 @@ void DataStore::removeCurrentSpace()
 {
     if (m_currentSpaceSelectionModel->hasSelection())
     {
+        qDebug() << "coming here";
         m_maps.remove(m_spacesModel->space(m_currentSpace));
 
         m_spacesModel->removeRow(m_currentSpace);
@@ -190,4 +193,29 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         ++i;
     }
     m_spacePlotsFilterProxyModel->removeRow(proxyindex.row());
+}
+
+void DataStore::saveSpaceAsDictionary(QModelIndex ind)
+{
+    QString path=QFileDialog::getSaveFileName(0,tr("Export the space as a Dictionary (Please save with extension .plots)"),"/");
+    QFile *file = new QFile(path,this);
+
+    if(!file->open(QFile::WriteOnly | QFile::Text)){
+        qDebug() << "Error in writing";
+        return;
+    }
+
+    QTextStream out(file);
+    if(m_maps.empty()) {
+        qDebug() << "no plots available for this space";
+        return;
+    }
+
+    QList<Analitza::PlotItem*> itemList= m_maps.values(m_spacesModel->space(ind.row()));
+
+    for(int i=0;i<itemList.size();i++) {
+        out << itemList.at(i)->name() << " := " << itemList.at(i)->expression().toString() << "\n";
+    }
+
+file->close();
 }

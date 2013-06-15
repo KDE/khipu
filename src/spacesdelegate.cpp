@@ -44,7 +44,7 @@
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QTextEdit>
-
+#include <QFileDialog>
 
 #include <kpushbutton.h>
 #include <klineedit.h>
@@ -175,7 +175,7 @@ void SpacesDelegate::setIconMode(bool im)
             m_showButton->setAutoRepeat(false);
             m_showButton->setToolTip(i18n("Export as dictionary"));
             m_showButton->setIcon(KIcon("document-export"));
-//             connect(m_showButton, SIGNAL(pressed()), SLOT(showCurrentSpace()));
+            connect(m_showButton, SIGNAL(pressed()), SLOT(exportSpace()));
 
             QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
 
@@ -201,6 +201,12 @@ void SpacesDelegate::setIconMode(bool im)
     }
 
     dummyUpdate(); 
+}
+
+void SpacesDelegate::exportSpace(){
+
+    emit saveDictionary(itemView()->currentIndex());
+
 }
 
 QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const

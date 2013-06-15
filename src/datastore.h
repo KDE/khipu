@@ -70,7 +70,7 @@ public slots:
     void removeCurrentSpace();
     //NOTA esta es la foma de borrar un plot
     void unmapPlot(const QModelIndex & proxyindex /*or viewindex*/); // cuando se borra un plot del modelo ... el viewindex es el index del view es decir del proxy
-
+    void saveSpaceAsDictionary(QModelIndex ind);
 signals:
 //     void modified(); ... TODO to document???
 

@@ -156,7 +156,7 @@ void Dashboard::setDocument(DataStore* doc)
     SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
     m_widget->spacesView->setItemDelegate(delegate);
 
-
+    connect(delegate,SIGNAL(saveDictionary(QModelIndex)),m_document,SLOT(saveSpaceAsDictionary(QModelIndex)));
 //     delegate->setIconMode(true);
     //este necesita otro proxy del modelo
 //     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());

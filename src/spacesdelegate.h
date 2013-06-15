@@ -119,6 +119,7 @@ public:
 
 signals:
     void showSpace(const QModelIndex &index);
+    void saveDictionary(const QModelIndex &index);
 //     void activateSpace(const QModelIndex &index);
     
 private:
@@ -134,7 +135,7 @@ private slots:
     void showCurrentSpace();
     void finishEditingTitle(const QString &newtitle = QString()); // save current index data
     void invalidClick(const QModelIndex &index);
-
+    void exportSpace();
     
 private:
     
