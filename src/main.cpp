@@ -22,6 +22,7 @@
 #include <KDE/KAboutData>
 #include <KDE/KCmdLineArgs>
 #include <KDE/KLocale>
+#include <GL/glut.h>
 
 static const char description[] = I18N_NOOP("Advanced Mathematical Function Plotter");
 

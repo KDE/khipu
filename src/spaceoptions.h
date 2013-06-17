@@ -51,7 +51,7 @@ signals: //TODO better names for signals
     void updateTickScale(QString m_tickScaleSymbol, qreal m_tickScaleSymbolValue, int m_tickScaleNumerator, int m_tickScaleDenominator);
     void ticksShown(QFlags<Qt::Orientation> o);
     void axesShown(QFlags<Qt::Orientation> o);
-    
+
     //3d
     void gridIsDrawn(bool);
     void axisIsDrawn(bool);

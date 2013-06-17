@@ -21,6 +21,7 @@
 #include <analitzaplot/plotsdictionarymodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/functiongraph.h>
+#include <analitzaplot/plotter3d.h>
 #include <analitzagui/plotsview2d.h>
 #include <analitzagui/plotsview3d.h>
 #include <dictionaryitem.h>
@@ -78,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_dashboard = new Dashboard(this);
     m_dashboard->setDocument(m_document);
-    
+
     //para main de dashboard
     connect(m_dashboard, SIGNAL(spaceActivated(int)), SLOT(activateSpace(int)));
     
@@ -176,7 +177,7 @@ void MainWindow::setupDocks()
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
     //2d view
     connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
-    connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard->view2d(), SLOT(updateGridColor(QColor)));
+    connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard, SLOT(setPlotsViewGridColor(QColor)));
     connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
     connect(m_spaceOptionsDock, SIGNAL(setYAxisLabel(QString)), m_dashboard->view2d(), SLOT(setYAxisLabel(QString)));
     connect(m_spaceOptionsDock, SIGNAL(updateTickScale(QString,qreal,int,int)), m_dashboard->view2d(), SLOT(updateTickScale(QString,qreal,int,int)));
@@ -186,7 +187,7 @@ void MainWindow::setupDocks()
     connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(sceneResized(int)), m_dashboard->view3d(), SLOT(resizeScene(int)));
-
+    //connect(m_spaceOptionsDock, SIGNAL(colorindexChanged(int)),
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spaceOptionsDock);
@@ -341,6 +342,8 @@ void MainWindow::newFile()
     }
 
     KToolInvocation::kdeinitExec("khipu");
+
+
 }
 
 void MainWindow::openFile()
@@ -754,8 +757,9 @@ void MainWindow::addSpace2D()
     m_totalSpaces++;
 
     activateSpaceUi();
-    
+
     m_dashboard->showPlotsView2D();
+
     m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
 }
 
@@ -767,6 +771,7 @@ void MainWindow::addSpace3D()
     activateSpaceUi();
     
     m_dashboard->showPlotsView3D();
+
     m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
 }
 

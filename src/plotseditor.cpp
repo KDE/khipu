@@ -241,7 +241,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->builder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
 
     connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(addPlots()));
-  //  connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
+    connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
   //  connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     connect(m_widget->focusPlot,SIGNAL(stateChanged(int)),SLOT(showAxis(int)));
@@ -308,9 +308,9 @@ void PlotsEditor::reset(bool clearBuilder)
     m_widget->minz->clear();
     m_widget->maxz->clear();
 
-    //reset widgets
+    //reset widgets*/
     m_widget->widgets->setCurrentIndex(0);
-//     m_widget->preview3D->camera()/*->centerScene*/;
+//     m_widget->preview3D->camera()/*->centerScene;
 //     m_widget->preview3D->stopAnimation();
 
     if (clearBuilder)
@@ -383,6 +383,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     if (m_widget->plotsView->selectionModel()->hasSelection()) // may be the plotsview is different .!!!
     {
+       /* m_indexEdited = m_widget->plotsView->selectionModel()->currentIndex();
+        PlotItem* item = m_indexEdited.data(PlotsModel::PlotRole).value<PlotItem*>();
+        */
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
 
@@ -393,7 +396,6 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             if (curve->expression().isEquation()) // implicit
             {
                 m_widget->f->setExpression(curve->expression());
-
                 buildCartesianImplicitCurve();
                 
                 QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().at(1), false);
@@ -410,6 +412,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             else //graph
             {
                 m_widget->f->setExpression(curve->expression().lambdaBody());
+                m_widget->plotName->setText(curve->name());
 
                 if (curve->parameters().first() == "q")
                     buildPolarGraphCurve();
@@ -690,11 +693,13 @@ FunctionGraph* PlotsEditor::editCurrentFunction(const Analitza::Expression& exp)
 {
     QModelIndex idx = m_widget->plotsView->selectionModel()->currentIndex().sibling(0, 1);
 
-    m_widget->plotsView->model()->setData(idx, AnalitzaUtils::expressionToVariant(exp));
-    m_widget->plotsView->model()->setData(idx, m_widget->plotColor->color(), Qt::DecorationRole);
-    m_widget->plotsView->model()->setData(idx.sibling(idx.row(), 0), m_widget->plotName->text());
+    m_widget->plotsView->model()->setData(m_indexEdited, AnalitzaUtils::expressionToVariant(exp));
+    m_widget->plotsView->model()->setData(m_indexEdited, m_widget->plotColor->color(), Qt::DecorationRole);
+    m_widget->plotsView->model()->setData(m_indexEdited.sibling(m_indexEdited.row(), 0), m_widget->plotName->text());
 
-    return static_cast<FunctionGraph*>(idx.data(PlotsModel::PlotRole).value<PlotItem*>());
+    return static_cast<FunctionGraph*>(m_indexEdited.data(PlotsModel::PlotRole).value<PlotItem*>());
+
+    return 0;
 }
 
 void PlotsEditor::savePlot()
@@ -716,12 +721,20 @@ void PlotsEditor::savePlot()
                 FunctionGraph *item =0;
                 if (isEditing) {
                     item = editCurrentFunction(req.expression());
-                } else
+               //remove that first and then add the new one
+         /*           m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+
+                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                m_document->plotsModel()->addPlot(item);
+
+           */     } else
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                 if(!isEditing) {
+                    qDebug() << "coming";
                     m_document->plotsModel()->addPlot(item);
                 }
             } else

@@ -411,8 +411,20 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
 
 }
 
-void Dashboard::setGridColor(const QColor &color){
-    m_widget->plotsView2D->updateGridColor(color);
+void Dashboard::setGridColor(const QColor &color) // used for making the axis visible/invisible
+{
+   m_widget->plotsView2D->updateGridColor(color);
+}
+
+void Dashboard::setPlotsViewGridColor(const QColor &color){
+    if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
+        m_widget->plotsView2D->updateGridColor(color);
+    }
+    else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
+        Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
+        plotter3d->setReferencePlaneColor(color);
+        showPlotsView3D();
+    }
 }
 
 void Dashboard::setupWidget()

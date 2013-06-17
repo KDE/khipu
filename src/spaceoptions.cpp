@@ -28,7 +28,6 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     m_widget = new Ui::SpaceOptionsWidget;
     m_widget->setupUi(this);
     m_widget->moreOptions->setChecked(false);
-    
     setObjectName("a33sdasdds");
 
 //symbolValue es el valor del simbolo ... no del texto del combobox ...

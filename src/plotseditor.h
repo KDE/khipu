@@ -122,7 +122,7 @@ private:
     bool m_currentIsImplicit;
     bool m_currentIsVectorValued;
     int m_currentVectorSize;
-    
+    QModelIndex m_indexEdited;
     //flag para indicar que se encuentra editando, por ende no se agrega nada sino se modifica 
     //ademas el cancel va a la lista no al builder
     bool isEditing;
