@@ -89,7 +89,7 @@ Dashboard::Dashboard(QWidget *parent)
     m_openclicked=false;
     m_totalinternalDict=0;
 
-    m_filterText << "dimAll" << "dim2D" << "dim3D";
+    m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     connect(m_widget->importDictionarybutton,SIGNAL(clicked()),this,
             SLOT(importDictionary()));
     setDictionaryNames();

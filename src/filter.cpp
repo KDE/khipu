@@ -19,14 +19,19 @@
 #include "filter.h"
 #include <QCompleter>
 #include "ui_filter.h"
+#include <KIcon>
 
 Filter::Filter(QWidget* parent): QWidget(parent)
 {
     m_widget = new Ui::FilterWidget;
     m_widget->setupUi(this);
-    
+
+    m_widget->filterOptions->insertItem(0,KIcon("all-filter"),"Dimension-All");
+    m_widget->filterOptions->insertItem(1,KIcon("2d-filter"),"Dimension-2D");
+    m_widget->filterOptions->insertItem(2,KIcon("3d-filter"),"Dimension-3D");
+
     QStringList wordList;
-    wordList << "dim2D" << "dim3D" << "dimAll";
+    wordList << "Dimension-2D" << "Dimension-3D" << "Dimension-All";
 
     QCompleter *completer = new QCompleter(wordList, this);
     completer->setCaseSensitivity(Qt::CaseInsensitive);

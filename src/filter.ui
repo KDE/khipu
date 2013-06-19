@@ -50,38 +50,7 @@
     </widget>
    </item>
    <item>
-    <widget class="KComboBox" name="filterOptions">
-     <item>
-      <property name="text">
-       <string>DimAll</string>
-      </property>
-      <property name="icon">
-       <iconset theme="kde">
-        <normaloff/>
-       </iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Dim2D</string>
-      </property>
-      <property name="icon">
-       <iconset theme="list-add">
-        <normaloff/>
-       </iconset>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Dim3D</string>
-      </property>
-      <property name="icon">
-       <iconset theme="list-remove">
-        <normaloff/>
-       </iconset>
-      </property>
-     </item>
-    </widget>
+    <widget class="KComboBox" name="filterOptions"/>
    </item>
   </layout>
  </widget>
