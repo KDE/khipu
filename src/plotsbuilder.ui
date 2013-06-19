@@ -31,7 +31,19 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianGraphCurve">
+          <widget class="QPushButton" name="buildCartesianGraphCurve">
+           <property name="minimumSize">
+            <size>
+             <width>55</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>55</width>
+             <height>24</height>
+            </size>
+           </property>
            <property name="text">
             <string>Graph</string>
            </property>
@@ -54,7 +66,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianImplicitCurve">
+          <widget class="QPushButton" name="buildCartesianImplicitCurve">
            <property name="text">
             <string>Implicit</string>
            </property>
@@ -77,7 +89,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianParametricCurve2D">
+          <widget class="QPushButton" name="buildCartesianParametricCurve2D">
            <property name="text">
             <string>Parametric</string>
            </property>
@@ -122,7 +134,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildPolarGraphCurve">
+          <widget class="QPushButton" name="buildPolarGraphCurve">
            <property name="text">
             <string>Graph</string>
            </property>
@@ -167,7 +179,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianParametricCurve3D">
+          <widget class="QPushButton" name="buildCartesianParametricCurve3D">
            <property name="text">
             <string>Parametric</string>
            </property>
@@ -212,7 +224,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianGraphSurface">
+          <widget class="QPushButton" name="buildCartesianGraphSurface">
            <property name="text">
             <string>Graph</string>
            </property>
@@ -235,7 +247,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianImplicitSurface">
+          <widget class="QPushButton" name="buildCartesianImplicitSurface">
            <property name="text">
             <string>Implicit</string>
            </property>
@@ -258,7 +270,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCartesianParametricSurface">
+          <widget class="QPushButton" name="buildCartesianParametricSurface">
            <property name="text">
             <string>Parametric</string>
            </property>
@@ -303,7 +315,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildCylindricalGraphSurface">
+          <widget class="QPushButton" name="buildCylindricalGraphSurface">
            <property name="text">
             <string>Graph</string>
            </property>
@@ -348,7 +360,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KUrlLabel" name="buildSphericalGraphSurface">
+          <widget class="QPushButton" name="buildSphericalGraphSurface">
            <property name="text">
             <string>Graph</string>
            </property>
@@ -400,14 +412,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KUrlLabel</class>
-   <extends>QLabel</extends>
-   <header>kurllabel.h</header>
-  </customwidget>
-  <customwidget>
    <class>QtMmlWidget</class>
    <extends>QFrame</extends>
-   <header>qtmmlwidget.h</header>
+   <header>QtMmlWidget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

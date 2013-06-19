@@ -76,8 +76,7 @@ private slots: // better names
     
 private:
     void setupTypes();
-    
-    
+    bool eventFilter(QObject *object, QEvent *event);
     Ui::PlotsBuilderWidget *m_widget;
     PlotTypes m_types;
     Analitza::Expression m_example;

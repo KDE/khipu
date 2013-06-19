@@ -38,15 +38,17 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
 //     QVBoxLayout *lay = new QVBoxLayout(m_widget->examples);
     
     //setup description/information area
-    connect(m_widget->buildCartesianGraphCurve, SIGNAL(enteredUrl()), SLOT(setupCartesianGraphCurveInfo()));
+    //connect(m_widget->buildCartesianGraphCurve, SIGNAL(toggled(bool)), SLOT(setupCartesianGraphCurveInfo()));
     
     //clear
-    connect(m_widget->buildCartesianGraphCurve, SIGNAL(leftUrl()), SLOT(clearInfoWidget()));
-    
+    //connect(m_widget->buildCartesianGraphCurve, SIGNAL(leftUrl()), SLOT(clearInfoWidget()));
+    m_widget->buildCartesianGraphCurve->setMouseTracking(true);
+    m_widget->buildCartesianGraphCurve->installEventFilter(this);
+    this->setMouseTracking(true);
+    this->installEventFilter(this);
     //BEGIN setup icons
     #define setTypeIcon(tname, iconame) m_widget->build##tname##Icon->setPixmap(KIcon( iconame ).pixmap(16,16));
     
-
     setTypeIcon(CartesianGraphCurve, "newfunction");
     setTypeIcon(CartesianImplicitCurve, "newimplicit");
     setTypeIcon(CartesianParametricCurve2D, "newparametric");
@@ -59,6 +61,23 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
     setTypeIcon(SphericalGraphSurface, "newspherical");
     
     //END setup icons
+}
+
+bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::MouseMove)
+    {
+        if (object == m_widget->buildCartesianGraphCurve)
+        {
+            qDebug() << "working...!!";
+            setupCartesianGraphCurveInfo();
+        }
+        else {
+            qDebug() << "outside";
+            clearInfoWidget();
+        }
+    }
+    return false;
 }
 
 PlotsBuilder::~PlotsBuilder()
@@ -76,7 +95,7 @@ void PlotsBuilder::setupTypes(PlotsBuilder::PlotTypes t)
 
 void PlotsBuilder::mapConnection(PlotsBuilder::PlotType pt, QObject* recvr, const char* slot)
 {
-    #define caseType(tname) case tname : connect(m_widget->build##tname , SIGNAL(leftClickedUrl()), recvr, slot); break;
+    #define caseType(tname) case tname : connect(m_widget->build##tname , SIGNAL(clicked(bool)), recvr, slot); break;
     
     switch (pt)
     {
@@ -146,6 +165,7 @@ void PlotsBuilder::hideAllTypes()
 
 void PlotsBuilder::setupCartesianGraphCurveInfo()
 {
+
     m_example = Analitza::Expression("x->x**2-sin(x)");
     
     m_widget->plotExample->setContent(m_example.toMathMLPresentation());
