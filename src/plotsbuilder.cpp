@@ -20,7 +20,8 @@
 
 #include "ui_plotsbuilder.h"
 
-PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
+PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
+    m_currentTyppe(None)
 {
     m_widget = new Ui::PlotsBuilderWidget;
     m_widget->setupUi(this);
@@ -42,10 +43,41 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent)
     
     //clear
     //connect(m_widget->buildCartesianGraphCurve, SIGNAL(leftUrl()), SLOT(clearInfoWidget()));
-    m_widget->buildCartesianGraphCurve->setMouseTracking(true);
-    m_widget->buildCartesianGraphCurve->installEventFilter(this);
+
+    // Setting up Mousetracking and Event-filter for all types of plots
     this->setMouseTracking(true);
     this->installEventFilter(this);
+
+    m_widget->buildCartesianGraphCurve->setMouseTracking(true);
+    m_widget->buildCartesianGraphCurve->installEventFilter(this);
+
+    m_widget->buildCartesianImplicitCurve->setMouseTracking(true);
+    m_widget->buildCartesianImplicitCurve->installEventFilter(this);
+
+    m_widget->buildCartesianParametricCurve2D->setMouseTracking(true);
+    m_widget->buildCartesianParametricCurve2D->installEventFilter(this);
+
+    m_widget->buildPolarGraphCurve->setMouseTracking(true);
+    m_widget->buildPolarGraphCurve->installEventFilter(this);
+
+    m_widget->buildCartesianParametricCurve3D->setMouseTracking(true);
+    m_widget->buildCartesianParametricCurve3D->installEventFilter(this);
+
+    m_widget->buildCartesianGraphSurface->setMouseTracking(true);
+    m_widget->buildCartesianGraphSurface->installEventFilter(this);
+
+    m_widget->buildCartesianImplicitSurface->setMouseTracking(true);
+    m_widget->buildCartesianImplicitSurface->installEventFilter(this);
+
+    m_widget->buildCartesianParametricSurface->setMouseTracking(true);
+    m_widget->buildCartesianParametricSurface->installEventFilter(this);
+
+    m_widget->buildCylindricalGraphSurface->setMouseTracking(true);
+    m_widget->buildCylindricalGraphSurface->installEventFilter(this);
+
+    m_widget->buildSphericalGraphSurface->setMouseTracking(true);
+    m_widget->buildSphericalGraphSurface->installEventFilter(this);
+
     //BEGIN setup icons
     #define setTypeIcon(tname, iconame) m_widget->build##tname##Icon->setPixmap(KIcon( iconame ).pixmap(16,16));
     
@@ -67,16 +99,44 @@ bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::MouseMove)
     {
-        if (object == m_widget->buildCartesianGraphCurve)
-        {
-            qDebug() << "working...!!";
-            setupCartesianGraphCurveInfo();
-        }
+        if(object==m_widget->buildCartesianGraphCurve)
+            m_currentTyppe=CartesianGraphCurve;
+
+        else if(object==m_widget->buildCartesianImplicitCurve)
+            m_currentTyppe=CartesianImplicitCurve;
+
+        else if(object==m_widget->buildCartesianParametricCurve2D)
+            m_currentTyppe=CartesianParametricCurve2D;
+
+        else if(object==m_widget->buildPolarGraphCurve)
+            m_currentTyppe=PolarGraphCurve;
+
+        else if(object==m_widget->buildCartesianParametricCurve3D)
+            m_currentTyppe=CartesianParametricCurve3D;
+
+        else if(object==m_widget->buildCartesianGraphSurface)
+            m_currentTyppe=CartesianGraphSurface;
+
+        else if(object==m_widget->buildCartesianImplicitSurface)
+            m_currentTyppe=CartesianImplicitSurface;
+
+        else if(object==m_widget->buildCartesianParametricSurface)
+            m_currentTyppe=CartesianParametricSurface;
+
+        else if(object==m_widget->buildCylindricalGraphSurface)
+            m_currentTyppe=CylindricalGraphSurface;
+
+        else if(object==m_widget->buildSphericalGraphSurface)
+            m_currentTyppe=SphericalGraphSurface;
+
         else {
-            qDebug() << "outside";
+            m_currentTyppe=None;
             clearInfoWidget();
+            return false;
         }
     }
+
+    setupInfo();
     return false;
 }
 
@@ -163,11 +223,45 @@ void PlotsBuilder::hideAllTypes()
     m_widget->sphericalSurfacesLinks->hide();
 }
 
-void PlotsBuilder::setupCartesianGraphCurveInfo()
+void PlotsBuilder::setupInfo()
 {
+    switch (m_currentTyppe)
+    {
+    case(CartesianGraphCurve):
+        m_example = Analitza::Expression("x->sin(x)");
+        break;
+    case(CartesianImplicitCurve):
+        m_example = Analitza::Expression("(x*x+y*y=1)");
+        break;
+    case(CartesianParametricCurve2D):
+        m_example = Analitza::Expression("t->vector{t,t**2}");
+        break;
+    case(PolarGraphCurve):
+        m_example = Analitza::Expression("q->sin(q)");
+        break;
 
-    m_example = Analitza::Expression("x->x**2-sin(x)");
-    
+    //3D
+    case(CartesianParametricCurve3D):
+        m_example = Analitza::Expression("t->vector{t, t, t}");
+        break;
+    case(CartesianGraphSurface):
+        m_example = Analitza::Expression("(x,y)->(x*x-y*y)/8");
+        break;
+    case(CartesianImplicitSurface):
+        m_example = Analitza::Expression("(x*x+y*y)-z*z=1/2");
+        break;
+    case(CartesianParametricSurface):
+        m_example = Analitza::Expression("(u,v)->vector{u,u+v,v}");
+        break;
+    case(CylindricalGraphSurface):
+        m_example = Analitza::Expression("(r,p)->p");
+        break;
+    case(SphericalGraphSurface):
+        m_example = Analitza::Expression("(t,p)->2");
+        break;
+    default:
+        return;
+    }
     m_widget->plotExample->setContent(m_example.toMathMLPresentation());
 }
 

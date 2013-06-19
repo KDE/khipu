@@ -51,6 +51,7 @@ public:
         CartesianParametricSurface = 0x80,
         CylindricalGraphSurface = 0x100,
         SphericalGraphSurface = 0x200,
+        None = 0x0
         //profiles
     };
     
@@ -69,7 +70,7 @@ public slots:
     void hideAllTypes(); // hide all types
     
 private slots: // better names
-    void setupCartesianGraphCurveInfo();
+    void setupInfo();
     
     
     void clearInfoWidget();
@@ -80,6 +81,7 @@ private:
     Ui::PlotsBuilderWidget *m_widget;
     PlotTypes m_types;
     Analitza::Expression m_example;
+    PlotType m_currentTyppe;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(PlotsBuilder::PlotTypes)
