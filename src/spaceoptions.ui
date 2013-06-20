@@ -220,19 +220,9 @@
                </layout>
               </item>
               <item>
-               <widget class="QCheckBox" name="horizontalMarks">
+               <widget class="QCheckBox" name="marksVisible">
                 <property name="text">
-                 <string>Horizontal Marks</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="verticalMarks">
-                <property name="text">
-                 <string>Vertical Marks</string>
+                 <string>Horizontal and Vertical Marks</string>
                 </property>
                 <property name="checked">
                  <bool>true</bool>

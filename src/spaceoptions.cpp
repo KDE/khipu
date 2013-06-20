@@ -179,8 +179,7 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     connect(m_widget->scale, SIGNAL(currentIndexChanged(int)), SLOT(updateScale()));
     connect(m_widget->useSymbols, SIGNAL(toggled(bool)), SLOT(updateScale()));
 
-    connect(m_widget->horizontalMarks, SIGNAL(toggled(bool)), SLOT(updateTicks()));
-    connect(m_widget->verticalMarks, SIGNAL(toggled(bool)), SLOT(updateTicks()));
+    connect(m_widget->marksVisible, SIGNAL(toggled(bool)), SLOT(updateTicks()));
     connect(m_widget->showXAxis, SIGNAL(toggled(bool)), SLOT(updateAxes()));
     connect(m_widget->showYAxis, SIGNAL(toggled(bool)), SLOT(updateAxes()));
     
@@ -259,9 +258,9 @@ void SpaceOptions::updateAxes()
 void SpaceOptions::updateTicks()
 {
     QFlags<Qt::Orientation> o;
-    if(m_widget->horizontalMarks->checkState()==Qt::Checked)
+    if(m_widget->marksVisible->checkState()==Qt::Checked){
         o|=Qt::Horizontal;
-    if(m_widget->verticalMarks->checkState()==Qt::Checked)
         o|=Qt::Vertical;
+    }
     emit ticksShown(o);
 }
