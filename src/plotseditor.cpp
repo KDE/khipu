@@ -378,11 +378,20 @@ void PlotsEditor::cancelEditor()
 }
 
 void PlotsEditor::showAxis(int state) {
+    if(m_document==0)return;
     if (state==0){
-        emit updateGridcolor(QColor(255,255,255)); // Axis willnot be visible when the color will be white.
+
+        if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
+            emit updateGridcolor(QColor(255,255,255)); // Axis willnot be visible when the color will be white.
+        else
+            emit updateGridcolor(QColor(Qt::black));  // Axis willnot be visible when the color will be black.
     }
     else if (state==2){
-        emit updateGridcolor(QColor(230,230,230)); // Axis will be visible when the color will be grey.
+
+        if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
+            emit updateGridcolor(QColor(230,230,230)); // Axis will be visible when the color will be grey.
+        else
+            emit updateGridcolor(QColor(Qt::darkGray)); // Axis will be visible when the color will be darkGrey.
     }
 }
 
