@@ -242,7 +242,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 
     connect(m_widget->addPlots, SIGNAL(pressed()), SLOT(addPlots()));
     connect(m_widget->editPlot, SIGNAL(pressed()), SLOT(editPlot()));
-  //  connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
+    connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     connect(m_widget->focusPlot,SIGNAL(stateChanged(int)),SLOT(showAxis(int)));
     m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
@@ -405,6 +405,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
 
+        m_widget->plotName->setText(item->name());
+
         if (dynamic_cast<PlaneCurve*>(item))
         {
             PlaneCurve *curve = dynamic_cast<PlaneCurve*>(item);
@@ -413,7 +415,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             {
                 m_widget->f->setExpression(curve->expression());
                 buildCartesianImplicitCurve();
-                
+
                 QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().at(1), false);
                 m_widget->miny->setExpression(interval.first);
                 m_widget->maxy->setExpression(interval.second);
@@ -428,10 +430,11 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             else //graph
             {
                 m_widget->f->setExpression(curve->expression().lambdaBody());
-                m_widget->plotName->setText(curve->name());
 
-                if (curve->parameters().first() == "q")
+                if (curve->parameters().first() == "q"){
                     buildPolarGraphCurve();
+
+                }
                 else
                 {
                     buildCartesianGraphCurve();
@@ -455,8 +458,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             }
 
             QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
-            m_widget->minx->setExpression(interval.first);
-            m_widget->maxx->setExpression(interval.second);
+                m_widget->minx->setExpression(interval.first);
+                m_widget->maxx->setExpression(interval.second);
+
         }
         else if (dynamic_cast<SpaceCurve*>(item))
         {
@@ -545,6 +549,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
 void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianGraphCurve;
@@ -559,6 +565,8 @@ void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianImplicitCurve;
@@ -576,6 +584,8 @@ void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianParametricCurve2D;
@@ -590,6 +600,8 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 
 void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::PolarGraphCurve;
@@ -605,6 +617,8 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 //3D
 void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianParametricCurve3D;
@@ -619,6 +633,8 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianGraphSurface;
@@ -636,6 +652,8 @@ void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianImplicitSurface;
@@ -656,6 +674,8 @@ void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CartesianParametricSurface;
@@ -673,6 +693,8 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::CylindricalGraphSurface;
@@ -690,6 +712,8 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 {
+    if(!isEditing)reset();
+
     m_cancelIsGoHome = cancelIsGoHome;
 
     m_currentType = PlotsBuilder::SphericalGraphSurface;
@@ -735,24 +759,17 @@ void PlotsEditor::savePlot()
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), Dim2D);
             if (req.canDraw()) {
                 FunctionGraph *item =0;
-                if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-               //remove that first and then add the new one
-         /*           m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
+                if (isEditing) {
+                   // item = editCurrentFunction(req.expression());
+               //remove that first and then add the new one
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
+                }
+
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
                 m_document->plotsModel()->addPlot(item);
 
-           */     } else
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                
-                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
-
-                if(!isEditing) {
-                    qDebug() << "coming";
-                    m_document->plotsModel()->addPlot(item);
-                }
             } else
                 errors = req.errors();
 
@@ -767,14 +784,15 @@ void PlotsEditor::savePlot()
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-                } else
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                    //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                  //  item = editCurrentFunction(req.expression());
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
+
+                }
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression())
-                if (!isEditing){
-                    m_document->plotsModel()->addPlot(item);
-               }
+                m_document->plotsModel()->addPlot(item);
+
             } else {
                 errors = req.errors();
 			}
@@ -788,17 +806,15 @@ void PlotsEditor::savePlot()
             if (req.canDraw() && m_widget->f->expression().isEquation()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-                } else {
+               //     item = editCurrentFunction(req.expression());
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
+                }
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                }
-                
-               // item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-             //   item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
-
-                if (!isEditing) {
                     m_document->plotsModel()->addPlot(item);
-                }
+
+                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+
             } else
                 errors = req.errors();
 
@@ -811,18 +827,18 @@ void PlotsEditor::savePlot()
             if (req.canDraw() && m_widget->f->expression().isEquation()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-                } else {
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+               //     item = editCurrentFunction(req.expression());
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+
                 
             //    item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
              //   item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
            //     item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
 
-                if (!isEditing){
                     m_document->plotsModel()->addPlot(item);
-                }
+
             } else
                 errors = req.errors();
 
@@ -836,17 +852,16 @@ void PlotsEditor::savePlot()
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-                } else {
+                  //  item = editCurrentFunction(req.expression());
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
+                }
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                }
-               
-                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
-                if (!isEditing) {
                        m_document->plotsModel()->addPlot(item);
-                }
-            }else
+
+            }
+            else
                 errors = req.errors();
 
             break;
@@ -859,16 +874,16 @@ void PlotsEditor::savePlot()
             {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-                } else {
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+             //       item = editCurrentFunction(req.expression());
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+
                 
           //      item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
-                if (!isEditing) {
                     m_document->plotsModel()->addPlot(item);
-                }
+
             } else
                 errors = req.errors();
             
@@ -881,17 +896,17 @@ void PlotsEditor::savePlot()
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    item = editCurrentFunction(req.expression());
-                } else {
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+             //       item = editCurrentFunction(req.expression());
+                    m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
+                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+
                 
            //     item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
            //     item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
-                if (!isEditing) {
-                    m_document->plotsModel()->addPlot(item);
-                }
+                   m_document->plotsModel()->addPlot(item);
+
             } else
                 errors = req.errors();
             break;
