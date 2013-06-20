@@ -48,6 +48,7 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     this->setMouseTracking(true);
     this->installEventFilter(this);
 
+     // can be done also by enter event and leave event using underMouse();
     m_widget->buildCartesianGraphCurve->setMouseTracking(true);
     m_widget->buildCartesianGraphCurve->installEventFilter(this);
 
@@ -93,6 +94,7 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     setTypeIcon(SphericalGraphSurface, "newspherical");
     
     //END setup icons
+
 }
 
 bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)

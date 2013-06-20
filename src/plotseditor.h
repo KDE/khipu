@@ -101,7 +101,8 @@ signals:
 
 private:
     Analitza::FunctionGraph* editCurrentFunction(const Analitza::Expression& exp);
-    
+
+    bool eventFilter(QObject *object, QEvent *event);
     //helpers para configurar los widgets f,g,h y x,y,...
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...
     void setupFuncName(int var, const QString &vvalue, const QStringList &vars, bool withparenthesis = true); //var: fname,gname ... NO USAR CON fnameForGraphs

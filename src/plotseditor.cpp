@@ -247,6 +247,22 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->focusPlot,SIGNAL(stateChanged(int)),SLOT(showAxis(int)));
     m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
     m_widget->focusPlot->setChecked(true);
+
+    this->installEventFilter(this);
+
+}
+
+bool PlotsEditor::eventFilter(QObject *object, QEvent *event)
+{
+    if(event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *key = static_cast<QKeyEvent *>(event);
+        if(key->key() == Qt::Key_Enter || key->key() == Qt::Key_Return)
+        {
+            savePlot();
+        }
+    }
+    return false;
 }
 
 PlotsEditor::~PlotsEditor()
