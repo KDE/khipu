@@ -207,6 +207,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 //     m_widget->fnameForGraphs->view()->setMouseTracking(true);
     m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
+    // initialize the combo-box with green color because green plot will be visible in both 2D(white) and 3D(black) space.
+    m_widget->plotColor->setColor(QColor(Qt::green));
+
     connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
 
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
@@ -313,6 +316,7 @@ void PlotsEditor::reset(bool clearBuilder)
 {
     //clear widgets //TODO GSOC
     m_widget->plotName->clear();
+    m_widget->plotColor->setColor(QColor(Qt::green));
 
     m_widget->f->clear();
     m_widget->g->clear();
@@ -404,7 +408,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
         */
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
-
+        m_widget->plotColor->setColor(item->color());
         m_widget->plotName->setText(item->name());
 
         if (dynamic_cast<PlaneCurve*>(item))
