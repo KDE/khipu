@@ -225,7 +225,7 @@ void MainWindow::setupActions()
 
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
-    createAction("show_plotsdictionary", i18n("&Mathematical Objects"), "functionhelp", Qt::CTRL + Qt::Key_W, this,
+    createAction("show_plotsdictionary", i18n("&Plot Dictionaries"), "functionhelp", Qt::CTRL + Qt::Key_W, this,
                  SLOT(setVisibleDictionary()));
 
     //view - space

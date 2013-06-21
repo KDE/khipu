@@ -80,16 +80,16 @@
           <item>
            <widget class="QGroupBox" name="groupBox">
             <property name="title">
-             <string>Mathematical Objects Manager</string>
+             <string>Plot Dictionary (.plots file) Options</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
               <widget class="QPushButton" name="pushButton_2">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download new mathematical objects from internet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download new plot-dictionary files from internet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Get Mathematical Objects...</string>
+                <string>Get Plot Dictionary Files...</string>
                </property>
                <property name="icon">
                 <iconset theme="get-hot-new-stuff">
@@ -104,7 +104,7 @@
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Install a dictionary from a local file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Import Mathematical objects...</string>
+                <string>Import Plot Dictionary File...</string>
                </property>
                <property name="icon">
                 <iconset theme="document-import">
@@ -116,7 +116,7 @@
              <item>
               <widget class="QPushButton" name="pushButton_4">
                <property name="text">
-                <string>Create a Collection of Mathematical Objects</string>
+                <string>Create a collection of different Plots</string>
                </property>
                <property name="icon">
                 <iconset theme="document-new">
