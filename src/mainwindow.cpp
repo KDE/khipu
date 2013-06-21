@@ -444,7 +444,7 @@ void MainWindow::saveFile(const QString& path) {
 
     QVariantList plotspace_list;
 
-    if(m_savedSpaces > 0){ // home is clicked or not.!
+    if(spaceList.size() > 0){ // home is clicked or not.!
     // do this for the whole list and write at that time into a file
     int i,j;
 
