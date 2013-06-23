@@ -40,7 +40,6 @@ FunctionLibraryEdit::FunctionLibraryEdit(QWidget *parent)
     : KLineEdit(parent)
 {
     setClearButtonShown(true);
-    qDebug() << "instantiated";
 
     m_functionLibraryView = new QTreeView(this);
     m_functionLibraryView->setWindowFlags(Qt::Popup);
@@ -88,7 +87,6 @@ void FunctionLibraryEdit::setModel(Analitza::PlotsDictionaryModel* model)
 
 void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 {
-    qDebug() << "in emit sel function";
     QString indexName = m_proxyModel->index(index.row(), 0).data().toString();
 
     QString indexLambda = m_proxyModel->index(index.row(), 1).data().toString();
@@ -98,12 +96,9 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
 
     Analitza::Expression expression(s.next());
    */
-    qDebug() << index.row() << "and " ;
-    qDebug() << indexName << " " << indexLambda;
     Analitza::Dimensions indexDimension = Analitza::Dimension(m_proxyModel->index(index.row(), 2).data().toInt());
     QStringList indexArguments = m_proxyModel->index(index.row(), 3).data().toStringList();
 
-    qDebug() << indexDimension << " " << indexArguments;
 
     QString finalLambda;
   //  finalLambda=indexLambda;

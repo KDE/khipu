@@ -50,8 +50,6 @@
 #include <KDE/KFileDialog>
 #include <KDE/KMessageBox>
 #include <KIO/NetAccess>
-#include <KDE/KMessageBox>
-#include <KDE/KStandardDirs>
 #include <KDE/KToolInvocation>
 #include <KToolBar>
 #include "dictionariesmodel.h"
@@ -100,13 +98,23 @@ MainWindow::MainWindow(QWidget *parent)
 
     toolBar("mainToolBar")->addWidget(m_filter);
 
+
     setCentralWidget(m_dashboard);
     setupToolBars();
     activateDashboardUi();
     
     updateTittleWhenOpenSaveDoc();
-    m_totalSpaces=0;
-    m_savedSpaces=0;
+    checkforAutoSavedFile();
+    //m_totalSpaces=0;
+    //m_savedSpaces=0;
+//    temp=0;
+ //   isAutoSaving=true;
+ //   istempSet=false;
+}
+
+void MainWindow::closeEvent(QCloseEvent * event)
+{
+    closeClicked();
 }
 
 MainWindow::~MainWindow()
@@ -170,10 +178,12 @@ void MainWindow::setupDocks()
     connect(m_spacePlotsDock, SIGNAL(sendStatus(QString,int)), statusBar(),SLOT(showMessage(QString,int)));
     connect(m_spacePlotsDock,SIGNAL(updateGridcolor(QColor)),m_dashboard,SLOT(setGridColor(QColor)));
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
+    connect(m_spacePlotsDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
 
     m_spaceInfoDock = new SpaceInformation(this);
     
     m_spaceOptionsDock = new SpaceOptions(this);
+
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
     //2d view
     connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
@@ -202,12 +212,12 @@ void MainWindow::setupActions()
 {
     //file
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
-    KStandardAction::open(this, SLOT(openFile()), actionCollection());
+    KStandardAction::open(this, SLOT(openFileClicked()), actionCollection());
     KStandardAction::openRecent(this, SLOT(fooSlot()), actionCollection());    
     KStandardAction::save(this, SLOT(saveClicked()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveAsClicked()), actionCollection());
-    KStandardAction::close(this, SLOT(close()), actionCollection());
-    KStandardAction::quit(this, SLOT(close()), actionCollection());
+    KStandardAction::close(this, SLOT(closeClicked()), actionCollection());
+    KStandardAction::quit(this, SLOT(closeClicked()), actionCollection());
     createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
 
     //TODO
@@ -281,11 +291,53 @@ void MainWindow::setupActions()
 
 }
 
-void MainWindow::fooSlot(bool t)
-{
-//     qDebug() << "test slot" << t;
+void MainWindow::setCurrentSpaceTitle(const QString& str) {
+    m_document->spacesModel()->space(m_document->currentSpace())->setTitle(str);
+}
+void MainWindow::setCurrentSpaceDesc(const QString& desc) {
+    m_document->spacesModel()->space(m_document->currentSpace())->setDescription(desc);
 }
 
+void MainWindow::fooSlot(bool t)
+{
+     qDebug() << "test slot" << t;
+}
+
+void MainWindow::autoSaveFile(){
+    updateThumbnail();
+    saveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+    //isAutoSaving=true;
+}
+
+void MainWindow::updateThumbnail() {
+
+    DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
+
+    QPixmap thumbnail;
+
+    switch (space->dimension())
+    {
+        case Analitza::Dim2D:
+            thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
+            break;
+        case Analitza::Dim3D:
+        {
+            m_dashboard->view3d()->updateGL();
+            m_dashboard->view3d()->setFocus();
+            m_dashboard->view3d()->makeCurrent();
+            m_dashboard->view3d()->raise();
+
+            QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
+
+            thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
+
+            break;
+        }
+    }
+
+    thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
+    space->setThumbnail(thumbnail);
+}
 
 void MainWindow::setupToolBars()
 {
@@ -333,6 +385,14 @@ bool MainWindow::queryClose()
     return true;
 }
 
+void MainWindow::checkforAutoSavedFile(){
+    QString current = QDir::currentPath();
+    QString path = current.append("/Temp.khipu.autosave");
+    if(openFile(path)) {
+        qDebug() << "file is autosaved and it is opening";
+    }
+}
+
 void MainWindow::newFile()
 {
     // if there are not any plots added (i.e. file is completely clean)
@@ -346,7 +406,7 @@ void MainWindow::newFile()
 
 }
 
-void MainWindow::openFile()
+void MainWindow::openFileClicked()
 {
     qDebug() << "in opening file";
 
@@ -355,25 +415,40 @@ void MainWindow::openFile()
         qDebug() << "error in opening file...may be path not found." ;
         return;
     }
+    m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+    openFile(path);
+}
+
+bool MainWindow::openFile(const QString& path) {
 
     qDebug() << path << "...opened.";
 
     QFile *file = new QFile(path,this);
 
-    if(!file->open(QFile::ReadOnly)){
+    if(!file->open(QFile::ReadOnly)) {
         qDebug() << "error in reading";
-        exit(0);
+        return false;
     }
 
-    m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+    if(path==QDir::currentPath().append("/Temp.khipu.autosave")) {
+        // ask for reloading the autosave file
+        int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved, last time ?"),i18n("Autosaved .khipu file"));
+
+        if(answer!=KMessageBox::Yes) {
+            file->remove();
+            return false;
+        }
+     }
+
     qDebug() << "parsing....";
+
     QJson::Parser parser;
     m_parsedSpaceDetails = parser.parse(file).toList();
     file->close();
 
-    if(m_parsedSpaceDetails.isEmpty()){ // if a wrong file is hit
+    if(m_parsedSpaceDetails.isEmpty()) { // if a wrong file is hit
         qDebug() << "problem in parsing ..may be a wrong file";
-        return;
+        return false;
     }
 
     m_dashboard->m_openclicked=true;
@@ -388,14 +463,12 @@ void MainWindow::openFile()
         Analitza::Dimension dim=static_cast<Analitza::Dimension> (map.value("dimension").toInt());
         QPixmap thumbnail= toPixmap(image);
 
-        bool test=thumbnail.save("/home/punit1/picture2.png","PNG");
-        qDebug() << test;
-
         m_document->spacesModel()->addSpace(dim,spacename,QString(),thumbnail);
     }
 
     m_dashboard->goHome();
     activateDashboardUi();
+return true;
 }
 
 QPixmap MainWindow::toPixmap(const QByteArray &bytearray) {
@@ -413,9 +486,11 @@ void MainWindow::saveClicked(){
 
     if(m_fileLocation=="") // Intially when the data is not saved. We would not have the actual file path.
         m_fileLocation = QFileDialog::getSaveFileName(this, tr("Save File (Please save with extension .khipu) "),"/");
-
     saveFile(m_fileLocation);
+}
 
+void MainWindow::closeClicked(){
+    close();
 }
 
 void MainWindow::saveAsClicked(){
@@ -427,6 +502,7 @@ void MainWindow::saveAsClicked(){
 
 void MainWindow::saveFile(const QString& path) {
 
+    qDebug() << "in save file : " << path;
     QMap<DictionaryItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
     // just starting #no plot is available so no need to save
@@ -444,13 +520,9 @@ void MainWindow::saveFile(const QString& path) {
 
     QVariantList plotspace_list;
 
-    if(spaceList.size() > 0){ // home is clicked or not.!
-    // do this for the whole list and write at that time into a file
     int i,j;
-
-        for(i=0;i<spaceList.size();i++) {
-
-             DictionaryItem* space=spaceList.at(i);
+    for(i=0;i<spaceList.size();i++) {
+        DictionaryItem* space=spaceList.at(i);
              QString spaceName = space->title();
              QPixmap thumbnail = space->thumbnail();
              int dim = space->dimension();
@@ -477,7 +549,7 @@ void MainWindow::saveFile(const QString& path) {
                    plot.insert("expression",plotExpression);
                    plot.insert("color",plotcolor);
 
-                   if(dim==2){
+                   if(dim==2) {
 
                           Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotList.at(j));
                           double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
@@ -496,81 +568,6 @@ void MainWindow::saveFile(const QString& path) {
              plotspace.insert("plots",subjson);
              plotspace_list << plotspace;
         }
-    }
-
-    if(m_totalSpaces > m_savedSpaces) {  // if addspaces button is hit more than home (need to save the current space)
-
-        DictionaryItem* space=spaceList.at(m_totalSpaces-1); // use this just to get the plots because it does not contain correct space information
-        int dim = space->dimension();
-        QString activeSpaceTitle=m_spaceInfoDock->title();
-
-        QVariantList subplot_list;
-        subplot_list.clear();
-
-        QVariantMap plotspace;
-        plotspace.insert("name",activeSpaceTitle);
-        plotspace.insert("dimension",dim);
-
-        // to save the current space thumbnail....
-        QPixmap thumbnail;
-
-        switch (space->dimension()) {
-
-            case Analitza::Dim2D:{
-
-                 thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
-                 break;
-            }
-            case Analitza::Dim3D:{
-
-                  m_dashboard->view3d()->updateGL();
-                  m_dashboard->view3d()->setFocus();
-                  m_dashboard->view3d()->makeCurrent();
-                  m_dashboard->view3d()->raise();
-
-                  QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
-
-                  thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
-                  break;
-            }
-        }
-
-        thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
-        QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
-        plotspace.insert("image",imageByteArray);
-
-        QList<Analitza::PlotItem*> plotList=map.values(space);
-
-        for (int j=0;j<plotList.size();j++) {
-
-            Analitza::PlotItem* plotitem=plotList.at(j);
-            QString plotName=plotitem->name();
-            QString plotExpression=plotitem->expression().toString();
-            QColor plotcolor=plotitem->color();
-
-            QVariantMap plot;
-            plot.insert("name",plotName);
-            plot.insert("expression",plotExpression);
-            plot.insert("color",plotcolor);
-
-            if(dim==2){
-                Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotList.at(j));
-                double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
-                double arg1max=functiongraph->interval(functiongraph->parameters().at(0)).second;
-                plot.insert("arg1min",arg1min);
-                plot.insert("arg1max",arg1max);
-            }
-
-        //writehere
-        subplot_list << plot;
-        }
-
-   QJson::Serializer subserializer;
-   QByteArray subjson = subserializer.serialize(subplot_list);
-   plotspace.insert("plots",subjson);
-   plotspace_list << plotspace;
-
-   }
 
 QJson::Serializer serializer;
 QByteArray json = serializer.serialize(plotspace_list);
@@ -581,12 +578,27 @@ QByteArray json = serializer.serialize(plotspace_list);
          return;
     }
 
-qDebug() << "path: " << path;
-
     QFile *file = new QFile(path,this);
-    if(!file->open(QFile::WriteOnly | QFile::Text)){
-        qDebug() << "Error in writing";
-        return;
+    qDebug() << "path: " << path;
+
+    // saved action clicked by the user , this is not the autosave case
+    if(path!=QDir::currentPath().append("/Temp.khipu.autosave")){
+        if(!file->open(QFile::WriteOnly | QFile::Text)){
+            qDebug() << "Error in writing";
+            return;
+        }
+
+        // remove the auto save file (can be improved later)
+        QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+        autosaveFile.remove();
+    }
+
+    // autosave case
+    else {
+        if(!file->open(QFile::WriteOnly | QFile::Text)){
+            qDebug() << "Error in writing";
+            return;
+        }
     }
 
 QTextStream out(file);
@@ -754,7 +766,7 @@ void MainWindow::setVisibleDictionary()
 void MainWindow::addSpace2D()
 {
     m_currentSpaceDim=2;
-    m_totalSpaces++;
+    //m_totalSpaces++;
 
     activateSpaceUi();
 
@@ -766,7 +778,7 @@ void MainWindow::addSpace2D()
 void MainWindow::addSpace3D()
 {
     m_currentSpaceDim=3;
-    m_totalSpaces++;
+    //m_totalSpaces++;
 
     activateSpaceUi();
     
@@ -827,7 +839,7 @@ void MainWindow::goHome()
         if(!m_spacenameList.contains(space->title())){
         //    m_imageList.append(imageByteArray);
             m_spacenameList.append(space->title());
-            m_savedSpaces++;
+           // m_savedSpaces++;
         }
         else {
           //  int ind=m_spacenameList.indexOf(space->title());
@@ -986,5 +998,3 @@ void MainWindow::createPlot(const QModelIndex &ind) {
             errors = req.errors();
     }
 }
-
-

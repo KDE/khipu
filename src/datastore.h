@@ -51,7 +51,7 @@ public:
     Analitza::PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
     DictionariesModel *spacesModel() const { return m_spacesModel; }
     Analitza::PlotsModel *plotsModel() const { return m_plotsModel; }
-    
+
     // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
     SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
     QItemSelectionModel *currentSelectionModel() const { return m_currentSelectionModel; }
@@ -71,6 +71,7 @@ public slots:
     //NOTA esta es la foma de borrar un plot
     void unmapPlot(const QModelIndex & proxyindex /*or viewindex*/); // cuando se borra un plot del modelo ... el viewindex es el index del view es decir del proxy
     void saveSpaceAsDictionary(QModelIndex ind);
+
 signals:
 //     void modified(); ... TODO to document???
 

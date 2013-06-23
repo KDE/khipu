@@ -782,7 +782,7 @@ void PlotsEditor::savePlot()
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
                 m_document->plotsModel()->addPlot(item);
-
+                mapDataChanged();
             } else
                 errors = req.errors();
 
@@ -805,7 +805,7 @@ void PlotsEditor::savePlot()
                 //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression())
                 m_document->plotsModel()->addPlot(item);
-
+                mapDataChanged();
             } else {
                 errors = req.errors();
 			}
@@ -827,7 +827,7 @@ void PlotsEditor::savePlot()
 
                 item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
-
+                mapDataChanged();
             } else
                 errors = req.errors();
 
@@ -851,7 +851,7 @@ void PlotsEditor::savePlot()
            //     item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
 
                     m_document->plotsModel()->addPlot(item);
-
+                    mapDataChanged();
             } else
                 errors = req.errors();
 
@@ -872,7 +872,7 @@ void PlotsEditor::savePlot()
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                        m_document->plotsModel()->addPlot(item);
-
+                        mapDataChanged();
             }
             else
                 errors = req.errors();
@@ -896,7 +896,7 @@ void PlotsEditor::savePlot()
           //      item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                     m_document->plotsModel()->addPlot(item);
-
+                    mapDataChanged();
             } else
                 errors = req.errors();
             
@@ -919,7 +919,7 @@ void PlotsEditor::savePlot()
            //     item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
 
                    m_document->plotsModel()->addPlot(item);
-
+                    mapDataChanged();
             } else
                 errors = req.errors();
             break;
@@ -943,6 +943,7 @@ void PlotsEditor::removePlot()
 {
     if (m_widget->plotsView->selectionModel()->hasSelection())
         m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
+emit mapDataChanged();
 }
 
 void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)

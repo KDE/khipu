@@ -116,7 +116,6 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
     //TODO assert si el current forma un buen item
 
     //NOTE la relacion es un key varios values ... un space contiene varios plots, por eso se usa el insertmulti
-
     PlotItem* item = m_plotsModel->index(start, 0, parent).data(PlotsModel::PlotRole).value<PlotItem*>();
 
     m_maps.insertMulti(m_spacesModel->space(m_currentSpace), item);
@@ -128,8 +127,8 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
     }
-
     emit gridStyleChanged(i);
+
 }
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
@@ -192,6 +191,7 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         }
         ++i;
     }
+
     m_spacePlotsFilterProxyModel->removeRow(proxyindex.row());
 }
 

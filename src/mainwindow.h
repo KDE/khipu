@@ -51,12 +51,14 @@ public:
 
 public slots:
     void newFile();
-    void openFile();
+    void openFileClicked();
     void saveClicked();
     void saveAsClicked();
     void activateSpace(int);
     void createPlot(const QModelIndex &ind);
     void savePlot();
+    void setCurrentSpaceTitle(const QString& str);
+    void setCurrentSpaceDesc(const QString& desc);
 
 private slots:
     //helpers - space
@@ -64,7 +66,9 @@ private slots:
     void activateSpaceUi();
     void copySnapshot();
     void exportSnapShot();
-    
+    void closeClicked();
+    void autoSaveFile();
+
     //app
     void setVisibleDictionary(); // este llama a dashboard void setVisibleDictionary(bool t);
     void addSpace2D();
@@ -95,16 +99,17 @@ private:
     void setupToolBars();
     bool queryClose();
     void saveFile(const QString& path);
+    bool openFile(const QString& path);
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     QPixmap toPixmap(const QByteArray &bytearray);
-
+    void closeEvent(QCloseEvent * event);
+    void checkforAutoSavedFile();
+    void updateThumbnail();
 private:
     DataStore *m_document;
     Dashboard *m_dashboard;
     Filter *m_filter;
     int m_currentSpaceDim;
-    int m_totalSpaces; // total hits to addspace2d + addspace3D
-    int m_savedSpaces; // total hits to home
 
     QDockWidget *m_plotsBuilderDock;
     PlotsEditor *m_spacePlotsDock;
@@ -114,8 +119,7 @@ private:
     QList<QString> m_spacenameList;
     QVariantList m_parsedSpaceDetails;
     QString m_fileLocation; // location of the current running file which is saved by the user.
-    //remove this
-    
+
 private slots:
     void fooSlot(bool t = false);
 };

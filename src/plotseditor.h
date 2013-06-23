@@ -98,6 +98,7 @@ signals:
     void goHome();
     void sendStatus(const QString &stat, int mstimeout = 0);
     void updateGridcolor(const QColor &color);
+    void mapDataChanged(); // emit when the map data is changed ( used for autosaving the  file )
 
 private:
     Analitza::FunctionGraph* editCurrentFunction(const Analitza::Expression& exp);
@@ -143,8 +144,6 @@ private slots:
     
 private:
     QString m_cacheText; // paint llama a sizehint y se necesita el texto actual para sugerir el size
-    
-    
 };
 
 
