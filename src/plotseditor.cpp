@@ -252,6 +252,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->focusPlot->setChecked(true);
 
     this->installEventFilter(this);
+    m_widget->f->installEventFilter(this);
 
 }
 
