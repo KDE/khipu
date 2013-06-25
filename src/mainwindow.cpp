@@ -792,6 +792,7 @@ void MainWindow::addSpace2D()
     m_dashboard->showPlotsView2D();
 
     m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
+    m_filter->setFilterVisible(false);
 }
 
 void MainWindow::addSpace3D()
@@ -804,6 +805,7 @@ void MainWindow::addSpace3D()
     m_dashboard->showPlotsView3D();
 
     m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
+    m_filter->setFilterVisible(false);
 }
 
 void MainWindow::removeCurrentSpace()

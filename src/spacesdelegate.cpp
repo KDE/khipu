@@ -685,6 +685,7 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index, const QModelIndex
 //         emit activateSpace(index);
         
     }
+
 }
 
 void SpacesDelegate::removeCurrentSpace()
@@ -741,6 +742,7 @@ void SpacesDelegate::showCurrentSpace()
     if (!itemView()->currentIndex().isValid()) return;
     
     emit showSpace(itemView()->currentIndex());
+
 }
 
 void SpacesDelegate::finishEditingTitle(const QString &newtitle )
