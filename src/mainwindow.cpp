@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QClipboard>
+#include <QToolButton>
 
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -67,6 +68,7 @@
 #include <qjson/parser.h>
 #include <dictionaryitem.h>
 #include <analitzaplot/plotsfactory.h>
+#include <KDE/KToggleFullScreenAction>
 
 using namespace Analitza;
 
@@ -105,11 +107,6 @@ MainWindow::MainWindow(QWidget *parent)
     
     updateTittleWhenOpenSaveDoc();
     checkforAutoSavedFile();
-    //m_totalSpaces=0;
-    //m_savedSpaces=0;
-//    temp=0;
- //   isAutoSaving=true;
- //   istempSet=false;
 }
 
 void MainWindow::closeEvent(QCloseEvent * event)
@@ -220,6 +217,7 @@ void MainWindow::setupActions()
     KStandardAction::quit(this, SLOT(closeClicked()), actionCollection());
     createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
 
+
     //TODO
 //     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
 
@@ -284,7 +282,8 @@ void MainWindow::setupActions()
 //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(fooSlot()), actionCollection());
-    KStandardAction::fullScreen(this, SLOT(fooSlot()), this ,actionCollection());
+    KToggleFullScreenAction *fullScreenAction = KStandardAction::fullScreen(this, SLOT(fullScreenView(bool)), this ,actionCollection());
+
 
 //     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
 //     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
@@ -298,9 +297,32 @@ void MainWindow::setCurrentSpaceDesc(const QString& desc) {
     m_document->spacesModel()->space(m_document->currentSpace())->setDescription(desc);
 }
 
+void MainWindow::fullScreenView (bool isFull)
+{
+    qDebug() << "value:" << isFull;
+
+    if(isFull) {
+        showFullScreen();
+        statusBar()->hide();
+        m_spaceOptionsDock->hide();
+        m_spaceInfoDock->hide();
+        m_spacePlotsDock->hide();
+        m_plotsBuilderDock->hide();
+        toolBar("mainToolBar")->hide();
+    }
+    else {
+        showNormal();
+        statusBar()->show();
+        m_spaceOptionsDock->show();
+        m_spaceInfoDock->show();
+        m_spacePlotsDock->show();
+        toolBar("mainToolBar")->show();
+    }
+}
+
 void MainWindow::fooSlot(bool t)
 {
-     qDebug() << "test slot" << t;
+    qDebug() << "test slot" << t;
 }
 
 void MainWindow::autoSaveFile(){

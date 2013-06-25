@@ -75,6 +75,7 @@ private slots:
     void addSpace3D();
     void removeCurrentSpace();
     void goHome();
+    void fullScreenView (bool isFull);
 
     //builder dock actions: shortcuts ... first add the space then show the editor
     void buildCartesianGraphCurve();

@@ -378,7 +378,13 @@ void PlotsEditor::cancelEditor()
 }
 
 void PlotsEditor::showAxis(int state) {
-    if(m_document==0)return;
+    if(m_document==0)
+        return;
+    else if(m_document->spacesModel()==0)
+        return;
+    else if(m_document->currentSpace()==0)
+        return;
+
     if (state==0){
 
         if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
