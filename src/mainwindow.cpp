@@ -39,7 +39,6 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QClipboard>
-#include <QToolButton>
 
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -299,8 +298,6 @@ void MainWindow::setCurrentSpaceDesc(const QString& desc) {
 
 void MainWindow::fullScreenView (bool isFull)
 {
-    qDebug() << "value:" << isFull;
-
     if(isFull) {
         showFullScreen();
         statusBar()->hide();
