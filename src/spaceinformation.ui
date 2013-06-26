@@ -38,7 +38,7 @@
    <set>Qt::AllDockWidgetAreas</set>
   </property>
   <property name="windowTitle">
-   <string>Space</string>
+   <string>Notes</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout_6">
