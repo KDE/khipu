@@ -27,6 +27,8 @@
 namespace Analitza { class Expression; }
 class DictionaryItem;
 
+Q_DECLARE_METATYPE(DictionaryItem*);
+
 class DictionariesModel : public QAbstractListModel 
 {
 

@@ -97,7 +97,7 @@ public:
 
     SpacesDelegate(QListView *itemView, QObject *parent = 0);
     ~SpacesDelegate();
-    
+
 public slots:
     //NOTE ejecutar este metodo cuando se a cambiado de filtro en el proxy ... es decir ejecutarlo desde afuera de esta clase
         void filterEvent(); // se supone que el proxy emite esta signal layoutchanged y este slots debe ocultar los botnes y editores
@@ -113,9 +113,11 @@ public:
     void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
-    
+
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+
+    void setDocument(DataStore *doc);
 
 signals:
     void showSpace(const QModelIndex &index);
@@ -149,6 +151,7 @@ private:
 
     ///
     bool m_iconMode;
+    DataStore *m_document;
 };
 
 #endif

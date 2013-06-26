@@ -950,7 +950,7 @@ void PlotsEditor::removePlot()
 {
     if (m_widget->plotsView->selectionModel()->hasSelection())
         m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
-emit mapDataChanged();
+    emit mapDataChanged();
 }
 
 void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)

@@ -163,7 +163,7 @@ void DataStore::removeCurrentSpace()
 {
     if (m_currentSpaceSelectionModel->hasSelection())
     {
-        qDebug() << "coming here";
+
         m_maps.remove(m_spacesModel->space(m_currentSpace));
 
         m_spacesModel->removeRow(m_currentSpace);
@@ -193,6 +193,15 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
     }
 
     m_spacePlotsFilterProxyModel->removeRow(proxyindex.row());
+
+}
+
+void DataStore::removeSpace(int row) {
+
+    m_maps.remove(m_spacesModel->space(row));
+
+    m_spacesModel->removeRow(row);
+    emit mapDataChanged();
 }
 
 void DataStore::saveSpaceAsDictionary(QModelIndex ind)

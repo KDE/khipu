@@ -59,7 +59,7 @@ public:
     QMap<DictionaryItem*, Analitza::PlotItem*> currentDataMap() const { return m_maps; }
 
     bool isMapped(DictionaryItem *space, Analitza::PlotItem *plot) const;
-
+    void removeSpace(int row);
 private slots:
     void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
     void selectCurrentPlot(const QModelIndex & curr, const QModelIndex & prev );
@@ -77,6 +77,7 @@ signals:
 
     void spaceActivated(int spaceidx);
     void gridStyleChanged(int i); // 1 cartesian 2 polar
+    void mapDataChanged();
 
 private:
     Analitza::PlotsDictionaryModel *m_plotsDictionaryModel;

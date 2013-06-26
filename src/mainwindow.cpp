@@ -175,6 +175,7 @@ void MainWindow::setupDocks()
     connect(m_spacePlotsDock,SIGNAL(updateGridcolor(QColor)),m_dashboard,SLOT(setGridColor(QColor)));
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_spacePlotsDock, SLOT(setCurrentSpace(int)));
     connect(m_spacePlotsDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
+    connect(m_document,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
 
     m_spaceInfoDock = new SpaceInformation(this);
     
@@ -322,7 +323,7 @@ void MainWindow::fooSlot(bool t)
     qDebug() << "test slot" << t;
 }
 
-void MainWindow::autoSaveFile(){
+void MainWindow::autoSaveFile() {
     updateThumbnail();
     saveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
     //isAutoSaving=true;
@@ -331,6 +332,12 @@ void MainWindow::autoSaveFile(){
 void MainWindow::updateThumbnail() {
 
     DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
+
+    if(space==0)
+        return;
+
+    if(space->dimension()!=Analitza::Dim2D || space->dimension()!=Analitza::Dim3D)
+        return;
 
     QPixmap thumbnail;
 
@@ -528,6 +535,10 @@ void MainWindow::saveFile(const QString& path) {
     if(map.empty())
     {
         qDebug() << "map is empty";
+
+        // no plots are there. so, we dont need autosave file
+        QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+        autosaveFile.remove();
         return;
     }
 

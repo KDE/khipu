@@ -38,7 +38,6 @@
 #include <QtGui/QPainter>
 #include <QtGui/QRadialGradient>
 #include <QtGui/QPaintEvent>
-#include <QtCore/QDebug>
 #include <QtGui/QToolButton>
 #include <QtGui/QMenu>
 #include <QLabel>
@@ -690,9 +689,12 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index, const QModelIndex
 
 void SpacesDelegate::removeCurrentSpace()
 {
+
     if (!itemView()->currentIndex().isValid()) return;
 
+    m_document->removeSpace(itemView()->currentIndex().row());
     itemView()->model()->removeRow(itemView()->currentIndex().row());
+
     m_isEditing = false;
     
     if (m_iconMode)
@@ -702,10 +704,16 @@ void SpacesDelegate::removeCurrentSpace()
         
         filterEvent();
     }
+
     else
     {
         
     }
+
+}
+
+void SpacesDelegate::setDocument(DataStore *doc) {
+    m_document=doc;
 }
 
 void SpacesDelegate::editCurrentSpace()
@@ -721,7 +729,6 @@ void SpacesDelegate::editCurrentSpace()
     if (m_iconMode)
     {
         QRect rect = itemView()->visualRect(itemView()->currentIndex());
-
         m_titleEditor->setText(itemView()->currentIndex().data().toString());
         m_titleEditor->resize(rect.width(), m_titleEditor->height());
         m_titleEditor->move(rect.left()/*+(PreviewWidth-m_operationBar->width())/2*/,rect.top() + rect.height() - m_operationBar->height() - .8*m_titleEditor->height());

@@ -154,6 +154,8 @@ void Dashboard::setDocument(DataStore* doc)
     m_widget->spacesView->setViewMode(QListView::IconMode);
 //     m_widget->spacesView->setFlow(QListView::LeftToRight);
     SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
+
+    delegate->setDocument(doc);
     m_widget->spacesView->setItemDelegate(delegate);
 
     connect(delegate,SIGNAL(saveDictionary(QModelIndex)),m_document,SLOT(saveSpaceAsDictionary(QModelIndex)));
