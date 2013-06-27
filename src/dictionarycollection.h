@@ -52,13 +52,13 @@ public:
     void setDictionaryTitles();
 
 signals:
-    void importDictionary();
     void mapDataChanged();
 
 private slots:
     void setDictionaryData(int ind);
     void addPlotInSpace();
     void setModelIndex(const QModelIndex& ind);
+    void importDictionary();
 
 private:
     Ui::DictionaryCollectionWidget *m_widget;

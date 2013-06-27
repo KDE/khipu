@@ -24,6 +24,7 @@
 
 //Qt includes
 #include <QDir>
+#include <QFileDialog>
 
 //Analitza includes
 #include <analitzaplot/plotsdictionarymodel.h>
@@ -47,6 +48,7 @@ DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
     m_widget->setupUi(this);
     connect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
     connect(m_widget->AddButton,SIGNAL(pressed()),this,SLOT(addPlotInSpace()));
+    connect(m_widget->importDictionary,SIGNAL(pressed()),this,SLOT(importDictionary()));
 }
 
 DictionaryCollection::~DictionaryCollection()
@@ -144,4 +146,17 @@ void DictionaryCollection::addPlotInSpace()
     m_document->plotsModel()->addPlot(item);
 
     emit mapDataChanged();
+}
+
+void DictionaryCollection::importDictionary()
+{
+    QString path = QFileDialog::getOpenFileName(this, tr("Open a .plots file"),"/",tr("Text files (*.plots)"));
+    if(path==0){
+        qDebug() << "error in opening file...may be path not found." ;
+        return;
+    }
+
+    m_widget->dictionaryNames->addItem("ImportedDictionary");
+    m_dictionaryTitles << "ImportedDictionary";
+    m_dictionaryList << path;
 }
