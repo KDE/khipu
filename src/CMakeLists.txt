@@ -14,6 +14,8 @@ include_directories (
 set ( khipu_SRCS
   dictionaryitem.cpp
   dictionariesmodel.cpp
+
+  dictionarycollection.cpp
   plotsbuilder.cpp
   plotseditor.cpp
   functionlibraryedit.cpp
@@ -36,6 +38,7 @@ set ( khipu_SRCS
 )
 
 kde4_add_ui_files ( khipu_SRCS
+  dictionarycollection.ui
   plotsbuilder.ui
   plotseditor.ui
   spaceinformation.ui

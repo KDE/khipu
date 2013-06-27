@@ -50,6 +50,7 @@
 #include <KStandardDirs>
 #include "spacesdelegate.h"
 #include <QFileDialog>
+
 using namespace Analitza;
 
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)

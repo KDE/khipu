@@ -62,6 +62,7 @@
 #include "spaceinformation.h"
 #include "spaceoptions.h"
 #include "filter.h"
+#include "dictionarycollection.h"
 #include <analitzagui/plotsview2d.h>
 #include <qjson/serializer.h>
 #include <qjson/parser.h>
@@ -178,9 +179,16 @@ void MainWindow::setupDocks()
     connect(m_document,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
 
     m_spaceInfoDock = new SpaceInformation(this);
-    
     m_spaceOptionsDock = new SpaceOptions(this);
 
+    m_dictionaryDock = new DictionaryCollection(this);
+    m_dictionaryDock->setDashboardWidget(m_dashboard);
+    m_dictionaryDock->setDocument(m_document);
+    m_dictionaryDock->setDictionaryfilePath();
+    m_dictionaryDock->setDictionaryTitles();
+    m_dictionaryDock->setDefaultDictionaries();
+
+    connect(m_dictionaryDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
     //2d view
     connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
@@ -199,10 +207,12 @@ void MainWindow::setupDocks()
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spaceOptionsDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spaceInfoDock);
-    
+    addDockWidget(Qt::LeftDockWidgetArea, m_dictionaryDock);
+
     tabifyDockWidget(m_plotsBuilderDock, m_spacePlotsDock);
     tabifyDockWidget(m_spacePlotsDock, m_spaceOptionsDock);
     tabifyDockWidget(m_spaceOptionsDock, m_spaceInfoDock);
+    tabifyDockWidget(m_spaceInfoDock,m_dictionaryDock);
 }
 
 void MainWindow::setupActions()
@@ -248,11 +258,14 @@ void MainWindow::setupActions()
     actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
     
 //     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("coords"));
+    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon(""));
     m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
-    actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());       
+    actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());
     
-    
+    m_dictionaryDock->toggleViewAction()->setIcon(KIcon("dialog-information"));
+    m_dictionaryDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    actionCollection()->addAction("show_dictionary_collection", m_dictionaryDock->toggleViewAction());
+
     //go
     KAction *act = KStandardAction::firstPage(this, SLOT(fooSlot()), actionCollection());
     act->setText(i18n("&Go First Space"));
@@ -306,6 +319,7 @@ void MainWindow::fullScreenView (bool isFull)
         m_spaceInfoDock->hide();
         m_spacePlotsDock->hide();
         m_plotsBuilderDock->hide();
+        m_dictionaryDock->hide();
         toolBar("mainToolBar")->hide();
     }
     else {
@@ -326,7 +340,6 @@ void MainWindow::fooSlot(bool t)
 void MainWindow::autoSaveFile() {
     updateThumbnail();
     saveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
-    //isAutoSaving=true;
 }
 
 void MainWindow::updateThumbnail() {
@@ -336,7 +349,7 @@ void MainWindow::updateThumbnail() {
     if(space==0)
         return;
 
-    if(space->dimension()!=Analitza::Dim2D || space->dimension()!=Analitza::Dim3D)
+    if(space->dimension()!=Analitza::Dim2D && space->dimension()!=Analitza::Dim3D)
         return;
 
     QPixmap thumbnail;
@@ -582,8 +595,13 @@ void MainWindow::saveFile(const QString& path) {
                    if(dim==2) {
 
                           Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotList.at(j));
-                          double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
+
+                          //need to fix this in analitza
+                          /* double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
                           double arg1max=functiongraph->interval(functiongraph->parameters().at(0)).second;
+                         */
+                          double arg1min=-5;
+                          double arg1max=5;
                           plot.insert("arg1min",arg1min);
                           plot.insert("arg1max",arg1max);
                    }
@@ -676,6 +694,8 @@ void MainWindow::activateDashboardUi()
     action("show_plots_editor")->setVisible(false);
     action("show_space_info")->setVisible(false);
     action("show_plotter_options")->setVisible(false);
+    action("show_dictionary_collection")->setVisible(false);
+
     //go
     action("go_home")->setVisible(false);
     //tools
@@ -692,6 +712,7 @@ void MainWindow::activateDashboardUi()
     m_spaceInfoDock->hide();
     m_spaceOptionsDock->hide();
     m_plotsBuilderDock->hide(); 
+    m_dictionaryDock->hide();
 }
 
 void MainWindow::activateSpaceUi()
@@ -712,6 +733,8 @@ void MainWindow::activateSpaceUi()
     action("show_plots_editor")->setVisible(true);
     action("show_space_info")->setVisible(true);
     action("show_plotter_options")->setVisible(true);
+    action("show_dictionary_collection")->setVisible(true);
+
     //go
     action("go_home")->setVisible(true);    
     //tools
@@ -728,7 +751,7 @@ void MainWindow::activateSpaceUi()
     m_spacePlotsDock->show();
     m_spaceInfoDock->show();
     m_spaceOptionsDock->show();
-    
+    m_dictionaryDock->show();
     ///
 }
 
@@ -771,6 +794,7 @@ void MainWindow::setVisibleDictionary()
         action("show_plots_editor")->setVisible(false);
         action("show_space_info")->setVisible(false);
         action("show_plotter_options")->setVisible(false);
+        action("show_dictionary_collection")->setVisible(false);
         //go
         action("show_plotsdictionary")->setVisible(false); 
         action("go_home")->setVisible(true);  
@@ -789,7 +813,7 @@ void MainWindow::setVisibleDictionary()
         m_spacePlotsDock->hide();
         m_spaceInfoDock->hide();
         m_spaceOptionsDock->hide();
-    
+    m_dictionaryDock->hide();
     m_dashboard->showDictionary();
 }
 
@@ -1030,3 +1054,5 @@ void MainWindow::createPlot(const QModelIndex &ind) {
             errors = req.errors();
     }
 }
+
+

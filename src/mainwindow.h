@@ -23,6 +23,7 @@
 #include <QModelIndex>
 #include <analitzaplot/plotitem.h>
 
+class DictionaryCollection;
 class Filter;
 class SpaceOptions;
 class SpaceInformation;
@@ -116,6 +117,7 @@ private:
     PlotsEditor *m_spacePlotsDock;
     SpaceInformation *m_spaceInfoDock;
     SpaceOptions *m_spaceOptionsDock;
+    DictionaryCollection *m_dictionaryDock;
     QList<QByteArray> m_imageList;
     QList<QString> m_spacenameList;
     QVariantList m_parsedSpaceDetails;

@@ -84,6 +84,8 @@ public:
     
     QPixmap currentPlotsViewSnapshot() const;
     void setDashboardData(Dashboard* source);
+    QStringList dictionaryFileList() const { return m_fileList; }
+    QStringList dictionaryTitles() const { return m_dictionaryTitles; }
 
     //views
     
