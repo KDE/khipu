@@ -825,7 +825,6 @@ void MainWindow::addSpace2D()
     activateSpaceUi();
 
     m_dashboard->showPlotsView2D();
-
     m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
     m_filter->setFilterVisible(false);
 }

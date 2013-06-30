@@ -210,6 +210,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     // initialize the combo-box with green color because green plot will be visible in both 2D(white) and 3D(black) space.
     m_widget->plotColor->setColor(QColor(Qt::green));
 
+    m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
+    m_widget->focusPlot->setChecked(true);
+
     connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
 
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
@@ -248,8 +251,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     connect(m_widget->focusPlot,SIGNAL(stateChanged(int)),SLOT(showAxis(int)));
-    m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
-    m_widget->focusPlot->setChecked(true);
 
     this->installEventFilter(this);
     m_widget->f->installEventFilter(this);
@@ -379,15 +380,8 @@ void PlotsEditor::cancelEditor()
 }
 
 void PlotsEditor::showAxis(int state) {
-    if(m_document==0)
-        return;
-    else if(m_document->spacesModel()==0)
-        return;
-    else if(m_document->currentSpace()==0)
-        return;
 
     if (state==0){
-
         if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
             emit updateGridcolor(QColor(255,255,255)); // Axis willnot be visible when the color will be white.
         else
