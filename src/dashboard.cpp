@@ -40,6 +40,7 @@
 #include <QtCore/QDebug>
 #include <QtGui/QToolButton>
 #include <QtGui/QMenu>
+#include <QFileDialog>
 
 #include <kpushbutton.h>
 #include <klineedit.h>
@@ -49,7 +50,7 @@
 #include <KFileDialog>
 #include <KStandardDirs>
 #include "spacesdelegate.h"
-#include <QFileDialog>
+#include <KMessageBox>
 
 using namespace Analitza;
 
@@ -83,6 +84,7 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
 
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent)
+    , m_isDictionaryFound(false)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
@@ -93,6 +95,8 @@ Dashboard::Dashboard(QWidget *parent)
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     connect(m_widget->importDictionarybutton,SIGNAL(clicked()),this,
             SLOT(importDictionary()));
+    m_widget->comboBox->clear();
+    checkforDictionary();
     setDictionaryNames();
 
 }
@@ -116,6 +120,8 @@ Dashboard::~Dashboard()
 
 void Dashboard::setDictionaryNames()
 {
+    if(!m_isDictionaryFound)
+        return;
 
     QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
     QDir dir(str.append("libanalitza/plots"));  // path to the dir where .plots files are installed by analitza
@@ -123,13 +129,11 @@ void Dashboard::setDictionaryNames()
     filters << "*.plots";
     dir.setNameFilters(filters);
     m_fileList=dir.entryList();
-    m_widget->comboBox->clear();
     m_dictionaryTitles << "3Ds" << "Dictionary1" << "conics" << "polar"; // we know this , so we can set this ;)
     m_widget->comboBox->addItems(m_dictionaryTitles);
     m_totalinternalDict=m_dictionaryTitles.size();
 
     connect(m_widget->comboBox,SIGNAL(activated(int)),this,SLOT(setDictionaryData(int)));
-
 }
 
 void Dashboard::setDocument(DataStore* doc)
@@ -231,6 +235,9 @@ void Dashboard::showDictionary()
 
 void Dashboard::setDictionaryData(int ind)
 {
+    if(!m_isDictionaryFound)
+        return;
+
     PlotsDictionaryModel *model = m_document->plotsDictionaryModel();
     m_plotdictionarymodel=model;
     model->clear();
@@ -496,4 +503,22 @@ void Dashboard::setupWidget()
 //     m_widget->viewMode->setCurrentIndex(1);
 //     m_widget->viewMode->setCurrentIndex(0);
 
+}
+void Dashboard::checkforDictionary() {
+    QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+    QDir dir(str.append("libanalitza/plots"));
+    QStringList filters;
+    filters << "*.plots";
+    dir.setNameFilters(filters);
+
+    if(dir.count() >= 4) {
+        qDebug() << "found";
+        m_isDictionaryFound=true;
+        return;
+    }
+
+    QString error =" Please make sure that the dictionary(.plots) files are correctly installed in the path: ";
+    KMessageBox::error(this,error.append(dir.path()).append("  If not, use -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` with cmake !"),"Error in Dictionary Path:");
+    qDebug() << "not found..";
+return;
 }

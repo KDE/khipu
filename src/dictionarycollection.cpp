@@ -84,11 +84,15 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
+
     PlotsDictionaryModel *model=new PlotsDictionaryModel;
     model->clear();
     m_dictionaryModel=model;
 
-    if(ind < m_totalinternalDict) { // total internal available dictionaries
+    if(ind < m_totalinternalDict || m_totalinternalDict==0) { // total internal available dictionaries
+        if(m_totalinternalDict==0) {
+            return;
+        }
         QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
         QDir dir(str.append("libanalitza/plots"));
         model->createDictionary(dir.path().append("/").append(m_dictionaryList.at(ind)));
