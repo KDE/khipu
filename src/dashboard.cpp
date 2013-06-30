@@ -517,8 +517,9 @@ void Dashboard::checkforDictionary() {
         return;
     }
 
-    QString error =" Please make sure that the dictionary(.plots) files are correctly installed in the path: ";
-    KMessageBox::error(this,error.append(dir.path()).append("  If not, use -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` with cmake !"),"Error in Dictionary Path:");
+    QString error =i18n(" Please make sure that the dictionary(.plots) files are correctly installed in the path: ");
+    KMessageBox::error(this,error.append(dir.path()).append(i18n("  If not, use -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` with cmake !")),
+                       i18n("Error in Dictionary Path:"));
     qDebug() << "not found..";
 return;
 }

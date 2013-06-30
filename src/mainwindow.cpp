@@ -294,7 +294,7 @@ void MainWindow::setupActions()
     createAction("copy_snapshot", i18n("&Take Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
 //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
-    KStandardAction::showMenubar(this, SLOT(fooSlot()), actionCollection());
+    KStandardAction::showMenubar(this, SLOT(setMenuBarVisibility(bool)), actionCollection());
     KToggleFullScreenAction *fullScreenAction = KStandardAction::fullScreen(this, SLOT(fullScreenView(bool)), this ,actionCollection());
 
 
@@ -335,6 +335,18 @@ void MainWindow::fullScreenView (bool isFull)
 void MainWindow::fooSlot(bool t)
 {
     qDebug() << "test slot" << t;
+}
+
+void MainWindow::setMenuBarVisibility(bool isShow) {
+    qDebug() << "value : " << isShow;
+
+    if(isShow) {
+        menuBar()->show();
+    }
+    else {
+        KMessageBox::information(this,i18n("Press ctrl + M to make Menubar Visible again"),i18n("Menubar Visibility"));
+      menuBar()->hide();
+    }
 }
 
 void MainWindow::autoSaveFile() {

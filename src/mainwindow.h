@@ -77,7 +77,7 @@ private slots:
     void removeCurrentSpace();
     void goHome();
     void fullScreenView (bool isFull);
-
+    void setMenuBarVisibility (bool isShow);
     //builder dock actions: shortcuts ... first add the space then show the editor
     void buildCartesianGraphCurve();
     void buildCartesianImplicitCurve();
@@ -107,6 +107,7 @@ private:
     void closeEvent(QCloseEvent * event);
     void checkforAutoSavedFile();
     void updateThumbnail();
+
 private:
     DataStore *m_document;
     Dashboard *m_dashboard;
