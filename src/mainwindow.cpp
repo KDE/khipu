@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QClipboard>
+#include <QSettings>
 
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
@@ -107,6 +108,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     updateTittleWhenOpenSaveDoc();
     checkforAutoSavedFile();
+    updateRecentFileList();
 }
 
 void MainWindow::closeEvent(QCloseEvent * event)
@@ -220,14 +222,14 @@ void MainWindow::setupActions()
     //file
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
     KStandardAction::open(this, SLOT(openFileClicked()), actionCollection());
-    KStandardAction::openRecent(this, SLOT(fooSlot()), actionCollection());    
+    m_openrecent=KStandardAction::openRecent(this, SLOT(openRecentClicked(const KUrl& )), actionCollection());
+    connect(m_openrecent,SIGNAL(recentListCleared()),this,SLOT(clearRecentFileList()));
+
     KStandardAction::save(this, SLOT(saveClicked()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveAsClicked()), actionCollection());
     KStandardAction::close(this, SLOT(closeClicked()), actionCollection());
     KStandardAction::quit(this, SLOT(closeClicked()), actionCollection());
     createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
-
-
     //TODO
 //     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
 
@@ -336,6 +338,12 @@ void MainWindow::fullScreenView (bool isFull)
 void MainWindow::fooSlot(bool t)
 {
     qDebug() << "test slot" << t;
+}
+
+void MainWindow::clearRecentFileList() {
+    QSettings settings("KDE Education Project","Khipu");
+    QStringList files = settings.value("recentFileList").toStringList();
+    settings.clear();
 }
 
 void MainWindow::setMenuBarVisibility(bool isShow) {
@@ -454,8 +462,42 @@ void MainWindow::newFile()
     }
 
     KToolInvocation::kdeinitExec("khipu");
+}
 
+void MainWindow::openRecentClicked(const KUrl&  name)
+{
+    openFile(name.path());
+}
 
+void MainWindow::setCurrentFile(const QString &fileName)
+{
+    m_curFile = fileName;
+    if (m_curFile.isEmpty())
+        return;
+
+    QSettings settings("KDE Education Project","Khipu");
+    QStringList files = settings.value("recentFileList").toStringList();
+    files.removeAll(fileName);
+    files.prepend(fileName);
+
+    while (files.size() > MaxRecentFiles)
+        files.removeLast();
+
+    settings.setValue("recentFileList", files);
+    updateRecentFileList();
+}
+
+void MainWindow::updateRecentFileList()
+{
+    QSettings settings("KDE Education Project","Khipu");
+    QStringList files = settings.value("recentFileList").toStringList();
+    int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
+
+    // Traversing in reverse manner will lead to the correct Recently opened file-list
+    for (int i = numRecentFiles-1; i >=0 ; i--) {
+        QString text=files[i];
+        m_openrecent->addUrl(KUrl(text),QFileInfo(text).fileName());
+    }
 }
 
 void MainWindow::openFileClicked()
@@ -491,6 +533,10 @@ bool MainWindow::openFile(const QString& path) {
             return false;
         }
      }
+
+    else {
+        setCurrentFile(path);
+    }
 
     qDebug() << "parsing....";
 
@@ -652,6 +698,8 @@ QByteArray json = serializer.serialize(plotspace_list);
         // remove the auto save file (can be improved later)
         QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
         autosaveFile.remove();
+
+        setCurrentFile(path);
     }
 
     // autosave case
@@ -1035,7 +1083,6 @@ void MainWindow::createPlot(const QModelIndex &ind) {
     QVariantList plotList= parser.parse(map.value("plots").toByteArray()).toList();
 
     qDebug() << "plots data";
-
 
     foreach(QVariant plot, plotList) {
 

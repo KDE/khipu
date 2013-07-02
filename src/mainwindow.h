@@ -19,9 +19,13 @@
 #ifndef GPLACS_MAINWINDOW_H
 #define GPLACS_MAINWINDOW_H
 
+#define MaxRecentFiles 7
+
 #include <KDE/KXmlGuiWindow>
 #include <QModelIndex>
 #include <analitzaplot/plotitem.h>
+#include <KRecentFilesAction>
+#include <QAction>
 
 class DictionaryCollection;
 class Filter;
@@ -53,6 +57,7 @@ public:
 public slots:
     void newFile();
     void openFileClicked();
+    void openRecentClicked(const KUrl&  name);
     void saveClicked();
     void saveAsClicked();
     void activateSpace(int);
@@ -78,6 +83,8 @@ private slots:
     void goHome();
     void fullScreenView (bool isFull);
     void setMenuBarVisibility (bool isShow);
+    void clearRecentFileList();
+
     //builder dock actions: shortcuts ... first add the space then show the editor
     void buildCartesianGraphCurve();
     void buildCartesianImplicitCurve();
@@ -102,6 +109,10 @@ private:
     bool queryClose();
     void saveFile(const QString& path);
     bool openFile(const QString& path);
+
+    void setCurrentFile(const QString &fileName);
+    void updateRecentFileList();
+
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     QPixmap toPixmap(const QByteArray &bytearray);
     void closeEvent(QCloseEvent * event);
@@ -123,6 +134,8 @@ private:
     QList<QString> m_spacenameList;
     QVariantList m_parsedSpaceDetails;
     QString m_fileLocation; // location of the current running file which is saved by the user.
+    QString m_curFile;
+    KRecentFilesAction * m_openrecent;
 
 private slots:
     void fooSlot(bool t = false);
