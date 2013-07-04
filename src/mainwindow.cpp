@@ -146,7 +146,7 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
 void MainWindow::setupDocks()
 {
     PlotsBuilder *plotsBuilder = new PlotsBuilder(this);
-    m_plotsBuilderDock = new QDockWidget(i18n("Shortcuts"), this);
+    m_plotsBuilderDock = new QDockWidget(i18n("&Shortcuts"), this);
     m_plotsBuilderDock->setWidget(plotsBuilder); // plotsbuilder debe ser miembro
     m_plotsBuilderDock->setObjectName("dsfs");
 //     m_plotsBuilderDock->setFloating(false);
@@ -234,38 +234,39 @@ void MainWindow::setupActions()
 //     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
 
     //edit - dashboard
-    createAction("add_space2d", i18n("&Add Space 2D"), "add-space2d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace2D()));
-    createAction("add_space3d", i18n("&Add Space 3D"), "add-space3d", Qt::CTRL + Qt::Key_W, this, SLOT(addSpace3D()));
+    createAction("add_space2d", i18n("Add Space &2D"), "add-space2d", Qt::CTRL + Qt::Key_2, this, SLOT(addSpace2D()));
+    createAction("add_space3d", i18n("Add Space &3D"), "add-space3d", Qt::CTRL + Qt::Key_3, this, SLOT(addSpace3D()));
     createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+
     //view - dashboard //TODO Show Plots Dictionary
     m_plotsBuilderDock->toggleViewAction()->setIcon(KIcon("formula"));
-    m_plotsBuilderDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    m_plotsBuilderDock->toggleViewAction()->setShortcut(Qt::Key_S);
     m_plotsBuilderDock->toggleViewAction()->setToolTip(i18n("Create a plot in a new space"));
     actionCollection()->addAction("show_plotsbuilder", m_plotsBuilderDock->toggleViewAction());
 
     createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
-    createAction("show_plotsdictionary", i18n("&Plot Dictionaries"), "functionhelp", Qt::CTRL + Qt::Key_W, this,
+    createAction("show_plotsdictionary", i18n("Plot &Dictionaries"), "functionhelp", Qt::CTRL + Qt::Key_D, this,
                  SLOT(setVisibleDictionary()));
 
     //view - space
 //     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     m_spacePlotsDock->toggleViewAction()->setIcon(KIcon("editplots"));
-    m_spacePlotsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    m_spacePlotsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_A);
     actionCollection()->addAction("show_plots_editor", m_spacePlotsDock->toggleViewAction());    
     
 //     createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     m_spaceInfoDock->toggleViewAction()->setIcon(KIcon("dialog-information"));
-    m_spaceInfoDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    m_spaceInfoDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_I);
     actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
     
 //     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon(""));
-    m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
     actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());
     
     m_dictionaryDock->toggleViewAction()->setIcon(KIcon("dialog-information"));
-    m_dictionaryDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_W);
+    m_dictionaryDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_D);
     actionCollection()->addAction("show_dictionary_collection", m_dictionaryDock->toggleViewAction());
 
     //go
@@ -293,7 +294,7 @@ void MainWindow::setupActions()
     //tools dashboard
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(removeCurrentSpace()))->setVisible(false);;
     //tools space
-    createAction("copy_snapshot", i18n("&Take Snapshot"), "edit-copy", Qt::CTRL + Qt::Key_W, this, SLOT(copySnapshot()));
+    createAction("copy_snapshot", i18n("&Take Snapshot"), "edit-copy", Qt::CTRL + Qt::SHIFT + Qt::Key_C, this, SLOT(copySnapshot()));
 //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(setMenuBarVisibility(bool)), actionCollection());
