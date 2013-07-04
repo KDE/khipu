@@ -113,7 +113,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::closeEvent(QCloseEvent * event)
 {
-    closeClicked();
+    // Do not want to close then just ignore the event
+    if(!closeClicked())
+        event->ignore();
 }
 
 MainWindow::~MainWindow()
@@ -515,7 +517,7 @@ void MainWindow::openFileClicked()
         qDebug() << "error in opening file...may be path not found." ;
         return;
     }
-    m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+
     openFile(path);
 }
 
@@ -542,6 +544,7 @@ bool MainWindow::openFile(const QString& path) {
 
     else {
         setCurrentFile(path);
+        m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
     }
 
     qDebug() << "parsing....";
@@ -593,8 +596,26 @@ void MainWindow::saveClicked(){
     saveFile(m_fileLocation);
 }
 
-void MainWindow::closeClicked(){
-    close();
+bool MainWindow::closeClicked(){
+
+    QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+    if(autosaveFile.exists()) {
+        int answer=KMessageBox::questionYesNoCancel(this,
+                                                    i18n("The current file contains some unsaved work.Do you want to save it ? "),
+                                                    i18n("Warining: Unsaved changes"));
+        if(answer==KMessageBox::Yes) {
+            saveClicked();
+            return true;
+        }
+        else if(answer==KMessageBox::Cancel) {
+            return false;
+        }
+        else if(answer==KMessageBox::No) {
+            // if user selects No , then he/she can restore the work using autosaving feature. But this can be removed !
+            return true;
+        }
+    }
+    return true; // just close the application.
 }
 
 void MainWindow::saveAsClicked(){

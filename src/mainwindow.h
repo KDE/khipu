@@ -72,7 +72,7 @@ private slots:
     void activateSpaceUi();
     void copySnapshot();
     void exportSnapShot();
-    void closeClicked();
+    bool closeClicked();
     void autoSaveFile();
 
     //app
