@@ -341,9 +341,9 @@ void MainWindow::fooSlot(bool t)
 }
 
 void MainWindow::clearRecentFileList() {
-    QSettings settings("KDE Education Project","Khipu");
-    QStringList files = settings.value("recentFileList").toStringList();
-    settings.clear();
+    KConfig config;
+    KConfigGroup recentFiles(&config,"file_Recent");
+    recentFiles.deleteEntry("recentFileList");
 }
 
 void MainWindow::setMenuBarVisibility(bool isShow) {
@@ -475,22 +475,27 @@ void MainWindow::setCurrentFile(const QString &fileName)
     if (m_curFile.isEmpty())
         return;
 
-    QSettings settings("KDE Education Project","Khipu");
-    QStringList files = settings.value("recentFileList").toStringList();
+    KConfig config;
+    KConfigGroup recentFiles(&config,"file_Recent");
+
+    QStringList files =recentFiles.readPathEntry("recentFileList",QStringList());
     files.removeAll(fileName);
     files.prepend(fileName);
 
     while (files.size() > MaxRecentFiles)
         files.removeLast();
 
-    settings.setValue("recentFileList", files);
+    recentFiles.deleteEntry("recentFileList");
+    recentFiles.writePathEntry("recentFileList",files);
+    recentFiles.sync();
     updateRecentFileList();
 }
 
 void MainWindow::updateRecentFileList()
 {
-    QSettings settings("KDE Education Project","Khipu");
-    QStringList files = settings.value("recentFileList").toStringList();
+    KConfig config;
+    KConfigGroup recentFiles(&config,"file_Recent");
+    QStringList files =  recentFiles.readPathEntry("recentFileList",QStringList());
     int numRecentFiles = qMin(files.size(), (int)MaxRecentFiles);
 
     // Traversing in reverse manner will lead to the correct Recently opened file-list
