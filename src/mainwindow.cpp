@@ -545,6 +545,7 @@ bool MainWindow::openFile(const QString& path) {
     else {
         setCurrentFile(path);
         m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+        changeTitleBar(path);
     }
 
     qDebug() << "parsing....";
@@ -727,6 +728,9 @@ QByteArray json = serializer.serialize(plotspace_list);
         autosaveFile.remove();
 
         setCurrentFile(path);
+        statusBar()->showMessage((QString("File : ").append(QFileInfo(path).fileName()).
+                    append("  [").append(path).append("] ").append("is saved successfully")),10000);
+        changeTitleBar(path);
     }
 
     // autosave case
@@ -740,6 +744,10 @@ QByteArray json = serializer.serialize(plotspace_list);
 QTextStream out(file);
 out << json;
 file->close();
+}
+
+void MainWindow::changeTitleBar(const QString& path) {
+    window()->setWindowTitle(QFileInfo(path).fileName().append(" - Khipu"));
 }
 
 void MainWindow::savePlot(){

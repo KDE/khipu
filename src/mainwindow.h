@@ -109,7 +109,7 @@ private:
     bool queryClose();
     void saveFile(const QString& path);
     bool openFile(const QString& path);
-
+    void changeTitleBar(const QString& path);
     void setCurrentFile(const QString &fileName);
     void updateRecentFileList();
 
