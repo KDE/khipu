@@ -110,12 +110,12 @@ public slots:
     void setGridColor(const QColor &color);
     void setPlotsViewGridColor(const QColor& color);
 
+    void setCurrentSpace(const QModelIndex &index);
 private slots:
     void removeSpace(const QModelIndex & index);
     void setDictionaryData(int ind);
     void importDictionary();
 //     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
-    void setCurrentSpace(const QModelIndex &index);
     void setCurrentSpace(const QModelIndex &index, const QModelIndex &old); // este solo emite el spaceactivate para que se entere el datasotre ... no hace cambios en la ui
     void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
     

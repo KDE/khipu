@@ -272,25 +272,25 @@ void MainWindow::setupActions()
     actionCollection()->addAction("show_dictionary_collection", m_dictionaryDock->toggleViewAction());
 
     //go
-    KAction *act = KStandardAction::firstPage(this, SLOT(fooSlot()), actionCollection());
-    act->setText(i18n("&Go First Space"));
-    act->setIcon(KIcon("go-first-view"));
-    act->setEnabled(false);
+    KAction *firstPageAct = KStandardAction::firstPage(this, SLOT(firstPageActClicked()), actionCollection());
+    firstPageAct->setText(i18n("&Go First Space"));
+    firstPageAct->setIcon(KIcon("go-first-view"));
+    firstPageAct->setEnabled(true);
 
-    act = KStandardAction::prior(this, SLOT(fooSlot()), actionCollection());
-    act->setText(i18n("&Go Previous Space"));
-    act->setIcon(KIcon("go-previous-view"));
-    act->setEnabled(false);
+    KAction *priorAct = KStandardAction::prior(this, SLOT(priorActClicked()), actionCollection());
+    priorAct->setText(i18n("&Go Previous Space"));
+    priorAct->setIcon(KIcon("go-previous-view"));
+    priorAct->setEnabled(true);
 
-    act = KStandardAction::next(this, SLOT(fooSlot()), actionCollection());
-    act->setText(i18n("&Go Next Space"));
-    act->setIcon(KIcon("go-next-view"));
-    act->setEnabled(false);
+    KAction *nextAct = KStandardAction::next(this, SLOT(nextActClicked()), actionCollection());
+    nextAct->setText(i18n("&Go Next Space"));
+    nextAct->setIcon(KIcon("go-next-view"));
+    nextAct->setEnabled(true);
     
-    act = KStandardAction::lastPage(this, SLOT(fooSlot()), actionCollection());
-    act->setText(i18n("&Go Last Space"));
-    act->setIcon(KIcon("go-last-view"));
-    act->setEnabled(false);
+    KAction *lastPageAct = KStandardAction::lastPage(this, SLOT(lastPageActClicked()), actionCollection());
+    lastPageAct->setText(i18n("&Go Last Space"));
+    lastPageAct->setIcon(KIcon("go-last-view"));
+    lastPageAct->setEnabled(true);
 
     KStandardAction::home(this, SLOT(goHome()), actionCollection());
     //tools dashboard
@@ -341,6 +341,50 @@ void MainWindow::fullScreenView (bool isFull)
 void MainWindow::fooSlot(bool t)
 {
     qDebug() << "test slot" << t;
+}
+
+void MainWindow::firstPageActClicked()
+{
+        QModelIndex firstInd=m_document->spacesModel()->index(0);
+        m_dashboard->setCurrentSpace(firstInd);
+}
+
+void MainWindow::priorActClicked()
+{
+    int currentSpaceRow=m_document->currentSpace();
+
+    if(currentSpaceRow>0) {
+        QModelIndex prevInd=m_document->spacesModel()->index(currentSpaceRow-1);
+        m_dashboard->setCurrentSpace(prevInd);
+    }
+
+    else {
+       // can go to the last space ;)
+        qDebug() << "on the first space :) ";
+    }
+}
+
+void MainWindow::nextActClicked()
+{
+    int currentSpaceRow=m_document->currentSpace();
+    int size=m_document->spacesModel()->rowCount();
+
+    if(currentSpaceRow<size-1) {
+        QModelIndex nextInd=m_document->spacesModel()->index(currentSpaceRow+1);
+        m_dashboard->setCurrentSpace(nextInd);
+    }
+
+    else {
+       // can go to the first space ;)
+        qDebug() << "on the last space :) ";
+    }
+}
+
+void MainWindow::lastPageActClicked()
+{
+    int size=m_document->spacesModel()->rowCount();
+    QModelIndex lastInd=m_document->spacesModel()->index(size-1);
+    m_dashboard->setCurrentSpace(lastInd);
 }
 
 void MainWindow::clearRecentFileList() {
@@ -541,6 +585,15 @@ bool MainWindow::openFile(const QString& path) {
             return false;
         }
      }
+
+    /* TODO
+     // When a file is already opened/saved , need to create a new session
+    else if(m_fileLocation!="") {
+        if(KToolInvocation::kdeinitExec("khipu")) {
+            // this open should go in the new proccess !!!
+            openFile(path);
+        }
+    }*/
 
     else {
         setCurrentFile(path);

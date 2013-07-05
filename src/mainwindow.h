@@ -84,6 +84,10 @@ private slots:
     void fullScreenView (bool isFull);
     void setMenuBarVisibility (bool isShow);
     void clearRecentFileList();
+    void firstPageActClicked();
+    void priorActClicked();
+    void nextActClicked();
+    void lastPageActClicked();
 
     //builder dock actions: shortcuts ... first add the space then show the editor
     void buildCartesianGraphCurve();
