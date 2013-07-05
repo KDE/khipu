@@ -99,6 +99,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
     connect(m_dashboard,SIGNAL(showFilter(bool)),m_filter,SLOT(setFilterVisible(bool)));
 
+
     toolBar("mainToolBar")->addWidget(m_filter);
 
 
@@ -277,15 +278,15 @@ void MainWindow::setupActions()
     firstPageAct->setIcon(KIcon("go-first-view"));
     firstPageAct->setEnabled(true);
 
-    KAction *priorAct = KStandardAction::prior(this, SLOT(priorActClicked()), actionCollection());
-    priorAct->setText(i18n("&Go Previous Space"));
-    priorAct->setIcon(KIcon("go-previous-view"));
-    priorAct->setEnabled(true);
+    m_priorAct = KStandardAction::prior(this, SLOT(priorActClicked()), actionCollection());
+    m_priorAct->setText(i18n("&Go Previous Space"));
+    m_priorAct->setIcon(KIcon("go-previous-view"));
+    m_priorAct->setEnabled(true);
 
-    KAction *nextAct = KStandardAction::next(this, SLOT(nextActClicked()), actionCollection());
-    nextAct->setText(i18n("&Go Next Space"));
-    nextAct->setIcon(KIcon("go-next-view"));
-    nextAct->setEnabled(true);
+    m_nextAct = KStandardAction::next(this, SLOT(nextActClicked()), actionCollection());
+    m_nextAct->setText(i18n("&Go Next Space"));
+    m_nextAct->setIcon(KIcon("go-next-view"));
+    m_nextAct->setEnabled(true);
     
     KAction *lastPageAct = KStandardAction::lastPage(this, SLOT(lastPageActClicked()), actionCollection());
     lastPageAct->setText(i18n("&Go Last Space"));
@@ -866,6 +867,8 @@ void MainWindow::activateDashboardUi()
     m_spaceOptionsDock->hide();
     m_plotsBuilderDock->hide(); 
     m_dictionaryDock->hide();
+    m_priorAct->setVisible(false);
+    m_nextAct->setVisible(false);
 }
 
 void MainWindow::activateSpaceUi()
@@ -905,6 +908,8 @@ void MainWindow::activateSpaceUi()
     m_spaceInfoDock->show();
     m_spaceOptionsDock->show();
     m_dictionaryDock->show();
+    m_priorAct->setVisible(true);
+    m_nextAct->setVisible(true);
     ///
 }
 
@@ -968,6 +973,8 @@ void MainWindow::setVisibleDictionary()
         m_spaceOptionsDock->hide();
     m_dictionaryDock->hide();
     m_dashboard->showDictionary();
+    m_priorAct->setVisible(false);
+    m_nextAct->setVisible(false);;
 }
 
 void MainWindow::addSpace2D()

@@ -140,6 +140,8 @@ private:
     QString m_fileLocation; // location of the current running file which is saved by the user.
     QString m_curFile;
     KRecentFilesAction * m_openrecent;
+    KAction *m_priorAct;
+    KAction *m_nextAct;
 
 private slots:
     void fooSlot(bool t = false);
