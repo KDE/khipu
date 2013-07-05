@@ -345,8 +345,10 @@ void MainWindow::fooSlot(bool t)
 
 void MainWindow::firstPageActClicked()
 {
+    if(m_document->spacesModel()->rowCount()>0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
+    }
 }
 
 void MainWindow::priorActClicked()
@@ -382,9 +384,11 @@ void MainWindow::nextActClicked()
 
 void MainWindow::lastPageActClicked()
 {
-    int size=m_document->spacesModel()->rowCount();
-    QModelIndex lastInd=m_document->spacesModel()->index(size-1);
-    m_dashboard->setCurrentSpace(lastInd);
+    if(m_document->spacesModel()->rowCount() >0) {
+        int size=m_document->spacesModel()->rowCount();
+        QModelIndex lastInd=m_document->spacesModel()->index(size-1);
+        m_dashboard->setCurrentSpace(lastInd);
+    }
 }
 
 void MainWindow::clearRecentFileList() {
