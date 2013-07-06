@@ -648,15 +648,17 @@ QPixmap MainWindow::toPixmap(const QByteArray &bytearray) {
 
 }
 
-void MainWindow::saveClicked(){
+void MainWindow::saveClicked() {
 
-    if(m_fileLocation=="") // Intially when the data is not saved. We would not have the actual file path.
-        m_fileLocation = QFileDialog::getSaveFileName(this, tr("Save File (Please save with extension .khipu) "),"/");
+    if(m_fileLocation=="") {// Intially when the data is not saved. We would not have the actual file path.
+      KUrl url = KFileDialog::getSaveUrl( QDir::currentPath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+    m_fileLocation =url.path();
+    }
+
     saveFile(m_fileLocation);
 }
 
 bool MainWindow::closeClicked(){
-
     QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
     if(autosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
@@ -677,11 +679,10 @@ bool MainWindow::closeClicked(){
     return true; // just close the application.
 }
 
-void MainWindow::saveAsClicked(){
-    QString path;
-    path = QFileDialog::getSaveFileName(this, tr("Save File (Please save with extension .khipu) "),"/");
-    saveFile(path);
-    m_fileLocation=path;
+void MainWindow::saveAsClicked() {
+    KUrl url = KFileDialog::getSaveUrl( QDir::currentPath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+    saveFile(url.path());
+    m_fileLocation =url.path();
 }
 
 void MainWindow::saveFile(const QString& path) {

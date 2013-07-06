@@ -29,7 +29,10 @@
 #include <qitemselectionmodel.h>
 #include <plotseditor.h>
 #include <QFile>
-#include <QFileDialog>
+#include <QString>
+#include <KUrl>
+#include <KFileDialog>
+#include <KDE/KLocalizedString>
 
 using namespace Analitza;
 
@@ -206,7 +209,8 @@ void DataStore::removeSpace(int row) {
 
 void DataStore::saveSpaceAsDictionary(QModelIndex ind)
 {
-    QString path=QFileDialog::getSaveFileName(0,tr("Export the space as a Dictionary (Please save with extension .plots)"),"/");
+    KUrl url = KFileDialog::getSaveUrl(QDir::currentPath(),i18n( "*.plots|Plot-Dictionary Files (*.plots)\n*|All Files" ),0, i18n( "Export the space as a Dictionary " ));
+    QString path=url.path();
     QFile *file = new QFile(path,this);
 
     if(!file->open(QFile::WriteOnly | QFile::Text)){
