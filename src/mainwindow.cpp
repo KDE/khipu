@@ -507,6 +507,17 @@ void MainWindow::checkforAutoSavedFile(){
 
 void MainWindow::newFile()
 {
+    /*
+     *some experiments :) ( to be deleted later)
+    QString current = QDir::currentPath();
+    QString path = current.append("temp.khipu");
+    QString error;
+
+    KToolInvocation::startServiceByDesktopName("khipu",path,&error);
+    qDebug() <<  "error is : " << error;
+    */
+
+            //actual code
     // if there are not any plots added (i.e. file is completely clean)
     if(m_document->plotsModel()->rowCount()==0){
         QMessageBox::information(this,i18n("No need to create New Window"),i18n("There are not any plots available. So, you do not need to create a new Plot Window"));

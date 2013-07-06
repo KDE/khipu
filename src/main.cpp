@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     KCmdLineArgs::init(argc, argv, &about);
 
     KCmdLineOptions options;
-
+    options.add("+[URL]", ki18n( "A Khipu-file to open" ));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
@@ -72,13 +72,20 @@ int main(int argc, char **argv)
         else
         {
             int i = 0;
+            bool exit = false;
             for (; i < args->count(); i++)
             {
+                if (i==0)
+                {
+                    if (!(mainWindow->openFile(args->url(0).path())))
+                        exit = true;
+                }
                 mainWindow->show();
             }
+            if (exit)
+                mainWindow->deleteLater(); // can't open a khipu file, so just exit !
         }
         args->clear();
     }
-
     return app.exec();
 }
