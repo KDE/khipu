@@ -188,6 +188,11 @@ void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
         painter->restore();
         painter->setPen(option.palette.highlightedText().color());
     }
+    else
+    {
+        painter->setPen(option.palette.text().color());
+        painter->setBrush(option.palette.text());
+    }
 
     QtMmlDocument mathMLRenderer;
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
