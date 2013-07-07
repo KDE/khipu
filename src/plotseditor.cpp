@@ -416,6 +416,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     reset();
 
+    // while editing the plot , it is very likely that user needs to change the expression.
+    m_widget->f->setFocus();
+
     if (m_widget->plotsView->selectionModel()->hasSelection()) // may be the plotsview is different .!!!
     {
        /* m_indexEdited = m_widget->plotsView->selectionModel()->currentIndex();
