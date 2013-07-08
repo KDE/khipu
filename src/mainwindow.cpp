@@ -417,6 +417,9 @@ void MainWindow::autoSaveFile() {
 
 void MainWindow::updateThumbnail() {
 
+    if (m_document->spacesModel()->rowCount()==0)
+        return;
+
     DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
     if(space==0)

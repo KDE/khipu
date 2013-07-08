@@ -693,7 +693,6 @@ void SpacesDelegate::removeCurrentSpace()
     if (!itemView()->currentIndex().isValid()) return;
 
     m_document->removeSpace(itemView()->currentIndex().row());
-    itemView()->model()->removeRow(itemView()->currentIndex().row());
 
     m_isEditing = false;
     

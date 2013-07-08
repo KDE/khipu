@@ -204,7 +204,6 @@ void DataStore::removeSpace(int row) {
     m_maps.remove(m_spacesModel->space(row));
 
     m_spacesModel->removeRow(row);
-    emit mapDataChanged();
 }
 
 void DataStore::saveSpaceAsDictionary(QModelIndex ind)
