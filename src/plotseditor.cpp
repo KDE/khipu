@@ -218,6 +218,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
     m_widget->focusPlot->setChecked(true);
 
+    m_widget->editPlot->setToolTip(i18n("Click to edit the plot"));
+    m_widget->removePlot->setToolTip(i18n("Click to remove the plot"));
+
     connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
 
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
