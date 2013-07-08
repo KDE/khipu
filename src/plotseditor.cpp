@@ -221,6 +221,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->editPlot->setToolTip(i18n("Click to edit the plot"));
     m_widget->removePlot->setToolTip(i18n("Click to remove the plot"));
 
+    // no bounding by default
+    m_widget->intervals->setChecked(false);
+
     connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
 
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
@@ -792,7 +795,8 @@ void PlotsEditor::savePlot()
                 }
 
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                if(m_widget->intervals->isChecked())
+                    item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
                 m_document->plotsModel()->addPlot(item);
                 mapDataChanged();
             } else
@@ -836,9 +840,10 @@ void PlotsEditor::savePlot()
                 }
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                     m_document->plotsModel()->addPlot(item);
-
-                item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-                item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                if(m_widget->intervals->isChecked()) {
+                    item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                }
                 mapDataChanged();
             } else
                 errors = req.errors();
@@ -881,6 +886,7 @@ void PlotsEditor::savePlot()
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
                     item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                    if(m_widget->intervals->isChecked())
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
 
                        m_document->plotsModel()->addPlot(item);

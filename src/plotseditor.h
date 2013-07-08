@@ -86,7 +86,6 @@ private slots:
     void savePlot();
     void showAxis(int state);
     void removePlot();
-    
     //este slot se coneta con el combo
     void setCurrentFunctionGraphs(const QString &txt); /// see m_currentFunctionGraphs
     
