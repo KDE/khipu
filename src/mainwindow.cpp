@@ -264,7 +264,7 @@ void MainWindow::setupActions()
     actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
     
 //     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
-    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon(""));
+    m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("diagram-options"));
     m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
     actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());
     
@@ -297,7 +297,7 @@ void MainWindow::setupActions()
     //tools dashboard
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(removeCurrentSpace()))->setVisible(false);;
     //tools space
-    createAction("copy_snapshot", i18n("&Take Snapshot"), "edit-copy", Qt::CTRL + Qt::SHIFT + Qt::Key_C, this, SLOT(copySnapshot()));
+    createAction("copy_snapshot", i18n("&Take Snapshot"),"take-snapshot", Qt::CTRL + Qt::SHIFT + Qt::Key_C, this, SLOT(copySnapshot()));
 //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(setMenuBarVisibility(bool)), actionCollection());

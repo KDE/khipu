@@ -26,9 +26,9 @@ Filter::Filter(QWidget* parent): QWidget(parent)
     m_widget = new Ui::FilterWidget;
     m_widget->setupUi(this);
 
-    m_widget->filterOptions->insertItem(0,KIcon("all-filter"),"Dimension-All");
-    m_widget->filterOptions->insertItem(1,KIcon("2d-filter"),"Dimension-2D");
-    m_widget->filterOptions->insertItem(2,KIcon("3d-filter"),"Dimension-3D");
+    m_widget->filterOptions->insertItem(0,KIcon("all-space-filter"),"Dimension-All");
+    m_widget->filterOptions->insertItem(1,KIcon("2d-space-filter"),"Dimension-2D");
+    m_widget->filterOptions->insertItem(2,KIcon("3d-space-filter"),"Dimension-3D");
 
     QStringList wordList;
     wordList << "Dimension-2D" << "Dimension-3D" << "Dimension-All";
