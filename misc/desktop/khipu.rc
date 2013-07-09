@@ -33,6 +33,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
             <Action name="show_plots_editor"/>
             <Action name="show_space_info"/> 
             <Action name="show_plotter_options"/>
+	    <Action name="show_dictionary_collection"/>
         </Menu>
 
         <Menu name="tools">
@@ -76,6 +77,7 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
         <Action name="show_plots_editor"/>
         <Action name="show_space_info"/> 
         <Action name="show_plotter_options"/>
+	<Action name="show_dictionary_collection"/>
         <Separator />
         <DefineGroup name="tools_operations" />
         <Separator />

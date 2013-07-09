@@ -268,7 +268,7 @@ void MainWindow::setupActions()
     m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
     actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());
     
-    m_dictionaryDock->toggleViewAction()->setIcon(KIcon("dialog-information"));
+    m_dictionaryDock->toggleViewAction()->setIcon(KIcon("list-add"));
     m_dictionaryDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_D);
     actionCollection()->addAction("show_dictionary_collection", m_dictionaryDock->toggleViewAction());
 
