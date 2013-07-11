@@ -57,13 +57,14 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
         SpacesFilterProxyModel(QObject *parent = 0);
 
         void setFilterDimension(Analitza::Dimensions dimension);
-
-    protected:
+        void setFilterText(const QString& text);
+protected:
         bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 ////        bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
     private:
         Analitza::Dimensions m_dimension;
+        QString m_filterText;
 };
 
 

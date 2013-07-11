@@ -29,6 +29,7 @@
 #include <dictionaryitem.h>
 #include "ui_dashboard.h"
 #include <QDebug>
+#include <dictionaryitem.h>
 
 #include <QtGui/QAbstractItemView>
 #include <QtGui/QListView>
@@ -67,6 +68,12 @@ void SpacesFilterProxyModel::setFilterDimension(Dimensions dimension)
     invalidateFilter();
 }
 
+void SpacesFilterProxyModel::setFilterText(const QString& text)
+{
+    m_filterText=text;
+    invalidateFilter();
+}
+
 bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
                                                const QModelIndex &sourceParent) const
 {
@@ -78,8 +85,11 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
     
     if (m_dimension != DimAll && spaceItem->dimension() != m_dimension)
         return false;
+    if(!spaceItem->title().contains(m_filterText,Qt::CaseInsensitive)
+            && !spaceItem->description().contains(m_filterText,Qt::CaseInsensitive))
+        return false;
 
-    return spaceItem->title().contains(filterRegExp()) || spaceItem->description().contains(filterRegExp());
+    return true;
 }
 
 Dashboard::Dashboard(QWidget *parent)
@@ -341,12 +351,7 @@ void Dashboard::copySpace3DSnapshotToClipboard()
 
 void Dashboard::filterByText(const QString &text)
 {
-    switch (m_filterText.indexOf(text))
-    {
-        case 0: filterByDimension(Analitza::DimAll); break;
-        case 1: filterByDimension(Analitza::Dim2D); break;
-        case 2: filterByDimension(Analitza::Dim3D); break;
-    }
+    m_spacesProxyModel->setFilterText(text);
 }
 
 void Dashboard::filterByDimension(Dimensions dim)
@@ -363,9 +368,11 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
 
     setCurrentIndex(1);
 
-    emit spaceActivated(index.row());
+    QModelIndex ind=m_spacesProxyModel->mapToSource(index);
 
-    switch (m_document->spacesModel()->space(index.row())->dimension())
+    emit spaceActivated(ind.row());
+
+    switch (m_document->spacesModel()->space(ind.row())->dimension())
     {
     case Dim2D:
         m_widget->plotsViews->setCurrentIndex(0);
@@ -377,9 +384,9 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
     }
 
     // identification of the space
-    if(!(m_spaceindexList->contains(index)) && m_openclicked){
-        m_spaceindexList->append(index);
-        emit plotRequested(index);
+    if(!(m_spaceindexList->contains(ind)) && m_openclicked){
+        m_spaceindexList->append(ind);
+        emit plotRequested(ind);
     }
 
  emit showFilter(false);
