@@ -30,12 +30,6 @@ Filter::Filter(QWidget* parent): QWidget(parent)
     m_widget->filterOptions->insertItem(1,KIcon("2d-space-filter"),"Dimension-2D");
     m_widget->filterOptions->insertItem(2,KIcon("3d-space-filter"),"Dimension-3D");
 
-    QStringList wordList;
-    wordList << "Dimension-2D" << "Dimension-3D" << "Dimension-All";
-
-    QCompleter *completer = new QCompleter(wordList, this);
-    completer->setCaseSensitivity(Qt::CaseInsensitive);
-    m_widget->filterText->setCompleter(completer);
 
     setObjectName("a33sdasddsaaa1");
 
