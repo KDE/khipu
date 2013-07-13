@@ -372,7 +372,13 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
 
     setCurrentIndex(1);
 
-    QModelIndex ind=m_spacesProxyModel->mapToSource(index);
+    QModelIndex ind;
+    if(index.model()==m_spacesProxyModel)
+        ind=m_spacesProxyModel->mapToSource(index);
+    else
+        ind=index;
+
+    qDebug() << "ind.row :" << ind.row();
 
     emit spaceActivated(ind.row());
 
