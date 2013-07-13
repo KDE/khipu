@@ -16,13 +16,14 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#include "mainwindow.h"
-
+//KDE includes
 #include <KDE/KApplication>
 #include <KDE/KAboutData>
 #include <KDE/KCmdLineArgs>
 #include <KDE/KLocale>
-#include <GL/glut.h>
+
+//local includes
+#include "mainwindow.h"
 
 static const char description[] = I18N_NOOP("Advanced Mathematical Function Plotter");
 

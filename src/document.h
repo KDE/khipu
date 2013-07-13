@@ -19,8 +19,11 @@
 #ifndef KHIPU_DOCUMENT_H
 #define KHIPU_DOCUMENT_H
 
+//Qt includes
 #include <QObject>
 #include <QPixmap>
+
+//KDE includes
 #include <kurl.h>
 
 //NOTE one app <-> one doc ... kiss ;)

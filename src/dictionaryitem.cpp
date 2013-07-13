@@ -17,6 +17,8 @@
  *************************************************************************************/
 
 #include "dictionaryitem.h"
+
+//local includes
 #include "dictionariesmodel.h"
 
 DictionaryItem::DictionaryItem(Analitza::Dimension dimension)

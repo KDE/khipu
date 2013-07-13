@@ -17,32 +17,25 @@
  *************************************************************************************/
 
 #include "dashboard.h"
-
-#include "spaceinformation.h"
-#include "spaceoptions.h"
-#include "dictionariesmodel.h"
-#include "datastore.h"
-#include "spaceplotsproxymodel.h"
-#include "analitza/variables.h"
-#include <analitzaplot/plotsmodel.h>
-#include <analitzaplot/plotsdictionarymodel.h>
-#include <dictionaryitem.h>
 #include "ui_dashboard.h"
-#include <QDebug>
-#include <dictionaryitem.h>
 
+//Analitza includes
+#include <analitza/variables.h>
+#include <analitzaplot/plotsmodel.h>
+
+//Qt includes
 #include <QtGui/QAbstractItemView>
-#include <QtGui/QListView>
 #include <QtGui/QStringListModel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QPainter>
 #include <QtGui/QRadialGradient>
 #include <QtGui/QPaintEvent>
-#include <QtCore/QDebug>
 #include <QtGui/QToolButton>
 #include <QtGui/QMenu>
 #include <QFileDialog>
+#include <QDebug>
 
+//KDE includes
 #include <kpushbutton.h>
 #include <klineedit.h>
 #include <kicon.h>
@@ -50,9 +43,17 @@
 #include <KSelectionProxyModel>
 #include <KFileDialog>
 #include <KStandardDirs>
-#include "spacesdelegate.h"
 #include <KMessageBox>
 #include <KNS3/DownloadDialog>
+
+//local includes
+#include "spaceinformation.h"
+#include "spaceoptions.h"
+#include "dictionariesmodel.h"
+#include "datastore.h"
+#include "spaceplotsproxymodel.h"
+#include "dictionaryitem.h"
+#include "spacesdelegate.h"
 
 using namespace Analitza;
 

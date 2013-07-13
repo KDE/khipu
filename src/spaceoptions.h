@@ -19,9 +19,12 @@
 #ifndef SPACEOPTIONS_H
 #define SPACEOPTIONS_H
 
+//Qt includes
 #include <QtGui/QWidget>
 #include <QDockWidget>
 #include <QModelIndex>
+
+//local includes
 #include "dashboard.h"
 
 namespace Ui

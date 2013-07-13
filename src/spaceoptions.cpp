@@ -17,11 +17,13 @@
  *************************************************************************************/
 
 #include "spaceoptions.h"
+#include "ui_spaceoptions.h"
 
-#include "src/ui_spaceoptions.h"
-
-#include <cmath>
+//KDE includes
 #include <kcolorutils.h>
+
+//C++ includes
+#include <cmath>
 
 SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 {

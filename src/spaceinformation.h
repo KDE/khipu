@@ -19,9 +19,12 @@
 #ifndef KEOMATH_VIEWER2D_H
 #define KEOMATH_VIEWER2D_H
 
+//Qt includes
 #include <QtGui/QWidget>
 #include <QDockWidget>
 #include <QModelIndex>
+
+//local includes
 #include "dashboard.h"
 
 namespace Ui

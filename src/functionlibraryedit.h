@@ -20,11 +20,18 @@
 #ifndef KEOMATH_FUNCTIONLIBRARYEDIT_H
 #define KEOMATH_FUNCTIONLIBRARYEDIT_H
 
-#include <KLineEdit>
+//Analitza includes
+#include <analitzaplot/plottingenums.h>
+
+//Qt includes
 #include <QLabel>
 #include <QTreeView>
-#include <analitzaplot/plottingenums.h>
-#include <plotseditor.h>
+
+//KDE includes
+#include <KLineEdit>
+
+//local incldues
+#include "plotseditor.h"
 
 class QKeyEvent;
 namespace Analitza { class PlotsDictionaryModel; }

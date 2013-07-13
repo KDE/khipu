@@ -18,8 +18,11 @@
 
 #include "document.h"
 
+//Qt includes
 #include <QDomImplementation>
 #include <QBuffer>
+
+//KDE includes
 #include <kicon.h>
 
 

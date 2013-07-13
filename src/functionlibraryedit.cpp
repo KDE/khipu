@@ -16,23 +16,28 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "functionlibraryedit.h"
+
+//Analitza includes
+#include <analitza/expressionstream.h>
+#include <analitzaplot/plotsdictionarymodel.h>
+
+//Qt includes
 #include <QDesktopWidget>
 #include <QMenu>
-#include <QLabel>
 #include <QKeyEvent>
-#include <QTreeView>
 #include <QHeaderView>
 #include <QApplication>
 #include <QTimer>
 #include <QDebug>
-#include <KLocale>
 #include <QScrollBar>
-#include "functionlibrarymodel.h"
-#include <analitzaplot/plotsdictionarymodel.h>
 #include <QKeyEvent>
-#include <analitza/expressionstream.h>
+
+//KDE includes
+#include <KLocale>
+
+//local includes
+#include "functionlibrarymodel.h"
 
 using namespace Analitza;
 

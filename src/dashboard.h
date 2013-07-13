@@ -19,17 +19,20 @@
 #ifndef GPLACS_DASHBOARD_H
 #define GPLACS_DASHBOARD_H
 
-#include <QtGui/QWidget>
-#include <QStackedWidget>
-
-#include <QModelIndex>
-#include "plotseditor.h"
-#include "document.h"
+//Analitza includes
+#include <analitzaplot/plotsdictionarymodel.h>
 #include <analitzaplot/plottingenums.h>
+
+//Qt includes
+#include <QtGui/QWidget>
 #include <QtGui/QListView>
 #include <QtGui/QSortFilterProxyModel>
-#include <QSortFilterProxyModel>
-#include <analitzaplot/plotsdictionarymodel.h>
+#include <QStackedWidget>
+#include <QModelIndex>
+
+//local includes
+#include "plotseditor.h"
+#include "document.h"
 
 class DictionariesViewer;
 class KWidgetItemDelegate;

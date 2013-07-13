@@ -18,21 +18,28 @@
 
 #include "datastore.h"
 
-#include "dictionariesmodel.h"
-#include "spaceplotsproxymodel.h"
+//Analitza includes
+#include <analitza/variables.h>
+#include <analitza/expression.h>
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/plotsdictionarymodel.h>
-#include <dictionaryitem.h>
-#include <analitza/variables.h>
-#include <analitza/expression.h>
+
+//Qt includes
 #include <qitemselectionmodel.h>
-#include <plotseditor.h>
 #include <QFile>
 #include <QString>
+
+//KDE includes
 #include <KUrl>
 #include <KFileDialog>
 #include <KDE/KLocalizedString>
+
+//local includes
+#include "dictionariesmodel.h"
+#include "spaceplotsproxymodel.h"
+#include "dictionaryitem.h"
+#include "plotseditor.h"
 
 using namespace Analitza;
 

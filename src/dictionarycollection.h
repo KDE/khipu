@@ -19,6 +19,9 @@
 #ifndef DICTIONARY_COLLECTION_H
 #define DICTIONARY_COLLECTION_H
 
+//Analitza includes
+#include <analitzaplot/plotsdictionarymodel.h>
+
 //Qt includes
 #include <QtGui/QWidget>
 #include <QDialog>
@@ -26,9 +29,8 @@
 #include <QLabel>
 #include <QDockWidget>
 
-//analitza includes
-#include <dashboard.h>
-#include <analitzaplot/plotsdictionarymodel.h>
+//local includes
+#include "dashboard.h"
 
 using namespace Analitza;
 

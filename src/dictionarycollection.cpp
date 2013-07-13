@@ -19,25 +19,26 @@
 #include "dictionarycollection.h"
 #include "ui_dictionarycollection.h"
 
-//KDE includes
-#include <KStandardDirs>
+//Analitza includes
+#include <analitzagui/plotsview2d.h>
+#include <analitzagui/plotsview3d.h>
+#include <analitzaplot/plotsfactory.h>
+#include <analitzaplot/plotsmodel.h>
+#include <analitzaplot/functiongraph.h>
+#include <analitzaplot/plotitem.h>
 
 //Qt includes
 #include <QDir>
 #include <QFileDialog>
 
-//Analitza includes
-#include <analitzaplot/plotsdictionarymodel.h>
-#include <datastore.h>
-#include <dictionariesmodel.h>
-#include <dictionaryitem.h>
-#include <plotsbuilder.h>
-#include <analitzaplot/plotsfactory.h>
-#include <analitzaplot/plotsmodel.h>
-#include <analitzagui/plotsview2d.h>
-#include <analitzagui/plotsview3d.h>
-#include <analitzaplot/functiongraph.h>
-#include <analitzaplot/plotitem.h>
+//KDE includes
+#include <KStandardDirs>
+
+//local includes
+#include "datastore.h"
+#include "dictionariesmodel.h"
+#include "dictionaryitem.h"
+#include "plotsbuilder.h"
 
 using namespace Analitza;
 

@@ -18,6 +18,8 @@
 
 #include "spaceinformation.h"
 #include "ui_spaceinformation.h"
+
+//local includes
 #include "mainwindow.h"
 
 SpaceInformation::SpaceInformation(QWidget* parent): QDockWidget(parent)

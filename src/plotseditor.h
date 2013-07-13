@@ -19,11 +19,16 @@
 #ifndef FUNCTIONEDITOR_H
 #define FUNCTIONEDITOR_H
 
+//Analitza includes
+#include <analitzaplot/plotitem.h>
+
+//Qt includes
 #include <QDockWidget>
 #include <qcombobox.h>
 #include <QModelIndex>
+
+//local includes
 #include "plotsbuilder.h"
-#include <analitzaplot/plotitem.h>
 
 namespace Analitza {
 class FunctionGraph;

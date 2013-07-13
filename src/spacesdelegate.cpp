@@ -18,21 +18,13 @@
 
 #include "spacesdelegate.h"
 
-#include "spaceinformation.h"
-#include "spaceoptions.h"
-#include "dictionariesmodel.h"
-#include "datastore.h"
-#include "spaceplotsproxymodel.h"
-#include "analitza/variables.h"
+//Analitza includes
+#include <analitza/variables.h>
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/plotsdictionarymodel.h>
-#include <dictionaryitem.h>
-#include <QDebug>
-#include <QApplication>
-#include <KRichTextWidget>
 
+//Qt includes
 #include <QtGui/QAbstractItemView>
-#include <QtGui/QListView>
 #include <QtGui/QStringListModel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QPainter>
@@ -44,13 +36,24 @@
 #include <QHBoxLayout>
 #include <QTextEdit>
 #include <QFileDialog>
+#include <QDebug>
+#include <QApplication>
 
+//KDE includes
+#include <KRichTextWidget>
 #include <kpushbutton.h>
-#include <klineedit.h>
 #include <kicon.h>
-#include <kwidgetitemdelegate.h>
 #include <KLocalizedString>
 #include <ksqueezedtextlabel.h>
+
+//local includes
+#include "spaceinformation.h"
+#include "spaceoptions.h"
+#include "dictionariesmodel.h"
+#include "datastore.h"
+#include "spaceplotsproxymodel.h"
+#include "dictionaryitem.h"
+
 
 // #include "ui_spaceeditor.h"
 /*

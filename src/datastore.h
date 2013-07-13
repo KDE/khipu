@@ -19,12 +19,14 @@
 #ifndef KHIPU_DOCUMENT_H_ds
 #define KHIPU_DOCUMENT_H_ds
 
+//Qt includes
 #include <QObject>
 #include <QMap>
 
 class QItemSelectionModel;
 class DictionaryItem;
 class QModelIndex;
+
 namespace Analitza {
 class PlotsDictionaryModel;
 class Variables;

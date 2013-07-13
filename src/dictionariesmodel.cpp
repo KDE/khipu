@@ -17,8 +17,12 @@
  *************************************************************************************/
 
 #include "dictionariesmodel.h"
-#include "dictionaryitem.h"
+
+//KDE includes
 #include <KLocalizedString>
+
+//local includes
+#include "dictionaryitem.h"
 
 DictionariesModel::DictionariesModel(QObject *parent)
     : QAbstractListModel(parent),  m_itemCanCallModelRemoveItem(true)

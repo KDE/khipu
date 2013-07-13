@@ -19,10 +19,14 @@
 #ifndef DICTIONARIESMODEL_H
 #define DICTIONARIESMODEL_H
 
-#include <QtCore/QAbstractListModel>
-#include <KIcon>
-
+//Analitza includes
 #include <analitzaplot/plottingenums.h>
+
+//Qt includes
+#include <QtCore/QAbstractListModel>
+
+//KDE includes
+#include <KIcon>
 
 namespace Analitza { class Expression; }
 class DictionaryItem;

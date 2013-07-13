@@ -16,15 +16,16 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-
 #include "functionlibrarymodel.h"
 
-#include <KLocale>
-#include <KStandardDirs>
+//Qt includes
 #include <QDomElement>
 #include <QFile>
 #include <QDebug>
 
+//KDE includes
+#include <KLocale>
+#include <KStandardDirs>
 
 FunctionLibraryItem::FunctionLibraryItem()
 {

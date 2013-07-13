@@ -18,10 +18,12 @@
 
 #ifndef KHIPU_DOCUMENT_H_h_
 #define KHIPU_DOCUMENT_H_h_
-#include <QSortFilterProxyModel>
 
-
+//Analitza includes
 #include <analitzaplot/plottingenums.h>
+
+//Qt includes
+#include <QSortFilterProxyModel>
 
 class DictionaryItem;
 class SpacesModel;

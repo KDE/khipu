@@ -19,11 +19,16 @@
 #ifndef KEOMATH_VIEWER2D_H_OPTS_filter
 #define KEOMATH_VIEWER2D_H_OPTS_filter
 
+//Analitza includes
+#include <analitzaplot/plottingenums.h>
+
+//Qt includes
 #include <QtGui/QWidget>
 #include <QDockWidget>
 #include <QModelIndex>
+
+//local includes
 #include "dashboard.h"
-#include <analitzaplot/plottingenums.h>
 
 namespace Ui
 {

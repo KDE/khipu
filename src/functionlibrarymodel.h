@@ -20,10 +20,12 @@
 #ifndef KEOMATH_FUNCTIONLIBRARYMODEL_H
 #define KEOMATH_FUNCTIONLIBRARYMODEL_H
 
-#include <QtCore/QAbstractTableModel>
+//Analitza includes
 #include <analitzaplot/plottingenums.h>
-#include <QSortFilterProxyModel>
 
+//Qt includes
+#include <QtCore/QAbstractTableModel>
+#include <QSortFilterProxyModel>
 #include <QStringList>
 
 class FunctionLibraryItem

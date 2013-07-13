@@ -17,37 +17,45 @@
  *************************************************************************************/
 
 #include "plotseditor.h"
+#include "ui_plotseditor.h"
 
-#include <KLocale>
+//Analitza includes
+#include <analitza/analyzer.h>
+#include <analitza/expression.h>
+#include <analitza/variables.h>
+#include <analitza/value.h>
+#include <analitzagui/expressionedit.h>
+#include <analitzagui/algebrahighlighter.h>
+#include <analitzagui/variablesmodel.h>
+#include <analitzaplot/functiongraph.h>
+#include <analitzaplot/planecurve.h>
+#include <analitzaplot/plotsmodel.h>
+#include <analitzaplot/spacecurve.h>
+#include <analitzaplot/surface.h>
+#include <analitzaplot/plotsfactory.h>
 
-#include "analitza/analyzer.h"
-#include "analitza/expression.h"
-#include "analitza/variables.h"
-#include "analitza/value.h"
-#include "analitzagui/expressionedit.h"
-#include "analitzagui/algebrahighlighter.h"
-#include <KRandom>
-#include <math.h>
+//Qt includes
 #include <QStringListModel>
 #include <QPushButton>
 #include <qstyleditemdelegate.h>
 #include <QPainter>
+
+//KDE includes
+#include <KLocale>
+#include <KRandom>
+
+//C includes
+#include <math.h>
+
+//libkdeedu includes
 #include <libkdeedu/qtmml/QtMmlWidget>
+
+//local includes
 #include "functionlibraryedit.h"
 #include "datastore.h"
 #include "dictionariesmodel.h"
 #include "spaceplotsproxymodel.h"
-#include "analitzagui/variablesmodel.h"
-#include <analitzaplot/functiongraph.h>
-#include <analitzaplot/planecurve.h>
-#include "analitzaplot/plotsmodel.h"
-#include <analitzaplot/spacecurve.h>
-#include <analitzaplot/surface.h>
-#include <dictionaryitem.h>
-#include <analitzaplot/plotsfactory.h>
-#include "ui_plotseditor.h"
-
-
+#include "dictionaryitem.h"
 
 using namespace Analitza;
 

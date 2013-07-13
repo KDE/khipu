@@ -18,29 +18,31 @@
 
 #include "mainwindow.h"
 
+//Analitza includes
+#include <analitza/expression.h>
+#include <analitzagui/plotsview2d.h>
+#include <analitzagui/plotsview3d.h>
 #include <analitzaplot/plotsdictionarymodel.h>
 #include <analitzaplot/planecurve.h>
 #include <analitzaplot/functiongraph.h>
 #include <analitzaplot/plotter3d.h>
-#include <analitzagui/plotsview2d.h>
-#include <analitzagui/plotsview3d.h>
-#include <dictionaryitem.h>
-#include <analitza/expression.h>
 #include <analitzaplot/plotsmodel.h>
+#include <analitzaplot/plotsfactory.h>
 
-#include <KDE/KApplication>
-
+//Qt includes
 #include <QBuffer>
 #include <QtGui/QDockWidget>
 #include <QtGui/QLayout>
 #include <QLineEdit>
-#include <qpushbutton.h>
+#include <QPushButton>
 #include <QToolButton>
 #include <QDebug>
 #include <QFileDialog>
 #include <QClipboard>
 #include <QSettings>
 
+//KDE includes
+#include <KDE/KApplication>
 #include <KDE/KLocale>
 #include <KDE/KLocalizedString>
 #include <KDE/KStandardDirs>
@@ -50,11 +52,18 @@
 #include <KDE/KStatusBar>
 #include <KDE/KFileDialog>
 #include <KDE/KMessageBox>
-#include <KIO/NetAccess>
 #include <KDE/KToolInvocation>
+#include <KIO/NetAccess>
 #include <KToolBar>
-#include "dictionariesmodel.h"
 #include <KMenuBar>
+
+//QJson includes
+#include <qjson/serializer.h>
+#include <qjson/parser.h>
+
+//local includes
+#include "dictionaryitem.h"
+#include "dictionariesmodel.h"
 #include "dashboard.h"
 #include "document.h"
 #include "plotseditor.h"
@@ -64,12 +73,6 @@
 #include "spaceoptions.h"
 #include "filter.h"
 #include "dictionarycollection.h"
-#include <analitzagui/plotsview2d.h>
-#include <qjson/serializer.h>
-#include <qjson/parser.h>
-#include <dictionaryitem.h>
-#include <analitzaplot/plotsfactory.h>
-#include <KDE/KToggleFullScreenAction>
 
 using namespace Analitza;
 

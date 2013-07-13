@@ -16,9 +16,12 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
+//Analitza includes
+#include <analitzaplot/plotsmodel.h>
+
+//local includes
 #include "spaceplotsproxymodel.h"
 #include "datastore.h"
-#include <analitzaplot/plotsmodel.h>
 
 using namespace Analitza;
 

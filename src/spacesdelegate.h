@@ -19,10 +19,18 @@
 #ifndef GPLACS_DASHBOARD_H_DEL
 #define GPLACS_DASHBOARD_H_DEL
 
+//Qt includes
 #include <QtGui/QWidget>
+#include <QtGui/QListView>
 #include <QStackedWidget>
-
 #include <QModelIndex>
+#include <qstyleditemdelegate.h>
+
+//KDE includes
+#include <KWidgetItemDelegate>
+#include <KLineEdit>
+
+//local includes
 #include "plotseditor.h"
 #include "document.h"
 
@@ -35,19 +43,14 @@ class QSortFilterProxyModel;
 class QItemSelection;
 class DashboardWidget;
 class SpacesView;
+class QFocusEvent;
+class QToolButton;
 
 namespace Ui
 {
 class DashboardWidget;
 }
 
-#include <QtGui/QListView>
-#include <qstyleditemdelegate.h>
-#include <KWidgetItemDelegate>
-#include <KLineEdit>
-
-class QFocusEvent;
-class QToolButton;
 
 // namespace Ui
 // {

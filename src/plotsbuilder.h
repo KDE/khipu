@@ -20,8 +20,11 @@
 #ifndef FUNCTIONEDITOR_H_builder
 #define FUNCTIONEDITOR_H_builder
 
-#include <QWidget>
+//Analitza includes
 #include "analitza/expression.h"
+
+//Qt includes
+#include <QWidget>
 
 namespace Ui
 {

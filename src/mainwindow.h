@@ -21,11 +21,16 @@
 
 #define MaxRecentFiles 7
 
-#include <KDE/KXmlGuiWindow>
-#include <QModelIndex>
+//Analitza includes
 #include <analitzaplot/plotitem.h>
-#include <KRecentFilesAction>
+
+//Qt includes
 #include <QAction>
+#include <QModelIndex>
+
+//KDE includes
+#include <KDE/KXmlGuiWindow>
+#include <KRecentFilesAction>
 
 class DictionaryCollection;
 class Filter;

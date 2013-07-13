@@ -19,11 +19,15 @@
 #ifndef DICTIONARYITEM_H
 #define DICTIONARYITEM_H
 
-#include <QtGui/QPixmap>
-#include <QUuid>
-#include <KDE/KDateTime>
+//Analitza includes
 #include <analitzaplot/plottingenums.h>
 
+//Qt includes
+#include <QtGui/QPixmap>
+#include <QUuid>
+
+//KDE includes
+#include <KDE/KDateTime>
 
 static const int PreviewWidth = 200;
 static const int PreviewHeight = 200;

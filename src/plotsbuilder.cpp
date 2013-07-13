@@ -17,7 +17,6 @@
  *************************************************************************************/
 
 #include "plotsbuilder.h"
-
 #include "ui_plotsbuilder.h"
 
 PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),

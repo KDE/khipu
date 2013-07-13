@@ -18,6 +18,8 @@
 
 #include "filter.h"
 #include "ui_filter.h"
+
+//KDE includes
 #include <KIcon>
 
 Filter::Filter(QWidget* parent): QWidget(parent)
