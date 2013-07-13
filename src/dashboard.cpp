@@ -52,6 +52,7 @@
 #include <KStandardDirs>
 #include "spacesdelegate.h"
 #include <KMessageBox>
+#include <KNS3/DownloadDialog>
 
 using namespace Analitza;
 
@@ -105,6 +106,8 @@ Dashboard::Dashboard(QWidget *parent)
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     connect(m_widget->importDictionarybutton,SIGNAL(clicked()),this,
             SLOT(importDictionary()));
+
+    connect(m_widget->getDictionaryButton,SIGNAL(clicked()),this,SLOT(downloadDictionary()));
     m_widget->comboBox->clear();
     checkforDictionary();
     setDictionaryNames();
@@ -529,4 +532,12 @@ void Dashboard::checkforDictionary() {
                        i18n("Error in Dictionary Path:"));
     qDebug() << "not found..";
 return;
+}
+
+void Dashboard::downloadDictionary() {
+    KNS3::DownloadDialog newStuffDialog(this);
+    newStuffDialog.exec();
+    KNS3::Entry::List installedentries = newStuffDialog.installedEntries();
+    qDebug() << "number is : " << installedentries.size();
+    int numberInstalled = installedentries.size();
 }

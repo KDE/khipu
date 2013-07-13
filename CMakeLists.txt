@@ -19,5 +19,7 @@ if(NOT OPENGL_GLU_FOUND)
     message(FATAL_ERROR "GLU was not found")
 endif(NOT OPENGL_GLU_FOUND)
 
+install( FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
+
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc

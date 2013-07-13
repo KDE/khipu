@@ -2,6 +2,7 @@ include_directories (
   ${CMAKE_SOURCE_DIR} 
   ${CMAKE_BINARY_DIR} 
   ${KDE4_INCLUDES} 
+  ${KDE4_KNEWSTUFF3_LIBS}
   ${LIBKDEEDU_INCLUDE_DIR}/qtmml 
   ${ANALITZA_INCLUDE_DIR}
   ${OPENGL_INCLUDE_DIR}
@@ -54,6 +55,7 @@ kde4_add_executable ( khipu ${khipu_SRCS} )
 
 target_link_libraries( khipu
   ${KDE4_KFILE_LIBS}
+  ${KDE4_KNEWSTUFF3_LIBS}
   ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
   ${qjson_LIBRARIES}
     #OpenGL

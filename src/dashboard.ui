@@ -84,7 +84,7 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="getDictionaryButton">
                <property name="toolTip">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download new plot-dictionary files from internet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>

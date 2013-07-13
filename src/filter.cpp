@@ -17,7 +17,6 @@
  *************************************************************************************/
 
 #include "filter.h"
-#include <QCompleter>
 #include "ui_filter.h"
 #include <KIcon>
 
