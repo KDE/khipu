@@ -50,8 +50,7 @@ public:
     void setDashboardWidget(Dashboard *dashboard);
     void setDocument(DataStore *doc);
     void setDefaultDictionaries();
-    void setDictionaryfilePath();
-    void setDictionaryTitles();
+    void setDictionaryDataMap();
 
 signals:
     void mapDataChanged();
@@ -68,9 +67,7 @@ private:
     DataStore* m_document;
     Analitza::Dimension m_currentDimension;
     PlotsDictionaryModel* m_dictionaryModel;
-    QStringList m_dictionaryTitles;
-    QStringList m_dictionaryList;
-    int m_totalinternalDict;
+    QMap<QString,QString> m_DictionaryPathName;
 };
 
 #endif

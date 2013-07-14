@@ -96,13 +96,11 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
 
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent)
-    , m_isDictionaryFound(false)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
     m_spaceindexList=new QModelIndexList();
     m_openclicked=false;
-    m_totalinternalDict=0;
 
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     connect(m_widget->importDictionarybutton,SIGNAL(clicked()),this,
@@ -110,9 +108,7 @@ Dashboard::Dashboard(QWidget *parent)
 
     connect(m_widget->getDictionaryButton,SIGNAL(clicked()),this,SLOT(downloadDictionary()));
     m_widget->comboBox->clear();
-    checkforDictionary();
     setDictionaryNames();
-
 }
 
 void Dashboard::setDashboardData(Dashboard* source){
@@ -134,20 +130,35 @@ Dashboard::~Dashboard()
 
 void Dashboard::setDictionaryNames()
 {
-    if(!m_isDictionaryFound)
-        return;
 
-    QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
-    QDir dir(str.append("libanalitza/plots"));  // path to the dir where .plots files are installed by analitza
+    // QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
+    // QDir dir(str.append("libanalitza/plots"));  // path to the dir where .plots files are installed by analitza
+
+    KStandardDirs KStdDirs;
+    QStringList dirList = KStdDirs.findDirs("data","libanalitza");
+
     QStringList filters;
     filters << "*.plots";
-    dir.setNameFilters(filters);
-    m_fileList=dir.entryList();
-    m_dictionaryTitles << "3Ds" << "Dictionary1" << "conics" << "polar"; // we know this , so we can set this ;)
-    m_widget->comboBox->addItems(m_dictionaryTitles);
-    m_totalinternalDict=m_dictionaryTitles.size();
+
+    foreach(const QString &dirPath, dirList) {
+        QDir dir=QString(dirPath).append("plots");
+        dir.setNameFilters(filters);
+        QString key=dir.path().append("/"); // dir path , goes into key section of the map
+        QStringList fileList=dir.entryList();
+        foreach(const QString &file, fileList) {
+            m_DictionaryPathName.insertMulti(key,file);
+            m_widget->comboBox->addItem(QFileInfo(file).baseName());
+        }
+    }
 
     connect(m_widget->comboBox,SIGNAL(activated(int)),this,SLOT(setDictionaryData(int)));
+
+    if(m_DictionaryPathName.empty() || m_DictionaryPathName.keys().empty()) {
+        QString error =i18n("Please make sure that the dictionary(.plots) files are correctly installed");
+        KMessageBox::error(this,error,i18n("No Dictionary found!"));
+        qDebug() << "not found..";
+    return;
+    }
 }
 
 void Dashboard::setDocument(DataStore* doc)
@@ -249,22 +260,13 @@ void Dashboard::showDictionary()
 
 void Dashboard::setDictionaryData(int ind)
 {
-    if(!m_isDictionaryFound)
-        return;
-
     PlotsDictionaryModel *model = m_document->plotsDictionaryModel();
     m_plotdictionarymodel=model;
     model->clear();
-
-    if(ind < m_totalinternalDict) { // total internal available dictionaries
-        QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
-        QDir dir(str.append("libanalitza/plots"));
-        model->createDictionary(dir.path().append("/").append(m_fileList.at(ind)));
-    }
-    else {
-        model->createDictionary(m_fileList.at(ind));
-    }
-
+    QString fileName=m_widget->comboBox->itemText(ind).append(".plots");
+    QString dirPath=m_DictionaryPathName.key(fileName);
+    dirPath.append(fileName);
+    model->createDictionary(dirPath);
     m_widget->plotsView->setModel(model);
     m_widget->page->setModel(model->plotModel());
     m_widget->page_2->setModel(model->plotModel());
@@ -288,7 +290,6 @@ void Dashboard::setPlotsView(Analitza::Dimension dim)
         m_widget->page_2->setVisible(true);
         m_widget->page->setVisible(false);
     }
-
 }
 
 void Dashboard::importDictionary()
@@ -299,9 +300,11 @@ void Dashboard::importDictionary()
         return;
     }
 
-    m_widget->comboBox->addItem("ImportedDictionary");
-    m_dictionaryTitles << "ImportedDictionary";
-    m_fileList << path;
+    int currentIndex=m_widget->comboBox->count();
+    m_widget->comboBox->addItem(QFileInfo(path).baseName());
+    m_widget->comboBox->setCurrentIndex(currentIndex);
+    m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
+    setDictionaryData(currentIndex);
 }
 
 void Dashboard::showPlotsView2D()
@@ -520,25 +523,6 @@ void Dashboard::setupWidget()
 //     m_widget->viewMode->setCurrentIndex(1);
 //     m_widget->viewMode->setCurrentIndex(0);
 
-}
-void Dashboard::checkforDictionary() {
-    QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
-    QDir dir(str.append("libanalitza/plots"));
-    QStringList filters;
-    filters << "*.plots";
-    dir.setNameFilters(filters);
-
-    if(dir.count() >= 4) {
-        qDebug() << "found";
-        m_isDictionaryFound=true;
-        return;
-    }
-
-    QString error =i18n(" Please make sure that the dictionary(.plots) files are correctly installed in the path: ");
-    KMessageBox::error(this,error.append(dir.path()).append(i18n("  If not, use -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` with cmake !")),
-                       i18n("Error in Dictionary Path:"));
-    qDebug() << "not found..";
-return;
 }
 
 void Dashboard::downloadDictionary() {

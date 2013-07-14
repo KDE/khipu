@@ -67,20 +67,17 @@ void DictionaryCollection::setDocument(DataStore *doc)
     m_document=doc;
 }
 
-void DictionaryCollection::setDictionaryfilePath()
+void DictionaryCollection::setDictionaryDataMap()
 {
-    m_dictionaryList=m_dashboard->dictionaryFileList();
-}
-
-void DictionaryCollection::setDictionaryTitles()
-{
-    m_dictionaryTitles=m_dashboard->dictionaryTitles();
+    m_DictionaryPathName=m_dashboard->dictionaryDataMap();
 }
 
 void DictionaryCollection::setDefaultDictionaries()
 {
-    m_widget->dictionaryNames->addItems(m_dictionaryTitles);
-    m_totalinternalDict=m_dictionaryTitles.size();
+    QList<QString> dictionaryFileNames=m_DictionaryPathName.values();
+    foreach(const QString &file,dictionaryFileNames) {
+        m_widget->dictionaryNames->addItem(QFileInfo(file).baseName());
+    }
 }
 
 void DictionaryCollection::setDictionaryData(int ind)
@@ -90,18 +87,10 @@ void DictionaryCollection::setDictionaryData(int ind)
     model->clear();
     m_dictionaryModel=model;
 
-    if(ind < m_totalinternalDict || m_totalinternalDict==0) { // total internal available dictionaries
-        if(m_totalinternalDict==0) {
-            return;
-        }
-        QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
-        QDir dir(str.append("libanalitza/plots"));
-        model->createDictionary(dir.path().append("/").append(m_dictionaryList.at(ind)));
-    }
-
-    else {
-        model->createDictionary(m_dictionaryList.at(ind));
-    }
+    QString fileName=m_widget->dictionaryNames->itemText(ind).append(".plots");
+    QString dirPath=m_DictionaryPathName.key(fileName);
+    dirPath.append(fileName);
+    model->createDictionary(dirPath);
 
     if(m_document->currentSpace()==-1)
         return;
@@ -160,8 +149,9 @@ void DictionaryCollection::importDictionary()
         qDebug() << "error in opening file...may be path not found." ;
         return;
     }
-
-    m_widget->dictionaryNames->addItem("ImportedDictionary");
-    m_dictionaryTitles << "ImportedDictionary";
-    m_dictionaryList << path;
+    int currentIndex=m_widget->dictionaryNames->count();
+    m_widget->dictionaryNames->addItem(QFileInfo(path).baseName());
+    m_widget->dictionaryNames->setCurrentIndex(currentIndex);
+    m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
+    setDictionaryData(currentIndex);
 }

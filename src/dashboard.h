@@ -29,6 +29,7 @@
 #include <QtGui/QSortFilterProxyModel>
 #include <QStackedWidget>
 #include <QModelIndex>
+#include <QMap>
 
 //local includes
 #include "plotseditor.h"
@@ -88,8 +89,7 @@ public:
     
     QPixmap currentPlotsViewSnapshot() const;
     void setDashboardData(Dashboard* source);
-    QStringList dictionaryFileList() const { return m_fileList; }
-    QStringList dictionaryTitles() const { return m_dictionaryTitles; }
+    QMap<QString,QString> dictionaryDataMap() const { return  m_DictionaryPathName; }
 
     //views
     
@@ -137,7 +137,6 @@ private:
     void setupWidget();
     void setDictionaryNames();
     void setPlotsView(Analitza::Dimension dim);
-    void checkforDictionary();
 
     DataStore * m_document;
     Ui::DashboardWidget *m_widget;
@@ -145,10 +144,8 @@ private:
     SpacesFilterProxyModel *m_spacesProxyModel;
     QList<QString> m_filterText;
     Analitza::PlotsDictionaryModel* m_plotdictionarymodel;
-    QStringList m_dictionaryTitles;
-    QStringList m_fileList;
-    int m_totalinternalDict;
     bool m_isDictionaryFound;
+    QMap<QString,QString> m_DictionaryPathName;
 };
 
 #endif

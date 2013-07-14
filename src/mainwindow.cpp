@@ -192,8 +192,7 @@ void MainWindow::setupDocks()
     m_dictionaryDock = new DictionaryCollection(this);
     m_dictionaryDock->setDashboardWidget(m_dashboard);
     m_dictionaryDock->setDocument(m_document);
-    m_dictionaryDock->setDictionaryfilePath();
-    m_dictionaryDock->setDictionaryTitles();
+    m_dictionaryDock->setDictionaryDataMap();
     m_dictionaryDock->setDefaultDictionaries();
 
     connect(m_dictionaryDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
