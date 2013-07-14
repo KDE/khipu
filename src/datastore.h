@@ -22,10 +22,10 @@
 //Qt includes
 #include <QObject>
 #include <QMap>
+#include <QModelIndex>
 
 class QItemSelectionModel;
 class DictionaryItem;
-class QModelIndex;
 
 namespace Analitza {
 class PlotsDictionaryModel;
