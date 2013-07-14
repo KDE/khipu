@@ -126,7 +126,14 @@ void DictionaryCollection::setModelIndex(const QModelIndex& ind)
 
 void DictionaryCollection::addPlotInSpace()
 {
+    if(m_widget->plotsView->selectionModel()==0)
+        return;
+
     QModelIndex ind=m_widget->plotsView->selectionModel()->currentIndex();
+
+    if(!ind.isValid()) {
+        return;
+    }
 
     QString str =m_dictionaryModel->data(ind,PlotsDictionaryModel::ExpressionRole).toString();
 
