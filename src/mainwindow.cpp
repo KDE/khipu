@@ -232,8 +232,7 @@ void MainWindow::setupActions()
 
     KStandardAction::save(this, SLOT(saveClicked()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveAsClicked()), actionCollection());
-    KStandardAction::close(this, SLOT(closeClicked()), actionCollection());
-    KStandardAction::quit(this, SLOT(closeClicked()), actionCollection());
+    KStandardAction::quit(this, SLOT(close()), actionCollection());
     createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
     //TODO
 //     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
