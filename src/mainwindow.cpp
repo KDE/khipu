@@ -330,10 +330,6 @@ void MainWindow::fullScreenView (bool isFull)
     else {
         showNormal();
         statusBar()->show();
-        m_spaceOptionsDock->show();
-        m_spaceInfoDock->show();
-        m_spacePlotsDock->show();
-        m_dictionaryDock->show();
         toolBar("mainToolBar")->show();
     }
 }
