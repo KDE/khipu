@@ -18,17 +18,12 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
             <DefineGroup name="edit_dashboard_operations" />
             <Action name="add_space2d"/>
             <Action name="add_space3d"/>
-            <Separator/>
-            <DefineGroup name="view_space_operations" />
-            <Action name="add_random_plot"/>
         </Menu>
         
         <Menu name="view">
             <text>&amp;View</text>
             <DefineGroup name="view_dashboard_operations" />
             <Action name="show_plotsbuilder"/>
-            <Action name="show_plots"/>
-            <Action name="show_spaces"/>
             <DefineGroup name="view_space_operations" />
             <Action name="show_plots_editor"/>
             <Action name="show_space_info"/> 

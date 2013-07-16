@@ -241,7 +241,6 @@ void MainWindow::setupActions()
     //edit - dashboard
     createAction("add_space2d", i18n("Add Space &2D"), "add-space2d", Qt::CTRL + Qt::Key_2, this, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("Add Space &3D"), "add-space3d", Qt::CTRL + Qt::Key_3, this, SLOT(addSpace3D()));
-    createAction("add_random_plot", i18n("&Add Random Plot"), "roll", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
 
     //view - dashboard //TODO Show Plots Dictionary
     m_plotsBuilderDock->toggleViewAction()->setIcon(KIcon("formula"));
@@ -249,8 +248,6 @@ void MainWindow::setupActions()
     m_plotsBuilderDock->toggleViewAction()->setToolTip(i18n("Create a plot in a new space"));
     actionCollection()->addAction("show_plotsbuilder", m_plotsBuilderDock->toggleViewAction());
 
-    createAction("show_plots", i18n("&Show Plots"), "view-list-details", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
-    createAction("show_spaces", i18n("&Show Spaces"), "view-list-icons", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     createAction("show_plotsdictionary", i18n("Plot &Dictionaries"), "functionhelp", Qt::CTRL + Qt::Key_D, this,
                  SLOT(setVisibleDictionary()));
 
@@ -856,12 +853,9 @@ void MainWindow::activateDashboardUi()
     if (m_document->spacesModel()->rowCount()>0)
         action("delete_currentspace")->setVisible(true);        
     
-    action("add_random_plot")->setVisible(false);
     //view
     action("show_plotsbuilder")->setVisible(true);
-    action("show_plots")->setVisible(true);
-    action("show_spaces")->setVisible(true);
-    action("show_plotsdictionary")->setVisible(true);    
+    action("show_plotsdictionary")->setVisible(true);
     action("show_plots_editor")->setVisible(false);
     action("show_space_info")->setVisible(false);
     action("show_plotter_options")->setVisible(false);
@@ -897,12 +891,9 @@ void MainWindow::activateSpaceUi()
     action("add_space2d")->setVisible(false);
     action("add_space3d")->setVisible(false);
     action("delete_currentspace")->setVisible(false);        
-    action("add_random_plot")->setVisible(true);
     //view
     action("show_plotsbuilder")->setVisible(false);
-    action("show_plots")->setVisible(false);
-    action("show_spaces")->setVisible(false);
-    action("show_plotsdictionary")->setVisible(false); 
+    action("show_plotsdictionary")->setVisible(false);
     action("show_plots_editor")->setVisible(true);
     action("show_space_info")->setVisible(true);
     action("show_plotter_options")->setVisible(true);
@@ -961,11 +952,8 @@ void MainWindow::setVisibleDictionary()
         action("add_space2d")->setVisible(false);
         action("add_space3d")->setVisible(false);
         action("delete_currentspace")->setVisible(false);        
-        action("add_random_plot")->setVisible(false);
         //view
         action("show_plotsbuilder")->setVisible(false);
-        action("show_plots")->setVisible(false);
-        action("show_spaces")->setVisible(false);
         action("show_plots_editor")->setVisible(false);
         action("show_space_info")->setVisible(false);
         action("show_plotter_options")->setVisible(false);
