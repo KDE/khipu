@@ -16,59 +16,33 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef DICTIONARY_COLLECTION_H
-#define DICTIONARY_COLLECTION_H
+#ifndef DATASTORETEST_H
+#define DATASTORETEST_H
 
-//Analitza includes
-#include <analitzaplot/plotsdictionarymodel.h>
+#include <QtCore/QObject>
+#include "../src/datastore.h"
 
-//Qt includes
-#include <QtGui/QWidget>
-#include <QDialog>
-#include <QComboBox>
-#include <QLabel>
-#include <QDockWidget>
+/**
+    @author Punit Mehta
+*/
 
-//local includes
-#include "dashboard.h"
-
-using namespace Analitza;
-
-namespace Ui
+class DataStoreTest : public QObject
 {
-    class DictionaryCollectionWidget;
-}
+Q_OBJECT
+	public:
+        DataStoreTest(QObject *parent = 0);
+        ~DataStoreTest();
 
-class DictionaryCollection : public QDockWidget
-{
-    Q_OBJECT
+	private slots:
+		void initTestCase();
 
-public:
-    DictionaryCollection(QWidget *parent);
-    ~ DictionaryCollection();
+        void testCorrect(); // correct dictionaries
+        void testCorrect_data();
 
-    void setDashboardWidget(Dashboard *dashboard);
-    void setDocument(DataStore *doc);
-    void setDefaultDictionaries();
-    void setDictionaryDataMap();
-    bool conains(const QString &dictionaryname);
-
-signals:
-    void mapDataChanged();
-
-private slots:
-    void setDictionaryData(int ind);
-    void addPlotInSpace();
-    void setModelIndex(const QModelIndex& ind);
-    void importDictionary();
+		void cleanupTestCase();
 
 private:
-    Ui::DictionaryCollectionWidget *m_widget;
-    Dashboard* m_dashboard;
-    DataStore* m_document;
-    Analitza::Dimension m_currentDimension;
-    PlotsDictionaryModel* m_dictionaryModel;
-    QMap<QString,QString> m_DictionaryPathName;
+        DataStore *m_document;
 };
 
 #endif

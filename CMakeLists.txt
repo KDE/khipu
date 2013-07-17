@@ -23,3 +23,4 @@ install( FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
 
 add_subdirectory ( src ) #app ... use the library
 add_subdirectory ( misc ) #icons, pics, function library, etc
+add_subdirectory (tests)

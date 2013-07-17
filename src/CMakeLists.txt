@@ -49,11 +49,24 @@ kde4_add_ui_files ( khipu_SRCS
   dashboard.ui
 )
 
-
+kde4_add_library(khipuLib ${khipu_SRCS})
 
 kde4_add_executable ( khipu ${khipu_SRCS} )
 
 target_link_libraries( khipu
+  ${KDE4_KFILE_LIBS}
+  ${KDE4_KNEWSTUFF3_LIBS}
+  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
+  ${qjson_LIBRARIES}
+    #OpenGL
+  ${OPENGL_gl_LIBRARY}
+  ${OPENGL_glu_LIBRARY}
+  ${QT_QTOPENGL_LIBRARY}
+  ${QT_QTXML_LIBRARY}
+  ${QTMML_LIBRARY}
+)
+
+target_link_libraries( khipuLib
   ${KDE4_KFILE_LIBS}
   ${KDE4_KNEWSTUFF3_LIBS}
   ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}

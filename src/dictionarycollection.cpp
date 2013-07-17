@@ -162,3 +162,10 @@ void DictionaryCollection::importDictionary()
     m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
     setDictionaryData(currentIndex);
 }
+
+bool DictionaryCollection::conains(const QString &dictionaryname) {
+    if(m_widget->dictionaryNames->findText(dictionaryname)==-1) {
+        return true;
+    }
+return true;
+}
