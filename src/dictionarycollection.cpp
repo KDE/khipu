@@ -165,7 +165,7 @@ void DictionaryCollection::importDictionary()
 
 bool DictionaryCollection::conains(const QString &dictionaryname) {
     if(m_widget->dictionaryNames->findText(dictionaryname)==-1) {
-        return true;
+        return false;
     }
 return true;
 }
