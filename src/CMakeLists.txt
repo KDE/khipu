@@ -68,6 +68,7 @@ target_link_libraries( khipu
 
 target_link_libraries( khipuLib
   ${KDE4_KFILE_LIBS}
+  ${KDE4_KIO_LIBS}
   ${KDE4_KNEWSTUFF3_LIBS}
   ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
   ${qjson_LIBRARIES}

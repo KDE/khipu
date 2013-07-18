@@ -62,7 +62,7 @@ public:
 public slots:
     void newFile();
     void openFileClicked();
-    bool openFile(const QString& path);
+    bool openFile(const KUrl &url);
     void openRecentClicked(const KUrl&  name);
     void saveClicked();
     void saveAsClicked();
@@ -117,7 +117,7 @@ private:
     void setupActions();
     void setupToolBars();
     bool queryClose();
-    void saveFile(const QString& path);
+    bool saveFile(const KUrl &url);
     void changeTitleBar(const QString& path);
     void setCurrentFile(const QString &fileName);
     void updateRecentFileList();

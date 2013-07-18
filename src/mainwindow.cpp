@@ -54,6 +54,7 @@
 #include <KDE/KMessageBox>
 #include <KDE/KToolInvocation>
 #include <KIO/NetAccess>
+#include <KTemporaryFile>
 #include <KToolBar>
 #include <KMenuBar>
 
@@ -578,47 +579,57 @@ void MainWindow::openFileClicked()
     openFile(path);
 }
 
-bool MainWindow::openFile(const QString& path) {
+bool MainWindow::openFile(const KUrl &url) {
 
-    qDebug() << path << "...opened.";
+    qDebug() << url.toLocalFile() << "...opened.";
 
-    QFile *file = new QFile(path,this);
-
-    if(!file->open(QFile::ReadOnly)) {
+    QFile file;
+    if (!url.isLocalFile()) {
+        if(!KIO::NetAccess::exists(url,KIO::NetAccess::SourceSide,this))
+        {
+            KMessageBox::sorry(this,i18n("The file does not exist."));
+            return false;
+        }
+        QString tmpfile;
+        if(!KIO::NetAccess::download(url,tmpfile,this))
+        {
+            KMessageBox::sorry(this,i18n("An error appeared when opening this file (%1)", KIO::NetAccess::lastErrorString()));
+            return false;
+        }
+        file.setFileName(tmpfile);
+    }
+    else
+        file.setFileName(url.toLocalFile());
+    if(!file.open(QFile::ReadOnly)) {
         qDebug() << "error in reading";
+        if(url.toLocalFile()!=QDir::currentPath().append("/Temp.khipu.autosave"))
+                   KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
         return false;
     }
 
-    if(path==QDir::currentPath().append("/Temp.khipu.autosave")) {
+    if(url.toLocalFile()==QDir::currentPath().append("/Temp.khipu.autosave")) {
         // ask for reloading the autosave file
         int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved, last time ?"),i18n("Autosaved .khipu file"));
 
         if(answer!=KMessageBox::Yes) {
-            file->remove();
+            file.remove();
             return false;
         }
-     }
-
-    /* TODO
-     // When a file is already opened/saved , need to create a new session
-    else if(m_fileLocation!="") {
-        if(KToolInvocation::kdeinitExec("khipu")) {
-            // this open should go in the new proccess !!!
-            openFile(path);
-        }
-    }*/
-
+    }
     else {
-        setCurrentFile(path);
-        m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
-        changeTitleBar(path);
+        setCurrentFile(url.path());
+        m_fileLocation=url.path(); // this allows user to save the other work in the file which he/she has just opened.
+        changeTitleBar(url.path());
     }
 
     qDebug() << "parsing....";
 
     QJson::Parser parser;
-    m_parsedSpaceDetails = parser.parse(file).toList();
-    file->close();
+    m_parsedSpaceDetails = parser.parse(&file).toList();
+    file.close();
+
+    if(!url.isLocalFile())
+            KIO::NetAccess::removeTempFile( file.fileName() );
 
     if(m_parsedSpaceDetails.isEmpty()) { // if a wrong file is hit
         qDebug() << "problem in parsing ..may be a wrong file";
@@ -639,10 +650,9 @@ bool MainWindow::openFile(const QString& path) {
 
         m_document->spacesModel()->addSpace(dim,spacename,QString(),thumbnail);
     }
-
     m_dashboard->goHome();
     activateDashboardUi();
-return true;
+    return true;
 }
 
 QPixmap MainWindow::toPixmap(const QByteArray &bytearray) {
@@ -660,7 +670,7 @@ void MainWindow::saveClicked() {
 
     if(m_fileLocation=="") {// Intially when the data is not saved. We would not have the actual file path.
       KUrl url = KFileDialog::getSaveUrl( QDir::currentPath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
-    m_fileLocation =url.path();
+    m_fileLocation =url.toLocalFile();
     }
 
     saveFile(m_fileLocation);
@@ -670,7 +680,7 @@ bool MainWindow::closeClicked(){
     QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
     if(autosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
-                                                    i18n("The current file contains some unsaved work.Do you want to save it ? "),
+                                                    i18n("The current file contains some unsaved work.Do you want to save it?"),
                                                     i18n("Warining: Unsaved changes"));
         if(answer==KMessageBox::Yes) {
             saveClicked();
@@ -689,13 +699,13 @@ bool MainWindow::closeClicked(){
 
 void MainWindow::saveAsClicked() {
     KUrl url = KFileDialog::getSaveUrl( QDir::currentPath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
-    saveFile(url.path());
-    m_fileLocation =url.path();
+    saveFile(url.toLocalFile());
+    m_fileLocation =url.toLocalFile();
 }
 
-void MainWindow::saveFile(const QString& path) {
+bool MainWindow::saveFile(const KUrl &url) {
 
-    qDebug() << "in save file : " << path;
+    qDebug() << "in save file : " << url.toLocalFile();
     QMap<DictionaryItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
     // just starting #no plot is available so no need to save
@@ -706,20 +716,18 @@ void MainWindow::saveFile(const QString& path) {
         // no plots are there. so, we dont need autosave file
         QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
         autosaveFile.remove();
-        return;
+        return false;
     }
 
     QList<DictionaryItem*> spaceList=map.uniqueKeys();
     if(spaceList.empty()){
             qDebug() << "list is empty";
-            return;
+            return false;
     }
 
     QVariantList plotspace_list;
 
-    int i,j;
-    for(i=0;i<spaceList.size();i++) {
-        DictionaryItem* space=spaceList.at(i);
+    foreach(DictionaryItem* space, spaceList) {
              QString spaceName = space->title();
              QPixmap thumbnail = space->thumbnail();
              int dim = space->dimension();
@@ -734,9 +742,7 @@ void MainWindow::saveFile(const QString& path) {
 
              QList<Analitza::PlotItem*> plotList=map.values(space);
 
-             for (j=0;j<plotList.size();j++) {
-
-                   Analitza::PlotItem* plotitem=plotList.at(j);
+             foreach(Analitza::PlotItem* plotitem, plotList) {
                    QString plotName=plotitem->name();
                    QString plotExpression=plotitem->expression().toString();
                    QColor plotcolor=plotitem->color();
@@ -748,7 +754,7 @@ void MainWindow::saveFile(const QString& path) {
 
                    if(dim==2) {
 
-                          Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotList.at(j));
+                          Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotitem);
 
                           //need to fix this in analitza
                           /* double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
@@ -775,43 +781,65 @@ QJson::Serializer serializer;
 QByteArray json = serializer.serialize(plotspace_list);
 
 
-    if(path==""){
-         qDebug() << "error in saving file...may be path not found." ;
-         return;
-    }
-
-    QFile *file = new QFile(path,this);
-    qDebug() << "path: " << path;
-
-    // saved action clicked by the user , this is not the autosave case
-    if(path!=QDir::currentPath().append("/Temp.khipu.autosave")){
-        if(!file->open(QFile::WriteOnly | QFile::Text)){
-            qDebug() << "Error in writing";
-            return;
+    if(!url.isLocalFile())
+    {
+        KTemporaryFile tmpfile;
+        if(!tmpfile.open())
+        {
+            qDebug() << "Could not open " << KUrl(tmpfile.fileName()).toLocalFile() << " for writing.\n";
+            return false;
         }
-
-        // remove the auto save file (can be improved later)
-        QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
-        autosaveFile.remove();
-
-        setCurrentFile(path);
-        statusBar()->showMessage((QString("File : ").append(QFileInfo(path).fileName()).
-                    append("  [").append(path).append("] ").append("is saved successfully")),10000);
-        changeTitleBar(path);
-    }
-
-    // autosave case
-    else {
-        if(!file->open(QFile::WriteOnly | QFile::Text)){
-            qDebug() << "Error in writing";
-            return;
+        QTextStream out(&tmpfile);
+        out << json;
+        out.flush();
+        if (!KIO::NetAccess::upload(tmpfile.fileName(),url,this))
+        {
+            qDebug() << "Could not open " << url.prettyUrl() << " for writing ("<<KIO::NetAccess::lastErrorString()<<").\n";
+            return false;
         }
     }
+    else
+    {
+        if(!url.hasPath()){
+            qDebug() << "error in saving file...may be path not found." ;
+            return false;
+        }
 
-QTextStream out(file);
-out << json;
-file->close();
+        QFile file(url.toLocalFile());
+        qDebug() << "path: " << url.toLocalFile();
+
+        // saved action clicked by the user , this is not the autosave case
+        if(url.toLocalFile()!=QDir::currentPath().append("/Temp.khipu.autosave")){
+            if(!file.open(QFile::WriteOnly | QFile::Text)){
+                qDebug() << "Error in writing";
+                return false;
+            }
+
+            // remove the auto save file (can be improved later)
+            QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+            autosaveFile.remove();
+
+            setCurrentFile(url.toLocalFile());
+            statusBar()->showMessage(i18n("File : %1 [%2] is saved successfully",
+                                          QFileInfo(url.toLocalFile()).fileName(),url.toLocalFile(),10000));
+            changeTitleBar(url.toLocalFile());
+        }
+
+        // autosave case
+        else {
+            if(!file.open(QFile::WriteOnly | QFile::Text)){
+                qDebug() << "Error in writing";
+                return false;
+            }
+        }
+
+    QTextStream out(&file);
+    out << json;
+    file.close();
+    }
+    return true;
 }
+
 
 void MainWindow::changeTitleBar(const QString& path) {
     window()->setWindowTitle(QFileInfo(path).fileName().append(" - Khipu"));
