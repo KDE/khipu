@@ -215,7 +215,7 @@ void DataStore::removeSpace(int row) {
 
 void DataStore::saveSpaceAsDictionary(QModelIndex ind)
 {
-    KUrl url = KFileDialog::getSaveUrl(QDir::currentPath(),i18n( "*.plots|Plot-Dictionary Files (*.plots)\n*|All Files" ),0, i18n( "Export the space as a Dictionary " ));
+    KUrl url = KFileDialog::getSaveUrl(QDir::homePath(),i18n( "*.plots|Plot-Dictionary Files (*.plots)\n*|All Files" ),0, i18n( "Export the space as a Dictionary " ));
     QString path=url.path();
     QFile *file = new QFile(path,this);
 

@@ -407,7 +407,14 @@ void MainWindow::setMenuBarVisibility(bool isShow) {
 
 void MainWindow::autoSaveFile() {
     updateThumbnail();
-    saveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+
+    //no filename available, need to save it as temp
+    if(m_fileLocation.isEmpty())
+        saveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
+    else {
+        QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".autosave"));
+        saveFile(path);
+    }
 }
 
 void MainWindow::updateThumbnail() {
@@ -496,8 +503,8 @@ bool MainWindow::queryClose()
 }
 
 void MainWindow::checkforAutoSavedFile(){
-    QString current = QDir::currentPath();
-    QString path = current.append("/Temp.khipu.autosave");
+    QString current = QDir::homePath();
+    QString path = current.append("/.Temp.khipu.autosave");
     if(openFile(path)) {
         qDebug() << "file is autosaved and it is opening";
     }
@@ -507,7 +514,7 @@ void MainWindow::newFile()
 {
     /*
      *some experiments :) ( to be deleted later)
-    QString current = QDir::currentPath();
+    QString current = QDir::homePath();
     QString path = current.append("temp.khipu");
     QString error;
 
@@ -570,18 +577,23 @@ void MainWindow::openFileClicked()
 {
     qDebug() << "in opening file";
 
-    QString path = QFileDialog::getOpenFileName(this, tr("Open a .khipu file"),"/",tr("Text files (*.khipu)"));
-    if(path==0){
+    KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
+                     i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
+
+    if(url.path().isEmpty()){
         qDebug() << "error in opening file...may be path not found." ;
         return;
     }
 
-    openFile(path);
+    openFile(url);
 }
 
 bool MainWindow::openFile(const KUrl &url) {
 
     qDebug() << url.toLocalFile() << "...opened.";
+
+    if(url.path().isEmpty())
+    return false;
 
     QFile file;
     if (!url.isLocalFile()) {
@@ -600,26 +612,48 @@ bool MainWindow::openFile(const KUrl &url) {
     }
     else
         file.setFileName(url.toLocalFile());
-    if(!file.open(QFile::ReadOnly)) {
-        qDebug() << "error in reading";
-        if(url.toLocalFile()!=QDir::currentPath().append("/Temp.khipu.autosave"))
-                   KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
-        return false;
-    }
 
-    if(url.toLocalFile()==QDir::currentPath().append("/Temp.khipu.autosave")) {
+    if(url.toLocalFile()==QDir::homePath().append("/.Temp.khipu.autosave")) {
         // ask for reloading the autosave file
+        if(!file.exists())
+            return false;
         int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved, last time ?"),i18n("Autosaved .khipu file"));
 
         if(answer!=KMessageBox::Yes) {
-            file.remove();
+            QFile file(url.toLocalFile());
+            if(file.remove())
+                qDebug() << "removed...";
             return false;
         }
     }
+
     else {
-        setCurrentFile(url.path());
-        m_fileLocation=url.path(); // this allows user to save the other work in the file which he/she has just opened.
-        changeTitleBar(url.path());
+          QString path=url.toLocalFile();
+          // not , current autosave !
+          // if(!path.contains(".khipu.autosave")) {
+               setCurrentFile(path);
+               m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+               changeTitleBar(path);
+           //}
+
+           //check for available autosave file
+           QString currentautosavepath=QFileInfo(path).dir().path().append("/.").append(QFileInfo(path).baseName().append(".autosave"));
+           if(QFile::exists(currentautosavepath)) {
+               // ask for reloading the autosave file
+               int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved chanes in the file %1.Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
+
+               if(answer==KMessageBox::Yes) {
+                   // user wants to open the autosave file.
+                   file.setFileName(currentautosavepath);
+               }
+           }
+    }
+
+    if(!file.open(QFile::ReadOnly)) {
+        qDebug() << "error in reading";
+        if(file.fileName()!=QDir::homePath().append("/.Temp.khipu.autosave"))
+                   KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
+        return false;
     }
 
     qDebug() << "parsing....";
@@ -669,7 +703,7 @@ QPixmap MainWindow::toPixmap(const QByteArray &bytearray) {
 void MainWindow::saveClicked() {
 
     if(m_fileLocation=="") {// Intially when the data is not saved. We would not have the actual file path.
-      KUrl url = KFileDialog::getSaveUrl( QDir::currentPath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+      KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
     m_fileLocation =url.toLocalFile();
     }
 
@@ -677,7 +711,7 @@ void MainWindow::saveClicked() {
 }
 
 bool MainWindow::closeClicked(){
-    QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
+    QFile autosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
     if(autosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
                                                     i18n("The current file contains some unsaved work.Do you want to save it?"),
@@ -698,7 +732,7 @@ bool MainWindow::closeClicked(){
 }
 
 void MainWindow::saveAsClicked() {
-    KUrl url = KFileDialog::getSaveUrl( QDir::currentPath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+    KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
     saveFile(url.toLocalFile());
     m_fileLocation =url.toLocalFile();
 }
@@ -714,8 +748,12 @@ bool MainWindow::saveFile(const KUrl &url) {
         qDebug() << "map is empty";
 
         // no plots are there. so, we dont need autosave file
-        QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
-        autosaveFile.remove();
+        QFile tempautosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
+        tempautosaveFile.remove();
+
+        QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".autosave"));
+        QFile currentautosaveFile(path);
+        currentautosaveFile.remove();
         return false;
     }
 
@@ -809,15 +847,19 @@ QByteArray json = serializer.serialize(plotspace_list);
         qDebug() << "path: " << url.toLocalFile();
 
         // saved action clicked by the user , this is not the autosave case
-        if(url.toLocalFile()!=QDir::currentPath().append("/Temp.khipu.autosave")){
+        QString currentautosavepath=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".autosave"));
+        if(url.toLocalFile()!=QDir::homePath().append("/.Temp.khipu.autosave") && url.toLocalFile()!=currentautosavepath) {
             if(!file.open(QFile::WriteOnly | QFile::Text)){
                 qDebug() << "Error in writing";
                 return false;
             }
 
-            // remove the auto save file (can be improved later)
-            QFile autosaveFile(QDir::currentPath().append("/Temp.khipu.autosave"));
-            autosaveFile.remove();
+            // remove the auto save file (can be improved later) -> better to use function (TODO)
+            QFile tempautosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
+            tempautosaveFile.remove();
+
+            QFile currentautosaveFile(currentautosavepath);
+            currentautosaveFile.remove();
 
             setCurrentFile(url.toLocalFile());
             statusBar()->showMessage(i18n("File : %1 [%2] is saved successfully",
@@ -1240,5 +1282,3 @@ void MainWindow::createPlot(const QModelIndex &ind) {
             errors = req.errors();
     }
 }
-
-
