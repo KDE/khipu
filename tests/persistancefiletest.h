@@ -19,6 +19,7 @@
 #ifndef PERSISTANCEFILETEST_H
 #define PERSISTANCEFILETEST_H
 
+//Qt includes
 #include <QtCore/QObject>
 
 /**

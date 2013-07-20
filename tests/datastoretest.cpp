@@ -16,16 +16,16 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
+#include <datastoretest.h>
 
+//Qt includes
 #include <qtest_kde.h>
 
-#include <datastoretest.h>
-#include <datastore.h>
+//Analitza includes
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/plotsfactory.h>
-#include <analitzaplot/plottingenums.h>
-#include <analitzaplot/functiongraph.h>
 #include <analitzaplot/plotitem.h>
+#include <analitzaplot/functiongraph.h>
 
 using namespace Analitza;
 

@@ -19,8 +19,11 @@
 #ifndef DATASTORETEST_H
 #define DATASTORETEST_H
 
+//Qt includes
 #include <QtCore/QObject>
-#include "../src/datastore.h"
+
+//khipuLib includes
+#include <datastore.h>
 
 /**
     @author Punit Mehta

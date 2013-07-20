@@ -16,17 +16,22 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
+#include <persistancefiletest.h>
+
+//Qt includes
 #include <qtest_kde.h>
 
-#include <persistancefiletest.h>
-#include <mainwindow.h>
+//Analitza includes
 #include <analitzaplot/plotsfactory.h>
 #include <analitzaplot/plotitem.h>
 #include <analitzaplot/functiongraph.h>
 #include <analitzaplot/plotsmodel.h>
+
+//KhipuLib includes
 #include <datastore.h>
-#include "../src/dictionariesmodel.h"
-#include "../src/dictionaryitem.h"
+#include <dictionariesmodel.h>
+#include <dictionaryitem.h>
+#include <mainwindow.h>
 
 using namespace Analitza;
 
