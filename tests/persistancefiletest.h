@@ -36,7 +36,7 @@ Q_OBJECT
    private slots:
         void initTestCase();
 
-        void testCorrect(); // correct dictionaries
+        void testCorrect();
         void testCorrect_data();
 
         void cleanupTestCase();

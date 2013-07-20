@@ -103,7 +103,6 @@ void PersistanceFileTest::testCorrect()
     // open file
     QVERIFY(window.openFile(QDir::homePath().append("/.test.khipu")));
 
-    document=window.getDocument();
     DictionaryItem *space=document->spacesModel()->space(0);
     QVERIFY(space!=0);
 
@@ -124,6 +123,8 @@ void PersistanceFileTest::testCorrect()
     //clearing the model and verify again
     QVERIFY(document->spacesModel()->removeRow(0));
     QVERIFY(document->plotsModel()->removeRow(0));
+
+    delete document;
 }
 
 #include "persistancefiletest.moc"
