@@ -59,13 +59,16 @@ public:
     MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
 
+    DataStore* getDocument() { return m_document; }
+
 public slots:
     void newFile();
-    void openFileClicked();
+    bool openFileClicked();
     bool openFile(const KUrl &url);
     void openRecentClicked(const KUrl&  name);
     void saveClicked();
-    void saveAsClicked();
+    bool saveAsClicked();
+    bool saveFile(const KUrl &url);
     void activateSpace(int);
     void createPlot(const QModelIndex &ind);
     void savePlot();
@@ -117,13 +120,12 @@ private:
     void setupActions();
     void setupToolBars();
     bool queryClose();
-    bool saveFile(const KUrl &url);
     void changeTitleBar(const QString& path);
     void setCurrentFile(const QString &fileName);
     void updateRecentFileList();
 
-    QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     QPixmap toPixmap(const QByteArray &bytearray);
+    QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     void closeEvent(QCloseEvent * event);
     void checkforAutoSavedFile();
     void updateThumbnail();

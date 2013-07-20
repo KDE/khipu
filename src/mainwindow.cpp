@@ -573,7 +573,7 @@ void MainWindow::updateRecentFileList()
     }
 }
 
-void MainWindow::openFileClicked()
+bool MainWindow::openFileClicked()
 {
     qDebug() << "in opening file";
 
@@ -582,10 +582,10 @@ void MainWindow::openFileClicked()
 
     if(url.path().isEmpty()){
         qDebug() << "error in opening file...may be path not found." ;
-        return;
+        return false;
     }
 
-    openFile(url);
+    return openFile(url);
 }
 
 bool MainWindow::openFile(const KUrl &url) {
@@ -731,10 +731,13 @@ bool MainWindow::closeClicked(){
     return true; // just close the application.
 }
 
-void MainWindow::saveAsClicked() {
+bool MainWindow::saveAsClicked() {
     KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
-    saveFile(url.toLocalFile());
-    m_fileLocation =url.toLocalFile();
+    if(saveFile(url.toLocalFile())) {
+        m_fileLocation =url.toLocalFile();
+        return true;
+    }
+    return false;
 }
 
 bool MainWindow::saveFile(const KUrl &url) {
@@ -793,7 +796,6 @@ bool MainWindow::saveFile(const KUrl &url) {
                    if(dim==2) {
 
                           Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotitem);
-
                           //need to fix this in analitza
                           /* double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
                           double arg1max=functiongraph->interval(functiongraph->parameters().at(0)).second;

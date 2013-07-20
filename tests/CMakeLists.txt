@@ -12,7 +12,16 @@ include_directories (
 
 kde4_add_unit_test(datastoretest datastoretest.cpp)
 
+kde4_add_unit_test(persistancefiletest persistancefiletest.cpp)
+
 target_link_libraries(datastoretest
+  ${testLibs}
+  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
+    #OpenGL
+  khipuLib
+)
+
+target_link_libraries(persistancefiletest
   ${testLibs}
   ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
     #OpenGL
