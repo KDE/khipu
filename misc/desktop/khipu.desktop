@@ -2,6 +2,7 @@
 [Desktop Entry]
 Name=Khipu
 Name[de]=Khipu
+Name[el]=Khipu
 Name[es]=Khipu
 Name[et]=Khipu
 Name[fi]=Khipu
@@ -21,6 +22,7 @@ Name[x-test]=xxKhipuxx
 GenericName=Advanced Mathematical Function Plotter
 GenericName[cs]=Pokročilý souřadnicový zapisovač matematických funkcí
 GenericName[de]=Fortgeschrittener mathematischer Funktionsplotter
+GenericName[el]=Προηγμένη γραφική αναπαράσταση μαθηματικών συναρτήσεων
 GenericName[es]=Trazador avanzado de funciones matemáticas
 GenericName[et]=Täiustatud matemaatiliste funktsioonide graafiku joonistaja
 GenericName[fi]=Edistyksellinen matemaattisten funktioiden piirturi
@@ -40,6 +42,7 @@ GenericName[uk]=Графобудівник математичних функці
 GenericName[x-test]=xxAdvanced Mathematical Function Plotterxx
 Comment=Platform for visualizing curves and surfaces
 Comment[de]=Plattform für die Visualisierung von Kurven und Oberflächen
+Comment[el]=Πλατφόρμα απεικόνισης καμπυλών και επιφανειών
 Comment[es]=Plataforma para visualizar curvas y superficies
 Comment[et]=Kõverate ja pindade visualiseerimise platvorm
 Comment[fi]=Käyrien ja pintojen visualisointialusta
