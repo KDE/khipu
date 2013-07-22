@@ -47,7 +47,7 @@ DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
 {
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
-    connect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
+    connect(m_widget->dictionaryNames,SIGNAL(highlighted(int)),this,SLOT(setDictionaryData(int)));
     connect(m_widget->AddButton,SIGNAL(pressed()),this,SLOT(addPlotInSpace()));
     connect(m_widget->importDictionary,SIGNAL(pressed()),this,SLOT(importDictionary()));
 }
@@ -82,6 +82,10 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
+    if(ind==-1) {
+        qDebug() << "wrong index is passed !";
+        return;
+    }
 
     PlotsDictionaryModel *model=new PlotsDictionaryModel;
     model->clear();
@@ -168,4 +172,8 @@ bool DictionaryCollection::conains(const QString &dictionaryname) {
         return false;
     }
 return true;
+}
+
+int DictionaryCollection::totalDictionaries() {
+   return m_widget->dictionaryNames->count();
 }

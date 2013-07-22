@@ -16,60 +16,65 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef DICTIONARY_COLLECTION_H
-#define DICTIONARY_COLLECTION_H
-
-//Analitza includes
-#include <analitzaplot/plotsdictionarymodel.h>
+#include <dictionarycollectiontest.h>
 
 //Qt includes
-#include <QtGui/QWidget>
-#include <QDialog>
-#include <QComboBox>
-#include <QLabel>
-#include <QDockWidget>
+#include <qtest_kde.h>
 
-//local includes
-#include "dashboard.h"
+//Analitza includes
+#include <analitzaplot/plotitem.h>
+
+//khipuLib includes
+#include <dictionarycollection.h>
+#include <dashboard.h>
 
 using namespace Analitza;
 
-namespace Ui
+QTEST_KDEMAIN( DictionaryCollectionTest, GUI)
+
+Q_DECLARE_METATYPE (Analitza::Dimension);
+
+Q_DECLARE_METATYPE (PlotItem*);
+
+DictionaryCollectionTest::DictionaryCollectionTest(QObject *parent)
+    : QObject(parent)
 {
-    class DictionaryCollectionWidget;
 }
 
-class DictionaryCollection : public QDockWidget
+DictionaryCollectionTest::~DictionaryCollectionTest()
 {
-    Q_OBJECT
+}
 
-public:
-    DictionaryCollection(QWidget *parent);
-    ~ DictionaryCollection();
+void DictionaryCollectionTest::initTestCase()
+{}
 
-    void setDashboardWidget(Dashboard *dashboard);
-    void setDocument(DataStore *doc);
-    void setDefaultDictionaries();
-    void setDictionaryDataMap();
-    bool conains(const QString &dictionaryname);
-    int totalDictionaries();
+void DictionaryCollectionTest::cleanupTestCase()
+{}
 
-signals:
-    void mapDataChanged();
+void DictionaryCollectionTest::testCorrect_data()
+{
+    QTest::addColumn<QString>("dictionaryname");
+    QTest::newRow("1") << "3Ds";
+    QTest::newRow("2") << "basic_curves";
+    QTest::newRow("3") << "conics";
+    QTest::newRow("4") << "polar";
+}
 
-private slots:
-    void setDictionaryData(int ind);
-    void addPlotInSpace();
-    void setModelIndex(const QModelIndex& ind);
-    void importDictionary();
+void DictionaryCollectionTest::testCorrect()
+{
+    QFETCH(QString,dictionaryname);
 
-private:
-    Ui::DictionaryCollectionWidget *m_widget;
-    Dashboard* m_dashboard;
-    DataStore* m_document;
-    Analitza::Dimension m_currentDimension;
-    PlotsDictionaryModel* m_dictionaryModel;
-    QMap<QString,QString> m_DictionaryPathName;
-};
+    Dashboard *dashboard = new Dashboard(0);
+    DictionaryCollection *testWidget = new DictionaryCollection(0);
+    testWidget->setDashboardWidget(dashboard);
+    testWidget->setDictionaryDataMap();
+    testWidget->setDefaultDictionaries();
 
-#endif
+    QList<QString> values=dashboard->dictionaryDataMap().values();
+    QCOMPARE(values.size(),4);
+    QVERIFY(testWidget->conains(dictionaryname));
+    QCOMPARE(testWidget->totalDictionaries(),4);
+
+}
+
+#include "dictionarycollectiontest.moc"
