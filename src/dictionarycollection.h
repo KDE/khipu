@@ -53,6 +53,7 @@ public:
     void setDictionaryDataMap();
     bool conains(const QString &dictionaryname);
     int totalDictionaries();
+    QTreeView* dictionaryPlotsView();
 
 signals:
     void mapDataChanged();

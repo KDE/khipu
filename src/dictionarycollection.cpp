@@ -177,3 +177,7 @@ return true;
 int DictionaryCollection::totalDictionaries() {
    return m_widget->dictionaryNames->count();
 }
+
+QTreeView* DictionaryCollection::dictionaryPlotsView() {
+    return m_widget->plotsView;
+}
