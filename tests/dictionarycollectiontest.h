@@ -39,6 +39,13 @@ Q_OBJECT
         void testCorrect();
         void testCorrect_data();
 
+        /* to verify that the correct .plots file are installed.
+         * This takes care of the fact that the contains() function returns "true" only when
+         * the correct-dictionary is present to be added.
+         */
+        void testIncorrect();
+        void testIncorrect_data();
+
         void cleanupTestCase();
 
 private:

@@ -74,7 +74,35 @@ void DictionaryCollectionTest::testCorrect()
     QCOMPARE(values.size(),4);
     QVERIFY(testWidget->conains(dictionaryname));
     QCOMPARE(testWidget->totalDictionaries(),4);
+}
 
+void DictionaryCollectionTest::testIncorrect_data()
+{
+    QTest::addColumn<QString>("dictionaryname");
+    QTest::newRow("1") << "dictionary1";
+    QTest::newRow("2") << "test";
+    QTest::newRow("3") << "wrong_name";
+    QTest::newRow("4") << "";
+    QTest::newRow("5") << "incorrect";
+}
+
+void DictionaryCollectionTest::testIncorrect()
+{
+    QFETCH(QString,dictionaryname);
+
+    Dashboard *dashboard = new Dashboard(0);
+    DictionaryCollection *testWidget = new DictionaryCollection(0);
+    testWidget->setDashboardWidget(dashboard);
+    testWidget->setDictionaryDataMap();
+    testWidget->setDefaultDictionaries();
+
+    QList<QString> values=dashboard->dictionaryDataMap().values();
+
+    // This will always 4.Since the correct dictionaries are always there.
+    QCOMPARE(values.size(),4);
+    QCOMPARE(testWidget->totalDictionaries(),4);
+
+    QVERIFY(!testWidget->conains(dictionaryname));
 }
 
 #include "dictionarycollectiontest.moc"
