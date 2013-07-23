@@ -54,13 +54,16 @@ public:
     bool conains(const QString &dictionaryname);
     int totalDictionaries();
     QTreeView* dictionaryPlotsView();
+    int indexOf(const QString &dictionaryname);
 
 signals:
     void mapDataChanged();
 
-private slots:
-    void setDictionaryData(int ind);
+public slots:
     void addPlotInSpace();
+    void setDictionaryData(int ind);
+
+private slots:
     void setModelIndex(const QModelIndex& ind);
     void importDictionary();
 

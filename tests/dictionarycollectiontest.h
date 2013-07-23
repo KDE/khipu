@@ -46,6 +46,10 @@ Q_OBJECT
         void testIncorrect();
         void testIncorrect_data();
 
+        //tests the slot of add button and verifies that the correct plot is added into the space from dictionary.
+        void testAddPlot();
+        void testAddPlot_data();
+
         void cleanupTestCase();
 
 private:

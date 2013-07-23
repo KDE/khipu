@@ -82,10 +82,12 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
+
     if(ind==-1) {
         qDebug() << "wrong index is passed !";
         return;
     }
+
 
     PlotsDictionaryModel *model=new PlotsDictionaryModel;
     model->clear();
@@ -99,6 +101,7 @@ void DictionaryCollection::setDictionaryData(int ind)
     if(m_document->currentSpace()==-1)
         return;
 
+
     // decide the space dimension
     m_currentDimension=m_document->spacesModel()->space(m_document->currentSpace())->dimension();
 
@@ -110,11 +113,11 @@ void DictionaryCollection::setDictionaryData(int ind)
             QString exp=str.right(str.length()-str.indexOf(":=")-2); //parsing of expression from the line
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp), m_currentDimension);
 
-            //remove un-wanted plots (unmatched with the current dimnesion) from the model
+            //remove un-wanted plots (mismatched with the current dimnesion) from the model
             if (!req.canDraw()) {
                 qDebug() << "can't draw";
                 model->removeRow(i);
-                i--;// to check on the position where the current data is replaced with the next row
+                i--;// to check on which position current data is replaced with the next row
             }
         }
     }
@@ -130,6 +133,7 @@ void DictionaryCollection::setModelIndex(const QModelIndex& ind)
 
 void DictionaryCollection::addPlotInSpace()
 {
+
     if(m_widget->plotsView->selectionModel()==0)
         return;
 
@@ -139,7 +143,7 @@ void DictionaryCollection::addPlotInSpace()
         return;
     }
 
-    QString str =m_dictionaryModel->data(ind,PlotsDictionaryModel::ExpressionRole).toString();
+    QString str=m_dictionaryModel->data(ind,PlotsDictionaryModel::ExpressionRole).toString();
 
     QString exp=str.right(str.length()-str.indexOf(":=")-2); //parsing of expression from the line
 
@@ -172,6 +176,10 @@ bool DictionaryCollection::conains(const QString &dictionaryname) {
         return false;
     }
 return true;
+}
+
+int DictionaryCollection::indexOf(const QString &dictionaryname) {
+    return m_widget->dictionaryNames->findText(dictionaryname);
 }
 
 int DictionaryCollection::totalDictionaries() {

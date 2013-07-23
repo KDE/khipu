@@ -20,13 +20,18 @@
 
 //Qt includes
 #include <qtest_kde.h>
+#include <QTreeView>
+#include <QItemSelectionModel>
 
 //Analitza includes
 #include <analitzaplot/plotitem.h>
+#include <analitzaplot/plotsmodel.h>
 
 //khipuLib includes
 #include <dictionarycollection.h>
 #include <dashboard.h>
+#include <datastore.h>
+#include <dictionariesmodel.h>
 
 using namespace Analitza;
 
@@ -103,6 +108,53 @@ void DictionaryCollectionTest::testIncorrect()
     QCOMPARE(testWidget->totalDictionaries(),4);
 
     QVERIFY(!testWidget->conains(dictionaryname));
+}
+
+void DictionaryCollectionTest::testAddPlot_data()
+{
+    QTest::addColumn<QString>("dictionaryname");
+    QTest::addColumn<QString>("plotname1");
+    QTest::addColumn<QString>("ploteqn1");
+
+    QTest::newRow("1") << "3Ds";
+}
+
+void DictionaryCollectionTest::testAddPlot()
+{
+    QFETCH(QString,dictionaryname);
+
+    Dashboard *dashboard = new Dashboard(0);
+    DataStore *document = new DataStore(0);
+    document->spacesModel()->addSpace(Dim3D);
+    document->setCurrentSpace(0);
+    DictionaryCollection *testWidget = new DictionaryCollection(0);
+
+    testWidget->setDashboardWidget(dashboard);
+    testWidget->setDictionaryDataMap();
+    testWidget->setDefaultDictionaries();
+    testWidget->setDocument(document);
+
+    //setting the plot-dictionary model based on the name of the dictionary.
+    testWidget->setDictionaryData(testWidget->indexOf(dictionaryname));
+
+    //test index
+    QModelIndex ind=testWidget->dictionaryPlotsView()->model()->index(0,0);
+
+    //selecting the plot on the view.
+    testWidget->dictionaryPlotsView()->selectionModel()->setCurrentIndex(ind,QItemSelectionModel::Select);
+
+    //add plot in the space
+    testWidget->addPlotInSpace();
+
+    //check for the correctness of the added plot
+    QCOMPARE(document->plotsModel()->rowCount(),1);
+
+    PlotItem* plotitem=document->plotsModel()->data(document->plotsModel()->index(0),PlotsModel::PlotRole).value<PlotItem*>();
+    QVERIFY(plotitem!=0);
+
+    QCOMPARE(plotitem->name(),QString("plane2"));
+    QCOMPARE(plotitem->expression(),Analitza::Expression("(x, y, z)->(x+y+z)-5"));
+    QCOMPARE(plotitem->color(),QColor(Qt::blue));
 }
 
 #include "dictionarycollectiontest.moc"
