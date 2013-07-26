@@ -526,8 +526,14 @@ void MainWindow::newFile()
 
 void MainWindow::openRecentClicked(const KUrl&  name)
 {
-
-    openFile(name.path());
+    // no plots are available , can open in the same proccess.
+    if(m_document->plotsModel()->rowCount()==0)
+        openFile(name.path());
+    else {
+        QStringList args;
+        args << name.toLocalFile();
+        KToolInvocation::kdeinitExec("khipu",args);
+    }
 }
 
 void MainWindow::setCurrentFile(const QString &fileName)
@@ -578,7 +584,14 @@ bool MainWindow::openFileClicked()
         return false;
     }
 
-    return openFile(url);
+    if(m_document->plotsModel()->rowCount()!=0) {
+        QStringList args;
+        args << url.toLocalFile();
+        KToolInvocation::kdeinitExec("khipu",args);
+        return false;
+    }
+    else
+        return openFile(url);
 }
 
 bool MainWindow::openFile(const KUrl &url) {
