@@ -112,7 +112,6 @@ MainWindow::MainWindow(QWidget *parent)
     activateDashboardUi();
     
     updateTittleWhenOpenSaveDoc();
-    checkforAutoSavedFile();
     updateRecentFileList();
 }
 
@@ -512,28 +511,22 @@ void MainWindow::checkforAutoSavedFile(){
 
 void MainWindow::newFile()
 {
-    /*
-     *some experiments :) ( to be deleted later)
-    QString current = QDir::homePath();
-    QString path = current.append("temp.khipu");
-    QString error;
-
-    KToolInvocation::startServiceByDesktopName("khipu",path,&error);
-    qDebug() <<  "error is : " << error;
-    */
-
-            //actual code
     // if there are not any plots added (i.e. file is completely clean)
     if(m_document->plotsModel()->rowCount()==0){
         QMessageBox::information(this,i18n("No need to create New Window"),i18n("There are not any plots available. So, you do not need to create a new Plot Window"));
         return;
     }
 
-    KToolInvocation::kdeinitExec("khipu");
+    // creates a new proccess.
+    // The commandline arguments is used to create a completely new instance of Khipu(i.e. it does not reload the autosaved file)
+    QStringList args;
+    args << "ignoreautosavedfile";
+    KToolInvocation::kdeinitExec("khipu",args);
 }
 
 void MainWindow::openRecentClicked(const KUrl&  name)
 {
+
     openFile(name.path());
 }
 

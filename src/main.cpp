@@ -68,8 +68,10 @@ int main(int argc, char **argv)
     else
     {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        if (args->count() == 0)
+        if (args->count() == 0) {
+            mainWindow->checkforAutoSavedFile();
             mainWindow->show();
+        }
         else
         {
             int i = 0;
@@ -78,8 +80,10 @@ int main(int argc, char **argv)
             {
                 if (i==0)
                 {
-                    if (!(mainWindow->openFile(args->url(0).path())))
-                        exit = true;
+                    if(args->arg(0)!="ignoreautosavedfile"){
+                        if (!(mainWindow->openFile(args->url(0).path())))
+                            exit = true;
+                    }
                 }
                 mainWindow->show();
             }

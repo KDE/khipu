@@ -60,6 +60,7 @@ public:
     virtual ~MainWindow();
 
     DataStore* getDocument() { return m_document; }
+    void checkforAutoSavedFile();
 
 public slots:
     void newFile();
@@ -127,7 +128,6 @@ private:
     QPixmap toPixmap(const QByteArray &bytearray);
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     void closeEvent(QCloseEvent * event);
-    void checkforAutoSavedFile();
     void updateThumbnail();
 
 private:
