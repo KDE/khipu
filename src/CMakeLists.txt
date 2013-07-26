@@ -12,7 +12,7 @@ include_directories (
   ..
 )
 
-set ( khipu_SRCS
+set ( libkhipu_SRCS
   dictionaryitem.cpp
   dictionariesmodel.cpp
 
@@ -37,7 +37,7 @@ set ( khipu_SRCS
 
 )
 
-kde4_add_ui_files ( khipu_SRCS
+kde4_add_ui_files ( libkhipu_SRCS
   dictionarycollection.ui
   plotsbuilder.ui
   plotseditor.ui
@@ -48,9 +48,9 @@ kde4_add_ui_files ( khipu_SRCS
   dashboard.ui
 )
 
-kde4_add_library(libkhipu ${khipu_SRCS})
+kde4_add_library(libkhipu ${libkhipu_SRCS})
 
-kde4_add_executable ( khipu ${khipu_SRCS} )
+kde4_add_executable ( khipu main.cpp )
 
 target_link_libraries( khipu
   ${KDE4_KFILE_LIBS}
@@ -63,6 +63,7 @@ target_link_libraries( khipu
   ${QT_QTOPENGL_LIBRARY}
   ${QT_QTXML_LIBRARY}
   ${QTMML_LIBRARY}
+  libkhipu
 )
 
 target_link_libraries( libkhipu
