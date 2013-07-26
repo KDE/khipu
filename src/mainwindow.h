@@ -111,9 +111,6 @@ private slots:
     void buildCartesianParametricSurface();
     void buildCylindricalGraphSurface();
     void buildSphericalGraphSurface();
-    
-    void updateTittleWhenChangeDocState();
-    void updateTittleWhenOpenSaveDoc();
 
 private:
     KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);

@@ -111,7 +111,6 @@ MainWindow::MainWindow(QWidget *parent)
     setupToolBars();
     activateDashboardUi();
     
-    updateTittleWhenOpenSaveDoc();
     updateRecentFileList();
 }
 
@@ -1228,27 +1227,6 @@ void MainWindow::buildSphericalGraphSurface()
     
     m_spacePlotsDock->buildSphericalGraphSurface(true);
     
-}
-
-
-void MainWindow::updateTittleWhenChangeDocState()
-{
-//     QString paletteFileName = m_dashboard->fileName();
-// 
-//     if (paletteFileName.isEmpty())
-//         paletteFileName = i18n("Untitled");
-// 
-//     setWindowTitle(QString("%1 - GPLACS " + i18n("[modificado]")).arg(paletteFileName));
-}
-
-void MainWindow::updateTittleWhenOpenSaveDoc()
-{
-//     QString paletteFileName = m_dashboard->fileName();
-// 
-//     if (paletteFileName.isEmpty())
-//         paletteFileName = i18n("Untitled");
-// 
-//     setWindowTitle(QString("%1 - GPLACS").arg(paletteFileName));
 }
 
 void MainWindow::createPlot(const QModelIndex &ind) {
