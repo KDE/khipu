@@ -33,6 +33,7 @@
 #include <QtGui/QToolButton>
 #include <QtGui/QMenu>
 #include <QDebug>
+#include <QClipboard>
 
 //KDE includes
 #include <kpushbutton.h>
@@ -343,8 +344,7 @@ void Dashboard::exportSpaceSnapshot(Dimension dim)
 
 void Dashboard::copySpace2DSnapshotToClipboard()
 {
-//     m_widget->space2D->copyImageToClipboard();
-
+    view2d()->snapshotToClipboard();
 }
 
 void Dashboard::removeSpace(const QModelIndex& index)
@@ -352,10 +352,10 @@ void Dashboard::removeSpace(const QModelIndex& index)
 
 }
 
-
 void Dashboard::copySpace3DSnapshotToClipboard()
 {
-//     m_widget->space3D->copyImageToClipboard();
+    QClipboard *cb = QApplication::clipboard();
+    cb->setImage(view3d()->grabFrameBuffer(true));
 }
 
 void Dashboard::filterByText(const QString &text)

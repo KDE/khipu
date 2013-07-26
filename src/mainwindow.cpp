@@ -996,18 +996,11 @@ void MainWindow::activateSpaceUi()
 void MainWindow::copySnapshot()
 {
     DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
-
     switch (space->dimension())
     {
-        case Analitza::Dim2D: m_dashboard->view2d()->snapshotToClipboard(); break;
-        case Analitza::Dim3D:
-        {
-            QClipboard *cb = QApplication::clipboard();
-            cb->setImage(m_dashboard->view3d()->grabFrameBuffer(true));
-            break;
-        }
+        case Analitza::Dim2D: m_dashboard->copySpace2DSnapshotToClipboard(); break;
+        case Analitza::Dim3D: m_dashboard->copySpace3DSnapshotToClipboard(); break;
     }
-    
     statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
 }
 
