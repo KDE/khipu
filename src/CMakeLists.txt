@@ -34,7 +34,6 @@ set ( khipu_SRCS
 
   dashboard.cpp
   mainwindow.cpp
-  main.cpp
 
 )
 
