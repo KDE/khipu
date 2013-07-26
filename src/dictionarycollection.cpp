@@ -29,10 +29,10 @@
 
 //Qt includes
 #include <QDir>
-#include <QFileDialog>
 
 //KDE includes
 #include <KStandardDirs>
+#include <KFileDialog>
 
 //local includes
 #include "datastore.h"
@@ -159,7 +159,10 @@ void DictionaryCollection::addPlotInSpace()
 
 void DictionaryCollection::importDictionary()
 {
-    QString path = QFileDialog::getOpenFileName(this, tr("Open a .plots file"),"/",tr("Text files (*.plots)"));
+    KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
+                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
+
+    QString path=url.toLocalFile();
     if(path==0){
         qDebug() << "error in opening file...may be path not found." ;
         return;
