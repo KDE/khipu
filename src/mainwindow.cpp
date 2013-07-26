@@ -411,7 +411,7 @@ void MainWindow::autoSaveFile() {
     if(m_fileLocation.isEmpty())
         saveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
     else {
-        QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".autosave"));
+        QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".khipu.autosave"));
         saveFile(path);
     }
 }
@@ -747,7 +747,7 @@ bool MainWindow::saveFile(const KUrl &url) {
         QFile tempautosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
         tempautosaveFile.remove();
 
-        QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".autosave"));
+        QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".khipu.autosave"));
         QFile currentautosaveFile(path);
         currentautosaveFile.remove();
         return false;
@@ -842,7 +842,7 @@ QByteArray json = serializer.serialize(plotspace_list);
         qDebug() << "path: " << url.toLocalFile();
 
         // saved action clicked by the user , this is not the autosave case
-        QString currentautosavepath=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".autosave"));
+        QString currentautosavepath=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".khipu.autosave"));
         if(url.toLocalFile()!=QDir::homePath().append("/.Temp.khipu.autosave") && url.toLocalFile()!=currentautosavepath) {
             if(!file.open(QFile::WriteOnly | QFile::Text)){
                 qDebug() << "Error in writing";
