@@ -27,7 +27,7 @@
 #include <analitzaplot/functiongraph.h>
 #include <analitzaplot/plotsmodel.h>
 
-//KhipuLib includes
+//libkhipu includes
 #include <datastore.h>
 #include <dictionariesmodel.h>
 #include <dictionaryitem.h>

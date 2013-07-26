@@ -49,7 +49,7 @@ kde4_add_ui_files ( khipu_SRCS
   dashboard.ui
 )
 
-kde4_add_library(khipuLib ${khipu_SRCS})
+kde4_add_library(libkhipu ${khipu_SRCS})
 
 kde4_add_executable ( khipu ${khipu_SRCS} )
 
@@ -66,7 +66,7 @@ target_link_libraries( khipu
   ${QTMML_LIBRARY}
 )
 
-target_link_libraries( khipuLib
+target_link_libraries( libkhipu
   ${KDE4_KFILE_LIBS}
   ${KDE4_KIO_LIBS}
   ${KDE4_KNEWSTUFF3_LIBS}

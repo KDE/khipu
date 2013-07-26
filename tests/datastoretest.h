@@ -22,7 +22,7 @@
 //Qt includes
 #include <QtCore/QObject>
 
-//khipuLib includes
+//libkhipu includes
 #include <datastore.h>
 
 /**
