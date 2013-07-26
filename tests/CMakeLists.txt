@@ -1,4 +1,13 @@
-set(testLibs ${QT_QTXML_LIBRARY} ${QT_QTTEST_LIBRARY} ${QT_QTGUI_LIBRARY} ${KDE4_KDECORE_LIBS})
+set(testLibs
+    ${ANALITZA_LIBRARY}
+    ${ANALITZAGUI_LIBRARY}
+    ${ANALITZAPLOT_LIBRARY}
+    ${QT_QTXML_LIBRARY}
+    ${QT_QTTEST_LIBRARY}
+    ${QT_QTGUI_LIBRARY}
+    ${KDE4_KDECORE_LIBS}
+    libkhipu
+)
 
 include_directories (
   ${CMAKE_SOURCE_DIR}
@@ -18,18 +27,12 @@ kde4_add_unit_test(dictionarycollectiontest dictionarycollectiontest.cpp)
 
 target_link_libraries(datastoretest
   ${testLibs}
-  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
-  libkhipu
 )
 
 target_link_libraries(persistancefiletest
   ${testLibs}
-  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
-  libkhipu
 )
 
 target_link_libraries(dictionarycollectiontest
   ${testLibs}
-  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
-  libkhipu
 )
