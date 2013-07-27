@@ -103,14 +103,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
     connect(m_dashboard,SIGNAL(showFilter(bool)),m_filter,SLOT(setFilterVisible(bool)));
 
-
     toolBar("mainToolBar")->addWidget(m_filter);
-
-
     setCentralWidget(m_dashboard);
-    setupToolBars();
     activateDashboardUi();
-    
     updateRecentFileList();
 }
 
@@ -385,15 +380,15 @@ void MainWindow::lastPageActClicked()
     }
 }
 
-void MainWindow::clearRecentFileList() {
+void MainWindow::clearRecentFileList()
+{
     KConfig config;
     KConfigGroup recentFiles(&config,"file_Recent");
     recentFiles.deleteEntry("recentFileList");
 }
 
-void MainWindow::setMenuBarVisibility(bool isShow) {
-    qDebug() << "value : " << isShow;
-
+void MainWindow::setMenuBarVisibility(bool isShow)
+{
     if(isShow) {
         menuBar()->show();
     }
@@ -403,7 +398,8 @@ void MainWindow::setMenuBarVisibility(bool isShow) {
     }
 }
 
-void MainWindow::autoSaveFile() {
+void MainWindow::autoSaveFile()
+{
     updateThumbnail();
 
     //no filename available, need to save it as temp
@@ -415,7 +411,8 @@ void MainWindow::autoSaveFile() {
     }
 }
 
-void MainWindow::updateThumbnail() {
+void MainWindow::updateThumbnail()
+{
 
     if (m_document->spacesModel()->rowCount()==0)
         return;
@@ -453,14 +450,6 @@ void MainWindow::updateThumbnail() {
     thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
     space->setThumbnail(thumbnail);
 }
-
-void MainWindow::setupToolBars()
-{
-//     hideSpaceToolBar();
-    
-//     qDebug() << action("add_space2d")->isCheckable();
-}
-
 
 bool MainWindow::queryClose()
 {
@@ -500,7 +489,8 @@ bool MainWindow::queryClose()
     return true;
 }
 
-void MainWindow::checkforAutoSavedFile(){
+void MainWindow::checkforAutoSavedFile()
+{
     QString current = QDir::homePath();
     QString path = current.append("/.Temp.khipu.autosave");
     if(openFile(path)) {
@@ -573,8 +563,6 @@ void MainWindow::updateRecentFileList()
 
 bool MainWindow::openFileClicked()
 {
-    qDebug() << "in opening file";
-
     KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
                      i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
 
@@ -593,15 +581,14 @@ bool MainWindow::openFileClicked()
         return openFile(url);
 }
 
-bool MainWindow::openFile(const KUrl &url) {
-
-    qDebug() << url.toLocalFile() << "...opened.";
-
+bool MainWindow::openFile(const KUrl &url)
+{
     if(url.path().isEmpty())
     return false;
 
     QFile file;
-    if (!url.isLocalFile()) {
+    if (!url.isLocalFile())
+    {
         if(!KIO::NetAccess::exists(url,KIO::NetAccess::SourceSide,this))
         {
             KMessageBox::sorry(this,i18n("The file does not exist."));
@@ -618,21 +605,22 @@ bool MainWindow::openFile(const KUrl &url) {
     else
         file.setFileName(url.toLocalFile());
 
-    if(url.toLocalFile()==QDir::homePath().append("/.Temp.khipu.autosave")) {
+    if(url.toLocalFile()==QDir::homePath().append("/.Temp.khipu.autosave"))
+    {
         // ask for reloading the autosave file
         if(!file.exists())
             return false;
         int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved, last time ?"),i18n("Autosaved .khipu file"));
 
-        if(answer!=KMessageBox::Yes) {
+        if(answer!=KMessageBox::Yes)
+        {
             QFile file(url.toLocalFile());
             if(file.remove())
-                qDebug() << "removed...";
-            return false;
+                return false;
         }
     }
-
-    else {
+    else
+    {
           QString path=url.toLocalFile();
           // not , current autosave !
           // if(!path.contains(".khipu.autosave")) {
@@ -694,28 +682,29 @@ bool MainWindow::openFile(const KUrl &url) {
     return true;
 }
 
-QPixmap MainWindow::toPixmap(const QByteArray &bytearray) {
-
+QPixmap MainWindow::toPixmap(const QByteArray &bytearray)
+{
     QByteArray *imageArray = new QByteArray(QByteArray::fromBase64(bytearray));
     QBuffer imagebuffer(imageArray);
     imagebuffer.open(QIODevice::ReadOnly);
     QImage img;
     img.loadFromData(imagebuffer.data(), "PNG");
     return QPixmap::fromImage(img);
-
 }
 
-void MainWindow::saveClicked() {
-
-    if(m_fileLocation=="") {// Intially when the data is not saved. We would not have the actual file path.
-      KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
-    m_fileLocation =url.toLocalFile();
+void MainWindow::saveClicked()
+{
+    // Intially when the data is not saved. We would not have the actual file path.
+    if(m_fileLocation=="") {
+        KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+        m_fileLocation =url.toLocalFile();
     }
 
     saveFile(m_fileLocation);
 }
 
-bool MainWindow::closeClicked(){
+bool MainWindow::closeClicked()
+{
     QFile autosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
     if(autosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
@@ -736,7 +725,8 @@ bool MainWindow::closeClicked(){
     return true; // just close the application.
 }
 
-bool MainWindow::saveAsClicked() {
+bool MainWindow::saveAsClicked()
+{
     KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
     if(saveFile(url.toLocalFile())) {
         m_fileLocation =url.toLocalFile();
@@ -745,9 +735,8 @@ bool MainWindow::saveAsClicked() {
     return false;
 }
 
-bool MainWindow::saveFile(const KUrl &url) {
-
-    qDebug() << "in save file : " << url.toLocalFile();
+bool MainWindow::saveFile(const KUrl &url)
+{
     QMap<DictionaryItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
     // just starting #no plot is available so no need to save
@@ -890,14 +879,14 @@ QByteArray json = serializer.serialize(plotspace_list);
 }
 
 
-void MainWindow::changeTitleBar(const QString& path) {
+void MainWindow::changeTitleBar(const QString& path)
+{
     window()->setWindowTitle(QFileInfo(path).fileName().append(" - Khipu"));
 }
 
-void MainWindow::savePlot(){
-
+void MainWindow::savePlot()
+{
     Dimension dim = m_document->spacesModel()->space(m_document->currentSpace())->dimension();
-
     m_dashboard->exportSpaceSnapshot(dim);
 }
 
@@ -1002,11 +991,6 @@ void MainWindow::copySnapshot()
         case Analitza::Dim3D: m_dashboard->copySpace3DSnapshotToClipboard(); break;
     }
     statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
-}
-
-void MainWindow::exportSnapShot()
-{
-
 }
 
 void MainWindow::setVisibleDictionary()
@@ -1135,8 +1119,8 @@ void MainWindow::goHome()
     activateDashboardUi();
 }
 
-QByteArray MainWindow::thumbnailtoByteArray(const QPixmap &thumbnail){
-
+QByteArray MainWindow::thumbnailtoByteArray(const QPixmap &thumbnail)
+{
     QImage image = thumbnail.toImage();
     QByteArray imageArray;
     QBuffer buffer(&imageArray);
@@ -1158,19 +1142,16 @@ void MainWindow::buildCartesianImplicitCurve()
     m_spacePlotsDock->buildCartesianImplicitCurve(true); 
 }
 
-
 void MainWindow::buildCartesianParametricCurve2D()
 {
     addSpace2D();
-    m_spacePlotsDock->buildCartesianParametricCurve2D(true);
-    
+    m_spacePlotsDock->buildCartesianParametricCurve2D(true);    
 }
 
 void MainWindow::buildPolarGraphCurve()
 {
     addSpace2D();
     m_spacePlotsDock->buildPolarGraphCurve(true);
-    
 }
 
 
@@ -1178,52 +1159,40 @@ void MainWindow::buildCartesianParametricCurve3D()
 {
     addSpace3D();
     m_spacePlotsDock->buildCartesianParametricCurve3D(true);
-    
 }
-
 
 void MainWindow::buildCartesianGraphSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCartesianGraphSurface(true);
-    
+    m_spacePlotsDock->buildCartesianGraphSurface(true);    
 }
-
 
 void MainWindow::buildCartesianImplicitSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCartesianImplicitSurface(true);
-    
+    m_spacePlotsDock->buildCartesianImplicitSurface(true);   
 }
-
 
 void MainWindow::buildCartesianParametricSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCartesianParametricSurface(true);
-    
+    m_spacePlotsDock->buildCartesianParametricSurface(true);   
 }
-
 
 void MainWindow::buildCylindricalGraphSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCylindricalGraphSurface(true);
-    
+    m_spacePlotsDock->buildCylindricalGraphSurface(true);    
 }
-
 
 void MainWindow::buildSphericalGraphSurface()
 {
-    addSpace3D();
-    
+    addSpace3D();   
     m_spacePlotsDock->buildSphericalGraphSurface(true);
-    
 }
 
-void MainWindow::createPlot(const QModelIndex &ind) {
-
+void MainWindow::createPlot(const QModelIndex &ind)
+{
     QJson::Parser parser;
     QVariantMap map = m_parsedSpaceDetails.at(ind.row()).toMap(); // corresponding space entry
 

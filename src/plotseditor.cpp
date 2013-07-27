@@ -125,7 +125,6 @@ void ComboBox::paintEvent(QPaintEvent* e)
     opt.initFrom(this);
 
     mathMLRenderer.paint(&p, opt.rect.topLeft()+QPoint(4,4));
-
 }
 
 void ComboBox::setupCache(const QString& currtext)
@@ -273,7 +272,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 
     this->installEventFilter(this);
     m_widget->f->installEventFilter(this);
-
 }
 
 bool PlotsEditor::eventFilter(QObject *object, QEvent *event)
@@ -305,7 +303,6 @@ void PlotsEditor::setDocument(DataStore* doc)
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
     //m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->space(spaceidx)->dimension());
-    
     switch (m_document->spacesModel()->space(spaceidx)->dimension())
     {
         case Dim2D:
@@ -313,21 +310,15 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
             m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve |
                                         PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D |
                                         PlotsBuilder::PolarGraphCurve);
-            
             m_widget->styleWidget->hide();
-            
             break;
         }
-
         case Dim3D:
         {
-
             m_widget->builder->setupTypes(PlotsBuilder::CartesianParametricCurve3D | PlotsBuilder::CartesianGraphSurface |
                                         PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
                                         PlotsBuilder::SphericalGraphSurface);
-
             m_widget->styleWidget->show();
-            
             break;
         }
     }
@@ -395,11 +386,10 @@ void PlotsEditor::cancelEditor()
     }
     else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
         showTypes();
-
 }
 
-void PlotsEditor::showAxis(int state) {
-
+void PlotsEditor::showAxis(int state)
+{
     if (state==0){
         if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
             emit updateGridcolor(QColor(255,255,255)); // Axis willnot be visible when the color will be white.
@@ -407,7 +397,6 @@ void PlotsEditor::showAxis(int state) {
             emit updateGridcolor(QColor(Qt::black));  // Axis willnot be visible when the color will be black.
     }
     else if (state==2){
-
         if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
             emit updateGridcolor(QColor(230,230,230)); // Axis will be visible when the color will be grey.
         else
@@ -418,13 +407,11 @@ void PlotsEditor::showAxis(int state) {
 void PlotsEditor::addPlots()
 {
     m_cancelIsGoHome = false;
-
     showTypes();
 }
 
 void PlotsEditor::editPlot(const QModelIndex &index)
 {
-
     // comes when double clicked on the items in the list shown with checkbox.!
     isEditing = true;
 
@@ -580,7 +567,6 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             m_widget->maxy->setExpression(interval.second);
         }
     }
-
 }
 
 void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)

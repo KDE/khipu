@@ -74,8 +74,6 @@ public slots:
     
 private slots: // better names
     void setupInfo();
-    
-    
     void clearInfoWidget();
     
 private:
@@ -90,5 +88,3 @@ private:
 Q_DECLARE_OPERATORS_FOR_FLAGS(PlotsBuilder::PlotTypes)
 
 #endif 
-
-

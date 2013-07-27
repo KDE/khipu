@@ -80,7 +80,6 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
 
     //BEGIN setup icons
     #define setTypeIcon(tname, iconame) m_widget->build##tname##Icon->setPixmap(KIcon( iconame ).pixmap(16,16));
-    
     setTypeIcon(CartesianGraphCurve, "newfunction");
     setTypeIcon(CartesianImplicitCurve, "newimplicit");
     setTypeIcon(CartesianParametricCurve2D, "newparametric");
@@ -91,9 +90,7 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     setTypeIcon(CartesianParametricSurface, "draw-donut");
     setTypeIcon(CylindricalGraphSurface, "newcylindrical");
     setTypeIcon(SphericalGraphSurface, "newspherical");
-    
     //END setup icons
-
 }
 
 bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)
@@ -136,7 +133,6 @@ bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)
             return false;
         }
     }
-
     setupInfo();
     return false;
 }
@@ -149,10 +145,8 @@ PlotsBuilder::~PlotsBuilder()
 void PlotsBuilder::setupTypes(PlotsBuilder::PlotTypes t)
 {
     m_types = t;
-    
     setupTypes();
 }
-
 
 void PlotsBuilder::mapConnection(PlotsBuilder::PlotType pt, QObject* recvr, const char* slot)
 {
@@ -160,6 +154,7 @@ void PlotsBuilder::mapConnection(PlotsBuilder::PlotType pt, QObject* recvr, cons
     
     switch (pt)
     {
+        //2D
         caseType(CartesianGraphCurve);
         caseType(CartesianImplicitCurve);
         caseType(CartesianParametricCurve2D);
@@ -178,6 +173,7 @@ void PlotsBuilder::showAllTypes()
 {
     #define showType(tname) m_widget->build##tname->show(); 
     
+    //2D
     showType(CartesianGraphCurve);
     showType(CartesianGraphCurve);
     showType(CartesianImplicitCurve);
@@ -203,6 +199,7 @@ void PlotsBuilder::hideAllTypes()
 {
     #define hideType(tname) m_widget->build##tname->hide(); 
     
+    //2D
     hideType(CartesianGraphCurve);
     hideType(CartesianGraphCurve);
     hideType(CartesianImplicitCurve);
@@ -228,6 +225,7 @@ void PlotsBuilder::setupInfo()
 {
     switch (m_currentTyppe)
     {
+    //2D
     case(CartesianGraphCurve):
         m_example = Analitza::Expression("x->sin(x)");
         break;
@@ -276,6 +274,7 @@ void PlotsBuilder::setupTypes()
 {
     #define testType(tname) if (m_types.testFlag( tname )) m_widget->build##tname->show(); else m_widget->build##tname->hide();
 
+    //2D
     testType(CartesianGraphCurve);
     testType(CartesianGraphCurve);
     testType(CartesianImplicitCurve);

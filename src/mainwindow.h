@@ -81,7 +81,6 @@ private slots:
     void activateDashboardUi();
     void activateSpaceUi();
     void copySnapshot();
-    void exportSnapShot();
     bool closeClicked();
     void autoSaveFile();
 
@@ -116,7 +115,6 @@ private:
     KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
     void setupDocks();
     void setupActions();
-    void setupToolBars();
     bool queryClose();
     void changeTitleBar(const QString& path);
     void setCurrentFile(const QString &fileName);

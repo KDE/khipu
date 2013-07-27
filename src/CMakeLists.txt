@@ -15,7 +15,6 @@ include_directories (
 set ( libkhipu_SRCS
   dictionaryitem.cpp
   dictionariesmodel.cpp
-
   dictionarycollection.cpp
   plotsbuilder.cpp
   plotseditor.cpp
@@ -24,17 +23,12 @@ set ( libkhipu_SRCS
   spaceinformation.cpp
   spaceoptions.cpp
   filter.cpp
-
   spaceplotsproxymodel.cpp
-  
   spacesdelegate.cpp
-
   datastore.cpp
   document.cpp
-
   dashboard.cpp
   mainwindow.cpp
-
 )
 
 kde4_add_ui_files ( libkhipu_SRCS
@@ -43,7 +37,6 @@ kde4_add_ui_files ( libkhipu_SRCS
   plotseditor.ui
   spaceinformation.ui
   spaceoptions.ui
-#   spaceeditor.ui
   filter.ui
   dashboard.ui
 )

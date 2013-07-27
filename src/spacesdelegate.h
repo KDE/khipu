@@ -103,7 +103,7 @@ public:
 
 public slots:
     //NOTE ejecutar este metodo cuando se a cambiado de filtro en el proxy ... es decir ejecutarlo desde afuera de esta clase
-        void filterEvent(); // se supone que el proxy emite esta signal layoutchanged y este slots debe ocultar los botnes y editores
+    void filterEvent(); // se supone que el proxy emite esta signal layoutchanged y este slots debe ocultar los botnes y editores
     void setCurrentSpace(const QModelIndex &index, const QModelIndex &oldcurent = QModelIndex());
 
 private: // TODO hacer public
@@ -143,8 +143,6 @@ private slots:
     void exportSpace();
     
 private:
-    
-    
     QWidget *m_operationBar;
     LineEdit *m_titleEditor;
     

@@ -714,7 +714,8 @@ void SpacesDelegate::removeCurrentSpace()
 
 }
 
-void SpacesDelegate::setDocument(DataStore *doc) {
+void SpacesDelegate::setDocument(DataStore *doc)
+{
     m_document=doc;
 }
 
@@ -736,9 +737,7 @@ void SpacesDelegate::editCurrentSpace()
         m_titleEditor->move(rect.left()/*+(PreviewWidth-m_operationBar->width())/2*/,rect.top() + rect.height() - m_operationBar->height() - .8*m_titleEditor->height());
         m_titleEditor->selectAll();
         m_titleEditor->setFocus();
-        m_titleEditor->show();
-        
-        
+        m_titleEditor->show();        
     }
     else
     {
@@ -751,7 +750,6 @@ void SpacesDelegate::showCurrentSpace()
     if (!itemView()->currentIndex().isValid()) return;
     
     emit showSpace(itemView()->currentIndex());
-
 }
 
 void SpacesDelegate::finishEditingTitle(const QString &newtitle )

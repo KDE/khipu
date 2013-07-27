@@ -98,11 +98,6 @@ DataStore::~DataStore()
 
 bool DataStore::isMapped(DictionaryItem* space, PlotItem* plot) const
 {
-//     qDebug() << space << plot << m_maps.values(space).contains(plot);
-//     return true;//m_maps.values(space).contains(plot);
-
-//     qDebug() << m_maps;
-
     return m_maps.values(space).contains(plot);
 }
 
@@ -112,14 +107,12 @@ void DataStore::setCurrentSpace(int spaceidx)
     {
 //TODO aser  limites
         m_currentSpace = spaceidx;
-
-//     qDebug() << m_currentSpace;
-
         //cambiar el filtro tambien hacer esto en el dashboard pero solo al agregar un nuevo space
         m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->space(spaceidx)->dimension());
         m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->space(spaceidx));
     }
 }
+
 //esto se dispara cuendo se interta un plot al modelo total
 void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
 {
@@ -138,7 +131,6 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
         case Polar: i = 2; break;
     }
     emit gridStyleChanged(i);
-
 }
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
@@ -153,7 +145,6 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
     }
-
     emit gridStyleChanged(i);
 }
 
@@ -189,7 +180,6 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
 //     m_maps.remove(m_maps.key(m_plotsModel->item(start)));
 // como es multimap se debe hacer una busqueda lineal
 
-//     qDebug() << realrow << proxyindex;
     QMap<DictionaryItem*, PlotItem*>::iterator i = m_maps.begin();
 
     while (i != m_maps.end())
@@ -201,15 +191,12 @@ void DataStore::unmapPlot(const QModelIndex & proxyindex )
         }
         ++i;
     }
-
     m_spacePlotsFilterProxyModel->removeRow(proxyindex.row());
-
 }
 
-void DataStore::removeSpace(int row) {
-
+void DataStore::removeSpace(int row)
+{
     m_maps.remove(m_spacesModel->space(row));
-
     m_spacesModel->removeRow(row);
 }
 

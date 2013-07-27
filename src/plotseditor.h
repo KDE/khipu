@@ -150,5 +150,4 @@ private:
     QString m_cacheText; // paint llama a sizehint y se necesita el texto actual para sugerir el size
 };
 
-
 #endif 

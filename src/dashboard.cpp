@@ -317,7 +317,6 @@ void Dashboard::showPlotsView2D()
 
 void Dashboard::showPlotsView3D()
 {
-//     qDebug() << "3ddd";
     m_widget->plotsViews->setCurrentIndex(1);
 }
 
@@ -438,11 +437,8 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 
 void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
 {
-//     qDebug() << start << "??";
-
     m_document->currentSelectionModel()->clear();
     m_document->currentSelectionModel()->setCurrentIndex(m_document->currentPlots()->index(start,0), QItemSelectionModel::SelectCurrent );
-
 }
 
 void Dashboard::setGridColor(const QColor &color) // used for making the axis visible/invisible

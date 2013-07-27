@@ -30,8 +30,6 @@ SpaceInformation::SpaceInformation(QWidget* parent): QDockWidget(parent)
     MainWindow *window = static_cast<MainWindow *>(parent);
     connect(m_widget->spaceTitle,SIGNAL(textChanged(QString)),window,SLOT(setCurrentSpaceTitle(QString)));
     connect(m_widget->spaceDescription,SIGNAL(textChanged(QString)),window,SLOT(setCurrentSpaceDesc(QString)));
-
-
 }
 
 SpaceInformation::~SpaceInformation()

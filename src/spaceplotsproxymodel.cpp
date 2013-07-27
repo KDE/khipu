@@ -36,7 +36,6 @@ PlotsProxyModel::PlotsProxyModel(QObject *parent)
 
 PlotsProxyModel::~PlotsProxyModel()
 {
-
 }
 
 void PlotsProxyModel::setFilterSpaceDimension(Dimensions dimension)
