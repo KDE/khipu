@@ -886,6 +886,8 @@ void MainWindow::changeTitleBar(const QString& path)
 
 void MainWindow::savePlot()
 {
+    if(m_document->currentSpace()==-1)
+        return;
     Dimension dim = m_document->spacesModel()->space(m_document->currentSpace())->dimension();
     m_dashboard->exportSpaceSnapshot(dim);
 }
