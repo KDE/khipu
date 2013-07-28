@@ -928,6 +928,7 @@ void MainWindow::activateDashboardUi()
     action("go_home")->setVisible(false);
     //tools
     action("copy_snapshot")->setVisible(false);
+    action("save_plotImage")->setVisible(false);
 //     action("export_snapshot")->setVisible(false);
     
     //toolbars
@@ -966,6 +967,7 @@ void MainWindow::activateSpaceUi()
     action("go_home")->setVisible(true);    
     //tools
     action("copy_snapshot")->setVisible(true);
+    action("save_plotImage")->setVisible(true);
 //     action("export_snapshot")->setVisible(true);
     
     //toolbars
@@ -1015,6 +1017,7 @@ void MainWindow::setVisibleDictionary()
         
         //tools
         action("copy_snapshot")->setVisible(false);
+        action("save_plotImage")->setVisible(false);
 //         action("export_snapshot")->setVisible(false);
         
         //toolbars
