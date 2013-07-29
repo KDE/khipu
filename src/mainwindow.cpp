@@ -706,7 +706,10 @@ void MainWindow::saveClicked()
 bool MainWindow::closeClicked()
 {
     QFile autosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
-    if(autosaveFile.exists()) {
+    QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".khipu.autosave"));
+    QFile currentautosaveFile(path);
+
+    if(autosaveFile.exists() || currentautosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
                                                     i18n("The current file contains some unsaved work.Do you want to save it?"),
                                                     i18n("Warining: Unsaved changes"));
@@ -853,7 +856,6 @@ QByteArray json = serializer.serialize(plotspace_list);
             // remove the auto save file (can be improved later) -> better to use function (TODO)
             QFile tempautosaveFile(QDir::homePath().append("/.Temp.khipu.autosave"));
             tempautosaveFile.remove();
-
             QFile currentautosaveFile(currentautosavepath);
             currentautosaveFile.remove();
 
