@@ -32,12 +32,10 @@
 
 //local includes
 #include "plotseditor.h"
-#include "document.h"
 
 class SpaceItem;
 class QLabel;
 class QTreeView;
-class Document;
 
 class QSortFilterProxyModel;
 class QItemSelection;

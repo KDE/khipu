@@ -42,7 +42,6 @@ class SpacePlotsFilterProxyModel;
 class PlotsEditor;
 class KIcon;
 class KAction;
-class Document;
 class KUrl;
 class KToggleAction;
 

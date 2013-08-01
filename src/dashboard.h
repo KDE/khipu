@@ -33,14 +33,12 @@
 
 //local includes
 #include "plotseditor.h"
-#include "document.h"
 
 class DictionariesViewer;
 class KWidgetItemDelegate;
 class SpacesDelegate;
 class SpacesDetailsViewDelegate;
 class QTreeView;
-class Document;
 
 namespace Ui
 {

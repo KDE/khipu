@@ -66,7 +66,6 @@
 #include "dictionaryitem.h"
 #include "dictionariesmodel.h"
 #include "dashboard.h"
-#include "document.h"
 #include "plotseditor.h"
 #include "datastore.h"
 #include "plotsbuilder.h"

@@ -37,7 +37,6 @@ class PlotsModel;
 }
 
 class DataStore;
-class Document;
 class QStackedWidget;
 class QTreeView;
 class PlotsView;

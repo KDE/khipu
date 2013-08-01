@@ -27,7 +27,6 @@ set ( libkhipu_SRCS
   spaceplotsproxymodel.cpp
   spacesdelegate.cpp
   datastore.cpp
-  document.cpp
   dashboard.cpp
   mainwindow.cpp
 )
