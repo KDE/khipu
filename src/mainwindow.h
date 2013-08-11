@@ -123,6 +123,8 @@ private:
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
     void closeEvent(QCloseEvent * event);
     void updateThumbnail();
+    QString getCurrentAutoSavepath(const QString& path);
+    QString getDefaultAutoSavepath();
 
 private:
     DataStore *m_document;
