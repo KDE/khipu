@@ -43,8 +43,6 @@
 #include <KDE/KFileDialog>
 #include <KDE/KMessageBox>
 #include <KIO/NetAccess>
-#include <KDE/KMessageBox>
-#include <KDE/KStandardDirs>
 #include <KToolBar>
 #include "dictionariesmodel.h"
 #include <KMenuBar>

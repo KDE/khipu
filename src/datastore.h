@@ -40,7 +40,7 @@ class DataStore : public QObject
     Q_OBJECT
 
 public:
-    DataStore(QObject *parent = 0);
+    explicit DataStore(QObject *parent = 0);
     ~DataStore();
 
     //es necesario para casos en donde no se esta dentro de un slot que tiene el space actua: ejemplo mainwnd::go_slot

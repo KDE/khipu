@@ -88,7 +88,7 @@ class FunctionLibraryFilterProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 
 public:
-    FunctionLibraryFilterProxyModel(QObject *parent = 0);
+    explicit FunctionLibraryFilterProxyModel(QObject *parent = 0);
 
     QStringList filterArguments() const
     {

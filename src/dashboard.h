@@ -52,7 +52,7 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 
     public:
-        SpacesFilterProxyModel(QObject *parent = 0);
+        explicit SpacesFilterProxyModel(QObject *parent = 0);
 
         void setFilterDimension(Analitza::Dimensions dimension);
 
@@ -75,7 +75,7 @@ class Dashboard : public QStackedWidget
 
 public:
 
-    Dashboard(QWidget *parent = 0);
+    explicit Dashboard(QWidget *parent = 0);
     ~Dashboard();
 
     void setDocument(DataStore *doc);

@@ -30,7 +30,7 @@ class Document : public QObject
     Q_OBJECT
 
 public:
-    Document(QObject *parent = 0);
+    explicit Document(QObject *parent = 0);
     ~Document();
     
     KUrl fileUrl() const { return m_fileUrl; }

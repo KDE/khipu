@@ -97,7 +97,7 @@ void FunctionLibraryEdit::emitSelFunction(const QModelIndex &index)
     QString finalLambda;
 
     if (indexArguments.size() == 2)
-        finalLambda = "(" + indexArguments.join(",") + ")" + "->" + indexLambda;
+        finalLambda = "(" + indexArguments.join(",") + ')' + "->" + indexLambda;
     else if (indexArguments.size() == 1)
         finalLambda = indexArguments.at(0) + "->" + indexLambda;
 

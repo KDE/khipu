@@ -60,7 +60,7 @@ QSize ComboBox::sizeHint() const
 {
     //TODO GSOC fix magic numbers heres
 
-    QStringList funcs = m_cacheText.split(",");
+    QStringList funcs = m_cacheText.split(',');
     QString mmlhelper;
 
     foreach(const QString &func, funcs)
@@ -97,7 +97,7 @@ void ComboBox::paintEvent(QPaintEvent* e)
 
     QPainter p(this);
 
-    QStringList funcs = currentText().split(",");
+    QStringList funcs = currentText().split(',');
     QString mmlhelper;
 
     foreach(const QString &func, funcs)
@@ -143,7 +143,7 @@ FunctionDelegate::FunctionDelegate(ComboBox* parent): QStyledItemDelegate(parent
 
 QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    QStringList funcs = index.data().toString().split(",");
+    QStringList funcs = index.data().toString().split(',');
     QString mmlhelper;
 
     foreach(const QString &func, funcs)
@@ -163,7 +163,7 @@ QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QMode
 
 void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    QStringList funcs = index.data().toString().split(",");
+    QStringList funcs = index.data().toString().split(',');
     QString mmlhelper;
 
     foreach(const QString &func, funcs)
@@ -690,7 +690,7 @@ void PlotsEditor::savePlot()
     QString name = m_widget->plotName->text();
 
     if (name.isEmpty())
-        name = "f"+QString::number(m_document->currentPlots()->rowCount()+1);
+        name = 'f'+QString::number(m_document->currentPlots()->rowCount()+1);
 
     switch (m_currentType)
     {
@@ -787,7 +787,7 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianParametricCurve2D:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+"}")), Dim2D);
+                                    m_widget->g->expression().toString()+'}')), Dim2D);
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
@@ -808,7 +808,7 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianParametricCurve3D:
         {
-            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+'}')), Dim3D);
             if (req.canDraw())
             {
                 FunctionGraph *item = 0;
@@ -830,7 +830,7 @@ void PlotsEditor::savePlot()
 
         case PlotsBuilder::CartesianParametricSurface:
         {
-            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
+            PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+'}')), Dim3D);
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
                 if (isEditing) {
@@ -872,7 +872,7 @@ void PlotsEditor::removePlot()
 
 void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)
 {
-    m_currentFunctionGraphs = txt.split(",");
+    m_currentFunctionGraphs = txt.split(',');
 
     m_currentVars = m_currentFunctionGraphs;
 

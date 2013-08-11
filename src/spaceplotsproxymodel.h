@@ -36,7 +36,7 @@ class PlotsProxyModel : public QSortFilterProxyModel
 
     public:
 
-        PlotsProxyModel(QObject *parent = 0);
+        explicit PlotsProxyModel(QObject *parent = 0);
         virtual ~PlotsProxyModel();
 
         int filterSpaceDimension() const { return m_dimension; }
@@ -58,7 +58,7 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
     Q_OBJECT
 
     public:
-        SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = 0);
+        explicit SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = 0);
         virtual ~SpacePlotsFilterProxyModel();
 
         DictionaryItem* filterSpace() const { return m_space; }

@@ -110,11 +110,11 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
 //            Sqrt10Times5,
 //            Sqrt10Times10,
 
-    sym = QString((QChar(0x221A)))+"2";
+    sym = QString((QChar(0x221A)))+'2';
     qreal symval = sqrt(2);
     addTickEntry(sym, sym, symval, 1, 1);
 
-    sym = QString((QChar(0x221A)))+"3";
+    sym = QString((QChar(0x221A)))+'3';
     symval = sqrt(3);
     addTickEntry(sym, sym, symval, 1, 1);
 

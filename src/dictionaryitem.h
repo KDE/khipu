@@ -36,7 +36,7 @@ class DictionaryItem
 friend class DictionariesModel;    
     
 public:
-    DictionaryItem(Analitza::Dimension dimension);
+    explicit DictionaryItem(Analitza::Dimension dimension);
     virtual ~DictionaryItem();
 
     QUuid id() const { return m_id; }

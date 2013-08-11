@@ -77,7 +77,7 @@ class LineEdit : public KLineEdit
     Q_OBJECT
     
 public :
-    LineEdit(QWidget* parent = 0);
+    explicit LineEdit(QWidget* parent = 0);
     
 signals:
     void editingFinished(const QString &newtext);
@@ -95,7 +95,7 @@ public:
     static const int FrameThickness = 5;
     static const int ItemMargin = 4;
 
-    SpacesDelegate(QListView *itemView, QObject *parent = 0);
+    explicit SpacesDelegate(QListView *itemView, QObject *parent = 0);
     ~SpacesDelegate();
     
 public slots:

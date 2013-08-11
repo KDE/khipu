@@ -45,10 +45,3 @@ void Filter::getDimIndex(int index)
         case 2: emit filterByDimension(Analitza::Dim3D); break;
     }
 }
-
-
-
-
-
-    
-    

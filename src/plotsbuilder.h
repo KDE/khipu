@@ -57,7 +57,7 @@ public:
     Q_DECLARE_FLAGS(PlotTypes, PlotType)
     
 
-    PlotsBuilder(QWidget *parent);
+    explicit PlotsBuilder(QWidget *parent);
     ~ PlotsBuilder();
 
     void setupTypes(PlotTypes t);

@@ -34,7 +34,7 @@ friend class DictionaryItem;
 Q_OBJECT
 
 public:
-    DictionariesModel(QObject *parent=0);
+    explicit DictionariesModel(QObject *parent=0);
 
     Qt::ItemFlags flags ( const QModelIndex & index ) const;
     
