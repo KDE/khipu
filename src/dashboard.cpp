@@ -245,7 +245,7 @@ void Dashboard::goHome()
 {
     setCurrentIndex(0);
     m_widget->views->setCurrentIndex(0);
-    m_widget->plotsViewOptions->setCurrentIndex(0);
+    //m_widget->plotsViewOptions->setCurrentIndex(0);
 
     emit showFilter(true);
 }
@@ -253,7 +253,7 @@ void Dashboard::goHome()
 void Dashboard::showDictionary()
 {
     m_widget->views->setCurrentIndex(1);
-    m_widget->plotsViewOptions->setCurrentIndex(1);
+//    m_widget->plotsViewOptions->setCurrentIndex(1);
 
     emit showFilter(false);
 }
