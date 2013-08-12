@@ -36,6 +36,7 @@ int main(int argc, char **argv)
 
     about.addAuthor(ki18n("Percy Camilo Triveño Aucahuasi"), ki18n("Main developer"), "percy.camilo.ta@gmail.com");
 
+    about.addCredit(ki18n("Punit Mehta"), ki18n("GSoC-2013 student - Persistance file support. Plot-dictionary support. Worked for application actions,command-line improvements and space filtering. Several bug fixings"), "punit9462@gmail.com");
     about.addCredit(ki18n("Manuel Álvarez Blanco"), ki18n("Thesis mentor - Guide and supervision during project conception. Bibliographical support. Numeric Mathematics and Algorithms support"), "");
     about.addCredit(ki18n("José Ignacio Cuevas Gonzáles"), ki18n("Thesis mentor - Supervision, Product Guide, Product promotion and former Client"), "jose.cuevas@upc.edu.pe");
     about.addCredit(ki18n("Eduardo Fernandini Capurro"), ki18n("Thesis mentor - Supervision, Bibliographical Support, Product Guide and former Client"), "eduardo.fernandini@upc.edu.pe");
