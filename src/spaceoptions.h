@@ -45,6 +45,7 @@ public slots:
     void setDimension(int d); // d muestra opciones para el view2d 3 para el 3d
     void updateTicks();
     void updateAxes();
+    void setWidgetsVisible(bool isWidgetVisible);
 
 signals: //TODO better names for signals
     void updateGridStyle(int i);
@@ -63,7 +64,7 @@ signals: //TODO better names for signals
 private slots:
     void updateScale();
     void setGridStyle(int i);
-    
+
 private:
     void addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue, int tickScaleNumerator, int tickScaleDenominator);
     

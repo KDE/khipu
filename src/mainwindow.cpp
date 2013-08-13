@@ -202,6 +202,9 @@ void MainWindow::setupDocks()
     connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(sceneResized(int)), m_dashboard->view3d(), SLOT(resizeScene(int)));
+
+    connect(m_dashboard, SIGNAL(setDialogSettingsVisible(bool)),m_spaceOptionsDock, SLOT(setWidgetsVisible(bool)));
+
     //connect(m_spaceOptionsDock, SIGNAL(colorindexChanged(int)),
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
@@ -1008,7 +1011,6 @@ void MainWindow::activateSpaceUi()
     m_dictionaryDock->show();
     m_priorAct->setVisible(true);
     m_nextAct->setVisible(true);
-    ///
 }
 
 void MainWindow::copySnapshot()
@@ -1071,6 +1073,7 @@ void MainWindow::addSpace2D()
     m_dashboard->showPlotsView2D();
     m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
     m_filter->setFilterVisible(false);
+    m_spaceOptionsDock->setWidgetsVisible(true);
 }
 
 void MainWindow::addSpace3D()
@@ -1084,6 +1087,7 @@ void MainWindow::addSpace3D()
 
     m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
     m_filter->setFilterVisible(false);
+    m_spaceOptionsDock->setWidgetsVisible(false);
 }
 
 void MainWindow::removeCurrentSpace()

@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "spaceoptions.h"
-#include "ui_spaceoptions.h"
+#include "src/ui_spaceoptions.h"
 
 //KDE includes
 #include <kcolorutils.h>
@@ -265,4 +265,21 @@ void SpaceOptions::updateTicks()
         o|=Qt::Vertical;
     }
     emit ticksShown(o);
+}
+
+void SpaceOptions::setWidgetsVisible(bool isWidgetVisible)
+{
+    m_widget->gridstylecontainer->setVisible(isWidgetVisible);
+    m_widget->moreOptions->setVisible(isWidgetVisible);
+    if(!isWidgetVisible) {
+        m_widget->gridStyle->clear();
+        m_widget->gridStyle->addItem("Lines");
+    }
+    else {
+        m_widget->gridStyle->clear();
+        m_widget->gridStyle->addItem("None");
+        m_widget->gridStyle->addItem("Lines");
+        m_widget->gridStyle->addItem("Polar");
+    }
+    m_widget->backgroundColor->show();
 }

@@ -126,10 +126,12 @@ private slots:
     //los index son del proxy 
     void setCurrentPlot(const QModelIndex & parent, int start, int end);
     void setModelIndex(const QModelIndex & ind);
+
 signals:
     void spaceActivated(int spaceidx); // hacia el mainwind para que prepare los toolbars etc
     void plotRequested(const QModelIndex &ind); //  for requesting the plots when double-clicked on the plot-space thumbnail.
     void showFilter(bool b);
+    void setDialogSettingsVisible(bool b);
 
 private:
     void setupWidget();

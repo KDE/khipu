@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "dashboard.h"
-#include "ui_dashboard.h"
+#include "src/ui_dashboard.h"
 
 //Analitza includes
 #include <analitza/variables.h>
@@ -390,10 +390,14 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
     {
     case Dim2D:
         m_widget->plotsViews->setCurrentIndex(0);
+        //set dialog visible
+        emit setDialogSettingsVisible(true);
         break;
 
     case Dim3D:
         m_widget->plotsViews->setCurrentIndex(1);
+        //set dialog invisible
+        emit setDialogSettingsVisible(false);
         break;
     }
 
