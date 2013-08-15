@@ -129,6 +129,7 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
+        default : i=0; break;
     }
     emit gridStyleChanged(i);
 }
@@ -144,6 +145,7 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
         //TODO for 3d
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
+        default : i=0; break;
     }
     emit gridStyleChanged(i);
 }
@@ -156,6 +158,7 @@ void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& b
     {
         case Cartesian: i = 1; break;
         case Polar: i = 2; break;
+        default : i=0; break;
     }
     emit gridStyleChanged(i);
 }

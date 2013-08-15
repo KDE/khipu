@@ -460,6 +460,7 @@ void MainWindow::updateThumbnail()
 
             break;
         }
+        default: break;
     }
 
     thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
@@ -1020,6 +1021,7 @@ void MainWindow::copySnapshot()
     {
         case Analitza::Dim2D: m_dashboard->copySpace2DSnapshotToClipboard(); break;
         case Analitza::Dim3D: m_dashboard->copySpace3DSnapshotToClipboard(); break;
+        default: break;
     }
     statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
 }
@@ -1132,6 +1134,7 @@ void MainWindow::goHome()
 
                 break;
             }
+            default: break;
         }
 
         thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);   

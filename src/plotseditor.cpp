@@ -321,6 +321,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
             m_widget->styleWidget->show();
             break;
         }
+        default: break;
     }
 }
 
@@ -936,6 +937,7 @@ void PlotsEditor::savePlot()
                 errors = req.errors();
             break;
         }
+        default: break;
     }
 
     if (errors.isEmpty())

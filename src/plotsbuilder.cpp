@@ -166,6 +166,7 @@ void PlotsBuilder::mapConnection(PlotsBuilder::PlotType pt, QObject* recvr, cons
         caseType(CartesianParametricSurface);
         caseType(CylindricalGraphSurface);
         caseType(SphericalGraphSurface);
+        case(None): break;
     }
 }
 

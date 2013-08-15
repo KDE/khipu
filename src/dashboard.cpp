@@ -399,6 +399,7 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
         //set dialog invisible
         emit setDialogSettingsVisible(false);
         break;
+    default: break;
     }
 
     // identification of the space

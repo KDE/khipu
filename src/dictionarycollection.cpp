@@ -128,7 +128,8 @@ void DictionaryCollection::setDictionaryData(int ind)
 
 void DictionaryCollection::setModelIndex(const QModelIndex& ind)
 {
-
+    if(ind.isValid())
+        qDebug() << "valid index is passed";
 }
 
 void DictionaryCollection::addPlotInSpace()
