@@ -292,7 +292,10 @@ void MainWindow::setupActions()
     createAction("delete_currentspace", i18n("&Remove Current Space"), "list-remove", Qt::CTRL + Qt::Key_W, this, SLOT(removeCurrentSpace()))->setVisible(false);;
     //tools space
     createAction("copy_snapshot", i18n("&Take Snapshot"),"take-snapshot", Qt::CTRL + Qt::SHIFT + Qt::Key_C, this, SLOT(copySnapshot()));
-//     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
+    m_getdictionaryAct=createAction("get_dictionary", i18n("&Get Plot-Dictionary files"),"get-hot-new-stuff", Qt::CTRL + Qt::SHIFT + Qt::Key_G,m_dashboard, SLOT(getDictionaryClicked()));
+    m_importdictionaryAct=createAction("import_dictionary", i18n("&Import Plot-Dictionary file"),"document-import", Qt::CTRL + Qt::SHIFT + Qt::Key_I,m_dashboard, SLOT(importDictionaryClicked()));
+
+    //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(setMenuBarVisibility(bool)), actionCollection());
     KToggleFullScreenAction *fullScreenAction = KStandardAction::fullScreen(this, SLOT(fullScreenView(bool)), this ,actionCollection());
@@ -336,6 +339,9 @@ void MainWindow::fooSlot(bool t)
 
 void MainWindow::firstPageActClicked()
 {
+    m_getdictionaryAct->setVisible(false);
+    m_importdictionaryAct->setVisible(false);
+
     int currentSpaceRow=m_document->currentSpace();
     if(m_document->spacesModel()->rowCount()==0) {
             KMessageBox::information(this,i18n("There is not any space available to show!"),i18n("No space available"));
@@ -378,6 +384,9 @@ void MainWindow::nextActClicked()
 
 void MainWindow::lastPageActClicked()
 {
+    m_getdictionaryAct->setVisible(false);
+    m_importdictionaryAct->setVisible(false);
+
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
     if(m_document->spacesModel()->rowCount()==0){
@@ -973,6 +982,9 @@ void MainWindow::activateDashboardUi()
     m_dictionaryDock->hide();
     m_priorAct->setVisible(false);
     m_nextAct->setVisible(false);
+    //actions should be invisible
+    m_getdictionaryAct->setVisible(false);
+    m_importdictionaryAct->setVisible(false);
 }
 
 void MainWindow::activateSpaceUi()
@@ -1062,7 +1074,10 @@ void MainWindow::setVisibleDictionary()
     m_dictionaryDock->hide();
     m_dashboard->showDictionary();
     m_priorAct->setVisible(false);
-    m_nextAct->setVisible(false);;
+    m_nextAct->setVisible(false);
+    //actions should be visible
+    m_getdictionaryAct->setVisible(true);
+    m_importdictionaryAct->setVisible(true);
 }
 
 void MainWindow::addSpace2D()

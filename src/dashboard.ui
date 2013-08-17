@@ -84,48 +84,6 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QPushButton" name="getDictionaryButton">
-               <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Download new plot-dictionary files from internet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>Get Plot Dictionary Files...</string>
-               </property>
-               <property name="icon">
-                <iconset theme="get-hot-new-stuff">
-                 <normaloff/>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="importDictionarybutton">
-               <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Install a dictionary from a local file&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>Import Plot Dictionary File...</string>
-               </property>
-               <property name="icon">
-                <iconset theme="document-import">
-                 <normaloff/>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_4">
-               <property name="text">
-                <string>Create a collection of different Plots</string>
-               </property>
-               <property name="icon">
-                <iconset theme="document-new">
-                 <normaloff/>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
               <layout class="QHBoxLayout" name="horizontalLayout_9">
                <item>
                 <widget class="QLabel" name="label">

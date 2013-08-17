@@ -103,10 +103,6 @@ Dashboard::Dashboard(QWidget *parent)
     m_openclicked=false;
 
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
-    connect(m_widget->importDictionarybutton,SIGNAL(clicked()),this,
-            SLOT(importDictionary()));
-
-    connect(m_widget->getDictionaryButton,SIGNAL(clicked()),this,SLOT(downloadDictionary()));
     m_widget->comboBox->clear();
     setDictionaryNames();
 }
@@ -292,7 +288,7 @@ void Dashboard::setPlotsView(Analitza::Dimension dim)
     }
 }
 
-void Dashboard::importDictionary()
+void Dashboard::importDictionaryClicked()
 {
     KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
                      i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
@@ -528,7 +524,7 @@ void Dashboard::setupWidget()
 
 }
 
-void Dashboard::downloadDictionary() {
+void Dashboard::getDictionaryClicked() {
     KNS3::DownloadDialog newStuffDialog(this);
     newStuffDialog.exec();
     KNS3::Entry::List installedentries = newStuffDialog.installedEntries();
