@@ -151,7 +151,7 @@ void Dashboard::setDictionaryNames()
         }
     }
 
-    connect(m_widget->comboBox,SIGNAL(activated(int)),this,SLOT(setDictionaryData(int)));
+    connect(m_widget->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
 
     if(m_DictionaryPathName.empty() || m_DictionaryPathName.keys().empty()) {
         QString error =i18n("Please make sure that the dictionary(.plots) files are correctly installed");

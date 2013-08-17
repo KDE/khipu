@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "dictionarycollection.h"
-#include "ui_dictionarycollection.h"
+#include "src/ui_dictionarycollection.h"
 
 //Analitza includes
 #include <analitzagui/plotsview2d.h>
@@ -47,7 +47,7 @@ DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
 {
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
-    connect(m_widget->dictionaryNames,SIGNAL(highlighted(int)),this,SLOT(setDictionaryData(int)));
+    connect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
     connect(m_widget->AddButton,SIGNAL(pressed()),this,SLOT(addPlotInSpace()));
     connect(m_widget->importDictionary,SIGNAL(pressed()),this,SLOT(importDictionary()));
 }
