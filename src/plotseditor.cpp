@@ -220,7 +220,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
     // initialize the combo-box with green color because green plot will be visible in both 2D(white) and 3D(black) space.
-    m_widget->plotColor->setColor(QColor(Qt::green));
+    m_widget->plotColor->setColor(randomFunctionColor());
 
     m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
     m_widget->focusPlot->setChecked(true);
@@ -331,7 +331,7 @@ void PlotsEditor::reset(bool clearBuilder)
 {
     //clear widgets //TODO GSOC
     m_widget->plotName->clear();
-    m_widget->plotColor->setColor(QColor(Qt::green));
+    m_widget->plotColor->setColor(randomFunctionColor());
 
     m_widget->f->clear();
     m_widget->g->clear();
