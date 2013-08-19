@@ -78,7 +78,7 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     m_widget->buildSphericalGraphSurface->setMouseTracking(true);
     m_widget->buildSphericalGraphSurface->installEventFilter(this);
 
-    //BEGIN setup icons
+   /* //BEGIN setup icons
     #define setTypeIcon(tname, iconame) m_widget->build##tname##Icon->setPixmap(KIcon( iconame ).pixmap(16,16));
     setTypeIcon(CartesianGraphCurve, "newfunction");
     setTypeIcon(CartesianImplicitCurve, "newimplicit");
@@ -91,6 +91,7 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     setTypeIcon(CylindricalGraphSurface, "newcylindrical");
     setTypeIcon(SphericalGraphSurface, "newspherical");
     //END setup icons
+*/
 }
 
 bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)
