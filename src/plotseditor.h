@@ -92,7 +92,8 @@ private slots:
     void removePlot();
     //este slot se coneta con el combo
     void setCurrentFunctionGraphs(const QString &txt); /// see m_currentFunctionGraphs
-    
+    void plotnamecheckClicked(bool b);
+
 signals:
     // void plotAdded(const QModelIndex &index);  // emit when item != 0
     // void plotRemoved(const QModelIndex &index);  // emit when item != 0

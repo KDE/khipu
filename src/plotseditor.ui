@@ -155,6 +155,13 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
+	   <widget class="QCheckBox" name="plotnamecheck">
+            <property name="text">
+             <string>Plot Name</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QLabel" name="plotIcon">
             <property name="text">
              <string>TextLabel</string>

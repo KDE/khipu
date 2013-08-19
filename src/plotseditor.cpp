@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "plotseditor.h"
-#include "ui_plotseditor.h"
+#include "src/ui_plotseditor.h"
 
 //Analitza includes
 #include <analitza/analyzer.h>
@@ -269,9 +269,11 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     connect(m_widget->plotsView, SIGNAL(doubleClicked(QModelIndex)), SLOT(editPlot()));
     connect(m_widget->removePlot, SIGNAL(pressed()), SLOT(removePlot()));
     connect(m_widget->focusPlot,SIGNAL(stateChanged(int)),SLOT(showAxis(int)));
+    connect(m_widget->plotnamecheck,SIGNAL(toggled(bool)),SLOT(plotnamecheckClicked(bool)));
 
     this->installEventFilter(this);
     m_widget->f->installEventFilter(this);
+    plotnamecheckClicked(false);
 }
 
 bool PlotsEditor::eventFilter(QObject *object, QEvent *event)
@@ -1113,6 +1115,20 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
 //         m_widget->previews->setCurrentIndex(1); //3d preview
 
     showEditor();
+}
+
+void PlotsEditor::plotnamecheckClicked(bool state)
+{
+    if(state==true) {
+        m_widget->plotIcon->show();
+        m_widget->plotName->show();
+        m_widget->label_3->show();
+    }
+    else {
+        m_widget->plotIcon->hide();
+        m_widget->plotName->hide();
+        m_widget->label_3->hide();
+    }
 }
 
 void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args) {
