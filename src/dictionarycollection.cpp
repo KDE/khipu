@@ -48,8 +48,9 @@ DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
     connect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
-    connect(m_widget->AddButton,SIGNAL(pressed()),this,SLOT(addPlotInSpace()));
+    connect(m_widget->AddButton,SIGNAL(pressed()),this,SLOT(addPlotClicked()));
     connect(m_widget->importDictionary,SIGNAL(pressed()),this,SLOT(importDictionary()));
+    connect(m_widget->plotsView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addPlotinSpace(QModelIndex)));
 }
 
 DictionaryCollection::~DictionaryCollection()
@@ -132,9 +133,8 @@ void DictionaryCollection::setModelIndex(const QModelIndex& ind)
         qDebug() << "valid index is passed";
 }
 
-void DictionaryCollection::addPlotInSpace()
+void DictionaryCollection::addPlotClicked()
 {
-
     if(m_widget->plotsView->selectionModel()==0)
         return;
 
@@ -143,7 +143,14 @@ void DictionaryCollection::addPlotInSpace()
     if(!ind.isValid()) {
         return;
     }
+    addPlotinSpace(ind);
+}
 
+void DictionaryCollection::addPlotinSpace(const QModelIndex& ind)
+{
+    if(!ind.isValid()) {
+        return;
+    }
     QString str=m_dictionaryModel->data(ind,PlotsDictionaryModel::ExpressionRole).toString();
 
     QString exp=str.right(str.length()-str.indexOf(":=")-2); //parsing of expression from the line

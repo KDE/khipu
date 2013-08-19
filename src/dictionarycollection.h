@@ -60,8 +60,9 @@ signals:
     void mapDataChanged();
 
 public slots:
-    void addPlotInSpace();
+    void addPlotClicked();
     void setDictionaryData(int ind);
+    void addPlotinSpace(const QModelIndex& ind);
 
 private slots:
     void setModelIndex(const QModelIndex& ind);

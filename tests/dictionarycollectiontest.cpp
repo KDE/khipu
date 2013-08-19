@@ -144,7 +144,7 @@ void DictionaryCollectionTest::testAddPlot()
     testWidget->dictionaryPlotsView()->selectionModel()->setCurrentIndex(ind,QItemSelectionModel::Select);
 
     //add plot in the space
-    testWidget->addPlotInSpace();
+    testWidget->addPlotClicked();
 
     //check for the correctness of the added plot
     QCOMPARE(document->plotsModel()->rowCount(),1);
