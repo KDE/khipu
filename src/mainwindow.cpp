@@ -344,12 +344,12 @@ void MainWindow::firstPageActClicked()
 
     int currentSpaceRow=m_document->currentSpace();
     if(m_document->spacesModel()->rowCount()==0) {
-            KMessageBox::information(this,i18n("There is not any space available to show!"),i18n("No space available"));
+        statusBar()->showMessage(i18n("There is not any space available to show!"), 2500);
     }
     else if(currentSpaceRow==0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
-        KMessageBox::information(this,i18n("Currently,you are on the first space!"),i18n("Information"));
+        statusBar()->showMessage(i18n("Currently,you are on the first space!"),2500);
     }
     else if(m_document->spacesModel()->rowCount()>0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
@@ -361,7 +361,7 @@ void MainWindow::priorActClicked()
 {
     int currentSpaceRow=m_document->currentSpace();
     if(currentSpaceRow==0){
-        KMessageBox::information(this,i18n("You are already on the first space!"),i18n("Already on the first space"));
+        statusBar()->showMessage(i18n("You are already on the first space!"),2500);
     }
     else if(currentSpaceRow>0) {
         QModelIndex prevInd=m_document->spacesModel()->index(currentSpaceRow-1);
@@ -374,7 +374,7 @@ void MainWindow::nextActClicked()
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
     if(currentSpaceRow==size-1){
-        KMessageBox::information(this,i18n("You are already on the last space!"),i18n("Already on the last space"));
+        statusBar()->showMessage(i18n("You are already on the last space!"),2500);
     }
     else if(currentSpaceRow<size-1) {
         QModelIndex nextInd=m_document->spacesModel()->index(currentSpaceRow+1);
@@ -390,12 +390,12 @@ void MainWindow::lastPageActClicked()
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
     if(m_document->spacesModel()->rowCount()==0){
-        KMessageBox::information(this,i18n("There is not any space available to show!"),i18n("No space available"));
+        statusBar()->showMessage(i18n("There is not any space available to show!"),2500);
     }
     else if(currentSpaceRow==size-1) {
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
-        KMessageBox::information(this,i18n("Currently,you are on the last space!"),i18n("Information"));
+        statusBar()->showMessage(i18n("Currently,you are on the last space!"),2500);
     }
     else if(m_document->spacesModel()->rowCount() >0) {
         int size=m_document->spacesModel()->rowCount();
