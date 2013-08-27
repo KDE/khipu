@@ -1122,12 +1122,12 @@ void PlotsEditor::plotnamecheckClicked(bool state)
     if(state==true) {
         m_widget->plotIcon->show();
         m_widget->plotName->show();
-        m_widget->label_3->show();
+        //m_widget->label_3->show();
     }
     else {
         m_widget->plotIcon->hide();
         m_widget->plotName->hide();
-        m_widget->label_3->hide();
+        //m_widget->label_3->hide();
     }
 }
 
