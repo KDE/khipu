@@ -132,6 +132,7 @@ private:
     //flag para indicar que se encuentra editando, por ende no se agrega nada sino se modifica 
     //ademas el cancel va a la lista no al builder
     bool isEditing;
+    int plotnumber;
 };
 
 class ComboBox : public QComboBox

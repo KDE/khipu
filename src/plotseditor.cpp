@@ -207,7 +207,7 @@ void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 }
 
 PlotsEditor::PlotsEditor(QWidget * parent)
-    : QDockWidget(parent), isEditing(false)
+    : QDockWidget(parent), isEditing(false), plotnumber(1)
 {
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
@@ -1123,6 +1123,10 @@ void PlotsEditor::plotnamecheckClicked(bool state)
         m_widget->plotIcon->show();
         m_widget->plotName->show();
         //m_widget->label_3->show();
+        if(m_widget->plotName->text().isEmpty()) {
+            m_widget->plotName->setText(i18n("plot %1",plotnumber));
+            plotnumber++;
+        }
     }
     else {
         m_widget->plotIcon->hide();
