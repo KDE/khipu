@@ -278,13 +278,11 @@ void Dashboard::setModelIndex(const QModelIndex& ind)
 void Dashboard::setPlotsView(Analitza::Dimension dim)
 {
     if(dim==Dim2D){
-        m_widget->page_2->setVisible(false);
-        m_widget->page->setVisible(true);
+        m_widget->stackedWidget->setCurrentIndex(0);
 
     }
     else if (dim==Dim3D){
-        m_widget->page_2->setVisible(true);
-        m_widget->page->setVisible(false);
+        m_widget->stackedWidget->setCurrentIndex(1);
     }
 }
 
