@@ -158,7 +158,7 @@ void DictionaryCollection::addPlotinSpace(const QModelIndex& ind)
     PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp), m_currentDimension);
 
     FunctionGraph *item = 0;
-    item = req.create(Qt::blue,m_dictionaryModel->data(ind).toString());
+    item = req.create(randomFunctionColor(),m_dictionaryModel->data(ind).toString());
 
     m_document->plotsModel()->addPlot(item);
 

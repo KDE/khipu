@@ -67,6 +67,7 @@ public slots:
 private slots:
     void setModelIndex(const QModelIndex& ind);
     void importDictionary();
+    QColor randomFunctionColor() { return QColor::fromHsv(qrand()%255, 255, 255); }
 
 private:
     Ui::DictionaryCollectionWidget *m_widget;
