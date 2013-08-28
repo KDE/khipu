@@ -133,7 +133,9 @@
          <string>Parametric</string>
         </property>
         <property name="icon">
-         <iconset theme="newparametric3d"/>
+         <iconset theme="newparametric3d">
+          <normaloff/>
+         </iconset>
         </property>
         <property name="iconSize">
          <size>
