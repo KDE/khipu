@@ -284,6 +284,7 @@ bool PlotsEditor::eventFilter(QObject *object, QEvent *event)
         if(key->key() == Qt::Key_Enter || key->key() == Qt::Key_Return)
         {
             savePlot();
+            m_widget->plotnamecheck->setChecked(false);
         }
     }
     return false;
@@ -331,6 +332,7 @@ void PlotsEditor::reset(bool clearBuilder)
 {
     //clear widgets //TODO GSOC
     m_widget->plotName->clear();
+    m_widget->plotnamecheck->setChecked(false);
     m_widget->plotColor->setColor(randomFunctionColor());
 
     m_widget->f->clear();
