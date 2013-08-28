@@ -439,9 +439,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
         {
             PlaneCurve *curve = dynamic_cast<PlaneCurve*>(item);
 
-            if (curve->expression().isEquation()) // implicit
+            if (Expression(curve->display()).isEquation()) // implicit
             {
-                m_widget->f->setExpression(curve->expression());
+                m_widget->f->setExpression(Expression(curve->display()));
                 buildCartesianImplicitCurve();
 
                 QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().at(1), false);
@@ -508,9 +508,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
         {
             Surface *surface = dynamic_cast<Surface*>(item);
 
-            if (surface->expression().isEquation()) // implicit
+            if (Expression(surface->display()).isEquation()) // implicit
             {
-                m_widget->f->setExpression(surface->expression());
+                m_widget->f->setExpression(Expression(surface->display()));
 
                 buildCartesianImplicitSurface();
 
