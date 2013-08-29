@@ -433,6 +433,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
          */
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
+        
         m_widget->plotColor->setColor(item->color());
         m_widget->plotName->setText(item->name());
 
@@ -445,9 +446,13 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                 m_widget->f->setExpression(Expression(curve->display()));
                 buildCartesianImplicitCurve();
 
-                QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().at(1), false);
-                m_widget->miny->setExpression(interval.first);
-                m_widget->maxy->setExpression(interval.second);
+                if (curve->hasIntervals())
+                {
+                    QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().at(1), false);
+                
+                    m_widget->miny->setExpression(interval.first);
+                    m_widget->maxy->setExpression(interval.second);
+                }
             }
             else if (curve->expression().lambdaBody().isVector()) //vectorvalued
             {
@@ -486,10 +491,13 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                 }
             }
 
-            QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
-            m_widget->minx->setExpression(interval.first);
-            m_widget->maxx->setExpression(interval.second);
-
+            if (curve->hasIntervals())
+            {
+                QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
+                
+                m_widget->minx->setExpression(interval.first);
+                m_widget->maxx->setExpression(interval.second);
+            }
         }
         else if (dynamic_cast<SpaceCurve*>(item))
         {
@@ -501,9 +509,14 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
             buildCartesianParametricCurve3D();
 
-            QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
-            m_widget->minx->setExpression(interval.first);
-            m_widget->maxx->setExpression(interval.second);
+            
+            if (curve->hasIntervals())
+            {
+                QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
+                
+                m_widget->minx->setExpression(interval.first);
+                m_widget->maxx->setExpression(interval.second);
+            }
         }
         else if (dynamic_cast<Surface*>(item))
         {
@@ -515,9 +528,13 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
                 buildCartesianImplicitSurface();
 
-                QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().at(2), false);
-                m_widget->minz->setExpression(interval.first);
-                m_widget->maxz->setExpression(interval.second);
+                if (surface->hasIntervals())
+                {
+                    QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().at(2), false);
+                    
+                    m_widget->minz->setExpression(interval.first);
+                    m_widget->maxz->setExpression(interval.second);
+                }
             }
             else if (surface->expression().lambdaBody().isVector()) //vectorvalued
             {
@@ -564,13 +581,18 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                 }
             }
 
-            QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().first(), false);
-            m_widget->minx->setExpression(interval.first);
-            m_widget->maxx->setExpression(interval.second);
+            if (surface->hasIntervals())
+            {
+                QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().first(), false);
 
-            interval = surface->interval(surface->parameters().at(1), false);
-            m_widget->miny->setExpression(interval.first);
-            m_widget->maxy->setExpression(interval.second);
+                m_widget->minx->setExpression(interval.first);
+                m_widget->maxx->setExpression(interval.second);
+
+                interval = surface->interval(surface->parameters().at(1), false);
+
+                m_widget->miny->setExpression(interval.first);
+                m_widget->maxy->setExpression(interval.second);
+            }
         }
     }
 }
