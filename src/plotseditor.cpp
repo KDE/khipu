@@ -839,16 +839,25 @@ void PlotsEditor::savePlot()
             PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim2D);
             if (req.canDraw() && m_widget->f->expression().isEquation()) {
                 FunctionGraph *item = 0;
-                if (isEditing) {
+                
+                if (isEditing) 
+                {
                //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                    m_document->plotsModel()->addPlot(item);
-                if(m_widget->intervals->isChecked()) {
+                
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                
+                if (m_widget->intervals->isChecked()) 
+                {
                     item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                     item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
                 }
+                else
+                    item->clearIntervals();
+                
+                m_document->plotsModel()->addPlot(item);
+                
                 mapDataChanged();
             } else
                 errors = req.errors();
@@ -859,17 +868,20 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianImplicitSurface:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
-            if (req.canDraw() && m_widget->f->expression().isEquation()) {
+            
+            if (req.canDraw() && m_widget->f->expression().isEquation()) 
+            {
                 FunctionGraph *item = 0;
                 
-                if (isEditing) {
+                if (isEditing) 
+                {
                //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
                 
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
-                if(m_widget->intervals->isChecked())
+                if (m_widget->intervals->isChecked())
                 {
                     item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                     item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
