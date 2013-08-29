@@ -794,8 +794,12 @@ void PlotsEditor::savePlot()
                 }
 
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                
                 if(m_widget->intervals->isChecked())
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                else
+                    item->clearIntervals();
+                
                 m_document->plotsModel()->addPlot(item);
                 mapDataChanged();
             } else

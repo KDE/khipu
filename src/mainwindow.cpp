@@ -86,7 +86,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //para main de dashboard
     connect(m_dashboard, SIGNAL(spaceActivated(int)), SLOT(activateSpace(int)));
-    
+
     //para document de dashboard
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_document , SIGNAL(spaceActivated(int)));
 
@@ -96,7 +96,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_filter = new Filter(this);
     m_filter->setFilterDashboard(m_dashboard);
-    
+
     connect(m_filter, SIGNAL(filterByDimension(Dimensions)), m_dashboard, SLOT(filterByDimension(Dimensions)));
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
@@ -126,17 +126,17 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
     act->setIcon(KIcon(iconName));
     act->setShortcut(shortcut);
     act->setCheckable(isCheckable);
-    
-    if (isCheckable) 
+
+    if (isCheckable)
     {
         act->setChecked(checked);
-        
+
         QObject::connect(act, SIGNAL(toggled(bool)), recvr, slot);
     }
     else
         QObject::connect(act, SIGNAL(triggered()), recvr, slot);
 
-        
+
     actionCollection()->addAction(name, act);
 
     return act;
@@ -163,9 +163,9 @@ void MainWindow::setupDocks()
     plotsBuilder->mapConnection(PlotsBuilder::CartesianParametricSurface, this, SLOT(buildCartesianParametricSurface()));
     plotsBuilder->mapConnection(PlotsBuilder::CylindricalGraphSurface, this, SLOT(buildCylindricalGraphSurface()));
     plotsBuilder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
-    
+
     ///
-    
+
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
 //     m_spacePlotsDock->setFloating(false);
@@ -250,18 +250,18 @@ void MainWindow::setupActions()
 //     createAction("show_plots_editor", i18n("S&how Space Plots"), "address-book-new", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     m_spacePlotsDock->toggleViewAction()->setIcon(KIcon("editplots"));
     m_spacePlotsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_A);
-    actionCollection()->addAction("show_plots_editor", m_spacePlotsDock->toggleViewAction());    
-    
+    actionCollection()->addAction("show_plots_editor", m_spacePlotsDock->toggleViewAction());
+
 //     createAction("show_space_info", i18n("&Show Space Information"), "document-properties", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     m_spaceInfoDock->toggleViewAction()->setIcon(KIcon("dialog-information"));
     m_spaceInfoDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::Key_I);
-    actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());       
-    
+    actionCollection()->addAction("show_space_info", m_spaceInfoDock->toggleViewAction());
+
 //     createAction("show_plotter_options", i18n("&Show Space Options"), "configure", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()), true);
     m_spaceOptionsDock->toggleViewAction()->setIcon(KIcon("diagram-options"));
     m_spaceOptionsDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_O);
     actionCollection()->addAction("show_plotter_options", m_spaceOptionsDock->toggleViewAction());
-    
+
     m_dictionaryDock->toggleViewAction()->setIcon(KIcon("list-add"));
     m_dictionaryDock->toggleViewAction()->setShortcut(Qt::CTRL + Qt::SHIFT + Qt::Key_D);
     actionCollection()->addAction("show_dictionary_collection", m_dictionaryDock->toggleViewAction());
@@ -281,7 +281,7 @@ void MainWindow::setupActions()
     m_nextAct->setText(i18n("&Go Next Space"));
     m_nextAct->setIcon(KIcon("go-next-view"));
     m_nextAct->setEnabled(true);
-    
+
     KAction *lastPageAct = KStandardAction::lastPage(this, SLOT(lastPageActClicked()), actionCollection());
     lastPageAct->setText(i18n("&Go Last Space"));
     lastPageAct->setIcon(KIcon("go-last-view"));
@@ -360,7 +360,7 @@ void MainWindow::firstPageActClicked()
 void MainWindow::priorActClicked()
 {
     int currentSpaceRow=m_document->currentSpace();
-    if(currentSpaceRow==0){
+    if(currentSpaceRow==0) {
         statusBar()->showMessage(i18n("You are already on the first space!"),2500);
     }
     else if(currentSpaceRow>0) {
@@ -373,13 +373,13 @@ void MainWindow::nextActClicked()
 {
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
-    if(currentSpaceRow==size-1){
+    if(currentSpaceRow==size-1) {
         statusBar()->showMessage(i18n("You are already on the last space!"),2500);
     }
     else if(currentSpaceRow<size-1) {
         QModelIndex nextInd=m_document->spacesModel()->index(currentSpaceRow+1);
         m_dashboard->setCurrentSpace(nextInd);
-    }  
+    }
 }
 
 void MainWindow::lastPageActClicked()
@@ -389,7 +389,7 @@ void MainWindow::lastPageActClicked()
 
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
-    if(m_document->spacesModel()->rowCount()==0){
+    if(m_document->spacesModel()->rowCount()==0) {
         statusBar()->showMessage(i18n("There is not any space available to show!"),2500);
     }
     else if(currentSpaceRow==size-1) {
@@ -401,7 +401,7 @@ void MainWindow::lastPageActClicked()
         int size=m_document->spacesModel()->rowCount();
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
-    }  
+    }
 }
 
 void MainWindow::clearRecentFileList()
@@ -418,7 +418,7 @@ void MainWindow::setMenuBarVisibility(bool isShow)
     }
     else {
         KMessageBox::information(this,i18n("Press ctrl + M to make Menubar Visible again"),i18n("Menubar Visibility"));
-      menuBar()->hide();
+        menuBar()->hide();
     }
 }
 
@@ -453,23 +453,24 @@ void MainWindow::updateThumbnail()
 
     switch (space->dimension())
     {
-        case Analitza::Dim2D:
-            thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
-            break;
-        case Analitza::Dim3D:
-        {
-            m_dashboard->view3d()->updateGL();
-            m_dashboard->view3d()->setFocus();
-            m_dashboard->view3d()->makeCurrent();
-            m_dashboard->view3d()->raise();
+    case Analitza::Dim2D:
+        thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
+        break;
+    case Analitza::Dim3D:
+    {
+        m_dashboard->view3d()->updateGL();
+        m_dashboard->view3d()->setFocus();
+        m_dashboard->view3d()->makeCurrent();
+        m_dashboard->view3d()->raise();
 
-            QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
+        QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
 
-            thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
+        thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
 
-            break;
-        }
-        default: break;
+        break;
+    }
+    default:
+        break;
     }
 
     thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
@@ -481,10 +482,10 @@ bool MainWindow::queryClose()
 //     if (m_dashboard->isModified())
 //     {
 //         QString paletteFileName = m_dashboard->fileName();
-// 
+//
 //         if (paletteFileName.isEmpty())
 //             paletteFileName = i18n("Untitled");
-// 
+//
 //         switch (KMessageBox::warningYesNoCancel(this,
 //                                                 i18n( "The document \"%1\" has been modified.\n"
 //                                                         "Do you want to save your changes or discard them?", paletteFileName),
@@ -492,20 +493,20 @@ bool MainWindow::queryClose()
 //         {
 //         case KMessageBox::Yes:
 //         {
-// 
-// 
-// 
-// 
-// 
+//
+//
+//
+//
+//
 //             m_dashboard->showDashboard();
-// 
+//
 //             saveFile();
-// 
+//
 //             return m_dashboard->isSaved();
 //         }
 //         case KMessageBox::No :
 //             return true;
-// 
+//
 //         default :
 //             return false;
 //         }
@@ -525,7 +526,7 @@ void MainWindow::checkforAutoSavedFile()
 void MainWindow::newFile()
 {
     // if there are not any plots added (i.e. file is completely clean)
-    if(m_document->plotsModel()->rowCount()==0){
+    if(m_document->plotsModel()->rowCount()==0) {
         QMessageBox::information(this,i18n("No need to create New Window"),i18n("There are not any plots available. So, you do not need to create a new Plot Window"));
         return;
     }
@@ -543,9 +544,9 @@ void MainWindow::openRecentClicked(const KUrl&  name)
     //if(m_document->plotsModel()->rowCount()==0)
     //    openFile(name.path());
     //else {
-        QStringList args;
-        args << name.toLocalFile();
-        KToolInvocation::kdeinitExec("khipu",args);
+    QStringList args;
+    args << name.toLocalFile();
+    KToolInvocation::kdeinitExec("khipu",args);
     //}
 }
 
@@ -590,25 +591,25 @@ bool MainWindow::openFileClicked()
     KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
                      i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
 
-    if(url.path().isEmpty()){
+    if(url.path().isEmpty()) {
         qDebug() << "error in opening file...may be path not found." ;
         return false;
     }
 
-   // if(m_document->plotsModel()->rowCount()!=0) {
-        QStringList args;
-        args << url.toLocalFile();
-        KToolInvocation::kdeinitExec("khipu",args);
-        return false;
-   // }
-   // else
+    // if(m_document->plotsModel()->rowCount()!=0) {
+    QStringList args;
+    args << url.toLocalFile();
+    KToolInvocation::kdeinitExec("khipu",args);
+    return false;
+    // }
+    // else
     //    return openFile(url);
 }
 
 bool MainWindow::openFile(const KUrl &url)
 {
     if(url.path().isEmpty())
-    return false;
+        return false;
 
     QFile file;
     if (!url.isLocalFile())
@@ -645,31 +646,31 @@ bool MainWindow::openFile(const KUrl &url)
     }
     else
     {
-          QString path=url.toLocalFile();
-          // not , current autosave !
-          // if(!path.contains(".khipu.autosave")) {
-               setCurrentFile(path);
-               m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
-               changeTitleBar(path);
-           //}
+        QString path=url.toLocalFile();
+        // not , current autosave !
+        // if(!path.contains(".khipu.autosave")) {
+        setCurrentFile(path);
+        m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+        changeTitleBar(path);
+        //}
 
-           //check for available autosave file
-           QString currentautosavepath=getCurrentAutoSavepath(path);
-           if(QFile::exists(currentautosavepath)) {
-               // ask for reloading the autosave file
-               int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved chanes in the file %1.Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
+        //check for available autosave file
+        QString currentautosavepath=getCurrentAutoSavepath(path);
+        if(QFile::exists(currentautosavepath)) {
+            // ask for reloading the autosave file
+            int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved chanes in the file %1.Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
 
-               if(answer==KMessageBox::Yes) {
-                   // user wants to open the autosave file.
-                   file.setFileName(currentautosavepath);
-               }
-           }
+            if(answer==KMessageBox::Yes) {
+                // user wants to open the autosave file.
+                file.setFileName(currentautosavepath);
+            }
+        }
     }
 
     if(!file.open(QFile::ReadOnly)) {
         qDebug() << "error in reading";
         if(file.fileName()!=getDefaultAutoSavepath())
-                   KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
+            KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
         return false;
     }
 
@@ -680,7 +681,7 @@ bool MainWindow::openFile(const KUrl &url)
     file.close();
 
     if(!url.isLocalFile())
-            KIO::NetAccess::removeTempFile( file.fileName() );
+        KIO::NetAccess::removeTempFile( file.fileName() );
 
     if(m_parsedSpaceDetails.isEmpty()) { // if a wrong file is hit
         qDebug() << "problem in parsing ..may be a wrong file";
@@ -735,8 +736,8 @@ bool MainWindow::closeClicked()
 
     if(autosaveFile.exists() || currentautosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
-                                                    i18n("The current file contains some unsaved work.Do you want to save it?"),
-                                                    i18n("Warining: Unsaved changes"));
+                   i18n("The current file contains some unsaved work.Do you want to save it?"),
+                   i18n("Warining: Unsaved changes"));
         if(answer==KMessageBox::Yes) {
             saveClicked();
             return true;
@@ -782,65 +783,64 @@ bool MainWindow::saveFile(const KUrl &url)
     }
 
     QList<DictionaryItem*> spaceList=map.uniqueKeys();
-    if(spaceList.empty()){
-            qDebug() << "list is empty";
-            return false;
+    if(spaceList.empty()) {
+        qDebug() << "list is empty";
+        return false;
     }
 
     QVariantList plotspace_list;
 
     foreach(DictionaryItem* space, spaceList) {
-             QString spaceName = space->title();
-             QPixmap thumbnail = space->thumbnail();
-             int dim = space->dimension();
+        QString spaceName = space->title();
+        QPixmap thumbnail = space->thumbnail();
+        int dim = space->dimension();
 
-             QVariantList subplot_list;
-             subplot_list.clear();
+        QVariantList subplot_list;
+        subplot_list.clear();
 
-             QVariantMap plotspace;
-             plotspace.insert("name",spaceName);
-             plotspace.insert("dimension",dim);
-             plotspace.insert("image",thumbnailtoByteArray(thumbnail));
+        QVariantMap plotspace;
+        plotspace.insert("name",spaceName);
+        plotspace.insert("dimension",dim);
+        plotspace.insert("image",thumbnailtoByteArray(thumbnail));
 
-             QList<Analitza::PlotItem*> plotList=map.values(space);
+        QList<Analitza::PlotItem*> plotList=map.values(space);
 
-             foreach(Analitza::PlotItem* plotitem, plotList) {
-                   QString plotName=plotitem->name();
-                   QString plotExpression=plotitem->expression().toString();
-                   QColor plotcolor=plotitem->color();
+        foreach(Analitza::PlotItem* plotitem, plotList) {
+            QString plotName = plotitem->name();
+            QString plotExpression = plotitem->expression().toString();
+            QColor plotcolor = plotitem->color();
 
-                   QVariantMap plot;
-                   plot.insert("name",plotName);
-                   plot.insert("expression",plotExpression);
-                   plot.insert("color",plotcolor);
+            QVariantMap plot;
+            plot.insert("name",plotName);
+            plot.insert("expression",plotExpression);
+            plot.insert("color",plotcolor);
 
-                   if(dim==2) {
+            if(dim==2) {
+                Analitza::FunctionGraph* functiongraph = static_cast<Analitza::FunctionGraph*>(plotitem);
 
-                          Analitza::FunctionGraph*functiongraph=static_cast<Analitza::FunctionGraph*> (plotitem);
-                          //need to fix this in analitza
-                          /* double arg1min=functiongraph->interval(functiongraph->parameters().at(0)).first;
-                          double arg1max=functiongraph->interval(functiongraph->parameters().at(0)).second;
-                         */
-                          double arg1min=-5;
-                          double arg1max=5;
-                          plot.insert("arg1min",arg1min);
-                          plot.insert("arg1max",arg1max);
-                   }
+                if (functiongraph->hasIntervals())
+                {
+                    QString arg1min = functiongraph->interval(functiongraph->parameters().at(0), false).first.toString();
+                    QString arg1max = functiongraph->interval(functiongraph->parameters().at(0), false).second.toString();
 
-                    //writehere
-                    subplot_list << plot;
-
+                    plot.insert("arg1min", arg1min);
+                    plot.insert("arg1max", arg1max);
                 }
+            }
 
-             QJson::Serializer subserializer;
-             QByteArray subjson = subserializer.serialize(subplot_list);
-             plotspace.insert("plots",subjson);
-             plotspace_list << plotspace;
+            //writehere
+            subplot_list << plot;
+
         }
 
-QJson::Serializer serializer;
-QByteArray json = serializer.serialize(plotspace_list);
+        QJson::Serializer subserializer;
+        QByteArray subjson = subserializer.serialize(subplot_list);
+        plotspace.insert("plots", subjson);
+        plotspace_list << plotspace;
+    }
 
+    QJson::Serializer serializer;
+    QByteArray json = serializer.serialize(plotspace_list);
 
     if(!url.isLocalFile())
     {
@@ -861,7 +861,7 @@ QByteArray json = serializer.serialize(plotspace_list);
     }
     else
     {
-        if(!url.hasPath()){
+        if(!url.hasPath()) {
             qDebug() << "error in saving file...may be path not found." ;
             return false;
         }
@@ -872,7 +872,7 @@ QByteArray json = serializer.serialize(plotspace_list);
         // saved action clicked by the user , this is not the autosave case
         QString currentautosavepath=getCurrentAutoSavepath(m_fileLocation);
         if(url.toLocalFile()!=getDefaultAutoSavepath() && url.toLocalFile()!=currentautosavepath) {
-            if(!file.open(QFile::WriteOnly | QFile::Text)){
+            if(!file.open(QFile::WriteOnly | QFile::Text)) {
                 qDebug() << "Error in writing";
                 return false;
             }
@@ -891,15 +891,15 @@ QByteArray json = serializer.serialize(plotspace_list);
 
         // autosave case
         else {
-            if(!file.open(QFile::WriteOnly | QFile::Text)){
+            if(!file.open(QFile::WriteOnly | QFile::Text)) {
                 qDebug() << "Error in writing";
                 return false;
             }
         }
 
-    QTextStream out(&file);
-    out << json;
-    file.close();
+        QTextStream out(&file);
+        out << json;
+        file.close();
     }
     return true;
 }
@@ -933,14 +933,14 @@ void MainWindow::savePlot()
 void MainWindow::activateSpace(int spaceidx)
 {
     activateSpaceUi();
-    
+
     m_spacePlotsDock->reset(true);
-    
-    //clear space infor widget 
+
+    //clear space infor widget
 //     m_spaceInfoDock->clear();
     DictionaryItem *space = m_document->spacesModel()->space(spaceidx);
     m_spaceInfoDock->setInformation(space->title(), space->description());
-    
+
     m_spaceOptionsDock->setDimension(space->dimension());
 }
 
@@ -950,10 +950,10 @@ void MainWindow::activateDashboardUi()
     //edit
     action("add_space2d")->setVisible(true);
     action("add_space3d")->setVisible(true);
-    
+
     if (m_document->spacesModel()->rowCount()>0)
-        action("delete_currentspace")->setVisible(true);        
-    
+        action("delete_currentspace")->setVisible(true);
+
     //view
     action("show_plotsbuilder")->setVisible(true);
     action("show_plotsdictionary")->setVisible(true);
@@ -968,7 +968,7 @@ void MainWindow::activateDashboardUi()
     action("copy_snapshot")->setVisible(false);
     action("save_plotImage")->setVisible(false);
 //     action("export_snapshot")->setVisible(false);
-    
+
     //toolbars
 //     toolBar("mainToolBar")->show();
 //     toolBar("spaceToolBar")->hide();
@@ -978,7 +978,7 @@ void MainWindow::activateDashboardUi()
     m_spacePlotsDock->hide();
     m_spaceInfoDock->hide();
     m_spaceOptionsDock->hide();
-    m_plotsBuilderDock->hide(); 
+    m_plotsBuilderDock->hide();
     m_dictionaryDock->hide();
     m_priorAct->setVisible(false);
     m_nextAct->setVisible(false);
@@ -995,7 +995,7 @@ void MainWindow::activateSpaceUi()
     //edit
     action("add_space2d")->setVisible(false);
     action("add_space3d")->setVisible(false);
-    action("delete_currentspace")->setVisible(false);        
+    action("delete_currentspace")->setVisible(false);
     //view
     action("show_plotsbuilder")->setVisible(false);
     action("show_plotsdictionary")->setVisible(false);
@@ -1005,12 +1005,12 @@ void MainWindow::activateSpaceUi()
     action("show_dictionary_collection")->setVisible(true);
 
     //go
-    action("go_home")->setVisible(true);    
+    action("go_home")->setVisible(true);
     //tools
     action("copy_snapshot")->setVisible(true);
     action("save_plotImage")->setVisible(true);
 //     action("export_snapshot")->setVisible(true);
-    
+
     //toolbars
 //     toolBar("mainToolBar")->hide();
 //     toolBar("spaceToolBar")->show();
@@ -1031,46 +1031,51 @@ void MainWindow::copySnapshot()
     DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
     switch (space->dimension())
     {
-        case Analitza::Dim2D: m_dashboard->copySpace2DSnapshotToClipboard(); break;
-        case Analitza::Dim3D: m_dashboard->copySpace3DSnapshotToClipboard(); break;
-        default: break;
+    case Analitza::Dim2D:
+        m_dashboard->copySpace2DSnapshotToClipboard();
+        break;
+    case Analitza::Dim3D:
+        m_dashboard->copySpace3DSnapshotToClipboard();
+        break;
+    default:
+        break;
     }
     statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
 }
 
 void MainWindow::setVisibleDictionary()
 {
-    
-        //menu
-        //edit 
-        action("add_space2d")->setVisible(false);
-        action("add_space3d")->setVisible(false);
-        action("delete_currentspace")->setVisible(false);        
-        //view
-        action("show_plotsbuilder")->setVisible(false);
-        action("show_plots_editor")->setVisible(false);
-        action("show_space_info")->setVisible(false);
-        action("show_plotter_options")->setVisible(false);
-        action("show_dictionary_collection")->setVisible(false);
-        //go
-        action("show_plotsdictionary")->setVisible(false); 
-        action("go_home")->setVisible(true);  
-        
-        //tools
-        action("copy_snapshot")->setVisible(false);
-        action("save_plotImage")->setVisible(false);
+
+    //menu
+    //edit
+    action("add_space2d")->setVisible(false);
+    action("add_space3d")->setVisible(false);
+    action("delete_currentspace")->setVisible(false);
+    //view
+    action("show_plotsbuilder")->setVisible(false);
+    action("show_plots_editor")->setVisible(false);
+    action("show_space_info")->setVisible(false);
+    action("show_plotter_options")->setVisible(false);
+    action("show_dictionary_collection")->setVisible(false);
+    //go
+    action("show_plotsdictionary")->setVisible(false);
+    action("go_home")->setVisible(true);
+
+    //tools
+    action("copy_snapshot")->setVisible(false);
+    action("save_plotImage")->setVisible(false);
 //         action("export_snapshot")->setVisible(false);
-        
-        //toolbars
+
+    //toolbars
 //         toolBar("mainToolBar")->show();
 //         toolBar("spaceToolBar")->show();
 
-        //docks
-        //lo mismo ... primero hides luego show
-        m_plotsBuilderDock->hide();
-        m_spacePlotsDock->hide();
-        m_spaceInfoDock->hide();
-        m_spaceOptionsDock->hide();
+    //docks
+    //lo mismo ... primero hides luego show
+    m_plotsBuilderDock->hide();
+    m_spacePlotsDock->hide();
+    m_spaceInfoDock->hide();
+    m_spaceOptionsDock->hide();
     m_dictionaryDock->hide();
     m_dashboard->showDictionary();
     m_priorAct->setVisible(false);
@@ -1099,7 +1104,7 @@ void MainWindow::addSpace3D()
     //m_totalSpaces++;
 
     activateSpaceUi();
-    
+
     m_dashboard->showPlotsView3D();
 
     m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
@@ -1110,7 +1115,7 @@ void MainWindow::addSpace3D()
 void MainWindow::removeCurrentSpace()
 {
     m_document->removeCurrentSpace();
-    
+
     if (m_document->spacesModel()->rowCount() == 0)
         action("delete_currentspace")->setVisible(false);
 }
@@ -1122,49 +1127,50 @@ void MainWindow::goHome()
     if (m_dashboard->currentIndex() != 0) // si no esta en modo dashboard
     {
         ///guardando space info
-        
+
         DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
         space->stamp(); // marcamos la fecha y hora de ingreso al space
         space->setTitle(m_spaceInfoDock->title());
         space->setDescription(m_spaceInfoDock->description());
-        
-        QPixmap thumbnail; 
+
+        QPixmap thumbnail;
 
         switch (space->dimension())
         {
-            case Analitza::Dim2D:
-                thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
-                break;
-            case Analitza::Dim3D:
-            {
-                m_dashboard->view3d()->updateGL();
-                m_dashboard->view3d()->setFocus();
-                m_dashboard->view3d()->makeCurrent();
-                m_dashboard->view3d()->raise();
-        
-                QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
+        case Analitza::Dim2D:
+            thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
+            break;
+        case Analitza::Dim3D:
+        {
+            m_dashboard->view3d()->updateGL();
+            m_dashboard->view3d()->setFocus();
+            m_dashboard->view3d()->makeCurrent();
+            m_dashboard->view3d()->raise();
 
-                thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
+            QImage image(m_dashboard->view3d()->grabFrameBuffer(true));
 
-                break;
-            }
-            default: break;
+            thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
+
+            break;
+        }
+        default:
+            break;
         }
 
-        thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);   
+        thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
         space->setThumbnail(thumbnail);
 
         //QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
 
-        if(!m_spacenameList.contains(space->title())){
-        //    m_imageList.append(imageByteArray);
+        if(!m_spacenameList.contains(space->title())) {
+            //    m_imageList.append(imageByteArray);
             m_spacenameList.append(space->title());
-           // m_savedSpaces++;
+            // m_savedSpaces++;
         }
         else {
-          //  int ind=m_spacenameList.indexOf(space->title());
-           //  m_imageList.replace(ind,imageByteArray);
+            //  int ind=m_spacenameList.indexOf(space->title());
+            //  m_imageList.replace(ind,imageByteArray);
         }
     }
     m_dashboard->goHome();
@@ -1191,13 +1197,13 @@ void MainWindow::buildCartesianGraphCurve()
 void MainWindow::buildCartesianImplicitCurve()
 {
     addSpace2D();
-    m_spacePlotsDock->buildCartesianImplicitCurve(true); 
+    m_spacePlotsDock->buildCartesianImplicitCurve(true);
 }
 
 void MainWindow::buildCartesianParametricCurve2D()
 {
     addSpace2D();
-    m_spacePlotsDock->buildCartesianParametricCurve2D(true);    
+    m_spacePlotsDock->buildCartesianParametricCurve2D(true);
 }
 
 void MainWindow::buildPolarGraphCurve()
@@ -1216,30 +1222,30 @@ void MainWindow::buildCartesianParametricCurve3D()
 void MainWindow::buildCartesianGraphSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCartesianGraphSurface(true);    
+    m_spacePlotsDock->buildCartesianGraphSurface(true);
 }
 
 void MainWindow::buildCartesianImplicitSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCartesianImplicitSurface(true);   
+    m_spacePlotsDock->buildCartesianImplicitSurface(true);
 }
 
 void MainWindow::buildCartesianParametricSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCartesianParametricSurface(true);   
+    m_spacePlotsDock->buildCartesianParametricSurface(true);
 }
 
 void MainWindow::buildCylindricalGraphSurface()
 {
     addSpace3D();
-    m_spacePlotsDock->buildCylindricalGraphSurface(true);    
+    m_spacePlotsDock->buildCylindricalGraphSurface(true);
 }
 
 void MainWindow::buildSphericalGraphSurface()
 {
-    addSpace3D();   
+    addSpace3D();
     m_spacePlotsDock->buildSphericalGraphSurface(true);
 }
 
