@@ -815,11 +815,13 @@ void PlotsEditor::savePlot()
 			qDebug() << "------------" << m_widget->f->text() << m_widget->f->expression().toString() << req.errors();
             if (req.canDraw()) {
                 FunctionGraph *item = 0;
+                
                 if (isEditing) {
                   //  item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
 
                 }
+                
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                 //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression())
@@ -859,20 +861,27 @@ void PlotsEditor::savePlot()
             PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
             if (req.canDraw() && m_widget->f->expression().isEquation()) {
                 FunctionGraph *item = 0;
+                
                 if (isEditing) {
                //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-
                 
-            //    item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-             //   item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
-           //     item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
-                    m_document->plotsModel()->addPlot(item);
-                    mapDataChanged();
-            } else
+                if(m_widget->intervals->isChecked())
+                {
+                    item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                    item->setInterval(item->parameters().at(2), m_widget->minz->expression(), m_widget->maxz->expression());
+                }
+                else
+                    item->clearIntervals();
+                
+                m_document->plotsModel()->addPlot(item);
+                mapDataChanged();
+            } 
+            else
                 errors = req.errors();
 
             break;
