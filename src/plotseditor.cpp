@@ -443,7 +443,6 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             
             if (Expression(curve->display()).isEquation()) // implicit
             {
-                qDebug() << "implicit";
                 m_widget->f->setExpression(Expression(curve->display()));
                 buildCartesianImplicitCurve();
 
