@@ -440,7 +440,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
         if (dynamic_cast<PlaneCurve*>(item))
         {
             PlaneCurve *curve = dynamic_cast<PlaneCurve*>(item);
-
+            
             if (Expression(curve->display()).isEquation()) // implicit
             {
                 m_widget->f->setExpression(Expression(curve->display()));
@@ -465,9 +465,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             {
                 m_widget->f->setExpression(curve->expression().lambdaBody());
 
-                if (curve->parameters().first() == "q") {
+                if (curve->parameters().first() == "q") 
+                {
                     buildPolarGraphCurve();
-
                 }
                 else
                 {
@@ -479,6 +479,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                         // no mostramos el combo pues ya el tipo de la func esta elejido
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "x", false);
+                        setupVarName(1, "x");
                         m_widget->fname->show();
                     }
                     else if (curve->parameters().first() == "y")
@@ -486,6 +487,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                         m_currentVars = QStringList() << "y";
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "y", false);
+                        setupVarName(1, "y");
                         m_widget->fname->show();
                     }
                 }
@@ -562,6 +564,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                         // no mostramos el combo pues ya el tipo de la func esta elejido
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "x" << "y", false);
+                        setupVarName(1, "x");
+                        setupVarName(2, "y");
                         m_widget->fname->show();
                     }
                     else if (surface->parameters() == QStringList() << "x" << "z")
@@ -569,6 +573,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                         m_currentVars = QStringList() << "x" << "z";
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "x" << "z", false);
+                        setupVarName(1, "x");
+                        setupVarName(2, "z");
                         m_widget->fname->show();
                     }
                     else if (surface->parameters() == QStringList() << "y" << "z")
@@ -576,6 +582,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                         m_currentVars = QStringList() << "y" << "z";
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "y" << "z", false);
+                        setupVarName(1, "y");
+                        setupVarName(2, "z");
                         m_widget->fname->show();
                     }
                 }
@@ -1095,11 +1103,11 @@ void PlotsEditor::setupFuncName(int var, const QString& vvalue, const QStringLis
     if (withparenthesis)
         mmlhelper.append("<mo>(</mo>");
 
-    foreach(const QString &var, vars)
+    foreach(const QString &v, vars)
     {
-        mmlhelper.append("<mi>"+var+"</mi>");
+        mmlhelper.append("<mi>"+v+"</mi>");
 
-        if (var != vars.last()) // no agregar comas al final
+        if (v != vars.last()) // no agregar comas al final
             mmlhelper.append("<mtext>,</mtext>");
     }
 
