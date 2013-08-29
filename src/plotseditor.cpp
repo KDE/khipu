@@ -212,7 +212,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
     setObjectName("adasdds");
-    
+
 //     m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
 
 //     m_widget->fnameForGraphs->setMouseTracking(true);
@@ -238,7 +238,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
     //cons
     //connect(m_widget->quickPlot,SIGNAL(selectedFunction(QString,Analitza::Dimensions,QString,QStringList)),this,
-     //           SLOT(addPlotsfromDictionary(QString,Analitza::Dimensions,QString,QStringList)));
+    //           SLOT(addPlotsfromDictionary(QString,Analitza::Dimensions,QString,QStringList)));
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(cancelEditor()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
@@ -308,23 +308,24 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
     //m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->space(spaceidx)->dimension());
     switch (m_document->spacesModel()->space(spaceidx)->dimension())
     {
-        case Dim2D:
-        {
-            m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve |
-                                        PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D |
-                                        PlotsBuilder::PolarGraphCurve);
-            m_widget->styleWidget->hide();
-            break;
-        }
-        case Dim3D:
-        {
-            m_widget->builder->setupTypes(PlotsBuilder::CartesianParametricCurve3D | PlotsBuilder::CartesianGraphSurface |
-                                        PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
-                                        PlotsBuilder::SphericalGraphSurface);
-            m_widget->styleWidget->show();
-            break;
-        }
-        default: break;
+    case Dim2D:
+    {
+        m_widget->builder->setupTypes(PlotsBuilder::CartesianGraphCurve |
+                                      PlotsBuilder::CartesianImplicitCurve | PlotsBuilder::CartesianParametricCurve2D |
+                                      PlotsBuilder::PolarGraphCurve);
+        m_widget->styleWidget->hide();
+        break;
+    }
+    case Dim3D:
+    {
+        m_widget->builder->setupTypes(PlotsBuilder::CartesianParametricCurve3D | PlotsBuilder::CartesianGraphSurface |
+                                      PlotsBuilder::CartesianImplicitSurface | PlotsBuilder::CartesianParametricSurface | PlotsBuilder::CylindricalGraphSurface |
+                                      PlotsBuilder::SphericalGraphSurface);
+        m_widget->styleWidget->show();
+        break;
+    }
+    default:
+        break;
     }
 }
 
@@ -395,13 +396,13 @@ void PlotsEditor::cancelEditor()
 
 void PlotsEditor::showAxis(int state)
 {
-    if (state==0){
+    if (state==0) {
         if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
             emit updateGridcolor(QColor(255,255,255)); // Axis willnot be visible when the color will be white.
         else
             emit updateGridcolor(QColor(Qt::black));  // Axis willnot be visible when the color will be black.
     }
-    else if (state==2){
+    else if (state==2) {
         if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D)
             emit updateGridcolor(QColor(230,230,230)); // Axis will be visible when the color will be grey.
         else
@@ -427,9 +428,9 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     if (m_widget->plotsView->selectionModel()->hasSelection()) // may be the plotsview is different .!!!
     {
-       /* m_indexEdited = m_widget->plotsView->selectionModel()->currentIndex();
-        PlotItem* item = m_indexEdited.data(PlotsModel::PlotRole).value<PlotItem*>();
-        */
+        /* m_indexEdited = m_widget->plotsView->selectionModel()->currentIndex();
+         PlotItem* item = m_indexEdited.data(PlotsModel::PlotRole).value<PlotItem*>();
+         */
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
         m_widget->plotColor->setColor(item->color());
@@ -459,7 +460,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             {
                 m_widget->f->setExpression(curve->expression().lambdaBody());
 
-                if (curve->parameters().first() == "q"){
+                if (curve->parameters().first() == "q") {
                     buildPolarGraphCurve();
 
                 }
@@ -486,8 +487,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             }
 
             QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
-                m_widget->minx->setExpression(interval.first);
-                m_widget->maxx->setExpression(interval.second);
+            m_widget->minx->setExpression(interval.first);
+            m_widget->maxx->setExpression(interval.second);
 
         }
         else if (dynamic_cast<SpaceCurve*>(item))
@@ -499,7 +500,7 @@ void PlotsEditor::editPlot(const QModelIndex &index)
             m_widget->h->setExpression(curve->expression().lambdaBody().elementAt(2));
 
             buildCartesianParametricCurve3D();
-            
+
             QPair<Analitza::Expression, Analitza::Expression> interval = curve->interval(curve->parameters().first(), false);
             m_widget->minx->setExpression(interval.first);
             m_widget->maxx->setExpression(interval.second);
@@ -562,11 +563,11 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                     }
                 }
             }
-            
+
             QPair<Analitza::Expression, Analitza::Expression> interval = surface->interval(surface->parameters().first(), false);
             m_widget->minx->setExpression(interval.first);
             m_widget->maxx->setExpression(interval.second);
-            
+
             interval = surface->interval(surface->parameters().at(1), false);
             m_widget->miny->setExpression(interval.first);
             m_widget->maxy->setExpression(interval.second);
@@ -585,7 +586,7 @@ void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newfunction").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "x");
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
@@ -601,10 +602,10 @@ void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newimplicit").pixmap(16.16));
 
     setupExpressionType(QStringList(), QStringList() << "x" << "y", true);
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
-    
+
     m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
@@ -620,7 +621,7 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newparametric").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y", QStringList() << "t", false, true);
-    
+
     m_widget->minx->setExpression(Analitza::Expression("-pi"));
     m_widget->maxx->setExpression(Analitza::Expression("pi"));
 }
@@ -636,7 +637,7 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("draw-spiral").pixmap(16.16));
 
     setupExpressionType(QStringList()<<"q", QStringList() << "q");
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
     m_widget->maxx->setExpression(Analitza::Expression("2*pi"));
 }
@@ -653,7 +654,7 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newparametric3d").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "t", false, true);
-    
+
     m_widget->minx->setExpression(Analitza::Expression("-pi"));
     m_widget->maxx->setExpression(Analitza::Expression("pi"));
 }
@@ -669,10 +670,10 @@ void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newfunction3d").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x,y" << "x,z" << "y,z", QStringList() << "x" << "y");
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
-    
+
     m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
@@ -688,13 +689,13 @@ void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("draw-square-inverted-corners").pixmap(16.16));
 
     setupExpressionType(QStringList(), QStringList() << "x" << "y" << "z", true);
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
-    
+
     m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
-    
+
     m_widget->minz->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxz->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
@@ -710,10 +711,10 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("draw-donut").pixmap(16.16));
 
     setupExpressionType(QStringList() << "x" << "y" << "z", QStringList() << "u" << "v", false, true);
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
-    
+
     m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(-5)));
     m_widget->maxy->setExpression(Analitza::Expression(Analitza::Cn(5)));
 }
@@ -729,10 +730,10 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newcylindrical").pixmap(16.16));
 
     setupExpressionType(QStringList() << "r,p", QStringList() << "r" << "p");
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
     m_widget->maxx->setExpression(Analitza::Expression(Analitza::Cn(5)));
-    
+
     m_widget->miny->setExpression(Analitza::Expression(Analitza::Cn(0)));
     m_widget->maxy->setExpression(Analitza::Expression("2*pi"));
 }
@@ -748,7 +749,7 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
     m_widget->plotIcon->setPixmap(KIcon("newspherical").pixmap(16.16));
 
     setupExpressionType(QStringList() << "t,p", QStringList() << "t" << "p");
-    
+
     m_widget->minx->setExpression(Analitza::Expression(Analitza::Cn(0)));
     m_widget->maxx->setExpression(Analitza::Expression("2*pi"));
 
@@ -784,25 +785,29 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::PolarGraphCurve:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), Dim2D);
-            if (req.canDraw()) {
+            
+            if (req.canDraw()) 
+            {
                 FunctionGraph *item =0;
 
-                if (isEditing) {
-                   // item = editCurrentFunction(req.expression());
-               //remove that first and then add the new one
+                if (isEditing) 
+                {
+                    // item = editCurrentFunction(req.expression());
+                    //remove that first and then add the new one
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
 
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                
+
                 if(m_widget->intervals->isChecked())
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
                 else
                     item->clearIntervals();
-                
+
                 m_document->plotsModel()->addPlot(item);
                 mapDataChanged();
-            } else
+            } 
+            else
                 errors = req.errors();
 
             break;
@@ -812,24 +817,33 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::SphericalGraphSurface:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
-			qDebug() << "------------" << m_widget->f->text() << m_widget->f->expression().toString() << req.errors();
-            if (req.canDraw()) {
+            qDebug() << "------------" << m_widget->f->text() << m_widget->f->expression().toString() << req.errors();
+            
+            if (req.canDraw()) 
+            {
                 FunctionGraph *item = 0;
-                
+
                 if (isEditing) {
-                  //  item = editCurrentFunction(req.expression());
+                    //  item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
 
                 }
-                
+
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                //item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-                //item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression())
+                
+                if (m_widget->intervals->isChecked())
+                {
+                    item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                }
+                else
+                    item->clearIntervals();
+                    
                 m_document->plotsModel()->addPlot(item);
                 mapDataChanged();
-            } else {
+            } 
+            else 
                 errors = req.errors();
-			}
 
             break;
         }
@@ -837,29 +851,32 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianImplicitCurve:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim2D);
-            if (req.canDraw() && m_widget->f->expression().isEquation()) {
+            
+            if (req.canDraw() && m_widget->f->expression().isEquation()) 
+            {
                 FunctionGraph *item = 0;
-                
-                if (isEditing) 
+
+                if (isEditing)
                 {
-               //     item = editCurrentFunction(req.expression());
+                    //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                
+
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                
-                if (m_widget->intervals->isChecked()) 
+
+                if (m_widget->intervals->isChecked())
                 {
                     item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
                     item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
                 }
                 else
                     item->clearIntervals();
-                
+
                 m_document->plotsModel()->addPlot(item);
-                
+
                 mapDataChanged();
-            } else
+            } 
+            else
                 errors = req.errors();
 
             break;
@@ -868,17 +885,17 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianImplicitSurface:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(m_widget->f->expression(), Dim3D);
-            
-            if (req.canDraw() && m_widget->f->expression().isEquation()) 
+
+            if (req.canDraw() && m_widget->f->expression().isEquation())
             {
                 FunctionGraph *item = 0;
-                
-                if (isEditing) 
+
+                if (isEditing)
                 {
-               //     item = editCurrentFunction(req.expression());
+                    //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                
+
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
                 if (m_widget->intervals->isChecked())
@@ -889,10 +906,10 @@ void PlotsEditor::savePlot()
                 }
                 else
                     item->clearIntervals();
-                
+
                 m_document->plotsModel()->addPlot(item);
                 mapDataChanged();
-            } 
+            }
             else
                 errors = req.errors();
 
@@ -902,19 +919,27 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianParametricCurve2D:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+
-                                    m_widget->g->expression().toString()+"}")), Dim2D);
-            if (req.canDraw()) {
+                            m_widget->g->expression().toString()+"}")), Dim2D);
+            
+            if (req.canDraw()) 
+            {
                 FunctionGraph *item = 0;
-                if (isEditing) {
-                  //  item = editCurrentFunction(req.expression());
+                
+                if (isEditing) 
+                {
+                    //  item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-                    if(m_widget->intervals->isChecked())
+                
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                
+                if (m_widget->intervals->isChecked())
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                else
+                    item->clearIntervals();
 
-                       m_document->plotsModel()->addPlot(item);
-                        mapDataChanged();
+                m_document->plotsModel()->addPlot(item);
+                mapDataChanged();
             }
             else
                 errors = req.errors();
@@ -925,48 +950,64 @@ void PlotsEditor::savePlot()
         case PlotsBuilder::CartesianParametricCurve3D:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
+            
             if (req.canDraw())
             {
                 FunctionGraph *item = 0;
+                
                 if (isEditing) {
-             //       item = editCurrentFunction(req.expression());
+                    //       item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
-                
-          //      item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                if (m_widget->intervals->isChecked())
+                    item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                else
+                    item->clearIntervals();
 
-                    m_document->plotsModel()->addPlot(item);
-                    mapDataChanged();
-            } else
+
+                m_document->plotsModel()->addPlot(item);
+                mapDataChanged();
+            } 
+            else
                 errors = req.errors();
-            
+
             break;
         }
 
         case PlotsBuilder::CartesianParametricSurface:
         {
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString("("+m_currentVars.join(",")+")->vector{"+m_widget->f->expression().toString()+", "+m_widget->g->expression().toString()+", "+m_widget->h->expression().toString()+"}")), Dim3D);
-            if (req.canDraw()) {
+            
+            if (req.canDraw()) 
+            {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-             //       item = editCurrentFunction(req.expression());
+                    //       item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
-                    item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
+                item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
-                
-           //     item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
-           //     item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                if (m_widget->intervals->isChecked())
+                {
+                    item->setInterval(item->parameters().at(0), m_widget->minx->expression(), m_widget->maxx->expression());
+                    item->setInterval(item->parameters().at(1), m_widget->miny->expression(), m_widget->maxy->expression());
+                }
+                else
+                    item->clearIntervals();
 
-                   m_document->plotsModel()->addPlot(item);
-                    mapDataChanged();
-            } else
+                m_document->plotsModel()->addPlot(item);
+                mapDataChanged();
+            } 
+            else
                 errors = req.errors();
+            
             break;
         }
-        default: break;
+        
+        default:
+            break;
     }
 
     if (errors.isEmpty())
@@ -1163,24 +1204,24 @@ void PlotsEditor::plotnamecheckClicked(bool state)
 }
 
 void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args) {
-/*
-    qDebug() << "coming in the slots";
+    /*
+        qDebug() << "coming in the slots";
 
-QStringList errors;
-int dimension ;// can get it from the current space or some other logic !!!! :)
+    QStringList errors;
+    int dimension ;// can get it from the current space or some other logic !!!! :)
 
-PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp),Dim2D);
+    PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp),Dim2D);
 
-if (req.canDraw()) {
+    if (req.canDraw()) {
 
-    FunctionGraph *item = 0;
-    item = req.create(QColor(Qt::black), plotname);
+        FunctionGraph *item = 0;
+        item = req.create(QColor(Qt::black), plotname);
 
-    m_document->plotsModel()->addPlot(item);
-}
+        m_document->plotsModel()->addPlot(item);
+    }
 
-else {
-    errors = req.errors();
-    qDebug() << errors.at(0);
-}*/
+    else {
+        errors = req.errors();
+        qDebug() << errors.at(0);
+    }*/
 }
