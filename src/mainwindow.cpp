@@ -1281,9 +1281,11 @@ void MainWindow::createPlot(const QModelIndex &ind)
             FunctionGraph *item = 0;
             item = req.create(plotcolor, plotname);
 
-            if(dim==Dim2D)
-                item->setInterval(item->parameters().first(), arg1min, arg1max);
-
+            if(dim==Dim2D) {
+                if(arg1min!=0 || arg1max!=0) {
+                    item->setInterval(item->parameters().first(), arg1min, arg1max);
+                }
+            }
             m_document->plotsModel()->addPlot(item);
         }
 
