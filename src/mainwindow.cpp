@@ -1269,6 +1269,9 @@ void MainWindow::createPlot(const QModelIndex &ind)
         double arg1min=plotmap.value("arg1min").toDouble();
         double arg1max=plotmap.value("arg1max").toDouble();
 
+        qDebug() << "value:1 " << arg1min;
+        qDebug() << "value:2 " << arg1max;
+
         QStringList errors;
 
         PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(ploteqn)), dim);

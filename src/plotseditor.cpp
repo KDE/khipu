@@ -809,6 +809,14 @@ void PlotsEditor::savePlot()
     if (name.isEmpty())
         name = "f"+QString::number(m_document->currentPlots()->rowCount()+1);
 
+    if(m_widget->intervals->isChecked()) {
+        if(m_widget->minx->expression().toString().isEmpty() || m_widget->maxx->expression().toString().isEmpty()
+              || m_widget->miny->expression().toString().isEmpty() || m_widget->maxy->expression().toString().isEmpty()
+                || m_widget->minz->expression().toString().isEmpty() || m_widget->maxz->expression().toString().isEmpty()) {
+            qDebug() << "problem is here";
+            return;
+        }
+    }
     switch (m_currentType)
     {
         case PlotsBuilder::CartesianGraphCurve:
@@ -828,9 +836,10 @@ void PlotsEditor::savePlot()
                 }
 
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
-
-                if(m_widget->intervals->isChecked())
+                if (m_widget->intervals->isChecked())
+                {
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                }
                 else
                     item->clearIntervals();
 
@@ -991,8 +1000,9 @@ void PlotsEditor::savePlot()
                 }
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
 
-                if (m_widget->intervals->isChecked())
+                if (m_widget->intervals->isChecked()) {
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
+                }
                 else
                     item->clearIntervals();
 
