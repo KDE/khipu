@@ -109,26 +109,22 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="editPlot">
+           <widget class="QPushButton" name="editPlot">
             <property name="text">
-             <string>PushButton</string>
+             <string>Edit</string>
             </property>
             <property name="icon">
-             <iconset theme="document-edit">
-              <normaloff/>
-             </iconset>
+             <iconset theme="document-edit"/>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="removePlot">
+           <widget class="QPushButton" name="removePlot">
             <property name="text">
-             <string/>
+             <string>Remove</string>
             </property>
             <property name="icon">
-             <iconset theme="list-remove">
-              <normaloff/>
-             </iconset>
+             <iconset theme="list-remove"/>
             </property>
            </widget>
           </item>
