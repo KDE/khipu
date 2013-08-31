@@ -661,8 +661,8 @@ bool MainWindow::openFile(const KUrl &url)
     {
         QString path=url.toLocalFile();
         // not , current autosave !
-        // if(!path.contains(".khipu.autosave")) {
-        setCurrentFile(path);
+        if(!path.contains(".khipu.autosave"))
+            setCurrentFile(path);
         m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
         changeTitleBar(path);
         //}
