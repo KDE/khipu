@@ -118,6 +118,7 @@ private:
     void changeTitleBar(const QString& path);
     void setCurrentFile(const QString &fileName);
     void updateRecentFileList();
+    QString pathFromUrl(const KUrl &url); // used for parsing file path from the url provided by openrecent
 
     QPixmap toPixmap(const QByteArray &bytearray);
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);

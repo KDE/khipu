@@ -541,13 +541,25 @@ void MainWindow::newFile()
 void MainWindow::openRecentClicked(const KUrl&  name)
 {
     // no plots are available , can open in the same proccess.
-    //if(m_document->plotsModel()->rowCount()==0)
-    //    openFile(name.path());
-    //else {
+    if(m_document->plotsModel()->rowCount()==0) {
+        QString path = pathFromUrl(name);
+        openFile(path);
+        return;
+    }
     QStringList args;
     args << name.toLocalFile();
     KToolInvocation::kdeinitExec("khipu",args);
-    //}
+}
+
+QString MainWindow::pathFromUrl(const KUrl &url)
+{
+    if(url.isEmpty()) {
+        return QString();
+    }
+    QString str = url.toMimeDataString();
+    // ignore the first 7 letters (i.e. "file://")
+    QString path = str.remove(0,7);
+    return path;
 }
 
 void MainWindow::setCurrentFile(const QString &fileName)
@@ -596,14 +608,15 @@ bool MainWindow::openFileClicked()
         return false;
     }
 
-    // if(m_document->plotsModel()->rowCount()!=0) {
     QStringList args;
     args << url.toLocalFile();
+
+    if(m_document->plotsModel()->rowCount()==0) {
+        openFile(url);
+        return true;
+    }
     KToolInvocation::kdeinitExec("khipu",args);
     return false;
-    // }
-    // else
-    //    return openFile(url);
 }
 
 bool MainWindow::openFile(const KUrl &url)
@@ -680,6 +693,7 @@ bool MainWindow::openFile(const KUrl &url)
     m_parsedSpaceDetails = parser.parse(&file).toList();
     file.close();
 
+    qDebug() << "url is : " << url;
     if(!url.isLocalFile())
         KIO::NetAccess::removeTempFile( file.fileName() );
 
