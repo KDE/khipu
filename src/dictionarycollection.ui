@@ -18,10 +18,12 @@
     <item row="0" column="2">
      <widget class="QPushButton" name="importDictionary">
       <property name="text">
-       <string>Import DIctionary</string>
+       <string>Import Dictionary</string>
       </property>
       <property name="icon">
-       <iconset theme="document-import"/>
+       <iconset theme="document-import">
+        <normaloff/>
+       </iconset>
       </property>
      </widget>
     </item>
@@ -99,7 +101,9 @@
        <string>Add</string>
       </property>
       <property name="icon">
-       <iconset theme="list-add"/>
+       <iconset theme="list-add">
+        <normaloff/>
+       </iconset>
       </property>
      </widget>
     </item>

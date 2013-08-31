@@ -84,10 +84,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_dashboard = new Dashboard(this);
     m_dashboard->setDocument(m_document);
 
-    //para main de dashboard
+    //From Main Dashboard to the activated space UI
     connect(m_dashboard, SIGNAL(spaceActivated(int)), SLOT(activateSpace(int)));
 
-    //para document de dashboard
     connect(m_dashboard, SIGNAL(spaceActivated(int)), m_document , SIGNAL(spaceActivated(int)));
 
     setupDocks();
@@ -102,9 +101,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
     connect(m_dashboard,SIGNAL(showFilter(bool)),m_filter,SLOT(setFilterVisible(bool)));
 
+    //Main tool bar for Khipu
     toolBar("mainToolBar")->addWidget(m_filter);
     setCentralWidget(m_dashboard);
     activateDashboardUi();
+
+    //Used to update the recent file list
     updateRecentFileList();
 }
 
@@ -136,9 +138,7 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
     else
         QObject::connect(act, SIGNAL(triggered()), recvr, slot);
 
-
     actionCollection()->addAction(name, act);
-
     return act;
 }
 
@@ -148,11 +148,11 @@ void MainWindow::setupDocks()
     m_plotsBuilderDock = new QDockWidget(i18n("&Shortcuts"), this);
     m_plotsBuilderDock->setWidget(plotsBuilder); // plotsbuilder debe ser miembro
     m_plotsBuilderDock->setObjectName("dsfs");
-//     m_plotsBuilderDock->setFloating(false);
     m_plotsBuilderDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     m_plotsBuilderDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_plotsBuilderDock->hide();
 
+    //Connecting the buttons to create a specific plot
     plotsBuilder->mapConnection(PlotsBuilder::CartesianGraphCurve, this, SLOT(buildCartesianGraphCurve()));
     plotsBuilder->mapConnection(PlotsBuilder::CartesianImplicitCurve, this, SLOT(buildCartesianImplicitCurve()));
     plotsBuilder->mapConnection(PlotsBuilder::CartesianParametricCurve2D, this, SLOT(buildCartesianParametricCurve2D()));
@@ -164,11 +164,9 @@ void MainWindow::setupDocks()
     plotsBuilder->mapConnection(PlotsBuilder::CylindricalGraphSurface, this, SLOT(buildCylindricalGraphSurface()));
     plotsBuilder->mapConnection(PlotsBuilder::SphericalGraphSurface, this, SLOT(buildSphericalGraphSurface()));
 
-    ///
-
+    //Plot-Editing dock
     m_spacePlotsDock = new PlotsEditor(this);
     m_spacePlotsDock->setDocument(m_document);
-//     m_spacePlotsDock->setFloating(false);
     m_spacePlotsDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     m_spacePlotsDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
 
@@ -179,9 +177,11 @@ void MainWindow::setupDocks()
     connect(m_spacePlotsDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
     connect(m_document,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
 
+    //Space information dock
     m_spaceInfoDock = new SpaceInformation(this);
     m_spaceOptionsDock = new SpaceOptions(this);
 
+    //Plot-Dictionary Dock
     m_dictionaryDock = new DictionaryCollection(this);
     m_dictionaryDock->setDashboardWidget(m_dashboard);
     m_dictionaryDock->setDocument(m_document);
@@ -190,7 +190,8 @@ void MainWindow::setupDocks()
 
     connect(m_dictionaryDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
-    //2d view
+
+    //Signal/slots for 2d Space
     connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
     connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard, SLOT(setPlotsViewGridColor(QColor)));
     connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
@@ -198,14 +199,14 @@ void MainWindow::setupDocks()
     connect(m_spaceOptionsDock, SIGNAL(updateTickScale(QString,qreal,int,int)), m_dashboard->view2d(), SLOT(updateTickScale(QString,qreal,int,int)));
     connect(m_spaceOptionsDock, SIGNAL(ticksShown(QFlags<Qt::Orientation>)), m_dashboard->view2d(), SLOT(setTicksShown(QFlags<Qt::Orientation>)));
     connect(m_spaceOptionsDock, SIGNAL(axesShown(QFlags<Qt::Orientation>)), m_dashboard->view2d(), SLOT(setAxesShown(QFlags<Qt::Orientation>)));
-    //3d view
+
+    //Signal/slots for 3d Space
     connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));
     connect(m_spaceOptionsDock, SIGNAL(sceneResized(int)), m_dashboard->view3d(), SLOT(resizeScene(int)));
 
     connect(m_dashboard, SIGNAL(setDialogSettingsVisible(bool)),m_spaceOptionsDock, SLOT(setWidgetsVisible(bool)));
 
-    //connect(m_spaceOptionsDock, SIGNAL(colorindexChanged(int)),
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spaceOptionsDock);
@@ -230,14 +231,12 @@ void MainWindow::setupActions()
     KStandardAction::saveAs(this, SLOT(saveAsClicked()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     createAction("save_plotImage", i18n("&Save Plot as PNG"),QString(),Qt::CTRL + Qt::Key_P, this, SLOT(savePlot()));
-    //TODO
-//     KStandardAction::showMenubar(menuBar(), SLOT(setVisible(bool)), actionCollection());
 
     //edit - dashboard
     createAction("add_space2d", i18n("Add Space &2D"), "add-space2d", Qt::CTRL + Qt::Key_2, this, SLOT(addSpace2D()));
     createAction("add_space3d", i18n("Add Space &3D"), "add-space3d", Qt::CTRL + Qt::Key_3, this, SLOT(addSpace3D()));
 
-    //view - dashboard //TODO Show Plots Dictionary
+    //view - dashboard
     m_plotsBuilderDock->toggleViewAction()->setIcon(KIcon("formula"));
     m_plotsBuilderDock->toggleViewAction()->setShortcut(Qt::Key_S);
     m_plotsBuilderDock->toggleViewAction()->setToolTip(i18n("Create a plot in a new space"));
@@ -299,17 +298,17 @@ void MainWindow::setupActions()
     //settings
     KStandardAction::showMenubar(this, SLOT(setMenuBarVisibility(bool)), actionCollection());
     KToggleFullScreenAction *fullScreenAction = KStandardAction::fullScreen(this, SLOT(fullScreenView(bool)), this ,actionCollection());
-
-
-//     connect(m_dashboard, SIGNAL(saveRequest()), SLOT(saveFile()));
-//     connect(m_dashboard, SIGNAL(openRequest()), SLOT(openFile()));
-
 }
 
-void MainWindow::setCurrentSpaceTitle(const QString& str) {
+//Saving a space title
+void MainWindow::setCurrentSpaceTitle(const QString& str)
+{
     m_document->spacesModel()->space(m_document->currentSpace())->setTitle(str);
 }
-void MainWindow::setCurrentSpaceDesc(const QString& desc) {
+
+//Saving a space description
+void MainWindow::setCurrentSpaceDesc(const QString& desc)
+{
     m_document->spacesModel()->space(m_document->currentSpace())->setDescription(desc);
 }
 
@@ -343,9 +342,13 @@ void MainWindow::firstPageActClicked()
     m_importdictionaryAct->setVisible(false);
 
     int currentSpaceRow=m_document->currentSpace();
+
+    //For empty space model
     if(m_document->spacesModel()->rowCount()==0) {
         statusBar()->showMessage(i18n("There is not any space available to show!"), 2500);
     }
+
+    //Already on the first space
     else if(currentSpaceRow==0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
@@ -389,9 +392,13 @@ void MainWindow::lastPageActClicked()
 
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
+
+    //For empty space model
     if(m_document->spacesModel()->rowCount()==0) {
         statusBar()->showMessage(i18n("There is not any space available to show!"),2500);
     }
+
+    //Already on the last space
     else if(currentSpaceRow==size-1) {
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
@@ -426,7 +433,7 @@ void MainWindow::autoSaveFile()
 {
     updateThumbnail();
 
-    //no filename available, need to save it as temp
+    //no filename available, need to save it as temp , filename used here is "Temp.khipu.autosave"
     if(m_fileLocation.isEmpty())
         saveFile(getDefaultAutoSavepath());
     else {
@@ -435,6 +442,7 @@ void MainWindow::autoSaveFile()
     }
 }
 
+//Update thumbnail whenever the plots are changed.
 void MainWindow::updateThumbnail()
 {
 
@@ -477,44 +485,6 @@ void MainWindow::updateThumbnail()
     space->setThumbnail(thumbnail);
 }
 
-bool MainWindow::queryClose()
-{
-//     if (m_dashboard->isModified())
-//     {
-//         QString paletteFileName = m_dashboard->fileName();
-//
-//         if (paletteFileName.isEmpty())
-//             paletteFileName = i18n("Untitled");
-//
-//         switch (KMessageBox::warningYesNoCancel(this,
-//                                                 i18n( "The document \"%1\" has been modified.\n"
-//                                                         "Do you want to save your changes or discard them?", paletteFileName),
-//                                                 i18n( "Close Document" ), KStandardGuiItem::save(), KStandardGuiItem::discard()))
-//         {
-//         case KMessageBox::Yes:
-//         {
-//
-//
-//
-//
-//
-//             m_dashboard->showDashboard();
-//
-//             saveFile();
-//
-//             return m_dashboard->isSaved();
-//         }
-//         case KMessageBox::No :
-//             return true;
-//
-//         default :
-//             return false;
-//         }
-//     }
-
-    return true;
-}
-
 void MainWindow::checkforAutoSavedFile()
 {
     QString path = getDefaultAutoSavepath();
@@ -534,7 +504,7 @@ void MainWindow::newFile()
     // creates a new proccess.
     // The commandline arguments is used to create a completely new instance of Khipu(i.e. it does not reload the autosaved file)
     QStringList args;
-    args << "ignoreautosavedfile";
+    args << "ignoreautosavedfile"; // we dont want to reload the autosave file for the new action's slot.
     KToolInvocation::kdeinitExec("khipu",args);
 }
 
@@ -551,6 +521,7 @@ void MainWindow::openRecentClicked(const KUrl&  name)
     KToolInvocation::kdeinitExec("khipu",args);
 }
 
+//Parsing the file's path from the text provided by openrecent
 QString MainWindow::pathFromUrl(const KUrl &url)
 {
     if(url.isEmpty()) {
@@ -643,6 +614,7 @@ bool MainWindow::openFile(const KUrl &url)
     else
         file.setFileName(url.toLocalFile());
 
+    // for the default autosaved file (Temp.khipu.autosave)
     if(url.toLocalFile()==getDefaultAutoSavepath())
     {
         // ask for reloading the autosave file
@@ -693,7 +665,6 @@ bool MainWindow::openFile(const KUrl &url)
     m_parsedSpaceDetails = parser.parse(&file).toList();
     file.close();
 
-    qDebug() << "url is : " << url;
     if(!url.isLocalFile())
         KIO::NetAccess::removeTempFile( file.fileName() );
 
@@ -738,7 +709,6 @@ void MainWindow::saveClicked()
         KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
         m_fileLocation =url.toLocalFile();
     }
-
     saveFile(m_fileLocation);
 }
 
@@ -781,7 +751,7 @@ bool MainWindow::saveFile(const KUrl &url)
 {
     QMap<DictionaryItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
-    // just starting #no plot is available so no need to save
+    // just starting, no plot is available so no need to save
     if(map.empty())
     {
         qDebug() << "map is empty";
@@ -918,7 +888,6 @@ bool MainWindow::saveFile(const KUrl &url)
     return true;
 }
 
-
 void MainWindow::changeTitleBar(const QString& path)
 {
     window()->setWindowTitle(QFileInfo(path).fileName().append(" - Khipu"));
@@ -950,8 +919,6 @@ void MainWindow::activateSpace(int spaceidx)
 
     m_spacePlotsDock->reset(true);
 
-    //clear space infor widget
-//     m_spaceInfoDock->clear();
     DictionaryItem *space = m_document->spacesModel()->space(spaceidx);
     m_spaceInfoDock->setInformation(space->title(), space->description());
 
@@ -981,11 +948,6 @@ void MainWindow::activateDashboardUi()
     //tools
     action("copy_snapshot")->setVisible(false);
     action("save_plotImage")->setVisible(false);
-//     action("export_snapshot")->setVisible(false);
-
-    //toolbars
-//     toolBar("mainToolBar")->show();
-//     toolBar("spaceToolBar")->hide();
 
     //docks
     // primero oculto los widgets sino el size de los que voy a ocultar interfieren y la mainwnd se muestra muy grande
@@ -1023,11 +985,6 @@ void MainWindow::activateSpaceUi()
     //tools
     action("copy_snapshot")->setVisible(true);
     action("save_plotImage")->setVisible(true);
-//     action("export_snapshot")->setVisible(true);
-
-    //toolbars
-//     toolBar("mainToolBar")->hide();
-//     toolBar("spaceToolBar")->show();
 
     //docks
     //lo mismo ... primero hides luego show
@@ -1078,14 +1035,8 @@ void MainWindow::setVisibleDictionary()
     //tools
     action("copy_snapshot")->setVisible(false);
     action("save_plotImage")->setVisible(false);
-//         action("export_snapshot")->setVisible(false);
 
-    //toolbars
-//         toolBar("mainToolBar")->show();
-//         toolBar("spaceToolBar")->show();
-
-    //docks
-    //lo mismo ... primero hides luego show
+    //docks on the dashboard
     m_plotsBuilderDock->hide();
     m_spacePlotsDock->hide();
     m_spaceInfoDock->hide();
@@ -1094,6 +1045,7 @@ void MainWindow::setVisibleDictionary()
     m_dashboard->showDictionary();
     m_priorAct->setVisible(false);
     m_nextAct->setVisible(false);
+
     //actions should be visible
     m_getdictionaryAct->setVisible(true);
     m_importdictionaryAct->setVisible(true);
@@ -1102,7 +1054,6 @@ void MainWindow::setVisibleDictionary()
 void MainWindow::addSpace2D()
 {
     m_currentSpaceDim=2;
-    //m_totalSpaces++;
 
     activateSpaceUi();
 
@@ -1115,7 +1066,6 @@ void MainWindow::addSpace2D()
 void MainWindow::addSpace3D()
 {
     m_currentSpaceDim=3;
-    //m_totalSpaces++;
 
     activateSpaceUi();
 
@@ -1134,19 +1084,19 @@ void MainWindow::removeCurrentSpace()
         action("delete_currentspace")->setVisible(false);
 }
 
-//NOTE se emite cuando se regresa de un space ... aqui se debe guardar la imforacion del space
+// Allows the user to go Home which will save the current space and take the user to the main view
 void MainWindow::goHome()
 {
-    if (m_dashboard->currentIndex() != 0) // si no esta en modo dashboard
+    if (m_dashboard->currentIndex() != 0)
     {
-        ///guardando space info
-
+        //Current Space from where go home is pressed
         DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
         space->stamp(); // marcamos la fecha y hora de ingreso al space
         space->setTitle(m_spaceInfoDock->title());
         space->setDescription(m_spaceInfoDock->description());
 
+        // Thumbnail of the current space which is used to identify the space
         QPixmap thumbnail;
 
         switch (space->dimension())
@@ -1173,8 +1123,6 @@ void MainWindow::goHome()
 
         thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
         space->setThumbnail(thumbnail);
-
-        //QByteArray imageByteArray=thumbnailtoByteArray(thumbnail);
 
         if(!m_spacenameList.contains(space->title())) {
             //    m_imageList.append(imageByteArray);
@@ -1264,6 +1212,7 @@ void MainWindow::buildSphericalGraphSurface()
 
 void MainWindow::createPlot(const QModelIndex &ind)
 {
+    //Parsing the data from the qjson file
     QJson::Parser parser;
     QVariantMap map = m_parsedSpaceDetails.at(ind.row()).toMap(); // corresponding space entry
 
@@ -1282,9 +1231,6 @@ void MainWindow::createPlot(const QModelIndex &ind)
         double arg1min=plotmap.value("arg1min").toDouble();
         double arg1max=plotmap.value("arg1max").toDouble();
 
-        qDebug() << "value:1 " << arg1min;
-        qDebug() << "value:2 " << arg1max;
-
         QStringList errors;
 
         PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(ploteqn)), dim);
@@ -1295,6 +1241,7 @@ void MainWindow::createPlot(const QModelIndex &ind)
             item = req.create(plotcolor, plotname);
 
             if(dim==Dim2D) {
+                //Used to deal with infinite intervals.
                 if(arg1min!=0 || arg1max!=0) {
                     item->setInterval(item->parameters().first(), arg1min, arg1max);
                 }

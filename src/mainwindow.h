@@ -114,7 +114,6 @@ private:
     KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
     void setupDocks();
     void setupActions();
-    bool queryClose();
     void changeTitleBar(const QString& path);
     void setCurrentFile(const QString &fileName);
     void updateRecentFileList();
