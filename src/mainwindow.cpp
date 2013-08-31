@@ -1134,7 +1134,6 @@ void MainWindow::removeCurrentSpace()
         action("delete_currentspace")->setVisible(false);
 }
 
-
 //NOTE se emite cuando se regresa de un space ... aqui se debe guardar la imforacion del space
 void MainWindow::goHome()
 {

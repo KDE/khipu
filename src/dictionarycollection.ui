@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>285</width>
-    <height>163</height>
+    <width>300</width>
+    <height>164</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,6 +19,9 @@
      <widget class="QPushButton" name="importDictionary">
       <property name="text">
        <string>Import DIctionary</string>
+      </property>
+      <property name="icon">
+       <iconset theme="document-import"/>
       </property>
      </widget>
     </item>
@@ -94,6 +97,9 @@
      <widget class="QPushButton" name="AddButton">
       <property name="text">
        <string>Add</string>
+      </property>
+      <property name="icon">
+       <iconset theme="list-add"/>
       </property>
      </widget>
     </item>
