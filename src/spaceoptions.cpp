@@ -136,7 +136,7 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     addTickEntry("1", QString(), 1, 1, 1);
 
     m_widget->scale->setCurrentIndex(m_widget->scale->count()-1);
-    m_widget->useSymbols->hide(); // como el valor por defecto es 1 se esconde el chekcbos para usar simbolos
+ //   m_widget->useSymbols->hide(); // como el valor por defecto es 1 se esconde el chekcbos para usar simbolos
 
 //            // number and decimals from 0.5 in 0.5 1 - 10
 
@@ -179,7 +179,7 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     connect(m_widget->horizontalLabel, SIGNAL(textChanged(QString)), SIGNAL(setXAxisLabel(QString)));
     connect(m_widget->verticalLabel, SIGNAL(textChanged(QString)), SIGNAL(setYAxisLabel(QString)));
     connect(m_widget->scale, SIGNAL(currentIndexChanged(int)), SLOT(updateScale()));
-    connect(m_widget->useSymbols, SIGNAL(toggled(bool)), SLOT(updateScale()));
+  //  connect(m_widget->useSymbols, SIGNAL(toggled(bool)), SLOT(updateScale()));
 
     connect(m_widget->marksVisible, SIGNAL(toggled(bool)), SLOT(updateTicks()));
     connect(m_widget->showXAxis, SIGNAL(toggled(bool)), SLOT(updateAxes()));
@@ -222,7 +222,7 @@ void SpaceOptions::updateScale()
     // si se eliji un valor diferete de 1 aparece la pcion de usar simbolos o usar los valores
     // es decir si la opcion elegida es 1 (que es el ultimo item del combo) se oculta el check de simbolos
     //caso contrario se muestra
-    m_widget->useSymbols->setVisible(i != m_widget->scale->count()-1);
+   // m_widget->useSymbols->setVisible(i != m_widget->scale->count()-1);
 }
 
 void SpaceOptions::setGridStyle(int i)
