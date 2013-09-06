@@ -1230,20 +1230,18 @@ void PlotsEditor::plotnamecheckClicked(bool state)
     if(state==true) {
         m_widget->plotIcon->show();
         m_widget->plotName->show();
-        //m_widget->label_3->show();
         if(m_widget->plotName->text().isEmpty()) {
             m_widget->plotName->setText(i18n("plot %1",plotnumber));
             plotnumber++;
         }
-    }
-    else {
+    } else {
         m_widget->plotIcon->hide();
         m_widget->plotName->hide();
-        //m_widget->label_3->hide();
     }
 }
 
-void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args) {
+void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args)
+{
     /*
         qDebug() << "coming in the slots";
 

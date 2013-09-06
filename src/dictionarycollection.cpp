@@ -83,12 +83,10 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
-
     if(ind==-1) {
         qDebug() << "wrong index is passed !";
         return;
     }
-
 
     PlotsDictionaryModel *model=new PlotsDictionaryModel;
     model->clear();
@@ -102,14 +100,11 @@ void DictionaryCollection::setDictionaryData(int ind)
     if(m_document->currentSpace()==-1)
         return;
 
-
     // decide the space dimension
     m_currentDimension=m_document->spacesModel()->space(m_document->currentSpace())->dimension();
 
     for(int i=0;i<model->rowCount();i++) {
-
         for(int j=0;j<model->columnCount();j++) {
-
             QString str =model->data(model->index(i,j),PlotsDictionaryModel::ExpressionRole).toString();
             QString exp=str.right(str.length()-str.indexOf(":=")-2); //parsing of expression from the line
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp), m_currentDimension);
@@ -122,7 +117,6 @@ void DictionaryCollection::setDictionaryData(int ind)
             }
         }
     }
-
     m_widget->plotsView->setModel(model);
     connect(m_widget->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(setModelIndex(QModelIndex)));
 }
@@ -151,15 +145,13 @@ void DictionaryCollection::addPlotinSpace(const QModelIndex& ind)
     if(!ind.isValid()) {
         return;
     }
+
     QString str=m_dictionaryModel->data(ind,PlotsDictionaryModel::ExpressionRole).toString();
-
     QString exp=str.right(str.length()-str.indexOf(":=")-2); //parsing of expression from the line
-
     PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp), m_currentDimension);
 
     FunctionGraph *item = 0;
     item = req.create(randomFunctionColor(),m_dictionaryModel->data(ind).toString());
-
     m_document->plotsModel()->addPlot(item);
 
     emit mapDataChanged();
@@ -182,21 +174,25 @@ void DictionaryCollection::importDictionary()
     setDictionaryData(currentIndex);
 }
 
-bool DictionaryCollection::conains(const QString &dictionaryname) {
+bool DictionaryCollection::conains(const QString &dictionaryname)
+{
     if(m_widget->dictionaryNames->findText(dictionaryname)==-1) {
         return false;
     }
-return true;
+    return true;
 }
 
-int DictionaryCollection::indexOf(const QString &dictionaryname) {
+int DictionaryCollection::indexOf(const QString &dictionaryname)
+{
     return m_widget->dictionaryNames->findText(dictionaryname);
 }
 
-int DictionaryCollection::totalDictionaries() {
+int DictionaryCollection::totalDictionaries()
+{
    return m_widget->dictionaryNames->count();
 }
 
-QTreeView* DictionaryCollection::dictionaryPlotsView() {
+QTreeView* DictionaryCollection::dictionaryPlotsView()
+{
     return m_widget->plotsView;
 }

@@ -55,7 +55,6 @@ private slots:
 public:
     void setFilterDashboard(Dashboard *sourceDashboard);
 
-
 private:
     Ui::FilterWidget *m_widget;
     Dashboard *m_filterDashboard;

@@ -62,25 +62,18 @@ int main(int argc, char **argv)
 
     MainWindow *mainWindow = new MainWindow;
 
-    if (app.isSessionRestored())
-    {
+    if (app.isSessionRestored()) {
         RESTORE(MainWindow)
-    }
-    else
-    {
+    } else {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         if (args->count() == 0) {
             mainWindow->checkforAutoSavedFile();
             mainWindow->show();
-        }
-        else
-        {
+        } else {
             int i = 0;
             bool exit = false;
-            for (; i < args->count(); i++)
-            {
-                if (i==0)
-                {
+            for (; i < args->count(); i++) {
+                if (i==0) {
                     if(args->arg(0)!="ignoreautosavedfile"){
                         if (!(mainWindow->openFile(args->url(0).path())))
                             exit = true;

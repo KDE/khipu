@@ -224,16 +224,12 @@ void Dashboard::goHome()
 {
     setCurrentIndex(0);
     m_widget->views->setCurrentIndex(0);
-    //m_widget->plotsViewOptions->setCurrentIndex(0);
-
     emit showFilter(true);
 }
 
 void Dashboard::showDictionary()
 {
     m_widget->views->setCurrentIndex(1);
-//    m_widget->plotsViewOptions->setCurrentIndex(1);
-
     emit showFilter(false);
 }
 
@@ -263,8 +259,7 @@ void Dashboard::setPlotsView(Analitza::Dimension dim)
     if(dim==Dim2D){
         m_widget->stackedWidget->setCurrentIndex(0);
 
-    }
-    else if (dim==Dim3D){
+    } else if (dim==Dim3D){
         m_widget->stackedWidget->setCurrentIndex(1);
     }
 }
@@ -301,17 +296,13 @@ void Dashboard::exportSpaceSnapshot(Dimension dim)
 {
     QString path = KFileDialog::getSaveFileName(KUrl(), i18n("*.png|PNG Image File"), this);
     if(!path.isEmpty()){
-
         if(dim==Dim2D){
             view2d()->toImage(path,PlotsView2D::PNG);
-        }
-
-        else if(dim==Dim3D){
+        } else if(dim==Dim3D){
             view3d()->updateGL();
             view3d()->setFocus();
             view3d()->makeCurrent();
             view3d()->raise();
-
             QImage image(view3d()->grabFrameBuffer(true));
             QPixmap::fromImage(image, Qt::ColorOnly).save(path,"PNG");
         }
@@ -321,11 +312,6 @@ void Dashboard::exportSpaceSnapshot(Dimension dim)
 void Dashboard::copySpace2DSnapshotToClipboard()
 {
     view2d()->snapshotToClipboard();
-}
-
-void Dashboard::removeSpace(const QModelIndex& index)
-{
-
 }
 
 void Dashboard::copySpace3DSnapshotToClipboard()
@@ -345,7 +331,6 @@ void Dashboard::filterByDimension(Dimensions dim)
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
     m_spacesProxyModel->setFilterDimension(dim);
 }
-
 
 void Dashboard::setCurrentSpace(const QModelIndex &index)
 {
@@ -391,7 +376,6 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
 void Dashboard::setCurrentSpace(const QModelIndex& index, const QModelIndex& old)
 {
     m_document->setCurrentSpace(index.row());
-
 }
 
 //luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current
@@ -406,15 +390,12 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 //     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
 
     emit spaceActivated(row);
-//     qDebug() << row;
     
     //BUG qt el filtermodel no respeta iconviewmode al agregar los items ...
 //     if (m_document->spacesModel()->rowCount() < 2) // si esta vacio por primera actiualizo el view 
 //         m_widget->spacesView->update();
     
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
-
-
 }
 
 void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
@@ -427,19 +408,17 @@ void Dashboard::setGridColor(const QColor &color) // used for making the axis vi
 {
     if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
         m_widget->plotsView2D->updateGridColor(color);
-    }
-
-    else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
+    } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
         Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
         plotter3d->setReferencePlaneColor(color);
     }
 }
 
-void Dashboard::setPlotsViewGridColor(const QColor &color){
+void Dashboard::setPlotsViewGridColor(const QColor &color)
+{
     if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
         m_widget->plotsView2D->updateGridColor(color);
-    }
-    else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
+    } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
         Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
         plotter3d->setReferencePlaneColor(color);
         showPlotsView3D();
@@ -505,7 +484,8 @@ void Dashboard::setupWidget()
 
 }
 
-void Dashboard::getDictionaryClicked() {
+void Dashboard::getDictionaryClicked()
+{
     KNS3::DownloadDialog newStuffDialog(this);
     newStuffDialog.exec();
     KNS3::Entry::List installedentries = newStuffDialog.installedEntries();

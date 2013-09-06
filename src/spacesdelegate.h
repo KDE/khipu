@@ -148,7 +148,6 @@ private:
     mutable bool m_isEditing;
     QPoint m_currentCurPos;
 
-    ///
     bool m_iconMode;
     DataStore *m_document;
 };

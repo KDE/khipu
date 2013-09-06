@@ -59,8 +59,6 @@ bool PlotsProxyModel::lessThan(const QModelIndex& left, const QModelIndex& right
     return QString::localeAwareCompare(left.data().toString(), right.data().toString())>=0;
 }
 
-///
-
 SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(DataStore *ds, QObject* parent)
     : PlotsProxyModel(parent)
     , m_dataStore(ds)
@@ -71,10 +69,9 @@ SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
 
 void SpacePlotsFilterProxyModel::setFilterSpace(DictionaryItem* space)
 {
-    if (!space) return;
-    
-    m_space = space;
-    
+    if (!space)
+        return;
+    m_space = space; 
     invalidateFilter();
 }
 

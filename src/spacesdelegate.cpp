@@ -80,8 +80,6 @@ void SpaceEditor::setSpace(SpaceItem* space)
     m_widget->timestamp->setText(space->timestamp().toString("%A %l:%M %p %B %Y"));
 }*/
 
-///
-
 LineEdit::LineEdit(QWidget* parent): KLineEdit(parent)
 {
 
@@ -92,9 +90,6 @@ void LineEdit::procsSditingFinished()
 {
     emit editingFinished(text());
 }
-
-
-///
 
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : QStyledItemDelegate(parent), m_itemView(itemView)
@@ -205,10 +200,9 @@ void SpacesDelegate::setIconMode(bool im)
     dummyUpdate(); 
 }
 
-void SpacesDelegate::exportSpace(){
-
+void SpacesDelegate::exportSpace()
+{
     emit saveDictionary(itemView()->currentIndex());
-
 }
 
 QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -245,7 +239,8 @@ QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewIte
 
 void SpacesDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    if (!index.isValid()) return ;
+    if (!index.isValid())
+        return ;
 
 //     m_currentEditingIndex = index;
 //     m_isEditing = true;
@@ -256,7 +251,8 @@ void SpacesDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionVie
 
 void SpacesDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    if (!index.isValid()) return ;
+    if (!index.isValid())
+        return ;
 
 //     m_currentEditingIndex = index;
 //     m_isEditing = true;
@@ -269,7 +265,8 @@ void SpacesDelegate::setEditorData(QWidget* editor, const QModelIndex& index) co
 
 void SpacesDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    if (!index.isValid()) return ;    
+    if (!index.isValid())
+        return ;
 
         m_currentEditingIndex = QModelIndex();
         m_isEditing = false;
@@ -570,7 +567,7 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
                 }
                 
 //                 itemView()->setCurrentIndex(QModelIndex());
-            }else
+            } else
                 if (index.isValid())
                 {
                     //NOTE es importante que el viewport tenga el foco para que funcione correctamte la seleccion de items con el movimieto del mouse 
@@ -671,7 +668,8 @@ void SpacesDelegate::dummyUpdate()
 
 void SpacesDelegate::setCurrentSpace(const QModelIndex& index, const QModelIndex& oldcurent)
 {
-    if (m_isEditing) return;
+    if (m_isEditing)
+        return;
     
     itemView()->setCurrentIndex(index);
     
@@ -693,7 +691,8 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index, const QModelIndex
 void SpacesDelegate::removeCurrentSpace()
 {
 
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid())
+        return;
 
     m_document->removeSpace(itemView()->currentIndex().row());
 
@@ -721,7 +720,8 @@ void SpacesDelegate::setDocument(DataStore *doc)
 
 void SpacesDelegate::editCurrentSpace()
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid())
+        return;
     
     m_currentEditingIndex = itemView()->currentIndex();
 
@@ -747,14 +747,16 @@ void SpacesDelegate::editCurrentSpace()
 
 void SpacesDelegate::showCurrentSpace()
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid())
+        return;
     
     emit showSpace(itemView()->currentIndex());
 }
 
 void SpacesDelegate::finishEditingTitle(const QString &newtitle )
 {
-    if (!itemView()->currentIndex().isValid()) return;
+    if (!itemView()->currentIndex().isValid())
+        return;
 
     m_isEditing = false;
 

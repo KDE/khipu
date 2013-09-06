@@ -31,9 +31,6 @@ Filter::Filter(QWidget* parent): QWidget(parent)
     m_widget->filterOptions->insertItem(1,KIcon("2d-space-filter"),"Dimension-2D");
     m_widget->filterOptions->insertItem(2,KIcon("3d-space-filter"),"Dimension-3D");
 
-
-    setObjectName("a33sdasddsaaa1");
-
     connect(m_widget->filterText, SIGNAL(textChanged(QString)), SIGNAL(filterByText(QString)));
     connect(m_widget->filterOptions, SIGNAL(currentIndexChanged(int)), SLOT(getDimIndex(int)));
 }
@@ -53,13 +50,15 @@ void Filter::getDimIndex(int index)
     }
 }
 
-void Filter::setFilterDashboard(Dashboard *sourceDashboard){
+void Filter::setFilterDashboard(Dashboard *sourceDashboard)
+{
     m_filterDashboard= new Dashboard(sourceDashboard);
     m_filterDashboard->setVisible(false);
     m_filterDashboard->setDashboardData(sourceDashboard);
 }
 
-void Filter::setFilterVisible(bool b) {
+void Filter::setFilterVisible(bool b)
+{
     m_widget->filterText->setVisible(b);
     m_widget->filterOptions->setVisible(b);
 }

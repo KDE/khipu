@@ -28,7 +28,6 @@ DictionariesModel::DictionariesModel(QObject *parent)
     : QAbstractListModel(parent),  m_itemCanCallModelRemoveItem(true)
 {}
 
-
 Qt::ItemFlags DictionariesModel::flags(const QModelIndex &) const
 {
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
@@ -43,7 +42,6 @@ QVariant DictionariesModel::headerData(int section, Qt::Orientation orientation,
             case 1: return i18nc("@title:column", "Description");
         }
     }
-    
     return QVariant();
 }
 

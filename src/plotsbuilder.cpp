@@ -25,14 +25,11 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     m_widget = new Ui::PlotsBuilderWidget;
     m_widget->setupUi(this);
     
-    //clear
-    //connect(m_widget->buildCartesianGraphCurve, SIGNAL(leftUrl()), SLOT(clearInfoWidget()));
-
     // Setting up Mousetracking and Event-filter for all types of plots
     this->setMouseTracking(true);
     this->installEventFilter(this);
 
-     // can be done also by enter event and leave event using underMouse();
+    // can be done also by enter event and leave event using underMouse();
     m_widget->buildCartesianGraphCurve->setIcon(KIcon("newfunction"));
     m_widget->buildCartesianGraphCurve->setMouseTracking(true);
     m_widget->buildCartesianGraphCurve->installEventFilter(this);

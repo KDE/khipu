@@ -274,8 +274,7 @@ void SpaceOptions::setWidgetsVisible(bool isWidgetVisible)
     if(!isWidgetVisible) {
         m_widget->gridStyle->clear();
         m_widget->gridStyle->addItem("Lines");
-    }
-    else {
+    } else {
         m_widget->gridStyle->clear();
         m_widget->gridStyle->addItem("None");
         m_widget->gridStyle->addItem("Lines");

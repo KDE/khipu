@@ -30,7 +30,8 @@
 //local includes
 #include "plotsbuilder.h"
 
-namespace Analitza {
+namespace Analitza
+{
 class FunctionGraph;
 class PlotsModel;
 class PlotsModel;

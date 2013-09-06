@@ -132,10 +132,8 @@ KAction* MainWindow::createAction(const char* name, const QString& text, const Q
     if (isCheckable)
     {
         act->setChecked(checked);
-
         QObject::connect(act, SIGNAL(toggled(bool)), recvr, slot);
-    }
-    else
+    } else
         QObject::connect(act, SIGNAL(triggered()), recvr, slot);
 
     actionCollection()->addAction(name, act);
@@ -323,8 +321,7 @@ void MainWindow::fullScreenView (bool isFull)
         m_plotsBuilderDock->hide();
         m_dictionaryDock->hide();
         toolBar("mainToolBar")->hide();
-    }
-    else {
+    } else {
         showNormal();
         statusBar()->show();
         toolBar("mainToolBar")->show();
@@ -343,18 +340,13 @@ void MainWindow::firstPageActClicked()
 
     int currentSpaceRow=m_document->currentSpace();
 
-    //For empty space model
-    if(m_document->spacesModel()->rowCount()==0) {
+    if(m_document->spacesModel()->rowCount()==0) { //For empty space model
         statusBar()->showMessage(i18n("There is not any space available to show!"), 2500);
-    }
-
-    //Already on the first space
-    else if(currentSpaceRow==0) {
+    } else if(currentSpaceRow==0) { //Already on the first space
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
         statusBar()->showMessage(i18n("Currently,you are on the first space!"),2500);
-    }
-    else if(m_document->spacesModel()->rowCount()>0) {
+    } else if(m_document->spacesModel()->rowCount()>0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
     }
@@ -365,8 +357,7 @@ void MainWindow::priorActClicked()
     int currentSpaceRow=m_document->currentSpace();
     if(currentSpaceRow==0) {
         statusBar()->showMessage(i18n("You are already on the first space!"),2500);
-    }
-    else if(currentSpaceRow>0) {
+    } else if(currentSpaceRow>0) {
         QModelIndex prevInd=m_document->spacesModel()->index(currentSpaceRow-1);
         m_dashboard->setCurrentSpace(prevInd);
     }
@@ -378,8 +369,7 @@ void MainWindow::nextActClicked()
     int size=m_document->spacesModel()->rowCount();
     if(currentSpaceRow==size-1) {
         statusBar()->showMessage(i18n("You are already on the last space!"),2500);
-    }
-    else if(currentSpaceRow<size-1) {
+    } else if(currentSpaceRow<size-1) {
         QModelIndex nextInd=m_document->spacesModel()->index(currentSpaceRow+1);
         m_dashboard->setCurrentSpace(nextInd);
     }
@@ -393,18 +383,13 @@ void MainWindow::lastPageActClicked()
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
 
-    //For empty space model
-    if(m_document->spacesModel()->rowCount()==0) {
+    if(m_document->spacesModel()->rowCount()==0) { //For empty space model
         statusBar()->showMessage(i18n("There is not any space available to show!"),2500);
-    }
-
-    //Already on the last space
-    else if(currentSpaceRow==size-1) {
+    } else if(currentSpaceRow==size-1) { //Already on the last space
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
         statusBar()->showMessage(i18n("Currently,you are on the last space!"),2500);
-    }
-    else if(m_document->spacesModel()->rowCount() >0) {
+    } else if(m_document->spacesModel()->rowCount() >0) {
         int size=m_document->spacesModel()->rowCount();
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
@@ -422,8 +407,7 @@ void MainWindow::setMenuBarVisibility(bool isShow)
 {
     if(isShow) {
         menuBar()->show();
-    }
-    else {
+    } else {
         KMessageBox::information(this,i18n("Press ctrl + M to make Menubar Visible again"),i18n("Menubar Visibility"));
         menuBar()->hide();
     }
@@ -434,9 +418,9 @@ void MainWindow::autoSaveFile()
     updateThumbnail();
 
     //no filename available, need to save it as temp , filename used here is "Temp.khipu.autosave"
-    if(m_fileLocation.isEmpty())
+    if(m_fileLocation.isEmpty()) {
         saveFile(getDefaultAutoSavepath());
-    else {
+    } else {
         QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".khipu.autosave"));
         saveFile(path);
     }
@@ -524,9 +508,9 @@ void MainWindow::openRecentClicked(const KUrl&  name)
 //Parsing the file's path from the text provided by openrecent
 QString MainWindow::pathFromUrl(const KUrl &url)
 {
-    if(url.isEmpty()) {
+    if(url.isEmpty())
         return QString();
-    }
+
     QString str = url.toMimeDataString();
     // ignore the first 7 letters (i.e. "file://")
     QString path = str.remove(0,7);
@@ -610,8 +594,7 @@ bool MainWindow::openFile(const KUrl &url)
             return false;
         }
         file.setFileName(tmpfile);
-    }
-    else
+    } else
         file.setFileName(url.toLocalFile());
 
     // for the default autosaved file (Temp.khipu.autosave)
@@ -628,30 +611,26 @@ bool MainWindow::openFile(const KUrl &url)
             if(file.remove())
                 return false;
         }
-    }
-    else
-    {
+    } else {
         QString path=url.toLocalFile();
         // not , current autosave !
         if(!path.contains(".khipu.autosave"))
             setCurrentFile(path);
         m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
         changeTitleBar(path);
-        //}
 
         //check for available autosave file
         QString currentautosavepath=getCurrentAutoSavepath(path);
         if(QFile::exists(currentautosavepath)) {
+
             // ask for reloading the autosave file
             int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved chanes in the file %1.Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
-
             if(answer==KMessageBox::Yes) {
                 // user wants to open the autosave file.
                 file.setFileName(currentautosavepath);
             }
         }
     }
-
     if(!file.open(QFile::ReadOnly)) {
         qDebug() << "error in reading";
         if(file.fileName()!=getDefaultAutoSavepath())
@@ -705,7 +684,7 @@ QPixmap MainWindow::toPixmap(const QByteArray &bytearray)
 void MainWindow::saveClicked()
 {
     // Intially when the data is not saved. We would not have the actual file path.
-    if(m_fileLocation=="") {
+    if(m_fileLocation.isEmpty()) {
         KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
         m_fileLocation =url.toLocalFile();
     }
@@ -725,11 +704,9 @@ bool MainWindow::closeClicked()
         if(answer==KMessageBox::Yes) {
             saveClicked();
             return true;
-        }
-        else if(answer==KMessageBox::Cancel) {
+        } else if(answer==KMessageBox::Cancel) {
             return false;
-        }
-        else if(answer==KMessageBox::No) {
+        } else if(answer==KMessageBox::No) {
             // if user selects No , then he/she can restore the work using autosaving feature. But this can be removed !
             return true;
         }
@@ -1125,13 +1102,7 @@ void MainWindow::goHome()
         space->setThumbnail(thumbnail);
 
         if(!m_spacenameList.contains(space->title())) {
-            //    m_imageList.append(imageByteArray);
             m_spacenameList.append(space->title());
-            // m_savedSpaces++;
-        }
-        else {
-            //  int ind=m_spacenameList.indexOf(space->title());
-            //  m_imageList.replace(ind,imageByteArray);
         }
     }
     m_dashboard->goHome();
@@ -1247,9 +1218,7 @@ void MainWindow::createPlot(const QModelIndex &ind)
                 }
             }
             m_document->plotsModel()->addPlot(item);
-        }
-
-        else
+        } else
             errors = req.errors();
     }
 }

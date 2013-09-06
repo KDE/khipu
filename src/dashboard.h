@@ -99,7 +99,6 @@ public slots:
     void filterByText(const QString &text); // any text on the title or description
     void filterByDimension(Analitza::Dimensions dim);
     
-    
     void goHome();
     void showDictionary();
     void showPlotsView2D();
@@ -117,7 +116,6 @@ public slots:
     void getDictionaryClicked();
 
 private slots:
-    void removeSpace(const QModelIndex & index);
     void setDictionaryData(int ind);
 //     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
     void setCurrentSpace(const QModelIndex &index, const QModelIndex &old); // este solo emite el spaceactivate para que se entere el datasotre ... no hace cambios en la ui
