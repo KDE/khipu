@@ -79,18 +79,16 @@ void SpacesFilterProxyModel::setFilterText(const QString& text)
 bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
                                                const QModelIndex &sourceParent) const
 {
-    if (!sourceModel()) return false;
-
+    if (!sourceModel())
+        return false;
     DictionaryItem *spaceItem = static_cast<DictionariesModel*>(sourceModel())->space(sourceRow);
-    
-    if (!spaceItem) return false;
-    
+    if (!spaceItem)
+        return false;
     if (m_dimension != DimAll && spaceItem->dimension() != m_dimension)
         return false;
     if(!spaceItem->title().contains(m_filterText,Qt::CaseInsensitive)
             && !spaceItem->description().contains(m_filterText,Qt::CaseInsensitive))
         return false;
-
     return true;
 }
 
@@ -107,7 +105,8 @@ Dashboard::Dashboard(QWidget *parent)
     setDictionaryNames();
 }
 
-void Dashboard::setDashboardData(Dashboard* source){
+void Dashboard::setDashboardData(Dashboard* source)
+{
     m_document=source->m_document;
     m_widget=source->m_widget;
     m_spacesProxyModel=source->m_spacesProxyModel;
@@ -153,7 +152,7 @@ void Dashboard::setDictionaryNames()
         QString error =i18n("Please make sure that the dictionary(.plots) files are correctly installed");
         KMessageBox::error(this,error,i18n("No Dictionary found!"));
         qDebug() << "not found..";
-    return;
+        return;
     }
 }
 
@@ -161,24 +160,19 @@ void Dashboard::setDocument(DataStore* doc)
 {
     m_document = doc;
 
-//     doc->plotsModel()->setCheckable(false); // en la action view show functions ... ojo esa tendra un preview
-
     m_spacesProxyModel = new SpacesFilterProxyModel(this);
     m_spacesProxyModel->setSourceModel(doc->spacesModel());
 
     m_widget->spacesView->setModel(m_spacesProxyModel);
     
-    ///
     QItemSelectionModel *selection = new QItemSelectionModel(m_spacesProxyModel);
     
     m_widget->spacesView->setSelectionModel(selection);
-    ///
-
 
     m_widget->spacesView->setMouseTracking(true);
     m_widget->spacesView->setAlternatingRowColors(true);
     m_widget->spacesView->setViewMode(QListView::IconMode);
-//     m_widget->spacesView->setFlow(QListView::LeftToRight);
+
     SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
 
     delegate->setDocument(doc);
@@ -214,17 +208,6 @@ void Dashboard::setDocument(DataStore* doc)
     DictionariesModel * m = m_document->spacesModel();
 
     connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int,int)));
-}
-
-QPixmap Dashboard::currentPlotsViewSnapshot() const
-{
-//     switch (m_document->spacesModel()->item(m_document->currentSpace())->dimension())
-//     {
-//         case Dim2D:
-//             return m_widget->plotsView2D;
-//     }
-
-    return QPixmap();
 }
 
 PlotsView2D* Dashboard::view2d()

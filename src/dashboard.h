@@ -85,7 +85,6 @@ public:
 
     void setDocument(DataStore *doc);
     
-    QPixmap currentPlotsViewSnapshot() const;
     void setDashboardData(Dashboard* source);
     QMap<QString,QString> dictionaryDataMap() const { return  m_DictionaryPathName; }
 
