@@ -154,7 +154,6 @@ void DictionaryCollectionTest::testAddPlot()
 
     QCOMPARE(plotitem->name(),QString("plane2"));
     QCOMPARE(plotitem->expression(),Analitza::Expression("(x, y, z)->(x+y+z)-5"));
-    QCOMPARE(plotitem->color(),QColor(Qt::blue));
 }
 
 #include "dictionarycollectiontest.moc"
