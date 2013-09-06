@@ -75,10 +75,12 @@ void DictionaryCollection::setDictionaryDataMap()
 
 void DictionaryCollection::setDefaultDictionaries()
 {
+    disconnect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
     QList<QString> dictionaryFileNames=m_DictionaryPathName.values();
     foreach(const QString &file,dictionaryFileNames) {
         m_widget->dictionaryNames->addItem(QFileInfo(file).baseName());
     }
+    connect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
 }
 
 void DictionaryCollection::setDictionaryData(int ind)
