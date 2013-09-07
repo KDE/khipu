@@ -131,7 +131,7 @@ void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
         case Polar: i = 2; break;
         default : i=0; break;
     }
-    emit gridStyleChanged(i);
+    //emit gridStyleChanged(i);
 }
 
 void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
@@ -223,8 +223,10 @@ void DataStore::saveSpaceAsDictionary(QModelIndex ind)
     QList<Analitza::PlotItem*> itemList= m_maps.values(m_spacesModel->space(ind.row()));
 
     for(int i=0;i<itemList.size();i++) {
-        out << itemList.at(i)->name() << " := " << itemList.at(i)->expression().toString() << "\n";
+        QString name = itemList.at(i)->name();
+        // we dont want the plots in the dictionary which dont have names !
+        if(!name.isEmpty())
+            out << name << " := " << itemList.at(i)->expression().toString() << "\n";
     }
-
-file->close();
+    file->close();
 }

@@ -219,7 +219,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 //     m_widget->fnameForGraphs->view()->setMouseTracking(true);
     m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
-    // initialize the combo-box with green color because green plot will be visible in both 2D(white) and 3D(black) space.
+    // random coloring of the plots
     m_widget->plotColor->setColor(randomFunctionColor());
 
     m_widget->focusPlot->setToolTip(i18n("check/uncheck to show/hide the Axes"));
