@@ -68,7 +68,6 @@ ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
 
 QSize ComboBox::sizeHint() const
 {
-    //TODO GSOC fix magic numbers heres
 
     QStringList funcs = m_cacheText.split(",");
     QString mmlhelper;
@@ -77,33 +76,25 @@ QSize ComboBox::sizeHint() const
     {
         mmlhelper.append("<mi>"+func+"</mi>");
 
-        if (func != funcs.last()) // no agregar comas al final
+        if (func != funcs.last())
             mmlhelper.append("<mtext>,</mtext>");
     }
 
     QtMmlDocument mathMLRenderer;
     mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-
-// return QSize(258, 32);
 //     qDebug() << mathMLRenderer.size() << funcs << m_cacheText;
-
-    //TODO add the combo arrow size properly
-//     QStyleOptionComboBox opt;
-//     opt.initFrom(this);
-
     return QSize(mathMLRenderer.size().width()+24, mathMLRenderer.size().height()+8);
 }
 
 void ComboBox::paintEvent(QPaintEvent* e)
 {
-    //dibujo el combo pero borrando el texto temporalmente, luego reinserto el texto ... la idea es dibujar el combo sin el text
+    //Drawing the combo-box
     QString itemtext = currentText();
     m_cacheText = itemtext;
     setItemText(currentIndex(), "");
     QComboBox::paintEvent(e);
     setItemText(currentIndex(), itemtext);
 
-    //TODO GSOC fix magic numbers heres
 
     QPainter p(this);
 
@@ -114,7 +105,7 @@ void ComboBox::paintEvent(QPaintEvent* e)
     {
         mmlhelper.append("<mi>"+func+"</mi>");
 
-        if (func != funcs.last()) // no agregar comas al final
+        if (func != funcs.last())
             mmlhelper.append("<mtext>,</mtext>");
     }
 
@@ -133,8 +124,6 @@ void ComboBox::setupCache(const QString& currtext)
 //     qDebug() << m_cacheText;
     setMinimumSize(sizeHint());
     update();
-//     resize(sizeHint());
-//     update();
 }
 
 class FunctionDelegate : public QStyledItemDelegate
@@ -147,9 +136,7 @@ public:
 
 FunctionDelegate::FunctionDelegate(ComboBox* parent): QStyledItemDelegate(parent)
 {
-
 }
-
 QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
     QStringList funcs = index.data().toString().split(",");
@@ -158,8 +145,7 @@ QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QMode
     foreach(const QString &func, funcs)
     {
         mmlhelper.append("<mi>"+func+"</mi>");
-
-        if (func != funcs.last()) // no agregar comas al final
+        if (func != funcs.last())
             mmlhelper.append("<mtext>,</mtext>");
     }
 
@@ -179,7 +165,7 @@ void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
     {
         mmlhelper.append("<mi>"+func+"</mi>");
 
-        if (func != funcs.last()) // no agregar comas al final
+        if (func != funcs.last())
             mmlhelper.append("<mtext>,</mtext>");
     }
 
@@ -213,10 +199,6 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->setupUi(this);
     setObjectName("adasdds");
 
-//     m_widget->intervals->setChecked(false); // por defecto usaremos el viewpor no los intervalos
-
-//     m_widget->fnameForGraphs->setMouseTracking(true);
-//     m_widget->fnameForGraphs->view()->setMouseTracking(true);
     m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
     // random coloring of the plots
@@ -236,22 +218,10 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
     m_widget->garrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
     m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
-    //cons
-    //connect(m_widget->quickPlot,SIGNAL(selectedFunction(QString,Analitza::Dimensions,QString,QStringList)),this,
-    //           SLOT(addPlotsfromDictionary(QString,Analitza::Dimensions,QString,QStringList)));
+
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(cancelEditor()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Ok), SIGNAL(pressed()), SLOT(savePlot()));
-
-//     connect(m_widget->createCartesianCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createCartesianCurve()));
-//     connect(m_widget->createPolarCurve, SIGNAL(leftClickedUrl(QString)), SLOT(createPolarCurve()));
-//     connect(m_widget->createParametricCurve2D, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricCurve2D()));
-//     connect(m_widget->createParametricCurve3D, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricCurve3D()));
-//     connect(m_widget->createCartesianSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createCartesianSurface()));
-//     connect(m_widget->createCylindricalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createCylindricalSurface()));
-//     connect(m_widget->createSphericalSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createSphericalSurface()));
-//     connect(m_widget->createParametricSurface, SIGNAL(leftClickedUrl(QString)), SLOT(createParametricSurface()));
-//lo de arriba ya no va ahora todo es por el builderplots ... mira el metodo map y el siguiente codigo
 
     m_widget->builder->mapConnection(PlotsBuilder::CartesianGraphCurve, this, SLOT(buildCartesianGraphCurve()));
     m_widget->builder->mapConnection(PlotsBuilder::CartesianImplicitCurve, this, SLOT(buildCartesianImplicitCurve()));
@@ -300,12 +270,10 @@ void PlotsEditor::setDocument(DataStore* doc)
     m_document  = doc;
     m_widget->plotsView->setModel(m_document->currentPlots());
     m_widget->plotsView->setSelectionModel(m_document->currentSelectionModel());
-    //m_widget->quickPlot->setModel(m_document->plotsDictionaryModel());
 }
 
 void PlotsEditor::setCurrentSpace(int spaceidx)
 {
-    //m_widget->quickPlot->setFilterDimension(m_document->spacesModel()->space(spaceidx)->dimension());
     switch (m_document->spacesModel()->space(spaceidx)->dimension())
     {
     case Dim2D:
@@ -331,7 +299,7 @@ void PlotsEditor::setCurrentSpace(int spaceidx)
 
 void PlotsEditor::reset(bool clearBuilder)
 {
-    //clear widgets //TODO GSOC
+    //clear widgets
     m_widget->plotName->clear();
     m_widget->plotnamecheck->setChecked(false);
     m_widget->plotColor->setColor(randomFunctionColor());
@@ -346,13 +314,10 @@ void PlotsEditor::reset(bool clearBuilder)
     m_widget->minz->clear();
     m_widget->maxz->clear();
 
-    //reset widgets*/
+    //reset widgets
     m_widget->widgets->setCurrentIndex(0);
-//     m_widget->preview3D->camera()/*->centerScene;
-//     m_widget->preview3D->stopAnimation();
 
     if (clearBuilder)
-        //// escondo todos los links solo muestro los necesario dependiendo del tipo de spac : 2d o 3d .. ver editorplots.setcurrentspace
         m_widget->builder->hideAllTypes();
 
     //focus
@@ -383,14 +348,12 @@ void PlotsEditor::cancelEditor()
         isEditing = false;
         return;
     }
-    if (m_cancelIsGoHome) // si he llegado desde el dock del mainwnd => el cancel regresa al mainwnd
+    if (m_cancelIsGoHome)
     {
         emit goHome();
-
-        //NOTE eliminamos el ultimo espacio si el usuario cancelo y no hay nuevosplos
         m_document->removeCurrentSpace();
     }
-    else // caso contrario se entiende que estoy en el contexto de un space (editando la lista de plots de un space)
+    else 
         showTypes();
 }
 
@@ -428,9 +391,6 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
     if (m_widget->plotsView->selectionModel()->hasSelection()) // may be the plotsview is different .!!!
     {
-        /* m_indexEdited = m_widget->plotsView->selectionModel()->currentIndex();
-         PlotItem* item = m_indexEdited.data(PlotsModel::PlotRole).value<PlotItem*>();
-         */
         QModelIndex index = m_widget->plotsView->selectionModel()->currentIndex();
         PlotItem* item = index.data(PlotsModel::PlotRole).value<PlotItem*>();
         
@@ -476,7 +436,6 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                     if (curve->parameters().first() == "x")
                     {
                         m_currentVars = QStringList() << "x";
-                        // no mostramos el combo pues ya el tipo de la func esta elejido
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "x", false);
                         setupVarName(1, "x");
@@ -607,7 +566,8 @@ void PlotsEditor::editPlot(const QModelIndex &index)
 
 void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -623,7 +583,8 @@ void PlotsEditor::buildCartesianGraphCurve(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -642,7 +603,8 @@ void PlotsEditor::buildCartesianImplicitCurve(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -658,7 +620,8 @@ void PlotsEditor::buildCartesianParametricCurve2D(bool cancelIsGoHome)
 
 void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -675,7 +638,8 @@ void PlotsEditor::buildPolarGraphCurve(bool cancelIsGoHome)
 //3D
 void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -691,7 +655,8 @@ void PlotsEditor::buildCartesianParametricCurve3D(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -710,7 +675,8 @@ void PlotsEditor::buildCartesianGraphSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -732,7 +698,8 @@ void PlotsEditor::buildCartesianImplicitSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -751,7 +718,8 @@ void PlotsEditor::buildCartesianParametricSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -770,7 +738,8 @@ void PlotsEditor::buildCylindricalGraphSurface(bool cancelIsGoHome)
 
 void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
 {
-    if(!isEditing)reset();
+    if (!isEditing)
+        reset();
 
     m_cancelIsGoHome = cancelIsGoHome;
 
@@ -787,19 +756,6 @@ void PlotsEditor::buildSphericalGraphSurface(bool cancelIsGoHome)
     m_widget->maxy->setExpression(Analitza::Expression("pi"));
 }
 
-FunctionGraph* PlotsEditor::editCurrentFunction(const Analitza::Expression& exp)
-{
-    QModelIndex idx = m_widget->plotsView->selectionModel()->currentIndex().sibling(0, 1);
-
-    m_widget->plotsView->model()->setData(m_indexEdited, AnalitzaUtils::expressionToVariant(exp));
-    m_widget->plotsView->model()->setData(m_indexEdited, m_widget->plotColor->color(), Qt::DecorationRole);
-    m_widget->plotsView->model()->setData(m_indexEdited.sibling(m_indexEdited.row(), 0), m_widget->plotName->text());
-
-    return static_cast<FunctionGraph*>(m_indexEdited.data(PlotsModel::PlotRole).value<PlotItem*>());
-
-    return 0;
-}
-
 void PlotsEditor::savePlot()
 {
     QStringList errors;
@@ -813,7 +769,6 @@ void PlotsEditor::savePlot()
         if(m_widget->minx->expression().toString().isEmpty() || m_widget->maxx->expression().toString().isEmpty()
               || m_widget->miny->expression().toString().isEmpty() || m_widget->maxy->expression().toString().isEmpty()
                 || m_widget->minz->expression().toString().isEmpty() || m_widget->maxz->expression().toString().isEmpty()) {
-            qDebug() << "problem is here";
             return;
         }
     }
@@ -830,7 +785,6 @@ void PlotsEditor::savePlot()
 
                 if (isEditing) 
                 {
-                    // item = editCurrentFunction(req.expression());
                     //remove that first and then add the new one
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
@@ -863,7 +817,6 @@ void PlotsEditor::savePlot()
                 FunctionGraph *item = 0;
 
                 if (isEditing) {
-                    //  item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
 
                 }
@@ -897,7 +850,6 @@ void PlotsEditor::savePlot()
 
                 if (isEditing)
                 {
-                    //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
 
@@ -931,7 +883,6 @@ void PlotsEditor::savePlot()
 
                 if (isEditing)
                 {
-                    //     item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
 
@@ -966,7 +917,6 @@ void PlotsEditor::savePlot()
                 
                 if (isEditing) 
                 {
-                    //  item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
                 
@@ -995,7 +945,6 @@ void PlotsEditor::savePlot()
                 FunctionGraph *item = 0;
                 
                 if (isEditing) {
-                    //       item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
@@ -1024,7 +973,6 @@ void PlotsEditor::savePlot()
             {
                 FunctionGraph *item = 0;
                 if (isEditing) {
-                    //       item = editCurrentFunction(req.expression());
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
@@ -1058,7 +1006,6 @@ void PlotsEditor::savePlot()
     }
     else
     {
-//         setStatusTip(errors);
         emit sendStatus(errors.last(), 2000); //2 secs for the user
     }
 }
@@ -1157,24 +1104,17 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
     m_currentIsVectorValued = isvectorValued;
     m_currentVectorSize = isvectorValued?fvalues.size():-1;
 
-    //
     m_widget->farrow->show();
 
-    if (!isimplicit && !isvectorValued) // es decir, si es realvalued ... osea un graph
+    if (!isimplicit && !isvectorValued)
     {
         m_widget->fnameForGraphs->show();
         m_widget->fname->hide();
-//         m_widget->farrow->show();
         m_widget->fnameForGraphs->clear();
         m_widget->fnameForGraphs->addItems(fvalues);
-
-    }
-    else
-    {
+    } else {
         m_widget->fnameForGraphs->hide();
         m_widget->fname->show();
-//         m_widget->farrow->hide();
-
     }
 
     if (!isvectorValued || !isimplicit)
@@ -1193,7 +1133,6 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         m_widget->farrow->hide();
     }
 
-    //mostramos a demanda las variables usadas
     for (int var = 1; var <=vvalues.size(); ++var)
         setupVarName(var, vvalues[var-1]);
 
@@ -1207,21 +1146,12 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         {
             setupFuncName(func, fvalues[func-1], vvalues);
         }
-    }
-    else
-    {
-        if (!isimplicit) //flechas en ves de = pues es un graph
+    } else {
+        if (!isimplicit)
         {
             m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
         }
     }
-
-    //clear this next iter
-//     if (isvectorValued && m_vectorSize == 2 || (isimplicit && vvalues.size() == 2) || (!isimplicit && !isimplicit && vvalues.size() == 1))
-//         m_widget->previews->setCurrentIndex(0); //2d preview
-//     else // 3D
-//         m_widget->previews->setCurrentIndex(1); //3d preview
-
     showEditor();
 }
 
@@ -1238,28 +1168,4 @@ void PlotsEditor::plotnamecheckClicked(bool state)
         m_widget->plotIcon->hide();
         m_widget->plotName->hide();
     }
-}
-
-void PlotsEditor::addPlotsfromDictionary(QString exp,Analitza::Dimensions dim,QString plotname,QStringList args)
-{
-    /*
-        qDebug() << "coming in the slots";
-
-    QStringList errors;
-    int dimension ;// can get it from the current space or some other logic !!!! :)
-
-    PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp),Dim2D);
-
-    if (req.canDraw()) {
-
-        FunctionGraph *item = 0;
-        item = req.create(QColor(Qt::black), plotname);
-
-        m_document->plotsModel()->addPlot(item);
-    }
-
-    else {
-        errors = req.errors();
-        qDebug() << errors.at(0);
-    }*/
 }
