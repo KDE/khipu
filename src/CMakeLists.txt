@@ -19,8 +19,6 @@ set ( libkhipu_SRCS
   dictionarycollection.cpp
   plotsbuilder.cpp
   plotseditor.cpp
-  functionlibraryedit.cpp
-  functionlibrarymodel.cpp
   spaceinformation.cpp
   spaceoptions.cpp
   filter.cpp

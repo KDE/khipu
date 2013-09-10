@@ -51,7 +51,6 @@
 #include <libkdeedu/qtmml/QtMmlWidget>
 
 //local includes
-#include "functionlibraryedit.h"
 #include "datastore.h"
 #include "dictionariesmodel.h"
 #include "spaceplotsproxymodel.h"
