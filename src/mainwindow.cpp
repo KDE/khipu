@@ -328,11 +328,6 @@ void MainWindow::fullScreenView (bool isFull)
     }
 }
 
-void MainWindow::fooSlot(bool t)
-{
-    qDebug() << "test slot" << t;
-}
-
 void MainWindow::firstPageActClicked()
 {
     m_getdictionaryAct->setVisible(false);
@@ -472,9 +467,7 @@ void MainWindow::updateThumbnail()
 void MainWindow::checkforAutoSavedFile()
 {
     QString path = getDefaultAutoSavepath();
-    if(openFile(path)) {
-        qDebug() << "file is autosaved and it is opening";
-    }
+    openFile(path);
 }
 
 void MainWindow::newFile()
@@ -559,7 +552,7 @@ bool MainWindow::openFileClicked()
                      i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
 
     if(url.path().isEmpty()) {
-        qDebug() << "error in opening file...may be path not found." ;
+        KMessageBox::error(this,i18n("Error in opening file,may be path not found."),i18n("Error in opening"));
         return false;
     }
 
@@ -632,13 +625,11 @@ bool MainWindow::openFile(const KUrl &url)
         }
     }
     if(!file.open(QFile::ReadOnly)) {
-        qDebug() << "error in reading";
+        KMessageBox::error(this,i18n("Error in reading file,may be path not found."),i18n("Error in reading"));
         if(file.fileName()!=getDefaultAutoSavepath())
             KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
         return false;
     }
-
-    qDebug() << "parsing....";
 
     QJson::Parser parser;
     m_parsedSpaceDetails = parser.parse(&file).toList();
@@ -648,7 +639,7 @@ bool MainWindow::openFile(const KUrl &url)
         KIO::NetAccess::removeTempFile( file.fileName() );
 
     if(m_parsedSpaceDetails.isEmpty()) { // if a wrong file is hit
-        qDebug() << "problem in parsing ..may be a wrong file";
+        KMessageBox::error(this,i18n("Problem in parsing the contents of the file,may be a wrong khipu file."),i18n("Error in reading"));
         return false;
     }
 
@@ -731,8 +722,6 @@ bool MainWindow::saveFile(const KUrl &url)
     // just starting, no plot is available so no need to save
     if(map.empty())
     {
-        qDebug() << "map is empty";
-
         // no plots are there. so, we dont need autosave file
         QFile tempautosaveFile(getDefaultAutoSavepath());
         tempautosaveFile.remove();
@@ -745,7 +734,7 @@ bool MainWindow::saveFile(const KUrl &url)
 
     QList<DictionaryItem*> spaceList=map.uniqueKeys();
     if(spaceList.empty()) {
-        qDebug() << "list is empty";
+        KMessageBox::error(this,i18n("Error in reading file,file may be empty"),i18n("Error in reading"));
         return false;
     }
 
@@ -808,7 +797,7 @@ bool MainWindow::saveFile(const KUrl &url)
         KTemporaryFile tmpfile;
         if(!tmpfile.open())
         {
-            qDebug() << "Could not open " << KUrl(tmpfile.fileName()).toLocalFile() << " for writing.\n";
+            KMessageBox::error(this,i18n("Could not open %1 for writing",KUrl(tmpfile.fileName()).toLocalFile()),i18n("Error in writing"));
             return false;
         }
         QTextStream out(&tmpfile);
@@ -816,25 +805,23 @@ bool MainWindow::saveFile(const KUrl &url)
         out.flush();
         if (!KIO::NetAccess::upload(tmpfile.fileName(),url,this))
         {
-            qDebug() << "Could not open " << url.prettyUrl() << " for writing ("<<KIO::NetAccess::lastErrorString()<<").\n";
+            KMessageBox::error(this,i18n("Could not open %1 for writing %2",url.prettyUrl(),KIO::NetAccess::lastErrorString()),i18n("Error in writing"));
             return false;
         }
     }
     else
     {
         if(!url.hasPath()) {
-            qDebug() << "error in saving file...may be path not found." ;
+            KMessageBox::error(this,i18n("Error in saving file.May be path not found"),i18n("Error in saving"));
             return false;
         }
 
         QFile file(url.toLocalFile());
-        qDebug() << "path: " << url.toLocalFile();
 
         // saved action clicked by the user , this is not the autosave case
         QString currentautosavepath=getCurrentAutoSavepath(m_fileLocation);
         if(url.toLocalFile()!=getDefaultAutoSavepath() && url.toLocalFile()!=currentautosavepath) {
             if(!file.open(QFile::WriteOnly | QFile::Text)) {
-                qDebug() << "Error in writing";
                 return false;
             }
 
@@ -853,7 +840,6 @@ bool MainWindow::saveFile(const KUrl &url)
         // autosave case
         else {
             if(!file.open(QFile::WriteOnly | QFile::Text)) {
-                qDebug() << "Error in writing";
                 return false;
             }
         }
@@ -1189,8 +1175,6 @@ void MainWindow::createPlot(const QModelIndex &ind)
 
     Analitza::Dimension dim=static_cast<Analitza::Dimension> (map.value("dimension").toInt());
     QVariantList plotList= parser.parse(map.value("plots").toByteArray()).toList();
-
-    qDebug() << "plots data";
 
     foreach(QVariant plot, plotList) {
 

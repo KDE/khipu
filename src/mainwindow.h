@@ -147,9 +147,6 @@ private:
     KAction *m_nextAct;
     KAction *m_importdictionaryAct;
     KAction *m_getdictionaryAct;
-
-private slots:
-    void fooSlot(bool t = false);
 };
 
 #endif
