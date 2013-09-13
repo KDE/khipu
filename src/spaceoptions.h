@@ -42,7 +42,7 @@ public:
 public slots:
     void reset();
     void setGridStyleIndex(int i);
-    void setDimension(int d); // d muestra opciones para el view2d 3 para el 3d
+    void setDimension(int d);
     void updateTicks();
     void updateAxes();
     void setWidgetsVisible(bool isWidgetVisible);
