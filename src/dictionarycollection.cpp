@@ -33,6 +33,7 @@
 //KDE includes
 #include <KStandardDirs>
 #include <KFileDialog>
+#include <KMessageBox>
 
 //local includes
 #include "datastore.h"
@@ -86,7 +87,6 @@ void DictionaryCollection::setDefaultDictionaries()
 void DictionaryCollection::setDictionaryData(int ind)
 {
     if(ind==-1) {
-        qDebug() << "wrong index is passed !";
         return;
     }
 
@@ -113,20 +113,12 @@ void DictionaryCollection::setDictionaryData(int ind)
 
             //remove un-wanted plots (mismatched with the current dimnesion) from the model
             if (!req.canDraw()) {
-                qDebug() << "can't draw";
                 model->removeRow(i);
                 i--;// to check on which position current data is replaced with the next row
             }
         }
     }
     m_widget->plotsView->setModel(model);
-    connect(m_widget->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(setModelIndex(QModelIndex)));
-}
-
-void DictionaryCollection::setModelIndex(const QModelIndex& ind)
-{
-    if(ind.isValid())
-        qDebug() << "valid index is passed";
 }
 
 void DictionaryCollection::addPlotClicked()
@@ -166,7 +158,7 @@ void DictionaryCollection::importDictionary()
 
     QString path=url.toLocalFile();
     if(path==0){
-        qDebug() << "error in opening file...may be path not found." ;
+        KMessageBox::error(this,i18n("Error in opening file.May be path not found."),i18n("No Dictionary found!"));
         return;
     }
     int currentIndex=m_widget->dictionaryNames->count();

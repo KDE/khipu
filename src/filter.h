@@ -34,7 +34,7 @@ namespace Ui
 {
     class FilterWidget;
 }
-//NOTE TODO CADA WIDGET DE KHIPU QUE BUSCARA/FILTRARA COSAS DEBE IMPLEMENTAR UNA IFACE: editor(funclist), dashboard, dicsview, etc
+
 class Filter : public QWidget
 {
     Q_OBJECT

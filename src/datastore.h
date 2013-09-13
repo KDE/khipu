@@ -45,8 +45,6 @@ public:
     DataStore(QObject *parent = 0);
     ~DataStore();
 
-    //es necesario para casos en donde no se esta dentro de un slot que tiene el space actua: ejemplo mainwnd::go_slot
-    //o dashboard currentsnapshot
     int currentSpace() const { return m_currentSpace; }
 
 
@@ -54,7 +52,6 @@ public:
     DictionariesModel *spacesModel() const { return m_spacesModel; }
     Analitza::PlotsModel *plotsModel() const { return m_plotsModel; }
 
-    // este proxy se usara en el editor y en el dashboard cuando se este editando un space y se neceite filtrar sus plots
     SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
     QItemSelectionModel *currentSelectionModel() const { return m_currentSelectionModel; }
     QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
@@ -62,21 +59,19 @@ public:
 
     bool isMapped(DictionaryItem *space, Analitza::PlotItem *plot) const;
     void removeSpace(int row);
+
 private slots:
-    void mapPlot(const QModelIndex & parent, int start, int end); // mapea el plot con el spacio actual start == end
+    void mapPlot(const QModelIndex & parent, int start, int end);
     void selectCurrentPlot(const QModelIndex & curr, const QModelIndex & prev );
-    void plotDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight ); // actualiza el combo de coords
+    void plotDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight );
 
 public slots: 
     void setCurrentSpace(int spaceidx);
     void removeCurrentSpace();
-    //NOTA esta es la foma de borrar un plot
-    void unmapPlot(const QModelIndex & proxyindex /*or viewindex*/); // cuando se borra un plot del modelo ... el viewindex es el index del view es decir del proxy
+    void unmapPlot(const QModelIndex & proxyindex);
     void saveSpaceAsDictionary(QModelIndex ind);
 
 signals:
-//     void modified(); ... TODO to document???
-
     void spaceActivated(int spaceidx);
     void gridStyleChanged(int i); // 1 cartesian 2 polar
     void mapDataChanged();

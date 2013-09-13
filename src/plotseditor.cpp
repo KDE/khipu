@@ -519,7 +519,6 @@ void PlotsEditor::editPlot(const QModelIndex &index)
                     if (surface->parameters() == QStringList() << "x" << "y")
                     {
                         m_currentVars = QStringList() << "x" << "y";
-                        // no mostramos el combo pues ya el tipo de la func esta elejido
                         m_widget->fnameForGraphs->hide();
                         setupFuncName(1, "", QStringList() << "x" << "y", false);
                         setupVarName(1, "x");
@@ -1019,10 +1018,7 @@ void PlotsEditor::removePlot()
 void PlotsEditor::setCurrentFunctionGraphs(const QString& txt)
 {
     m_currentFunctionGraphs = txt.split(",");
-
     m_currentVars = m_currentFunctionGraphs;
-
-    //mostramos a demanda las variables usadas
     for (int var = 1; var <=m_currentFunctionGraphs.size(); ++var)
         setupVarName(var, m_currentFunctionGraphs[var-1]);
 }
@@ -1063,7 +1059,7 @@ void PlotsEditor::setupFuncName(int var, const QString& vvalue, const QStringLis
     {
         mmlhelper.append("<mi>"+v+"</mi>");
 
-        if (v != vars.last()) // no agregar comas al final
+        if (v != vars.last())
             mmlhelper.append("<mtext>,</mtext>");
     }
 

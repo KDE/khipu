@@ -62,7 +62,6 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
         void setFilterText(const QString& text);
 protected:
         bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-////        bool lessThan(const QModelIndex &left, const QModelIndex &right) const;
 
     private:
         Analitza::Dimensions m_dimension;
@@ -70,10 +69,8 @@ protected:
 };
 
 
-//dashboard solo se encarga de cambiar el space actual al momento de que el main window
-//agrega un space (osea al momento de rowsinsertedelspacemodel)
-//luego de eso envia una signal activatespace que llegua a document y a mainaplication
-
+// Dashboard is a main widget for the user. It allows user to save his work on the same UI.
+// User can add/remove spaces in khipu using the tools provided by Dashboard class.
 class Dashboard : public QStackedWidget
 {
     Q_OBJECT
@@ -84,12 +81,10 @@ public:
     ~Dashboard();
 
     void setDocument(DataStore *doc);
-    
     void setDashboardData(Dashboard* source);
     QMap<QString,QString> dictionaryDataMap() const { return  m_DictionaryPathName; }
 
     //views
-    
     Analitza::PlotsView2D *view2d();
     Analitza::PlotsView3D *view3d();
     bool m_openclicked;
@@ -117,23 +112,19 @@ public slots:
 
 private slots:
     void setDictionaryData(int ind);
-//     void setCurrentSpace(const QItemSelection & selected, const QItemSelection & deselected); // al selcionar de la vista
-    void setCurrentSpace(const QModelIndex &index, const QModelIndex &old); // este solo emite el spaceactivate para que se entere el datasotre ... no hace cambios en la ui
-    void setCurrentSpace(const QModelIndex &index ,int,int); // al agregar un nuevo space
+    void setCurrentSpace(const QModelIndex &index, const QModelIndex &old);
+    void setCurrentSpace(const QModelIndex &index ,int,int);
     
-    //al agregar un plot notificar que es el ultimo seleccionado a los view2d3}
-    //los index son del proxy 
     void setCurrentPlot(const QModelIndex & parent, int start, int end);
     void setModelIndex(const QModelIndex & ind);
 
 signals:
-    void spaceActivated(int spaceidx); // hacia el mainwind para que prepare los toolbars etc
+    void spaceActivated(int spaceidx);
     void plotRequested(const QModelIndex &ind); //  for requesting the plots when double-clicked on the plot-space thumbnail.
     void showFilter(bool b);
     void setDialogSettingsVisible(bool b);
 
 private:
-    void setupWidget();
     void setDictionaryNames();
     void setPlotsView(Analitza::Dimension dim);
 

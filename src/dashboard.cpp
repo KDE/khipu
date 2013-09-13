@@ -114,11 +114,6 @@ void Dashboard::setDashboardData(Dashboard* source)
 
 Dashboard::~Dashboard()
 {
-//     QAbstractItemDelegate *d = m_widget->spacesView->itemDelegate();
-//     m_widget->spacesView->setItemDelegate(0);
-// 
-//     delete d;
-//     
     m_widget=0;
     delete m_widget;
 }
@@ -151,7 +146,6 @@ void Dashboard::setDictionaryNames()
     if(m_DictionaryPathName.empty() || m_DictionaryPathName.keys().empty()) {
         QString error =i18n("Please make sure that the dictionary(.plots) files are correctly installed");
         KMessageBox::error(this,error,i18n("No Dictionary found!"));
-        qDebug() << "not found..";
         return;
     }
 }
@@ -179,11 +173,7 @@ void Dashboard::setDocument(DataStore* doc)
     m_widget->spacesView->setItemDelegate(delegate);
 
     connect(delegate,SIGNAL(saveDictionary(QModelIndex)),m_document,SLOT(saveSpaceAsDictionary(QModelIndex)));
-//     delegate->setIconMode(true);
-    //este necesita otro proxy del modelo
-//     m_widget->plotsView->setModel(m_document->spacePlotsFilterProxyModel());
 
-    //NOTE AQUI cambiamos los models y selects de los plotsview2d/3d
     m_document->currentPlots()->setFilterSpaceDimension(Dim2D);
     m_widget->plotsView2D->setModel(m_document->currentPlots());
     m_widget->plotsView2D->setSelectionModel(m_document->currentSelectionModel());
@@ -192,15 +182,7 @@ void Dashboard::setDocument(DataStore* doc)
     m_widget->plotsView3D->setModel(m_document->currentPlots());
     m_widget->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
 
-    //al insertar nuevos plots que el current sea el ultimo insertado ... esto es necesario
-    //para que los plotsview se enteren ...
     connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int,int)));
-
-//     m_document->spacePlotsFilterProxyModel()->setFilterSpaceDimension(-1); //TODO hacks para evitar los asertos de setmodel... enums?
-
-
-//     connect(m_widget->spacesView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-//             SLOT(setCurrentSpace(QItemSelection,QItemSelection)));
     
     connect(m_widget->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
     connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
@@ -271,7 +253,7 @@ void Dashboard::importDictionaryClicked()
 
     QString path=url.toLocalFile();
     if(path==0) {
-        qDebug() << "error in opening file...may be path not found." ;
+        KMessageBox::error(this,i18n("Error in opening file.May be path not found."),i18n("No Dictionary found!"));
         return;
     }
 
@@ -327,15 +309,12 @@ void Dashboard::filterByText(const QString &text)
 
 void Dashboard::filterByDimension(Dimensions dim)
 {
-    //desaparecemos los botones y editores del delegate
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
     m_spacesProxyModel->setFilterDimension(dim);
 }
 
 void Dashboard::setCurrentSpace(const QModelIndex &index)
 {
-//     m_document->spacePlotsProxyModel()->setFilterSpaceDimension(m_document->spacesModel()->item(selected.indexes().first().row())->dimension());
-
     setCurrentIndex(1);
 
     QModelIndex ind;
@@ -343,8 +322,6 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
         ind=m_spacesProxyModel->mapToSource(index);
     else
         ind=index;
-
-    qDebug() << "ind.row :" << ind.row();
 
     emit spaceActivated(ind.row());
 
@@ -378,14 +355,13 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, const QModelIndex& old
     m_document->setCurrentSpace(index.row());
 }
 
-//luego de agregar un space la vista de espacio debe selecionar el nuevo espacio y hacerlo current
 void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
 {
 //     qDebug() << "sadasadadsd ads";
 //     m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
 
     m_widget->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
-    //solo se cambia el filtro aqui porque es cuando se agrega un space ... luego todo cambio sera en datastore::setCurrentSpace
+
 //     m_document->currentPlots()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
 //     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
 
@@ -425,70 +401,10 @@ void Dashboard::setPlotsViewGridColor(const QColor &color)
     }
 }
 
-void Dashboard::setupWidget()
-{
-//     m_widget = new DashboardWidget(this);
-
-    /*
-        m_widget->space2D->setFunctionsModel(m_proxyViewer2D);
-        m_widget->space2D->setDictionariesModel(m_spacesModel);
-
-        m_widget->space3D->setFunctionsModel(m_proxyViewer3D);
-        m_widget->space3D->setDictionariesModel(m_spacesModel);
-
-
-        connect(m_widget->addSpace2D, SIGNAL(clicked()), SLOT(addSpace2D()));
-        connect(m_widget->addSpace3D, SIGNAL(clicked()), SLOT(addSpace3D()));
-        connect(m_widget->backFromSpace2D, SIGNAL(clicked()), SLOT(showDashboard()));
-        connect(m_widget->backFromSpace3D, SIGNAL(clicked()), SLOT(showDashboard()));
-
-        connect(m_widget->showFunctionEditor2D, SIGNAL(clicked()),
-                m_widget->space2D, SLOT(toggleShownFunctionEditor()));
-
-        connect(m_widget->showFunctionEditor3D, SIGNAL(clicked()),
-                m_widget->space3D, SLOT(toggleShownFunctionEditor()));
-
-        connect(m_widget->showCoordSysSettings2D, SIGNAL(clicked()),
-                m_widget->space2D, SLOT(toggleShownCoordSysSettings()));
-
-        connect(m_widget->showCoordSysSettings3D, SIGNAL(clicked()),
-                m_widget->space3D, SLOT(toggleShownCoordSysSettings()));
-
-        connect(m_widget->showSpace2DInfo, SIGNAL(clicked()),
-                m_widget->space2D, SLOT(toggleShownSpaceInfo()));
-
-        connect(m_widget->showSpace3DInfo, SIGNAL(clicked()),
-                m_widget->space3D, SLOT(toggleShownSpaceInfo()));
-
-        connect(m_widget->filterDimensionsSpaces, SIGNAL(clicked(int)), SLOT(setFilterDimension(int)));
-        connect(m_widget->filterDimensionsFunctions, SIGNAL(clicked(int)), SLOT(setFilterDimension(int)));
-
-        connect(m_widget->filterTextSpaces, SIGNAL(textChanged(QString)), SLOT(setFilterText(QString)));
-        connect(m_widget->filterTextFunctions, SIGNAL(textChanged(QString)), SLOT(setFilterText(QString)));
-
-
-        connect(m_widget->spaces, SIGNAL(spaceShown( DictionaryItem)), SLOT(showSpace( DictionaryItem)));
-
-        connect(m_widget->functions, SIGNAL(functionOnSpaceShown(QUuid)), SLOT(showFunctionOnSpace(QUuid)));
-
-        connect(m_widget->saveSpace2DImage, SIGNAL(clicked()), SLOT(saveSpace2DImage()));
-        connect(m_widget->saveSpace3DImage, SIGNAL(clicked()), SLOT(saveSpace3DImage()));
-
-        connect(m_widget->copySpace2DImage, SIGNAL(clicked()), SLOT(copySpace2DImage()));
-        connect(m_widget->copySpace3DImage, SIGNAL(clicked()), SLOT(copySpace3DImage()));
-
-        connect(m_widget->showAboutAppDialog, SIGNAL(clicked()), SIGNAL(dashemitShowAppInfo()));*/
-
-//     m_widget->viewMode->setCurrentIndex(1);
-//     m_widget->viewMode->setCurrentIndex(0);
-
-}
-
 void Dashboard::getDictionaryClicked()
 {
     KNS3::DownloadDialog newStuffDialog(this);
     newStuffDialog.exec();
     KNS3::Entry::List installedentries = newStuffDialog.installedEntries();
-    qDebug() << "number is : " << installedentries.size();
     int numberInstalled = installedentries.size();
 }
