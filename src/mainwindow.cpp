@@ -412,7 +412,7 @@ void MainWindow::autoSaveFile()
 {
     updateThumbnail();
 
-    //no filename available, need to save it as temp , filename used here is "Temp.khipu.autosave"
+    //no filename available, need to save it as temporary , filename used here is ".khipu.autosave"
     if(m_fileLocation.isEmpty()) {
         saveFile(getDefaultAutoSavepath());
     } else {
@@ -590,7 +590,7 @@ bool MainWindow::openFile(const KUrl &url)
     } else
         file.setFileName(url.toLocalFile());
 
-    // for the default autosaved file (Temp.khipu.autosave)
+    // for the default autosaved file (.khipu.autosave)
     if(url.toLocalFile()==getDefaultAutoSavepath())
     {
         // ask for reloading the autosave file
@@ -865,7 +865,7 @@ QString MainWindow::getCurrentAutoSavepath(const QString &path)
 
 QString MainWindow::getDefaultAutoSavepath()
 {
-    return QDir::homePath().append("/.Temp.khipu.autosave");
+    return QDir::homePath().append("/.khipu.autosave");
 }
 
 void MainWindow::savePlot()
