@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "plotseditor.h"
-#include "src/ui_plotseditor.h"
+#include "ui_plotseditor.h"
 
 //Analitza includes
 #include <analitza/analyzer.h>

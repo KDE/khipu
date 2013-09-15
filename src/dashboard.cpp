@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "dashboard.h"
-#include "src/ui_dashboard.h"
+#include "ui_dashboard.h"
 
 //Analitza includes
 #include <analitza/variables.h>

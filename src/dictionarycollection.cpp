@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "dictionarycollection.h"
-#include "src/ui_dictionarycollection.h"
+#include "ui_dictionarycollection.h"
 
 //Analitza includes
 #include <analitzagui/plotsview2d.h>

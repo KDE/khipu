@@ -17,7 +17,7 @@
  *************************************************************************************/
 
 #include "spaceoptions.h"
-#include "src/ui_spaceoptions.h"
+#include "ui_spaceoptions.h"
 
 //KDE includes
 #include <kcolorutils.h>
