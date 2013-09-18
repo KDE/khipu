@@ -74,6 +74,9 @@
 #include "filter.h"
 #include "dictionarycollection.h"
 
+//time interval to show the message on statusbar
+#define TIME_INTERVAL 2500
+
 using namespace Analitza;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -336,11 +339,11 @@ void MainWindow::firstPageActClicked()
     int currentSpaceRow=m_document->currentSpace();
 
     if(m_document->spacesModel()->rowCount()==0) { //For empty space model
-        statusBar()->showMessage(i18n("There is not any space available to show!"), 2500);
+        statusBar()->showMessage(i18n("There is not any space available to show!"), TIME_INTERVAL);
     } else if(currentSpaceRow==0) { //Already on the first space
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
-        statusBar()->showMessage(i18n("Currently,you are on the first space!"),2500);
+        statusBar()->showMessage(i18n("Currently,you are on the first space!"),TIME_INTERVAL);
     } else if(m_document->spacesModel()->rowCount()>0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
@@ -351,7 +354,7 @@ void MainWindow::priorActClicked()
 {
     int currentSpaceRow=m_document->currentSpace();
     if(currentSpaceRow==0) {
-        statusBar()->showMessage(i18n("You are already on the first space!"),2500);
+        statusBar()->showMessage(i18n("You are already on the first space!"),TIME_INTERVAL);
     } else if(currentSpaceRow>0) {
         QModelIndex prevInd=m_document->spacesModel()->index(currentSpaceRow-1);
         m_dashboard->setCurrentSpace(prevInd);
@@ -363,7 +366,7 @@ void MainWindow::nextActClicked()
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
     if(currentSpaceRow==size-1) {
-        statusBar()->showMessage(i18n("You are already on the last space!"),2500);
+        statusBar()->showMessage(i18n("You are already on the last space!"),TIME_INTERVAL);
     } else if(currentSpaceRow<size-1) {
         QModelIndex nextInd=m_document->spacesModel()->index(currentSpaceRow+1);
         m_dashboard->setCurrentSpace(nextInd);
@@ -379,11 +382,11 @@ void MainWindow::lastPageActClicked()
     int size=m_document->spacesModel()->rowCount();
 
     if(m_document->spacesModel()->rowCount()==0) { //For empty space model
-        statusBar()->showMessage(i18n("There is not any space available to show!"),2500);
+        statusBar()->showMessage(i18n("There is not any space available to show!"),TIME_INTERVAL);
     } else if(currentSpaceRow==size-1) { //Already on the last space
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
-        statusBar()->showMessage(i18n("Currently,you are on the last space!"),2500);
+        statusBar()->showMessage(i18n("Currently,you are on the last space!"),TIME_INTERVAL);
     } else if(m_document->spacesModel()->rowCount() >0) {
         int size=m_document->spacesModel()->rowCount();
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
@@ -974,7 +977,7 @@ void MainWindow::copySnapshot()
     default:
         break;
     }
-    statusBar()->showMessage(i18n("The diagram was copied to clipboard"), 2500);
+    statusBar()->showMessage(i18n("The diagram was copied to clipboard"), TIME_INTERVAL);
 }
 
 void MainWindow::setVisibleDictionary()
