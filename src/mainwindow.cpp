@@ -1171,7 +1171,10 @@ void MainWindow::buildSphericalGraphSurface()
 }
 
 void MainWindow::createPlot(const QModelIndex &ind)
-{
+{ 
+    if (ind.row() < 0)
+        return;
+
     //Parsing the data from the qjson file
     QJson::Parser parser;
     QVariantMap map = m_parsedSpaceDetails.at(ind.row()).toMap(); // corresponding space entry
