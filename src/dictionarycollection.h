@@ -47,25 +47,48 @@ public:
     DictionaryCollection(QWidget *parent);
     ~ DictionaryCollection();
 
+    //set the appropirate dashboard widget reference
     void setDashboardWidget(Dashboard *dashboard);
+
+    //set the current document
     void setDocument(DataStore *doc);
+
+    //attach the in-built dictionaries provided by analitza
     void setDefaultDictionaries();
+
+    //map the dictionary path to the dictionary names
     void setDictionaryDataMap();
+
+    //checks whether the dictionary is available in the combobox
     bool conains(const QString &dictionaryname);
+
+    //total number of avalialble dictionaries
     int totalDictionaries();
+
+    //retuns the reference of the dictionary view
     QTreeView* dictionaryPlotsView();
+
+    //returns the index of the dictionary from the combo-box
     int indexOf(const QString &dictionaryname);
 
 signals:
+
+    //this signal is emited when the plot is added in the document
     void mapDataChanged();
 
 public slots:
+
+    //Slot for handling push button's click-event and plots from the dictionaries
     void addPlotClicked();
     void setDictionaryData(int ind);
     void addPlotinSpace(const QModelIndex& ind);
 
 private slots:
+
+    //To import dictionary from the disk
     void importDictionary();
+
+    //Used to add random coloring in the dictionary plots
     QColor randomFunctionColor() { return QColor::fromHsv(qrand()%255, 255, 255); }
 
 private:

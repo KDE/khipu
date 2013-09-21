@@ -45,14 +45,18 @@ public:
 
     QUuid id() const { return m_id; }
 
+    //space's dimension
     Analitza::Dimension dimension() const { return m_dimension; }
     
+    //space's title
     QString title() const { return m_name; }
     void setTitle(const QString &name);
     
+    //space's description
     QString description() const { return m_description; }
     void setDescription(const QString &description);
 
+    //space's thumbnail
     QPixmap thumbnail() const { return m_thumbnail; }
     void setThumbnail(const QPixmap thumbnail);
 

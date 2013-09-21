@@ -59,19 +59,35 @@ public:
     virtual ~MainWindow();
 
     DataStore* getDocument() { return m_document; }
+
+    //used for checking the default autosave file (.khipu.autosave)
     void checkforAutoSavedFile();
 
 public slots:
+
+    //New file slot
     void newFile();
+
+    //open file slot
     bool openFileClicked();
+
+    //opening a file spcified by the url
     bool openFile(const KUrl &url);
+
+    //recent file list
     void openRecentClicked(const KUrl&  name);
     void saveClicked();
     bool saveAsClicked();
     bool saveFile(const KUrl &url);
     void activateSpace(int);
+
+    //create the plots for the appropriate space which are clicked by the user
     void createPlot(const QModelIndex &ind);
+
+    //saves the plot
     void savePlot();
+
+    //set the current space's title and description
     void setCurrentSpaceTitle(const QString& str);
     void setCurrentSpaceDesc(const QString& desc);
 
@@ -83,15 +99,22 @@ private slots:
     bool closeClicked();
     void autoSaveFile();
 
-    //app
-    void setVisibleDictionary(); // este llama a dashboard void setVisibleDictionary(bool t);
+    //used to set visible/invisible dictionary-view
+    void setVisibleDictionary();
+
+    //slots for addSpace2D/3D buttons
     void addSpace2D();
     void addSpace3D();
+
+    //removes the current space
     void removeCurrentSpace();
+
     void goHome();
     void fullScreenView (bool isFull);
     void setMenuBarVisibility (bool isShow);
     void clearRecentFileList();
+
+    //Actions related to space's navigation
     void firstPageActClicked();
     void priorActClicked();
     void nextActClicked();
@@ -102,6 +125,7 @@ private slots:
     void buildCartesianImplicitCurve();
     void buildCartesianParametricCurve2D();
     void buildPolarGraphCurve();
+
     //3D
     void buildCartesianParametricCurve3D();
     void buildCartesianGraphSurface();
@@ -112,18 +136,32 @@ private slots:
 
 private:
     KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
+
+    //setting up the dock-widgets
     void setupDocks();
     void setupActions();
+
+    //changes the title bar when file-name is available
     void changeTitleBar(const QString& path);
+
+    //current opened file's name (i.e. path)
     void setCurrentFile(const QString &fileName);
     void updateRecentFileList();
-    QString pathFromUrl(const KUrl &url); // used for parsing file path from the url provided by openrecent
 
+    // used for parsing file path from the url provided by openrecent
+    QString pathFromUrl(const KUrl &url);
+
+    //converts a thubnail from bytearray to pixmap and vice-versa
     QPixmap toPixmap(const QByteArray &bytearray);
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
+
     void closeEvent(QCloseEvent * event);
     void updateThumbnail();
+
+    //returns the current autosave file's path (i.e.currentdirecotrypath/.filename.khipu.autosave)
     QString getCurrentAutoSavepath(const QString& path);
+
+    //returns the default autosave file's path (i.e.homedirectotypath/.khipu.autosave)
     QString getDefaultAutoSavepath();
 
 private:

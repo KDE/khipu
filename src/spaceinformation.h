@@ -39,7 +39,10 @@ public:
     SpaceInformation(QWidget *parent);
     ~ SpaceInformation();
     
+    //returns the space's title
     QString title() const;
+
+    //returns the space's description
     QString description() const;
     
     void setInformation(const QString &title, const QString &description);

@@ -80,14 +80,23 @@ private slots:
     
     void cancelEditor();
     void addPlots();
-    void editPlot(const QModelIndex &index = QModelIndex()); // slot gets activated while editing any plot.
 
+    // slot gets activated while editing any plot.
+    void editPlot(const QModelIndex &index = QModelIndex());
+
+    //adds the plot in the cuurent document
     void savePlot();
+
+    //showing/hiding the axis
     void showAxis(int state);
+
+    //slot to remove a plot from document
     void removePlot();
 
     //to connect the combo-box
     void setCurrentFunctionGraphs(const QString &txt);
+
+    //adds the default plot names (plot 1 , plot 2 and so on)
     void plotnamecheckClicked(bool b);
 
 signals:

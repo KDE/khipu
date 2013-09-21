@@ -91,11 +91,17 @@ public:
 
 public slots:
     
+    //Slots to control the filter feature
     void filterByText(const QString &text); // any text on the title or description
     void filterByDimension(Analitza::Dimensions dim);
     
+    //shows the dashboard
     void goHome();
+
+    //shows dictionary view
     void showDictionary();
+
+    //shows appropriate plotsview
     void showPlotsView2D();
     void showPlotsView3D();
 
