@@ -39,7 +39,7 @@ class Filter : public QWidget
 {
     Q_OBJECT
 public:
-    Filter(QWidget *parent);
+    explicit Filter(QWidget *parent);
     ~ Filter();
 
 public slots:

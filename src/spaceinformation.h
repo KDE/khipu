@@ -36,7 +36,7 @@ class SpaceInformation : public QDockWidget
 {
     Q_OBJECT
 public:
-    SpaceInformation(QWidget *parent);
+    explicit SpaceInformation(QWidget *parent);
     ~ SpaceInformation();
     
     //returns the space's title

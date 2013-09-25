@@ -36,7 +36,7 @@ class SpaceOptions : public QDockWidget
 {
     Q_OBJECT
 public:
-    SpaceOptions(QWidget *parent);
+    explicit SpaceOptions(QWidget *parent);
     ~ SpaceOptions();
 
 public slots:

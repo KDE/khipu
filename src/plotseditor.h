@@ -51,7 +51,7 @@ class PlotsEditor : public QDockWidget
 {
     Q_OBJECT
 public:
-    PlotsEditor(QWidget *parent);
+    explicit PlotsEditor(QWidget *parent);
     ~ PlotsEditor();
     
     void setDocument(DataStore *doc);

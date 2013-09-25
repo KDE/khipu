@@ -42,12 +42,13 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
 <!--             <Action name="export_snapshot"/> -->
 <!--             <Action name="search"/> -->
         </Menu>
+        
+        <Menu name="settings">
+             <text>&amp;Settings</text>
+             <Action name="options_show_menubar"/>
+             <Action name="options_show_toolbar"/>
+        </Menu>
     </MenuBar>
-  
-  <Menu name="settings"><text>&amp;Settings</text>
-    <Action name="options_show_menubar"/>
-    <Action name="options_show_toolbar"/>
-  </Menu>
     <ToolBar name="mainToolBar" newline="false" noMerge="1"  index="0" hidden="false">
         <text>Main Toolbar</text>
 <!--         <Action name="file_open" /> -->
@@ -83,4 +84,3 @@ xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
     </ToolBar>
 
 </gui>
-    
