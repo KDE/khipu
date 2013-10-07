@@ -342,7 +342,7 @@ void MainWindow::firstPageActClicked()
     } else if(currentSpaceRow==0) { //Already on the first space
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
-        statusBar()->showMessage(i18n("Currently,you are on the first space!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("Currently you are on the first space!"),TIME_INTERVAL);
     } else if(m_document->spacesModel()->rowCount()>0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
@@ -385,7 +385,7 @@ void MainWindow::lastPageActClicked()
     } else if(currentSpaceRow==size-1) { //Already on the last space
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
-        statusBar()->showMessage(i18n("Currently,you are on the last space!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("Currently you are on the last space!"),TIME_INTERVAL);
     } else if(m_document->spacesModel()->rowCount() >0) {
         int size=m_document->spacesModel()->rowCount();
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
@@ -405,7 +405,7 @@ void MainWindow::setMenuBarVisibility(bool isShow)
     if(isShow) {
         menuBar()->show();
     } else {
-        KMessageBox::information(this,i18n("Press ctrl + M to make Menubar Visible again"),i18n("Menubar Visibility"));
+        KMessageBox::information(this,i18n("Press Ctrl + M to make menubar visible again"),i18n("Menubar Visibility"));
         menuBar()->hide();
     }
 }
@@ -554,7 +554,7 @@ bool MainWindow::openFileClicked()
                      i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
 
     if(url.path().isEmpty()) {
-        KMessageBox::error(this,i18n("Error in opening file,may be path not found."),i18n("Error in opening"));
+        KMessageBox::error(this,i18n("Error while opening file, maybe path is not found."),i18n("Error while opening"));
         return false;
     }
 
@@ -598,7 +598,7 @@ bool MainWindow::openFile(const KUrl &url)
         // ask for reloading the autosave file
         if(!file.exists())
             return false;
-        int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved, last time ?"),i18n("Autosaved .khipu file"));
+        int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved last time?"),i18n("Autosaved .khipu file"));
 
         if(answer!=KMessageBox::Yes)
         {
@@ -619,7 +619,7 @@ bool MainWindow::openFile(const KUrl &url)
         if(QFile::exists(currentautosavepath)) {
 
             // ask for reloading the autosave file
-            int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved chanes in the file %1.Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
+            int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved changes in the file %1. Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
             if(answer==KMessageBox::Yes) {
                 // user wants to open the autosave file.
                 file.setFileName(currentautosavepath);
@@ -627,7 +627,7 @@ bool MainWindow::openFile(const KUrl &url)
         }
     }
     if(!file.open(QFile::ReadOnly)) {
-        KMessageBox::error(this,i18n("Error in reading file,may be path not found."),i18n("Error in reading"));
+        KMessageBox::error(this,i18n("Error while reading file, maybe path is not found."),i18n("Error while reading"));
         if(file.fileName()!=getDefaultAutoSavepath())
             KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
         return false;
@@ -641,7 +641,7 @@ bool MainWindow::openFile(const KUrl &url)
         KIO::NetAccess::removeTempFile( file.fileName() );
 
     if(m_parsedSpaceDetails.isEmpty()) { // if a wrong file is hit
-        KMessageBox::error(this,i18n("Problem in parsing the contents of the file,may be a wrong khipu file."),i18n("Error in reading"));
+        KMessageBox::error(this,i18n("Problem in parsing the contents of the file, maybe a wrong khipu file."),i18n("Error while reading"));
         return false;
     }
 
@@ -692,8 +692,8 @@ bool MainWindow::closeClicked()
 
     if(autosaveFile.exists() || currentautosaveFile.exists()) {
         int answer=KMessageBox::questionYesNoCancel(this,
-                   i18n("The current file contains some unsaved work.Do you want to save it?"),
-                   i18n("Warining: Unsaved changes"));
+                   i18n("The current file contains some unsaved work. Do you want to save it?"),
+                   i18n("Warning: Unsaved changes"));
         if(answer==KMessageBox::Yes) {
             saveClicked();
             return true;
@@ -736,7 +736,7 @@ bool MainWindow::saveFile(const KUrl &url)
 
     QList<DictionaryItem*> spaceList=map.uniqueKeys();
     if(spaceList.empty()) {
-        KMessageBox::error(this,i18n("Error in reading file,file may be empty"),i18n("Error in reading"));
+        KMessageBox::error(this,i18n("Error while reading file, file may be empty"),i18n("Error while reading"));
         return false;
     }
 
@@ -799,7 +799,7 @@ bool MainWindow::saveFile(const KUrl &url)
         KTemporaryFile tmpfile;
         if(!tmpfile.open())
         {
-            KMessageBox::error(this,i18n("Could not open %1 for writing",KUrl(tmpfile.fileName()).toLocalFile()),i18n("Error in writing"));
+            KMessageBox::error(this,i18n("Could not open %1 for writing",KUrl(tmpfile.fileName()).toLocalFile()),i18n("Error while writing"));
             return false;
         }
         QTextStream out(&tmpfile);
@@ -807,14 +807,14 @@ bool MainWindow::saveFile(const KUrl &url)
         out.flush();
         if (!KIO::NetAccess::upload(tmpfile.fileName(),url,this))
         {
-            KMessageBox::error(this,i18n("Could not open %1 for writing %2",url.prettyUrl(),KIO::NetAccess::lastErrorString()),i18n("Error in writing"));
+            KMessageBox::error(this,i18n("Could not open %1 for writing %2",url.prettyUrl(),KIO::NetAccess::lastErrorString()),i18n("Error while writing"));
             return false;
         }
     }
     else
     {
         if(!url.hasPath()) {
-            KMessageBox::error(this,i18n("Error in saving file.May be path not found"),i18n("Error in saving"));
+            KMessageBox::error(this,i18n("Error while saving file. Maybe path is not found"),i18n("Error while saving"));
             return false;
         }
 
@@ -834,7 +834,7 @@ bool MainWindow::saveFile(const KUrl &url)
             currentautosaveFile.remove();
 
             setCurrentFile(url.toLocalFile());
-            statusBar()->showMessage(i18n("File : %1 [%2] is saved successfully",
+            statusBar()->showMessage(i18n("File %1 [%2] is saved successfully",
                                           QFileInfo(url.toLocalFile()).fileName(),url.toLocalFile(),10000));
             changeTitleBar(url.toLocalFile());
         }

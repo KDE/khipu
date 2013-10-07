@@ -144,7 +144,7 @@ void Dashboard::setDictionaryNames()
     connect(m_widget->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
 
     if(m_DictionaryPathName.empty() || m_DictionaryPathName.keys().empty()) {
-        QString error =i18n("Please make sure that the dictionary(.plots) files are correctly installed");
+        QString error =i18n("Please make sure that the dictionary (.plots) files are correctly installed");
         KMessageBox::error(this,error,i18n("No Dictionary found!"));
         return;
     }
@@ -253,7 +253,7 @@ void Dashboard::importDictionaryClicked()
 
     QString path=url.toLocalFile();
     if(path==0) {
-        KMessageBox::error(this,i18n("Error in opening file.May be path not found."),i18n("No Dictionary found!"));
+        KMessageBox::error(this,i18n("Error while opening file. Maybe path is not found."),i18n("No Dictionary found!"));
         return;
     }
 

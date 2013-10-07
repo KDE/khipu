@@ -175,7 +175,7 @@ void DataStore::removeSpace(int row)
 
 void DataStore::saveSpaceAsDictionary(QModelIndex ind)
 {
-    KUrl url = KFileDialog::getSaveUrl(QDir::homePath(),i18n( "*.plots|Plot-Dictionary Files (*.plots)\n*|All Files" ),0, i18n( "Export the space as a Dictionary " ));
+    KUrl url = KFileDialog::getSaveUrl(QDir::homePath(),i18n( "*.plots|Plot-Dictionary Files (*.plots)\n*|All Files" ),0, i18n( "Export the space as a Dictionary" ));
     QString path=url.path();
     QFile *file = new QFile(path,this);
 
@@ -186,7 +186,7 @@ void DataStore::saveSpaceAsDictionary(QModelIndex ind)
 
     QTextStream out(file);
     if(m_maps.empty()) {
-        KMessageBox::error(0,i18n("Error in saving file,no plots available for this space"),i18n("Error in saving a dictionary"));
+        KMessageBox::error(0,i18n("Error while saving file, no plots available for this space"),i18n("Error while saving a dictionary"));
         return;
     }
 

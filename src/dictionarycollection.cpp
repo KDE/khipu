@@ -158,7 +158,7 @@ void DictionaryCollection::importDictionary()
 
     QString path=url.toLocalFile();
     if(path==0){
-        KMessageBox::error(this,i18n("Error in opening file.May be path not found."),i18n("No Dictionary found!"));
+        KMessageBox::error(this,i18n("Error while opening file. Maybe path is not found."),i18n("No Dictionary found!"));
         return;
     }
     int currentIndex=m_widget->dictionaryNames->count();
