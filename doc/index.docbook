@@ -1,15 +1,15 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
 ]>
 <book lang="&language;">
 <bookinfo>
-<title>The Khipu/Manual/Introduction Handbook</title>
+<title>The Khipu Handbook</title>
 <authorgroup>
 <author>
 <personname>
-      <firstname>This documentation was converted from the KDE UserBase <ulink url=" http://userbase.kde.org/Khipu/Manual/Introduction">Khipu/Manual/Introduction</ulink> page.</firstname>
+      <firstname>This documentation was converted from the KDE UserBase <ulink url=" http://userbase.kde.org/Khipu/Manual/Introduction">Khipu/Manual</ulink> page.</firstname>
 <surname></surname>
 </personname>
       </author>
@@ -51,10 +51,10 @@
 </para>
 <sect1 id="quick-start-guide"><title>Quick Start Guide</title>
 <sect2 id="idea-of-space"><title>Idea of Space</title> 
-<para>Khipu uses an abstraction of <guilabel>space</guilabel> in order to save the plots requested by user. A space will have its name and corresponding description from which it can be identified by the user later in time. Khipu has two types of spaces ( 2D and 3D ). User can <guilabel>save the plot</guilabel> in either of the spaces depending on his/her wish. <guilabel>Every space will contain multiple plots</guilabel> of different colors, intervals and types.
+<para>Khipu uses an abstraction of <guilabel>space</guilabel> in order to save the plots requested by user. A space will have its name and corresponding description from which it can be identified by the user later in time. Khipu has two types of spaces (2D and 3D). User can <guilabel>save the plot</guilabel> in either of the spaces depending on his/her wish. <guilabel>Every space will contain multiple plots</guilabel> of different colors, intervals and types.
 </para>
 </sect2>
-<sect2 id="how-to-plot-functions-in-khipu-"><title>How to plot functions in Khipu ?</title> 
+<sect2 id="how-to-plot-functions-in-khipu-"><title>How to plot functions in Khipu?</title> 
 <para>
 <screenshot>
 <screeninfo></screeninfo>
@@ -71,7 +71,7 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>As mentioned above , Khipu draws functions in Space. So, there are two ways of adding a Space in Khipu based on the plot's dimension. When you are on the main window of Khipu (Dashboard in terms of Khipu's terminology), you will see a <guilabel>Main Toolbar</guilabel> which contains buttons of <guilabel>Add Space 2D</guilabel> and <guilabel>Add Space 3D</guilabel>. User can select either of them depending on the function he/she wants to plot.
+<para>As mentioned above, Khipu draws functions in Space. So, there are two ways of adding a Space in Khipu based on the plot's dimension. When you are on the main window of Khipu (Dashboard in terms of Khipu's terminology), you will see a <guilabel>Main Toolbar</guilabel> which contains buttons of <guilabel>Add Space 2D</guilabel> and <guilabel>Add Space 3D</guilabel>. User can select either of them depending on the function he/she wants to plot.
 </para>
 <para>
 <screenshot>
@@ -90,7 +90,7 @@
 </screenshot>
 </para>
 <sect3 id="plots-represented-in-two-dimension"><title>Plots represented in 2-Dimension</title> 
-<para>When the user clicks on Add Space 2D , it will redirect to the 2D space UI. Then , he/she needs to click on the <guilabel>green + button</guilabel> which will let the user to add a plot. Then , user needs to select a plot's type ( for example , click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a sin curve ! ) You can add a plot's name by checking the plot name's check box. Then , user has to <guilabel>add an appropriate equation</guilabel> (Analitza type Equation) to see it's plot. If you don't want anything else , <guilabel>just hit Enter</guilabel>. You can even set the color of the plot by changing the option from the list of colors given below and set an appropriate interval for the arguments of the function.
+<para>When the user clicks on Add Space 2D, it will redirect to the 2D space UI. Then he/she needs to click on the <guilabel>green button</guilabel> which will let the user to add a plot. Then, user needs to select a plot's type (for example, click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a sine curve!) You can add a plot's name by checking the plot name's check box. Then, user has to <guilabel>add an appropriate equation</guilabel> (Analitza type Equation) to see it's plot. If you don't want anything else, <emphasis>just hit &Enter;</emphasis>. You can even set the color of the plot by changing the option from the list of colors given below and set an appropriate interval for the arguments of the function.
 </para>
 <para>
 <screenshot>
@@ -110,7 +110,7 @@
 </para>
 </sect3>
 <sect3 id="plots-represented-in-three-dimension"><title>Plots represented in 3-Dimension</title>
-<para>When the user clicks on Add Space 3DD , it will redirect to the 3D space UI. Then , he/she needs to click on the <guilabel>green + button</guilabel> which will let the user to add a plot. Then , user needs to select a plot's type ( for example , click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a simple suurface ! ) You can add a plot's name by checking the plot name's check box. Then , user has to <guilabel>add an appropriate equation</guilabel> (Analitza type Equation) to see it's plot. If you don't want anything else , <guilabel>just hit Enter</guilabel>. You can even set the color of the plot by changing the option from the list of colors given below.
+<para>When the user clicks on Add Space 3D, it will redirect to the 3D space UI. Then he/she needs to click on the <guilabel>green button</guilabel> which will let the user to add a plot. Then user needs to select a plot's type (for example, click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a simple surface!) You can add a plot's name by checking the plot name's check box. Then, user has to <guilabel>add an appropriate equation</guilabel> (Analitza type Equation) to see it's plot. If you don't want anything else, <emphasis>just hit &Enter;</emphasis>. You can even set the color of the plot by changing the option from the list of colors given below.
 </para>
 <para>
 <screenshot>
@@ -130,7 +130,7 @@
 </para>
 </sect3>
 </sect2>
-<sect2 id="how-to-edit-remove-functions-from-khipu-"><title>How to edit/remove functions from Khipu ?</title> 
+<sect2 id="how-to-edit-remove-functions-from-khipu-"><title>How to edit/remove functions from Khipu?</title> 
 <para>User can edit or/and remove the already added plots.
 </para>
 <sect3 id="editing-an-already-added-plot"><title>Editing an already added plot</title> 
@@ -144,7 +144,7 @@
 </sect2>
 </sect1>
 <sect1 id="playing-with-plot-dictionary"><title>Playing with Plot Dictionary</title>
-<sect2 id="what-is-a-plot-dictionary-"><title>What is a Plot Dictionary ?</title> 
+<sect2 id="what-is-a-plot-dictionary-"><title>What is a Plot Dictionary?</title> 
 <para>A plot dictionary is a kind of text file (.plots) which contains a name of a plot along with its equation. The basic idea of dictionary files is to add plots in Khipu without actually typing big equations. User can add the plots based on its name using the dictionaries. We already have some predefined dictionaries which let a user enter some famous plots (&ie; curves and surfaces). User can even download the dictionaries using Internet.
 </para>
 <sect3 id="syntax"><title>Syntax</title> 
@@ -194,7 +194,7 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>If you want to see how Khipu uses dictionary , just <guilabel>hit Plot Dictionary tab</guilabel> shown on the main toolbar of Khipu. Then,switch to different names in the drop down box tagged by <guilabel>collection</guilabel>. Click on any of the plot's name and you will see a corresponding plot on the right side of the window.
+<para>If you want to see how Khipu uses dictionary, just <guilabel>hit Plot Dictionary tab</guilabel> shown on the main toolbar of Khipu. Then switch to different names in the drop down box tagged by <guilabel>collection</guilabel>. Click on any of the plot's name and you will see a corresponding plot on the right side of the window.
 </para>
 <para>
 <screenshot>
@@ -231,7 +231,7 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>The main advantage of the dictionaries is to add the plots without typing big equations. For that , add any space in Khipu. Then, switch to the <guilabel>Add From Dictionary</guilabel> tab. You can add the dictionary file there according to your wish. You just need to double click on the name of the plot to add it in the current Khipu Space.
+<para>The main advantage of the dictionaries is to add the plots without typing big equations. For that, add any space in Khipu. Then switch to the <guilabel>Add From Dictionary</guilabel> tab. You can add the dictionary file there according to your wish. You just need to double click on the name of the plot to add it in the current Khipu Space.
 </para>
 <para>
 <screenshot>
@@ -255,7 +255,7 @@
 </para>
 </sect2>
 <sect2 id="download-dictionary-file-from-the-internet"><title>Download Dictionary File from the Internet</title>
-<para>The use of <guilabel>Get Hot New Stuff API</guilabel> in Khipu will allow the user to download these dictionary files from the web. In this way , a user can have a rich collection of dictionaries downloaded across the globe. You can achieve this by simply clicking on the <guilabel>'Get Plot Dictionary Files</guilabel> from the Dictionary UI.
+<para>The use of <guilabel>Get Hot New Stuff API</guilabel> in Khipu will allow the user to download these dictionary files from the web. In this way, a user can have a rich collection of dictionaries downloaded across the globe. You can achieve this by simply clicking on the <guilabel>Get Plot Dictionary Files</guilabel> from the Dictionary UI.
 </para>
 </sect2>
 <sect2 id="export-a-space-as-a-dictionary"><title>Export a space as a Dictionary</title>
@@ -275,27 +275,27 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>User can even export a whole space into the dictionary with the names and equations of the plots saved in that particular space. For this , you have to <guilabel>click on go Home</guilabel> and then , <guilabel>click on the tool button on the space thumbnail</guilabel> which tells you about importing the space in dictionary.
+<para>User can even export a whole space into the dictionary with the names and equations of the plots saved in that particular space. For this, you have to <guilabel>click on go Home</guilabel> and then <guilabel>click on the tool button on the space thumbnail</guilabel> which tells you about importing the space in dictionary.
 </para>
 </sect2>
 </sect1>
-<sect1 id="khipu---beyond-just-plotting"><title>Khipu : Beyond just plotting</title>
+<sect1 id="khipu---beyond-just-plotting"><title>Khipu: Beyond just plotting</title>
 <sect2 id="khipus-application-actions"><title>Khipu's Application Actions</title> 
 <para>One of the key advantage of Khipu is to have <guilabel>some other useful functionaries</guilabel> to deal with the mathematical function's plotting apart from just plotting them. The various application actions and other features make Khipu more user-friendly.
 </para>
 <sect3 id="new-open-save-saveas"><title>New/Open/Save/SaveAs</title>
-<para>The normal actions of New , Open , Save and SaveAs allow the users to work with different sessions and <guilabel>saving their work in persistence files (.khipu files)</guilabel> which he/she can open later in time. The persistence file follows a <guilabel>QJson file format</guilabel> which saves important information from the current session. This information includes name of spaces added, name and equations of the plots added in each space, plots' interval and their color.
+<para>The normal actions of New, Open, Save and SaveAs allow the users to work with different sessions and <guilabel>saving their work in persistence files (.khipu files)</guilabel> which he/she can open later in time. The persistence file follows a <guilabel>QJson file format</guilabel> which saves important information from the current session. This information includes name of spaces added, name and equations of the plots added in each space, plots' interval and their color.
 </para>
 </sect3>
 <sect3 id="save-plot-as-image"><title>Save Plot as Image</title>
-<para>In khipu , every space will have its corresponding image which contains the plots requested by the user. The space image can be saved (PNG file) into the local disk using this application action.
+<para>In khipu, every space will have its corresponding image which contains the plots requested by the user. The space image can be saved (PNG file) into the local disk using this application action.
 </para>
 </sect3>
 <sect3 id="take-snapshot"><title>Take Snapshot</title>
 <para>You can even copy the space image into clipboard using this action.
 </para>
 </sect3>
-<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"><title>Want to see only a graph in the entire screen ?</title>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"><title>Want to see only a graph in the entire screen?</title>
 <para>The full screen option in Khipu will allow the user to just only see the plot space. All the other docks and toolbars will be invisible while activating a full screen !
 </para>
 </sect3>
@@ -319,10 +319,10 @@
 <para>While a user is on any space (2D or 3D), he can switch to next/previous/first/last space in just one key stroke. The shortcuts for this are as follows:
 </para>
 <itemizedlist>
-<listitem><para>Navigate to the next space        -&gt; Page Up</para></listitem>
-<listitem><para>Navigate to the previous space -&gt; Page Down:</para></listitem>
-<listitem><para>Navigate to the first space        -&gt; Ctrl + Home</para></listitem>
-<listitem><para>Navigate to the last space        -&gt; Ctrl + End</para></listitem>
+<listitem><para>Navigate to the next space -&gt; <keycap>Page Up</keycap></para></listitem>
+<listitem><para>Navigate to the previous space -&gt; <keycap>Page Down</keycap></para></listitem>
+<listitem><para>Navigate to the first space -&gt; <keycombo>&Ctrl;<keycap>Home</keycap></keycombo></para></listitem>
+<listitem><para>Navigate to the last space -&gt; <keycombo>&Ctrl;<keycap>End</keycap></keycombo></para></listitem>
 </itemizedlist>
 </sect3>
 </sect2>
@@ -343,10 +343,10 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>The main dashboard of Khipu contains all the spaces created by the user with its thumbnail and space's name. So, a user can know which space he/she wants to modify or see their plots.
+<para>The main dashboard of Khipu contains all the spaces created by the user with its thumbnail and space's name. So a user can know which space he/she wants to modify or see their plots.
 </para>
 </sect2>
-<sect2 id="space-filter-based-on-titledescription-and-dimension"><title>Space filter based on Title,Description and Dimension</title>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"><title>Space filter based on Title, Description and Dimension</title>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
@@ -366,7 +366,7 @@
 <para>The filter feature available on the dashboard will allow the user to filter the spaces based on their title and/or description. You can even filter the space based on the dimension chosen from the drop-down box shown on the top-right corner on the Dashboard UI.
 </para>
 </sect2>
-<sect2 id="shortcuts-dock---an-easy-way-of-plotting"><title>Shortcuts Dock : An easy way of plotting</title>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"><title>Shortcuts Dock: An easy way of plotting</title>
 <para>
 <screenshot>
 <screeninfo></screeninfo>
@@ -383,7 +383,7 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>If a user wants to plot quickly without worrying about the spaces , the shortcuts dock will allow him/her to do so. For this, you need to type <guilabel>S</guilabel> and then select your plot type from that dock, type the equation, hit Enter and that's it !
+<para>If a user wants to plot quickly without worrying about the spaces, the shortcuts dock will allow him/her to do so. For this, you need to type <guilabel>S</guilabel> and then select your plot type from that dock, type the equation, hit &Enter; and that's it!
 </para>
 </sect2>
 <sect2 id="zoom-in-out-and-rotations-in-the-plots-view"><title>Zoom In/out and Rotations in the plots view</title>
@@ -394,7 +394,7 @@
 </chapter>
 <chapter id="credits-and-license"><title>Credits and License</title> 
 <sect1 id="program-copyright"><title>Program copyright</title>
-<para>Add the names , year and email address here ! :)
+<para>Add the names, year and email address here ! :)
 </para>
 </sect1>
 <sect1 id="documentation-copyright"><title>Documentation copyright</title> 
