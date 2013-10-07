@@ -553,10 +553,8 @@ bool MainWindow::openFileClicked()
     KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
                      i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
 
-    if(url.path().isEmpty()) {
-        KMessageBox::error(this,i18n("Error while opening file, maybe path is not found."),i18n("Error while opening"));
+    if(url.path().isEmpty())
         return false;
-    }
 
     QStringList args;
     args << url.toLocalFile();
@@ -679,6 +677,8 @@ void MainWindow::saveClicked()
     // Intially when the data is not saved. We would not have the actual file path.
     if(m_fileLocation.isEmpty()) {
         KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+        if(url.isEmpty())
+            return;
         m_fileLocation =url.toLocalFile();
     }
     saveFile(m_fileLocation);
@@ -710,6 +710,8 @@ bool MainWindow::closeClicked()
 bool MainWindow::saveAsClicked()
 {
     KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
+    if(url.isEmpty())
+        return false;
     if(saveFile(url.toLocalFile())) {
         m_fileLocation =url.toLocalFile();
         return true;

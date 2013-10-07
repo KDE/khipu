@@ -157,10 +157,8 @@ void DictionaryCollection::importDictionary()
                      i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
 
     QString path=url.toLocalFile();
-    if(path==0){
-        KMessageBox::error(this,i18n("Error while opening file. Maybe path is not found."),i18n("No Dictionary found!"));
+    if(path.isEmpty())
         return;
-    }
     int currentIndex=m_widget->dictionaryNames->count();
     m_widget->dictionaryNames->addItem(QFileInfo(path).baseName());
     m_widget->dictionaryNames->setCurrentIndex(currentIndex);
