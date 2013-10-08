@@ -290,7 +290,7 @@
 </para>
 </sect3>
 <sect3 id="save-plot-as-image"><title>Save Plot as Image</title>
-<para>In khipu, every space will have its corresponding image which contains the plots requested by the user. The space image can be saved (PNG file) into the local disk using this application action.
+<para>In &khipu;, every space will have its corresponding image which contains the plots requested by the user. The space image can be saved (<acronym>PNG</acronym> file) into the local disk using this application action.
 </para>
 </sect3>
 <sect3 id="take-snapshot"><title>Take Snapshot</title>
@@ -389,7 +389,7 @@
 </para>
 </sect2>
 <sect2 id="zoom-in-out-and-rotations-in-the-plots-view"><title>Zoom In/out and Rotations in the plots view</title>
-<para>The 2D and 3D space have a functionality from which you can zoom-in and/or zoom-out the plot-space by just scrolling up/down respectively. The 3D space has a support of rotations and shadows which let a user analyse the 3D plots from different angles !
+<para>The 2D and 3D space have a functionality from which you can zoom-in and/or zoom-out the plot-space by just scrolling up/down respectively. The 3D space has a support of rotations and shadows which let a user analyse the 3D plots from different angles!
 </para>
 </sect2>
 </sect1>
