@@ -92,7 +92,7 @@
 </screenshot>
 </para>
 <sect3 id="plots-represented-in-two-dimension"><title>Plots represented in 2-Dimension</title> 
-<para>When the user clicks on Add Space 2D, it will redirect to the 2D space UI. Then he/she needs to click on the <guilabel>green button</guilabel> which will let the user to add a plot. Then, user needs to select a plot's type (for example, click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a sine curve!) You can add a plot's name by checking the plot name's check box. Then, user has to <guilabel>add an appropriate equation</guilabel> (&analitza;-type equation) to see it's plot. If you don't want anything else, <emphasis>just hit &Enter;</emphasis>. You can even set the color of the plot by changing the option from the list of colors given below and set an appropriate interval for the arguments of the function.
+<para>When the user clicks on <guibutton>Add Space 2D</guibutton>, it will redirect to the 2D space UI. Then he/she needs to click on the <guilabel>green button</guilabel> which will let the user to add a plot. Then, user needs to select a plot's type (for example, click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a sine curve!) You can add a plot's name by checking the plot name's check box. Then, user has to <guilabel>add an appropriate equation</guilabel> (&analitza;-type equation) to see it's plot. If you don't want anything else, <emphasis>just hit &Enter;</emphasis>. You can even set the color of the plot by changing the option from the list of colors given below and set an appropriate interval for the arguments of the function.
 </para>
 <para>
 <screenshot>
@@ -277,7 +277,7 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>User can even export a whole space into the dictionary with the names and equations of the plots saved in that particular space. For this, you have to click on go <guilabel>Home</guilabel> and then click on the <emphasis>tool button</emphasis> on the space thumbnail which tells you about importing the space in dictionary.
+<para>User can even export a whole space into the dictionary with the names and equations of the plots saved in that particular space. For this, you have to click on go <guilabel>Home</guilabel> and then click on the <emphasis>tool button</emphasis> on the space thumbnail which tells you about exporting the space in dictionary.
 </para>
 </sect2>
 </sect1>
