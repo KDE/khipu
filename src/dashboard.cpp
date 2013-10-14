@@ -252,16 +252,13 @@ void Dashboard::importDictionaryClicked()
                      i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
 
     QString path=url.toLocalFile();
-    if(path==0) {
-        KMessageBox::error(this,i18n("Error while opening file. Maybe path is not found."),i18n("No Dictionary found!"));
-        return;
+    if(path!=0) {
+        int currentIndex=m_widget->comboBox->count();
+        m_widget->comboBox->addItem(QFileInfo(path).baseName());
+        m_widget->comboBox->setCurrentIndex(currentIndex);
+        m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
+        setDictionaryData(currentIndex);
     }
-
-    int currentIndex=m_widget->comboBox->count();
-    m_widget->comboBox->addItem(QFileInfo(path).baseName());
-    m_widget->comboBox->setCurrentIndex(currentIndex);
-    m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
-    setDictionaryData(currentIndex);
 }
 
 void Dashboard::showPlotsView2D()
