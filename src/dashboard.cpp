@@ -252,7 +252,7 @@ void Dashboard::importDictionaryClicked()
                      i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
 
     QString path=url.toLocalFile();
-    if(path!=0) {
+    if(!path.isEmpty()) {
         int currentIndex=m_widget->comboBox->count();
         m_widget->comboBox->addItem(QFileInfo(path).baseName());
         m_widget->comboBox->setCurrentIndex(currentIndex);
