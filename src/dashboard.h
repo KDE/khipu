@@ -119,9 +119,9 @@ public slots:
 private slots:
     void setDictionaryData(int ind);
     void setCurrentSpace(const QModelIndex &index, const QModelIndex &old);
-    void setCurrentSpace(const QModelIndex &index ,int,int);
+    void setCurrentSpace(const QModelIndex& index, int row);
     
-    void setCurrentPlot(const QModelIndex & parent, int start, int end);
+    void setCurrentPlot(const QModelIndex& parent, int start);
     void setModelIndex(const QModelIndex & ind);
 
 signals:

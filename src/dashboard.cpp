@@ -76,10 +76,9 @@ void SpacesFilterProxyModel::setFilterText(const QString& text)
     invalidateFilter();
 }
 
-bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow,
-                                               const QModelIndex &sourceParent) const
+bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (!sourceModel())
+    if (!sourceModel() || sourceParent.isValid())
         return false;
     DictionaryItem *spaceItem = static_cast<DictionariesModel*>(sourceModel())->space(sourceRow);
     if (!spaceItem)
@@ -182,14 +181,14 @@ void Dashboard::setDocument(DataStore* doc)
     m_widget->plotsView3D->setModel(m_document->currentPlots());
     m_widget->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
 
-    connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int,int)));
+    connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int)));
     
     connect(m_widget->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
     connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
 
     DictionariesModel * m = m_document->spacesModel();
 
-    connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int,int)));
+    connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int)));
 }
 
 PlotsView2D* Dashboard::view2d()
@@ -347,13 +346,16 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
  emit showFilter(false);
 }
 
+//FIXME: 3 methods called setCurrentSpace is too much
 void Dashboard::setCurrentSpace(const QModelIndex& index, const QModelIndex& old)
 {
+	Q_UNUSED(old);
     m_document->setCurrentSpace(index.row());
 }
 
-void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
+void Dashboard::setCurrentSpace(const QModelIndex& index, int row)
 {
+	Q_UNUSED(index);
 //     qDebug() << "sadasadadsd ads";
 //     m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
 
@@ -371,8 +373,9 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row, int )
     static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
 }
 
-void Dashboard::setCurrentPlot(const QModelIndex& parent, int start, int end)
+void Dashboard::setCurrentPlot(const QModelIndex& parent, int start)
 {
+    Q_ASSERT(!parent.isValid());
     m_document->currentSelectionModel()->clear();
     m_document->currentSelectionModel()->setCurrentIndex(m_document->currentPlots()->index(start,0), QItemSelectionModel::SelectCurrent );
 }
@@ -403,5 +406,4 @@ void Dashboard::getDictionaryClicked()
     KNS3::DownloadDialog newStuffDialog(this);
     newStuffDialog.exec();
     KNS3::Entry::List installedentries = newStuffDialog.installedEntries();
-    int numberInstalled = installedentries.size();
 }

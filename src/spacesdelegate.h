@@ -102,7 +102,7 @@ public:
 public slots:
     //NOTE ejecutar este metodo cuando se a cambiado de filtro en el proxy ... es decir ejecutarlo desde afuera de esta clase
     void filterEvent(); // se supone que el proxy emite esta signal layoutchanged y este slots debe ocultar los botnes y editores
-    void setCurrentSpace(const QModelIndex &index, const QModelIndex &oldcurent = QModelIndex());
+    void setCurrentSpace(const QModelIndex& index);
 
 private: // TODO hacer public
     void setIconMode(bool im);
@@ -111,7 +111,6 @@ private: // TODO hacer public
 public:
     
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
 
@@ -141,14 +140,14 @@ private slots:
     void exportSpace();
     
 private:
+    mutable bool m_isEditing;
+    bool m_iconMode;
     QWidget *m_operationBar;
     LineEdit *m_titleEditor;
-    
+
     mutable QModelIndex m_currentEditingIndex; // current editing index
-    mutable bool m_isEditing;
     QPoint m_currentCurPos;
 
-    bool m_iconMode;
     DataStore *m_document;
 };
 

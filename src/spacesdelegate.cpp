@@ -93,10 +93,10 @@ void LineEdit::procsSditingFinished()
 
 SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     : QStyledItemDelegate(parent), m_itemView(itemView)
-, m_isEditing(false)
-, m_iconMode(true) // el default en el listvieew es listmode no el iconmode
-, m_operationBar(0)
-, m_titleEditor(0)
+	, m_isEditing(false)
+	, m_iconMode(true) // list mode by default
+	, m_operationBar(0)
+	, m_titleEditor(0)
 {
     setIconMode(true);
 
@@ -117,7 +117,7 @@ SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
     connect(this, SIGNAL(showSpace(QModelIndex)), itemView, SIGNAL(doubleClicked(QModelIndex)));
 
     connect(itemView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), 
-            SLOT(setCurrentSpace(QModelIndex, QModelIndex)));
+            SLOT(setCurrentSpace(QModelIndex)));
         
 //         connect(this, SIGNAL(activateSpace(QModelIndex)), itemView, SLOT(setCurrentIndex(QModelIndex)));
 
@@ -205,7 +205,7 @@ void SpacesDelegate::exportSpace()
     emit saveDictionary(itemView()->currentIndex());
 }
 
-QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
+QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem&, const QModelIndex& index) const
 {
 //     if (!m_iconMode && index.isValid())
 //     {
@@ -235,18 +235,6 @@ QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewIte
     }
 
     return new QWidget(parent);
-}
-
-void SpacesDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    if (!index.isValid())
-        return ;
-
-//     m_currentEditingIndex = index;
-//     m_isEditing = true;
-//     
-//     editor->setGeometry(option.rect);
-//     editor->hide();
 }
 
 void SpacesDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
@@ -666,7 +654,7 @@ void SpacesDelegate::dummyUpdate()
 //         itemView()->model()->setData(static_cast<SpacesModel*>(itemView()->model())->index(i), static_cast<SpacesModel*>(itemView()->model())->index(i).data());
 }
 
-void SpacesDelegate::setCurrentSpace(const QModelIndex& index, const QModelIndex& oldcurent)
+void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 {
     if (m_isEditing)
         return;
