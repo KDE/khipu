@@ -103,6 +103,8 @@ Dashboard::Dashboard(QWidget *parent)
     setDictionaryNames();
 }
 
+//FIXME_ punit, you shouldn't be passing around the Ui instances from one place to the other
+//this is producing a leak and it creates very weird code
 void Dashboard::setDashboardData(Dashboard* source)
 {
     m_document=source->m_document;
@@ -112,8 +114,7 @@ void Dashboard::setDashboardData(Dashboard* source)
 
 Dashboard::~Dashboard()
 {
-    m_widget=0;
-    delete m_widget;
+    //FIXME: you are leaking m_widget here
 }
 
 void Dashboard::setDictionaryNames()
