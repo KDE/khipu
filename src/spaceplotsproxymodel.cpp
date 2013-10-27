@@ -69,8 +69,7 @@ SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
 
 void SpacePlotsFilterProxyModel::setFilterSpace(SpaceItem* space)
 {
-    if (!space)
-        return;
+    Q_ASSERT(space);
     m_space = space; 
     invalidateFilter();
 }
