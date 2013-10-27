@@ -28,8 +28,8 @@ SpaceInformation::SpaceInformation(QWidget* parent): QDockWidget(parent)
     m_widget->setupUi(this);
     setObjectName("asdasdds222");
     MainWindow *window = static_cast<MainWindow *>(parent);
-    connect(m_widget->spaceTitle,SIGNAL(textChanged(QString)),window,SLOT(setCurrentSpaceTitle(QString)));
-//    connect(m_widget->spaceDescription,SIGNAL(textChanged(QString)),window,SLOT(setCurrentSpaceDesc(QString)));
+    connect(m_widget->spaceTitle,SIGNAL(textEdited(QString)),window,SLOT(setCurrentSpaceTitle(QString)));
+//    connect(m_widget->spaceDescription,SIGNAL(textEdited(QString)),window,SLOT(setCurrentSpaceDesc(QString)));
 }
 
 SpaceInformation::~SpaceInformation()
