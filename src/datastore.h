@@ -61,9 +61,9 @@ public:
     void removeSpace(int row);
 
 private slots:
-    void mapPlot(const QModelIndex & parent, int start, int end);
-    void selectCurrentPlot(const QModelIndex & curr, const QModelIndex & prev );
-    void plotDataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight );
+    void mapPlot(const QModelIndex& parent, int start);
+    void selectCurrentPlot(const QModelIndex & curr);
+    void plotDataChanged ( const QModelIndex& topLeft );
 
 public slots: 
     void setCurrentSpace(int spaceidx);

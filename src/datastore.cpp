@@ -58,18 +58,18 @@ DataStore::DataStore(QObject* parent)
     
     connect(this, SIGNAL(spaceActivated(int)), SLOT(setCurrentSpace(int)));
 
-    connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int,int)));
+    connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int)));
 
     m_spacePlotsFilterProxyModel = new SpacePlotsFilterProxyModel(this);
     m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
 
     m_currentSelectionModel = new QItemSelectionModel(m_spacePlotsFilterProxyModel);
-    connect(m_currentSelectionModel, SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(selectCurrentPlot(QModelIndex,QModelIndex)));
+    connect(m_currentSelectionModel, SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(selectCurrentPlot(QModelIndex)));
 
     m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
     
 
-    connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex,QModelIndex)));
+    connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex)));
 }
 
 DataStore::~DataStore()
@@ -92,24 +92,14 @@ void DataStore::setCurrentSpace(int spaceidx)
     }
 }
 
-void DataStore::mapPlot(const QModelIndex & parent, int start, int end)
+void DataStore::mapPlot(const QModelIndex & parent, int start)
 {
     PlotItem* item = m_plotsModel->index(start, 0, parent).data(PlotsModel::PlotRole).value<PlotItem*>();
 
     m_maps.insertMulti(m_spacesModel->space(m_currentSpace), item);
-
-    int i = 0;
-
-    switch (item->coordinateSystem())
-    {
-        case Cartesian: i = 1; break;
-        case Polar: i = 2; break;
-        default : i=0; break;
-    }
-    //emit gridStyleChanged(i);
 }
 
-void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& prev)
+void DataStore::selectCurrentPlot(const QModelIndex& curr)
 {
     if (!curr.isValid())
         return;
@@ -125,7 +115,7 @@ void DataStore::selectCurrentPlot(const QModelIndex& curr, const QModelIndex& pr
     emit gridStyleChanged(i);
 }
 
-void DataStore::plotDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+void DataStore::plotDataChanged(const QModelIndex& topLeft)
 {
     int i = 0;
 
