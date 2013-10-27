@@ -42,7 +42,7 @@
       <string/>
      </property>
      <property name="clickMessage">
-      <string>Search space name or description</string>
+      <string>Filter by space name or description...</string>
      </property>
      <property name="showClearButton" stdset="0">
       <bool>true</bool>
