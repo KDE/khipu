@@ -61,6 +61,7 @@ public:
     KDateTime timestamp() const { return m_dateTime; }
     ///marks current time stamp
     void stamp();
+    int row();
 
 private:
     SpaceItem() {}

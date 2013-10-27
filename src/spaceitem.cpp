@@ -77,14 +77,20 @@ void SpaceItem::setModel(SpacesModel * m)
     m_callingCtrFromMode = false;
 }
 
+int SpaceItem::row()
+{
+    return m_model ? -1 : m_model->spaceIndex(this).row();
+}
+
 void SpaceItem::emitDataChanged()
 {
     if (m_callingCtrFromMode)
         return; // no emitir la signal datachange cuando se esta agregando un item desde el model
 
-    if (m_model && m_model->rowCount()>0)
+    int itemRow = row();
+    if (itemRow>=0)
     {
-        int row = m_model->m_items.indexOf(this);
-        m_model->dataChanged(m_model->index(row), m_model->index(row));
+        QModelIndex idx = m_model->index(itemRow);
+        m_model->dataChanged(idx, idx);
     }
 }

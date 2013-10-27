@@ -89,11 +89,14 @@ void DataStore::setCurrentSpace(int spaceidx)
         m_currentSpace = spaceidx;
         m_spacePlotsFilterProxyModel->setFilterSpaceDimension(m_spacesModel->space(spaceidx)->dimension());
         m_spacePlotsFilterProxyModel->setFilterSpace(m_spacesModel->space(spaceidx));
+    } else {
+        qWarning() << "wrong space" << spaceidx;
     }
 }
 
 void DataStore::mapPlot(const QModelIndex & parent, int start)
 {
+    Q_ASSERT(m_currentSpace>=0);
     PlotItem* item = m_plotsModel->index(start, 0, parent).data(PlotsModel::PlotRole).value<PlotItem*>();
 
     m_maps.insertMulti(m_spacesModel->space(m_currentSpace), item);

@@ -72,17 +72,18 @@ void DataStoreTest::testCorrect_data()
 
 void DataStoreTest::testCorrect()
 {
-    FunctionGraph* item=0;
-
     QFETCH(QString,expression);
     QFETCH(Analitza::Dimension,dimension);
     QFETCH(Qt::GlobalColor,color);
     QFETCH(QString,name);
 
+    SpaceItem* space = m_document->spacesModel()->addSpace(dimension, name, QString(), QPixmap());
+    m_document->setCurrentSpace(0);
     PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(expression),dimension);
 
     QVERIFY(req.canDraw());
-    item = req.create(QColor(color),name);
+    const QColor c(color);
+    FunctionGraph* item = req.create(c, name);
     m_document->plotsModel()->addPlot(item);
 
     QList<Analitza::PlotItem*> plotList=m_document->currentDataMap().values();
@@ -95,8 +96,10 @@ void DataStoreTest::testCorrect()
     // need to solve in analitza
     if(dimension!=Dim3D)
         QCOMPARE(testitem->expression(),Analitza::Expression(expression));
-    QCOMPARE(testitem->color(),QColor(color));
+    QCOMPARE(testitem->color(), c);
     QCOMPARE(plotList.removeAll(testitem),1);
+
+    m_document->spacesModel()->removeRows(space->row(), 0);
 }
 
 #include "datastoretest.moc"

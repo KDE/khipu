@@ -151,3 +151,8 @@ SpaceItem* SpacesModel::spacebyid(const QString& id) const
         
         return 0;
 }
+
+QModelIndex SpacesModel::spaceIndex(SpaceItem* it)
+{
+    return index(m_items.indexOf(it));
+}
