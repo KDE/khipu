@@ -4,7 +4,6 @@ find_package ( KDE4 REQUIRED )
 include(KDE4Defaults)
 
 find_package ( OpenGL REQUIRED )
-find_package ( Gettext REQUIRED )
 find_package ( Analitza REQUIRED )
 find_package ( QJSON REQUIRED)
 
