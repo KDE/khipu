@@ -138,6 +138,7 @@ FunctionDelegate::FunctionDelegate(ComboBox* parent): QStyledItemDelegate(parent
 }
 QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
+    Q_UNUSED(option);
     QStringList funcs = index.data().toString().split(',');
     QString mmlhelper;
 
@@ -245,7 +246,7 @@ PlotsEditor::PlotsEditor(QWidget * parent)
     plotnamecheckClicked(false);
 }
 
-bool PlotsEditor::eventFilter(QObject *object, QEvent *event)
+bool PlotsEditor::eventFilter(QObject*, QEvent *event)
 {
     if(event->type() == QEvent::KeyPress)
     {
@@ -378,7 +379,7 @@ void PlotsEditor::addPlots()
     showTypes();
 }
 
-void PlotsEditor::editPlot(const QModelIndex &index)
+void PlotsEditor::editPlot(const QModelIndex &)
 {
     // comes when double clicked on the items in the list shown with checkbox.!
     isEditing = true;
