@@ -96,7 +96,6 @@ Dashboard::Dashboard(QWidget *parent)
 {
     m_widget = new  Ui::DashboardWidget;
     m_widget->setupUi(this);
-    m_spaceindexList=new QModelIndexList();
     m_openclicked=false;
 
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
@@ -338,8 +337,8 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
     }
 
     // identification of the space
-    if(!(m_spaceindexList->contains(ind)) && m_openclicked){
-        m_spaceindexList->append(ind);
+    if(!(m_spaceindexList.contains(ind)) && m_openclicked){
+        m_spaceindexList.append(ind);
         emit plotRequested(ind);
     }
 

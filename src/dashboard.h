@@ -136,9 +136,9 @@ private:
 
     DataStore * m_document;
     Ui::DashboardWidget *m_widget;
-    QModelIndexList *m_spaceindexList;
+    QModelIndexList m_spaceindexList;
     SpacesFilterProxyModel *m_spacesProxyModel;
-    QList<QString> m_filterText;
+    QStringList m_filterText;
     Analitza::PlotsDictionaryModel* m_plotdictionarymodel;
     bool m_isDictionaryFound;
     QMap<QString,QString> m_DictionaryPathName;

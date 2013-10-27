@@ -297,7 +297,7 @@ void MainWindow::setupActions()
     //     createAction("export_snapshot", i18n("&Export Space Snapshot"), "view-preview", Qt::CTRL + Qt::Key_W, this, SLOT(fooSlot()));
     //settings
     KStandardAction::showMenubar(this, SLOT(setMenuBarVisibility(bool)), actionCollection());
-    KToggleFullScreenAction *fullScreenAction = KStandardAction::fullScreen(this, SLOT(fullScreenView(bool)), this ,actionCollection());
+    KStandardAction::fullScreen(this, SLOT(fullScreenView(bool)), this ,actionCollection());
 }
 
 //Saving a space title
