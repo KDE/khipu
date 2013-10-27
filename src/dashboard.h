@@ -130,7 +130,7 @@ signals:
     void setDialogSettingsVisible(bool b);
 
 private:
-    void setDictionaryNames();
+    void initializeDictionaryNames();
     void setPlotsView(Analitza::Dimension dim);
 
     DataStore * m_document;

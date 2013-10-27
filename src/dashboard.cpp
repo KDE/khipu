@@ -100,24 +100,22 @@ Dashboard::Dashboard(QWidget *parent)
 
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     m_ui->comboBox->clear();
-    setDictionaryNames();
+    initializeDictionaryNames();
 }
 
 Dashboard::~Dashboard()
 {
 }
 
-void Dashboard::setDictionaryNames()
+void Dashboard::initializeDictionaryNames()
 {
-
     // QString str=KStandardDirs::installPath("data"); // works for -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix`
     // QDir dir(str.append("libanalitza/plots"));  // path to the dir where .plots files are installed by analitza
 
     KStandardDirs KStdDirs;
     QStringList dirList = KStdDirs.findDirs("data","libanalitza");
 
-    QStringList filters;
-    filters << "*.plots";
+    QStringList filters("*.plots");
 
     foreach(const QString &dirPath, dirList) {
         QDir dir=QString(dirPath).append("plots");
@@ -237,7 +235,7 @@ void Dashboard::setPlotsView(Analitza::Dimension dim)
 
 void Dashboard::importDictionaryClicked()
 {
-    KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
+    const KUrl url = KFileDialog::getOpenUrl( QDir::currentPath(),
                      i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
 
     QString path=url.toLocalFile();
