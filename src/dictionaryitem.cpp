@@ -43,7 +43,7 @@ void DictionaryItem::setDescription(const QString& description)
     emitDataChanged();
 }
 
-void DictionaryItem::setThumbnail(const QPixmap thumbnail)
+void DictionaryItem::setThumbnail(const QPixmap& thumbnail)
 {
     m_thumbnail = thumbnail;
     
@@ -80,14 +80,11 @@ void DictionaryItem::setModel(DictionariesModel * m)
 void DictionaryItem::emitDataChanged()
 {
     if (m_callingCtrFromMode)
-        return ; // no emitir la signal datachange cuando se esta agregando un item desde el model
-    
-    if (m_model)
+        return; // no emitir la signal datachange cuando se esta agregando un item desde el model
+
+    if (m_model && m_model->rowCount()>0)
     {
-        if (m_model->rowCount()>0)
-        {
-            int row = m_model->m_items.indexOf(this);
-            m_model->dataChanged(m_model->index(row), m_model->index(row));
-        }
+        int row = m_model->m_items.indexOf(this);
+        m_model->dataChanged(m_model->index(row), m_model->index(row));
     }
 }

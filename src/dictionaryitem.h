@@ -58,10 +58,11 @@ public:
 
     //space's thumbnail
     QPixmap thumbnail() const { return m_thumbnail; }
-    void setThumbnail(const QPixmap thumbnail);
+    void setThumbnail(const QPixmap &thumbnail);
 
-    KDateTime  timestamp() const { return m_dateTime; }
-    void stamp(); //marka el tiempo actual 
+    KDateTime timestamp() const { return m_dateTime; }
+    ///marks current time stamp
+    void stamp();
 
 private:
     DictionaryItem() {}

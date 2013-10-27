@@ -81,20 +81,22 @@ bool DictionariesModel::setData(const QModelIndex& index, const QVariant& value,
 
 int DictionariesModel::rowCount(const QModelIndex &idx) const
 {
-    return m_items.count();
+    return idx.isValid() ? 0 : m_items.count();
 }
 
 int DictionariesModel::columnCount(const QModelIndex& parent) const
 {
-//     if(parent.isValid())
-//         return 0;
-//     else
+    if(parent.isValid())
+        return 0;
+    else
         return 2;
 }
 
 bool DictionariesModel::removeRows(int row, int count, const QModelIndex& parent)
 {
-    Q_ASSERT(row<m_items.size());
+    Q_ASSERT(row+count<m_items.size());
+    if(parent.isValid())
+        return false;
 
     beginRemoveRows(QModelIndex(), row, row+count-1);
 
