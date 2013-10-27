@@ -322,12 +322,11 @@ void MainWindow::fullScreenView (bool isFull)
         m_spacePlotsDock->hide();
         m_plotsBuilderDock->hide();
         m_dictionaryDock->hide();
-        toolBar("mainToolBar")->hide();
     } else {
         showNormal();
         statusBar()->show();
-        toolBar("mainToolBar")->show();
     }
+    toolBar("mainToolBar")->setVisible(!isFull);
 }
 
 void MainWindow::firstPageActClicked()
@@ -514,8 +513,7 @@ QString MainWindow::pathFromUrl(const KUrl &url)
 
 void MainWindow::setCurrentFile(const QString &fileName)
 {
-    m_curFile = fileName;
-    if (m_curFile.isEmpty())
+    if (fileName.isEmpty())
         return;
 
     KConfig config;
@@ -1020,8 +1018,6 @@ void MainWindow::setVisibleDictionary()
 
 void MainWindow::addSpace2D()
 {
-    m_currentSpaceDim=2;
-
     activateSpaceUi();
 
     m_dashboard->showPlotsView2D();
@@ -1032,8 +1028,6 @@ void MainWindow::addSpace2D()
 
 void MainWindow::addSpace3D()
 {
-    m_currentSpaceDim=3;
-
     activateSpaceUi();
 
     m_dashboard->showPlotsView3D();
@@ -1090,10 +1084,6 @@ void MainWindow::goHome()
 
         thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio,Qt::SmoothTransformation);
         space->setThumbnail(thumbnail);
-
-        if(!m_spacenameList.contains(space->title())) {
-            m_spacenameList.append(space->title());
-        }
     }
     m_dashboard->goHome();
     activateDashboardUi();

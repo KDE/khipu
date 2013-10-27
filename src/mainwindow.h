@@ -168,18 +168,14 @@ private:
     DataStore *m_document;
     Dashboard *m_dashboard;
     Filter *m_filter;
-    int m_currentSpaceDim;
 
     QDockWidget *m_plotsBuilderDock;
     PlotsEditor *m_spacePlotsDock;
     SpaceInformation *m_spaceInfoDock;
     SpaceOptions *m_spaceOptionsDock;
     DictionaryCollection *m_dictionaryDock;
-    QList<QByteArray> m_imageList;
-    QList<QString> m_spacenameList;
     QVariantList m_parsedSpaceDetails;
     QString m_fileLocation; // location of the current running file which is saved by the user.
-    QString m_curFile;
     KRecentFilesAction * m_openrecent;
     KAction *m_priorAct;
     KAction *m_nextAct;
