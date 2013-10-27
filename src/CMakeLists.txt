@@ -14,8 +14,8 @@ include_directories (
 )
 
 set ( libkhipu_SRCS
-  dictionaryitem.cpp
-  dictionariesmodel.cpp
+  spaceitem.cpp
+  spacesmodel.cpp
   dictionarycollection.cpp
   plotsbuilder.cpp
   plotseditor.cpp

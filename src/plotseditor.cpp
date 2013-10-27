@@ -52,9 +52,9 @@
 
 //local includes
 #include "datastore.h"
-#include "dictionariesmodel.h"
+#include "spacesmodel.h"
 #include "spaceplotsproxymodel.h"
-#include "dictionaryitem.h"
+#include "spaceitem.h"
 
 using namespace Analitza;
 

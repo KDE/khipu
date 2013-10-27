@@ -31,7 +31,7 @@
 #include <dictionarycollection.h>
 #include <dashboard.h>
 #include <datastore.h>
-#include <dictionariesmodel.h>
+#include <spacesmodel.h>
 
 using namespace Analitza;
 

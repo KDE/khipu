@@ -16,75 +16,53 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef DICTIONARYITEM_H
-#define DICTIONARYITEM_H
+#ifndef DICTIONARIESMODEL_H
+#define DICTIONARIESMODEL_H
 
 //Analitza includes
 #include <analitzaplot/plottingenums.h>
 
 //Qt includes
-#include <QtGui/QPixmap>
-#include <QUuid>
+#include <QtCore/QAbstractListModel>
 
 //KDE includes
-#include <KDE/KDateTime>
+#include <KIcon>
 
-static const int PreviewWidth = 200;
-static const int PreviewHeight = 200;
+namespace Analitza { class Expression; }
+class SpaceItem;
 
-class DictionariesModel;
+Q_DECLARE_METATYPE(SpaceItem*);
 
-class DictionaryItem
+class SpacesModel : public QAbstractListModel
 {
-    
-friend class DictionariesModel;    
-    
+
+friend class SpaceItem;
+Q_OBJECT
+
 public:
-    explicit DictionaryItem(Analitza::Dimension dimension);
-    virtual ~DictionaryItem();
+    explicit SpacesModel(QObject *parent=0);
 
-    QUuid id() const { return m_id; }
-
-    //space's dimension
-    Analitza::Dimension dimension() const { return m_dimension; }
+    Qt::ItemFlags flags ( const QModelIndex & index ) const;
     
-    //space's title
-    QString title() const { return m_name; }
-    void setTitle(const QString &name);
+    QVariant headerData(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const;
+    QVariant data( const QModelIndex &index, int role=Qt::DisplayRole) const;
+    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
+    int rowCount(const QModelIndex &parent=QModelIndex()) const;
+    int columnCount(const QModelIndex& parent) const;
+    //TODO implementar removeRows en analitzaplot (plotsmodel)
+    bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
+
+    SpaceItem * addSpace(Analitza::Dimension dim, const QString & title = QString(), const QString &description = QString(),
+                         const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
+
+    SpaceItem * space(int row) const;
+    SpaceItem * spacebyid(const QString &id) const;
+
+    QModelIndex spaceIndex(SpaceItem* it);
     
-    //space's description
-    QString description() const { return m_description; }
-    void setDescription(const QString &description);
-
-    //space's thumbnail
-    QPixmap thumbnail() const { return m_thumbnail; }
-    void setThumbnail(const QPixmap &thumbnail);
-
-    KDateTime timestamp() const { return m_dateTime; }
-    ///marks current time stamp
-    void stamp();
-
 private:
-    DictionaryItem() {}
-    DictionaryItem(const DictionaryItem &other);
-
-    void setModel(DictionariesModel *m);
-    
-    void emitDataChanged();
-
-    Analitza::Dimension m_dimension;
-    QPixmap m_thumbnail;
-    KDateTime  m_dateTime;
-
-    QString m_name;
-    QString m_description;
-    
-    DictionariesModel *m_model;
-    bool m_inDestructorSoDontDeleteMe;
-    bool m_callingCtrFromMode; // true en ctor y false en setmodel
-    
-    //persistence
-    QUuid m_id;
+    QList<SpaceItem *> m_items;
+    bool m_itemCanCallModelRemoveItem; // just a lock para evitar que el item llame recursivamente a removeItem
 };
 
-#endif
+#endif 

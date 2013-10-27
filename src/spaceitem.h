@@ -16,53 +16,73 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#ifndef DICTIONARIESMODEL_H
-#define DICTIONARIESMODEL_H
+#ifndef DICTIONARYITEM_H
+#define DICTIONARYITEM_H
 
 //Analitza includes
 #include <analitzaplot/plottingenums.h>
 
 //Qt includes
-#include <QtCore/QAbstractListModel>
+#include <QtGui/QPixmap>
+#include <QUuid>
 
 //KDE includes
-#include <KIcon>
+#include <KDE/KDateTime>
 
-namespace Analitza { class Expression; }
-class DictionaryItem;
+static const int PreviewWidth = 200;
+static const int PreviewHeight = 200;
 
-Q_DECLARE_METATYPE(DictionaryItem*);
+class SpacesModel;
 
-class DictionariesModel : public QAbstractListModel 
+class SpaceItem
 {
-
-friend class DictionaryItem;   
-Q_OBJECT
-
+friend class SpacesModel;
 public:
-    explicit DictionariesModel(QObject *parent=0);
+    explicit SpaceItem(Analitza::Dimension dimension);
+    virtual ~SpaceItem();
 
-    Qt::ItemFlags flags ( const QModelIndex & index ) const;
+    QUuid id() const { return m_id; }
+
+    //space's dimension
+    Analitza::Dimension dimension() const { return m_dimension; }
     
-    QVariant headerData(int section, Qt::Orientation orientation, int role=Qt::DisplayRole) const;
-    QVariant data( const QModelIndex &index, int role=Qt::DisplayRole) const;
-    bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
-    int rowCount(const QModelIndex &parent=QModelIndex()) const;
-    int columnCount(const QModelIndex& parent) const;
-    //TODO implementar removeRows en analitzaplot (plotsmodel)
-    bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
-
-    DictionaryItem * addSpace(Analitza::Dimension dim, const QString & title = QString(), const QString &description = QString(), 
-                         const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
-
-    DictionaryItem * space(int row) const;
-    DictionaryItem * spacebyid(const QString &id) const;
-
-    QModelIndex spaceIndex(DictionaryItem *it) const { return index(m_items.indexOf(it)); }
+    //space's title
+    QString title() const { return m_name; }
+    void setTitle(const QString &name);
     
+    //space's description
+    QString description() const { return m_description; }
+    void setDescription(const QString &description);
+
+    //space's thumbnail
+    QPixmap thumbnail() const { return m_thumbnail; }
+    void setThumbnail(const QPixmap &thumbnail);
+
+    KDateTime timestamp() const { return m_dateTime; }
+    ///marks current time stamp
+    void stamp();
+
 private:
-    QList<DictionaryItem *> m_items;
-    bool m_itemCanCallModelRemoveItem; // just a lock para evitar que el item llame recursivamente a removeItem
+    SpaceItem() {}
+    SpaceItem(const SpaceItem &other);
+
+    void setModel(SpacesModel *m);
+
+    void emitDataChanged();
+
+    Analitza::Dimension m_dimension;
+    QPixmap m_thumbnail;
+    KDateTime  m_dateTime;
+
+    QString m_name;
+    QString m_description;
+    
+    SpacesModel *m_model;
+    bool m_inDestructorSoDontDeleteMe;
+    bool m_callingCtrFromMode; // true en ctor y false en setmodel
+    
+    //persistence
+    QUuid m_id;
 };
 
-#endif 
+#endif

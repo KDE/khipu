@@ -17,6 +17,8 @@
  *************************************************************************************/
 
 #include <datastoretest.h>
+#include <spacesmodel.h>
+#include <spaceitem.h>
 
 //Qt includes
 #include <qtest_kde.h>

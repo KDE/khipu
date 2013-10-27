@@ -49,10 +49,10 @@
 //local includes
 #include "spaceinformation.h"
 #include "spaceoptions.h"
-#include "dictionariesmodel.h"
+#include "spacesmodel.h"
 #include "datastore.h"
 #include "spaceplotsproxymodel.h"
-#include "dictionaryitem.h"
+#include "spaceitem.h"
 #include "spacesdelegate.h"
 
 using namespace Analitza;
@@ -80,7 +80,7 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
 {
     if (!sourceModel() || sourceParent.isValid())
         return false;
-    DictionaryItem *spaceItem = static_cast<DictionariesModel*>(sourceModel())->space(sourceRow);
+    SpaceItem *spaceItem = static_cast<SpacesModel*>(sourceModel())->space(sourceRow);
     if (!spaceItem)
         return false;
     if (m_dimension != DimAll && spaceItem->dimension() != m_dimension)
@@ -176,7 +176,7 @@ void Dashboard::setDocument(DataStore* doc)
     connect(m_ui->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
     connect(m_ui->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
 
-    DictionariesModel * m = m_document->spacesModel();
+    SpacesModel * m = m_document->spacesModel();
 
     connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int)));
 }

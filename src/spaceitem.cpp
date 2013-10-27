@@ -16,12 +16,12 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#include "dictionaryitem.h"
+#include "spaceitem.h"
 
 //local includes
-#include "dictionariesmodel.h"
+#include "spacesmodel.h"
 
-DictionaryItem::DictionaryItem(Analitza::Dimension dimension)
+SpaceItem::SpaceItem(Analitza::Dimension dimension)
     : m_dimension(dimension), m_model(0), m_inDestructorSoDontDeleteMe(false), m_callingCtrFromMode(true)
 {
     m_dateTime = KDateTime::currentLocalDateTime(); 
@@ -29,35 +29,35 @@ DictionaryItem::DictionaryItem(Analitza::Dimension dimension)
     m_id = QUuid::createUuid();
 }
 
-void DictionaryItem::setTitle(const QString& name)
+void SpaceItem::setTitle(const QString& name)
 {
     m_name = name;
     
     emitDataChanged();
 }
 
-void DictionaryItem::setDescription(const QString& description)
+void SpaceItem::setDescription(const QString& description)
 {
     m_description = description; 
     
     emitDataChanged();
 }
 
-void DictionaryItem::setThumbnail(const QPixmap& thumbnail)
+void SpaceItem::setThumbnail(const QPixmap& thumbnail)
 {
     m_thumbnail = thumbnail;
     
     emitDataChanged();
 }
 
-void DictionaryItem::stamp()
+void SpaceItem::stamp()
 {
     m_dateTime = KDateTime::currentLocalDateTime(); 
     
     emitDataChanged(); // actualimos las vistas itemviews
 }
 
-DictionaryItem::~DictionaryItem()
+SpaceItem::~SpaceItem()
 {
     if (m_model && m_model->m_itemCanCallModelRemoveItem)
     {
@@ -67,7 +67,7 @@ DictionaryItem::~DictionaryItem()
     }
 }
 
-void DictionaryItem::setModel(DictionariesModel * m)
+void SpaceItem::setModel(SpacesModel * m)
 {
     Q_ASSERT(m);
     Q_ASSERT(m != m_model);
@@ -77,7 +77,7 @@ void DictionaryItem::setModel(DictionariesModel * m)
     m_callingCtrFromMode = false;
 }
 
-void DictionaryItem::emitDataChanged()
+void SpaceItem::emitDataChanged()
 {
     if (m_callingCtrFromMode)
         return; // no emitir la signal datachange cuando se esta agregando un item desde el model

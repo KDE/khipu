@@ -25,7 +25,7 @@
 #include <QModelIndex>
 
 class QItemSelectionModel;
-class DictionaryItem;
+class SpaceItem;
 
 namespace Analitza {
 class PlotsDictionaryModel;
@@ -34,7 +34,7 @@ class PlotsModel;
 class PlotItem;
 }
 
-class DictionariesModel;
+class SpacesModel;
 class SpacePlotsFilterProxyModel;
 
 class DataStore : public QObject
@@ -47,17 +47,16 @@ public:
 
     int currentSpace() const { return m_currentSpace; }
 
-
     Analitza::PlotsDictionaryModel *plotsDictionaryModel() const { return m_plotsDictionaryModel; }
-    DictionariesModel *spacesModel() const { return m_spacesModel; }
+    SpacesModel *spacesModel() const { return m_spacesModel; }
     Analitza::PlotsModel *plotsModel() const { return m_plotsModel; }
 
     SpacePlotsFilterProxyModel * currentPlots() const { return m_spacePlotsFilterProxyModel; }
     QItemSelectionModel *currentSelectionModel() const { return m_currentSelectionModel; }
     QItemSelectionModel *currentSpaceSelectionModel() const { return m_currentSpaceSelectionModel; }
-    QMap<DictionaryItem*, Analitza::PlotItem*> currentDataMap() const { return m_maps; }
+    QMap<SpaceItem*, Analitza::PlotItem*> currentDataMap() const { return m_maps; }
 
-    bool isMapped(DictionaryItem *space, Analitza::PlotItem *plot) const;
+    bool isMapped(SpaceItem *space, Analitza::PlotItem *plot) const;
     void removeSpace(int row);
 
 private slots:
@@ -78,7 +77,7 @@ signals:
 
 private:
     Analitza::PlotsDictionaryModel *m_plotsDictionaryModel;
-    DictionariesModel *m_spacesModel;
+    SpacesModel *m_spacesModel;
     Analitza::PlotsModel *m_plotsModel;
     
     SpacePlotsFilterProxyModel * m_spacePlotsFilterProxyModel;
@@ -89,7 +88,7 @@ private:
 
     //one to many -- space index -> many plots index
     int m_currentSpace; // curr space index 
-    QMap<DictionaryItem*, Analitza::PlotItem *> m_maps;
+    QMap<SpaceItem*, Analitza::PlotItem *> m_maps;
 };
 
 

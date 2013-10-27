@@ -25,7 +25,7 @@
 //Qt includes
 #include <QSortFilterProxyModel>
 
-class DictionaryItem;
+class SpaceItem;
 class SpacesModel;
 class DataStore;
 
@@ -62,14 +62,14 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
         explicit SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = 0);
         virtual ~SpacePlotsFilterProxyModel();
 
-        DictionaryItem* filterSpace() const { return m_space; }
-        void setFilterSpace(DictionaryItem *space);
+        SpaceItem* filterSpace() const { return m_space; }
+        void setFilterSpace(SpaceItem *space);
 
     protected:
         virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
 
     private:
-        DictionaryItem *m_space;
+        SpaceItem *m_space;
         DataStore *m_dataStore; // tiene los maps: space ->items
 };
 

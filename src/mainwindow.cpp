@@ -63,8 +63,8 @@
 #include <qjson/parser.h>
 
 //local includes
-#include "dictionaryitem.h"
-#include "dictionariesmodel.h"
+#include "spaceitem.h"
+#include "spacesmodel.h"
 #include "dashboard.h"
 #include "plotseditor.h"
 #include "datastore.h"
@@ -429,7 +429,7 @@ void MainWindow::updateThumbnail()
     if (m_document->spacesModel()->rowCount()==0)
         return;
 
-    DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
+    SpaceItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
     if(space==0)
         return;
@@ -719,7 +719,7 @@ bool MainWindow::saveAsClicked()
 
 bool MainWindow::saveFile(const KUrl &url)
 {
-    QMap<DictionaryItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
+    QMap<SpaceItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
     // just starting, no plot is available so no need to save
     if(map.empty())
@@ -734,7 +734,7 @@ bool MainWindow::saveFile(const KUrl &url)
         return false;
     }
 
-    QList<DictionaryItem*> spaceList=map.uniqueKeys();
+    QList<SpaceItem*> spaceList=map.uniqueKeys();
     if(spaceList.empty()) {
         KMessageBox::error(this,i18n("Error while reading file, file may be empty"),i18n("Error while reading"));
         return false;
@@ -742,7 +742,7 @@ bool MainWindow::saveFile(const KUrl &url)
 
     QVariantList plotspace_list;
 
-    foreach(DictionaryItem* space, spaceList) {
+    foreach(SpaceItem* space, spaceList) {
         QString spaceName = space->title();
         QPixmap thumbnail = space->thumbnail();
         int dim = space->dimension();
@@ -884,7 +884,7 @@ void MainWindow::activateSpace(int spaceidx)
 
     m_spacePlotsDock->reset(true);
 
-    DictionaryItem *space = m_document->spacesModel()->space(spaceidx);
+    SpaceItem *space = m_document->spacesModel()->space(spaceidx);
     m_spaceInfoDock->setInformation(space->title(), space->description());
 
     m_spaceOptionsDock->setDimension(space->dimension());
@@ -964,7 +964,7 @@ void MainWindow::activateSpaceUi()
 
 void MainWindow::copySnapshot()
 {
-    DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
+    SpaceItem *space = m_document->spacesModel()->space(m_document->currentSpace());
     switch (space->dimension())
     {
     case Analitza::Dim2D:
@@ -1051,7 +1051,7 @@ void MainWindow::goHome()
     if (m_dashboard->currentIndex() != 0)
     {
         //Current Space from where go home is pressed
-        DictionaryItem *space = m_document->spacesModel()->space(m_document->currentSpace());
+        SpaceItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
         space->stamp(); // marcamos la fecha y hora de ingreso al space
         space->setTitle(m_spaceInfoDock->title());

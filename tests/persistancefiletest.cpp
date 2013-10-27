@@ -29,8 +29,8 @@
 
 //libkhipu includes
 #include <datastore.h>
-#include <dictionariesmodel.h>
-#include <dictionaryitem.h>
+#include <spacesmodel.h>
+#include <spaceitem.h>
 #include <mainwindow.h>
 
 using namespace Analitza;
@@ -103,7 +103,7 @@ void PersistanceFileTest::testCorrect()
     // open file
     QVERIFY(window.openFile(QDir::homePath().append("/.test.khipu")));
 
-    DictionaryItem *space=document->spacesModel()->space(0);
+    SpaceItem *space=document->spacesModel()->space(0);
     QVERIFY(space!=0);
 
     QModelIndex ind = document->spacesModel()->index(0);

@@ -67,7 +67,7 @@ SpacePlotsFilterProxyModel::SpacePlotsFilterProxyModel(DataStore *ds, QObject* p
 SpacePlotsFilterProxyModel::~SpacePlotsFilterProxyModel()
 {}
 
-void SpacePlotsFilterProxyModel::setFilterSpace(DictionaryItem* space)
+void SpacePlotsFilterProxyModel::setFilterSpace(SpaceItem* space)
 {
     if (!space)
         return;

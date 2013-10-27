@@ -37,8 +37,8 @@
 
 //local includes
 #include "datastore.h"
-#include "dictionariesmodel.h"
-#include "dictionaryitem.h"
+#include "spacesmodel.h"
+#include "spaceitem.h"
 #include "plotsbuilder.h"
 
 using namespace Analitza;

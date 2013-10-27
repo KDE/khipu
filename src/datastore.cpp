@@ -37,9 +37,9 @@
 #include <KDE/KLocalizedString>
 
 //local includes
-#include "dictionariesmodel.h"
+#include "spacesmodel.h"
 #include "spaceplotsproxymodel.h"
-#include "dictionaryitem.h"
+#include "spaceitem.h"
 #include "plotseditor.h"
 
 using namespace Analitza;
@@ -50,7 +50,7 @@ DataStore::DataStore(QObject* parent)
     : QObject(parent)
     , m_currentSpace(-1)
 {
-    m_spacesModel = new DictionariesModel(this);
+    m_spacesModel = new SpacesModel(this);
     m_variables = new Analitza::Variables;
     m_plotsModel = new PlotsModel(this);
     
@@ -77,7 +77,7 @@ DataStore::~DataStore()
     delete m_variables;
 }
 
-bool DataStore::isMapped(DictionaryItem* space, PlotItem* plot) const
+bool DataStore::isMapped(SpaceItem* space, PlotItem* plot) const
 {
     return m_maps.values(space).contains(plot);
 }
@@ -143,7 +143,7 @@ void DataStore::removeCurrentSpace()
 
 void DataStore::unmapPlot(const QModelIndex & proxyindex )
 {
-    QMap<DictionaryItem*, PlotItem*>::iterator i = m_maps.begin();
+    QMap<SpaceItem*, PlotItem*>::iterator i = m_maps.begin();
 
     while (i != m_maps.end())
     {

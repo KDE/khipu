@@ -49,10 +49,10 @@
 //local includes
 #include "spaceinformation.h"
 #include "spaceoptions.h"
-#include "dictionariesmodel.h"
+#include "spacesmodel.h"
 #include "datastore.h"
 #include "spaceplotsproxymodel.h"
-#include "dictionaryitem.h"
+#include "spaceitem.h"
 
 
 // #include "ui_spaceeditor.h"
@@ -498,7 +498,7 @@ void SpacesDelegate::updateItemWidgets(const QList<QWidget*> widgets, const QSty
                 descriptionEditor->move(2*PreviewWidth + margin, margin*.5 + titleEditor->height());
                 descriptionEditor->resize(QSize(option.rect.width() - 2*PreviewWidth - (margin * 2) - m_buttonSize.width(), 
                                                 option.rect.size().height() - titleEditor->height() - 2*margin));
-                descriptionEditor->setHtml(static_cast<DictionariesModel*>(itemView()->model())->space(index.row())->description());
+                descriptionEditor->setHtml(static_cast<SpacesModel*>(itemView()->model())->space(index.row())->description());
                 descriptionEditor->show();
             }
         }

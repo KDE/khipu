@@ -16,24 +16,24 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA   *
  *************************************************************************************/
 
-#include "dictionariesmodel.h"
+#include "spacesmodel.h"
 
 //KDE includes
 #include <KLocalizedString>
 
 //local includes
-#include "dictionaryitem.h"
+#include "spaceitem.h"
 
-DictionariesModel::DictionariesModel(QObject *parent)
+SpacesModel::SpacesModel(QObject *parent)
     : QAbstractListModel(parent),  m_itemCanCallModelRemoveItem(true)
 {}
 
-Qt::ItemFlags DictionariesModel::flags(const QModelIndex &) const
+Qt::ItemFlags SpacesModel::flags(const QModelIndex &) const
 {
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
 }
 
-QVariant DictionariesModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant SpacesModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(role==Qt::DisplayRole && orientation==Qt::Horizontal) {
         switch(section) 
@@ -45,7 +45,7 @@ QVariant DictionariesModel::headerData(int section, Qt::Orientation orientation,
     return QVariant();
 }
 
-QVariant DictionariesModel::data( const QModelIndex &index, int role) const
+QVariant SpacesModel::data( const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -67,7 +67,7 @@ QVariant DictionariesModel::data( const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool DictionariesModel::setData(const QModelIndex& index, const QVariant& value, int role)
+bool SpacesModel::setData(const QModelIndex& index, const QVariant& value, int role)
 {
     //TODO edit also description (column/section #2)
     if (index.isValid() && role == Qt::EditRole) 
@@ -79,12 +79,12 @@ bool DictionariesModel::setData(const QModelIndex& index, const QVariant& value,
     return false;
 }
 
-int DictionariesModel::rowCount(const QModelIndex &idx) const
+int SpacesModel::rowCount(const QModelIndex &idx) const
 {
     return idx.isValid() ? 0 : m_items.count();
 }
 
-int DictionariesModel::columnCount(const QModelIndex& parent) const
+int SpacesModel::columnCount(const QModelIndex& parent) const
 {
     if(parent.isValid())
         return 0;
@@ -92,7 +92,7 @@ int DictionariesModel::columnCount(const QModelIndex& parent) const
         return 2;
 }
 
-bool DictionariesModel::removeRows(int row, int count, const QModelIndex& parent)
+bool SpacesModel::removeRows(int row, int count, const QModelIndex& parent)
 {
     Q_ASSERT(row+count<m_items.size());
     if(parent.isValid())
@@ -102,7 +102,7 @@ bool DictionariesModel::removeRows(int row, int count, const QModelIndex& parent
 
     for (int i = 0; i < count; ++i) 
     {
-        DictionaryItem *tmpcurve = m_items[row];
+        SpaceItem *tmpcurve = m_items[row];
 
         m_itemCanCallModelRemoveItem = false;
 
@@ -122,9 +122,9 @@ bool DictionariesModel::removeRows(int row, int count, const QModelIndex& parent
     return true;
 }
 
-DictionaryItem* DictionariesModel::addSpace(Analitza::Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
+SpaceItem* SpacesModel::addSpace(Analitza::Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
 {
-    DictionaryItem* ret = new DictionaryItem(dim);
+    SpaceItem* ret = new SpaceItem(dim);
     ret->setTitle(title);
     ret->setDescription(description);
     ret->setThumbnail(thumbnail);
@@ -137,14 +137,13 @@ DictionaryItem* DictionariesModel::addSpace(Analitza::Dimension dim, const QStri
     return ret;
 }
 
-DictionaryItem* DictionariesModel::space(int row) const
+SpaceItem* SpacesModel::space(int row) const
 {
-    Q_ASSERT(row<m_items.count());
-
+    Q_ASSERT(row >=0 && row<rowCount());
     return m_items[row];
 }
 
-DictionaryItem* DictionariesModel::spacebyid(const QString& id) const
+SpaceItem* SpacesModel::spacebyid(const QString& id) const
 {
     for (int i =0; i < m_items.size(); ++i)
         if (m_items[i]->id().toString() == id)
