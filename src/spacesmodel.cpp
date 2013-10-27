@@ -94,10 +94,10 @@ int SpacesModel::columnCount(const QModelIndex& parent) const
 
 bool SpacesModel::removeRows(int row, int count, const QModelIndex& parent)
 {
-    Q_ASSERT(row+count<m_items.size());
     if(parent.isValid())
         return false;
 
+    Q_ASSERT(row+count<=m_items.size());
     beginRemoveRows(QModelIndex(), row, row+count-1);
 
     for (int i = 0; i < count; ++i) 
