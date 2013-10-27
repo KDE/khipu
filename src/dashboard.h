@@ -81,7 +81,6 @@ public:
     ~Dashboard();
 
     void setDocument(DataStore *doc);
-    void setDashboardData(Dashboard* source);
     QMap<QString,QString> dictionaryDataMap() const { return  m_DictionaryPathName; }
 
     //views
@@ -135,7 +134,7 @@ private:
     void setPlotsView(Analitza::Dimension dim);
 
     DataStore * m_document;
-    Ui::DashboardWidget *m_widget;
+    QScopedPointer<Ui::DashboardWidget> m_ui;
     QModelIndexList m_spaceindexList;
     SpacesFilterProxyModel *m_spacesProxyModel;
     QStringList m_filterText;

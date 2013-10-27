@@ -55,8 +55,8 @@ public:
     void setFilterDashboard(Dashboard *sourceDashboard);
 
 private:
-    Ui::FilterWidget *m_widget;
-    Dashboard *m_filterDashboard;
+    QScopedPointer<Ui::FilterWidget> m_ui;
+    Dashboard *m_dashboard;
 };
 
 #endif

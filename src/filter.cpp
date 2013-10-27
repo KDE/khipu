@@ -22,42 +22,42 @@
 //KDE includes
 #include <KIcon>
 
-Filter::Filter(QWidget* parent): QWidget(parent)
+Filter::Filter(QWidget* parent)
+    : QWidget(parent)
+    , m_ui(new Ui::FilterWidget)
+    , m_dashboard(0)
 {
-    m_widget = new Ui::FilterWidget;
-    m_widget->setupUi(this);
+    m_ui->setupUi(this);
 
-    m_widget->filterOptions->insertItem(0,KIcon("all-space-filter"),"Dimension-All");
-    m_widget->filterOptions->insertItem(1,KIcon("2d-space-filter"),"Dimension-2D");
-    m_widget->filterOptions->insertItem(2,KIcon("3d-space-filter"),"Dimension-3D");
+    m_ui->filterOptions->addItem(KIcon("all-space-filter"), i18n("Dimension All"));
+    m_ui->filterOptions->addItem(KIcon("2d-space-filter"), i18n("Dimension 2D"));
+    m_ui->filterOptions->addItem(KIcon("3d-space-filter"), i18n("Dimension 3D"));
 
-    connect(m_widget->filterText, SIGNAL(textChanged(QString)), SIGNAL(filterByText(QString)));
-    connect(m_widget->filterOptions, SIGNAL(currentIndexChanged(int)), SLOT(getDimIndex(int)));
+    connect(m_ui->filterText, SIGNAL(textChanged(QString)), SIGNAL(filterByText(QString)));
+    connect(m_ui->filterOptions, SIGNAL(currentIndexChanged(int)), SLOT(getDimIndex(int)));
 }
 
 Filter::~Filter()
 {
-    delete m_widget;
 }
 
 void Filter::getDimIndex(int index)
 {
     switch (index)
     {
-    case 0: m_filterDashboard->filterByDimension(Analitza::DimAll); break;
-    case 1: m_filterDashboard->filterByDimension(Analitza::Dim2D); break;
-    case 2: m_filterDashboard->filterByDimension(Analitza::Dim3D); break;
+        case 0: m_dashboard->filterByDimension(Analitza::DimAll); break;
+        case 1: m_dashboard->filterByDimension(Analitza::Dim2D); break;
+        case 2: m_dashboard->filterByDimension(Analitza::Dim3D); break;
     }
 }
 
 void Filter::setFilterDashboard(Dashboard *sourceDashboard)
 {
-    m_filterDashboard= new Dashboard(sourceDashboard);
-    m_filterDashboard->setVisible(false);
-    m_filterDashboard->setDashboardData(sourceDashboard);
+    m_dashboard = sourceDashboard;
 }
+
 void Filter::setFilterVisible(bool b)
 {
-    m_widget->filterText->setVisible(b);
-    m_widget->filterOptions->setVisible(b);
+    m_ui->filterText->setVisible(b);
+    m_ui->filterOptions->setVisible(b);
 }

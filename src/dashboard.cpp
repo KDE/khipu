@@ -93,28 +93,18 @@ bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &
 
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent)
+    , m_ui(new Ui::DashboardWidget)
 {
-    m_widget = new  Ui::DashboardWidget;
-    m_widget->setupUi(this);
+    m_ui->setupUi(this);
     m_openclicked=false;
 
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
-    m_widget->comboBox->clear();
+    m_ui->comboBox->clear();
     setDictionaryNames();
-}
-
-//FIXME_ punit, you shouldn't be passing around the Ui instances from one place to the other
-//this is producing a leak and it creates very weird code
-void Dashboard::setDashboardData(Dashboard* source)
-{
-    m_document=source->m_document;
-    m_widget=source->m_widget;
-    m_spacesProxyModel=source->m_spacesProxyModel;
 }
 
 Dashboard::~Dashboard()
 {
-    //FIXME: you are leaking m_widget here
 }
 
 void Dashboard::setDictionaryNames()
@@ -136,11 +126,11 @@ void Dashboard::setDictionaryNames()
         QStringList fileList=dir.entryList();
         foreach(const QString &file, fileList) {
             m_DictionaryPathName.insertMulti(key,file);
-            m_widget->comboBox->addItem(QFileInfo(file).baseName());
+            m_ui->comboBox->addItem(QFileInfo(file).baseName());
         }
     }
 
-    connect(m_widget->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
+    connect(m_ui->comboBox,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
 
     if(m_DictionaryPathName.empty() || m_DictionaryPathName.keys().empty()) {
         QString error =i18n("Please make sure that the dictionary (.plots) files are correctly installed");
@@ -156,35 +146,35 @@ void Dashboard::setDocument(DataStore* doc)
     m_spacesProxyModel = new SpacesFilterProxyModel(this);
     m_spacesProxyModel->setSourceModel(doc->spacesModel());
 
-    m_widget->spacesView->setModel(m_spacesProxyModel);
+    m_ui->spacesView->setModel(m_spacesProxyModel);
     
     QItemSelectionModel *selection = new QItemSelectionModel(m_spacesProxyModel);
     
-    m_widget->spacesView->setSelectionModel(selection);
+    m_ui->spacesView->setSelectionModel(selection);
 
-    m_widget->spacesView->setMouseTracking(true);
-    m_widget->spacesView->setAlternatingRowColors(true);
-    m_widget->spacesView->setViewMode(QListView::IconMode);
+    m_ui->spacesView->setMouseTracking(true);
+    m_ui->spacesView->setAlternatingRowColors(true);
+    m_ui->spacesView->setViewMode(QListView::IconMode);
 
-    SpacesDelegate *delegate = new SpacesDelegate(m_widget->spacesView, this);
+    SpacesDelegate *delegate = new SpacesDelegate(m_ui->spacesView, this);
 
     delegate->setDocument(doc);
-    m_widget->spacesView->setItemDelegate(delegate);
+    m_ui->spacesView->setItemDelegate(delegate);
 
     connect(delegate,SIGNAL(saveDictionary(QModelIndex)),m_document,SLOT(saveSpaceAsDictionary(QModelIndex)));
 
     m_document->currentPlots()->setFilterSpaceDimension(Dim2D);
-    m_widget->plotsView2D->setModel(m_document->currentPlots());
-    m_widget->plotsView2D->setSelectionModel(m_document->currentSelectionModel());
+    m_ui->plotsView2D->setModel(m_document->currentPlots());
+    m_ui->plotsView2D->setSelectionModel(m_document->currentSelectionModel());
 
     m_document->currentPlots()->setFilterSpaceDimension(Dim3D);
-    m_widget->plotsView3D->setModel(m_document->currentPlots());
-    m_widget->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
+    m_ui->plotsView3D->setModel(m_document->currentPlots());
+    m_ui->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
 
     connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int)));
     
-    connect(m_widget->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
-    connect(m_widget->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
+    connect(m_ui->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
+    connect(m_ui->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
 
     DictionariesModel * m = m_document->spacesModel();
 
@@ -193,24 +183,24 @@ void Dashboard::setDocument(DataStore* doc)
 
 PlotsView2D* Dashboard::view2d()
 {
-    return m_widget->plotsView2D;
+    return m_ui->plotsView2D;
 }
 
 PlotsView3D* Dashboard::view3d()
 {
-    return m_widget->plotsView3D;
+    return m_ui->plotsView3D;
 }
 
 void Dashboard::goHome()
 {
     setCurrentIndex(0);
-    m_widget->views->setCurrentIndex(0);
+    m_ui->views->setCurrentIndex(0);
     emit showFilter(true);
 }
 
 void Dashboard::showDictionary()
 {
-    m_widget->views->setCurrentIndex(1);
+    m_ui->views->setCurrentIndex(1);
     emit showFilter(false);
 }
 
@@ -219,14 +209,14 @@ void Dashboard::setDictionaryData(int ind)
     PlotsDictionaryModel *model = m_document->plotsDictionaryModel();
     m_plotdictionarymodel=model;
     model->clear();
-    QString fileName=m_widget->comboBox->itemText(ind).append(".plots");
+    QString fileName=m_ui->comboBox->itemText(ind).append(".plots");
     QString dirPath=m_DictionaryPathName.key(fileName);
     dirPath.append(fileName);
     model->createDictionary(dirPath);
-    m_widget->plotsView->setModel(model);
-    m_widget->page->setModel(model->plotModel());
-    m_widget->page_2->setModel(model->plotModel());
-    connect(m_widget->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(setModelIndex(QModelIndex)));
+    m_ui->plotsView->setModel(model);
+    m_ui->page->setModel(model->plotModel());
+    m_ui->page_2->setModel(model->plotModel());
+    connect(m_ui->plotsView->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)), this, SLOT(setModelIndex(QModelIndex)));
 }
 
 void Dashboard::setModelIndex(const QModelIndex& ind)
@@ -238,10 +228,10 @@ void Dashboard::setModelIndex(const QModelIndex& ind)
 void Dashboard::setPlotsView(Analitza::Dimension dim)
 {
     if(dim==Dim2D){
-        m_widget->stackedWidget->setCurrentIndex(0);
+        m_ui->stackedWidget->setCurrentIndex(0);
 
     } else if (dim==Dim3D){
-        m_widget->stackedWidget->setCurrentIndex(1);
+        m_ui->stackedWidget->setCurrentIndex(1);
     }
 }
 
@@ -252,9 +242,9 @@ void Dashboard::importDictionaryClicked()
 
     QString path=url.toLocalFile();
     if(!path.isEmpty()) {
-        int currentIndex=m_widget->comboBox->count();
-        m_widget->comboBox->addItem(QFileInfo(path).baseName());
-        m_widget->comboBox->setCurrentIndex(currentIndex);
+        int currentIndex=m_ui->comboBox->count();
+        m_ui->comboBox->addItem(QFileInfo(path).baseName());
+        m_ui->comboBox->setCurrentIndex(currentIndex);
         m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
         setDictionaryData(currentIndex);
     }
@@ -262,12 +252,12 @@ void Dashboard::importDictionaryClicked()
 
 void Dashboard::showPlotsView2D()
 {
-    m_widget->plotsViews->setCurrentIndex(0);
+    m_ui->plotsViews->setCurrentIndex(0);
 }
 
 void Dashboard::showPlotsView3D()
 {
-    m_widget->plotsViews->setCurrentIndex(1);
+    m_ui->plotsViews->setCurrentIndex(1);
 }
 
 void Dashboard::exportSpaceSnapshot(Dimension dim)
@@ -305,7 +295,7 @@ void Dashboard::filterByText(const QString &text)
 
 void Dashboard::filterByDimension(Dimensions dim)
 {
-    static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
+    static_cast<SpacesDelegate*>(m_ui->spacesView->itemDelegate())->filterEvent();
     m_spacesProxyModel->setFilterDimension(dim);
 }
 
@@ -324,13 +314,13 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
     switch (m_document->spacesModel()->space(ind.row())->dimension())
     {
     case Dim2D:
-        m_widget->plotsViews->setCurrentIndex(0);
+        m_ui->plotsViews->setCurrentIndex(0);
         //set dialog visible
         emit setDialogSettingsVisible(true);
         break;
 
     case Dim3D:
-        m_widget->plotsViews->setCurrentIndex(1);
+        m_ui->plotsViews->setCurrentIndex(1);
         //set dialog invisible
         emit setDialogSettingsVisible(false);
         break;
@@ -359,7 +349,7 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row)
 //     qDebug() << "sadasadadsd ads";
 //     m_widget->spacesView->selectionModel()->setCurrentIndex(m_document->spacesModel()->index(row), QItemSelectionModel::Current);
 
-    m_widget->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
+    m_ui->spacesView->setCurrentIndex(m_document->spacesModel()->index(row));
 
 //     m_document->currentPlots()->setFilterSpaceDimension(m_document->spacesModel()->item(row)->dimension());
 //     m_document->currentPlots()->setFilterSpace(m_document->spacesModel()->item(row));
@@ -370,7 +360,7 @@ void Dashboard::setCurrentSpace(const QModelIndex& index, int row)
 //     if (m_document->spacesModel()->rowCount() < 2) // si esta vacio por primera actiualizo el view 
 //         m_widget->spacesView->update();
     
-    static_cast<SpacesDelegate*>(m_widget->spacesView->itemDelegate())->filterEvent();
+    static_cast<SpacesDelegate*>(m_ui->spacesView->itemDelegate())->filterEvent();
 }
 
 void Dashboard::setCurrentPlot(const QModelIndex& parent, int start)
@@ -383,7 +373,7 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start)
 void Dashboard::setGridColor(const QColor &color) // used for making the axis visible/invisible
 {
     if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
-        m_widget->plotsView2D->updateGridColor(color);
+        m_ui->plotsView2D->updateGridColor(color);
     } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
         Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
         plotter3d->setReferencePlaneColor(color);
@@ -393,7 +383,7 @@ void Dashboard::setGridColor(const QColor &color) // used for making the axis vi
 void Dashboard::setPlotsViewGridColor(const QColor &color)
 {
     if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
-        m_widget->plotsView2D->updateGridColor(color);
+        m_ui->plotsView2D->updateGridColor(color);
     } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
         Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
         plotter3d->setReferencePlaneColor(color);
