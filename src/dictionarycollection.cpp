@@ -48,7 +48,6 @@ DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
 {
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
-    connect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
     connect(m_widget->AddButton,SIGNAL(pressed()),this,SLOT(addPlotClicked()));
     connect(m_widget->importDictionary,SIGNAL(pressed()),this,SLOT(importDictionary()));
     connect(m_widget->plotsView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(addPlotinSpace(QModelIndex)));
@@ -76,7 +75,6 @@ void DictionaryCollection::setDictionaryDataMap()
 
 void DictionaryCollection::setDefaultDictionaries()
 {
-    disconnect(m_widget->dictionaryNames,SIGNAL(currentIndexChanged(int)),this,SLOT(setDictionaryData(int)));
     QList<QString> dictionaryFileNames=m_DictionaryPathName.values();
     foreach(const QString &file,dictionaryFileNames) {
         m_widget->dictionaryNames->addItem(QFileInfo(file).baseName());
