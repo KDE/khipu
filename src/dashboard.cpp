@@ -395,3 +395,7 @@ void Dashboard::getDictionaryClicked()
     newStuffDialog.exec();
     KNS3::Entry::List installedentries = newStuffDialog.installedEntries();
 }
+
+void Dashboard::activateDictionaryData() {
+    setDictionaryData(m_ui->comboBox->currentIndex());
+}

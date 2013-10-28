@@ -1015,6 +1015,7 @@ void MainWindow::setVisibleDictionary()
     //actions should be visible
     m_getdictionaryAct->setVisible(true);
     m_importdictionaryAct->setVisible(true);
+    m_dashboard->activateDictionaryData();
 }
 
 void MainWindow::addSpace2D()

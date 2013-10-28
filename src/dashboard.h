@@ -114,6 +114,7 @@ public slots:
 
     void importDictionaryClicked();
     void getDictionaryClicked();
+    void activateDictionaryData();
 
 private slots:
     void setDictionaryData(int ind);
