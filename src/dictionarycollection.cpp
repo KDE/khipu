@@ -86,7 +86,7 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
-    if(ind==-1) {
+    if(ind==-1 || m_document==0 || m_document->currentSpace()==-1) {
         return;
     }
 
@@ -98,9 +98,6 @@ void DictionaryCollection::setDictionaryData(int ind)
     QString dirPath=m_DictionaryPathName.key(fileName);
     dirPath.append(fileName);
     model->createDictionary(dirPath);
-
-    if(m_document->currentSpace()==-1)
-        return;
 
     // decide the space dimension
     m_currentDimension=m_document->spacesModel()->space(m_document->currentSpace())->dimension();
