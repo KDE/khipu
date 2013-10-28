@@ -75,7 +75,7 @@ void DictionaryCollectionTest::testCorrect()
     testWidget->setDictionaryDataMap();
     testWidget->setDefaultDictionaries();
 
-    QList<QString> values=dashboard->dictionaryDataMap().values();
+    QStringList values=dashboard->dictionaryDataMap().values();
     QCOMPARE(values.size(),4);
     QVERIFY(testWidget->conains(dictionaryname));
     QCOMPARE(testWidget->totalDictionaries(),4);
@@ -101,7 +101,7 @@ void DictionaryCollectionTest::testIncorrect()
     testWidget->setDictionaryDataMap();
     testWidget->setDefaultDictionaries();
 
-    QList<QString> values=dashboard->dictionaryDataMap().values();
+    QStringList values=dashboard->dictionaryDataMap().values();
 
     // This will always 4.Since the correct dictionaries are always there.
     QCOMPARE(values.size(),4);

@@ -75,7 +75,7 @@ void DictionaryCollection::setDictionaryDataMap()
 
 void DictionaryCollection::setDefaultDictionaries()
 {
-    QList<QString> dictionaryFileNames=m_DictionaryPathName.values();
+    QStringList dictionaryFileNames=m_DictionaryPathName.values();
     foreach(const QString &file,dictionaryFileNames) {
         m_widget->dictionaryNames->addItem(QFileInfo(file).baseName());
     }
