@@ -45,6 +45,8 @@ using namespace Analitza;
 
 DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
   ,m_dictionaryModel(0)
+  ,m_document(0)
+  ,m_currentDimension(DimAll)
 {
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
@@ -84,9 +86,8 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
-    if(ind==-1 || m_document==0 || m_document->currentSpace()==-1) {
+    if(ind==-1 || m_document==0)
         return;
-    }
 
     PlotsDictionaryModel *model=new PlotsDictionaryModel;
     model->clear();
@@ -182,4 +183,9 @@ int DictionaryCollection::totalDictionaries()
 QTreeView* DictionaryCollection::dictionaryPlotsView()
 {
     return m_widget->plotsView;
+}
+
+void DictionaryCollection::setSpaceDimension(Analitza::Dimension dim) {
+    m_currentDimension=dim;
+    setDictionaryData(m_widget->dictionaryNames->currentIndex());
 }

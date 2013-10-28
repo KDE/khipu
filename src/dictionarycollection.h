@@ -82,6 +82,7 @@ public slots:
     void addPlotClicked();
     void setDictionaryData(int ind);
     void addPlotinSpace(const QModelIndex& ind);
+    void setSpaceDimension(Analitza::Dimension dim);
 
 private slots:
 

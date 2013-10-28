@@ -63,6 +63,10 @@ public:
     //used for checking the default autosave file (.khipu.autosave)
     void checkforAutoSavedFile();
 
+signals:
+    //used to know the type of the dictionary to be shown in the dictionarydock
+    void Spaceinserted(Analitza::Dimension dim);
+
 public slots:
 
     //New file slot

@@ -188,6 +188,7 @@ void MainWindow::setupDocks()
     m_dictionaryDock->setDictionaryDataMap();
     m_dictionaryDock->setDefaultDictionaries();
 
+    connect(this,SIGNAL(Spaceinserted(Analitza::Dimension)),m_dictionaryDock,SLOT(setSpaceDimension(Analitza::Dimension)));
     connect(m_dictionaryDock,SIGNAL(mapDataChanged()),this,SLOT(autoSaveFile()));
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
 
@@ -1021,9 +1022,11 @@ void MainWindow::addSpace2D()
     activateSpaceUi();
 
     m_dashboard->showPlotsView2D();
-    m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
+    int rows=m_document->spacesModel()->rowCount();
+    m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", rows+1));
     m_filter->setFilterVisible(false);
     m_spaceOptionsDock->setWidgetsVisible(true);
+    emit Spaceinserted(Dim2D);
 }
 
 void MainWindow::addSpace3D()
@@ -1031,10 +1034,11 @@ void MainWindow::addSpace3D()
     activateSpaceUi();
 
     m_dashboard->showPlotsView3D();
-
-    m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", m_document->spacesModel()->rowCount()+1));
+    int rows=m_document->spacesModel()->rowCount();
+    m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", rows+1));
     m_filter->setFilterVisible(false);
     m_spaceOptionsDock->setWidgetsVisible(false);
+    emit Spaceinserted(Dim3D);
 }
 
 void MainWindow::removeCurrentSpace()
