@@ -129,6 +129,7 @@ signals:
     void plotRequested(const QModelIndex &ind); //  for requesting the plots when double-clicked on the plot-space thumbnail.
     void showFilter(bool b);
     void setDialogSettingsVisible(bool b);
+    void restoreDictionaryData(Analitza::Dimension dim);
 
 private:
     void initializeDictionaryNames();

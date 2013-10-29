@@ -315,13 +315,16 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
         m_ui->plotsViews->setCurrentIndex(0);
         //set dialog visible
         emit setDialogSettingsVisible(true);
+        emit restoreDictionaryData(Dim2D);
         break;
 
     case Dim3D:
         m_ui->plotsViews->setCurrentIndex(1);
         //set dialog invisible
         emit setDialogSettingsVisible(false);
+        emit restoreDictionaryData(Dim3D);
         break;
+
     default: break;
     }
 

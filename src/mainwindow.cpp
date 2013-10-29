@@ -102,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_filter, SIGNAL(filterByText(QString)), m_dashboard, SLOT(filterByText(QString)));
     connect(m_dashboard,SIGNAL(plotRequested(QModelIndex)),this,SLOT(createPlot(QModelIndex)));
     connect(m_dashboard,SIGNAL(showFilter(bool)),m_filter,SLOT(setFilterVisible(bool)));
+    connect(m_dashboard,SIGNAL(restoreDictionaryData(Analitza::Dimension)),m_dictionaryDock,SLOT(setSpaceDimension(Analitza::Dimension)));
 
     //Main tool bar for Khipu
     toolBar("mainToolBar")->addWidget(m_filter);
