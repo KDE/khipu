@@ -21,6 +21,7 @@
 
 //KDE includes
 #include <kcolorutils.h>
+#include <KLocalizedString>
 
 //C++ includes
 #include <cmath>
@@ -138,12 +139,12 @@ void SpaceOptions::setWidgetsVisible(bool isWidgetVisible)
     m_widget->moreOptions->setVisible(isWidgetVisible);
     if(!isWidgetVisible) {
         m_widget->gridStyle->clear();
-        m_widget->gridStyle->addItem("Lines");
+        m_widget->gridStyle->addItem(i18nc("grid style", "Lines"));
     } else {
         m_widget->gridStyle->clear();
-        m_widget->gridStyle->addItem("None");
-        m_widget->gridStyle->addItem("Lines");
-        m_widget->gridStyle->addItem("Polar");
+        m_widget->gridStyle->addItem(i18nc("grid style", "None"));
+        m_widget->gridStyle->addItem(i18nc("grid style", "Lines"));
+        m_widget->gridStyle->addItem(i18nc("grid style", "Polar"));
     }
     m_widget->backgroundColor->show();
 }
