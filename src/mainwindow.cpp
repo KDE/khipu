@@ -696,8 +696,8 @@ bool MainWindow::openFile(const KUrl &url)
 
 QPixmap MainWindow::toPixmap(const QByteArray &bytearray)
 {
-    QByteArray *imageArray = new QByteArray(QByteArray::fromBase64(bytearray));
-    QBuffer imagebuffer(imageArray);
+    QByteArray imageArray(QByteArray::fromBase64(bytearray));
+    QBuffer imagebuffer(&imageArray);
     imagebuffer.open(QIODevice::ReadOnly);
     QImage img;
     img.loadFromData(imagebuffer.data(), "PNG");
