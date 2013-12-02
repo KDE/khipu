@@ -29,6 +29,23 @@ class SpaceItem;
 class SpacesModel;
 class DataStore;
 
+class SpacesFilterProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+    public:
+        explicit SpacesFilterProxyModel(QObject *parent = 0);
+
+        void setFilterDimension(Analitza::Dimensions dimension);
+        void setFilterText(const QString& text);
+protected:
+        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+
+    private:
+        Analitza::Dimensions m_dimension;
+        QString m_filterText;
+};
+
 //si no se establece ningun filter2d entonces no hay filtro y muetra todos los items sin importar que dimension
 //estoy es util para un vista (itemview) que quiera mostrar todo el modelo por ejemplo 
 class PlotsProxyModel : public QSortFilterProxyModel
@@ -72,6 +89,5 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
         SpaceItem *m_space;
         DataStore *m_dataStore; // tiene los maps: space ->items
 };
-
 
 #endif

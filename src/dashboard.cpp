@@ -57,40 +57,6 @@
 
 using namespace Analitza;
 
-SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
-    : QSortFilterProxyModel(parent)
-{
-    m_dimension = DimAll;
-    setDynamicSortFilter(true);
-}
-
-void SpacesFilterProxyModel::setFilterDimension(Dimensions dimension)
-{
-    m_dimension = dimension;
-    invalidateFilter();
-}
-
-void SpacesFilterProxyModel::setFilterText(const QString& text)
-{
-    m_filterText=text;
-    invalidateFilter();
-}
-
-bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
-{
-    if (!sourceModel() || sourceParent.isValid())
-        return false;
-    SpaceItem *spaceItem = static_cast<SpacesModel*>(sourceModel())->space(sourceRow);
-    if (!spaceItem)
-        return false;
-    if (m_dimension != DimAll && spaceItem->dimension() != m_dimension)
-        return false;
-    if(!spaceItem->title().contains(m_filterText,Qt::CaseInsensitive)
-            && !spaceItem->description().contains(m_filterText,Qt::CaseInsensitive))
-        return false;
-    return true;
-}
-
 Dashboard::Dashboard(QWidget *parent)
     : QStackedWidget(parent)
     , m_ui(new Ui::DashboardWidget)
@@ -101,6 +67,16 @@ Dashboard::Dashboard(QWidget *parent)
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     m_ui->comboBox->clear();
     initializeDictionaryNames();
+    
+    //Init space delegate and proxyfilter
+    
+    m_spacesProxyModel = new SpacesFilterProxyModel(this);
+    m_delegate = new SpacesDelegate(m_ui->spacesView, this);
+    
+    m_ui->spacesView->setItemDelegate(m_delegate);
+    
+    connect(m_ui->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
+    connect(m_ui->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
 }
 
 Dashboard::~Dashboard()
@@ -139,28 +115,22 @@ void Dashboard::initializeDictionaryNames()
 
 void Dashboard::setDocument(DataStore* doc)
 {
+    m_delegate->hideOperatorBar();
+    m_delegate->setDocument(doc);
+    
+    //NOTE avoid re-connection when the doc is updated (see mainapp::loadfile)
+    if (doc != m_document)
+        connect(m_delegate, SIGNAL(saveDictionary(QModelIndex)), doc,SLOT(saveSpaceAsDictionary(QModelIndex)));
+
     m_document = doc;
 
-    m_spacesProxyModel = new SpacesFilterProxyModel(this);
     m_spacesProxyModel->setSourceModel(doc->spacesModel());
 
     m_ui->spacesView->setModel(m_spacesProxyModel);
-    
-    QItemSelectionModel *selection = new QItemSelectionModel(m_spacesProxyModel);
-    
-    m_ui->spacesView->setSelectionModel(selection);
-
     m_ui->spacesView->setMouseTracking(true);
     m_ui->spacesView->setAlternatingRowColors(true);
     m_ui->spacesView->setViewMode(QListView::IconMode);
-
-    SpacesDelegate *delegate = new SpacesDelegate(m_ui->spacesView, this);
-
-    delegate->setDocument(doc);
-    m_ui->spacesView->setItemDelegate(delegate);
-
-    connect(delegate,SIGNAL(saveDictionary(QModelIndex)),m_document,SLOT(saveSpaceAsDictionary(QModelIndex)));
-
+    
     m_document->currentPlots()->setFilterSpaceDimension(Dim2D);
     m_ui->plotsView2D->setModel(m_document->currentPlots());
     m_ui->plotsView2D->setSelectionModel(m_document->currentSelectionModel());
@@ -170,13 +140,7 @@ void Dashboard::setDocument(DataStore* doc)
     m_ui->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
 
     connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int)));
-    
-    connect(m_ui->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
-    connect(m_ui->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
-
-    SpacesModel * m = m_document->spacesModel();
-
-    connect(m, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int)));
+    connect(m_document->spacesModel(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int)));
 }
 
 PlotsView2D* Dashboard::view2d()

@@ -99,7 +99,8 @@ void DataStoreTest::testCorrect()
     QCOMPARE(testitem->color(), c);
     QCOMPARE(plotList.removeAll(testitem),1);
 
-    m_document->spacesModel()->removeRows(space->row(), 0);
+    // remove the last spaceitem
+    m_document->spacesModel()->removeRows(m_document->spacesModel()->rowCount() - 1, 0);
 }
 
 #include "datastoretest.moc"

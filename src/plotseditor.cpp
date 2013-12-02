@@ -338,6 +338,10 @@ void PlotsEditor::showEditor()
 {
     /// clear actions
     m_widget->widgets->setCurrentIndex(2);
+
+    /// force right focus
+    // while editing the plot , it is very likely that user needs to change the expression.
+    m_widget->f->setFocus();
 }
 
 void PlotsEditor::cancelEditor()

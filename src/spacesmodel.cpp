@@ -57,7 +57,7 @@ QVariant SpacesModel::data( const QModelIndex &index, int role) const
         case Qt::EditRole: 
         case Qt::DisplayRole: 
             if (index.column() == 0)
-                return m_items.at(index.row())->title();
+                return m_items.at(index.row())->name();
             else if (index.column() == 1)
                 return m_items.at(index.row())->description();
             
@@ -72,7 +72,7 @@ bool SpacesModel::setData(const QModelIndex& index, const QVariant& value, int r
     //TODO edit also description (column/section #2)
     if (index.isValid() && role == Qt::EditRole) 
     {
-        m_items[index.row()]->setTitle(value.toString());
+        m_items[index.row()]->setName(value.toString());
         emit dataChanged(index, index);
         return true;
     }
@@ -125,7 +125,7 @@ bool SpacesModel::removeRows(int row, int count, const QModelIndex& parent)
 SpaceItem* SpacesModel::addSpace(Analitza::Dimension dim, const QString & title, const QString &description, const QPixmap &thumbnail)
 {
     SpaceItem* ret = new SpaceItem(dim);
-    ret->setTitle(title);
+    ret->setName(title);
     ret->setDescription(description);
     ret->setThumbnail(thumbnail);
 
@@ -143,16 +143,9 @@ SpaceItem* SpacesModel::space(int row) const
     return m_items[row];
 }
 
-SpaceItem* SpacesModel::spacebyid(const QString& id) const
+void SpacesModel::emitChanged(SpaceItem* it)
 {
-    for (int i =0; i < m_items.size(); ++i)
-        if (m_items[i]->id().toString() == id)
-                return m_items[i];
-        
-        return 0;
-}
-
-QModelIndex SpacesModel::spaceIndex(SpaceItem* it)
-{
-    return index(m_items.indexOf(it));
+    int row = m_items.indexOf(it);
+    QModelIndex idx = index(row);
+    emit dataChanged(idx, idx);
 }

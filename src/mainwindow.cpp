@@ -74,9 +74,6 @@
 #include "filter.h"
 #include "dictionarycollection.h"
 
-//time interval to show the message on statusbar
-#define TIME_INTERVAL 2500
-
 using namespace Analitza;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -305,7 +302,7 @@ void MainWindow::setupActions()
 //Saving a space title
 void MainWindow::setCurrentSpaceTitle(const QString& str)
 {
-    m_document->spacesModel()->space(m_document->currentSpace())->setTitle(str);
+    m_document->spacesModel()->space(m_document->currentSpace())->setName(str);
 }
 
 //Saving a space description
@@ -339,11 +336,11 @@ void MainWindow::firstPageActClicked()
     int currentSpaceRow=m_document->currentSpace();
 
     if(m_document->spacesModel()->rowCount()==0) { //For empty space model
-        statusBar()->showMessage(i18n("There is not any space available to show!"), TIME_INTERVAL);
+        statusBar()->showMessage(i18n("There is not any space available to show!"), MessageDuration);
     } else if(currentSpaceRow==0) { //Already on the first space
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
-        statusBar()->showMessage(i18n("Currently you are on the first space!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("Currently you are on the first space!"),MessageDuration);
     } else if(m_document->spacesModel()->rowCount()>0) {
         QModelIndex firstInd=m_document->spacesModel()->index(0);
         m_dashboard->setCurrentSpace(firstInd);
@@ -354,7 +351,7 @@ void MainWindow::priorActClicked()
 {
     int currentSpaceRow=m_document->currentSpace();
     if(currentSpaceRow==0) {
-        statusBar()->showMessage(i18n("You are already on the first space!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("You are already on the first space!"),MessageDuration);
     } else if(currentSpaceRow>0) {
         QModelIndex prevInd=m_document->spacesModel()->index(currentSpaceRow-1);
         m_dashboard->setCurrentSpace(prevInd);
@@ -366,7 +363,7 @@ void MainWindow::nextActClicked()
     int currentSpaceRow=m_document->currentSpace();
     int size=m_document->spacesModel()->rowCount();
     if(currentSpaceRow==size-1) {
-        statusBar()->showMessage(i18n("You are already on the last space!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("You are already on the last space!"),MessageDuration);
     } else if(currentSpaceRow<size-1) {
         QModelIndex nextInd=m_document->spacesModel()->index(currentSpaceRow+1);
         m_dashboard->setCurrentSpace(nextInd);
@@ -382,11 +379,11 @@ void MainWindow::lastPageActClicked()
     int size=m_document->spacesModel()->rowCount();
 
     if(m_document->spacesModel()->rowCount()==0) { //For empty space model
-        statusBar()->showMessage(i18n("There is not any space available to show!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("There is not any space available to show!"),MessageDuration);
     } else if(currentSpaceRow==size-1) { //Already on the last space
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
         m_dashboard->setCurrentSpace(lastInd);
-        statusBar()->showMessage(i18n("Currently you are on the last space!"),TIME_INTERVAL);
+        statusBar()->showMessage(i18n("Currently you are on the last space!"),MessageDuration);
     } else if(m_document->spacesModel()->rowCount() >0) {
         int size=m_document->spacesModel()->rowCount();
         QModelIndex lastInd=m_document->spacesModel()->index(size-1);
@@ -553,18 +550,12 @@ bool MainWindow::openFileClicked()
     KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
                      i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ), this, i18n( "Open" ) );
 
-    if(url.path().isEmpty())
+    if (url.path().isEmpty() || m_currentFileUrl == url)
         return false;
 
-    QStringList args;
-    args << url.toLocalFile();
-
-    if(m_document->plotsModel()->rowCount()==0) {
-        openFile(url);
-        return true;
-    }
-    KToolInvocation::kdeinitExec("khipu",args);
-    return false;
+    openFile(url);
+    
+    return true;
 }
 
 bool MainWindow::openFile(const KUrl &url)
@@ -573,61 +564,77 @@ bool MainWindow::openFile(const KUrl &url)
         return false;
 
     QFile file;
+    
     if (!url.isLocalFile())
     {
-        if(!KIO::NetAccess::exists(url,KIO::NetAccess::SourceSide,this))
+        if (!KIO::NetAccess::exists(url,KIO::NetAccess::SourceSide,this))
         {
             KMessageBox::sorry(this,i18n("The file does not exist."));
             return false;
         }
+        
         QString tmpfile;
-        if(!KIO::NetAccess::download(url,tmpfile,this))
+        
+        if (!KIO::NetAccess::download(url,tmpfile,this))
         {
             KMessageBox::sorry(this,i18n("An error appeared when opening this file (%1)", KIO::NetAccess::lastErrorString()));
             return false;
         }
         file.setFileName(tmpfile);
-    } else
+    } 
+    else
         file.setFileName(url.toLocalFile());
 
     // for the default autosaved file (.khipu.autosave)
-    if(url.toLocalFile()==getDefaultAutoSavepath())
+    if (url.toLocalFile()==getDefaultAutoSavepath())
     {
         // ask for reloading the autosave file
         if(!file.exists())
             return false;
         int answer=KMessageBox::questionYesNo(this,i18n("Do you want to recover the file you have not saved last time?"),i18n("Autosaved .khipu file"));
 
-        if(answer!=KMessageBox::Yes)
+        if (answer!=KMessageBox::Yes)
         {
             QFile file(url.toLocalFile());
             if(file.remove())
                 return false;
         }
-    } else {
+    } 
+    else 
+    {
         QString path=url.toLocalFile();
+        
         // not , current autosave !
-        if(!path.contains(".khipu.autosave"))
+        if (!path.contains(".khipu.autosave"))
             setCurrentFile(path);
-        m_fileLocation=path; // this allows user to save the other work in the file which he/she has just opened.
+        
+        m_fileLocation = path; // this allows user to save the other work in the file which he/she has just opened.
+        
         changeTitleBar(path);
 
         //check for available autosave file
         QString currentautosavepath=getCurrentAutoSavepath(path);
-        if(QFile::exists(currentautosavepath)) {
+        
+        if (QFile::exists(currentautosavepath)) 
+        {
 
             // ask for reloading the autosave file
             int answer=KMessageBox::questionYesNo(this,i18n("There are some unsaved changes in the file %1. Do you want to recover them?",QFileInfo(path).baseName()),i18n("Autosaved .khipu file"));
-            if(answer==KMessageBox::Yes) {
+            
+            if (answer==KMessageBox::Yes) 
+            {
                 // user wants to open the autosave file.
                 file.setFileName(currentautosavepath);
             }
         }
     }
-    if(!file.open(QFile::ReadOnly)) {
+    if (!file.open(QFile::ReadOnly)) 
+    {
         KMessageBox::error(this,i18n("Error while reading file, maybe path is not found."),i18n("Error while reading"));
+        
         if(file.fileName()!=getDefaultAutoSavepath())
             KMessageBox::sorry(this,i18n("%1 could not be opened", file.fileName()));
+       
         return false;
     }
 
@@ -638,27 +645,52 @@ bool MainWindow::openFile(const KUrl &url)
     if(!url.isLocalFile())
         KIO::NetAccess::removeTempFile( file.fileName() );
 
-    if(m_parsedSpaceDetails.isEmpty()) { // if a wrong file is hit
+    // if a wrong file is hit
+    if(m_parsedSpaceDetails.isEmpty()) 
+    { 
         KMessageBox::error(this,i18n("Problem in parsing the contents of the file, maybe a wrong khipu file."),i18n("Error while reading"));
+        
         return false;
     }
 
-    m_dashboard->m_openclicked=true;
+    m_dashboard->m_openclicked = true;
 
-    foreach(QVariant record, m_parsedSpaceDetails) {
-
+    //NOTE we need to remove all current data before load new data from file
+    bool reloadviews = false;
+    
+    if (m_document->spacesModel()->rowCount() > 0)
+    {
+        m_document->clearAllData();
+        reloadviews = true;
+    }
+    
+    foreach (QVariant record, m_parsedSpaceDetails) 
+    {
         QVariantMap map = record.toMap();
 
         QString spacename=map.value("name").toString();
+        QString spaceDescription=map.value("description").toString();        
         QByteArray image= map.value("image").toByteArray();
 
         Analitza::Dimension dim=static_cast<Analitza::Dimension> (map.value("dimension").toInt());
         QPixmap thumbnail= toPixmap(image);
 
-        m_document->spacesModel()->addSpace(dim,spacename,QString(),thumbnail);
+        m_document->spacesModel()->addSpace(dim,spacename,spaceDescription,thumbnail);
     }
+    
+    //NOTE we need to realod views after load a new file data (see datastore::clearalldata)
+    if (reloadviews)
+    {
+        m_dashboard->setDocument(m_document);
+        m_spacePlotsDock->setDocument(m_document);
+        m_dictionaryDock->setDocument(m_document);
+    }
+    
     m_dashboard->goHome();
     activateDashboardUi();
+    
+    m_currentFileUrl = url;
+    
     return true;
 }
 
@@ -710,12 +742,17 @@ bool MainWindow::closeClicked()
 bool MainWindow::saveAsClicked()
 {
     KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
-    if(url.isEmpty())
+ 
+    if (url.isEmpty())
         return false;
-    if(saveFile(url.toLocalFile())) {
+    
+    if (saveFile(url.toLocalFile()))
+    {
         m_fileLocation =url.toLocalFile();
+        
         return true;
     }
+    
     return false;
 }
 
@@ -723,8 +760,8 @@ bool MainWindow::saveFile(const KUrl &url)
 {
     QMap<SpaceItem*, Analitza::PlotItem*> map=m_document->currentDataMap();
 
-    // just starting, no plot is available so no need to save
-    if(map.empty())
+    // just starting, no plots and no spaces are available, so no need to save
+    if (map.empty() && m_document->spacesModel()->items().isEmpty())
     {
         // no plots are there. so, we dont need autosave file
         QFile tempautosaveFile(getDefaultAutoSavepath());
@@ -733,19 +770,25 @@ bool MainWindow::saveFile(const KUrl &url)
         QString path=QFileInfo(m_fileLocation).dir().path().append("/.").append(QFileInfo(m_fileLocation).baseName().append(".khipu.autosave"));
         QFile currentautosaveFile(path);
         currentautosaveFile.remove();
+        
         return false;
     }
 
-    QList<SpaceItem*> spaceList=map.uniqueKeys();
-    if(spaceList.empty()) {
+    //NOTE We need to read all space items, not just only the mapped ones (see bug: 328252)
+    QList<SpaceItem*> spaceList=m_document->spacesModel()->items();
+
+    if (spaceList.empty()) 
+    {
         KMessageBox::error(this,i18n("Error while reading file, file may be empty"),i18n("Error while reading"));
+    
         return false;
     }
 
     QVariantList plotspace_list;
 
     foreach(SpaceItem* space, spaceList) {
-        QString spaceName = space->title();
+        QString spaceName = space->name();
+        QString spaceDescription = space->description();        
         QPixmap thumbnail = space->thumbnail();
         int dim = space->dimension();
 
@@ -754,6 +797,7 @@ bool MainWindow::saveFile(const KUrl &url)
 
         QVariantMap plotspace;
         plotspace.insert("name",spaceName);
+        plotspace.insert("description",spaceDescription);        
         plotspace.insert("dimension",dim);
         plotspace.insert("image",thumbnailtoByteArray(thumbnail));
 
@@ -796,38 +840,46 @@ bool MainWindow::saveFile(const KUrl &url)
     QJson::Serializer serializer;
     QByteArray json = serializer.serialize(plotspace_list);
 
-    if(!url.isLocalFile())
+    if (!url.isLocalFile())
     {
         KTemporaryFile tmpfile;
+       
         if(!tmpfile.open())
         {
             KMessageBox::error(this,i18n("Could not open %1 for writing",KUrl(tmpfile.fileName()).toLocalFile()),i18n("Error while writing"));
+            
             return false;
         }
+        
         QTextStream out(&tmpfile);
         out << json;
         out.flush();
+        
         if (!KIO::NetAccess::upload(tmpfile.fileName(),url,this))
         {
             KMessageBox::error(this,i18n("Could not open %1 for writing %2",url.prettyUrl(),KIO::NetAccess::lastErrorString()),i18n("Error while writing"));
+            
             return false;
         }
     }
     else
     {
-        if(!url.hasPath()) {
+        if(!url.hasPath()) 
+        {
             KMessageBox::error(this,i18n("Error while saving file. Maybe path is not found"),i18n("Error while saving"));
+        
             return false;
         }
 
         QFile file(url.toLocalFile());
 
         // saved action clicked by the user , this is not the autosave case
-        QString currentautosavepath=getCurrentAutoSavepath(m_fileLocation);
-        if(url.toLocalFile()!=getDefaultAutoSavepath() && url.toLocalFile()!=currentautosavepath) {
-            if(!file.open(QFile::WriteOnly | QFile::Text)) {
+        QString currentautosavepath = getCurrentAutoSavepath(m_fileLocation);
+        
+        if (url.toLocalFile()!=getDefaultAutoSavepath() && url.toLocalFile()!=currentautosavepath) 
+        {
+            if (!file.open(QFile::WriteOnly | QFile::Text)) 
                 return false;
-            }
 
             // remove the auto save file (can be improved later) -> better to use function (TODO)
             QFile tempautosaveFile(getDefaultAutoSavepath());
@@ -837,21 +889,22 @@ bool MainWindow::saveFile(const KUrl &url)
 
             setCurrentFile(url.toLocalFile());
             statusBar()->showMessage(i18n("File %1 [%2] is saved successfully",
-                                          QFileInfo(url.toLocalFile()).fileName(),url.toLocalFile(),10000));
+                                          QFileInfo(url.toLocalFile()).fileName(),url.toLocalFile(), MessageDuration));
             changeTitleBar(url.toLocalFile());
         }
-
-        // autosave case
-        else {
-            if(!file.open(QFile::WriteOnly | QFile::Text)) {
+        else // autosave case
+        {
+            if (!file.open(QFile::WriteOnly | QFile::Text)) 
                 return false;
-            }
         }
 
         QTextStream out(&file);
         out << json;
         file.close();
     }
+    
+    m_currentFileUrl = url;
+    
     return true;
 }
 
@@ -862,8 +915,9 @@ void MainWindow::changeTitleBar(const QString& path)
 
 QString MainWindow::getCurrentAutoSavepath(const QString &path)
 {
-    if(!path.isEmpty())
+    if (!path.isEmpty())
         return QFileInfo(path).dir().path().append("/.").append(QFileInfo(path).baseName().append(".autosave"));
+    
     return QString();
 }
 
@@ -887,7 +941,7 @@ void MainWindow::activateSpace(int spaceidx)
     m_spacePlotsDock->reset(true);
 
     SpaceItem *space = m_document->spacesModel()->space(spaceidx);
-    m_spaceInfoDock->setInformation(space->title(), space->description());
+    m_spaceInfoDock->setInformation(space->name(), space->description());
 
     m_spaceOptionsDock->setDimension(space->dimension());
 }
@@ -978,7 +1032,7 @@ void MainWindow::copySnapshot()
     default:
         break;
     }
-    statusBar()->showMessage(i18n("The diagram was copied to clipboard"), TIME_INTERVAL);
+    statusBar()->showMessage(i18n("The diagram was copied to clipboard"), MessageDuration);
 }
 
 void MainWindow::setVisibleDictionary()
@@ -1060,7 +1114,7 @@ void MainWindow::goHome()
         SpaceItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
         space->stamp(); // marcamos la fecha y hora de ingreso al space
-        space->setTitle(m_spaceInfoDock->title());
+        space->setName(m_spaceInfoDock->title());
         space->setDescription(m_spaceInfoDock->description());
 
         // Thumbnail of the current space which is used to identify the space
@@ -1193,19 +1247,22 @@ void MainWindow::createPlot(const QModelIndex &ind)
 
         PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(ploteqn)), dim);
 
-        if (req.canDraw()) {
+        if (req.canDraw()) 
+        {
 
             FunctionGraph *item = 0;
             item = req.create(plotcolor, plotname);
 
-            if(dim==Dim2D) {
+            if(dim==Dim2D) 
+            {
                 //Used to deal with infinite intervals.
-                if(arg1min!=0 || arg1max!=0) {
+                if(arg1min!=0 || arg1max!=0) 
                     item->setInterval(item->parameters().first(), arg1min, arg1max);
-                }
             }
+            
             m_document->plotsModel()->addPlot(item);
-        } else
+        } 
+        else
             errors = req.errors();
     }
 }

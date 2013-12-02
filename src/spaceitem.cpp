@@ -22,14 +22,19 @@
 #include "spacesmodel.h"
 
 SpaceItem::SpaceItem(Analitza::Dimension dimension)
-    : m_dimension(dimension), m_model(0), m_inDestructorSoDontDeleteMe(false), m_callingCtrFromMode(true)
+    : m_dimension(dimension)
+    , m_model(0)
 {
     m_dateTime = KDateTime::currentLocalDateTime(); 
     
     m_id = QUuid::createUuid();
 }
 
-void SpaceItem::setTitle(const QString& name)
+SpaceItem::~SpaceItem()
+{
+}
+
+void SpaceItem::setName(const QString& name)
 {
     m_name = name;
     
@@ -57,15 +62,6 @@ void SpaceItem::stamp()
     emitDataChanged(); // actualimos las vistas itemviews
 }
 
-SpaceItem::~SpaceItem()
-{
-    if (m_model && m_model->m_itemCanCallModelRemoveItem)
-    {
-        m_inDestructorSoDontDeleteMe = true;
-        m_model->removeRow(m_model->m_items.indexOf(this));
-        m_inDestructorSoDontDeleteMe = false;
-    }
-}
 
 void SpaceItem::setModel(SpacesModel * m)
 {
@@ -73,24 +69,11 @@ void SpaceItem::setModel(SpacesModel * m)
     Q_ASSERT(m != m_model);
     
     m_model = m;
-    
-    m_callingCtrFromMode = false;
-}
-
-int SpaceItem::row()
-{
-    return m_model ? -1 : m_model->spaceIndex(this).row();
 }
 
 void SpaceItem::emitDataChanged()
 {
-    if (m_callingCtrFromMode)
-        return; // no emitir la signal datachange cuando se esta agregando un item desde el model
-
-    int itemRow = row();
-    if (itemRow>=0)
-    {
-        QModelIndex idx = m_model->index(itemRow);
-        m_model->dataChanged(idx, idx);
+    if (m_model) {
+        m_model->emitChanged(this);
     }
 }

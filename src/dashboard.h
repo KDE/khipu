@@ -37,7 +37,7 @@
 class DictionariesViewer;
 class KWidgetItemDelegate;
 class SpacesDelegate;
-class SpacesDetailsViewDelegate;
+class SpacesFilterProxyModel;
 class QTreeView;
 
 namespace Ui
@@ -50,23 +50,6 @@ namespace Analitza
     class PlotsView2D;
     class PlotsDictionaryModel;
 }
-
-class SpacesFilterProxyModel : public QSortFilterProxyModel
-{
-    Q_OBJECT
-
-    public:
-        explicit SpacesFilterProxyModel(QObject *parent = 0);
-
-        void setFilterDimension(Analitza::Dimensions dimension);
-        void setFilterText(const QString& text);
-protected:
-        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-
-    private:
-        Analitza::Dimensions m_dimension;
-        QString m_filterText;
-};
 
 
 // Dashboard is a main widget for the user. It allows user to save his work on the same UI.
@@ -143,6 +126,7 @@ private:
     Analitza::PlotsDictionaryModel* m_plotdictionarymodel;
     bool m_isDictionaryFound;
     QMap<QString,QString> m_DictionaryPathName;
+    SpacesDelegate *m_delegate;
 };
 
 #endif

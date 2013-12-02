@@ -46,9 +46,9 @@ public:
     //space's dimension
     Analitza::Dimension dimension() const { return m_dimension; }
     
-    //space's title
-    QString title() const { return m_name; }
-    void setTitle(const QString &name);
+    //space's name
+    QString name() const { return m_name; }
+    void setName(const QString &name);
     
     //space's description
     QString description() const { return m_description; }
@@ -61,7 +61,6 @@ public:
     KDateTime timestamp() const { return m_dateTime; }
     ///marks current time stamp
     void stamp();
-    int row();
 
 private:
     SpaceItem() {}
@@ -87,3 +86,4 @@ private:
 };
 
 #endif
+

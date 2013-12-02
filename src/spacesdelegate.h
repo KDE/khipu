@@ -20,8 +20,7 @@
 #define GPLACS_DASHBOARD_H_DEL
 
 //Qt includes
-#include <QtGui/QWidget>
-#include <QtGui/QListView>
+#include <QWidget>
 #include <QStackedWidget>
 #include <QModelIndex>
 #include <qstyleditemdelegate.h>
@@ -30,48 +29,16 @@
 #include <KWidgetItemDelegate>
 #include <KLineEdit>
 
-//local includes
-#include "plotseditor.h"
-
 class SpaceItem;
-class QLabel;
-class QTreeView;
+class DataStore;
+
+class QListView;
 
 class QSortFilterProxyModel;
 class QItemSelection;
-class DashboardWidget;
 class SpacesView;
 class QFocusEvent;
 class QToolButton;
-
-namespace Ui
-{
-class DashboardWidget;
-}
-
-
-// namespace Ui
-// {
-//     class SpaceEditorWidget;
-// }
-// 
-// 
-// class SpaceEditor : public QWidget
-// {
-//     Q_OBJECT
-//     
-// public :
-//     SpaceEditor(QWidget* parent = 0, Qt::WindowFlags f = 0);
-//     ~SpaceEditor();
-//     
-//     void setSpace(SpaceItem *space);
-//     SpaceItem *space() const { return m_space; }
-// 
-// private:
-//     SpaceItem *m_space;
-//     
-//     Ui::SpaceEditorWidget *m_widget;
-// };
 
 class LineEdit : public KLineEdit
 {
@@ -88,6 +55,7 @@ private slots:
     
 };
 
+/// This delegate only works if the view is a QListView and the viewmode is IconMode
 class SpacesDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
@@ -104,12 +72,7 @@ public slots:
     void filterEvent(); // se supone que el proxy emite esta signal layoutchanged y este slots debe ocultar los botnes y editores
     void setCurrentSpace(const QModelIndex& index);
 
-private: // TODO hacer public
-    void setIconMode(bool im);
-    QAbstractItemView *itemView() const { return m_itemView; }
-    QAbstractItemView *m_itemView;
 public:
-    
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
     void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
@@ -118,37 +81,34 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
     void setDocument(DataStore *doc);
-
+    
+    /// call this when you want to update the delegate state, by rebind a new model
+    void hideOperatorBar();
+    
 signals:
     void showSpace(const QModelIndex &index);
     void saveDictionary(const QModelIndex &index);
-//     void activateSpace(const QModelIndex &index);
     
 private:
-    QList<QWidget*> createItemWidgets() const;
-    void updateItemWidgets(const QList<QWidget*> widgets, const QStyleOptionViewItem &option, const QPersistentModelIndex &index) const;
-    
+    QListView *m_itemView;
     bool eventFilter(QObject *watched, QEvent *event);
-    void dummyUpdate(); // force rowsAboutToBeRemoved ... //TODO here is ovio
+    void setupOperationBar();
 
 private slots:
-    void removeCurrentSpace();
     void editCurrentSpace();
-    void showCurrentSpace();
+    void removeCurrentSpace();
     void finishEditingTitle(const QString &newtitle = QString()); // save current index data
     void invalidClick(const QModelIndex &index);
     void exportSpace();
     
 private:
+    DataStore *m_document;
     mutable bool m_isEditing;
-    bool m_iconMode;
     QWidget *m_operationBar;
     LineEdit *m_titleEditor;
 
     mutable QModelIndex m_currentEditingIndex; // current editing index
     QPoint m_currentCurPos;
-
-    DataStore *m_document;
 };
 
 #endif

@@ -113,7 +113,7 @@ void PersistanceFileTest::testCorrect()
     QVERIFY(plotitem!=0);
 
     //testing the data
-    QCOMPARE(space->title(),spacename);
+    QCOMPARE(space->name(),spacename);
     QCOMPARE(space->dimension(),spacedimension);
 
     QCOMPARE(plotitem->name(),plotname);

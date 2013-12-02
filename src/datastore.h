@@ -69,6 +69,7 @@ public slots:
     void removeCurrentSpace();
     void unmapPlot(const QModelIndex & proxyindex);
     void saveSpaceAsDictionary(QModelIndex ind);
+    void clearAllData();
 
 signals:
     void spaceActivated(int spaceidx);

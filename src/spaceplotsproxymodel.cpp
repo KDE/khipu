@@ -21,11 +21,48 @@
 
 //local includes
 #include "spaceplotsproxymodel.h"
+#include "spaceitem.h"
+#include "spacesmodel.h"
 #include "datastore.h"
 
 using namespace Analitza;
 
 Q_DECLARE_METATYPE(PlotItem*);
+
+SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
+{
+    m_dimension = DimAll;
+    setDynamicSortFilter(true);
+}
+
+void SpacesFilterProxyModel::setFilterDimension(Dimensions dimension)
+{
+    m_dimension = dimension;
+    invalidateFilter();
+}
+
+void SpacesFilterProxyModel::setFilterText(const QString& text)
+{
+    m_filterText=text;
+    invalidateFilter();
+}
+
+bool SpacesFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+{
+    if (!sourceModel() || sourceParent.isValid())
+        return false;
+    SpaceItem *spaceItem = static_cast<SpacesModel*>(sourceModel())->space(sourceRow);
+    if (!spaceItem)
+        return false;
+    if (m_dimension != DimAll && spaceItem->dimension() != m_dimension)
+        return false;
+    if(!spaceItem->name().contains(m_filterText,Qt::CaseInsensitive)
+            && !spaceItem->description().contains(m_filterText,Qt::CaseInsensitive))
+        return false;
+    return true;
+}
+
 
 PlotsProxyModel::PlotsProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)

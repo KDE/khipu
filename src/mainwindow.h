@@ -19,8 +19,6 @@
 #ifndef GPLACS_MAINWINDOW_H
 #define GPLACS_MAINWINDOW_H
 
-#define MaxRecentFiles 7
-
 //Analitza includes
 #include <analitzaplot/plotitem.h>
 
@@ -185,6 +183,13 @@ private:
     KAction *m_nextAct;
     KAction *m_importdictionaryAct;
     KAction *m_getdictionaryAct;
+    KUrl m_currentFileUrl;
+    
+private: // consts
+    static const unsigned short MaxRecentFiles = 7;
+    
+    // time interval to show the message on statusbar in milliseconds
+    static const unsigned short MessageDuration = 3; 
 };
 
 #endif

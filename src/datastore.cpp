@@ -68,7 +68,6 @@ DataStore::DataStore(QObject* parent)
 
     m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
     
-
     connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex)));
 }
 
@@ -193,3 +192,37 @@ void DataStore::saveSpaceAsDictionary(QModelIndex ind)
     }
     file->close();
 }
+
+void DataStore::clearAllData()
+{
+    //delete prev data
+    QItemSelectionModel *toBeRemovedCurrentSelectionModel = m_currentSelectionModel;
+    QItemSelectionModel *toBeRemovedcurrentSpaceSelectionModel = m_currentSpaceSelectionModel;
+    
+    SpacesModel *toBeRemovedSpacesModel = m_spacesModel;
+    PlotsModel *toBeRemovedPlotsModel = m_plotsModel;
+
+    toBeRemovedCurrentSelectionModel->deleteLater();
+    toBeRemovedcurrentSpaceSelectionModel->deleteLater();
+    toBeRemovedPlotsModel->deleteLater();
+    toBeRemovedSpacesModel->deleteLater();
+    delete m_variables;
+    
+    //setup&bindnew data structs
+    
+    m_spacesModel = new SpacesModel(this);
+    m_variables = new Analitza::Variables;
+    m_plotsModel = new PlotsModel(this);
+    
+    connect(m_plotsModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(mapPlot(QModelIndex,int)));
+
+    m_spacePlotsFilterProxyModel->setSourceModel(m_plotsModel);
+
+    m_currentSelectionModel = new QItemSelectionModel(m_spacePlotsFilterProxyModel);
+    connect(m_currentSelectionModel, SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(selectCurrentPlot(QModelIndex)));
+
+    m_currentSpaceSelectionModel = new QItemSelectionModel(m_spacesModel);
+
+    connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex)));
+}
+

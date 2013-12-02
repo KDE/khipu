@@ -49,17 +49,19 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     int rowCount(const QModelIndex &parent=QModelIndex()) const;
     int columnCount(const QModelIndex& parent) const;
-    //TODO implementar removeRows en analitzaplot (plotsmodel)
     bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
     SpaceItem * addSpace(Analitza::Dimension dim, const QString & title = QString(), const QString &description = QString(),
                          const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
 
     SpaceItem * space(int row) const;
-    SpaceItem * spacebyid(const QString &id) const;
 
-    QModelIndex spaceIndex(SpaceItem* it);
+    //TODO temp solution for bug ... we need better API for this model
+    QList<SpaceItem *> items() const { return m_items; }
     
+protected:
+    void emitChanged(SpaceItem* it);
+
 private:
     QList<SpaceItem *> m_items;
     bool m_itemCanCallModelRemoveItem; // just a lock para evitar que el item llame recursivamente a removeItem
