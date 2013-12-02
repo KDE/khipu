@@ -189,7 +189,7 @@ private: // consts
     static const unsigned short MaxRecentFiles = 7;
     
     // time interval to show the message on statusbar in milliseconds
-    static const unsigned short MessageDuration = 3; 
+    static const unsigned short MessageDuration = 3000;
 };
 
 #endif
