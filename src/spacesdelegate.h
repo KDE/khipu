@@ -59,7 +59,7 @@ class SpacesDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
 
-friend SpacesView;
+friend class SpacesView;
 
 public:
     static const int FrameThickness = 5;
