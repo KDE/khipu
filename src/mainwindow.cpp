@@ -705,11 +705,22 @@ QPixmap MainWindow::toPixmap(const QByteArray &bytearray)
 void MainWindow::saveClicked()
 {
     // Intially when the data is not saved. We would not have the actual file path.
-    if(m_fileLocation.isEmpty()) {
+    if(m_fileLocation.isEmpty())
+    {
         KUrl url = KFileDialog::getSaveUrl( QDir::homePath(), i18n( "*.khipu|Khipu Files (*.khipu)\n*|All Files" ),this, i18n( "Save As" ) );
         if(url.isEmpty())
             return;
-        m_fileLocation =url.toLocalFile();
+
+        //overwriting warning
+        if(QFile(url.directory().append("/").append(url.fileName())).exists())
+        {
+            int answer=KMessageBox::questionYesNo(this,
+            i18n("The file which you want to save,already exists.Do you want to overwrite this file?"),
+            i18n("Warning: File already exists"));
+                if(answer==KMessageBox::No)
+                    return;
+        }
+            m_fileLocation =url.toLocalFile();
     }
     saveFile(m_fileLocation);
 }
