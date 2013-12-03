@@ -22,23 +22,22 @@
 //Qt includes
 #include <QWidget>
 #include <QStackedWidget>
-#include <QModelIndex>
-#include <qstyleditemdelegate.h>
+#include <QStyledItemDelegate>
+#include <QListView>
 
 //KDE includes
 #include <KWidgetItemDelegate>
 #include <KLineEdit>
 
-class SpaceItem;
-class DataStore;
-
-class QListView;
-
 class QSortFilterProxyModel;
 class QItemSelection;
-class SpacesView;
+class QResizeEvent;
 class QFocusEvent;
 class QToolButton;
+
+class SpaceItem;
+class DataStore;
+class SpacesView;
 
 class LineEdit : public KLineEdit
 {
@@ -55,16 +54,18 @@ private slots:
     
 };
 
-/// This delegate only works if the view is a QListView and the viewmode is IconMode
+/// This delegate only works if the view is a SpacesView (wich is a listview) and the viewmode is IconMode
 class SpacesDelegate : public QStyledItemDelegate
 {
     Q_OBJECT
+
+friend SpacesView;
 
 public:
     static const int FrameThickness = 5;
     static const int ItemMargin = 4;
 
-    explicit SpacesDelegate(QListView *itemView, QObject *parent = 0);
+    explicit SpacesDelegate(SpacesView *itemView, QObject *parent = 0);
     ~SpacesDelegate();
 
 public slots:
@@ -93,6 +94,7 @@ private:
     QListView *m_itemView;
     bool eventFilter(QObject *watched, QEvent *event);
     void setupOperationBar();
+    void updateOperationBarPos(const QModelIndex &idx);
 
 private slots:
     void editCurrentSpace();
@@ -110,5 +112,18 @@ private:
     mutable QModelIndex m_currentEditingIndex; // current editing index
     QPoint m_currentCurPos;
 };
+
+class SpacesView : public QListView
+{
+Q_OBJECT
+
+public:
+    explicit SpacesView(QWidget* parent = 0);
+    
+protected:
+    virtual void resizeEvent(QResizeEvent* e);
+};
+
+
 
 #endif

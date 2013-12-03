@@ -47,26 +47,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QListView" name="spacesView">
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="verticalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <property name="horizontalScrollMode">
-           <enum>QAbstractItemView::ScrollPerPixel</enum>
-          </property>
-          <property name="flow">
-           <enum>QListView::LeftToRight</enum>
-          </property>
-          <property name="isWrapping" stdset="0">
-           <bool>true</bool>
-          </property>
-          <property name="resizeMode">
-           <enum>QListView::Adjust</enum>
-          </property>
-         </widget>
+         <widget class="SpacesView" name="spacesView"/>
         </item>
        </layout>
       </widget>
@@ -248,6 +229,11 @@
    <extends>QWidget</extends>
    <header>analitzagui/plotsview3d.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SpacesView</class>
+   <extends>QListView</extends>
+   <header>spacesdelegate.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

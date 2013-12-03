@@ -25,6 +25,7 @@
 #include <QToolButton>
 #include <QHBoxLayout>
 #include <QListView>
+#include <QDebug>
 #include <KApplication>
 #include <KLocale>
 
@@ -44,7 +45,7 @@ void LineEdit::procsSditingFinished()
     emit editingFinished(text());
 }
 
-SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
+SpacesDelegate::SpacesDelegate(SpacesView *itemView, QObject *parent)
     : QStyledItemDelegate(parent)
     , m_itemView(itemView)
     , m_isEditing(false)
@@ -53,9 +54,6 @@ SpacesDelegate::SpacesDelegate(QListView *itemView, QObject *parent)
 {
     Q_ASSERT(m_itemView->viewMode() == QListView::IconMode);
 
-    itemView->setMouseTracking(true);
-    itemView->setSelectionMode(QListView::SingleSelection);
-    itemView->setSelectionBehavior(QAbstractItemView::SelectItems);
     itemView->viewport()->installEventFilter(this);
 
     setupOperationBar();
@@ -215,7 +213,6 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 
             if (!index.isValid() && !m_isEditing)
             {
-
                 if (m_operationBar && m_titleEditor && !m_itemView->currentIndex().isValid()
                         && m_itemView->currentIndex() != m_currentEditingIndex )
                 {
@@ -225,14 +222,16 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
 
 //                 m_itemView->setCurrentIndex(QModelIndex());
             } 
-            else if (index.isValid())
-            {
-                //NOTE es importante que el viewport tenga el foco para que funcione correctamte la seleccion de items con el movimieto del mouse
-                if (m_currentEditingIndex != index && !m_isEditing)
-                    m_itemView->viewport()->setFocus();
+            else 
+                if (index.isValid())
+                {
+                    //NOTE es importante que el viewport tenga el foco para que funcione correctamte la seleccion de items con el movimieto del mouse
+                    if (m_currentEditingIndex != index && !m_isEditing)
+                        m_itemView->viewport()->setFocus();
 
-                setCurrentSpace(index);
-            }
+                    setCurrentSpace(index);
+                    
+                }
 
             return true;
         }
@@ -284,13 +283,10 @@ void SpacesDelegate::setCurrentSpace(const QModelIndex& index)
 
     m_itemView->setCurrentIndex(index);
 
+    updateOperationBarPos(index);
+    
     if (m_operationBar && m_titleEditor)
-    {
-        QRect rect = m_itemView->visualRect(index);
-
-        m_operationBar->move(rect.left()+(PreviewWidth-m_operationBar->width())/2,rect.top() + rect.height() - m_operationBar->height());
         m_operationBar->show();
-    }
 }
 
 void SpacesDelegate::editCurrentSpace()
@@ -398,4 +394,39 @@ void SpacesDelegate::filterEvent()
 
     setCurrentSpace(QModelIndex());
     invalidClick(QModelIndex());
+}
+
+void SpacesDelegate::updateOperationBarPos(const QModelIndex& index)
+{
+    if (m_operationBar && m_titleEditor)
+    {
+        QRect rect = m_itemView->visualRect(index);
+
+        m_operationBar->move(rect.left()+(PreviewWidth-m_operationBar->width())/2,rect.top() + rect.height() - m_operationBar->height());
+    }
+}
+
+///The view
+
+SpacesView::SpacesView(QWidget* parent): QListView(parent)
+{
+    setViewMode(IconMode);
+    setUniformItemSizes(true);
+    setEditTriggers(NoEditTriggers);
+    setFlow(LeftToRight);
+    setWrapping(true);
+    setResizeMode(Adjust);
+    setSelectionRectVisible(true);
+    setVerticalScrollMode(ScrollPerPixel);
+    setHorizontalScrollMode(ScrollPerPixel);
+    setMouseTracking(true);
+    setSelectionMode(QListView::SingleSelection);
+    setSelectionBehavior(QAbstractItemView::SelectItems);
+}
+
+void SpacesView::resizeEvent(QResizeEvent* e)
+{
+    static_cast<SpacesDelegate*>(itemDelegate())->updateOperationBarPos(currentIndex());
+    
+    QListView::resizeEvent(e);
 }
