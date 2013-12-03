@@ -67,6 +67,7 @@ Dashboard::Dashboard(QWidget *parent)
     m_filterText << "Dimension-All" << "Dimension-2D" << "Dimension-3D";
     m_ui->comboBox->clear();
     initializeDictionaryNames();
+    initializePlotsViews();
     
     //Init space delegate and proxyfilter
     
@@ -110,6 +111,11 @@ void Dashboard::initializeDictionaryNames()
         KMessageBox::error(this,error,i18n("No Dictionary found!"));
         return;
     }
+}
+
+void Dashboard::initializePlotsViews()
+{
+    m_ui->plotsView2D->setSquares(false);
 }
 
 void Dashboard::setDocument(DataStore* doc)
@@ -274,14 +280,12 @@ void Dashboard::setCurrentSpace(const QModelIndex &index)
     case Dim2D:
         m_ui->plotsViews->setCurrentIndex(0);
         //set dialog visible
-        emit setDialogSettingsVisible(true);
         emit restoreDictionaryData(Dim2D);
         break;
 
     case Dim3D:
         m_ui->plotsViews->setCurrentIndex(1);
         //set dialog invisible
-        emit setDialogSettingsVisible(false);
         emit restoreDictionaryData(Dim3D);
         break;
 
@@ -333,12 +337,62 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start)
 
 void Dashboard::setGridColor(const QColor &color) // used for making the axis visible/invisible
 {
-    if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
+    if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D) // 2d space
         m_ui->plotsView2D->updateGridColor(color);
-    } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
-        Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
-        plotter3d->setReferencePlaneColor(color);
+    else 
+        if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D) // 3d space
+        { 
+            Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
+
+            plotter3d->setReferencePlaneColor(color);
+        }
+}
+
+void Dashboard::setGridStyle(int i)
+{
+    if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D) // 2d space
+    {
+        switch (i)
+        {
+            case 0: 
+            {
+                m_ui->plotsView2D->setSquares(false); break;
+            }
+            break;
+            case 1: 
+            {
+                m_ui->plotsView2D->setSquares(true); break;
+            }
+            break;
+            case 2: 
+            {
+                m_ui->plotsView2D->setSquares(true); break;
+            }
+            break;
+        }
     }
+    else 
+        if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D) // 3d space
+        {
+            switch (i)
+            {
+                case 0: 
+                {
+                    m_ui->plotsView2D->setSquares(false); break;
+                }
+                break;
+                case 1: 
+                {
+                    m_ui->plotsView2D->setSquares(true); break;
+                }
+                break;
+                case 2: 
+                {
+                    m_ui->plotsView2D->setSquares(true); break;
+                }
+                break;
+            }
+        }
 }
 
 void Dashboard::setPlotsViewGridColor(const QColor &color)

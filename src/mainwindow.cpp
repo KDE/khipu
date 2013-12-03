@@ -191,7 +191,7 @@ void MainWindow::setupDocks()
     connect(m_document, SIGNAL(gridStyleChanged(int)), m_spaceOptionsDock, SLOT(setGridStyleIndex(int)));
 
     //Signal/slots for 2d Space
-   // connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard->view2d(), SLOT(useCoorSys(int)));
+    connect(m_spaceOptionsDock, SIGNAL(updateGridStyle(int)), m_dashboard, SLOT(setGridStyle(int)));
     connect(m_spaceOptionsDock, SIGNAL(updateGridColor(QColor)), m_dashboard, SLOT(setPlotsViewGridColor(QColor)));
     connect(m_spaceOptionsDock, SIGNAL(setXAxisLabel(QString)), m_dashboard->view2d(), SLOT(setXAxisLabel(QString)));
     connect(m_spaceOptionsDock, SIGNAL(setYAxisLabel(QString)), m_dashboard->view2d(), SLOT(setYAxisLabel(QString)));
@@ -203,8 +203,6 @@ void MainWindow::setupDocks()
    // connect(m_spaceOptionsDock, SIGNAL(axisIsDrawn(bool)), m_dashboard->view3d(), SLOT(setAxisIsDrawn(bool)));
    // connect(m_spaceOptionsDock, SIGNAL(gridIsDrawn(bool)), m_dashboard->view3d(), SLOT(setGridIsDrawn(bool)));
    // connect(m_spaceOptionsDock, SIGNAL(sceneResized(int)), m_dashboard->view3d(), SLOT(resizeScene(int)));
-
-    connect(m_dashboard, SIGNAL(setDialogSettingsVisible(bool)),m_spaceOptionsDock, SLOT(setWidgetsVisible(bool)));
 
     addDockWidget(Qt::LeftDockWidgetArea, m_plotsBuilderDock);
     addDockWidget(Qt::LeftDockWidgetArea, m_spacePlotsDock);
@@ -989,6 +987,10 @@ void MainWindow::activateSpaceUi()
     m_dashboard->setCurrentIndex(1);
 
     //menu
+    
+    //tools
+    m_filter->setFilterVisible(false);
+    
     //edit
     action("add_space2d")->setVisible(false);
     action("add_space3d")->setVisible(false);
@@ -1080,8 +1082,7 @@ void MainWindow::addSpace2D()
     m_dashboard->showPlotsView2D();
     int rows=m_document->spacesModel()->rowCount();
     m_document->spacesModel()->addSpace(Analitza::Dim2D, i18n("Untitled %1", rows+1));
-    m_filter->setFilterVisible(false);
-    m_spaceOptionsDock->setWidgetsVisible(true);
+
     emit Spaceinserted(Dim2D);
 }
 
@@ -1092,8 +1093,7 @@ void MainWindow::addSpace3D()
     m_dashboard->showPlotsView3D();
     int rows=m_document->spacesModel()->rowCount();
     m_document->spacesModel()->addSpace(Analitza::Dim3D, i18n("Untitled %1", rows+1));
-    m_filter->setFilterVisible(false);
-    m_spaceOptionsDock->setWidgetsVisible(false);
+
     emit Spaceinserted(Dim3D);
 }
 

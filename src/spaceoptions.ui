@@ -80,7 +80,7 @@
               </sizepolicy>
              </property>
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <item>
               <property name="text">
@@ -350,11 +350,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>149</x>
-     <y>414</y>
+     <y>280</y>
     </hint>
     <hint type="destinationlabel">
-     <x>149</x>
-     <y>425</y>
+     <x>157</x>
+     <y>272</y>
     </hint>
    </hints>
   </connection>

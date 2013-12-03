@@ -31,8 +31,13 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     m_widget = new Ui::SpaceOptionsWidget;
     m_widget->setupUi(this);
     m_widget->moreOptions->setChecked(false);
-    setObjectName("a33sdasdds");
-
+    setObjectName("khipu_diagram_spaceoptions_dock");
+    
+    //BEGIN default grid style: NONE (see too Dashboard::initializePlotsViews)
+    m_widget->gridStyle->setCurrentIndex(0);
+    m_widget->backgroundColor->hide();
+    //END
+    
     QString sym = QString((QChar(0x03C0)));
     addTickEntry(sym+"/2", sym, M_PI, 1, 2);
     addTickEntry(sym, sym, M_PI, 1, 1);
@@ -96,6 +101,7 @@ void SpaceOptions::updateScale()
 void SpaceOptions::setGridStyle(int i)
 {
     emit updateGridStyle(i);
+    
     m_widget->backgroundColor->setVisible(i!=0);
 }
 
@@ -126,25 +132,11 @@ void SpaceOptions::updateAxes()
 void SpaceOptions::updateTicks()
 {
     QFlags<Qt::Orientation> o;
-    if(m_widget->marksVisible->checkState()==Qt::Checked){
+    
+    if (m_widget->marksVisible->checkState()==Qt::Checked){
         o|=Qt::Horizontal;
         o|=Qt::Vertical;
     }
+    
     emit ticksShown(o);
-}
-
-void SpaceOptions::setWidgetsVisible(bool isWidgetVisible)
-{
-    m_widget->gridstylecontainer->setVisible(isWidgetVisible);
-    m_widget->moreOptions->setVisible(isWidgetVisible);
-    if(!isWidgetVisible) {
-        m_widget->gridStyle->clear();
-        m_widget->gridStyle->addItem(i18nc("grid style", "Lines"));
-    } else {
-        m_widget->gridStyle->clear();
-        m_widget->gridStyle->addItem(i18nc("grid style", "None"));
-        m_widget->gridStyle->addItem(i18nc("grid style", "Lines"));
-        m_widget->gridStyle->addItem(i18nc("grid style", "Polar"));
-    }
-    m_widget->backgroundColor->show();
 }

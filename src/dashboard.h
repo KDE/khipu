@@ -91,6 +91,7 @@ public slots:
     void copySpace2DSnapshotToClipboard();
     void copySpace3DSnapshotToClipboard();
     void setGridColor(const QColor &color);
+    void setGridStyle(int i);
     void setPlotsViewGridColor(const QColor& color);
 
     void setCurrentSpace(const QModelIndex &index);
@@ -117,6 +118,7 @@ signals:
 private:
     void initializeDictionaryNames();
     void setPlotsView(Analitza::Dimension dim);
+    void initializePlotsViews();
 
     DataStore * m_document;
     QScopedPointer<Ui::DashboardWidget> m_ui;

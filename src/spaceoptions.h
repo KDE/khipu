@@ -45,7 +45,7 @@ public slots:
     void setDimension(int d);
     void updateTicks();
     void updateAxes();
-    void setWidgetsVisible(bool isWidgetVisible);
+    void setGridStyle(int i);
 
 signals: //TODO better names for signals
     void updateGridStyle(int i);
@@ -63,7 +63,6 @@ signals: //TODO better names for signals
 
 private slots:
     void updateScale();
-    void setGridStyle(int i);
 
 private:
     void addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue, int tickScaleNumerator, int tickScaleDenominator);
