@@ -76,7 +76,6 @@ Dashboard::Dashboard(QWidget *parent)
     m_ui->spacesView->setItemDelegate(m_delegate);
     
     connect(m_ui->spacesView, SIGNAL(doubleClicked(QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
-    connect(m_ui->spacesView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex,QModelIndex)));
 }
 
 Dashboard::~Dashboard()
@@ -127,9 +126,6 @@ void Dashboard::setDocument(DataStore* doc)
     m_spacesProxyModel->setSourceModel(doc->spacesModel());
 
     m_ui->spacesView->setModel(m_spacesProxyModel);
-    m_ui->spacesView->setMouseTracking(true);
-    m_ui->spacesView->setAlternatingRowColors(true);
-    m_ui->spacesView->setViewMode(QListView::IconMode);
     
     m_document->currentPlots()->setFilterSpaceDimension(Dim2D);
     m_ui->plotsView2D->setModel(m_document->currentPlots());

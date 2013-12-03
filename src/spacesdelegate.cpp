@@ -52,15 +52,11 @@ SpacesDelegate::SpacesDelegate(SpacesView *itemView, QObject *parent)
     , m_operationBar(0)
     , m_titleEditor(0)
 {
-    Q_ASSERT(m_itemView->viewMode() == QListView::IconMode);
-
     itemView->viewport()->installEventFilter(this);
-
+    
     setupOperationBar();
-
+    
     connect(this, SIGNAL(showSpace(QModelIndex)), itemView, SIGNAL(doubleClicked(QModelIndex)));
-
-    connect(itemView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), SLOT(setCurrentSpace(QModelIndex)));
 }
 
 SpacesDelegate::~SpacesDelegate()
@@ -70,11 +66,7 @@ SpacesDelegate::~SpacesDelegate()
 void SpacesDelegate::setupOperationBar()
 {
     //BEGIN btns
-
-    m_itemView->setEditTriggers(QListView::EditKeyPressed);
-
     m_operationBar = new QWidget(m_itemView->viewport());
-    //     m_operationBar->setFocusPolicy(Qt::NoFocus);
 
     QToolButton *m_removeButton = new QToolButton(m_operationBar);
     m_removeButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
@@ -205,7 +197,6 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
     {
         if (event->type() == QEvent::MouseMove)
         {
-
             QMouseEvent *e = static_cast<QMouseEvent*>(event);
 
             m_currentCurPos = e->pos();
@@ -230,7 +221,6 @@ bool SpacesDelegate::eventFilter(QObject *watched, QEvent *event)
                         m_itemView->viewport()->setFocus();
 
                     setCurrentSpace(index);
-                    
                 }
 
             return true;
@@ -410,6 +400,7 @@ void SpacesDelegate::updateOperationBarPos(const QModelIndex& index)
 
 SpacesView::SpacesView(QWidget* parent): QListView(parent)
 {
+    setAlternatingRowColors(true);
     setViewMode(IconMode);
     setUniformItemSizes(true);
     setEditTriggers(NoEditTriggers);
