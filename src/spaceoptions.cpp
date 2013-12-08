@@ -37,20 +37,20 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     m_widget->gridStyle->setCurrentIndex(0);
     m_widget->backgroundColor->hide();
     //END
+
+    //BEGIN setup tick marks
+    //NOTE always from lower to greater : from 1 to pi
     
-    QString sym = QString((QChar(0x03C0)));
-    addTickEntry(sym+"/2", sym, M_PI, 1, 2);
-    addTickEntry(sym, sym, M_PI, 1, 1);
-    sym = QString("e");
-    addTickEntry(sym, sym, M_E, 1, 1);
-    sym = QString((QChar(0x221A)))+'2';
-    qreal symval = sqrt(2);
-    addTickEntry(sym, sym, symval, 1, 1);
-    sym = QString((QChar(0x221A)))+'3';
-    symval = sqrt(3);
-    addTickEntry(sym, sym, symval, 1, 1);
-    addTickEntry("1", QString(), 1, 1, 1);
-    m_widget->scale->setCurrentIndex(m_widget->scale->count()-1);
+    QString sqrtsym = QString((QChar(0x221A)));
+    
+    m_widget->scale->addItem("1");
+    m_widget->scale->addItem(sqrtsym+'2');
+    m_widget->scale->addItem(sqrtsym+'3');
+    m_widget->scale->addItem("e");
+    m_widget->scale->addItem(QString((QChar(0x03C0))));
+    
+    m_widget->scale->setCurrentIndex(0);
+    //END
 
     //signals
     connect(m_widget->gridStyle, SIGNAL(currentIndexChanged(int)), SLOT(setGridStyle(int)));
@@ -67,6 +67,9 @@ SpaceOptions::SpaceOptions(QWidget* parent): QDockWidget(parent)
     connect(m_widget->showAxis, SIGNAL(toggled(bool)), SIGNAL(axisIsDrawn(bool)));
     connect(m_widget->showGrid, SIGNAL(toggled(bool)), SIGNAL(gridIsDrawn(bool)));
     connect(m_widget->sceneSize, SIGNAL(valueChanged(int)), SIGNAL(sceneResized(int)));
+    
+    //TODO too much code : set default grid color (same of plotsview2d)
+    m_widget->backgroundColor->setColor(palette().color(QPalette::Active, QPalette::Base));
 }
 
 SpaceOptions::~SpaceOptions()
@@ -90,12 +93,18 @@ void SpaceOptions::setDimension(int d)
 void SpaceOptions::updateScale()
 {
     int i = m_widget->scale->currentIndex();
-    QVariantMap vmap = m_widget->scale->itemData(i, Qt::UserRole).toMap();
+    
+    Analitza::TicksFormat ticksfmt = Analitza::Number;
+    
+    switch (i)
+    {
+        case 2: ticksfmt = Analitza::SymbolSqrt2; break;
+        case 3: ticksfmt = Analitza::SymbolSqrt3; break;
+        case 4: ticksfmt = Analitza::SymbolE; break;
+        case 5: ticksfmt = Analitza::SymbolPi; break;
+    }
 
-    emit updateTickScale(vmap["symbol"].toString(),
-    vmap["symbolValue"].toReal(),
-    vmap["numerator"].toInt(),
-    vmap["denominator"].toInt());
+    emit ticksFormatChanged(ticksfmt);
 }
 
 void SpaceOptions::setGridStyle(int i)
@@ -103,20 +112,6 @@ void SpaceOptions::setGridStyle(int i)
     emit updateGridStyle(i);
     
     m_widget->backgroundColor->setVisible(i!=0);
-}
-
-void SpaceOptions::addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue,
-        int tickScaleNumerator,int tickScaleDenominator)
-{
-    QVariantMap vmap;
-
-    vmap.insert("tick", tick);
-    vmap.insert("symbol", tickScaleSymbol);
-    vmap.insert("symbolValue", tickScaleSymbolValue);
-    vmap.insert("numerator", tickScaleNumerator);
-    vmap.insert("denominator", tickScaleDenominator);
-
-    m_widget->scale->addItem(tick, vmap);
 }
 
 void SpaceOptions::updateAxes()

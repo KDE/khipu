@@ -52,7 +52,7 @@ signals: //TODO better names for signals
     void updateGridColor(const QColor &col);
     void setXAxisLabel(const QString &label);
     void setYAxisLabel(const QString &label);
-    void updateTickScale(QString m_tickScaleSymbol, qreal m_tickScaleSymbolValue, int m_tickScaleNumerator, int m_tickScaleDenominator);
+    void ticksFormatChanged(Analitza::TicksFormat tsfmt);
     void ticksShown(QFlags<Qt::Orientation> o);
     void axesShown(QFlags<Qt::Orientation> o);
 
@@ -65,8 +65,6 @@ private slots:
     void updateScale();
 
 private:
-    void addTickEntry(QString tick, QString tickScaleSymbol, qreal tickScaleSymbolValue, int tickScaleNumerator, int tickScaleDenominator);
-    
     Ui::SpaceOptionsWidget *m_widget;
 };
 

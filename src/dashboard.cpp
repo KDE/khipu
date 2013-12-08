@@ -68,9 +68,12 @@ Dashboard::Dashboard(QWidget *parent)
     m_ui->comboBox->clear();
     initializeDictionaryNames();
     initializePlotsViews();
+
+    //Init plotters
+    m_ui->plotsView2D->setKeepAspectRatio(true);
+    m_ui->plotsView2D->setAutoGridStyle(false);
     
     //Init space delegate and proxyfilter
-    
     m_spacesProxyModel = new SpacesFilterProxyModel(this);
     m_delegate = new SpacesDelegate(m_ui->spacesView, this);
     
@@ -115,7 +118,7 @@ void Dashboard::initializeDictionaryNames()
 
 void Dashboard::initializePlotsViews()
 {
-    m_ui->plotsView2D->setSquares(false);
+    m_ui->plotsView2D->setShowGrid(false);
 }
 
 void Dashboard::setDocument(DataStore* doc)
@@ -338,7 +341,7 @@ void Dashboard::setCurrentPlot(const QModelIndex& parent, int start)
 void Dashboard::setGridColor(const QColor &color) // used for making the axis visible/invisible
 {
     if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D) // 2d space
-        m_ui->plotsView2D->updateGridColor(color);
+        m_ui->plotsView2D->setGridColor(color);
     else 
         if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D) // 3d space
         { 
@@ -356,17 +359,19 @@ void Dashboard::setGridStyle(int i)
         {
             case 0: 
             {
-                m_ui->plotsView2D->setSquares(false); break;
+                m_ui->plotsView2D->setShowGrid(false);
             }
             break;
             case 1: 
             {
-                m_ui->plotsView2D->setSquares(true); break;
+                m_ui->plotsView2D->setShowGrid(true);
+                m_ui->plotsView2D->setGridStyleHint(Analitza::Cartesian);
             }
             break;
             case 2: 
             {
-                m_ui->plotsView2D->setSquares(true); break;
+                m_ui->plotsView2D->setShowGrid(true);
+                m_ui->plotsView2D->setGridStyleHint(Analitza::Polar);
             }
             break;
         }
@@ -378,17 +383,17 @@ void Dashboard::setGridStyle(int i)
             {
                 case 0: 
                 {
-                    m_ui->plotsView2D->setSquares(false); break;
+                    m_ui->plotsView2D->setShowGrid(false); break;
                 }
                 break;
                 case 1: 
                 {
-                    m_ui->plotsView2D->setSquares(true); break;
+                    m_ui->plotsView2D->setShowGrid(true); break;
                 }
                 break;
                 case 2: 
                 {
-                    m_ui->plotsView2D->setSquares(true); break;
+                    m_ui->plotsView2D->setShowGrid(true); break;
                 }
                 break;
             }
@@ -398,7 +403,7 @@ void Dashboard::setGridStyle(int i)
 void Dashboard::setPlotsViewGridColor(const QColor &color)
 {
     if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
-        m_ui->plotsView2D->updateGridColor(color);
+        m_ui->plotsView2D->setGridColor(color);
     } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
         Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
         plotter3d->setReferencePlaneColor(color);
