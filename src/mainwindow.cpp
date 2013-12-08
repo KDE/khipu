@@ -715,7 +715,7 @@ void MainWindow::saveClicked()
         if(QFile(url.directory().append("/").append(url.fileName())).exists())
         {
             int answer=KMessageBox::questionYesNo(this,
-            i18n("The file which you want to save,already exists.Do you want to overwrite this file?"),
+            i18n("The file which you want to save, already exists. Do you want to overwrite this file?"),
             i18n("Warning: File already exists"));
                 if(answer==KMessageBox::No)
                     return;
