@@ -898,7 +898,7 @@ bool MainWindow::saveFile(const KUrl &url)
 
             setCurrentFile(url.toLocalFile());
             statusBar()->showMessage(i18n("File %1 [%2] is saved successfully",
-                                          QFileInfo(url.toLocalFile()).fileName(),url.toLocalFile(), MessageDuration));
+                                          QFileInfo(url.toLocalFile()).fileName(),url.toLocalFile()), MessageDuration);
             changeTitleBar(url.toLocalFile());
         }
         else // autosave case
