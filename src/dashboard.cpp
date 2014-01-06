@@ -72,6 +72,11 @@ Dashboard::Dashboard(QWidget *parent)
     //Init plotters
     m_ui->plotsView2D->setKeepAspectRatio(true);
     m_ui->plotsView2D->setAutoGridStyle(false);
+    m_ui->plotsView2D->setViewport(QRectF(QPointF(-5.0, 5.0), QSizeF(10.0, -10.0)));
+    m_ui->plotsView2D->setShowMinorTicks(true);
+    m_ui->plotsView2D->setShowMinorGrid(true);
+    m_ui->plotsView2D->setShowPolarAxis(true);
+    m_ui->plotsView2D->setShowPolarAngles(true);
     
     //Init space delegate and proxyfilter
     m_spacesProxyModel = new SpacesFilterProxyModel(this);
@@ -365,13 +370,13 @@ void Dashboard::setGridStyle(int i)
             case 1: 
             {
                 m_ui->plotsView2D->setShowGrid(true);
-                m_ui->plotsView2D->setGridStyleHint(Analitza::Cartesian);
+                m_ui->plotsView2D->setGridStyleHint(Analitza::Squares);
             }
             break;
             case 2: 
             {
                 m_ui->plotsView2D->setShowGrid(true);
-                m_ui->plotsView2D->setGridStyleHint(Analitza::Polar);
+                m_ui->plotsView2D->setGridStyleHint(Analitza::Circles);
             }
             break;
         }

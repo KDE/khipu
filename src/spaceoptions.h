@@ -52,7 +52,6 @@ signals: //TODO better names for signals
     void updateGridColor(const QColor &col);
     void setXAxisLabel(const QString &label);
     void setYAxisLabel(const QString &label);
-    void ticksFormatChanged(Analitza::TicksFormat tsfmt);
     void ticksShown(QFlags<Qt::Orientation> o);
     void axesShown(QFlags<Qt::Orientation> o);
 
@@ -60,9 +59,6 @@ signals: //TODO better names for signals
     void gridIsDrawn(bool);
     void axisIsDrawn(bool);
     void sceneResized(int);
-
-private slots:
-    void updateScale();
 
 private:
     Ui::SpaceOptionsWidget *m_widget;

@@ -90,23 +90,6 @@ void SpaceOptions::setDimension(int d)
     m_widget->options->setCurrentIndex(d-2); //-2 porque si dim es 2 se muestra las optiones cero (para el view2d)
 }
 
-void SpaceOptions::updateScale()
-{
-    int i = m_widget->scale->currentIndex();
-    
-    Analitza::TicksFormat ticksfmt = Analitza::Number;
-    
-    switch (i)
-    {
-        case 2: ticksfmt = Analitza::SymbolSqrt2; break;
-        case 3: ticksfmt = Analitza::SymbolSqrt3; break;
-        case 4: ticksfmt = Analitza::SymbolE; break;
-        case 5: ticksfmt = Analitza::SymbolPi; break;
-    }
-
-    emit ticksFormatChanged(ticksfmt);
-}
-
 void SpaceOptions::setGridStyle(int i)
 {
     emit updateGridStyle(i);
