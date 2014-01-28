@@ -173,7 +173,7 @@
          <widget class="QWidget" name="fexpression" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="ComboBox" name="fnameForGraphs">
+            <widget class="QComboBox" name="fnameForGraphs">
              <property name="minimumSize">
               <size>
                <width>32</width>
@@ -192,7 +192,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QtMmlWidget" name="fname">
+            <widget class="QLabel" name="fname">
              <property name="minimumSize">
               <size>
                <width>58</width>
@@ -217,7 +217,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QtMmlWidget" name="farrow">
+            <widget class="QLabel" name="farrow">
              <property name="minimumSize">
               <size>
                <width>24</width>
@@ -258,7 +258,7 @@
          <widget class="QWidget" name="gexpression" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_8">
            <item>
-            <widget class="QtMmlWidget" name="gname">
+            <widget class="QLabel" name="gname">
              <property name="minimumSize">
               <size>
                <width>58</width>
@@ -283,7 +283,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QtMmlWidget" name="garrow">
+            <widget class="QLabel" name="garrow">
              <property name="minimumSize">
               <size>
                <width>24</width>
@@ -324,7 +324,7 @@
          <widget class="QWidget" name="hexpression" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_11">
            <item>
-            <widget class="QtMmlWidget" name="hname">
+            <widget class="QLabel" name="hname">
              <property name="minimumSize">
               <size>
                <width>58</width>
@@ -349,7 +349,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QtMmlWidget" name="harrow">
+            <widget class="QLabel" name="harrow">
              <property name="minimumSize">
               <size>
                <width>24</width>
@@ -483,7 +483,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QtMmlWidget" name="x">
+                  <widget class="QLabel" name="x">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -534,7 +534,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QtMmlWidget" name="y">
+                  <widget class="QLabel" name="y">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -585,7 +585,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QtMmlWidget" name="z">
+                  <widget class="QLabel" name="z">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
@@ -680,9 +680,9 @@
    <header>analitzagui/expressionedit.h</header>
   </customwidget>
   <customwidget>
-   <class>QtMmlWidget</class>
+   <class>QLabel</class>
    <extends>QFrame</extends>
-   <header>QtMmlWidget</header>
+   <header>QLabel</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -690,11 +690,6 @@
    <extends>QWidget</extends>
    <header>plotsbuilder.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ComboBox</class>
-   <extends>QComboBox</extends>
-   <header>plotseditor.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -53,8 +53,6 @@ target_link_libraries( khipu
   ${OPENGL_gl_LIBRARY}
   ${OPENGL_glu_LIBRARY}
   ${QT_QTOPENGL_LIBRARY}
-  ${QT_QTXML_LIBRARY}
-  ${QTMML_LIBRARY}
   libkhipu
 )
 
@@ -69,8 +67,6 @@ target_link_libraries( libkhipu
   ${OPENGL_gl_LIBRARY}
   ${OPENGL_glu_LIBRARY}
   ${QT_QTOPENGL_LIBRARY}
-  ${QT_QTXML_LIBRARY}
-  ${QTMML_LIBRARY}
 )
 
 install (TARGETS khipu ${INSTALL_TARGETS_DEFAULT_ARGS} )

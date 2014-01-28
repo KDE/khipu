@@ -107,11 +107,9 @@ bool PlotsBuilder::eventFilter(QObject *object, QEvent *event)
 
         else {
             m_currentTyppe=None;
-            clearInfoWidget();
             return false;
         }
     }
-    setupInfo();
     return false;
 }
 
@@ -198,55 +196,6 @@ void PlotsBuilder::hideAllTypes()
     m_widget->cartesianCurvesLinks->hide();
     m_widget->cylindricalSurfacesLinks->hide();
     m_widget->sphericalSurfacesLinks->hide();
-}
-
-void PlotsBuilder::setupInfo()
-{
-    switch (m_currentTyppe)
-    {
-    //2D
-    case(CartesianGraphCurve):
-        m_example = Analitza::Expression("x->sin(x)");
-        break;
-    case(CartesianImplicitCurve):
-        m_example = Analitza::Expression("(x*x+y*y=1)");
-        break;
-    case(CartesianParametricCurve2D):
-        m_example = Analitza::Expression("t->vector{t,t**2}");
-        break;
-    case(PolarGraphCurve):
-        m_example = Analitza::Expression("q->sin(q)");
-        break;
-
-    //3D
-    case(CartesianParametricCurve3D):
-        m_example = Analitza::Expression("t->vector{t, t, t}");
-        break;
-    case(CartesianGraphSurface):
-        m_example = Analitza::Expression("(x,y)->(x*x-y*y)/8");
-        break;
-    case(CartesianImplicitSurface):
-        m_example = Analitza::Expression("(x*x+y*y)-z*z=1/2");
-        break;
-    case(CartesianParametricSurface):
-        m_example = Analitza::Expression("(u,v)->vector{u,u+v,v}");
-        break;
-    case(CylindricalGraphSurface):
-        m_example = Analitza::Expression("(r,p)->p");
-        break;
-    case(SphericalGraphSurface):
-        m_example = Analitza::Expression("(t,p)->2");
-        break;
-    default:
-        return;
-    }
-    m_widget->plotExample->setContent(m_example.toMathMLPresentation());
-}
-
-void PlotsBuilder::clearInfoWidget()
-{
-    m_widget->plotExample->clear();
-    m_widget->plotExample->update();
 }
 
 void PlotsBuilder::setupTypes()

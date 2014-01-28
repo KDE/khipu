@@ -1,5 +1,5 @@
 /*************************************************************************************
- *  Copyright (C) 2010-2012 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
+ *  Copyright (C) 2010-2014 by Percy Camilo T. Aucahuasi <percy.camilo.ta@gmail.com> *
  *                                                                                   *
  *  This program is free software; you can redistribute it and/or                    *
  *  modify it under the terms of the GNU General Public License                      *
@@ -44,11 +44,7 @@
 #include <KLocale>
 #include <KRandom>
 
-//C includes
-#include <math.h>
-
-//libkdeedu includes
-#include <libkdeedu/qtmml/QtMmlWidget>
+#include <cmath>
 
 //local includes
 #include "datastore.h"
@@ -60,146 +56,12 @@ using namespace Analitza;
 
 Q_DECLARE_METATYPE(PlotItem*);
 
-ComboBox::ComboBox(QWidget* parent): QComboBox(parent)
-{
-    connect(this, SIGNAL(currentIndexChanged(QString)), SLOT(setupCache(QString)));
-}
-
-QSize ComboBox::sizeHint() const
-{
-
-    QStringList funcs = m_cacheText.split(',');
-    QString mmlhelper;
-
-    foreach(const QString &func, funcs)
-    {
-        mmlhelper.append("<mi>"+func+"</mi>");
-
-        if (func != funcs.last())
-            mmlhelper.append("<mtext>,</mtext>");
-    }
-
-    QtMmlDocument mathMLRenderer;
-    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-//     qDebug() << mathMLRenderer.size() << funcs << m_cacheText;
-    return QSize(mathMLRenderer.size().width()+24, mathMLRenderer.size().height()+8);
-}
-
-void ComboBox::paintEvent(QPaintEvent* e)
-{
-    //Drawing the combo-box
-    QString itemtext = currentText();
-    m_cacheText = itemtext;
-    setItemText(currentIndex(), "");
-    QComboBox::paintEvent(e);
-    setItemText(currentIndex(), itemtext);
-
-
-    QPainter p(this);
-
-    QStringList funcs = currentText().split(',');
-    QString mmlhelper;
-
-    foreach(const QString &func, funcs)
-    {
-        mmlhelper.append("<mi>"+func+"</mi>");
-
-        if (func != funcs.last())
-            mmlhelper.append("<mtext>,</mtext>");
-    }
-
-    QtMmlDocument mathMLRenderer;
-    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-
-    QStyleOptionComboBox opt;
-    opt.initFrom(this);
-
-    mathMLRenderer.paint(&p, opt.rect.topLeft()+QPoint(4,4));
-}
-
-void ComboBox::setupCache(const QString& currtext)
-{
-    m_cacheText = currtext;
-//     qDebug() << m_cacheText;
-    setMinimumSize(sizeHint());
-    update();
-}
-
-class FunctionDelegate : public QStyledItemDelegate
-{
-public:
-    FunctionDelegate(ComboBox *parent = 0);
-    QSize sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-};
-
-FunctionDelegate::FunctionDelegate(ComboBox* parent): QStyledItemDelegate(parent)
-{
-}
-QSize FunctionDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    Q_UNUSED(option);
-    QStringList funcs = index.data().toString().split(',');
-    QString mmlhelper;
-
-    foreach(const QString &func, funcs)
-    {
-        mmlhelper.append("<mi>"+func+"</mi>");
-        if (func != funcs.last())
-            mmlhelper.append("<mtext>,</mtext>");
-    }
-
-    QtMmlDocument mathMLRenderer;
-    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-
-    return QSize(258, 32);
-    return QSize(mathMLRenderer.size().width(), mathMLRenderer.size().height()+8);
-}
-
-void FunctionDelegate::paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
-{
-    QStringList funcs = index.data().toString().split(',');
-    QString mmlhelper;
-
-    foreach(const QString &func, funcs)
-    {
-        mmlhelper.append("<mi>"+func+"</mi>");
-
-        if (func != funcs.last())
-            mmlhelper.append("<mtext>,</mtext>");
-    }
-
-    if (option.state & QStyle::State_Selected)
-    {
-        painter->save();
-        painter->setPen(option.palette.highlight().color());
-        painter->setBrush(option.palette.highlight());
-
-        QRect selRect = static_cast<ComboBox*>(parent())->view()->visualRect(index);
-        selRect.setHeight(selRect.height() - 1); //TODO see above
-        painter->drawRect(selRect);
-        painter->restore();
-        painter->setPen(option.palette.highlightedText().color());
-    }
-    else
-    {
-        painter->setPen(option.palette.text().color());
-        painter->setBrush(option.palette.text());
-    }
-
-    QtMmlDocument mathMLRenderer;
-    mathMLRenderer.setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-    mathMLRenderer.paint(painter, QPoint(option.rect.left()+2, option.rect.top()+4));
-}
-
 PlotsEditor::PlotsEditor(QWidget * parent)
     : QDockWidget(parent), isEditing(false), plotnumber(1)
 {
     m_widget = new Ui::PlotsEditorWidget;
     m_widget->setupUi(this);
     setObjectName("adasdds");
-
-    m_widget->fnameForGraphs->setItemDelegate(new FunctionDelegate(m_widget->fnameForGraphs));
 
     // random coloring of the plots
     m_widget->plotColor->setColor(randomFunctionColor());
@@ -215,9 +77,9 @@ PlotsEditor::PlotsEditor(QWidget * parent)
 
     connect(m_widget->fnameForGraphs, SIGNAL(currentIndexChanged(QString)), SLOT(setCurrentFunctionGraphs(QString)));
 
-    m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
-    m_widget->garrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
-    m_widget->harrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
+    m_widget->farrow->setText("=");
+    m_widget->garrow->setText("=");
+    m_widget->harrow->setText("=");
 
     connect(m_widget->builderDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(showList()));
     connect(m_widget->editorDialogBox->button(QDialogButtonBox::Cancel), SIGNAL(pressed()), SLOT(cancelEditor()));
@@ -441,7 +303,7 @@ void PlotsEditor::editPlot(const QModelIndex &)
                     {
                         m_currentVars = QStringList() << "x";
                         m_widget->fnameForGraphs->hide();
-                        setupFuncName(1, "", QStringList() << "x", false);
+                        setupFuncName(1, "y", QStringList() << "x");
                         setupVarName(1, "x");
                         m_widget->fname->show();
                     }
@@ -449,7 +311,7 @@ void PlotsEditor::editPlot(const QModelIndex &)
                     {
                         m_currentVars = QStringList() << "y";
                         m_widget->fnameForGraphs->hide();
-                        setupFuncName(1, "", QStringList() << "y", false);
+                        setupFuncName(1, "x", QStringList() << "y");
                         setupVarName(1, "y");
                         m_widget->fname->show();
                     }
@@ -525,7 +387,7 @@ void PlotsEditor::editPlot(const QModelIndex &)
                     {
                         m_currentVars = QStringList() << "x" << "y";
                         m_widget->fnameForGraphs->hide();
-                        setupFuncName(1, "", QStringList() << "x" << "y", false);
+                        setupFuncName(1, "z", QStringList() << "x" << "y");
                         setupVarName(1, "x");
                         setupVarName(2, "y");
                         m_widget->fname->show();
@@ -534,7 +396,7 @@ void PlotsEditor::editPlot(const QModelIndex &)
                     {
                         m_currentVars = QStringList() << "x" << "z";
                         m_widget->fnameForGraphs->hide();
-                        setupFuncName(1, "", QStringList() << "x" << "z", false);
+                        setupFuncName(1, "y", QStringList() << "x" << "z");
                         setupVarName(1, "x");
                         setupVarName(2, "z");
                         m_widget->fname->show();
@@ -543,7 +405,7 @@ void PlotsEditor::editPlot(const QModelIndex &)
                     {
                         m_currentVars = QStringList() << "y" << "z";
                         m_widget->fnameForGraphs->hide();
-                        setupFuncName(1, "", QStringList() << "y" << "z", false);
+                        setupFuncName(1, "x", QStringList() << "y" << "z");
                         setupVarName(1, "y");
                         setupVarName(2, "z");
                         m_widget->fname->show();
@@ -787,9 +649,7 @@ void PlotsEditor::savePlot()
                 item = req.create(m_widget->plotColor->color(), m_widget->plotName->text());
                 if (m_widget->intervals->isChecked())
                 {
-
                     item->setInterval(item->parameters().first(), m_widget->minx->expression(), m_widget->maxx->expression());
-
                 }
                 else
                     item->clearIntervals();
@@ -1026,67 +886,66 @@ void PlotsEditor::setupVarName(int var, const QString &vvalue)
 {
     switch (var)
     {
-    case 1:
-    {
-        m_widget->x->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>");
-        break;
-    }
-    case 2:
-    {
-        m_widget->yinterval->show();
-        m_widget->y->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>");
-        break;
-    }
-    case 3:
-    {
-        m_widget->zinterval->show();
-        m_widget->z->setContent("<math display='block'> <mrow> <mo>&#x02264;</mo> <mi>"+vvalue+"</mi> <mo>&#x02264;</mo> </mrow> </math>");
-        break;
-    }
+        case 1:
+        {
+            m_widget->x->setText("< "+vvalue+" <");
+            break;
+        }
+        case 2:
+        {
+            m_widget->yinterval->show();
+            m_widget->y->setText("< "+vvalue+" <");
+            break;
+        }
+        case 3:
+        {
+            m_widget->zinterval->show();
+            m_widget->z->setText("< "+vvalue+" <");
+            break;
+        }
     }
 }
 
 void PlotsEditor::setupFuncName(int var, const QString& vvalue, const QStringList& vars, bool withparenthesis)
 {
-    QString mmlhelper;
-    mmlhelper.append("<mi>"+vvalue+"</mi>");
+    QString mmlhelper = vvalue;
 
     if (withparenthesis)
-        mmlhelper.append("<mo>(</mo>");
+        mmlhelper.append("(");
 
     foreach(const QString &v, vars)
     {
-        mmlhelper.append("<mi>"+v+"</mi>");
+        mmlhelper.append(v);
 
         if (v != vars.last())
-            mmlhelper.append("<mtext>,</mtext>");
+            mmlhelper.append(",");
     }
 
     if (withparenthesis)
-        mmlhelper.append("<mo>)</mo>");
+        mmlhelper.append(")");
 
     switch (var)
     {
-    case 1:
-    {
-        m_widget->fname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-        m_widget->gexpression->hide();
-        m_widget->hexpression->hide();
-        break;
-    }
-    case 2:
-    {
-        m_widget->gname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-        m_widget->gexpression->show();
-        m_widget->hexpression->hide();
-        break;
-    }
-    case 3:
-    {
-        m_widget->hname->setContent("<math display='block'><mrow>"+mmlhelper+"</mrow></math>");
-        m_widget->hexpression->show();
-        break;
-    }
+        case 1:
+        {
+            m_widget->fname->setText(mmlhelper);
+            m_widget->gexpression->hide();
+            m_widget->hexpression->hide();
+            break;
+        }
+        case 2:
+        {
+            m_widget->gname->setText(mmlhelper);
+            m_widget->gexpression->show();
+            m_widget->hexpression->hide();
+            break;
+        }
+        case 3:
+        {
+            m_widget->hname->setText(mmlhelper);
+            m_widget->hexpression->show();
+            break;
+        }
     }
 }
 
@@ -1106,7 +965,9 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
         m_widget->fname->hide();
         m_widget->fnameForGraphs->clear();
         m_widget->fnameForGraphs->addItems(fvalues);
-    } else {
+    } 
+    else 
+    {
         m_widget->fnameForGraphs->hide();
         m_widget->fname->show();
     }
@@ -1134,18 +995,21 @@ void PlotsEditor::setupExpressionType(const QStringList &fvalues, const QStringL
     {
         m_widget->fnameForGraphs->hide();
 
-        m_widget->farrow->setContent("<math display='block'> <mrow> <mo>=</mo> </mrow> </math>");
+        m_widget->farrow->setText("=");
 
         for (int func = 1; func <= fvalues.size(); ++func)
         {
             setupFuncName(func, fvalues[func-1], vvalues);
         }
-    } else {
+    }
+    else
+    {
         if (!isimplicit)
         {
-            m_widget->farrow->setContent("<math display='block'> <mrow> <mo>&rarr;</mo> </mrow> </math>");
+            m_widget->farrow->setText("=");
         }
     }
+    
     showEditor();
 }
 

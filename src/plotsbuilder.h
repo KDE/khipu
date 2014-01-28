@@ -72,10 +72,6 @@ public slots:
     void showAllTypes(); // show all types
     void hideAllTypes(); // hide all types
     
-private slots: // better names
-    void setupInfo();
-    void clearInfoWidget();
-    
 private:
     void setupTypes();
     bool eventFilter(QObject *object, QEvent *event);
