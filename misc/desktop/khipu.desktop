@@ -1,6 +1,7 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Khipu
+Name[ast]=Khipu
 Name[bs]=Khipu
 Name[de]=Khipu
 Name[el]=Khipu
