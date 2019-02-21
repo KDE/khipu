@@ -18,6 +18,7 @@
 
 //Analitza includes
 #include <analitzaplot/plotsmodel.h>
+#include <analitzaplot/plotitem.h>
 
 //local includes
 #include "spaceplotsproxymodel.h"
@@ -26,8 +27,6 @@
 #include "datastore.h"
 
 using namespace Analitza;
-
-Q_DECLARE_METATYPE(PlotItem*);
 
 SpacesFilterProxyModel::SpacesFilterProxyModel(QObject *parent)
     : QSortFilterProxyModel(parent)

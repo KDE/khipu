@@ -24,10 +24,10 @@
 #include <QStackedWidget>
 #include <QStyledItemDelegate>
 #include <QListView>
+#include <QLineEdit>
 
 //KDE includes
 #include <KWidgetItemDelegate>
-#include <KLineEdit>
 
 class QSortFilterProxyModel;
 class QItemSelection;
@@ -39,7 +39,7 @@ class SpaceItem;
 class DataStore;
 class SpacesView;
 
-class LineEdit : public KLineEdit
+class LineEdit : public QLineEdit
 {
     Q_OBJECT
     

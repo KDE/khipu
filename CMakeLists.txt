@@ -1,23 +1,25 @@
-project ( khipu )
+project(khipu)
 
-find_package ( KDE4 REQUIRED )
-include(KDE4Defaults)
+cmake_minimum_required(VERSION 2.8.12)
 
-find_package ( OpenGL REQUIRED )
-find_package ( Analitza REQUIRED )
-find_package ( QJSON REQUIRED)
+find_package(ECM 1.7.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${ECM_MODULE_PATH})
 
-find_package(LibKdeEdu)
+find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Widgets Test PrintSupport Xml)
+include(KDEInstallDirs)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDECMakeSettings)
+include(ECMInstallIcons)
+include(ECMAddTests)
+include(FeatureSummary)
+include(ECMAddAppIcon)
 
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS}  ${QJSON_DEFINITIONS} ${qjson_DEFINITIONS} -DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
+find_package(KF5 REQUIRED COMPONENTS I18n ItemModels ItemViews GuiAddons WidgetsAddons NewStuff XmlGui KDELibs4Support DocTools)
+find_package(Analitza5 REQUIRED)
 
-if(NOT OPENGL_GLU_FOUND)
-    message(FATAL_ERROR "GLU was not found")
-endif(NOT OPENGL_GLU_FOUND)
+install(FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
 
-install( FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR} )
-
-add_subdirectory (src) #app ... use the library
-add_subdirectory (misc) #icons, pics, function library, etc
-add_subdirectory (tests)
-add_subdirectory (doc)
+add_subdirectory(src) #app ... use the library
+add_subdirectory(misc) #icons, pics, function library, etc
+add_subdirectory(tests)
+add_subdirectory(doc)

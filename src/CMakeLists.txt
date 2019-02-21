@@ -1,19 +1,14 @@
-include_directories (
-  ${CMAKE_SOURCE_DIR} 
-  ${CMAKE_BINARY_DIR} 
-  ${KDE4_INCLUDES} 
-  ${KDE4_KNEWSTUFF3_LIBS}
-  ${LIBKDEEDU_INCLUDE_DIR}/qtmml 
-  ${ANALITZA_INCLUDE_DIR}
-  ${OPENGL_INCLUDE_DIR}
-  ${qjson_INCLUDE_DIR}
-  ${QJSON_INCLUDE_DIR}
-  ${CMAKE_CURRENT_SOURCE_DIR}
-  .
-  ..
+ki18n_wrap_ui(libkhipu_SRCS
+  dictionarycollection.ui
+  plotsbuilder.ui
+  plotseditor.ui
+  spaceinformation.ui
+  spaceoptions.ui
+  filter.ui
+  dashboard.ui
 )
 
-set ( libkhipu_SRCS
+add_library(libkhipu STATIC ${libkhipu_SRCS}
   spaceitem.cpp
   spacesmodel.cpp
   dictionarycollection.cpp
@@ -26,47 +21,26 @@ set ( libkhipu_SRCS
   spacesdelegate.cpp
   datastore.cpp
   dashboard.cpp
-  mainwindow.cpp
+  mainwindow.cpp)
+
+add_executable(khipu main.cpp)
+
+target_link_libraries(khipu libkhipu)
+
+target_link_libraries(libkhipu
+PUBLIC
+  Qt5::Widgets
+  KF5::I18n
+  KF5::ItemViews
+  KF5::ItemModels
+  KF5::GuiAddons
+  KF5::WidgetsAddons
+  KF5::XmlGui
+  KF5::NewStuff
+  KF5::KDELibs4Support
+  KF5::AnalitzaGui
+  KF5::AnalitzaWidgets
+  KF5::AnalitzaPlot
 )
 
-kde4_add_ui_files ( libkhipu_SRCS
-  dictionarycollection.ui
-  plotsbuilder.ui
-  plotseditor.ui
-  spaceinformation.ui
-  spaceoptions.ui
-  filter.ui
-  dashboard.ui
-)
-
-kde4_add_library(libkhipu ${libkhipu_SRCS})
-
-kde4_add_executable ( khipu main.cpp )
-
-target_link_libraries( khipu
-  ${KDE4_KFILE_LIBS}
-  ${KDE4_KNEWSTUFF3_LIBS}
-  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
-  ${qjson_LIBRARIES}
-  ${QJSON_LIBRARIES}
-  #OpenGL
-  ${OPENGL_gl_LIBRARY}
-  ${OPENGL_glu_LIBRARY}
-  ${QT_QTOPENGL_LIBRARY}
-  libkhipu
-)
-
-target_link_libraries( libkhipu
-  ${KDE4_KFILE_LIBS}
-  ${KDE4_KIO_LIBS}
-  ${KDE4_KNEWSTUFF3_LIBS}
-  ${ANALITZA_LIBRARY} ${ANALITZAGUI_LIBRARY} ${ANALITZAPLOT_LIBRARY}
-  ${qjson_LIBRARIES}
-  ${QJSON_LIBRARIES}
-  #OpenGL
-  ${OPENGL_gl_LIBRARY}
-  ${OPENGL_glu_LIBRARY}
-  ${QT_QTOPENGL_LIBRARY}
-)
-
-install (TARGETS khipu ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install (TARGETS khipu ${INSTALL_TARGETS_DEFAULT_ARGS})

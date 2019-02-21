@@ -39,8 +39,6 @@ QTEST_KDEMAIN( PersistanceFileTest , GUI)
 
 Q_DECLARE_METATYPE (Analitza::Dimension);
 
-Q_DECLARE_METATYPE (PlotItem*);
-
 PersistanceFileTest::PersistanceFileTest(QObject *parent)
     : QObject(parent)
 {
@@ -126,5 +124,3 @@ void PersistanceFileTest::testCorrect()
 
     delete document;
 }
-
-#include "persistancefiletest.moc"

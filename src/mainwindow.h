@@ -27,7 +27,7 @@
 #include <QModelIndex>
 
 //KDE includes
-#include <KDE/KXmlGuiWindow>
+#include <KXmlGuiWindow>
 #include <KRecentFilesAction>
 
 class DictionaryCollection;
@@ -38,9 +38,6 @@ class PlotsBuilder;
 class DataStore;
 class SpacePlotsFilterProxyModel;
 class PlotsEditor;
-class KIcon;
-class KAction;
-class KUrl;
 class KToggleAction;
 
 class FunctionsModel;
@@ -74,13 +71,13 @@ public slots:
     bool openFileClicked();
 
     //opening a file spcified by the url
-    bool openFile(const KUrl &url);
+    bool openFile(const QUrl &url);
 
     //recent file list
-    void openRecentClicked(const KUrl&  name);
+    void openRecentClicked(const QUrl&  name);
     void saveClicked();
     bool saveAsClicked();
-    bool saveFile(const KUrl &url);
+    bool saveFile(const QUrl &url);
     void activateSpace(int);
 
     //create the plots for the appropriate space which are clicked by the user
@@ -137,7 +134,7 @@ private slots:
     void buildSphericalGraphSurface();
 
 private:
-    KAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
+    QAction *createAction(const char *name, const QString &text, const QString &iconName, const QKeySequence & shortcut, const QObject *recvr, const char *slot, bool isCheckable = false, bool checked = true);
 
     //setting up the dock-widgets
     void setupDocks();
@@ -151,7 +148,7 @@ private:
     void updateRecentFileList();
 
     // used for parsing file path from the url provided by openrecent
-    QString pathFromUrl(const KUrl &url);
+    QString pathFromUrl(const QUrl &url);
 
     //converts a thubnail from bytearray to pixmap and vice-versa
     QPixmap toPixmap(const QByteArray &bytearray);
@@ -179,11 +176,11 @@ private:
     QVariantList m_parsedSpaceDetails;
     QString m_fileLocation; // location of the current running file which is saved by the user.
     KRecentFilesAction * m_openrecent;
-    KAction *m_priorAct;
-    KAction *m_nextAct;
-    KAction *m_importdictionaryAct;
-    KAction *m_getdictionaryAct;
-    KUrl m_currentFileUrl;
+    QAction *m_priorAct;
+    QAction *m_nextAct;
+    QAction *m_importdictionaryAct;
+    QAction *m_getdictionaryAct;
+    QUrl m_currentFileUrl;
     
 private: // consts
     static const unsigned short MaxRecentFiles = 7;

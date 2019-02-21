@@ -72,7 +72,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="KComboBox" name="gridStyle">
+            <widget class="QComboBox" name="gridStyle">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -129,7 +129,7 @@
             </widget>
            </item>
            <item>
-            <widget class="KComboBox" name="scale">
+            <widget class="QComboBox" name="scale">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -178,7 +178,7 @@
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="KLineEdit" name="horizontalLabel">
+                 <widget class="QLineEdit" name="horizontalLabel">
                   <property name="text">
                    <string>x</string>
                   </property>
@@ -198,7 +198,7 @@
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="KLineEdit" name="verticalLabel">
+                 <widget class="QLineEdit" name="verticalLabel">
                   <property name="text">
                    <string>y</string>
                   </property>
@@ -328,16 +328,6 @@
    <class>KColorCombo</class>
    <extends>QComboBox</extends>
    <header>kcolorcombo.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

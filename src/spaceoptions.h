@@ -20,7 +20,7 @@
 #define SPACEOPTIONS_H
 
 //Qt includes
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QDockWidget>
 #include <QModelIndex>
 

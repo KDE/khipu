@@ -20,7 +20,7 @@
 #define KEOMATH_VIEWER2D_H
 
 //Qt includes
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QDockWidget>
 #include <QModelIndex>
 

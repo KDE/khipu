@@ -25,7 +25,7 @@ SpaceItem::SpaceItem(Analitza::Dimension dimension)
     : m_dimension(dimension)
     , m_model(0)
 {
-    m_dateTime = KDateTime::currentLocalDateTime(); 
+    m_dateTime = QDateTime::currentDateTime();
     
     m_id = QUuid::createUuid();
 }
@@ -57,7 +57,7 @@ void SpaceItem::setThumbnail(const QPixmap& thumbnail)
 
 void SpaceItem::stamp()
 {
-    m_dateTime = KDateTime::currentLocalDateTime(); 
+    m_dateTime = QDateTime::currentDateTime();
     
     emitDataChanged(); // actualimos las vistas itemviews
 }

@@ -21,7 +21,7 @@
 
 //Analitza includes
 #include <analitzagui/plotsview2d.h>
-#include <analitzagui/plotsview3d.h>
+#include <analitzagui/plotsview3d_es.h>
 #include <analitzaplot/plotsfactory.h>
 #include <analitzaplot/plotsmodel.h>
 #include <analitzaplot/functiongraph.h>
@@ -29,10 +29,10 @@
 
 //Qt includes
 #include <QDir>
+#include <QFileDialog>
 
 //KDE includes
 #include <KStandardDirs>
-#include <KFileDialog>
 #include <KMessageBox>
 
 //local includes
@@ -149,10 +149,9 @@ void DictionaryCollection::addPlotinSpace(const QModelIndex& ind)
 
 void DictionaryCollection::importDictionary()
 {
-    KUrl const url = KFileDialog::getOpenUrl( QDir::currentPath(),
-                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
+    auto const path = QFileDialog::getOpenFileName(this, i18n("Select Dictionary to import"), {},
+                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ));
 
-    QString path=url.toLocalFile();
     if(path.isEmpty())
         return;
     int currentIndex=m_widget->dictionaryNames->count();

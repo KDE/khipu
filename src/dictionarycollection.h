@@ -23,7 +23,7 @@
 #include <analitzaplot/plotsdictionarymodel.h>
 
 //Qt includes
-#include <QtGui/QWidget>
+#include <QWidget>
 #include <QDialog>
 #include <QComboBox>
 #include <QLabel>

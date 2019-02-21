@@ -26,8 +26,8 @@
 #include <QHBoxLayout>
 #include <QListView>
 #include <QDebug>
-#include <KApplication>
-#include <KLocale>
+#include <QApplication>
+#include <KLocalizedString>
 
 //local includes
 #include "spacesmodel.h"
@@ -35,7 +35,7 @@
 #include "spaceplotsproxymodel.h"
 #include "spaceitem.h"
 
-LineEdit::LineEdit(QWidget* parent): KLineEdit(parent)
+LineEdit::LineEdit(QWidget* parent): QLineEdit(parent)
 {
     connect(this, SIGNAL(editingFinished()), SLOT(procsSditingFinished()));
 }
@@ -72,21 +72,21 @@ void SpacesDelegate::setupOperationBar()
     m_removeButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
     m_removeButton->setAutoRepeat(false);
     m_removeButton->setToolTip(i18n("Remove"));
-    m_removeButton->setIcon(KIcon("list-remove"));
+    m_removeButton->setIcon(QIcon::fromTheme("list-remove"));
     connect(m_removeButton, SIGNAL(pressed()), SLOT(removeCurrentSpace()));
 
     QToolButton *m_editButton = new QToolButton(m_operationBar);
     m_editButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
     m_editButton->setAutoRepeat(false);
     m_editButton->setToolTip(i18n("Rename"));
-    m_editButton->setIcon(KIcon("document-edit"));
+    m_editButton->setIcon(QIcon::fromTheme("document-edit"));
     connect(m_editButton, SIGNAL(pressed()), SLOT(editCurrentSpace()));
 
     QToolButton *m_showButton = new QToolButton(m_operationBar);
     m_showButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
     m_showButton->setAutoRepeat(false);
     m_showButton->setToolTip(i18n("Export as dictionary"));
-    m_showButton->setIcon(KIcon("document-export"));
+    m_showButton->setIcon(QIcon::fromTheme("document-export"));
     connect(m_showButton, SIGNAL(pressed()), SLOT(exportSpace()));
 
     QHBoxLayout* layout = new QHBoxLayout(m_operationBar);
@@ -101,7 +101,7 @@ void SpacesDelegate::setupOperationBar()
     //END btns
 
     m_titleEditor = new LineEdit(m_itemView->viewport());
-    m_titleEditor->setClearButtonShown(true);
+    m_titleEditor->setClearButtonEnabled(true);
     m_titleEditor->hide();
 
     connect(m_titleEditor, SIGNAL(editingFinished(QString)), SLOT(finishEditingTitle(QString)));
@@ -124,7 +124,7 @@ QWidget* SpacesDelegate::createEditor(QWidget* parent, const QStyleOptionViewIte
     editor->move(rect.left()/*+(PreviewWidth-m_operationBar->width())/2*/,rect.top() + rect.height() - m_operationBar->height() - .8*m_titleEditor->height());
     editor->selectAll();
     editor->setFocus();
-    editor->setClearButtonShown(true);
+    editor->setClearButtonEnabled(true);
 
     return editor;
 }

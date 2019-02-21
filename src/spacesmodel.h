@@ -24,14 +24,10 @@
 
 //Qt includes
 #include <QtCore/QAbstractListModel>
-
-//KDE includes
-#include <KIcon>
+#include <QIcon>
 
 namespace Analitza { class Expression; }
 class SpaceItem;
-
-Q_DECLARE_METATYPE(SpaceItem*);
 
 class SpacesModel : public QAbstractListModel
 {
@@ -52,7 +48,7 @@ public:
     bool removeRows ( int row, int count, const QModelIndex & parent = QModelIndex() );
 
     SpaceItem * addSpace(Analitza::Dimension dim, const QString & title = QString(), const QString &description = QString(),
-                         const QPixmap &thumbnail=KIcon("khipu").pixmap(QSize(256,256)));
+                         const QPixmap &thumbnail=QIcon::fromTheme("khipu").pixmap(QSize(256,256)));
 
     SpaceItem * space(int row) const;
 

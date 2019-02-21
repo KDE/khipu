@@ -24,24 +24,23 @@
 #include <analitzaplot/plotsmodel.h>
 
 //Qt includes
-#include <QtGui/QAbstractItemView>
-#include <QtGui/QStringListModel>
-#include <QtGui/QMainWindow>
-#include <QtGui/QPainter>
-#include <QtGui/QRadialGradient>
-#include <QtGui/QPaintEvent>
-#include <QtGui/QToolButton>
-#include <QtGui/QMenu>
+#include <QAbstractItemView>
+#include <QStringListModel>
+#include <QMainWindow>
+#include <QPainter>
+#include <QRadialGradient>
+#include <QPaintEvent>
+#include <QToolButton>
+#include <QMenu>
 #include <QDebug>
 #include <QClipboard>
 
 //KDE includes
 #include <kpushbutton.h>
 #include <klineedit.h>
-#include <kicon.h>
 #include <kwidgetitemdelegate.h>
 #include <KSelectionProxyModel>
-#include <KFileDialog>
+#include <QFileDialog>
 #include <KStandardDirs>
 #include <KMessageBox>
 #include <KNS3/DownloadDialog>
@@ -158,7 +157,7 @@ PlotsView2D* Dashboard::view2d()
     return m_ui->plotsView2D;
 }
 
-PlotsView3D* Dashboard::view3d()
+PlotsView3DES* Dashboard::view3d()
 {
     return m_ui->plotsView3D;
 }
@@ -209,10 +208,9 @@ void Dashboard::setPlotsView(Analitza::Dimension dim)
 
 void Dashboard::importDictionaryClicked()
 {
-    const KUrl url = KFileDialog::getOpenUrl( QDir::currentPath(),
-                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ), this, i18n( "Open" ) );
+    const QString path = QFileDialog::getOpenFileName(this, i18n( "Open" ), {},
+                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ) );
 
-    QString path=url.toLocalFile();
     if(!path.isEmpty()) {
         int currentIndex=m_ui->comboBox->count();
         m_ui->comboBox->addItem(QFileInfo(path).baseName());
@@ -234,17 +232,12 @@ void Dashboard::showPlotsView3D()
 
 void Dashboard::exportSpaceSnapshot(Dimension dim)
 {
-    QString path = KFileDialog::getSaveFileName(KUrl(), i18n("*.png|PNG Image File"), this);
+    QString path = QFileDialog::getSaveFileName(this, i18n("Where to export"), {}, i18n("*.png|PNG Image File"));
     if(!path.isEmpty()){
         if(dim==Dim2D){
             view2d()->toImage(path,PlotsView2D::PNG);
         } else if(dim==Dim3D){
-            view3d()->updateGL();
-            view3d()->setFocus();
-            view3d()->makeCurrent();
-            view3d()->raise();
-            QImage image(view3d()->grabFrameBuffer(true));
-            QPixmap::fromImage(image, Qt::ColorOnly).save(path,"PNG");
+            view3d()->save(QUrl::fromLocalFile(path));
         }
     }
 }
@@ -257,7 +250,7 @@ void Dashboard::copySpace2DSnapshotToClipboard()
 void Dashboard::copySpace3DSnapshotToClipboard()
 {
     QClipboard *cb = QApplication::clipboard();
-    cb->setImage(view3d()->grabFrameBuffer(true));
+    cb->setImage(view3d()->grabFramebuffer());
 }
 
 void Dashboard::filterByText(const QString &text)
@@ -350,8 +343,7 @@ void Dashboard::setGridColor(const QColor &color) // used for making the axis vi
     else 
         if (m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D) // 3d space
         { 
-            Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
-
+            auto plotter3d = dynamic_cast<Analitza::Plotter3DES*>(view3d());
             plotter3d->setReferencePlaneColor(color);
         }
 }
@@ -410,7 +402,7 @@ void Dashboard::setPlotsViewGridColor(const QColor &color)
     if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim2D){ // 2d space
         m_ui->plotsView2D->setGridColor(color);
     } else if(m_document->spacesModel()->space(m_document->currentSpace())->dimension()==Dim3D){ // 3d space
-        Analitza::Plotter3D* plotter3d = dynamic_cast<Analitza::Plotter3D*>(view3d());
+        auto plotter3d = dynamic_cast<Analitza::Plotter3DES*>(view3d());
         plotter3d->setReferencePlaneColor(color);
         showPlotsView3D();
     }

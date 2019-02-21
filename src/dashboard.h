@@ -24,9 +24,9 @@
 #include <analitzaplot/plottingenums.h>
 
 //Qt includes
-#include <QtGui/QWidget>
-#include <QtGui/QListView>
-#include <QtGui/QSortFilterProxyModel>
+#include <QWidget>
+#include <QListView>
+#include <QSortFilterProxyModel>
 #include <QStackedWidget>
 #include <QModelIndex>
 #include <QMap>
@@ -46,7 +46,7 @@ namespace Ui
 }
 namespace Analitza
 {
-    class PlotsView3D;
+    class PlotsView3DES;
     class PlotsView2D;
     class PlotsDictionaryModel;
 }
@@ -68,7 +68,7 @@ public:
 
     //views
     Analitza::PlotsView2D *view2d();
-    Analitza::PlotsView3D *view3d();
+    Analitza::PlotsView3DES *view3d();
     bool m_openclicked;
 
 public slots:

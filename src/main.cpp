@@ -17,74 +17,67 @@
  *************************************************************************************/
 
 //KDE includes
-#include <KDE/KApplication>
-#include <KDE/KAboutData>
-#include <KDE/KCmdLineArgs>
-#include <KDE/KLocale>
+#include <QApplication>
+#include <KAboutData>
+#include <KLocalizedString>
+#include <QCommandLineParser>
 
 //local includes
 #include "mainwindow.h"
 
-static const char description[] = I18N_NOOP("Advanced Mathematical Function Plotter");
-
-static const char version[] = "1.0";
-
 int main(int argc, char **argv)
 {
-    KAboutData about("khipu", "gplacs", ki18n(I18N_NOOP("Khipu")), version, ki18n(description),
-                     KAboutData::License_GPL, ki18n("(C) 2010-2012, Percy Camilo Triveño Aucahuasi"));
+    QApplication app(argc, argv);
+    KAboutData about("khipu", i18n("Khipu"), "1.0", i18n("Advanced Mathematical Function Plotter"),
+                     KAboutLicense::GPL, i18n("(C) 2010-2012, Percy Camilo Triveño Aucahuasi"));
 
-    about.addAuthor(ki18n("Percy Camilo Triveño Aucahuasi"), ki18n("Main developer"), "percy.camilo.ta@gmail.com");
+    about.addAuthor(i18n("Percy Camilo Triveño Aucahuasi"), i18n("Main developer"), "percy.camilo.ta@gmail.com");
 
-    about.addCredit(ki18n("Punit Mehta"), ki18n("GSoC-2013 student - Persistance file support. Plot-dictionary support. Worked for application actions, command-line improvements and space filtering. Several bug fixings"), "punit9462@gmail.com");
-    about.addCredit(ki18n("Manuel Álvarez Blanco"), ki18n("Thesis mentor - Guide and supervision during project conception. Bibliographical support. Numeric Mathematics and Algorithms support"), "");
-    about.addCredit(ki18n("José Ignacio Cuevas Gonzáles"), ki18n("Thesis mentor - Supervision, Product Guide, Product promotion and former Client"), "jose.cuevas@upc.edu.pe");
-    about.addCredit(ki18n("Eduardo Fernandini Capurro"), ki18n("Thesis mentor - Supervision, Bibliographical Support, Product Guide and former Client"), "eduardo.fernandini@upc.edu.pe");
-    about.addCredit(ki18n("Jaime Urbina Pereyra"), ki18n("Thesis mentor - Supervision and former Main Project Mentor"), "pcsijurb@upc.edu.pe");
+    about.addCredit(i18n("Punit Mehta"), i18n("GSoC-2013 student - Persistance file support. Plot-dictionary support. Worked for application actions, command-line improvements and space filtering. Several bug fixings"), "punit9462@gmail.com");
+    about.addCredit(i18n("Manuel Álvarez Blanco"), i18n("Thesis mentor - Guide and supervision during project conception. Bibliographical support. Numeric Mathematics and Algorithms support"), "");
+    about.addCredit(i18n("José Ignacio Cuevas Gonzáles"), i18n("Thesis mentor - Supervision, Product Guide, Product promotion and former Client"), "jose.cuevas@upc.edu.pe");
+    about.addCredit(i18n("Eduardo Fernandini Capurro"), i18n("Thesis mentor - Supervision, Bibliographical Support, Product Guide and former Client"), "eduardo.fernandini@upc.edu.pe");
+    about.addCredit(i18n("Jaime Urbina Pereyra"), i18n("Thesis mentor - Supervision and former Main Project Mentor"), "pcsijurb@upc.edu.pe");
 
-    about.addCredit(ki18n("Aleix Pol Gonzalez"), ki18n("KAlgebra and Analitza parser author, both vitals for the project"));
+    about.addCredit(i18n("Aleix Pol Gonzalez"), i18n("KAlgebra and Analitza parser author, both vitals for the project"));
 
-    about.addCredit(ki18n("José Fernando Ramos Ramirez"), ki18n("First version of Famous Curves Database. Build former windows installer"), "ferramos1990@gmail.com");
-    about.addCredit(ki18n("Susan Pamela Rios Sarmiento"), ki18n("First version of Famous Curves Database"), "susanriossarmiento@gmail.com");
+    about.addCredit(i18n("José Fernando Ramos Ramirez"), i18n("First version of Famous Curves Database. Build former windows installer"), "ferramos1990@gmail.com");
+    about.addCredit(i18n("Susan Pamela Rios Sarmiento"), i18n("First version of Famous Curves Database"), "susanriossarmiento@gmail.com");
 
-    about.addCredit(ki18n("Edgar Velasquez"), ki18n("2D Improvements"));
-    about.addCredit(ki18n("Jose Torres Cardenas"), ki18n("3D Improvements"));
-    about.addCredit(ki18n("Elizabeth Portilla Flores"), ki18n("3D Improvements"));
-    about.addCredit(ki18n("Paul Murat Landauro Minaya"), ki18n("3D Improvements"));
+    about.addCredit(i18n("Edgar Velasquez"), i18n("2D Improvements"));
+    about.addCredit(i18n("Jose Torres Cardenas"), i18n("3D Improvements"));
+    about.addCredit(i18n("Elizabeth Portilla Flores"), i18n("3D Improvements"));
+    about.addCredit(i18n("Paul Murat Landauro Minaya"), i18n("3D Improvements"));
 
-    KCmdLineArgs::init(argc, argv, &about);
 
-    KCmdLineOptions options;
-    options.add("+[URL]", ki18n( "A Khipu-file to open" ));
-    KCmdLineArgs::addCmdLineOptions(options);
-
-    KApplication app;
+    QCommandLineParser parser;
+    about.setupCommandLine(&parser);
+    parser.addPositionalArgument("urls", i18n("Khipu files to open"));
+    parser.process(app);
+    about.processCommandLine(&parser);
 
     MainWindow *mainWindow = new MainWindow;
 
     if (app.isSessionRestored()) {
         RESTORE(MainWindow)
     } else {
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        if (args->count() == 0) {
+        if (parser.positionalArguments().isEmpty()) {
             mainWindow->checkforAutoSavedFile();
             mainWindow->show();
         } else {
-            int i = 0;
             bool exit = false;
-            for (; i < args->count(); i++) {
-                if (i==0) {
-                    if(args->arg(0)!="ignoreautosavedfile"){
-                        if (!(mainWindow->openFile(args->url(0).path())))
-                            exit = true;
-                    }
+            for (const auto &urlString: parser.positionalArguments()) {
+                if (!mainWindow->openFile(QUrl(urlString))) {
+                    exit = true;
+                    break;
                 }
-                mainWindow->show();
             }
             if (exit)
                 mainWindow->deleteLater(); // can't open a khipu file, so just exit !
+            else
+                mainWindow->show();
         }
-        args->clear();
+        parser.clearPositionalArguments();
     }
     return app.exec();
 }

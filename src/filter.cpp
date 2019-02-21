@@ -19,9 +19,6 @@
 #include "filter.h"
 #include "ui_filter.h"
 
-//KDE includes
-#include <KIcon>
-
 Filter::Filter(QWidget* parent)
     : QWidget(parent)
     , m_ui(new Ui::FilterWidget)
@@ -29,9 +26,9 @@ Filter::Filter(QWidget* parent)
 {
     m_ui->setupUi(this);
 
-    m_ui->filterOptions->addItem(KIcon("all-space-filter"), i18n("Dimension All"));
-    m_ui->filterOptions->addItem(KIcon("2d-space-filter"), i18n("Dimension 2D"));
-    m_ui->filterOptions->addItem(KIcon("3d-space-filter"), i18n("Dimension 3D"));
+    m_ui->filterOptions->addItem(QIcon::fromTheme("all-space-filter"), i18n("Dimension All"));
+    m_ui->filterOptions->addItem(QIcon::fromTheme("2d-space-filter"), i18n("Dimension 2D"));
+    m_ui->filterOptions->addItem(QIcon::fromTheme("3d-space-filter"), i18n("Dimension 3D"));
 
     connect(m_ui->filterText, SIGNAL(textChanged(QString)), SIGNAL(filterByText(QString)));
     connect(m_ui->filterOptions, SIGNAL(currentIndexChanged(int)), SLOT(getDimIndex(int)));

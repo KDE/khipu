@@ -1,1 +1,31 @@
-kde4_install_icons( ${ICON_INSTALL_DIR} )
+ecm_install_icons(ICONS
+   sc-actions-add-space2d.svgz
+   sc-actions-add-space3d.svgz
+   sc-actions-chair-surface.svgz
+   sc-actions-constant-e.svgz
+   sc-actions-constant-pi.svgz
+   sc-actions-constant-sqrt2.svgz
+   sc-actions-constant-sqrt3.svgz
+   sc-actions-coord-settings.svgz
+   sc-actions-deriv_func.svgz
+   sc-actions-disc.svgz
+   sc-actions-editconstants.svgz
+   sc-actions-editplots.svgz
+   sc-actions-functionhelp.svgz
+   sc-actions-integral_func.svgz
+   sc-actions-maximum.svgz
+   sc-actions-minimum.svgz
+   sc-actions-newcylindrical.svgz
+   sc-actions-newfunction3d.svgz
+   sc-actions-newfunction.svgz
+   sc-actions-newparametric3d.svgz
+   sc-actions-newparametric.svgz
+   sc-actions-newpolar.svgz
+   sc-actions-newspherical.svgz
+   sc-actions-operator-sqrt.svgz
+   sc-actions-resetview.svgz
+   sc-actions-sphere.svgz
+   sc-actions-torus.svgz
+
+   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons
+)

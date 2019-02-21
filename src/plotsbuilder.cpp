@@ -30,43 +30,43 @@ PlotsBuilder::PlotsBuilder(QWidget* parent): QWidget(parent),
     this->installEventFilter(this);
 
     // can be done also by enter event and leave event using underMouse();
-    m_widget->buildCartesianGraphCurve->setIcon(KIcon("newfunction"));
+    m_widget->buildCartesianGraphCurve->setIcon(QIcon::fromTheme("newfunction"));
     m_widget->buildCartesianGraphCurve->setMouseTracking(true);
     m_widget->buildCartesianGraphCurve->installEventFilter(this);
 
-    m_widget->buildCartesianImplicitCurve->setIcon(KIcon("newimplicit"));
+    m_widget->buildCartesianImplicitCurve->setIcon(QIcon::fromTheme("newimplicit"));
     m_widget->buildCartesianImplicitCurve->setMouseTracking(true);
     m_widget->buildCartesianImplicitCurve->installEventFilter(this);
 
-    m_widget->buildCartesianParametricCurve2D->setIcon(KIcon("newparametric"));
+    m_widget->buildCartesianParametricCurve2D->setIcon(QIcon::fromTheme("newparametric"));
     m_widget->buildCartesianParametricCurve2D->setMouseTracking(true);
     m_widget->buildCartesianParametricCurve2D->installEventFilter(this);
 
-    m_widget->buildPolarGraphCurve->setIcon(KIcon("newpolar"));
+    m_widget->buildPolarGraphCurve->setIcon(QIcon::fromTheme("newpolar"));
     m_widget->buildPolarGraphCurve->setMouseTracking(true);
     m_widget->buildPolarGraphCurve->installEventFilter(this);
 
-    m_widget->buildCartesianParametricCurve3D->setIcon(KIcon("newparametric3d"));
+    m_widget->buildCartesianParametricCurve3D->setIcon(QIcon::fromTheme("newparametric3d"));
     m_widget->buildCartesianParametricCurve3D->setMouseTracking(true);
     m_widget->buildCartesianParametricCurve3D->installEventFilter(this);
 
-    m_widget->buildCartesianGraphSurface->setIcon(KIcon("newfunction3d"));
+    m_widget->buildCartesianGraphSurface->setIcon(QIcon::fromTheme("newfunction3d"));
     m_widget->buildCartesianGraphSurface->setMouseTracking(true);
     m_widget->buildCartesianGraphSurface->installEventFilter(this);
 
-    m_widget->buildCartesianImplicitSurface->setIcon(KIcon("draw-square-inverted-corners"));
+    m_widget->buildCartesianImplicitSurface->setIcon(QIcon::fromTheme("draw-square-inverted-corners"));
     m_widget->buildCartesianImplicitSurface->setMouseTracking(true);
     m_widget->buildCartesianImplicitSurface->installEventFilter(this);
 
-    m_widget->buildCartesianParametricSurface->setIcon(KIcon("draw-donut"));
+    m_widget->buildCartesianParametricSurface->setIcon(QIcon::fromTheme("draw-donut"));
     m_widget->buildCartesianParametricSurface->setMouseTracking(true);
     m_widget->buildCartesianParametricSurface->installEventFilter(this);
 
-    m_widget->buildCylindricalGraphSurface->setIcon(KIcon("newcylindrical"));
+    m_widget->buildCylindricalGraphSurface->setIcon(QIcon::fromTheme("newcylindrical"));
     m_widget->buildCylindricalGraphSurface->setMouseTracking(true);
     m_widget->buildCylindricalGraphSurface->installEventFilter(this);
 
-    m_widget->buildSphericalGraphSurface->setIcon(KIcon("newspherical"));
+    m_widget->buildSphericalGraphSurface->setIcon(QIcon::fromTheme("newspherical"));
     m_widget->buildSphericalGraphSurface->setMouseTracking(true);
     m_widget->buildSphericalGraphSurface->installEventFilter(this);
 }

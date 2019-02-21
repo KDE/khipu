@@ -182,7 +182,7 @@
            <number>0</number>
           </property>
           <widget class="Analitza::PlotsView2D" name="page"/>
-          <widget class="Analitza::PlotsView3D" name="page_2"/>
+          <widget class="Analitza::PlotsView3DES" name="page_2"/>
          </widget>
         </item>
        </layout>
@@ -208,7 +208,7 @@
           <number>0</number>
          </property>
          <widget class="Analitza::PlotsView2D" name="plotsView2D"/>
-         <widget class="Analitza::PlotsView3D" name="plotsView3D"/>
+         <widget class="Analitza::PlotsView3DES" name="plotsView3D"/>
         </widget>
        </item>
       </layout>
@@ -225,9 +225,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>Analitza::PlotsView3D</class>
+   <class>Analitza::PlotsView3DES</class>
    <extends>QWidget</extends>
-   <header>analitzagui/plotsview3d.h</header>
+   <header>analitzagui/plotsview3d_es.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

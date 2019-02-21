@@ -25,7 +25,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="KLineEdit" name="filterText">
+    <widget class="QLineEdit" name="filterText">
      <property name="minimumSize">
       <size>
        <width>128</width>
@@ -39,9 +39,6 @@
       </size>
      </property>
      <property name="placeholderText">
-      <string/>
-     </property>
-     <property name="clickMessage">
       <string>Filter by space name or description...</string>
      </property>
      <property name="showClearButton" stdset="0">
@@ -50,22 +47,10 @@
     </widget>
    </item>
    <item>
-    <widget class="KComboBox" name="filterOptions"/>
+    <widget class="QComboBox" name="filterOptions"/>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
