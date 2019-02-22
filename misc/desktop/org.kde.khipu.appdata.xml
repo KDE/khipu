@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop">
+  <id>org.kde.khipu.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>Khipu</name>
+  <summary>Advanced Mathematical Function Plotter</summary>
+  <description>
+      <p>Great software for keeping your plots in order and browse them as needed.</p>
+  </description>
+  <url type="homepage">https://userbase.kde.org/Khipu</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=khipu</url>
+  <url type="help">https://docs.kde.org/stable/en/kdeedu/khipu/index.html</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=khipu&amp;source=appdata</url>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>khipu</binary>
+  </provides>
+</component>
