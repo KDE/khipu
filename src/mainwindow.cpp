@@ -430,28 +430,7 @@ void MainWindow::updateThumbnail()
     if (space->dimension()!=Analitza::Dim2D && space->dimension()!=Analitza::Dim3D)
         return;
 
-    QPixmap thumbnail;
-
-    switch (space->dimension())
-    {
-    case Analitza::Dim2D:
-        thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
-        break;
-    case Analitza::Dim3D:
-    {
-        m_dashboard->view3d()->update();
-
-        QImage image(m_dashboard->view3d()->grabFramebuffer());
-
-        thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
-
-        break;
-    }
-    default:
-        break;
-    }
-
-    thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+    const QPixmap thumbnail = m_dashboard->thumbnail(space->dimension()).scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     space->setThumbnail(thumbnail);
 }
 
@@ -1106,28 +1085,7 @@ void MainWindow::goHome()
         space->setDescription(m_spaceInfoDock->description());
 
         // Thumbnail of the current space which is used to identify the space
-        QPixmap thumbnail;
-
-        switch (space->dimension())
-        {
-        case Analitza::Dim2D:
-            thumbnail = QPixmap::grabWidget(m_dashboard->view2d());
-            break;
-        case Analitza::Dim3D:
-        {
-            m_dashboard->view3d()->update();
-
-            QImage image(m_dashboard->view3d()->grabFramebuffer());
-
-            thumbnail = QPixmap::fromImage(image, Qt::ColorOnly);
-
-            break;
-        }
-        default:
-            break;
-        }
-
-        thumbnail = thumbnail.scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        const QPixmap thumbnail = m_dashboard->thumbnail(space->dimension()).scaled(QSize(PreviewWidth, PreviewHeight), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
         space->setThumbnail(thumbnail);
     }
     m_dashboard->goHome();

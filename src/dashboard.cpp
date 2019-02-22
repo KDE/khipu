@@ -152,6 +152,25 @@ void Dashboard::setDocument(DataStore* doc)
     connect(m_document->spacesModel(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int)));
 }
 
+QPixmap Dashboard::thumbnail(Analitza::Dimension dim) const
+{
+    QPixmap thumbnail;
+    switch (dim)
+    {
+    case Analitza::Dim2D:
+        thumbnail = QPixmap::grabWidget(m_ui->plotsView2D);
+        break;
+    case Analitza::Dim3D: {
+        m_ui->plotsView2D->update();
+        thumbnail = QPixmap::fromImage(m_ui->plotsView3D->grabFramebuffer(), Qt::ColorOnly);
+        break;
+    }
+    default:
+        break;
+    }
+    return thumbnail;
+}
+
 PlotsView2D* Dashboard::view2d()
 {
     return m_ui->plotsView2D;

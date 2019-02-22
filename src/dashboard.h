@@ -99,6 +99,7 @@ public slots:
     void importDictionaryClicked();
     void getDictionaryClicked();
     void activateDictionaryData();
+    QPixmap thumbnail(Analitza::Dimension dim) const;
 
 private slots:
     void setDictionaryData(int ind);
