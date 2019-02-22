@@ -158,7 +158,7 @@ QPixmap Dashboard::thumbnail(Analitza::Dimension dim) const
     switch (dim)
     {
     case Analitza::Dim2D:
-        thumbnail = QPixmap::grabWidget(m_ui->plotsView2D);
+        thumbnail = m_ui->plotsView2D->grab();
         break;
     case Analitza::Dim3D: {
         m_ui->plotsView3D->update();
