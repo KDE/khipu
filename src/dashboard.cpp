@@ -355,22 +355,16 @@ void Dashboard::setGridStyle(int i)
         switch (i)
         {
             case 0: 
-            {
                 m_ui->plotsView2D->setShowGrid(false);
-            }
-            break;
+                break;
             case 1: 
-            {
                 m_ui->plotsView2D->setShowGrid(true);
                 m_ui->plotsView2D->setGridStyleHint(Analitza::Squares);
-            }
-            break;
+                break;
             case 2: 
-            {
                 m_ui->plotsView2D->setShowGrid(true);
                 m_ui->plotsView2D->setGridStyleHint(Analitza::Circles);
-            }
-            break;
+                break;
         }
     }
     else 
@@ -379,20 +373,14 @@ void Dashboard::setGridStyle(int i)
             switch (i)
             {
                 case 0: 
-                {
-                    m_ui->plotsView2D->setShowGrid(false); break;
-                }
-                break;
+                    m_ui->plotsView2D->setShowGrid(false);
+                    break;
                 case 1: 
-                {
-                    m_ui->plotsView2D->setShowGrid(true); break;
-                }
-                break;
+                    m_ui->plotsView2D->setShowGrid(true);
+                    break;
                 case 2: 
-                {
-                    m_ui->plotsView2D->setShowGrid(true); break;
-                }
-                break;
+                    m_ui->plotsView2D->setShowGrid(true);
+                    break;
             }
         }
 }
