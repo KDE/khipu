@@ -44,9 +44,9 @@
 using namespace Analitza;
 
 DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
-  ,m_dictionaryModel(0)
   ,m_document(0)
   ,m_currentDimension(DimAll)
+  ,m_dictionaryModel(0)
 {
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
@@ -155,9 +155,11 @@ void DictionaryCollection::importDictionary()
     if(path.isEmpty())
         return;
     int currentIndex=m_widget->dictionaryNames->count();
-    m_widget->dictionaryNames->addItem(QFileInfo(path).baseName());
+
+    const QFileInfo fi(path);
+    m_widget->dictionaryNames->addItem(fi.baseName());
     m_widget->dictionaryNames->setCurrentIndex(currentIndex);
-    m_DictionaryPathName.insertMulti(QFileInfo(path).path().append("/"),QFileInfo(path).fileName());
+    m_DictionaryPathName.insertMulti(fi.path().append('/'), fi.fileName());
     setDictionaryData(currentIndex);
 }
 
