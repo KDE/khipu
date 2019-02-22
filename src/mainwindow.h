@@ -161,7 +161,7 @@ private:
     QString getCurrentAutoSavepath(const QString& path);
 
     //returns the default autosave file's path (i.e.homedirectotypath/.khipu.autosave)
-    QString getDefaultAutoSavepath();
+    QUrl getDefaultAutoSavepath() const;
 
 private:
     DataStore *m_document;

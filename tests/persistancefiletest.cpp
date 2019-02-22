@@ -92,14 +92,16 @@ void PersistanceFileTest::testCorrect()
     document->plotsModel()->addPlot(item);
 
     //save data in a file
-    QVERIFY(window.saveFile(QDir::homePath().append("/.test.khipu")));
+    const QUrl testFile = QUrl::fromLocalFile(QDir::tempPath().append("/.test.khipu"));
+
+    QVERIFY(window.saveFile(testFile));
 
     // clear the models and verify them
     QVERIFY(document->spacesModel()->removeRow(0));
     QVERIFY(document->plotsModel()->removeRow(0));
 
     // open file
-    QVERIFY(window.openFile(QDir::homePath().append("/.test.khipu")));
+    QVERIFY(window.openFile(testFile));
 
     SpaceItem *space=document->spacesModel()->space(0);
     QVERIFY(space!=0);

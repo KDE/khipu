@@ -19,6 +19,13 @@ find_package(Analitza5 REQUIRED)
 
 install(FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
 
+
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING
+                -DQT_NO_CAST_FROM_BYTEARRAY
+                -DQT_USE_QSTRINGBUILDER
+                -DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT
+               )
+
 add_subdirectory(src) #app ... use the library
 add_subdirectory(misc) #icons, pics, function library, etc
 add_subdirectory(tests)

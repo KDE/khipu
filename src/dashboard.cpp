@@ -165,8 +165,6 @@ QPixmap Dashboard::thumbnail(Analitza::Dimension dim) const
         thumbnail = QPixmap::fromImage(m_ui->plotsView3D->grabFramebuffer(), Qt::ColorOnly);
         break;
     }
-    default:
-        break;
     }
     return thumbnail;
 }
