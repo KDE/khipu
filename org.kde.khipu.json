@@ -1,0 +1,31 @@
+{
+    "id": "org.kde.khipu",
+    "branch": "master",
+    "runtime": "org.kde.Platform",
+    "runtime-version": "5.12",
+    "sdk": "org.kde.Sdk",
+    "command": "khipu",
+    "tags": ["nightly"],
+    "desktop-file-name-suffix": " (Nightly)",
+    "finish-args": ["--share=ipc", "--socket=x11", "--socket=wayland", "--device=dri" ],
+    "separate-locales": false,
+
+    "modules": [
+        {
+            "name": "kdelibs4support",
+            "buildsystem": "cmake-ninja",
+            "sources": [ { "type": "git", "url": "git://anongit.kde.org/kdelibs4support.git" } ]
+        },
+        {
+            "name": "analitza",
+            "buildsystem": "cmake-ninja",
+            "sources": [ { "type": "git", "url": "git://anongit.kde.org/analitza.git" } ]
+        },
+        {
+            "name": "khipu",
+            "buildsystem": "cmake-ninja",
+            "sources": [ { "type": "git", "url": "git://anongit.kde.org/khipu.git" } ]
+        }
+    ]
+}
+
