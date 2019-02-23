@@ -226,7 +226,7 @@ void Dashboard::setPlotsView(Analitza::Dimension dim)
 void Dashboard::importDictionaryClicked()
 {
     const QString path = QFileDialog::getOpenFileName(this, i18n( "Open" ), {},
-                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ) );
+                     i18n( "Dictionary Files (*.plots);;All Files (*)" ) );
 
     if(!path.isEmpty()) {
         int currentIndex=m_ui->comboBox->count();
@@ -249,7 +249,7 @@ void Dashboard::showPlotsView3D()
 
 void Dashboard::exportSpaceSnapshot(Dimension dim)
 {
-    QString path = QFileDialog::getSaveFileName(this, i18n("Where to export"), {}, i18n("*.png|PNG Image File"));
+    QString path = QFileDialog::getSaveFileName(this, i18n("Where to export"), {}, i18n("PNG Image File (*.png)"));
     if(!path.isEmpty()){
         if(dim==Dim2D){
             view2d()->toImage(path,PlotsView2D::PNG);

@@ -40,7 +40,6 @@
 #include <QFileDialog>
 #include <QClipboard>
 #include <QSettings>
-#include <QFileDialog>
 #include <QJsonDocument>
 #include <QApplication>
 
@@ -504,7 +503,7 @@ void MainWindow::updateRecentFileList()
 bool MainWindow::openFileClicked()
 {
     const auto url = QFileDialog::getOpenFileUrl(this, i18n("Open"), {},
-                     i18n("*.khipu|Khipu Files (*.khipu)\n*|All Files"));
+                     i18n("Khipu Files (*.khipu);;All Files (*)"));
 
     if (url.path().isEmpty() || m_currentFileUrl == url)
         return false;
@@ -664,7 +663,7 @@ void MainWindow::saveClicked()
     // Intially when the data is not saved. We would not have the actual file path.
     if (m_fileLocation.isEmpty())
     {
-        QUrl url = QFileDialog::getSaveFileUrl(this, i18n("Save As"), {}, i18n("*.khipu|Khipu Files (*.khipu)\n*|All Files") );
+        QUrl url = QFileDialog::getSaveFileUrl(this, i18n("Save As"), {}, i18n("Khipu Files (*.khipu);;All Files (*)") );
         if (url.isEmpty())
             return;
 
@@ -709,7 +708,7 @@ bool MainWindow::closeClicked()
 
 bool MainWindow::saveAsClicked()
 {
-    const auto path = QFileDialog::getSaveFileUrl( this, i18n("Save As"), {}, i18n("*.khipu|Khipu Files (*.khipu)\n*|All Files"));
+    const auto path = QFileDialog::getSaveFileUrl( this, i18n("Save As"), {}, i18n("Khipu Files (*.khipu);;All Files (*)"));
  
     if (path.isEmpty())
         return false;

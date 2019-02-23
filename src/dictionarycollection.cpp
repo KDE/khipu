@@ -150,7 +150,7 @@ void DictionaryCollection::addPlotinSpace(const QModelIndex& ind)
 void DictionaryCollection::importDictionary()
 {
     auto const path = QFileDialog::getOpenFileName(this, i18n("Select Dictionary to import"), {},
-                     i18n( "*.plots|Dictionary Files (*.plots)\n*|All Files" ));
+                     i18n( "Dictionary Files (*.plots);;All Files (*)" ));
 
     if(path.isEmpty())
         return;

@@ -165,7 +165,7 @@ void DataStore::removeSpace(int row)
 
 void DataStore::saveSpaceAsDictionary(QModelIndex ind)
 {
-    const QString path = QFileDialog::getSaveFileName(nullptr, i18n( "Export the space as a Dictionary" ), {}, i18n("*.plots|Plot-Dictionary Files (*.plots)\n*|All Files"));
+    const QString path = QFileDialog::getSaveFileName(nullptr, i18n( "Export the space as a Dictionary" ), {}, i18n("Plot-Dictionary Files (*.plots);;All Files (*)"));
     QFile file(path);
 
     if(!file.open(QFile::WriteOnly | QFile::Text)){
