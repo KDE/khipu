@@ -28,6 +28,7 @@
 int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
+    KLocalizedString::setApplicationDomain("khipu");
     KAboutData about("khipu", i18n("Khipu"), "1.0", i18n("Advanced Mathematical Function Plotter"),
                      KAboutLicense::GPL, i18n("(C) 2010-2012, Percy Camilo Triveño Aucahuasi"));
 
@@ -49,6 +50,7 @@ int main(int argc, char **argv)
     about.addCredit(i18n("Elizabeth Portilla Flores"), i18n("3D Improvements"));
     about.addCredit(i18n("Paul Murat Landauro Minaya"), i18n("3D Improvements"));
 
+    KAboutData::setApplicationData(about);
 
     QCommandLineParser parser;
     about.setupCommandLine(&parser);
