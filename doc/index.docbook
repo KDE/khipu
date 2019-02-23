@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
   <!ENTITY khipu "<application>Khipu</application>">
   <!ENTITY analitza "<application>Analitza</application>">
   <!ENTITY % addindex "IGNORE">
@@ -19,7 +19,7 @@
       </authorgroup>
 <legalnotice>&FDLNotice;</legalnotice>
 <date>2013-09-18</date>
-      <releaseinfo>&kde; SC 4.10</releaseinfo>
+      <releaseinfo>1.0</releaseinfo>
 <abstract>
 <para></para>
       </abstract>
