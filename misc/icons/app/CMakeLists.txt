@@ -1,2 +1,5 @@
-#kde4_install_icons( ${ICON_INSTALL_DIR} )
+ecm_install_icons(ICONS
+   hisc-apps-khipu.svgz
 
+   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons
+)
