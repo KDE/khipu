@@ -17,7 +17,8 @@ include(ECMAddAppIcon)
 find_package(KF5 REQUIRED COMPONENTS I18n ItemModels ItemViews GuiAddons WidgetsAddons NewStuff XmlGui KDELibs4Support DocTools)
 find_package(Analitza5 REQUIRED)
 
-install(FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
+#TODO: enable after adding to store.kde.org
+#install(FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
 
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING
