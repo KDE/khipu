@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Khipu</name>
+  <name xml:lang="ca">Khipu</name>
   <name xml:lang="gl">Khipu</name>
   <name xml:lang="nl">Khipu</name>
   <name xml:lang="pt">Khipu</name>
@@ -12,14 +13,16 @@
   <name xml:lang="uk">Khipu</name>
   <name xml:lang="x-test">xxKhipuxx</name>
   <summary>Advanced Mathematical Function Plotter</summary>
+  <summary xml:lang="ca">Traçador avançat de funcions matemàtiques</summary>
   <summary xml:lang="gl">Representación gráfica avanzada de funcións</summary>
   <summary xml:lang="nl">Geavanceerde wiskundige functieplotter</summary>
-  <summary xml:lang="pt">Desenho Gráfico de Funções Matemáticas Avançadas</summary>
+  <summary xml:lang="pt">Desenho Avançado de Gráficos de Funções Matemáticas</summary>
   <summary xml:lang="sv">Avancerad matematisk funktionsritare</summary>
   <summary xml:lang="uk">Графобудівник математичних функцій з додатковими можливостями</summary>
   <summary xml:lang="x-test">xxAdvanced Mathematical Function Plotterxx</summary>
   <description>
     <p>Great software for keeping your plots in order and browse them as needed.</p>
+    <p xml:lang="ca">Un programari especialitzat en mantenir els gràfics en ordre i visualitzar-los quan sigui necessari.</p>
     <p xml:lang="gl">Gran software para manter as gráficas organizadas e examinalas cando se necesite.</p>
     <p xml:lang="nl">Geweldige software om uw plots in orde te houden en door ze te bladeren indien nodig.</p>
     <p xml:lang="pt">Uma óptima aplicação para manter os seus gráficos em ordem e navegar por eles como necessitar.</p>
