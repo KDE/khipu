@@ -11,6 +11,7 @@
   <name xml:lang="nl">Khipu</name>
   <name xml:lang="pt">Khipu</name>
   <name xml:lang="ru">Khipu</name>
+  <name xml:lang="sk">Khipu</name>
   <name xml:lang="sv">Khipu</name>
   <name xml:lang="uk">Khipu</name>
   <name xml:lang="x-test">xxKhipuxx</name>
@@ -21,6 +22,7 @@
   <summary xml:lang="gl">Representación gráfica avanzada de funcións</summary>
   <summary xml:lang="nl">Geavanceerde wiskundige functieplotter</summary>
   <summary xml:lang="pt">Desenho Avançado de Gráficos de Funções Matemáticas</summary>
+  <summary xml:lang="sk">Pokročilý vykresľovač matematických funkcií</summary>
   <summary xml:lang="sv">Avancerad matematisk funktionsritare</summary>
   <summary xml:lang="uk">Графобудівник математичних функцій з додатковими можливостями</summary>
   <summary xml:lang="x-test">xxAdvanced Mathematical Function Plotterxx</summary>
@@ -31,6 +33,7 @@
     <p xml:lang="gl">Gran software para manter as gráficas organizadas e examinalas cando se necesite.</p>
     <p xml:lang="nl">Geweldige software om uw plots in orde te houden en door ze te bladeren indien nodig.</p>
     <p xml:lang="pt">Uma óptima aplicação para manter os seus gráficos em ordem e navegar por eles como necessitar.</p>
+    <p xml:lang="sk">Výborný softvér na usporiadanie vašich grafov a ich prehliadanie v prípade potreby.</p>
     <p xml:lang="sv">Utmärkt programvara för att hålla ordning på diagram och bläddra bland dem efter behov</p>
     <p xml:lang="uk">Чудове програмне забезпечення для упорядковування та навігації вашими графіками функцій.</p>
     <p xml:lang="x-test">xxGreat software for keeping your plots in order and browse them as needed.xx</p>
