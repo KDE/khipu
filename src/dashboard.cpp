@@ -147,6 +147,7 @@ void Dashboard::setDocument(DataStore* doc)
     m_document->currentPlots()->setFilterSpaceDimension(Dim3D);
     m_ui->plotsView3D->setModel(m_document->currentPlots());
     m_ui->plotsView3D->setSelectionModel(m_document->currentSelectionModel());
+    m_ui->plotsView3D->setUseSimpleRotation(true);
 
     connect(m_document->currentPlots(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentPlot(QModelIndex,int)));
     connect(m_document->spacesModel(), SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(setCurrentSpace(QModelIndex,int)));

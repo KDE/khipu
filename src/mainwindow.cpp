@@ -1127,7 +1127,6 @@ void MainWindow::buildPolarGraphCurve()
     m_spacePlotsDock->buildPolarGraphCurve(true);
 }
 
-
 void MainWindow::buildCartesianParametricCurve3D()
 {
     addSpace3D();
