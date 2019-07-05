@@ -10,6 +10,7 @@
   <name xml:lang="es">Khipu</name>
   <name xml:lang="fr">Khipu</name>
   <name xml:lang="gl">Khipu</name>
+  <name xml:lang="it">Khipu</name>
   <name xml:lang="nl">Khipu</name>
   <name xml:lang="pl">Khipu</name>
   <name xml:lang="pt">Khipu</name>
@@ -26,6 +27,7 @@
   <summary xml:lang="es">Trazador avanzado de funciones matemáticas</summary>
   <summary xml:lang="fr">Traceur avancé de fonctions mathématiques</summary>
   <summary xml:lang="gl">Representación gráfica avanzada de funcións</summary>
+  <summary xml:lang="it">Plotter avanzato di funzioni matematiche</summary>
   <summary xml:lang="nl">Geavanceerde wiskundige functieplotter</summary>
   <summary xml:lang="pl">Rysowanie złożonych funkcji matematycznych</summary>
   <summary xml:lang="pt">Desenho Avançado de Gráficos de Funções Matemáticas</summary>
@@ -41,6 +43,7 @@
     <p xml:lang="es">Buen software para tener sus gráficos en orden y examinarlos cuando lo necesite.</p>
     <p xml:lang="fr">Un logiciel génial qui vous permet de classer vos tracés et de les retrouver quand vous en avez besoin.</p>
     <p xml:lang="gl">Gran software para manter as gráficas organizadas e examinalas cando se necesite.</p>
+    <p xml:lang="it">Un ottimo software per mantenere in ordine i tuoi grafici e sfogliarli quando necessario.</p>
     <p xml:lang="nl">Geweldige software om uw plots in orde te houden en door ze te bladeren indien nodig.</p>
     <p xml:lang="pl">Świetne oprogramowanie do porządkowania wykresów i przeglądania ich, gdy są potrzebne.</p>
     <p xml:lang="pt">Uma óptima aplicação para manter os seus gráficos em ordem e navegar por eles como necessitar.</p>
