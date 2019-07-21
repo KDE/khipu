@@ -131,17 +131,17 @@ void PlotsBuilder::mapConnection(PlotsBuilder::PlotType pt, QObject* recvr, cons
     switch (pt)
     {
         //2D
-        caseType(CartesianGraphCurve);
-        caseType(CartesianImplicitCurve);
-        caseType(CartesianParametricCurve2D);
-        caseType(PolarGraphCurve);
+        caseType(CartesianGraphCurve)
+        caseType(CartesianImplicitCurve)
+        caseType(CartesianParametricCurve2D)
+        caseType(PolarGraphCurve)
         //3D
-        caseType(CartesianParametricCurve3D);
-        caseType(CartesianGraphSurface);
-        caseType(CartesianImplicitSurface);
-        caseType(CartesianParametricSurface);
-        caseType(CylindricalGraphSurface);
-        caseType(SphericalGraphSurface);
+        caseType(CartesianParametricCurve3D)
+        caseType(CartesianGraphSurface)
+        caseType(CartesianImplicitSurface)
+        caseType(CartesianParametricSurface)
+        caseType(CylindricalGraphSurface)
+        caseType(SphericalGraphSurface)
         case(None): break;
     }
 }
@@ -151,18 +151,18 @@ void PlotsBuilder::showAllTypes()
     #define showType(tname) m_widget->build##tname->show(); 
     
     //2D
-    showType(CartesianGraphCurve);
-    showType(CartesianGraphCurve);
-    showType(CartesianImplicitCurve);
-    showType(CartesianParametricCurve2D);
-    showType(PolarGraphCurve);
+    showType(CartesianGraphCurve)
+    showType(CartesianGraphCurve)
+    showType(CartesianImplicitCurve)
+    showType(CartesianParametricCurve2D)
+    showType(PolarGraphCurve)
     //3D
-    showType(CartesianParametricCurve3D);
-    showType(CartesianGraphSurface);
-    showType(CartesianImplicitSurface);
-    showType(CartesianParametricSurface);
-    showType(CylindricalGraphSurface);
-    showType(SphericalGraphSurface);
+    showType(CartesianParametricCurve3D)
+    showType(CartesianGraphSurface)
+    showType(CartesianImplicitSurface)
+    showType(CartesianParametricSurface)
+    showType(CylindricalGraphSurface)
+    showType(SphericalGraphSurface)
     
     m_widget->cartesianCurvesLinks->show();
     m_widget->polarCurvesLinks->show();
@@ -177,18 +177,18 @@ void PlotsBuilder::hideAllTypes()
     #define hideType(tname) m_widget->build##tname->hide(); 
     
     //2D
-    hideType(CartesianGraphCurve);
-    hideType(CartesianGraphCurve);
-    hideType(CartesianImplicitCurve);
-    hideType(CartesianParametricCurve2D);
-    hideType(PolarGraphCurve);
+    hideType(CartesianGraphCurve)
+    hideType(CartesianGraphCurve)
+    hideType(CartesianImplicitCurve)
+    hideType(CartesianParametricCurve2D)
+    hideType(PolarGraphCurve)
     //3D
-    hideType(CartesianParametricCurve3D);
-    hideType(CartesianGraphSurface);
-    hideType(CartesianImplicitSurface);
-    hideType(CartesianParametricSurface);
-    hideType(CylindricalGraphSurface);
-    hideType(SphericalGraphSurface);
+    hideType(CartesianParametricCurve3D)
+    hideType(CartesianGraphSurface)
+    hideType(CartesianImplicitSurface)
+    hideType(CartesianParametricSurface)
+    hideType(CylindricalGraphSurface)
+    hideType(SphericalGraphSurface)
     
     m_widget->cartesianCurvesLinks->hide();
     m_widget->polarCurvesLinks->hide();
@@ -203,18 +203,18 @@ void PlotsBuilder::setupTypes()
     #define testType(tname) if (m_types.testFlag( tname )) m_widget->build##tname->show(); else m_widget->build##tname->hide();
 
     //2D
-    testType(CartesianGraphCurve);
-    testType(CartesianGraphCurve);
-    testType(CartesianImplicitCurve);
-    testType(CartesianParametricCurve2D);
-    testType(PolarGraphCurve);
+    testType(CartesianGraphCurve)
+    testType(CartesianGraphCurve)
+    testType(CartesianImplicitCurve)
+    testType(CartesianParametricCurve2D)
+    testType(PolarGraphCurve)
     //3D
-    testType(CartesianParametricCurve3D);
-    testType(CartesianGraphSurface);
-    testType(CartesianImplicitSurface);
-    testType(CartesianParametricSurface);
-    testType(CylindricalGraphSurface);
-    testType(SphericalGraphSurface);
+    testType(CartesianParametricCurve3D)
+    testType(CartesianGraphSurface)
+    testType(CartesianImplicitSurface)
+    testType(CartesianParametricSurface)
+    testType(CylindricalGraphSurface)
+    testType(SphericalGraphSurface)
     
     if (m_types.testFlag(CartesianGraphCurve) || m_types.testFlag(CartesianImplicitCurve) || m_types.testFlag(CartesianParametricCurve2D))
         m_widget->cartesianCurvesLinks->show();
