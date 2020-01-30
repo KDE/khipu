@@ -10,6 +10,7 @@
   <name xml:lang="cs">Khipu</name>
   <name xml:lang="de">Khipu</name>
   <name xml:lang="es">Khipu</name>
+  <name xml:lang="et">Khipu</name>
   <name xml:lang="fr">Khipu</name>
   <name xml:lang="gl">Khipu</name>
   <name xml:lang="id">Khipu</name>
@@ -30,6 +31,7 @@
   <summary xml:lang="cs">Pokročilý souřadnicový zapisovač matematických funkcí</summary>
   <summary xml:lang="de">Fortgeschrittener mathematischer Funktionsplotter</summary>
   <summary xml:lang="es">Trazador avanzado de funciones matemáticas</summary>
+  <summary xml:lang="et">Täiustatud matemaatilise funktsioonide graafiku joonistaja</summary>
   <summary xml:lang="fr">Traceur avancé de fonctions mathématiques</summary>
   <summary xml:lang="gl">Representación gráfica avanzada de funcións</summary>
   <summary xml:lang="id">Plotter Fungsi Matematika Canggih</summary>
@@ -47,6 +49,7 @@
     <p xml:lang="ca">Un programari especialitzat en mantenir els gràfics en ordre i visualitzar-los quan sigui necessari.</p>
     <p xml:lang="ca-valencia">Un programari especialitzat en mantindre els gràfics en ordre i visualitzar-los quan siga necessari.</p>
     <p xml:lang="es">Buen software para tener sus gráficos en orden y examinarlos cuando lo necesite.</p>
+    <p xml:lang="et">Võimas tarkvara jooniste korraldamiseks ja sirvimiseks.</p>
     <p xml:lang="fr">Un logiciel génial qui vous permet de classer vos tracés et de les retrouver quand vous en avez besoin.</p>
     <p xml:lang="gl">Gran software para manter as gráficas organizadas e examinalas cando se necesite.</p>
     <p xml:lang="id">Software yang bagus untuk menjaga plot-plotmu dalam urutan dan menelusurinya kalau diperlukan.</p>
