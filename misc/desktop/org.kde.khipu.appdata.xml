@@ -15,6 +15,7 @@
   <name xml:lang="gl">Khipu</name>
   <name xml:lang="id">Khipu</name>
   <name xml:lang="it">Khipu</name>
+  <name xml:lang="ko">Khipu</name>
   <name xml:lang="nl">Khipu</name>
   <name xml:lang="pl">Khipu</name>
   <name xml:lang="pt">Khipu</name>
@@ -36,6 +37,7 @@
   <summary xml:lang="gl">Representación gráfica avanzada de funcións</summary>
   <summary xml:lang="id">Plotter Fungsi Matematika Canggih</summary>
   <summary xml:lang="it">Plotter avanzato di funzioni matematiche</summary>
+  <summary xml:lang="ko">고급 수학 함수 플로터</summary>
   <summary xml:lang="nl">Geavanceerde wiskundige functieplotter</summary>
   <summary xml:lang="pl">Rysowanie złożonych funkcji matematycznych</summary>
   <summary xml:lang="pt">Desenho Avançado de Gráficos de Funções Matemáticas</summary>
@@ -54,6 +56,7 @@
     <p xml:lang="gl">Gran software para manter as gráficas organizadas e examinalas cando se necesite.</p>
     <p xml:lang="id">Software yang bagus untuk menjaga plot-plotmu dalam urutan dan menelusurinya kalau diperlukan.</p>
     <p xml:lang="it">Un ottimo software per mantenere in ordine i tuoi grafici e sfogliarli quando necessario.</p>
+    <p xml:lang="ko">그래프를 작도하고 필요할 때 탐색할 수 있는 소프트웨어입니다.</p>
     <p xml:lang="nl">Geweldige software om uw plots in orde te houden en door ze te bladeren indien nodig.</p>
     <p xml:lang="pl">Świetne oprogramowanie do porządkowania wykresów i przeglądania ich, gdy są potrzebne.</p>
     <p xml:lang="pt">Uma óptima aplicação para manter os seus gráficos em ordem e navegar por eles como necessitar.</p>
