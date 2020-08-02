@@ -71,7 +71,7 @@
   </description>
   <url type="homepage">https://userbase.kde.org/Khipu</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=khipu</url>
-  <url type="help">https://docs.kde.org/stable/en/kdeedu/khipu/index.html</url>
+  <url type="help">https://docs.kde.org/?application=khipu</url>
   <url type="donation">https://www.kde.org/community/donations/?app=khipu&amp;source=appdata</url>
   <project_group>KDE</project_group>
   <provides>
