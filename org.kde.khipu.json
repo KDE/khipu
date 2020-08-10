@@ -14,17 +14,17 @@
         {
             "name": "kdelibs4support",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "git://anongit.kde.org/kdelibs4support.git" } ]
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/frameworks/kdelibs4support" } ]
         },
         {
             "name": "analitza",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "git://anongit.kde.org/analitza.git" } ]
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/education/analitza" } ]
         },
         {
             "name": "khipu",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "git://anongit.kde.org/khipu.git" } ]
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/education/khipu" } ]
         }
     ]
 }
