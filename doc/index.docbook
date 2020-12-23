@@ -11,7 +11,7 @@
 <authorgroup>
 <author>
 <personname>
-      <firstname>This documentation was converted from the &kde; UserBase <ulink url=" http://userbase.kde.org/Khipu/Manual/Introduction">&khipu;/Manual</ulink> page.</firstname>
+      <firstname>This documentation was converted from the &kde; UserBase <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction">&khipu;/Manual</ulink> page.</firstname>
 <surname></surname>
 </personname>
       </author>
@@ -233,7 +233,7 @@
   </mediaobject>
 </screenshot>
 </para>
-<para>The main advantage of the dictionaries is to add the plots without typing big equations. For that, add any space in &khipu;. Then switch to the <guilabel>Add From Dictionary</guilabel> tab. You can add the dictionary file there according to your wish. You just need to double click on the name of the plot to add it in the current &khipu; Space.
+<para>The main advantage of the dictionaries is to add the plots without typing big equations. For that, add any space in &khipu;. Then switch to the <guilabel>Add from Dictionary</guilabel> tab. You can add the dictionary file there according to your wish. You just need to double click on the name of the plot to add it in the current &khipu; Space.
 </para>
 <para>
 <screenshot>
@@ -321,10 +321,10 @@
 <para>While a user is on any space (2D or 3D), he can switch to next/previous/first/last space in just one key stroke. The shortcuts for this are as follows:
 </para>
 <itemizedlist>
-<listitem><para>Navigate to the next space -&gt; <keycap>Page Up</keycap></para></listitem>
-<listitem><para>Navigate to the previous space -&gt; <keycap>Page Down</keycap></para></listitem>
-<listitem><para>Navigate to the first space -&gt; <keycombo>&Ctrl;<keycap>Home</keycap></keycombo></para></listitem>
-<listitem><para>Navigate to the last space -&gt; <keycombo>&Ctrl;<keycap>End</keycap></keycombo></para></listitem>
+<listitem><para>Navigate to the next space -&gt; &PgUp;</para></listitem>
+<listitem><para>Navigate to the previous space -&gt; &PgDn;</para></listitem>
+<listitem><para>Navigate to the first space -&gt; <keycombo>&Ctrl;&Home;</keycombo></para></listitem>
+<listitem><para>Navigate to the last space -&gt; <keycombo>&Ctrl;&End;</keycombo></para></listitem>
 </itemizedlist>
 </sect3>
 </sect2>
@@ -406,9 +406,9 @@
 </para>
 </sect1>
 <sect1 id="licenses"><title>Licenses</title> 
-<para>This documentation is licensed under the terms of the <ulink url="http://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights">&GNU; Free Documentation License</ulink>.
+<para>This documentation is licensed under the terms of the <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights">&GNU; Free Documentation License</ulink>.
 </para>
-<para>This program is licensed under the terms of the <ulink url="http://www.gnu.org/licenses/gpl-2.0.txt">&GNU; General Public License</ulink>.
+<para>This program is licensed under the terms of the <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt">&GNU; General Public License</ulink>.
 </para>
 
 <!--userbase-content-->
