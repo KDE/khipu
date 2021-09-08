@@ -14,7 +14,7 @@
         {
             "name": "kdelibs4support",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "https://invent.kde.org/frameworks/kdelibs4support" } ]
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/frameworks/kdelibs4support", "branch": "v5.85.0" } ]
         },
         {
             "name": "analitza",
