@@ -27,6 +27,7 @@
   <name xml:lang="sk">Khipu</name>
   <name xml:lang="sl">Khipu</name>
   <name xml:lang="sv">Khipu</name>
+  <name xml:lang="tr">Khipu</name>
   <name xml:lang="uk">Khipu</name>
   <name xml:lang="x-test">xxKhipuxx</name>
   <name xml:lang="zh-TW">Khipu</name>
@@ -52,6 +53,7 @@
   <summary xml:lang="sk">Pokročilý vykresľovač matematických funkcií</summary>
   <summary xml:lang="sl">Napredni risalni matematičnih funkcij</summary>
   <summary xml:lang="sv">Avancerad matematisk funktionsritare</summary>
+  <summary xml:lang="tr">Gelişmiş Matematiksel İşlev Çizici</summary>
   <summary xml:lang="uk">Графобудівник математичних функцій з додатковими можливостями</summary>
   <summary xml:lang="x-test">xxAdvanced Mathematical Function Plotterxx</summary>
   <description>
@@ -76,6 +78,7 @@
     <p xml:lang="sk">Výborný softvér na usporiadanie vašich grafov a ich prehliadanie v prípade potreby.</p>
     <p xml:lang="sl">Odlična programska oprema za vzdrževanje grafov in brskanje po njih kadar jih potrebujete.</p>
     <p xml:lang="sv">Utmärkt programvara för att hålla ordning på diagram och bläddra bland dem efter behov</p>
+    <p xml:lang="tr">Çizimlerinizi düzgünce tutmak ve gerektiğinde göz atmak için harika bir yazılım.</p>
     <p xml:lang="uk">Чудове програмне забезпечення для упорядковування та навігації вашими графіками функцій.</p>
     <p xml:lang="x-test">xxGreat software for keeping your plots in order and browse them as needed.xx</p>
   </description>
