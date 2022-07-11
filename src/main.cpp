@@ -55,6 +55,7 @@ int main(int argc, char **argv)
     QCommandLineParser parser;
     about.setupCommandLine(&parser);
     parser.addPositionalArgument("urls", i18n("Khipu files to open"));
+    parser.addOption(QCommandLineOption("ignoreautosavedfile", i18n("Always start with a new file, ignoring any autosaved file")));
     parser.process(app);
     about.processCommandLine(&parser);
 
@@ -64,7 +65,9 @@ int main(int argc, char **argv)
         RESTORE(MainWindow)
     } else {
         if (parser.positionalArguments().isEmpty()) {
-            mainWindow->checkforAutoSavedFile();
+            if (parser.isSet("ignoreautosavedfile")) {
+                mainWindow->checkforAutoSavedFile();
+            }
             mainWindow->show();
         } else {
             bool exit = false;
