@@ -496,7 +496,7 @@ void MainWindow::updateRecentFileList()
     // Traversing in reverse manner will lead to the correct Recently opened file-list
     for (int i = numRecentFiles-1; i >=0 ; i--) {
         QString text=files[i];
-        m_openrecent->addUrl(QUrl(text), QFileInfo(text).fileName());
+        m_openrecent->addUrl(QUrl::fromLocalFile(text), QFileInfo(text).fileName());
     }
 }
 
