@@ -50,12 +50,13 @@
 #include <KStandardAction>
 #include <KStatusBar>
 #include <KMessageBox>
-#include <KToolInvocation>
 #include <KIO/NetAccess>
 #include <KTemporaryFile>
 #include <KToolBar>
 #include <KMenuBar>
 #include <KConfigGroup>
+#include <KIO/CommandLauncherJob>
+#include <KIO/ApplicationLauncherJob>
 
 //local includes
 #include "spaceitem.h"
@@ -448,9 +449,9 @@ void MainWindow::newFile()
 
     // creates a new proccess.
     // The commandline arguments is used to create a completely new instance of Khipu(i.e. it does not reload the autosaved file)
-    QStringList args;
-    args << "ignoreautosavedfile"; // we dont want to reload the autosave file for the new action's slot.
-    KToolInvocation::kdeinitExec("khipu", args);
+    auto *job = new KIO::CommandLauncherJob(QStringLiteral("khipu"), {QStringLiteral("--ignoreautosavedfile")});
+    job->setDesktopName(QStringLiteral("org.kde.khipu"));
+    job->start();
 }
 
 void MainWindow::openRecentClicked(const QUrl&  name)
@@ -460,9 +461,9 @@ void MainWindow::openRecentClicked(const QUrl&  name)
         openFile(name);
         return;
     }
-    QStringList args;
-    args << name.toLocalFile();
-    KToolInvocation::kdeinitExec("khipu", args);
+    auto *job = new KIO::ApplicationLauncherJob(KService::serviceByDesktopName(QStringLiteral("org.kde.khipu")));
+    job->setUrls({name});
+    job->start();
 }
 
 void MainWindow::setCurrentFile(const QString &fileName)
