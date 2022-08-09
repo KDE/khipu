@@ -85,7 +85,7 @@ void PersistanceFileTest::testCorrect()
 
     document->spacesModel()->addSpace(spacedimension,spacename,QString());
 
-    FunctionGraph *item=0;
+    FunctionGraph *item=nullptr;
     Analitza::PlotBuilder req = Analitza::PlotsFactory::self()->requestPlot(Analitza::Expression(plotequation),spacedimension);
     QVERIFY(req.canDraw());
     item = req.create(QColor(plotcolor),plotname);
@@ -104,13 +104,13 @@ void PersistanceFileTest::testCorrect()
     QVERIFY(window.openFile(testFile));
 
     SpaceItem *space=document->spacesModel()->space(0);
-    QVERIFY(space!=0);
+    QVERIFY(space!=nullptr);
 
     QModelIndex ind = document->spacesModel()->index(0);
     window.createPlot(ind);
 
     PlotItem* plotitem=document->plotsModel()->data(document->plotsModel()->index(0),PlotsModel::PlotRole).value<PlotItem*>();
-    QVERIFY(plotitem!=0);
+    QVERIFY(plotitem!=nullptr);
 
     //testing the data
     QCOMPARE(space->name(),spacename);

@@ -49,8 +49,8 @@ SpacesDelegate::SpacesDelegate(SpacesView *itemView, QObject *parent)
     : QStyledItemDelegate(parent)
     , m_itemView(itemView)
     , m_isEditing(false)
-    , m_operationBar(0)
-    , m_titleEditor(0)
+    , m_operationBar(nullptr)
+    , m_titleEditor(nullptr)
 {
     itemView->viewport()->installEventFilter(this);
     
@@ -170,7 +170,7 @@ void SpacesDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option
     {
         //focus
         QStyle *style = QApplication::style();
-        style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, 0);
+        style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, nullptr);
         //endfocus
 
         painter->setPen(QPen(option.palette.highlightedText().color()));

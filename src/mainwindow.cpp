@@ -424,7 +424,7 @@ void MainWindow::updateThumbnail()
 
     SpaceItem *space = m_document->spacesModel()->space(m_document->currentSpace());
 
-    if (space==0)
+    if (space==nullptr)
         return;
 
     if (space->dimension()!=Analitza::Dim2D && space->dimension()!=Analitza::Dim3D)
@@ -1192,7 +1192,7 @@ void MainWindow::createPlot(const QModelIndex &ind)
         if (req.canDraw()) 
         {
 
-            FunctionGraph *item = 0;
+            FunctionGraph *item = nullptr;
             item = req.create(plotcolor, plotname);
 
             if (dim==Dim2D)

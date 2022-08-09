@@ -109,7 +109,7 @@ bool SpacesModel::removeRows(int row, int count, const QModelIndex& parent)
         if (!tmpcurve->m_inDestructorSoDontDeleteMe)
         {
             delete tmpcurve;
-            tmpcurve = 0;
+            tmpcurve = nullptr;
         }
 
         m_itemCanCallModelRemoveItem = true;

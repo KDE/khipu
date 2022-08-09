@@ -175,7 +175,7 @@ void DataStore::saveSpaceAsDictionary(QModelIndex ind)
 
     QTextStream out(&file);
     if(m_maps.empty()) {
-        KMessageBox::error(0,i18n("Error while saving file, no plots available for this space"),i18n("Error while saving a dictionary"));
+        KMessageBox::error(nullptr,i18n("Error while saving file, no plots available for this space"),i18n("Error while saving a dictionary"));
         return;
     }
 

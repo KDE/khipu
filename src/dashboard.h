@@ -60,7 +60,7 @@ class Dashboard : public QStackedWidget
 
 public:
 
-    explicit Dashboard(QWidget *parent = 0);
+    explicit Dashboard(QWidget *parent = nullptr);
     ~Dashboard();
 
     void setDocument(DataStore *doc);

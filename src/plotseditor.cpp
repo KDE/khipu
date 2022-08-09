@@ -636,7 +636,7 @@ void PlotsEditor::savePlot()
             PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(QString(m_currentVars.first()+"->"+m_widget->f->expression().toString())), Dim2D);
             if (req.canDraw())
             {
-                FunctionGraph *item =0;
+                FunctionGraph *item =nullptr;
 
                 if (isEditing) 
                 {
@@ -669,7 +669,7 @@ void PlotsEditor::savePlot()
             
             if (req.canDraw()) 
             {
-                FunctionGraph *item = 0;
+                FunctionGraph *item = nullptr;
 
                 if (isEditing) {
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
@@ -701,7 +701,7 @@ void PlotsEditor::savePlot()
             
             if (req.canDraw() && m_widget->f->expression().isEquation()) 
             {
-                FunctionGraph *item = 0;
+                FunctionGraph *item = nullptr;
 
                 if (isEditing)
                 {
@@ -734,7 +734,7 @@ void PlotsEditor::savePlot()
 
             if (req.canDraw() && m_widget->f->expression().isEquation())
             {
-                FunctionGraph *item = 0;
+                FunctionGraph *item = nullptr;
 
                 if (isEditing)
                 {
@@ -768,7 +768,7 @@ void PlotsEditor::savePlot()
             
             if (req.canDraw()) 
             {
-                FunctionGraph *item = 0;
+                FunctionGraph *item = nullptr;
                 
                 if (isEditing) 
                 {
@@ -797,7 +797,7 @@ void PlotsEditor::savePlot()
             
             if (req.canDraw())
             {
-                FunctionGraph *item = 0;
+                FunctionGraph *item = nullptr;
                 
                 if (isEditing) {
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
@@ -826,7 +826,7 @@ void PlotsEditor::savePlot()
             
             if (req.canDraw()) 
             {
-                FunctionGraph *item = 0;
+                FunctionGraph *item = nullptr;
                 if (isEditing) {
                     m_document->unmapPlot(m_widget->plotsView->selectionModel()->currentIndex());
                 }

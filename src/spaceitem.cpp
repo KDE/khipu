@@ -23,7 +23,7 @@
 
 SpaceItem::SpaceItem(Analitza::Dimension dimension)
     : m_dimension(dimension)
-    , m_model(0)
+    , m_model(nullptr)
 {
     m_dateTime = QDateTime::currentDateTime();
     

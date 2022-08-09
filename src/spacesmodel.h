@@ -36,7 +36,7 @@ friend class SpaceItem;
 Q_OBJECT
 
 public:
-    explicit SpacesModel(QObject *parent=0);
+    explicit SpacesModel(QObject *parent=nullptr);
 
     Qt::ItemFlags flags ( const QModelIndex & index ) const;
     

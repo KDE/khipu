@@ -34,7 +34,7 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
     Q_OBJECT
 
     public:
-        explicit SpacesFilterProxyModel(QObject *parent = 0);
+        explicit SpacesFilterProxyModel(QObject *parent = nullptr);
 
         void setFilterDimension(Analitza::Dimensions dimension);
         void setFilterText(const QString& text);
@@ -54,7 +54,7 @@ class PlotsProxyModel : public QSortFilterProxyModel
 
     public:
 
-        explicit PlotsProxyModel(QObject *parent = 0);
+        explicit PlotsProxyModel(QObject *parent = nullptr);
         virtual ~PlotsProxyModel();
 
         int filterSpaceDimension() const { return m_dimension; }
@@ -76,7 +76,7 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
     Q_OBJECT
 
     public:
-        explicit SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = 0);
+        explicit SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = nullptr);
         virtual ~SpacePlotsFilterProxyModel();
 
         SpaceItem* filterSpace() const { return m_space; }

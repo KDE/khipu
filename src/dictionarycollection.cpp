@@ -44,9 +44,9 @@
 using namespace Analitza;
 
 DictionaryCollection::DictionaryCollection(QWidget* parent): QDockWidget(parent)
-  ,m_document(0)
+  ,m_document(nullptr)
   ,m_currentDimension(DimAll)
-  ,m_dictionaryModel(0)
+  ,m_dictionaryModel(nullptr)
 {
     m_widget = new Ui::DictionaryCollectionWidget;
     m_widget->setupUi(this);
@@ -86,7 +86,7 @@ void DictionaryCollection::setDefaultDictionaries()
 
 void DictionaryCollection::setDictionaryData(int ind)
 {
-    if(ind==-1 || m_document==0)
+    if(ind==-1 || m_document==nullptr)
         return;
 
     PlotsDictionaryModel *model=new PlotsDictionaryModel;
@@ -119,7 +119,7 @@ void DictionaryCollection::setDictionaryData(int ind)
 
 void DictionaryCollection::addPlotClicked()
 {
-    if(m_widget->plotsView->selectionModel()==0)
+    if(m_widget->plotsView->selectionModel()==nullptr)
         return;
 
     QModelIndex ind=m_widget->plotsView->selectionModel()->currentIndex();
@@ -140,7 +140,7 @@ void DictionaryCollection::addPlotinSpace(const QModelIndex& ind)
     QString exp=str.right(str.length()-str.indexOf(":=")-2); //parsing of expression from the line
     PlotBuilder req = PlotsFactory::self()->requestPlot(Analitza::Expression(exp), m_currentDimension);
 
-    FunctionGraph *item = 0;
+    FunctionGraph *item = nullptr;
     item = req.create(randomFunctionColor(),m_dictionaryModel->data(ind).toString());
     m_document->plotsModel()->addPlot(item);
 

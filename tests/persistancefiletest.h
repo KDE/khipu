@@ -30,7 +30,7 @@ class PersistanceFileTest : public QObject
 {
 Q_OBJECT
     public:
-        PersistanceFileTest(QObject *parent = 0);
+        PersistanceFileTest(QObject *parent = nullptr);
         ~PersistanceFileTest();
 
    private slots:

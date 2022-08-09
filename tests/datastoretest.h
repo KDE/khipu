@@ -33,7 +33,7 @@ class DataStoreTest : public QObject
 {
 Q_OBJECT
 	public:
-        DataStoreTest(QObject *parent = 0);
+        DataStoreTest(QObject *parent = nullptr);
         ~DataStoreTest();
 
 	private slots:
