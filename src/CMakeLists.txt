@@ -43,4 +43,4 @@ PUBLIC
   KF5::AnalitzaPlot
 )
 
-install (TARGETS khipu ${INSTALL_TARGETS_DEFAULT_ARGS})
+install (TARGETS khipu ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

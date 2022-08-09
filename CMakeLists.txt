@@ -23,7 +23,7 @@ find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n ItemModels ItemViews
 find_package(Analitza5 REQUIRED)
 
 #TODO: enable after adding to store.kde.org
-#install(FILES khipu.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
+#install(FILES khipu.knsrc DESTINATION  ${KDE_INSTALL_CONFDIR})
 
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING

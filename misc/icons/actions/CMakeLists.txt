@@ -27,5 +27,5 @@ ecm_install_icons(ICONS
    hisc-actions-sphere.svgz
    hisc-actions-torus.svgz
 
-   DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons
+   DESTINATION ${KDE_INSTALL_ICONDIR}
 )
