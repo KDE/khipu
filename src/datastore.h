@@ -43,7 +43,7 @@ class DataStore : public QObject
 
 public:
     explicit DataStore(QObject *parent = nullptr);
-    ~DataStore();
+    ~DataStore() override;
 
     int currentSpace() const { return m_currentSpace; }
 

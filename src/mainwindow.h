@@ -51,7 +51,7 @@ class MainWindow : public KXmlGuiWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    virtual ~MainWindow();
+    ~MainWindow() override;
 
     DataStore* getDocument() { return m_document; }
 
@@ -154,7 +154,7 @@ private:
     QPixmap toPixmap(const QByteArray &bytearray);
     QByteArray thumbnailtoByteArray(const QPixmap &thumbnail);
 
-    void closeEvent(QCloseEvent * event);
+    void closeEvent(QCloseEvent * event) override;
     void updateThumbnail();
 
     //returns the current autosave file's path (i.e.currentdirecotrypath/.filename.khipu.autosave)

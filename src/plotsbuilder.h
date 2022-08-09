@@ -62,7 +62,7 @@ public:
     
 
     explicit PlotsBuilder(QWidget *parent);
-    ~ PlotsBuilder();
+    ~ PlotsBuilder() override;
 
     void setupTypes(PlotTypes t);
     PlotTypes types() const { return m_types; }
@@ -74,7 +74,7 @@ public slots:
     
 private:
     void setupTypes();
-    bool eventFilter(QObject *object, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) override;
     Ui::PlotsBuilderWidget *m_widget;
     PlotTypes m_types;
     Analitza::Expression m_example;

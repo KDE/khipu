@@ -40,7 +40,7 @@ class Filter : public QWidget
     Q_OBJECT
 public:
     explicit Filter(QWidget *parent);
-    ~ Filter();
+    ~ Filter() override;
 
 public slots:
     void setFilterVisible(bool b);

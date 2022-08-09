@@ -45,7 +45,7 @@ class DictionaryCollection : public QDockWidget
 
 public:
     DictionaryCollection(QWidget *parent);
-    ~ DictionaryCollection();
+    ~ DictionaryCollection() override;
 
     //set the appropirate dashboard widget reference
     void setDashboardWidget(Dashboard *dashboard);

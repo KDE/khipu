@@ -61,7 +61,7 @@ class Dashboard : public QStackedWidget
 public:
 
     explicit Dashboard(QWidget *parent = nullptr);
-    ~Dashboard();
+    ~Dashboard() override;
 
     void setDocument(DataStore *doc);
     QMap<QString,QString> dictionaryDataMap() const { return  m_DictionaryPathName; }

@@ -37,7 +37,7 @@ class SpaceInformation : public QDockWidget
     Q_OBJECT
 public:
     explicit SpaceInformation(QWidget *parent);
-    ~ SpaceInformation();
+    ~ SpaceInformation() override;
     
     //returns the space's title
     QString title() const;

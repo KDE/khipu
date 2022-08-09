@@ -66,7 +66,7 @@ public:
     static const int ItemMargin = 4;
 
     explicit SpacesDelegate(SpacesView *itemView, QObject *parent = nullptr);
-    ~SpacesDelegate();
+    ~SpacesDelegate() override;
 
 public slots:
     //NOTE ejecutar este metodo cuando se a cambiado de filtro en el proxy ... es decir ejecutarlo desde afuera de esta clase
@@ -74,12 +74,12 @@ public slots:
     void setCurrentSpace(const QModelIndex& index);
 
 public:
-    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
-    void setEditorData(QWidget* editor, const QModelIndex& index) const;
-    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
+    void setEditorData(QWidget* editor, const QModelIndex& index) const override;
+    void setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const override;
 
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
     void setDocument(DataStore *doc);
     
@@ -92,7 +92,7 @@ signals:
     
 private:
     QListView *m_itemView;
-    bool eventFilter(QObject *watched, QEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event) override;
     void setupOperationBar();
     void updateOperationBarPos(const QModelIndex &idx);
 
@@ -121,7 +121,7 @@ public:
     explicit SpacesView(QWidget* parent = nullptr);
     
 protected:
-    virtual void resizeEvent(QResizeEvent* e);
+    void resizeEvent(QResizeEvent* e) override;
 };
 
 

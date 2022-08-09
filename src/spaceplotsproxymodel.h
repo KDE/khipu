@@ -39,7 +39,7 @@ class SpacesFilterProxyModel : public QSortFilterProxyModel
         void setFilterDimension(Analitza::Dimensions dimension);
         void setFilterText(const QString& text);
 protected:
-        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
     private:
         Analitza::Dimensions m_dimension;
@@ -55,7 +55,7 @@ class PlotsProxyModel : public QSortFilterProxyModel
     public:
 
         explicit PlotsProxyModel(QObject *parent = nullptr);
-        virtual ~PlotsProxyModel();
+        ~PlotsProxyModel() override;
 
         int filterSpaceDimension() const { return m_dimension; }
         void setFilterSpaceDimension(Analitza::Dimensions dimension);
@@ -63,8 +63,8 @@ class PlotsProxyModel : public QSortFilterProxyModel
         //functiontype ... if the item is a functiongraph TODO
 
     protected:
-        virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-        virtual bool lessThan(const QModelIndex& left, const QModelIndex& right) const;
+        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
+        bool lessThan(const QModelIndex& left, const QModelIndex& right) const override;
 
     private:
         Analitza::Dimensions m_dimension;
@@ -77,13 +77,13 @@ class SpacePlotsFilterProxyModel : public PlotsProxyModel
 
     public:
         explicit SpacePlotsFilterProxyModel(DataStore *ds, QObject *parent = nullptr);
-        virtual ~SpacePlotsFilterProxyModel();
+        ~SpacePlotsFilterProxyModel() override;
 
         SpaceItem* filterSpace() const { return m_space; }
         void setFilterSpace(SpaceItem *space);
 
     protected:
-        virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+        bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
     private:
         SpaceItem *m_space;

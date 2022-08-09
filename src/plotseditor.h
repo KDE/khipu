@@ -52,7 +52,7 @@ class PlotsEditor : public QDockWidget
     Q_OBJECT
 public:
     explicit PlotsEditor(QWidget *parent);
-    ~ PlotsEditor();
+    ~ PlotsEditor() override;
     
     void setDocument(DataStore *doc);
 
@@ -108,7 +108,7 @@ signals:
 
 private:
     QColor randomFunctionColor() { return QColor::fromHsv(qrand()%255, 255, 255); }
-    bool eventFilter(QObject *object, QEvent *event);
+    bool eventFilter(QObject *object, QEvent *event) override;
 
     // helpers to set the widgets of interval
     void setupVarName(int var, const QString &vvalue); //var: 1 x 2 y 3 z .. vvalue var value ...z,p,t,...

@@ -34,7 +34,7 @@ class DataStoreTest : public QObject
 Q_OBJECT
 	public:
         DataStoreTest(QObject *parent = nullptr);
-        ~DataStoreTest();
+        ~DataStoreTest() override;
 
 	private slots:
 		void initTestCase();

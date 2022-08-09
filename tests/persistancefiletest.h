@@ -31,7 +31,7 @@ class PersistanceFileTest : public QObject
 Q_OBJECT
     public:
         PersistanceFileTest(QObject *parent = nullptr);
-        ~PersistanceFileTest();
+        ~PersistanceFileTest() override;
 
    private slots:
         void initTestCase();
