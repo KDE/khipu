@@ -525,7 +525,7 @@ bool MainWindow::openFile(const QUrl &url)
     {
         if (!KIO::NetAccess::exists(url, KIO::NetAccess::SourceSide, this))
         {
-            KMessageBox::sorry(this, i18n("The file does not exist."));
+            KMessageBox::error(this, i18n("The file does not exist."));
             return false;
         }
 
@@ -533,7 +533,7 @@ bool MainWindow::openFile(const QUrl &url)
 
         if (!KIO::NetAccess::download(url, tmpfile, this))
         {
-            KMessageBox::sorry(this, i18n("An error appeared when opening this file (%1)", KIO::NetAccess::lastErrorString()));
+            KMessageBox::error(this, i18n("An error appeared when opening this file (%1)", KIO::NetAccess::lastErrorString()));
             return false;
         }
         file.setFileName(tmpfile);
@@ -589,7 +589,7 @@ bool MainWindow::openFile(const QUrl &url)
         KMessageBox::error(this, i18n("Error while reading file, maybe path is not found."), i18n("Error while reading"));
         
         if (file.fileName() != getDefaultAutoSavepath().toLocalFile())
-            KMessageBox::sorry(this, i18n("%1 could not be opened", file.fileName()));
+            KMessageBox::error(this, i18n("%1 could not be opened", file.fileName()));
        
         return false;
     }
