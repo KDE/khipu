@@ -1,20 +1,23 @@
+cmake_minimum_required(VERSION 3.5)
+
 project(khipu)
 
-cmake_minimum_required(VERSION 2.8.12)
-
+set(QT_MIN_VERSION "5.12.0")
 set(KF_MIN_VERSION "5.69.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake" ${ECM_MODULE_PATH})
 
-find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Widgets Test PrintSupport Xml)
 include(KDEInstallDirs)
-include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+
 include(ECMInstallIcons)
 include(ECMAddTests)
 include(FeatureSummary)
 include(ECMAddAppIcon)
+
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Test PrintSupport Xml)
 
 find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS I18n ItemModels ItemViews GuiAddons WidgetsAddons NewStuff XmlGui KDELibs4Support DocTools)
 find_package(Analitza5 REQUIRED)
