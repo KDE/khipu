@@ -1,0 +1,1680 @@
+# Translation of khipu.po to Ukrainian
+# Copyright (C) 2012-2019 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2012, 2013, 2019, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: khipu\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"PO-Revision-Date: 2022-07-13 08:45+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Юрій Чорноіван"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "yurchor@ukr.net"
+
+#: src/dashboard.cpp:117
+#, kde-format
+msgid ""
+"Please make sure that the dictionary (.plots) files are correctly installed"
+msgstr "Переконайтеся, що файли збірника (.plots) встановлено належним чином."
+
+#: src/dashboard.cpp:118
+#, kde-format
+msgid "No Dictionary found!"
+msgstr "Не знайдено збірника!"
+
+#: src/dashboard.cpp:229 src/mainwindow.cpp:506
+#, kde-format
+msgid "Open"
+msgstr "Відкрити"
+
+#: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
+#, kde-format
+msgid "Dictionary Files (*.plots);;All Files (*)"
+msgstr "файли збірника (*.plots);;усі файли (*)"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "Where to export"
+msgstr "Куди експортувати"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "PNG Image File (*.png)"
+msgstr "файл зображення PNG (*.png)"
+
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: src/dashboard.ui:20
+#, kde-format
+msgid "StackedWidget"
+msgstr "StackedWidget"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/dashboard.ui:64
+#, kde-format
+msgid "Plot Dictionary (.plots file) Options"
+msgstr "Параметри збірника креслень (файла .plots)"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dashboard.ui:72
+#, kde-format
+msgid "Collection:"
+msgstr "Збірка:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:80
+#, kde-format
+msgid "Main"
+msgstr "Основне"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:85
+#, kde-format
+msgid "Famous Algebraic Curves"
+msgstr "Відомі алгебраїчні криві"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:90
+#, kde-format
+msgid "..."
+msgstr "…"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Export the space as a Dictionary"
+msgstr "Експортувати область як збірник"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
+msgstr "файли збірника креслень (*.plots);;усі файли (*)"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving file, no plots available for this space"
+msgstr ""
+"Помилка під час збереження файла: у цій області немає доступних креслень."
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving a dictionary"
+msgstr "Помилка під час спроби зберегти збірник"
+
+#: src/dictionarycollection.cpp:152
+#, kde-format
+msgid "Select Dictionary to import"
+msgstr "Виберіть словник для імпортування"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
+#: src/dictionarycollection.ui:14
+#, kde-format
+msgid "Add from Dictionary"
+msgstr "Додати зі збірника"
+
+#. i18n: ectx: property (text), widget (QPushButton, importDictionary)
+#: src/dictionarycollection.ui:21
+#, kde-format
+msgid "Import Dictionary"
+msgstr "Імпортувати збірник"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dictionarycollection.ui:91
+#, kde-format
+msgid "Collection: "
+msgstr "Збірка: "
+
+#. i18n: ectx: property (text), widget (QPushButton, AddButton)
+#: src/dictionarycollection.ui:101
+#, kde-format
+msgid "Add"
+msgstr "Додати"
+
+#: src/filter.cpp:29
+#, kde-format
+msgid "Dimension All"
+msgstr "Усі розмірності"
+
+#: src/filter.cpp:30
+#, kde-format
+msgid "Dimension 2D"
+msgstr "Двовимірні"
+
+#: src/filter.cpp:31
+#, kde-format
+msgid "Dimension 3D"
+msgstr "Тривимірні"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
+#: src/filter.ui:42
+#, kde-format
+msgid "Filter by space name or description..."
+msgstr "Фільтрувати список за назвою або описом області…"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Khipu"
+msgstr "Khipu"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Advanced Mathematical Function Plotter"
+msgstr "Графобудівник математичних функцій з додатковими можливостями"
+
+#: src/main.cpp:33
+#, kde-format
+msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+msgstr "© Percy Camilo Triveño Aucahuasi, 2010–2012"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Percy Camilo Triveño Aucahuasi"
+msgstr "Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Main developer"
+msgstr "Провідний розробник"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Punit Mehta"
+msgstr "Punit Mehta"
+
+#: src/main.cpp:37
+#, kde-format
+msgid ""
+"GSoC-2013 student - Persistance file support. Plot-dictionary support. "
+"Worked for application actions, command-line improvements and space "
+"filtering. Several bug fixings"
+msgstr ""
+"Студент GSoC-2013 — підтримка файлів Persistance, підтримка збірників "
+"креслень, робота над функціями програми, покращення керування з командного "
+"рядка та фільтрування областей, виправлення декількох вад."
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Manuel Álvarez Blanco"
+msgstr "Manuel Álvarez Blanco"
+
+#: src/main.cpp:38
+#, kde-format
+msgid ""
+"Thesis mentor - Guide and supervision during project conception. "
+"Bibliographical support. Numeric Mathematics and Algorithms support"
+msgstr ""
+"Науковий керівник: керівництво та нагляд за розробкою проєкту, "
+"бібліографічний супровід, поради з використання математичних та "
+"обчислювальних методів"
+
+#: src/main.cpp:39
+#, kde-format
+msgid "José Ignacio Cuevas Gonzáles"
+msgstr "José Ignacio Cuevas Gonzáles"
+
+#: src/main.cpp:39
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Product Guide, Product promotion and former "
+"Client"
+msgstr ""
+"Науковий керівник: нагляд, керування проєктом, просування проєктів в галузі "
+"науки, колишня клієнтська частина"
+
+#: src/main.cpp:40
+#, kde-format
+msgid "Eduardo Fernandini Capurro"
+msgstr "Eduardo Fernandini Capurro"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
+"former Client"
+msgstr ""
+"Науковий керівник: нагляд, бібліографічна підтримка, керування проєктом, "
+"колишня клієнтська частина"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Jaime Urbina Pereyra"
+msgstr "Jaime Urbina Pereyra"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Thesis mentor - Supervision and former Main Project Mentor"
+msgstr "Науковий керівник — головний керівник і наставник проєкту"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "Aleix Pol Gonzalez"
+msgstr "Aleix Pol Gonzalez"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "KAlgebra and Analitza parser author, both vitals for the project"
+msgstr ""
+"Автор KAlgera та обробника Analitza, який є критично важливим для проєкту"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "José Fernando Ramos Ramirez"
+msgstr "José Fernando Ramos Ramirez"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "First version of Famous Curves Database. Build former windows installer"
+msgstr ""
+"Побудова першої версії бази даних щодо відомих кривих та створення засобу "
+"встановлення програми у Windows"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Susan Pamela Rios Sarmiento"
+msgstr "Susan Pamela Rios Sarmiento"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "First version of Famous Curves Database"
+msgstr "Побудова першої версії бази даних щодо відомих кривих"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Edgar Velasquez"
+msgstr "Edgar Velasquez"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "2D Improvements"
+msgstr "Покращення у побудові плоских кривих"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Jose Torres Cardenas"
+msgstr "Jose Torres Cardenas"
+
+#: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
+#, kde-format
+msgid "3D Improvements"
+msgstr "Покращення у побудові поверхонь у просторі"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "Elizabeth Portilla Flores"
+msgstr "Elizabeth Portilla Flores"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Paul Murat Landauro Minaya"
+msgstr "Paul Murat Landauro Minaya"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Khipu files to open"
+msgstr "Файли Khipu, які слід відкрити"
+
+#: src/main.cpp:58
+#, kde-format
+msgid "Always start with a new file, ignoring any autosaved file"
+msgstr ""
+"Завжди запускати з новим файлом, ігнорувати усі автоматично збережені файли"
+
+#: src/mainwindow.cpp:142
+#, kde-format
+msgid "&Shortcuts"
+msgstr "С&корочення"
+
+#: src/mainwindow.cpp:226
+#, kde-format
+msgid "&Save Plot as PNG"
+msgstr "З&берегти креслення як PNG"
+
+#: src/mainwindow.cpp:229
+#, kde-format
+msgid "Add Space &2D"
+msgstr "&Додати плоску область"
+
+#: src/mainwindow.cpp:230
+#, kde-format
+msgid "Add Space &3D"
+msgstr "Додати п&росторову область"
+
+#: src/mainwindow.cpp:235
+#, kde-format
+msgid "Create a plot in a new space"
+msgstr "Створити креслення у новій області"
+
+#: src/mainwindow.cpp:238
+#, kde-format
+msgid "Plot &Dictionaries"
+msgstr "З&бірники креслень"
+
+#: src/mainwindow.cpp:263
+#, kde-format
+msgid "&Go First Space"
+msgstr "П&ерейти до першої області"
+
+#: src/mainwindow.cpp:268
+#, kde-format
+msgid "&Go Previous Space"
+msgstr "&Перейти до попередньої області"
+
+#: src/mainwindow.cpp:273
+#, kde-format
+msgid "&Go Next Space"
+msgstr "Перейти до &наступної області"
+
+#: src/mainwindow.cpp:278
+#, kde-format
+msgid "&Go Last Space"
+msgstr "Перейти до &останньої області"
+
+#: src/mainwindow.cpp:284
+#, kde-format
+msgid "&Remove Current Space"
+msgstr "Ви&лучити поточну область"
+
+#: src/mainwindow.cpp:286
+#, kde-format
+msgid "&Take Snapshot"
+msgstr "З&робити знімок"
+
+#: src/mainwindow.cpp:287
+#, kde-format
+msgid "&Get Plot-Dictionary files"
+msgstr "О&тримати файли збірників креслень"
+
+#: src/mainwindow.cpp:288
+#, kde-format
+msgid "&Import Plot-Dictionary file"
+msgstr "&Імпортувати файл збірника креслень"
+
+#: src/mainwindow.cpp:333 src/mainwindow.cpp:376
+#, kde-format
+msgid "There is not any space available to show!"
+msgstr "Немає області креслень, яку слід би було показати!"
+
+#: src/mainwindow.cpp:337
+#, kde-format
+msgid "Currently you are on the first space!"
+msgstr "Зараз ви працюєте з першою областю."
+
+#: src/mainwindow.cpp:348
+#, kde-format
+msgid "You are already on the first space!"
+msgstr "Ви вже працюєте з першою областю."
+
+#: src/mainwindow.cpp:360
+#, kde-format
+msgid "You are already on the last space!"
+msgstr "Ви вже працюєте з останньою областю."
+
+#: src/mainwindow.cpp:380
+#, kde-format
+msgid "Currently you are on the last space!"
+msgstr "Зараз ви працюєте з останньою областю."
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Press Ctrl + M to make menubar visible again"
+msgstr "Натисніть Ctrl + M, щоб зробити смужку меню знову видимою."
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Menubar Visibility"
+msgstr "Видимість смужки меню"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid "No need to create New Window"
+msgstr "Немає потреби у створенні нового вікна"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid ""
+"There are not any plots available. So, you do not need to create a new Plot "
+"Window"
+msgstr ""
+"Ще не створено жодного креслення. Отже, немає ніякої потреби у створенні "
+"нового вікна креслень."
+
+#: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Khipu Files (*.khipu);;All Files (*)"
+msgstr "файли Khipu (*.khipu);;усі файли (*)"
+
+#: src/mainwindow.cpp:528
+#, kde-format
+msgid "The file does not exist."
+msgstr "Файла не існує."
+
+#: src/mainwindow.cpp:536
+#, kde-format
+msgid "An error appeared when opening this file (%1)"
+msgstr "Під час відкриття цього файла сталася помилка (%1)"
+
+#: src/mainwindow.cpp:550
+#, kde-format
+msgid "Do you want to recover the file you have not saved last time?"
+msgstr ""
+"Хочете відновити файл, який не було збережено під час завершення "
+"попереднього сеансу?"
+
+#: src/mainwindow.cpp:550 src/mainwindow.cpp:578
+#, kde-format
+msgid "Autosaved .khipu file"
+msgstr "Автоматично збережений файл .khipu"
+
+#: src/mainwindow.cpp:578
+#, kde-format
+msgid ""
+"There are some unsaved changes in the file %1. Do you want to recover them?"
+msgstr ""
+"До файла %1 не було збережено внесені зміни. Хочете відновити незбережені "
+"дані?"
+
+#: src/mainwindow.cpp:589
+#, kde-format
+msgid "Error while reading file, maybe path is not found."
+msgstr "Помилка під час читання. Можливо, файл не знайдено."
+
+#: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading"
+msgstr "Помилка під час читання"
+
+#: src/mainwindow.cpp:592
+#, kde-format
+msgid "%1 could not be opened"
+msgstr "Не вдалося відкрити %1"
+
+#: src/mainwindow.cpp:606
+#, kde-format
+msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
+msgstr ""
+"Проблеми з обробкою вмісту файла. Можливо, маємо справу з помилковим файлом "
+"khipu."
+
+#: src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Save As"
+msgstr "Зберегти як"
+
+#: src/mainwindow.cpp:675
+#, kde-format
+msgid ""
+"The file which you want to save, already exists. Do you want to overwrite "
+"this file?"
+msgstr ""
+"Файл, який ви хочете зберегти, вже існує. Хочете перезаписати цей файл?"
+
+#: src/mainwindow.cpp:676
+#, kde-format
+msgid "Warning: File already exists"
+msgstr "Попередження: файл вже існує"
+
+#: src/mainwindow.cpp:695
+#, kde-format
+msgid "The current file contains some unsaved work. Do you want to save it?"
+msgstr ""
+"До поточного файла було внесено незбережені зміни. Хочете зберегти ці зміни?"
+
+#: src/mainwindow.cpp:696
+#, kde-format
+msgid "Warning: Unsaved changes"
+msgstr "Попередження: незбережені зміни"
+
+#: src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading file, file may be empty"
+msgstr "Помилка під час читання файла. Можливо, файл є порожнім."
+
+#: src/mainwindow.cpp:815
+#, kde-format
+msgid "Could not open %1 for writing"
+msgstr "Не вдалося відкрити %1 для запису"
+
+#: src/mainwindow.cpp:815 src/mainwindow.cpp:826
+#, kde-format
+msgid "Error while writing"
+msgstr "Помилка під час запису"
+
+#: src/mainwindow.cpp:826
+#, kde-format
+msgid "Could not open %1 for writing %2"
+msgstr "Не вдалося відкрити %1 для запису %2"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving file. Maybe path is not found"
+msgstr ""
+"Помилка під час спроби збереження. Можливо, не знайдено каталог для запису."
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving"
+msgstr "Помилка під час збереження"
+
+#: src/mainwindow.cpp:857
+#, kde-format
+msgid "File %1 [%2] is saved successfully"
+msgstr "Файл %1 [%2] успішно збережено"
+
+#: src/mainwindow.cpp:1005
+#, kde-format
+msgid "The diagram was copied to clipboard"
+msgstr "Діаграму було скопійовано до буфера обміну даними"
+
+#: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
+#, kde-format
+msgid "Untitled %1"
+msgstr "Без назви %1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
+#: src/plotsbuilder.ui:17
+#, kde-format
+msgid "Build a Cartesian Curve"
+msgstr "Побудувати криву у декартовій системі координат"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:99 src/plotsbuilder.ui:173
+#: src/plotsbuilder.ui:231 src/plotsbuilder.ui:265
+#, kde-format
+msgid "Graph"
+msgstr "Графік"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
+#: src/plotsbuilder.ui:53 src/plotsbuilder.ui:185
+#, kde-format
+msgid "Implicit"
+msgstr "Неявна"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
+#: src/plotsbuilder.ui:65 src/plotsbuilder.ui:133 src/plotsbuilder.ui:197
+#, kde-format
+msgid "Parametric"
+msgstr "Параметрична"
+
+#. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
+#: src/plotsbuilder.ui:93
+#, kde-format
+msgid "Build a Polar Curve"
+msgstr "Побудувати криву у полярній системі координат"
+
+#. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
+#: src/plotsbuilder.ui:127
+#, kde-format
+msgid "Build a Space Curve"
+msgstr "Побудувати криву у просторі"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
+#: src/plotsbuilder.ui:167
+#, kde-format
+msgid "Build a Cartesian Surface"
+msgstr "Побудувати поверхню у декартовій системі координат"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
+#: src/plotsbuilder.ui:225
+#, kde-format
+msgid "Build a Cylindrical Surface"
+msgstr "Побудувати поверхню у циліндричних координатах"
+
+#. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
+#: src/plotsbuilder.ui:259
+#, kde-format
+msgid "Build a Spherical Surface"
+msgstr "Побудувати поверхню у сферичних координатах"
+
+#: src/plotseditor.cpp:67
+#, kde-format
+msgid "check/uncheck to show/hide the Axes"
+msgstr "Позначте або зніміть позначення, щоб побачити або приховати вісі"
+
+#: src/plotseditor.cpp:70
+#, kde-format
+msgid "Click to edit the plot"
+msgstr "Натисніть, щоб змінити креслення"
+
+#: src/plotseditor.cpp:71
+#, kde-format
+msgid "Click to remove the plot"
+msgstr "Натисніть, щоб вилучити креслення"
+
+#: src/plotseditor.cpp:1020
+#, kde-format
+msgid "plot %1"
+msgstr "креслення %1"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
+#: src/plotseditor.ui:20
+#, kde-format
+msgid "Plots"
+msgstr "Креслення"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
+#: src/plotseditor.ui:36
+#, kde-format
+msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Натисніть, щоб додати креслення</p></body></html>"
+
+#. i18n: ectx: property (text), widget (QPushButton, editPlot)
+#: src/plotseditor.ui:114
+#, kde-format
+msgid "Edit"
+msgstr "Змінити"
+
+#. i18n: ectx: property (text), widget (QPushButton, removePlot)
+#: src/plotseditor.ui:124 src/spacesdelegate.cpp:74
+#, kde-format
+msgid "Remove"
+msgstr "Вилучити"
+
+#. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
+#: src/plotseditor.ui:156
+#, kde-format
+msgid "Plot Name"
+msgstr "Назва креслення"
+
+#. i18n: ectx: property (text), widget (QLabel, plotIcon)
+#: src/plotseditor.ui:163
+#, kde-format
+msgid "TextLabel"
+msgstr "TextLabel"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/plotseditor.ui:397
+#, kde-format
+msgid "Color:"
+msgstr "Колір:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/plotseditor.ui:413
+#, kde-format
+msgid "Style"
+msgstr "Стиль"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:421
+#, kde-format
+msgid "Solid"
+msgstr "Суцільна"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:426
+#, kde-format
+msgid "Wired"
+msgstr "Дротова"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:431
+#, kde-format
+msgid "Dots"
+msgstr "Крапки"
+
+#. i18n: ectx: property (title), widget (QGroupBox, intervals)
+#: src/plotseditor.ui:457
+#, kde-format
+msgid "Use Intervals"
+msgstr "Використовувати інтервали"
+
+#. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:659
+#, kde-format
+msgid "asdsada"
+msgstr " "
+
+#. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:662
+#, kde-format
+msgid "asdad"
+msgstr "asdad"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
+#: src/spaceinformation.ui:41
+#, kde-format
+msgid "Notes"
+msgstr "Нотатки"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/spaceinformation.ui:50
+#, kde-format
+msgid "Title:"
+msgstr "Заголовок:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: src/spaceinformation.ui:80
+#, kde-format
+msgid "Description:"
+msgstr "Опис:"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
+#: src/spaceoptions.ui:38
+#, kde-format
+msgid "Diagram"
+msgstr "Діаграма"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/spaceoptions.ui:57
+#, kde-format
+msgid "Grid Options"
+msgstr "Параметри сітки"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:87
+#, kde-format
+msgid "None"
+msgstr "Немає"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:92
+#, kde-format
+msgid "Lines"
+msgstr "Лінії"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:97
+#, kde-format
+msgid "Polar"
+msgstr "Полярна"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/spaceoptions.ui:105
+#, kde-format
+msgid "Grid Style:"
+msgstr "Стиль сітки:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
+#: src/spaceoptions.ui:115
+#, kde-format
+msgid "Grid Ticks"
+msgstr "Позначки сітки"
+
+#. i18n: ectx: property (text), widget (QLabel, label_14)
+#: src/spaceoptions.ui:127
+#, kde-format
+msgid "Scale:"
+msgstr "Шкала:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
+#: src/spaceoptions.ui:159
+#, kde-format
+msgid "More Options"
+msgstr "Додаткові параметри"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
+#: src/spaceoptions.ui:173
+#, kde-format
+msgid "Horizontal Label:"
+msgstr "Мітка горизонталі:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
+#: src/spaceoptions.ui:183
+#, kde-format
+msgid "x"
+msgstr "x"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
+#: src/spaceoptions.ui:193
+#, kde-format
+msgid "Vertical Label:"
+msgstr "Мітка вертикалі:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
+#: src/spaceoptions.ui:203
+#, kde-format
+msgid "y"
+msgstr "y"
+
+#. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
+#: src/spaceoptions.ui:215
+#, kde-format
+msgid "Horizontal and Vertical Marks"
+msgstr "Позначки на горизонталі і вертикалі"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: src/spaceoptions.ui:254
+#, kde-format
+msgid "Axis"
+msgstr "Вісь"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showGrid)
+#: src/spaceoptions.ui:270
+#, kde-format
+msgid "Grid"
+msgstr "Сітка"
+
+#. i18n: ectx: property (text), widget (QLabel, label_16)
+#: src/spaceoptions.ui:289
+#, kde-format
+msgid "Size:"
+msgstr "Розмір:"
+
+#: src/spacesdelegate.cpp:81
+#, kde-format
+msgid "Rename"
+msgstr "Перейменувати"
+
+#: src/spacesdelegate.cpp:88
+#, kde-format
+msgid "Export as dictionary"
+msgstr "Експортувати як збірник"
+
+#: src/spacesmodel.cpp:41
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Назва"
+
+#: src/spacesmodel.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Description"
+msgstr "Опис"
+
+#~ msgid ""
+#~ "*.plots|Plot-Dictionary Files (*.plots)\n"
+#~ "*|All Files"
+#~ msgstr ""
+#~ "*.plots|файли збірників креслень (*.plots)\n"
+#~ "*|усі файли"
+
+#~ msgid "Hover to see the description:"
+#~ msgstr "Наведення вказівника, щоб переглянути опис:"
+
+#~ msgctxt "grid style"
+#~ msgid "Lines"
+#~ msgstr "Лінії"
+
+#~ msgctxt "grid style"
+#~ msgid "None"
+#~ msgstr "Немає"
+
+#~ msgctxt "grid style"
+#~ msgid "Polar"
+#~ msgstr "Полярна"
+
+#~ msgid "Show"
+#~ msgstr "Показати"
+
+#~ msgid "Error while opening file. Maybe path is not found."
+#~ msgstr "Не вдалося відкрити файл. Можливо, файл не знайдено."
+
+#~ msgid "Mathematical Objects Manager"
+#~ msgstr "Керування математичними об’єктами"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Download new mathematical objects from internet</"
+#~ "p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Отримати нові математичні об’єкти з інтернету</p></"
+#~ "body></html>"
+
+#~ msgid "Get Mathematical Objects..."
+#~ msgstr "Отримати математичні об’єкти…"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Install a dictionary from a local file</p></body></"
+#~ "html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Встановити збірник з локального файла</p></body></"
+#~ "html>"
+
+#~ msgid "Import Mathematical objects..."
+#~ msgstr "Імпортувати дані математичних об’єктів…"
+
+#~ msgid "Create a Collection of Mathematical Objects"
+#~ msgstr "Створити збірку математичних об’єктів"
+
+#~ msgid "Show plot in space"
+#~ msgstr "Показати креслення у області"
+
+#~ msgid "Remove plot"
+#~ msgstr "Вилучити креслення"
+
+#~ msgid "Export"
+#~ msgstr "Експортувати"
+
+#~ msgid "in dictionary"
+#~ msgstr "у збірнику"
+
+#~ msgid "Import to Current Document"
+#~ msgstr "Імпортувати до поточного документа"
+
+#~ msgid "Show Details"
+#~ msgstr "Показати подробиці"
+
+#~ msgid "Filter..."
+#~ msgstr "Фільтрувати…"
+
+#~ msgid "DimAll"
+#~ msgstr "Всі виміри"
+
+#~ msgid "Dim2D"
+#~ msgstr "Площина"
+
+#~ msgid "Dim3D"
+#~ msgstr "Простір"
+
+#~ msgid "PushButton"
+#~ msgstr "Кнопка"
+
+#~ msgid "Name:"
+#~ msgstr "Назва:"
+
+#~ msgid "Space"
+#~ msgstr "Область"
+
+#~ msgid "Use Symbols"
+#~ msgstr "Використовувати символи"
+
+#~ msgid "Horizontal Marks"
+#~ msgstr "Позначки на горизонталі"
+
+#~ msgid "Vertical Marks"
+#~ msgstr "Позначки на вертикалі"
+
+#~ msgid "Error while opening file, maybe path is not found."
+#~ msgstr "Не вдалося відкрити файл. Можливо, файл не знайдено."
+
+#~ msgid "Error while opening"
+#~ msgstr "Помилка під час спроби відкриття"
+
+#, fuzzy
+#~ msgid "Error while opening file. May be path is not found."
+#~ msgstr "Не вдалося відкрити файл. Можливо, файл не знайдено."
+
+#~ msgctxt "@title:column"
+#~ msgid "Function"
+#~ msgstr "Функція"
+
+#~ msgctxt "@title:column"
+#~ msgid "Arguments"
+#~ msgstr "Аргументи"
+
+#~ msgid "&Add Random Plot"
+#~ msgstr "&Додати випадковий графік"
+
+#~ msgid "&Show Plots"
+#~ msgstr "&Показати креслення"
+
+#~ msgid "&Show Spaces"
+#~ msgstr "&Показати області"
+
+#~ msgid "&Mathematical Objects"
+#~ msgstr "&Математичні об’єкти"
+
+#~ msgid "Form"
+#~ msgstr "Форма"
+
+#~ msgid "Space Information"
+#~ msgstr "Дані щодо області"
+
+#~ msgid "Diagram Appearance"
+#~ msgstr "Вигляд діаграми"
+
+#~ msgid "findico"
+#~ msgstr "findico"
+
+#~ msgid "Find:"
+#~ msgstr "Знайти:"
+
+#~ msgid "Search"
+#~ msgstr "Пошук"
+
+#~ msgid "All  Dimensions"
+#~ msgstr "Всі виміри"
+
+#~ msgid "2D"
+#~ msgstr "Плоский"
+
+#~ msgid "3D"
+#~ msgstr "Просторовий"
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+
+#~ msgid "Build Plots"
+#~ msgstr "Побудувати графіки"
+
+#~ msgid "&Export Space Snapshot"
+#~ msgstr "&Експортувати знімок області"
+
+#~ msgid "S&how Space Plots"
+#~ msgstr "П&оказати креслення у просторі"
+
+#~ msgid "&Show Space Information"
+#~ msgstr "По&казати дані щодо області"
+
+#~ msgid "Configuración del Área de Dibujo"
+#~ msgstr "Налаштування області малювання"
+
+#~ msgid "Sistema de Coordenadas"
+#~ msgstr "Система координат"
+
+#~ msgid "Cartesianas"
+#~ msgstr "Декартова"
+
+#~ msgid "Polares"
+#~ msgstr "Полярна"
+
+#~ msgid "Propiedades"
+#~ msgstr "Властивості"
+
+#~ msgid "Dibujar fondo"
+#~ msgstr "Тло"
+
+#~ msgid "Escala:"
+#~ msgstr "Масштаб:"
+
+#~ msgid "Opciones de los ejes"
+#~ msgstr "Параметри осей"
+
+#~ msgid "Eje x:"
+#~ msgstr "Вісь x:"
+
+#~ msgid "Eje y:"
+#~ msgstr "Вісь y:"
+
+#~ msgid "Mostrar marcas horizontales"
+#~ msgstr "Показувати позначки за горизонталлю"
+
+#~ msgid "Mostrar marcas verticales"
+#~ msgstr "Показувати позначки за вертикаллю"
+
+#~ msgid "No disponible para curvas paramétricas:"
+#~ msgstr "Для непараметричних кривих:"
+
+#~ msgid "Mostrar Recta Tangente"
+#~ msgstr "Показувати дотичну"
+
+#~ msgid "Mostrar Recta Normal"
+#~ msgstr "Показувати нормаль"
+
+#~ msgid "Mostrar ejes"
+#~ msgstr "Показувати вісі"
+
+#~ msgid "Mostrar plano de referencia XY"
+#~ msgstr "Показувати координатну площину XY"
+
+#~ msgid "Tamaño del espacio:"
+#~ msgstr "Розмір простору:"
+
+#~ msgid "import"
+#~ msgstr "імпортувати"
+
+#~ msgid "in currentdoc"
+#~ msgstr "у поточному документі"
+
+#~ msgid "View and Tools:"
+#~ msgstr "Перегляд та інструменти:"
+
+#~ msgid "Todos"
+#~ msgstr "Всі"
+
+#~ msgid "DockWidget"
+#~ msgstr "DockWidget"
+
+#~ msgid "foc"
+#~ msgstr "фок"
+
+#~ msgid "Cartesian"
+#~ msgstr "Декартова"
+
+#~ msgid "Cylindrical"
+#~ msgstr "Циліндрична"
+
+#~ msgid "Spherical"
+#~ msgstr "Сферична"
+
+#~ msgid "Información del Espacio"
+#~ msgstr "Дані щодо простору"
+
+#~ msgid "Titulo"
+#~ msgstr "Заголовок"
+
+#~ msgid "Elejir la vista:"
+#~ msgstr "Виберіть вигляд:"
+
+#~ msgid "Espacios o Grupos de Funciones"
+#~ msgstr "Область з групою функцій"
+
+#~ msgid "Lista Total de Funciones"
+#~ msgstr "Загальний список функцій"
+
+#~ msgid "Buscar:"
+#~ msgstr "Шукати:"
+
+#~ msgid ""
+#~ "*.png|PNG Image File\n"
+#~ "*.jpg|JPG Image File"
+#~ msgstr ""
+#~ "*.png|файл зображення PNG\n"
+#~ "*.jpg|файл зображення JPG"
+
+#~ msgid "Funciones"
+#~ msgstr "Функції"
+
+#~ msgctxt ""
+#~ msgid "Crear"
+#~ msgstr "Створити"
+
+#~ msgid "Area"
+#~ msgstr "Площа"
+
+#~ msgid "&Crear"
+#~ msgstr "С&творити"
+
+#~ msgid "Add variable"
+#~ msgstr "Додати змінну"
+
+#~ msgid "Incongruencia en el dominio"
+#~ msgstr "Непослідовність у області"
+
+#~ msgid "Ocultar Función '%1'"
+#~ msgstr "Приховати функцію «%1»"
+
+#~ msgid "Mostrar Función '%1'"
+#~ msgstr "Показати функцію «%1»"
+
+#~ msgid "Eliminar Función '%1'"
+#~ msgstr "Вилучити функцію «%1»"
+
+#~ msgid ""
+#~ "The document \"%1\" has been modified.\n"
+#~ "Do you want to save your changes or discard them?"
+#~ msgstr ""
+#~ "Документ «%1» було змінено.\n"
+#~ "Хочете зберегти зміни?"
+
+#~ msgid "Close Document"
+#~ msgstr "Закрити документ"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Всі файли, що підтримуються"
+
+#~ msgid "GPLACS standard file format"
+#~ msgstr "Стандартний формат файлів GPLACS"
+
+#~ msgid "Overwrite"
+#~ msgstr "Перезаписати"
+
+#~ msgid "[modificado]"
+#~ msgstr "[змінено]"
+
+#~ msgid "Mostrar Espacio"
+#~ msgstr "Показати простір"
+
+#~ msgid "Eliminar Espacio '%1'"
+#~ msgstr "Вилучити простір «%1»"
+
+#~ msgid "Abrir"
+#~ msgstr "Відкрити"
+
+#~ msgid "Guardar"
+#~ msgstr "Зберегти"
+
+#~ msgid "Crear Nuevo Espacio 2D"
+#~ msgstr "Створити область на площині"
+
+#~ msgid "Crear Nuevo Espacio 3D"
+#~ msgstr "Створити область у просторі"
+
+#~ msgid "Acerca de GPLACS"
+#~ msgstr "Про GPLACS"
+
+#~ msgid "Volver a la Vista Principal"
+#~ msgstr "Повернутися до основної панелі перегляду"
+
+#~ msgid "Administrador de Funciones"
+#~ msgstr "Керування функціями"
+
+#~ msgid "Copiar Imagen"
+#~ msgstr "Копіювати зображення"
+
+#~ msgid "Guardar Imagen"
+#~ msgstr "Зберегти зображення"
+
+#~ msgid "Page"
+#~ msgstr "Сторінка"
+
+#~ msgid "Información de la Función"
+#~ msgstr "Дані щодо функції"
+
+#~ msgid "Nombre"
+#~ msgstr "Назва"
+
+#~ msgid "También puede elejir el nombre una función famosa"
+#~ msgstr "Ви також можете вибрати функцію з вже відомою назвою"
+
+#~ msgid "Función"
+#~ msgstr "Функція"
+
+#~ msgid "Octante"
+#~ msgstr "Октант"
+
+#~ msgid "Eje"
+#~ msgstr "Вісь"
+
+#~ msgid "Curvas de nivel"
+#~ msgstr "Лінії рівнів"
+
+#~ msgid "Sobre XY"
+#~ msgstr "На XY"
+
+#~ msgid "En el espacio"
+#~ msgstr "У просторі"
+
+#~ msgid "TextLabel2"
+#~ msgstr "TextLabel2"
+
+#~ msgid "Ecuación"
+#~ msgstr "Рівняння"
+
+#~ msgid "Y=F(x) Donde x es el argumento"
+#~ msgstr "Y=F(x) з аргументом x"
+
+#~ msgid "X=F(y) Donde y es el argumento"
+#~ msgstr "X=F(y) з аргументом y"
+
+#~ msgid "F(x,y)=0 Curva implícita"
+#~ msgstr "F(x,y)=0 (крива, задана неявно)"
+
+#~ msgid "Ecuaciones"
+#~ msgstr "Рівняння"
+
+#~ msgid "Donde t es el argumento, X=F(t) e Y=F(t)"
+#~ msgstr "З аргументом t, X=F(t) і Y=F(t)"
+
+#~ msgid "Y="
+#~ msgstr "Y="
+
+#~ msgid "X="
+#~ msgstr "X="
+
+#~ msgid "Activar Modo Animación"
+#~ msgstr "Увімкнути режим анімації"
+
+#~ msgid "Animar/Detener"
+#~ msgstr "Почати/Зупинити анімацію"
+
+#~ msgid "Reiniciar"
+#~ msgstr "Перезавантажити"
+
+#~ msgid "Z="
+#~ msgstr "Z="
+
+#~ msgid "Argumentos u,v X=F(u,v) Y=F(u,v) Z=F(u,v)"
+#~ msgstr "Аргументи u,v, X=F(u,v) Y=F(u,v) Z=F(u,v)"
+
+#~ msgid "t como argumento, X=F(t) Y=F(t) Z=F(t)"
+#~ msgstr "Аргумент t, X=F(t) Y=F(t) Z=F(t)"
+
+#~ msgid "Apariencia de la Curva"
+#~ msgstr "Вигляд кривої"
+
+#~ msgid "Color de la curva"
+#~ msgstr "Колір кривої"
+
+#~ msgid "Ancho del pincel:"
+#~ msgstr "Товщина лінії:"
+
+#~ msgid "Ancho de la linea en milimetros"
+#~ msgstr "Товщина лінії у міліметрах"
+
+#~ msgid " mm"
+#~ msgstr " мм"
+
+#~ msgid "Presición:"
+#~ msgstr "Точність:"
+
+#~ msgid "Resolucion al dibujar la curva"
+#~ msgstr "Роздільність під час побудови кривої"
+
+#~ msgid "Apariencia de la Superficie"
+#~ msgstr "Вигляд поверхні"
+
+#~ msgid "Color de la superficie"
+#~ msgstr "Колір поверхні"
+
+#~ msgid "Tipo de dibujo:"
+#~ msgstr "Режим показу:"
+
+#~ msgid "Tipo dibujo de la superficie"
+#~ msgstr "Режим показу поверхні"
+
+#~ msgid "Sólido"
+#~ msgstr "Суцільна"
+
+#~ msgid "Mallas"
+#~ msgstr "Сітка"
+
+#~ msgid "Puntos"
+#~ msgstr "Точки"
+
+#~ msgid "Precisión:"
+#~ msgstr "Точність:"
+
+#~ msgid "Resolución de la superficie"
+#~ msgstr "Роздільність під час побудови поверхні"
+
+#~ msgid "Dominio"
+#~ msgstr "Діапазон"
+
+#~ msgid "Min"
+#~ msgstr "Мінімум"
+
+#~ msgid "Max"
+#~ msgstr "Максимум"
+
+#~ msgid "Ok"
+#~ msgstr "Гаразд"
+
+#~ msgid "Cancelar"
+#~ msgstr "Скасувати"
+
+#~ msgid "Puede elejir insertar una función famosa"
+#~ msgstr "Ви можете вставити відому функцію"
+
+#~ msgid "Crear curvas cartesianas"
+#~ msgstr "Створення кривих у прямокутних декартових координатах"
+
+#~ msgid "Crear curvas polares"
+#~ msgstr "Створення кривих у полярній системі координат"
+
+#~ msgid "Crear curvas paramétricas"
+#~ msgstr "Створення параметричних кривих"
+
+#~ msgid "Crear superficies cartesianas"
+#~ msgstr "Створення поверхонь у прямокутних декартових координатах"
+
+#~ msgid "Crear superficies en coordenadas cilíndricas"
+#~ msgstr "Створення поверхонь у циліндричних координатах"
+
+#~ msgid "Crear superficies en coordenadas esféricas"
+#~ msgstr "Створення поверхонь у сферичних координатах"
+
+#~ msgid "Crear superficies paramétricas"
+#~ msgstr "Створення параметричних поверхонь"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Análisis de Áreas"
+#~ msgstr "Визначення площ"
+
+#~ msgid "Función 1:"
+#~ msgstr "Функція 1:"
+
+#~ msgid "Función 2:"
+#~ msgstr "Функція 2:"
+
+#~ msgid "Límite Inferior:"
+#~ msgstr "Нижня межа:"
+
+#~ msgid "Límite Superior:"
+#~ msgstr "Верхня межа:"
+
+#~ msgid "Hacer Calculos"
+#~ msgstr "Виконати обчислення"
+
+#~ msgid "Resultados"
+#~ msgstr "Результати"
+
+#~ msgid "Valor del área:"
+#~ msgstr "Значення площі:"
+
+#~ msgid "Ejemplos para Areas"
+#~ msgstr "Приклади обчислення площ"
+
+#~ msgid "Ejemplo:"
+#~ msgstr "Приклад:"
+
+#~ msgid "Divisiones:"
+#~ msgstr "Поділ:"
+
+#~ msgid "Aceptar"
+#~ msgstr "Прийняти"
+
+#~ msgid "Área por defecto:"
+#~ msgstr "Типова область:"
+
+#~ msgid "Área mas exacta"
+#~ msgstr "Точніше значення площі"
+
+#~ msgid "Área por exceso:"
+#~ msgstr "Надлишкова площа:"
+
+#~ msgid "Área real aproximada:"
+#~ msgstr "Дійсне наближення площі:"
+
+#~ msgid "Graficador de Curvas y Superficies Matemáticas"
+#~ msgstr "Програма для побудови математичних кривих та поверхонь"
+
+#~ msgid "Jefe de Proyecto y Desarrollador Principal"
+#~ msgstr "Керівник проєкту та провідний розробник"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Guía y Supervisión durante la concepción del Proyecto, "
+#~ "Apoyo Bibliográfico, Soporte en Matemática Numérica y Algoritmos (2009)"
+#~ msgstr ""
+#~ "Науковий керівник: керівництво та нагляд за розробкою проєкту, "
+#~ "бібліографічний супровід, поради з використання математичних та чисельних "
+#~ "методів (2009)"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Supervisión, Guía del Producto, Promoción del Proyecto "
+#~ "dentro del Área de Ciencias y Cliente Principal (2009-2010)"
+#~ msgstr ""
+#~ "Науковий керівник: нагляд, керування проєктом, просування проєктів в "
+#~ "галузі науки, основний користувач (2009–2010)"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Supervisión, Apoyo Bibliográfico, Guia del Producto y "
+#~ "Cliente Principal (2009-2010)"
+#~ msgstr ""
+#~ "Науковий керівник: нагляд, бібліографічна підтримка, керування проєктом, "
+#~ "основний користувач (2009–2010)"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Supervisor y Mentor Principal del Proyecto (2009-2010)"
+#~ msgstr ""
+#~ "Науковий керівник — головний керівник і наставник проєкту (2009–2010)"
+
+#~ msgid "Autor de KAlgera y el parser Analitza, ambos vitales para GPLACS"
+#~ msgstr ""
+#~ "Автор KAlgera та обробника Analitza, який є критично важливим для роботи "
+#~ "GPLACS"
+
+#~ msgid ""
+#~ "Construcción de la Base de Datos de Curvas Famosas y Desarrollo del "
+#~ "Instalador"
+#~ msgstr ""
+#~ "Побудова бази даних щодо відомих кривих та створення засобу встановлення "
+#~ "програми"
+
+#~ msgid "Construcción de la Base de Datos de Curvas Famosas y Traducción"
+#~ msgstr "Побудова бази даних щодо відомих кривих та переклад"
+
+#~ msgid "Bertha Nérida Triveño Aucahuasi"
+#~ msgstr "Bertha Nérida Triveño Aucahuasi"
+
+#~ msgid "Diseño del Ícono de GPLACS"
+#~ msgstr "Створення піктограми GPLACS"
+
+#~ msgid "Mejoras en GPLACS 2D"
+#~ msgstr "Основна частина, пов’язана з побудовою плоских кривих у GPLACS"
+
+#~ msgid "Mejoras en GPLACS 3D"
+#~ msgstr "Основна частина, пов’язана з побудовою просторових кривих у GPLACS"
+
+#~ msgid "La ecuación está vacia"
+#~ msgstr "Не вказано рівняння"
+
+#~ msgid "Se necesita un argumento: x"
+#~ msgstr "Потрібен один аргумент: x"
+
+#~ msgid "El argumento debe ser x"
+#~ msgstr "Аргументом має бути x"
+
+#~ msgid "Se necesita un argumento: y"
+#~ msgstr "Потрібен один аргумент: y"
+
+#~ msgid "El argumento debe ser y"
+#~ msgstr "Аргументом має бути y"
+
+#~ msgid "Se necesitan dos argumentos: x e y"
+#~ msgstr "Потрібні два аргументи: x і y"
+
+#~ msgid "Los argumentos deben ser x e y"
+#~ msgstr "Аргументами є x і y"
+
+#~ msgid "La ecuación no es correcta"
+#~ msgstr "Помилка у рівнянні"
+
+#~ msgid "Se necesita un argumento: q (theta)"
+#~ msgstr "Потрібен один аргумент: q (θ)"
+
+#~ msgid "El argumento debe ser q (theta)"
+#~ msgstr "Аргументом має бути q (θ)"
+
+#~ msgid "Se necesita un argumento: t"
+#~ msgstr "Потрібен один аргумент: t"
+
+#~ msgid "El argumento debe ser t"
+#~ msgstr "Аргументом має бути t"
+
+#~ msgid "The arguments must be x or y"
+#~ msgstr "Аргументами мають бути x або y"
+
+#~ msgid "Wrong number of arguments for z=f(x,y)"
+#~ msgstr "Помилкова кількість аргументів у z=f(x,y)"
+
+#~ msgid "The arguments must be r or t"
+#~ msgstr "Аргументами мають бути r або t"
+
+#~ msgid "Wrong number of arguments for z=f(r,t)"
+#~ msgstr "Помилкова кількість аргументів у z=f(r,t)"
+
+#~ msgid "The arguments must be s or t"
+#~ msgstr "Аргументами мають бути s або t"
+
+#~ msgid "Wrong number of arguments for r=f(s,t)"
+#~ msgstr "Помилкова кількість аргументів у r=f(s,t)"
+
+#~ msgid "Wrong number of arguments for f(u,v)"
+#~ msgstr "Помилкова кількість аргументів у f(u,v)"
+
+#~ msgid "The arguments are u,v"
+#~ msgstr "Аргументами є u,v"
+
+#~ msgid "Min to be a surf is 2 arguments"
+#~ msgstr "Поверхня з двома параметрами"
+
+#~ msgid "Surface"
+#~ msgstr "Поверхня"
+
+#~ msgid "Function type not recognized"
+#~ msgstr "Не вдалося розпізнати тип функції"
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid "Function type not correct for Functions depending on %1"
+#~ msgstr "Помилковий тип функції, залежної від %1"
+
+#~ msgid "The expression is not correct"
+#~ msgstr "Помилка у виразі"
+
+#~ msgctxt "@title:column"
+#~ msgid "Nombre"
+#~ msgstr "Назва"
+
+#~ msgctxt "@title:column"
+#~ msgid "Ecuación"
+#~ msgstr "Рівняння"
+
+#~ msgctxt "@title:column"
+#~ msgid "Dimensión"
+#~ msgstr "Розмірність"
+
+#~ msgctxt "@title:column"
+#~ msgid "Fecha"
+#~ msgstr "Дата"
+
+#~ msgid "%1 function added"
+#~ msgstr "Функцію %1 додано"
+
+#~ msgid "We can only draw Real results."
+#~ msgstr "Можливий показ лише дійсної частини результату."
+
+#~ msgctxt "if the specified function is not a vector"
+#~ msgid "The parametric function does not return a vector"
+#~ msgstr "Параметрична функція не повертає вектора"
+
+#~ msgctxt "If it is a vector but the wrong size. We work in R2 here"
+#~ msgid "A two-dimensional vector is needed"
+#~ msgstr "Слід вказати двовимірний вектор"
+
+#~ msgctxt "The vector has to be composed by integer members"
+#~ msgid "The parametric function items should be scalars"
+#~ msgstr "Параметрами параметричної функції мають бути скалярні значення"
+
+#~ msgid "center"
+#~ msgstr "центр"
+
+#~ msgid "Selected viewport too small"
+#~ msgstr "Вибрана ділянка перегляду замала"
+
+#~ msgid "El archivo no existe."
+#~ msgstr "Архіву не існує."
+
+#~ msgid "No se pudo abrir el archivo."
+#~ msgstr "Не вдалося відкрити файл."
+
+#~ msgid "El documento no es válido."
+#~ msgstr "Документ є некоректним."

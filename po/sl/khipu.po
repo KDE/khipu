@@ -1,0 +1,889 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the khipu package.
+#
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2020, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: khipu\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"PO-Revision-Date: 2022-07-14 05:20+0200\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 22.04.1\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Matjaž Jeran"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "matjaz.jeran@amis.net"
+
+#: src/dashboard.cpp:117
+#, kde-format
+msgid ""
+"Please make sure that the dictionary (.plots) files are correctly installed"
+msgstr "Prepričajte se, da so datoteke slovarja (.plots) pravilno nameščene"
+
+#: src/dashboard.cpp:118
+#, kde-format
+msgid "No Dictionary found!"
+msgstr "Slovarja ni mogoče najti!"
+
+#: src/dashboard.cpp:229 src/mainwindow.cpp:506
+#, kde-format
+msgid "Open"
+msgstr "Odpri"
+
+#: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
+#, kde-format
+msgid "Dictionary Files (*.plots);;All Files (*)"
+msgstr "Datoteke slovarja (*.plots);;Vse datoteke (*)"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "Where to export"
+msgstr "Kam izvoziti"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "PNG Image File (*.png)"
+msgstr "Slikovna datoteka PNG (*.png)"
+
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: src/dashboard.ui:20
+#, kde-format
+msgid "StackedWidget"
+msgstr "StackedWidget"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/dashboard.ui:64
+#, kde-format
+msgid "Plot Dictionary (.plots file) Options"
+msgstr "Možnosti slovarjev slik (.plots)"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dashboard.ui:72
+#, kde-format
+msgid "Collection:"
+msgstr "Zbirka:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:80
+#, kde-format
+msgid "Main"
+msgstr "Glavni"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:85
+#, kde-format
+msgid "Famous Algebraic Curves"
+msgstr "Slavne algebrske krivulje"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:90
+#, kde-format
+msgid "..."
+msgstr "..."
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Export the space as a Dictionary"
+msgstr "Izvozi prostor kot slovar"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
+msgstr "Datoteke slovarjev risb (*.plots);;Vse datoteke (*)"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving file, no plots available for this space"
+msgstr ""
+"Napaka med shranjevanjem datoteke. Za ta prostor ni na voljo nobene slike"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving a dictionary"
+msgstr "Napaka med shranjevanjem slovarja"
+
+#: src/dictionarycollection.cpp:152
+#, kde-format
+msgid "Select Dictionary to import"
+msgstr "Izberi slovar za uvoz"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
+#: src/dictionarycollection.ui:14
+#, kde-format
+msgid "Add from Dictionary"
+msgstr "Dodaj iz slovarja"
+
+#. i18n: ectx: property (text), widget (QPushButton, importDictionary)
+#: src/dictionarycollection.ui:21
+#, kde-format
+msgid "Import Dictionary"
+msgstr "Uvozi slovar"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dictionarycollection.ui:91
+#, kde-format
+msgid "Collection: "
+msgstr "Zbirka: "
+
+#. i18n: ectx: property (text), widget (QPushButton, AddButton)
+#: src/dictionarycollection.ui:101
+#, kde-format
+msgid "Add"
+msgstr "Dodaj"
+
+#: src/filter.cpp:29
+#, kde-format
+msgid "Dimension All"
+msgstr "Dimenzije vse"
+
+#: src/filter.cpp:30
+#, kde-format
+msgid "Dimension 2D"
+msgstr "Dimenzije 2D"
+
+#: src/filter.cpp:31
+#, kde-format
+msgid "Dimension 3D"
+msgstr "Dimenzije 3D"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
+#: src/filter.ui:42
+#, kde-format
+msgid "Filter by space name or description..."
+msgstr "Filtriraj po imenu prostora ali opisu..."
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Khipu"
+msgstr "Khipu"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Advanced Mathematical Function Plotter"
+msgstr "Napredni risalnik matematičnih funkcij"
+
+#: src/main.cpp:33
+#, kde-format
+msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+msgstr "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Percy Camilo Triveño Aucahuasi"
+msgstr "Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Main developer"
+msgstr "Glavni razvijalec"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Punit Mehta"
+msgstr "Punit Mehta"
+
+#: src/main.cpp:37
+#, kde-format
+msgid ""
+"GSoC-2013 student - Persistance file support. Plot-dictionary support. "
+"Worked for application actions, command-line improvements and space "
+"filtering. Several bug fixings"
+msgstr ""
+"Študent GSoC-2013 - Podpora za datoteko za podporo Podpora za slovar slik. "
+"Delal za dejavnosti aplikacije, izboljšave v ukazni vrstici in filtriranje "
+"prostora. Več popravkov napak"
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Manuel Álvarez Blanco"
+msgstr "Manuel Álvarez Blanco"
+
+#: src/main.cpp:38
+#, kde-format
+msgid ""
+"Thesis mentor - Guide and supervision during project conception. "
+"Bibliographical support. Numeric Mathematics and Algorithms support"
+msgstr ""
+"Mentor disertacije - Vodja in nadzor zasnove projekta. Bibliografska "
+"podpora. Podpora numerični matematiki in algoritmom"
+
+#: src/main.cpp:39
+#, kde-format
+msgid "José Ignacio Cuevas Gonzáles"
+msgstr "José Ignacio Cuevas Gonzáles"
+
+#: src/main.cpp:39
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Product Guide, Product promotion and former "
+"Client"
+msgstr ""
+"Mentorstvo disertacije - nadzor, produktni vodja, promocija izdelka prejšnji "
+"naročnik"
+
+#: src/main.cpp:40
+#, kde-format
+msgid "Eduardo Fernandini Capurro"
+msgstr "Eduardo Fernandini Capurro"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
+"former Client"
+msgstr ""
+"Mentorstvo disertacije - nadzor, bibliografska podpora, produktni vodja in "
+"prejšnji naročnik"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Jaime Urbina Pereyra"
+msgstr "Jaime Urbina Pereyra"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Thesis mentor - Supervision and former Main Project Mentor"
+msgstr "Mentor disertacije - Nadzornik in prejšnji glavni mentor projekta"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "Aleix Pol Gonzalez"
+msgstr "Aleix Pol Gonzalez"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "KAlgebra and Analitza parser author, both vitals for the project"
+msgstr ""
+"Avtor razčlenjevalnika KAlgebre in Analitze, oboje za življenjsko vlogo "
+"projekta"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "José Fernando Ramos Ramirez"
+msgstr "José Fernando Ramos Ramirez"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "First version of Famous Curves Database. Build former windows installer"
+msgstr ""
+"Prva verzija zbirke podatkov o slavnih krivuljah. Zgradil nekdanji "
+"namestitveni program za Windows"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Susan Pamela Rios Sarmiento"
+msgstr "Susan Pamela Rios Sarmiento"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "First version of Famous Curves Database"
+msgstr "Prva verzija zbirke podatkov o slavnih krivuljah"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Edgar Velasquez"
+msgstr "Edgar Velasquez"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "2D Improvements"
+msgstr "Izboljšave 2D"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Jose Torres Cardenas"
+msgstr "Jose Torres Cardenas"
+
+#: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
+#, kde-format
+msgid "3D Improvements"
+msgstr "Izboljšave 3D"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "Elizabeth Portilla Flores"
+msgstr "Elizabeth Portilla Flores"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Paul Murat Landauro Minaya"
+msgstr "Paul Murat Landauro Minaya"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Khipu files to open"
+msgstr "Datoteke Khipu za odpiranje"
+
+#: src/main.cpp:58
+#, kde-format
+msgid "Always start with a new file, ignoring any autosaved file"
+msgstr ""
+"Vedno začni z novo datoteke, prezri kakršnokoli samodejno shranjeno datoteko"
+
+#: src/mainwindow.cpp:142
+#, kde-format
+msgid "&Shortcuts"
+msgstr "Bližnjice"
+
+#: src/mainwindow.cpp:226
+#, kde-format
+msgid "&Save Plot as PNG"
+msgstr "Shrani sliko kot PNG"
+
+#: src/mainwindow.cpp:229
+#, kde-format
+msgid "Add Space &2D"
+msgstr "Dodaj prostor &2D"
+
+#: src/mainwindow.cpp:230
+#, kde-format
+msgid "Add Space &3D"
+msgstr "Dodaj prostor &3D"
+
+#: src/mainwindow.cpp:235
+#, kde-format
+msgid "Create a plot in a new space"
+msgstr "Ustvari sliko v novem prostoru"
+
+#: src/mainwindow.cpp:238
+#, kde-format
+msgid "Plot &Dictionaries"
+msgstr "Risanje in slovarji"
+
+#: src/mainwindow.cpp:263
+#, kde-format
+msgid "&Go First Space"
+msgstr "Pojdi na prvi prostor"
+
+#: src/mainwindow.cpp:268
+#, kde-format
+msgid "&Go Previous Space"
+msgstr "Pojdi na prejšnji prostor"
+
+#: src/mainwindow.cpp:273
+#, kde-format
+msgid "&Go Next Space"
+msgstr "Pojdi v naslednji prostor"
+
+#: src/mainwindow.cpp:278
+#, kde-format
+msgid "&Go Last Space"
+msgstr "Pojdi v zadnji prostor"
+
+#: src/mainwindow.cpp:284
+#, kde-format
+msgid "&Remove Current Space"
+msgstr "Odstrani trenutni prostor"
+
+#: src/mainwindow.cpp:286
+#, kde-format
+msgid "&Take Snapshot"
+msgstr "Napravi posnetek"
+
+#: src/mainwindow.cpp:287
+#, kde-format
+msgid "&Get Plot-Dictionary files"
+msgstr "Pridobi datoteke slovarjev slik"
+
+#: src/mainwindow.cpp:288
+#, kde-format
+msgid "&Import Plot-Dictionary file"
+msgstr "Uvoz datoteke slovarjev slik"
+
+#: src/mainwindow.cpp:333 src/mainwindow.cpp:376
+#, kde-format
+msgid "There is not any space available to show!"
+msgstr "Za prikaz ni na voljo nobenega prostora!"
+
+#: src/mainwindow.cpp:337
+#, kde-format
+msgid "Currently you are on the first space!"
+msgstr "Trenutno ste v prvem prostoru!"
+
+#: src/mainwindow.cpp:348
+#, kde-format
+msgid "You are already on the first space!"
+msgstr "Ste že v prvem prostoru!"
+
+#: src/mainwindow.cpp:360
+#, kde-format
+msgid "You are already on the last space!"
+msgstr "Ste že v zadnjem prostoru!"
+
+#: src/mainwindow.cpp:380
+#, kde-format
+msgid "Currently you are on the last space!"
+msgstr "Trenutno ste v zadnjem prostoru!"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Press Ctrl + M to make menubar visible again"
+msgstr "Pritisnite Ctrl + M, da se ponovno prikaže menijska letvica"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Menubar Visibility"
+msgstr "Vidnost menijske letvice"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid "No need to create New Window"
+msgstr "Ni potrebe po ustvarjanju novega okna"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid ""
+"There are not any plots available. So, you do not need to create a new Plot "
+"Window"
+msgstr ""
+"Na voljo ni nobene slike. Torej vam ni treba ustvariti novega okna za sliko"
+
+#: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Khipu Files (*.khipu);;All Files (*)"
+msgstr "Datoteke Khipu (*.khipu);;Vse datoteke (*)"
+
+#: src/mainwindow.cpp:528
+#, kde-format
+msgid "The file does not exist."
+msgstr "Datoteka ne obstaja."
+
+#: src/mainwindow.cpp:536
+#, kde-format
+msgid "An error appeared when opening this file (%1)"
+msgstr "Pri odpiranju te datoteke se je pojavila napaka (%1)"
+
+#: src/mainwindow.cpp:550
+#, kde-format
+msgid "Do you want to recover the file you have not saved last time?"
+msgstr "Ali želite obnoviti datoteko, ki je zadnjič niste shranili?"
+
+#: src/mainwindow.cpp:550 src/mainwindow.cpp:578
+#, kde-format
+msgid "Autosaved .khipu file"
+msgstr "Samodejno shranjena datoteka .khipu"
+
+#: src/mainwindow.cpp:578
+#, kde-format
+msgid ""
+"There are some unsaved changes in the file %1. Do you want to recover them?"
+msgstr "V datoteki %1 je nekaj neshranjenih sprememb. Ali jih želite obnoviti?"
+
+#: src/mainwindow.cpp:589
+#, kde-format
+msgid "Error while reading file, maybe path is not found."
+msgstr "Napaka med branjem datoteke, morda pot ni bila najdena."
+
+#: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading"
+msgstr "Napaka pri branju"
+
+#: src/mainwindow.cpp:592
+#, kde-format
+msgid "%1 could not be opened"
+msgstr "%1 ni bilo mogoče odpreti"
+
+#: src/mainwindow.cpp:606
+#, kde-format
+msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
+msgstr ""
+"Težava pri razčlenjevanju vsebine datoteke, morda napačna datoteka khipu."
+
+#: src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Save As"
+msgstr "Shrani kot"
+
+#: src/mainwindow.cpp:675
+#, kde-format
+msgid ""
+"The file which you want to save, already exists. Do you want to overwrite "
+"this file?"
+msgstr ""
+"Datoteka, ki jo želite shraniti, že obstaja. Ali želite prepisati to "
+"datoteko?"
+
+#: src/mainwindow.cpp:676
+#, kde-format
+msgid "Warning: File already exists"
+msgstr "Opozorilo: Datoteka že obstaja"
+
+#: src/mainwindow.cpp:695
+#, kde-format
+msgid "The current file contains some unsaved work. Do you want to save it?"
+msgstr ""
+"Trenutna datoteka vsebuje nekaj neshranjenega dela. Ali ga želite shraniti?"
+
+#: src/mainwindow.cpp:696
+#, kde-format
+msgid "Warning: Unsaved changes"
+msgstr "Opozorilo: Neshranjene spremembe"
+
+#: src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading file, file may be empty"
+msgstr "Napaka pri branju datoteke, morda je datoteka prazna"
+
+#: src/mainwindow.cpp:815
+#, kde-format
+msgid "Could not open %1 for writing"
+msgstr "%1 ni bilo mogoče odpreti za pisanje"
+
+#: src/mainwindow.cpp:815 src/mainwindow.cpp:826
+#, kde-format
+msgid "Error while writing"
+msgstr "Napaka med pisanjem"
+
+#: src/mainwindow.cpp:826
+#, kde-format
+msgid "Could not open %1 for writing %2"
+msgstr "Ni bilo mogoče odpreti %1 za pisanje %2"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving file. Maybe path is not found"
+msgstr "Napaka med shranjevanjem datoteke. Mogoče poti ni mogoče najti"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving"
+msgstr "Napaka med shranjevanjem"
+
+#: src/mainwindow.cpp:857
+#, kde-format
+msgid "File %1 [%2] is saved successfully"
+msgstr "Datoteka %1 [%2] je uspešno shranjena"
+
+#: src/mainwindow.cpp:1005
+#, kde-format
+msgid "The diagram was copied to clipboard"
+msgstr "Diagram je bil skopiran v odložišče"
+
+#: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
+#, kde-format
+msgid "Untitled %1"
+msgstr "Brez naslova %1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
+#: src/plotsbuilder.ui:17
+#, kde-format
+msgid "Build a Cartesian Curve"
+msgstr "Zgradi kartezično krivuljo"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:99 src/plotsbuilder.ui:173
+#: src/plotsbuilder.ui:231 src/plotsbuilder.ui:265
+#, kde-format
+msgid "Graph"
+msgstr "Graf"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
+#: src/plotsbuilder.ui:53 src/plotsbuilder.ui:185
+#, kde-format
+msgid "Implicit"
+msgstr "Implicitno"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
+#: src/plotsbuilder.ui:65 src/plotsbuilder.ui:133 src/plotsbuilder.ui:197
+#, kde-format
+msgid "Parametric"
+msgstr "Parametrsko"
+
+#. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
+#: src/plotsbuilder.ui:93
+#, kde-format
+msgid "Build a Polar Curve"
+msgstr "Zgradi polarno krivuljo"
+
+#. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
+#: src/plotsbuilder.ui:127
+#, kde-format
+msgid "Build a Space Curve"
+msgstr "Zgradi prostorsko krivuljo"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
+#: src/plotsbuilder.ui:167
+#, kde-format
+msgid "Build a Cartesian Surface"
+msgstr "Zgradi kartezično ploskev"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
+#: src/plotsbuilder.ui:225
+#, kde-format
+msgid "Build a Cylindrical Surface"
+msgstr "Zgradi cilindrično ploskev"
+
+#. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
+#: src/plotsbuilder.ui:259
+#, kde-format
+msgid "Build a Spherical Surface"
+msgstr "Zgradi krogelno ploskev"
+
+#: src/plotseditor.cpp:67
+#, kde-format
+msgid "check/uncheck to show/hide the Axes"
+msgstr "odkljukajte/umaknite rubriko, če želite pokazati/skriti osi"
+
+#: src/plotseditor.cpp:70
+#, kde-format
+msgid "Click to edit the plot"
+msgstr "Kliknite za urejanje slike"
+
+#: src/plotseditor.cpp:71
+#, kde-format
+msgid "Click to remove the plot"
+msgstr "Kliknite za odstranitev slike"
+
+#: src/plotseditor.cpp:1020
+#, kde-format
+msgid "plot %1"
+msgstr "slika %1"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
+#: src/plotseditor.ui:20
+#, kde-format
+msgid "Plots"
+msgstr "Slike"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
+#: src/plotseditor.ui:36
+#, kde-format
+msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Kliknite sem za dodajanje slike</p></body></html>"
+
+#. i18n: ectx: property (text), widget (QPushButton, editPlot)
+#: src/plotseditor.ui:114
+#, kde-format
+msgid "Edit"
+msgstr "Uredi"
+
+#. i18n: ectx: property (text), widget (QPushButton, removePlot)
+#: src/plotseditor.ui:124 src/spacesdelegate.cpp:74
+#, kde-format
+msgid "Remove"
+msgstr "Odstrani"
+
+#. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
+#: src/plotseditor.ui:156
+#, kde-format
+msgid "Plot Name"
+msgstr "Ime slike"
+
+#. i18n: ectx: property (text), widget (QLabel, plotIcon)
+#: src/plotseditor.ui:163
+#, kde-format
+msgid "TextLabel"
+msgstr "Besedilna oznaka"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/plotseditor.ui:397
+#, kde-format
+msgid "Color:"
+msgstr "Barva:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/plotseditor.ui:413
+#, kde-format
+msgid "Style"
+msgstr "Slog"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:421
+#, kde-format
+msgid "Solid"
+msgstr "Solid"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:426
+#, kde-format
+msgid "Wired"
+msgstr "Žični"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:431
+#, kde-format
+msgid "Dots"
+msgstr "Pike"
+
+#. i18n: ectx: property (title), widget (QGroupBox, intervals)
+#: src/plotseditor.ui:457
+#, kde-format
+msgid "Use Intervals"
+msgstr "Uporabi intervale"
+
+#. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:659
+#, kde-format
+msgid "asdsada"
+msgstr "asdsada"
+
+#. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:662
+#, kde-format
+msgid "asdad"
+msgstr "asdad"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
+#: src/spaceinformation.ui:41
+#, kde-format
+msgid "Notes"
+msgstr "Beležke"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/spaceinformation.ui:50
+#, kde-format
+msgid "Title:"
+msgstr "Naslov:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: src/spaceinformation.ui:80
+#, kde-format
+msgid "Description:"
+msgstr "Opis:"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
+#: src/spaceoptions.ui:38
+#, kde-format
+msgid "Diagram"
+msgstr "Diagram"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/spaceoptions.ui:57
+#, kde-format
+msgid "Grid Options"
+msgstr "Možnosti mreže"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:87
+#, kde-format
+msgid "None"
+msgstr "Nobena"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:92
+#, kde-format
+msgid "Lines"
+msgstr "Črte"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:97
+#, kde-format
+msgid "Polar"
+msgstr "Polarne"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/spaceoptions.ui:105
+#, kde-format
+msgid "Grid Style:"
+msgstr "Slog mreže:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
+#: src/spaceoptions.ui:115
+#, kde-format
+msgid "Grid Ticks"
+msgstr "Črtice na mreži"
+
+#. i18n: ectx: property (text), widget (QLabel, label_14)
+#: src/spaceoptions.ui:127
+#, kde-format
+msgid "Scale:"
+msgstr "Merilo:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
+#: src/spaceoptions.ui:159
+#, kde-format
+msgid "More Options"
+msgstr "Več možnosti"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
+#: src/spaceoptions.ui:173
+#, kde-format
+msgid "Horizontal Label:"
+msgstr "Vodoravna oznaka:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
+#: src/spaceoptions.ui:183
+#, kde-format
+msgid "x"
+msgstr "x"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
+#: src/spaceoptions.ui:193
+#, kde-format
+msgid "Vertical Label:"
+msgstr "Navpična oznaka:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
+#: src/spaceoptions.ui:203
+#, kde-format
+msgid "y"
+msgstr "y"
+
+#. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
+#: src/spaceoptions.ui:215
+#, kde-format
+msgid "Horizontal and Vertical Marks"
+msgstr "Vodoravne in navpične oznake"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: src/spaceoptions.ui:254
+#, kde-format
+msgid "Axis"
+msgstr "Osi"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showGrid)
+#: src/spaceoptions.ui:270
+#, kde-format
+msgid "Grid"
+msgstr "Mreža"
+
+#. i18n: ectx: property (text), widget (QLabel, label_16)
+#: src/spaceoptions.ui:289
+#, kde-format
+msgid "Size:"
+msgstr "Velikost:"
+
+#: src/spacesdelegate.cpp:81
+#, kde-format
+msgid "Rename"
+msgstr "Preimenuj"
+
+#: src/spacesdelegate.cpp:88
+#, kde-format
+msgid "Export as dictionary"
+msgstr "Izvozi kot slovar"
+
+#: src/spacesmodel.cpp:41
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Ime"
+
+#: src/spacesmodel.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Description"
+msgstr "Opis"

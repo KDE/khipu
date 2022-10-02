@@ -1,0 +1,654 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title
+>Het handboek van &khipu;</title>
+<authorgroup>
+<author>
+<personname
+><firstname
+>Deze documentatie is geconverteerd uit de pagina in de &kde; UserBase <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction"
+>&khipu;/handboek</ulink
+>.</firstname
+> <surname
+></surname
+> </personname>
+      </author>
+&Freek.de.Kruijf;&Jaap.Woldringh; 
+      </authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2013-09-18</date>
+      <releaseinfo
+>1.0</releaseinfo>
+<abstract>
+<para
+></para>
+      </abstract>
+      <keywordset>
+<keyword
+>KDE</keyword>
+</keywordset>
+</bookinfo>
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>Met &khipu; plotten is gewoon leuk</title>
+<para
+>&khipu; is een geavanceerd plotprogramma voor wiskundige functies. </para>
+<para
+>Het maakt deel uit van het <ulink url="http://edu.kde.org"
+>Educatieproject</ulink
+> van &kde;, en vervangt een eerder dergelijk programma, &kmplot;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="khipu_space3d.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; 3D-ruimte</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; 3D-ruimte</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect1 id="quick-start-guide"
+><title
+>Snelstartgids</title>
+<sect2 id="idea-of-space"
+><title
+>Het begrip Ruimte</title
+> 
+<para
+>In &khipu; wordt het begrip <emphasis
+>ruimte</emphasis
+>, in abstracte zin gebruikt, bij het opslaan van de plots. Een ruimte krijgt een naam en de bijbehorende beschrijving, waarmee die later kan worden teruggevonden. In &khipu; bestaan twee soorten ruimte (2D en 3D). U kunt in elk daarvan, naar keuze, <emphasis
+>plots opslaan</emphasis
+>. <emphasis
+>In iedere ruimte kunnen meerdere plots worden opgeslagen</emphasis
+>, met diverse kleuren, intervallen en types. </para>
+</sect2>
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Hoe worden in &khipu; functies geplot?</title
+> 
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;-2D/3D-ruimte toevoegen</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;-2D/3D-ruimte toevoegen</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Zoals hierboven al is genoemd, worden in &khipu; functies in een ruimte geplot. Er zijn dus twee mogelijkheden in &khipu; een ruimte toe te voegen, afhankelijk van de dimensies van de plot. In het hoofdvenster van &khipu; (in &khipu; heet dit venster Dashboard), ziet u een <guilabel
+>Hoofdwerkbalk</guilabel
+>, met daarin de knoppen <guilabel
+>Toevoegen 2D-ruimte</guilabel
+> en <guilabel
+>Toevoegen 3D-ruimte</guilabel
+>. Afhankelijk van de te plotten functie kunt u een van deze knoppen selecteren. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Plot in ruimte toevoegen</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Plot in ruimte toevoegen</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Plots in 2-Dimensies weergegeven</title
+> 
+<para
+>Wanneer men klikt op  <guibutton
+>Toevoegen 2D-ruimte </guibutton
+>, ziet men het scherm voor de 2D ruimte. Men kan hierin klikken op de <guilabel
+>groene knop</guilabel
+>, en daarna een plot toevoegen. Men moet dan het type van de plot selecteren (bijvoorbeeld door te klikken op <guilabel
+>Grafiek</guilabel
+> in het Cartesisch gedeelte wanneer de sinuskromme moet worden geplot!). Door op het keuzevakje voor de naam van de plot te klikken, kan de plot een naam worden gegeven. Daarna moet een <guilabel
+>geldige vergelijking worden gegeven</guilabel
+> (zoals in &analitza;), waarna de plot wordt getoond. Zijn er hierna geenwensen, <emphasis
+> klik dan op &Enter;</emphasis
+>. Men kan zelfs de kleur instellen van de plot door deze te kiezen in de kleurenlijst onderaan, en het juiste interval kiezen voor de argumenten (variabelen tussen de haakjes) van de functie. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Voorbeeld 2D-Grafiek</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Voorbeeld 2D-Grafiek</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Plots in 3-Dimensies weergegeven</title>
+<para
+>Wanneer men klikt op Toevoegen 3D-ruimte, ziet men het scherm voor de 3D ruimte. Men kan hierin klikken op de <guilabel
+>groene knop</guilabel
+>, en daarna een plot toevoegen. Men moet dan het type van de plot selecteren (bijvoorbeeld door te klikken op <guilabel
+>Grafiek</guilabel
+> in het Cartesisch gedeelte wanneer eenvoudig oppervlak moet worden geplot!). Door op het keuzevakje voor de naam van de plot te klikken, kan de plot een naam worden gegeven. Daarna moet een <guilabel
+>geldige vergelijking worden gegeven</guilabel
+> (zoals in &analitza;), waarna de plot wordt getoond. Zijn er hierna geenwensen, <emphasis
+> klik dan op &Enter;</emphasis
+>. Men kan zelfs de kleur instellen van de plot door deze te kiezen in de kleurenlijst onderaan, en het juiste interval kiezen voor de argumenten (variabelen tussen de haakjes) van de functie. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Plots bewerken/wissen</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Plots bewerken/wissen</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Hoe kunnen in &khipu; functies worden bewerkt/gewist?</title
+> 
+<para
+>Men kan reeds toegevoegde plots bewerken en/of wissen. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Bewerken van een reeds toegevoegde plot</title
+> 
+<para
+>U kunt een plot bewerken door te <emphasis
+>dubbelklikken op de beschrijving van de plot</emphasis
+> in het invoerscherm van de plots, of door in dit scherm de beschrijving van de plot te selecteren en te klikken op de bewerkingsknop onderaan. </para>
+</sect3>
+<sect3 id="removing-a-plot"
+><title
+>Een plot verwijderen</title
+> 
+<para
+>U kunt een plot verwijderen door in het invoerscherm van de plots de gewenste plot te selecteren en  op de onderstaande knop <guilabel
+>Verwijderen</guilabel
+> te klikken. </para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Spelen met het Plotwoordenboek</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>Wat is een Plotwoordenboek?</title
+> 
+<para
+>Een plotwoordenboek is een soort tekstbestand (<filename role="extension"
+>.plots</filename
+>) dat een naam van een plot bevat, en de bijbehorende vergelijking. Het basisidee van woordenboekbestanden is het aan &khipu; toevoegen van plots, zonder dat de soms grote vergelijkingen moeten worden ingetypt. U kunt plots toevoegen op basis van hun namen in de woordenboeken. Er zijn reeds voorgedefinieerde woordenboeken aanwezig waarmee u enkele bekende plots (&ie; krommen en oppervlakken) kunt invoeren. Woordenboeken kunnen zelfs van het internet worden gedownload. </para>
+<sect3 id="syntax"
+><title
+>Syntaxis</title
+> 
+<para
+>De syntaxis van een woordenboekbestand is gelijk aan die voor &analitza;. Op elke regel in het tekstbestand staat een naam en de erbij behorende vergelijking. </para>
+<para
+>Bijvoorbeeld: Een typisch woordenboekbestand bevat regels als volgt: </para>
+<itemizedlist>
+<listitem
+><para
+>sinus := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plane1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
+</itemizedlist>
+</sect3>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Toevoegen van uw eigen woordenboekbestand</title
+> 
+<para
+>Door de flexibele syntaxis van &analitza; kan u uw eigen woordenboekbestand aanmaken! Daartoe moet een tekstbestand worden opgeslagen met de extensie <filename role="extension"
+>.plots</filename
+>, en met op elke regel de juiste plotnaam en vergelijking. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Plotwoordenboek in hoofdwerkbalk</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Plotwoordenboek in hoofdwerkbalk</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Beschouwen we de plots in de woordenboekbestanden</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig6.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Scherm Plotwoordenboek</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Scherm Plotwoordenboek</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Als u wilt zien hoe een woordenboek wordt gebruikt in &khipu;, klikt u op het tabblad <guilabel
+>Plotwoordenboek</guilabel
+> in de hoofdwerkbalk van &khipu;. Ga dan langs de diverse namen in de keuzelijst gemerkt naar <emphasis
+>collectie</emphasis
+>. Klik op een willekeurige plotnaam, u ziet daarna in het plotvenster de erbij behorende plot verschijnen, rechts in het venster. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Scherm Plotwoordenboek</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Scherm Plotwoordenboek</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Plots toevoegen vanuit het woordenboek</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Plots toevoegen uit woordenboek</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Plots toevoegen uit woordenboek</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Het grote voordeel van de woordenboeken is dat plots kunnen worden toegevoegd zonder dat de soms grote vergelijkingen moeten worden ingetypt. Daarvoor moet er een ruimte in &khipu; worden toegevoegd. Ga daarna naar het tabblad <guilabel
+>Toevoegen uit woordenboek</guilabel
+>. U kunt daar het gewenste woordenboekbestand toevoegen. U moet dubbelklikken op de naam van de plot om die in de huidige ruimte in &khipu; toe te voegen. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig9.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Woordenboek importeren/downloaden</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Woordenboek importeren/downloaden</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Woordenboekbestand importeren vanaf een lokale harde schijf</title>
+<para
+>U kunt niet alleen plots toevoegen/zien van de voorgedefinieerde woordenboeken die voor &analitza; beschikbaar zijn, maar zelfs een gedownload/zelf gemaakt woordenboek in &khipu; importeren, en de hierin beschikbare plots in de ruimte in &khipu; toevoegen! </para>
+</sect2>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Woordenboekbestand van het internet downloaden</title>
+<para
+>Door de <guilabel
+>Get Hot New Stuff API</guilabel
+> in &khipu; te gebruiken kunt u interessante woordenboekbestanden op het web downloaden.  Zo kunt u een mooie collectie aanleggen van woordenboeken afkomstig van de hele wereld. Dit kunt u eenvoudig doen door op <guilabel
+>Plotwoordenboekbestanden ophalen</guilabel
+> te klikken in het Woordenboek-scherm. </para>
+</sect2>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Een ruimte exporteren als woordenboek</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig11.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Een ruimte exporteren als woordenboek</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Een ruimte exporteren als woordenboek</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>U kunt zelfs een gehele ruimte in een woordenboek exporteren, met de namen en vergelijkingen van de plots die in die ruimte zijn opgeslagen. Hiervoor moet u klikken op <guilabel
+>Home</guilabel
+>, en daarna op de <emphasis
+>gereedschapsknop</emphasis
+> in het miniatuurtje van de ruimte, voor informatie over het exporteren van de ruimte in het woordenboek. </para>
+</sect2>
+</sect1>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: Meer dan alleen maar plotten</title>
+<sect2 id="khipus-application-actions"
+><title
+>Acties in &khipu;</title
+> 
+<para
+>Een groot voordeel van &khipu; is, dat het <emphasis
+> een aantal extra mogelijkheden biedt </emphasis
+> om met functies om te gaan, anders dan alleen maar plotten. De diverse acties die mogelijk zijn, en andere eigenschappen, maken &khipu; meer gebruiksvriendelijk. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Nieuw/Openen/Opslaan/Opslaan als</title>
+<para
+>De gebruikelijke acties Nieuw, Openen, Opslaan en Opslaan als, maken het mogelijk met verschillende sessies te werken, en <emphasis
+>werk op te slaan in persistente (blijvende) bestanden (<filename role="extension"
+>.khipu</filename
+> bestanden)</emphasis
+>, die dan op een later tijdstip weer kunnen worden geopend. De persistente bestanden hebben een <emphasis
+>QJson bestandsformaat</emphasis
+>, waarin belangrijke informatie wordt opgeslagen over de huidige sessie. Hiertoe behoren informatie over de namen van toegevoegde ruimten, namen en vergelijkingen van plots toegevoegd in elke ruimte, intervallen en kleuren van plots. </para>
+</sect3>
+<sect3 id="save-plot-as-image"
+><title
+>Plot opslaan als beeldbestand</title>
+<para
+>In &khipu; heeft elke ruimte zijn eigen beeldbestand, dat de plots bevat die door u worden opgevraagd. Het beeldbestand van de ruimte kan met deze actie worden opgeslagen (als<acronym
+>PNG</acronym
+> -bestand) op de lokale harde schijf. </para>
+</sect3>
+<sect3 id="take-snapshot"
+><title
+>Momentopname maken</title>
+<para
+>U kunt met deze actie dit beeldbestand zelfs kopiëren naar het klembord. </para>
+</sect3>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>U wilt alleen een grafiek zien op het hele scherm?</title>
+<para
+>Met de optie in &khipu; voor Volledig scherm (Full screen), is het mogelijk alleen het plotgebied zichtbaar te maken, op het gehele scherm. Alle andere onderdelen en werkbalken zijn bij Volledig scherm onzichtbaar! </para>
+</sect3>
+<sect3 id="space-navigation"
+><title
+>Ruimte navigatie</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig12.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Opties voor ruimte navigatie</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Opties voor ruimte navigatie</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>U kunt van de ene naar de andere ruimte (2D of 3D) navigeren, met een enkele toetsklik. De sneltoetsen hiervoor zijn de volgende: </para>
+<itemizedlist>
+<listitem
+><para
+>Navigeren naar de volgende ruimte -&gt; &PgUp;</para
+></listitem>
+<listitem
+><para
+>Navigeren naar de vorige ruimte -&gt; &PgDn;</para
+></listitem>
+<listitem
+><para
+>Navigeren naar de eerste ruimte -&gt; <keycombo
+>&Ctrl;&Home;</keycombo
+></para
+></listitem>
+<listitem
+><para
+>Navigeren naar de laatste ruimte -&gt; <keycombo
+>&Ctrl;&End;</keycombo
+></para
+></listitem>
+</itemizedlist>
+</sect3>
+</sect2>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Dashboard: Al het werk direct bij de hand</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig13.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Hoofd Dashboard</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Hoofd Dashboard</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Het hoofd dashboard van &khipu; bevat alle aangemaakte ruimten, samen met de bijbehorende miniaturen en namen van de ruimten. Zo kunt u een ruimte selecteren voor het tonen van de plots, en voor wijzigingen. </para>
+</sect2>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Ruimten filteren op Naam, Beschrijving en Dimensie</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig14.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Ruimten filteren</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Ruimten filteren</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Met het filter dat in het dashboard beschikbaar is, kunt u ruimten filteren op grond van hun naam en/of beschrijving. U kunt zelfs de ruimten filteren op de dimensie, die u kiest in de keuzelijst in de rechter bovenhoek van het scherm van het dashboard. </para>
+</sect2>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Sneltoetsen: plotten op een gemakkelijke manier</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig15.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Scherm met sneltoetsen</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Scherm met sneltoetsen</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Indien u snel plots wilt maken zonder u te bekommeren om ruimten, kunt u dit doen in het scherm met sneltoetsen. Hiertoe typt u <keycap
+>S</keycap
+>, waarna u in dit scherm het juiste plottype selecteert, de vergelijking intypt, en op &Enter; drukt, en dat is het dan! </para>
+</sect2>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>In/uitzoomen en roteren in de weergave van de plots</title>
+<para
+>In de 2D en 3D-ruimten kunt u in- en uitzoomen in het plotgebied door erin op of neer te scrollen. In 3D-ruimten kan worden geroteerd en schaduwen worden gemanipuleerd, zodat 3D plots vanuit diverse hoeken kunnen worden geanalyseerd! </para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="credits-and-license"
+><title
+>Dankbetuigingen en licentie</title
+> 
+<sect1 id="program-copyright"
+><title
+>Programma copyright</title>
+<para
+>Programma copyright 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi </para>
+</sect1>
+<sect1 id="documentation-copyright"
+><title
+>Documentatie copyright</title
+> 
+<para
+><note
+><para
+>Voeg uw naam hier in als u aan het handboek hebt bijgedragen. Gaarne in alfabetische volgorde</para
+></note>
+</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
+</sect1>
+<sect1 id="licenses"
+><title
+>Licenties</title
+> 
+<para
+>Deze documentatie valt onder de bepalingen van de licentie <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>&GNU; Free Documentation License</ulink
+>. </para>
+<para
+>Dit programma is beschikbaar onder de licentie van de <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+>&GNU; General Public License</ulink
+>. </para>
+
+<!--userbase-content-->
+&meld.fouten;&vertaling.freek;&vertaling.jaap; &underFDL; </sect1>
+</chapter>
+&documentation.index;
+</book>

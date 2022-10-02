@@ -1,0 +1,682 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Brazilian-Portuguese "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title
+>Manual do &khipu;</title>
+<authorgroup>
+<author>
+<personname
+><firstname
+>Esta documentação foi convertida a partir da página <ulink url="http://userbase.kde.org/Khipu/Manual/Introduction"
+>Manual do &khipu;</ulink
+>.</firstname
+> <surname
+></surname
+> </personname>
+      </author>
+<othercredit role="translator"
+><firstname
+>André Marcelo</firstname
+><surname
+>Alvarenga</surname
+><affiliation
+><address
+><email
+>alvarenga@kde.org</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+      </authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>18/09/2013</date>
+      <releaseinfo
+>1.0</releaseinfo>
+<abstract>
+<para
+></para>
+      </abstract>
+      <keywordset>
+<keyword
+>KDE</keyword>
+</keywordset>
+</bookinfo>
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>Desenhar gráficos no &khipu; é só diversão</title>
+<para
+>&khipu; é um aplicativo avançado para desenho de funções matemáticas. </para>
+<para
+>Ele integra o <ulink url="http://edu.kde.org"
+>Projeto &kde; Educacional</ulink
+> e é um substituto do antigo aplicativo para desenho de gráficos &kmplot;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="khipu_space3d.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Espaço 3D do &khipu;</phrase>
+    </textobject>
+    <caption>
+      <para
+>Espaço 3D do &khipu;</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect1 id="quick-start-guide"
+><title
+>Guia de introdução</title>
+<sect2 id="idea-of-space"
+><title
+>Ideia do espaço</title
+> 
+<para
+>O &khipu; usa uma abstração do <emphasis
+>espaço</emphasis
+> para poder salvar os gráficos solicitados pelo usuário. Um espaço terá o nome e descrição correspondentes, nos quais poderá ser identificado posteriormente pelo usuário. O &khipu; tem dois tipos de espaços (2D e 3D). O usuário poderá <emphasis
+>salvar o gráfico</emphasis
+> em qualquer um dos espaços, de acordo com a sua vontade. <emphasis
+>Todos os espaços irão conter vários gráficos</emphasis
+> de diferentes cores, intervalos e tipos. </para>
+</sect2>
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Como desenhar funções no &khipu;?</title
+> 
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;-Adicionar um espaço 2D/3D</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;-Adicionar um espaço 2D/3D</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Como mencionado anteriormente, o &khipu; desenha funções no Espaço. Assim, existem duas formas de adicionar um espaço no &khipu; com base na dimensão do gráfico. Quando estiver na janela principal do &khipu; (Painel, na terminologia do &khipu;), você verá uma <guilabel
+>Barra de ferramentas principal</guilabel
+> que contém botões para <guilabel
+>Adicionar espaço 2D</guilabel
+> e <guilabel
+>Adicionar espaço 3D</guilabel
+>. O usuário poderá selecionar qualquer um deles, dependendo da função que deseja desenhar. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Adicionar um gráfico ao espaço</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Adicionar um gráfico ao espaço</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Gráficos representados e 2 dimensões</title
+> 
+<para
+>Quando o usuário clica em <guibutton
+>Adicionar espaço 2D</guibutton
+>, ele irá direcioná-lo para a interface do espaço 2D. Então terá de clicar no <guilabel
+>botão verde</guilabel
+> que lhe permitirá adicionar um gráfico. Depois, o usuário precisa selecionar o tipo do gráfico (por exemplo, clicar em <guilabel
+>Gráfico</guilabel
+>, na seção Cartesiano, se quiser desenhar uma curva senoidal!). Você pode adicionar um nome ao gráfico se assinalar a opção respectiva. Depois, o usuário terá que <guilabel
+>adicionar uma equação apropriada</guilabel
+> (equação do tipo &analitza;) para ver o seu gráfico. Se não quiser mais nada, <emphasis
+>basta pressionar &Enter;</emphasis
+>. É possível definir a cor do gráfico, alterando a opção na lista de cores apresentada abaixo e definir um intervalo apropriado para os argumentos da função. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Exemplo de gráfico 2D</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Exemplo de gráfico 2D</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Gráficos representados em 3 dimensões</title>
+<para
+>Quando o usuário clica em <guibutton
+>Adicionar espaço 3D</guibutton
+>, ele irá direcioná-lo para a interface do espaço 3D. Então terá de clicar no <guilabel
+>botão verde</guilabel
+> que lhe permitirá adicionar um gráfico. Depois, o usuário precisa selecionar o tipo do gráfico (por exemplo, clicar em <guilabel
+>Gráfico</guilabel
+>, na seção Cartesiano, se quiser desenhar uma superfície simples!). Você pode adicionar um nome ao gráfico se assinalar a opção respectiva. Depois, o usuário terá que <guilabel
+>adicionar uma equação apropriada</guilabel
+> (equação do tipo &analitza;) para ver o seu gráfico. Se não quiser mais nada, <emphasis
+>basta pressionar &Enter;</emphasis
+>. É possível definir a cor do gráfico, alterando a opção na lista de cores apresentada abaixo. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Editar/Remover os gráficos</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Editar/Remover os gráficos</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Como editar/remover funções do &khipu;?</title
+> 
+<para
+>O usuário pode editar e/ou remover os gráficos adicionados previamente. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Editando um gráfico já adicionado</title
+> 
+<para
+>Você pode editar um gráfico com um <emphasis
+>duplo clique sobre o item do gráfico</emphasis
+> na área de gráficos ou selecionar o item apropriado e então clicar no botão de edição mostrado abaixo. </para>
+</sect3>
+<sect3 id="removing-a-plot"
+><title
+>Removendo um gráfico</title
+> 
+<para
+>Você pode remover um gráfico se selecionar um gráfico desejado na janela e depois clicar no botão <guilabel
+>Remover</guilabel
+> que aparece abaixo. </para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Usando o Dicionário de Gráficos</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>O que é um dicionário de gráficos?</title
+> 
+<para
+>Um dicionário de gráficos é uma espécie de arquivo de texto (<filename role="extension"
+>.plots</filename
+>) que contém um nome de um gráfico em conjunto com a sua equação. A ideia básica dos arquivos de dicionários é adicionar gráficos no &khipu; sem precisar escrever grandes equações. O usuário poderá adicionar os gráficos, com base no seu nome, usando os dicionários. Já existem alguns dicionários predefinidos que permitem ao usuário indicar alguns gráficos conhecidos (&ie;, curvas e superfícies). O usuário até poderá baixar dicionários a partir da Internet. </para>
+<sect3 id="syntax"
+><title
+>Sintaxe</title
+> 
+<para
+>A sintaxe de um arquivo de dicionário segue a sintaxe do &analitza;. Cada linha de um arquivo contém um nome e a equação correspondente. </para>
+<para
+>Por exemplo: Um arquivo de dicionário típico teria as seguintes linhas: </para>
+<itemizedlist>
+<listitem
+><para
+>seno := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plano1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
+</itemizedlist>
+</sect3>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Adicionando seu próprio arquivo de dicionário</title
+> 
+<para
+>A sintaxe flexível do &analitza; permite ao usuário criar o seu próprio arquivo de dicionário! O usuário precisa salvar um arquivo de texto com a extensão <filename role="extension"
+>.plots</filename
+>, com o nome correto do gráfico e as equações em cada linha. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Dicionário de gráficos na barra de ferramentas principal</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Dicionário de gráficos na barra de ferramentas principal</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Vejamos os gráficos nos arquivos de dicionário</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig6.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Interface do dicionário de gráficos</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Interface do dicionário de gráficos</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Se quiser ver como o &khipu; usa o dicionário, basta clicar na aba <guilabel
+>Dicionário de gráficos</guilabel
+> da barra de ferramentas principal do &khipu;. Depois mude para os diferentes nomes na lista marcada por <emphasis
+>coleção</emphasis
+>. Clique em qualquer um dos nomes dos gráficos e irá ver um gráfico correspondente no lado direito da janela. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Interface do dicionário de gráficos</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Interface do dicionário de gráficos</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Adicionando gráficos a partir do dicionário</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Adicionando gráficos a partir do dicionário</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Adicionando gráficos a partir do dicionário</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>A principal vantagem dos dicionários é adicionar os gráficos sem precisar escrever grandes equações. Para isso, adicione qualquer espaço no &khipu;. Depois mude para a aba <guilabel
+>Adicionar do dicionário</guilabel
+>. Você pode adicionar ali o arquivo do dicionário, de acordo com a sua vontade. Apenas precisa clicar duas vezes sobre o nome do gráfico para adicioná-lo ao espaço atual do &khipu;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig9.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Importar/Baixar dicionários</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Importar/Baixar dicionários</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Importar um arquivo de dicionário a partir do disco local</title>
+<para
+>Não só poderá adicionar/ver o gráfico dos dicionários predefinidos e disponíveis pelo &analitza;, como também pode importar todos os dicionários baixados ou criados manualmente no &khipu;, adicionando-os a partir daí no espaço do &khipu;! </para>
+</sect2>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Baixando um arquivo de dicionário a partir da Internet</title>
+<para
+>O uso da <guilabel
+>API Obter novidades</guilabel
+> no &khipu; irá permitir ao usuário baixar esses arquivos de dicionário a partir da Web. Dessa forma, um usuário poderá ter uma grande coleção de dicionários baixados a partir de todo o mundo. Poderá conseguir isto se clicar na opção <guilabel
+>Obter arquivos de dicionário de gráficos</guilabel
+> da interface de dicionários. </para>
+</sect2>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Exportar um espaço como um dicionário</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig11.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Exportar um espaço como dicionário</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Exportar um espaço como dicionário</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>O usuário até poderá exportar um espaço inteiro para o dicionário, com os nomes e equações dos gráficos salvos nesse espaço em particular. Para isso, deve clicar para ir ao <guilabel
+>Início</guilabel
+> e depois clicar no <emphasis
+>botão de ferramentas</emphasis
+> na miniatura do espaço, onde poderá então exportar o espaço no dicionário. </para>
+</sect2>
+</sect1>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: Mais do que apenas gráficos</title>
+<sect2 id="khipus-application-actions"
+><title
+>Ações do aplicativo &khipu;</title
+> 
+<para
+>Uma das principais vantagens do &khipu; é ter <emphasis
+>mais algumas funcionalidades úteis</emphasis
+> para lidar com desenho de funções matemáticas, além do simples desenho das mesmas. As várias ações do aplicativo e outras funcionalidades tornam o &khipu; mais amigável. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Novo/Abrir/Salvar/Salvar como</title>
+<para
+>As ações normais de Novo, Abrir, Salvar e Salvar como permitem aos usuários lidarem com diferentes sessões e <emphasis
+>salvar o seu trabalho em arquivos persistentes (arquivos <filename role="extension"
+>.khipu</filename
+>)</emphasis
+>, os quais poderão ser abertos mais tarde. O arquivo persistente segue um <emphasis
+>formato de arquivo QJson</emphasis
+> que guarda as informações importantes da sessão atual. Estas informações incluem o nome dos espaços adicionados, o nome e as equações dos gráficos adicionados em cada espaço, o intervalo dos gráficos e suas cores. </para>
+</sect3>
+<sect3 id="save-plot-as-image"
+><title
+>Salvar o gráfico como imagem</title>
+<para
+>No &khipu;, todos os espaços terão a sua imagem correspondente que contém os gráficos solicitados pelo usuário. A imagem do espaço pode ser salva (como um arquivo <acronym
+>PNG</acronym
+>) no disco local, usando esta ação do aplicativo. </para>
+</sect3>
+<sect3 id="take-snapshot"
+><title
+>Obter imagem</title>
+<para
+>Você poderá copiar a imagem do espaço para a área de transferência usando esta ação. </para>
+</sect3>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>Deseja ver apenas um gráfico na tela inteira?</title>
+<para
+>A opção de tela inteira no &khipu; irá permitir ao usuário ver apenas o espaço do gráfico. Todas as outras áreas e barras de ferramentas ficarão invisíveis ao ativar a tela inteira! </para>
+</sect3>
+<sect3 id="space-navigation"
+><title
+>Navegação no espaço</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig12.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Opções de navegação do espaço</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Opções de navegação do espaço</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Enquanto um usuário está em um determinado espaço (2D ou 3D), poderá mudar para o próximo/anterior/primeiro/último espaço apenas com uma combinação de teclas. Os atalhos para esse fim são os seguintes: </para>
+<itemizedlist>
+<listitem
+><para
+>Navegar para o próximo espaço -&gt; <keycap
+>Page Up</keycap
+></para
+></listitem>
+<listitem
+><para
+>Navegar para o espaço anterior -&gt; <keycap
+>Page Down</keycap
+></para
+></listitem>
+<listitem
+><para
+>Navegar para o primeiro espaço -&gt; <keycombo
+>&Ctrl;<keycap
+>Home</keycap
+></keycombo
+></para
+></listitem>
+<listitem
+><para
+>Navegar para o último espaço -&gt; <keycombo
+>&Ctrl;<keycap
+>End</keycap
+></keycombo
+></para
+></listitem>
+</itemizedlist>
+</sect3>
+</sect2>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Painel: Todo o trabalho disponível a qualquer tempo</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig13.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Painel principal</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Painel principal</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>O painel principal do &khipu; contém todos os espaços criados pelo usuário com a sua miniatura e o nome do espaço. Assim, um usuário poderá saber qual o espaço que deseja modificar ou ver os seus gráficos. </para>
+</sect2>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Filtro do espaço com base no título, descrição e dimensão</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig14.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Filtro de espaços</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Filtro de espaços</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>A funcionalidade de filtro disponível no painel irá permitir ao usuário filtrar os espaços com base no seu título e/ou descrição. Você poderá filtrar o espaço com base na dimensão escolhida na lista que aparece no canto superior direito da interface do painel. </para>
+</sect2>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Área de atalhos: Uma forma simples de desenhar gráficos</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig15.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Área de atalhos</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Área de atalhos</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Se um usuário deseja desenhar gráficos rapidamente sem precisar se preocupar com os espaços, a área de atalhos irá permitir-lhe fazer isso. Para tal, será necessário pressionar <keycap
+>S</keycap
+> e depois escolher o seu tipo de gráfico a partir dessa área, digitar a equação, pressionar &Enter;. </para>
+</sect2>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>Ampliação, redução e rotações na área dos gráficos</title>
+<para
+>O espaço 2D e 3D têm uma funcionalidade na qual você pode ampliar e/ou reduzir o espaço do gráfico, simplesmente deslocando para cima ou para baixo, respectivamente. O espaço 3D tem suporte a rotações e sombras que permitem ao usuário analisar os gráficos 3D de vários ângulos! </para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="credits-and-license"
+><title
+>Créditos e licença</title
+> 
+<sect1 id="program-copyright"
+><title
+>Direitos autorais do programa</title>
+<para
+>Program copyright 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi </para>
+</sect1>
+<sect1 id="documentation-copyright"
+><title
+>Direitos autorais da documentação</title
+> 
+<para
+><note
+><para
+>Adicione aqui o seu nome se contribuiu para elaboração do manual. Por favor, respeite a ordem alfabética</para
+></note>
+</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
+</sect1>
+<sect1 id="licenses"
+><title
+>Licenças</title
+> 
+<para
+>Esta documentação está licenciada segundo os termos da <ulink url="http://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+> Licença de Documentação Livre da &GNU;</ulink
+>. </para>
+<para
+>Este programa está licenciado segundo os termos da <ulink url="http://www.gnu.org/licenses/gpl-2.0.txt"
+>Licença Pública Geral da &GNU; (GPL)</ulink
+>. </para>
+
+<!--userbase-content-->
+<para
+>Tradução de André Marcelo Alvarenga <email
+>alvarenga@kde.org</email
+></para
+> &underFDL; </sect1>
+</chapter>
+&documentation.index;
+</book>

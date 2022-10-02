@@ -1,0 +1,678 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title
+>Підручник з &khipu;</title>
+<authorgroup>
+<author>
+<personname
+><firstname
+>Цю документацію було створено на основі сторінки UserBase &kde; <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction"
+>&khipu;/Manual</ulink
+>.</firstname
+> <surname
+></surname
+> </personname>
+      </author>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+      </authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>18 вересня 2013 року</date>
+      <releaseinfo
+>1.0</releaseinfo>
+<abstract>
+<para
+></para>
+      </abstract>
+      <keywordset>
+<keyword
+>KDE</keyword>
+</keywordset>
+</bookinfo>
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>Креслення з &khipu; — це так просто</title>
+<para
+>&khipu; — програма для креслення графіків математичних функцій з додатковими можливостями. </para>
+<para
+>Програма є частиною <ulink url="http://edu.kde.org"
+>Освітнього проєкту &kde;</ulink
+> і є заміною попередньої програми для креслення графіків, &kmplot;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="khipu_space3d.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;, область креслення у просторі</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;, область креслення у просторі</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect1 id="quick-start-guide"
+><title
+>Довідник початкового рівня</title>
+<sect2 id="idea-of-space"
+><title
+>Поняття області</title
+> 
+<para
+>У &khipu; використовуються <emphasis
+>області</emphasis
+>, у яких зберігаються креслення, створені користувачем. Область має власну назву та опис, за яким її можна ідентифікувати для наступного використання. У &khipu; передбачено два типи областей (плоска і просторова). Користувач може <emphasis
+>зберегти креслення</emphasis
+> у будь-якому з цих типів областей. <emphasis
+>Кожна область може містити декілька креслень</emphasis
+> різного кольору, на різних інтервалах змінних та різних типів. </para>
+</sect2>
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Як креслити графіки функцій у &khipu;?</title
+> 
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;, додавання області на площині або у просторі</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;, додавання області на площині або у просторі</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Як вже згадувалося раніше, &khipu; малює графіки функцій у областях. Отже, існує два способи додавання області у &khipu;, залежно від розмірності графіка. У головному вікні &khipu; (на панелі у термінах &khipu;) ви побачите <guilabel
+>Головну панель інструментів</guilabel
+>, на якій розташовано кнопки <guilabel
+>Додати плоску область</guilabel
+> і <guilabel
+>Додати просторову область</guilabel
+>. Користувач може скористатися будь-якою з цих кнопок, залежно від функції, графік якої слід побудувати. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — додавання графіка у просторі</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — додавання графіка у просторі</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Креслення на площині</title
+> 
+<para
+>Після натискання кнопки <guibutton
+>Додати плоску область</guibutton
+> програма відкриє інтерфейс плоскої області креслень. Після цього слід натиснути <guilabel
+>зелену кнопку</guilabel
+>, щоб додати графік. Після цього слід вибрати тип графіка (наприклад, натиснути кнопку <guilabel
+>Графік</guilabel
+> у розділі графіків у декартовій системі координат, якщо вам, наприклад, захотілося побудувати графік синуса). Додати назву графіка можна позначивши відповідний пункт. Після цього слід додати відповідне рівняння функції (у синтаксисі &analitza;), щоб переглянути її графік. Якщо ви не хочете виконувати ніяких інших налаштовувань, <emphasis
+>просто натисніть &Enter;</emphasis
+>. Колір графіка можна змінити за допомогою списку кольорів під полями для введення функції. Також можна визначити відповідний діапазон зміни параметрів функції. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — приклад графіка на площині</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — приклад графіка на площині</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Креслення у тривимірному просторі</title>
+<para
+>Після натискання кнопки <guibutton
+>Додати просторову область</guibutton
+> програма відкриє інтерфейс плоскої області креслень. Після цього слід натиснути <guilabel
+>зелену кнопку</guilabel
+>, щоб додати графік. Після цього слід вибрати тип графіка (наприклад, натиснути кнопку <guilabel
+>Графік</guilabel
+> у розділі графіків у декартовій системі координат, якщо вам, наприклад, захотілося побудувати просту поверхню). Додати назву графіка можна позначивши відповідний пункт. Після цього слід додати відповідне рівняння функції (у синтаксисі &analitza;), щоб переглянути її графік. Якщо ви не хочете виконувати ніяких інших налаштовувань, <emphasis
+>просто натисніть &Enter;</emphasis
+>. Колір графіка можна змінити за допомогою списку кольорів під полями для введення функції. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — редагування або вилучення графіків</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — редагування або вилучення графіків</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Як редагувати або вилучати функції у &khipu;?</title
+> 
+<para
+>Користувач може редагувати і/або вилучати вже додані графіки. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Редагування вже доданого графіка</title
+> 
+<para
+>Перейти до редагування параметрів графіка можна <emphasis
+>простим подвійним клацанням кнопкою миші на пункті графіка у списку</emphasis
+> на панелі графіків. Крім того, ви можете позначити пункт графіка у списку і натиснути кнопку редагування, розташовану нижче. </para>
+</sect3>
+<sect3 id="removing-a-plot"
+><title
+>Вилучення графіка</title
+> 
+<para
+>Щоб вилучити креслення, позначте його у списку, а потім натисніть кнопку <guilabel
+>Вилучити</guilabel
+>, розташовану під списком. </para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Робота зі збірником креслень</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>Що таке збірник креслень?</title
+> 
+<para
+>Збірник креслень є текстовим файлом (<filename role="extension"
+>.plots</filename
+>), що містить дані щодо назви креслення та рівняння функції. Основним призначенням файлів збірників є пришвидшення додавання креслень у &khipu; без потреби у введенні великих рівнянь. За допомогою збірників користувач може додати креслення просто за його назвою. У програмі вже передбачено вбудовані збірники, за допомогою яких можна додавати деякі відомі графіки (криві і поверхні). Крім того, передбачено можливість отримання збірників з інтернету. </para>
+<sect3 id="syntax"
+><title
+>Синтаксис</title
+> 
+<para
+>У файлі збірника використовуються синтаксичні конструкції &analitza;. У кожному рядку файла має міститися назва графіка і відповідне рівняння. </para>
+<para
+>Приклад: у типовому файлі збірника можуть міститися такі рядки: </para>
+<itemizedlist>
+<listitem
+><para
+>sinus := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plane1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
+</itemizedlist>
+</sect3>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Додавання власного файла збірника</title
+> 
+<para
+>За допомогою гнучкого синтаксису &analitza; користувач може додавати у програму власні файли збірників. Достатньо просто створити текстовий файл з суфіксом назви <filename role="extension"
+>.plots</filename
+>, що міститиме коректну назву креслення та рівняння функцій по одному на рядок. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — збірник креслень на головній панелі інструментів</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — збірник креслень на головній панелі інструментів</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Переглядаємо креслення з файлів збірників</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig6.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — інтерфейс збірника креслень</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — інтерфейс збірника креслень</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Якщо хочете ознайомитися з тим, як у &khipu; використовується збірник, просто перейдіть на вкладку <guilabel
+>Збірники креслень</guilabel
+> за допомогою головної панелі інструментів &khipu;. Після цього, виберіть пункту у спадному списку <emphasis
+>Збірка</emphasis
+>. Натисніть у списку пункт з будь-якою назвою креслення, і програма покаже відповідне креслення на правій панелі вікна. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — інтерфейс збірника креслень</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — інтерфейс збірника креслень</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Додавання графіків зі збірника</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — додавання креслень зі збірника</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — додавання креслень зі збірника</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Основною перевагою збірників є те, що за їхньою допомогою можна виконувати складні креслення без значних зусиль з введення рівнянь. Щоб скористатися цим, додайте будь-яку область у &khipu;. Далі, перейдіть на вкладку <guilabel
+>Додати зі збірника</guilabel
+>. Додайте будь-який потрібний вам файл збірника. Далі, щоб додати креслення до області креслень &khipu;, достатньо двічі клацнути на пункті відповідного графіка. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig9.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — імпортування або отримання збірника</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — імпортування або отримання збірника</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Імпортування файла збірника з локального диска</title>
+<para
+>Ви можете додавати і переглядати графіки не лише з вбудованих збірників, які є частиною пакунка бібліотек &analitza;. Ви можете імпортувати будь-які отримані з інтернету чи створені вручну збірники до списку збірників &khipu;, а потім додавати відповідні креслення у області &khipu;. </para>
+</sect2>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Отримання файла збірника з інтернету</title>
+<para
+>Використання у &khipu; інтерфейсу <guilabel
+>отримання нових даних</guilabel
+> надає змогу користувачеві отримувати файли збірників з інтернету. Отже, користувач може накопичити велику базу даних збірників від інших користувачів програми з усього світу. Для отримання збірників з інтернету достатньо скористатися пунктом меню <guilabel
+>Отримати файли збірників креслень</guilabel
+> на сторінці роботи зі збірниками. </para>
+</sect2>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Експортування області з кресленнями як збірника</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig11.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — експортування області з кресленнями як збірника</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — експортування області з кресленнями як збірника</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Користувач може експортувати усю область до збірника разом з назвами та рівняннями функцій. Для цього достатньо натиснути кнопку <guilabel
+>Домівка</guilabel
+> на панелі інструментів і скористатися кнопкою <emphasis
+>експортування</emphasis
+> під мініатюрою області. </para>
+</sect2>
+</sect1>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: не лише креслення</title>
+<sect2 id="khipus-application-actions"
+><title
+>Додаткові можливості програми &khipu;</title
+> 
+<para
+>Однією з основних переваг &khipu; є <emphasis
+>набір додаткових можливостей</emphasis
+> для роботи з кресленнями, окрім самих можливостей виконання креслень. Додаткові можливості та дії у &khipu; роблять програму зручнішою у користуванні. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Створення, відкриття, збереження і збереження з новою назвою</title>
+<para
+>За допомогою звичайних пунктів створення, відкриття, збереження та збереження з новою назвою користувачі можуть працювати з декількома сеансами роботи з програмою та <emphasis
+>зберігати дані у файлах (з суфіксом назви <filename role="extension"
+>.khipu</filename
+>)</emphasis
+>, які згодом можна буде відкрити для подальшої роботи. У файлах даних використовується <emphasis
+>формат запису QJson</emphasis
+>, за допомогою якого можна зберігати важливі дані щодо поточного сеансу. Серед цих даних назви доданих областей, назви та рівняння функцій у кожній області, діапазони значень змінних та кольори графіків. </para>
+</sect3>
+<sect3 id="save-plot-as-image"
+><title
+>Збереження графіка як зображення</title>
+<para
+>У &khipu; кожній області відповідає власне зображення з вказаними користувачем графіками. Зображення області можна зберегти у форматі файла <acronym
+>PNG</acronym
+>. </para>
+</sect3>
+<sect3 id="take-snapshot"
+><title
+>Створення знімка вікна</title>
+<para
+>За допомогою цієї можливості ви можете навіть скопіювати зображення області до буфера обміну даними між програмами. </para>
+</sect3>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>Хочете побачити графік на весь екран?</title>
+<para
+>За допомогою повноекранного режиму роботи &khipu; користувачі можуть зосередитися на перегляді лише графіка функції. У повноекранному режимі буде приховано усі панелі програми! </para>
+</sect3>
+<sect3 id="space-navigation"
+><title
+>Пересування областями</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig12.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — можливості з пересування областями</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — можливості з пересування областями</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Перемкнутися на попередню, наступну, першу або останню область креслення можна натисканням комбінації клавіш. Нижче наведено список відповідних комбінацій клавіш: </para>
+<itemizedlist>
+<listitem
+><para
+>Перейти до наступної області -&gt; <keycap
+>Page Up</keycap
+></para
+></listitem>
+<listitem
+><para
+>Перейти до попередньої області -&gt; <keycap
+>Page Down</keycap
+></para
+></listitem>
+<listitem
+><para
+>Перейти до першої області -&gt; <keycombo
+>&Ctrl;<keycap
+>Home</keycap
+></keycombo
+></para
+></listitem>
+<listitem
+><para
+>Перейти до останньої області -&gt; <keycombo
+>&Ctrl;<keycap
+>End</keycap
+></keycombo
+></para
+></listitem>
+</itemizedlist>
+</sect3>
+</sect2>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Панель: уся робота під рукою</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig13.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — Основна панель</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — Основна панель</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>На головній панелі &khipu; буде показано мініатюри усіх створених користувачем областей креслення з назвами. Таким чином, користувачеві буде простіше визначитися з потрібною областю. </para>
+</sect2>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Фільтрування записів за назвою, описом та розмірністю</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig14.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — фільтрування областей</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — фільтрування областей</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>За допомогою можливості фільтрування областей користувачі можуть обмежувати список показаних областей за назвою або описом. Крім того, області можна фільтрувати за розмірністю, вибраною зі спадного списку у правій верхній частині панелі. </para>
+</sect2>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Панель скорочень: простий спосіб щось накреслити</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig15.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; — панель скорочень</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; — панель скорочень</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Якщо потрібно швидко намалювати графік, не переймаючись вибором областей, можна скористатися панеллю скорочень. Для цього слід натиснути клавішу <keycap
+>S</keycap
+> і вибрати тип графіка на панелі, ввести рівняння і натиснути клавішу &Enter;, ось і все! </para>
+</sect2>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>Збільшення масштабу, зменшення масштабу та обертання креслення</title>
+<para
+>У плоских та просторових областях передбачено можливість зміни масштабу за допомогою прокручування коліщатка миші. У просторових областях передбачено можливість обертання графіків та показу тіней, що надає змогу користувачам аналізувати побудову з різних боків. </para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="credits-and-license"
+><title
+>Подяки і ліцензування</title
+> 
+<sect1 id="program-copyright"
+><title
+>Авторські права на програму</title>
+<para
+>Авторські права на програму належать Percy Camilo Trive&ntilde;o Aucahuasi, 2010–2012 </para>
+</sect1>
+<sect1 id="documentation-copyright"
+><title
+>Авторські права на документацію</title
+> 
+<para
+><note
+><para
+>Будь ласка, додайте ваше ім’я, якщо ви зробили внесок до підручника. Зберігайте порядок за абеткою.</para
+></note>
+</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
+</sect1>
+<sect1 id="licenses"
+><title
+>Ліцензування</title
+> 
+<para
+>Програма поширюється за умов дотримання <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>&GNU; Free Documentation License</ulink
+>. </para>
+<para
+>Програма поширюється за умов дотримання <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+>&GNU; General Public License</ulink
+>. </para>
+
+<!--userbase-content-->
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+>  &underFDL; </sect1>
+</chapter>
+&documentation.index;
+</book>

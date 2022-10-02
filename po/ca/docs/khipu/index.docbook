@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title
+>El manual del &khipu;</title>
+<authorgroup>
+<author>
+<personname
+><firstname
+>Part d'aquesta documentació ha estat convertida des de la pàgina <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction"
+>&khipu;/Manual</ulink
+> de &kde; UserBase.</firstname
+> <surname
+></surname
+> </personname>
+      </author>
+&traductor.Antoni.Bella; 
+      </authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>18 de setembre de 2013</date>
+      <releaseinfo
+>1.0</releaseinfo>
+<abstract>
+<para
+></para>
+      </abstract>
+      <keywordset>
+<keyword
+>KDE</keyword>
+</keywordset>
+</bookinfo>
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>Traçar amb el &khipu; és senzillament divertit</title>
+<para
+>El &khipu; és un traçador avançat de funcions matemàtiques. </para>
+<para
+>Forma part del <ulink url="http://edu.kde.org"
+>Projecte d'educació del &kde;</ulink
+> i és una substitució d'una aplicació de traçat de funcions anterior, el &kmplot;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="khipu_space3d.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Espai en 3D del &khipu;</phrase>
+    </textobject>
+    <caption>
+      <para
+>Espai en 3D del &khipu;</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect1 id="quick-start-guide"
+><title
+>Guia d'inici ràpid</title>
+<sect2 id="idea-of-space"
+><title
+>Idea de l'espai</title
+> 
+<para
+>El &khipu; utilitza una abstracció de l'<emphasis
+>espai</emphasis
+> per a desar les trames sol·licitades per l'usuari. Un espai tindrà el seu nom i la descripció corresponent a partir de la qual l'usuari podrà identificar-la més endavant. El &khipu; té dos tipus d'espais (2D i 3D). L'usuari podrà <emphasis
+>desar la trama</emphasis
+> en qualsevol dels espais depenent del que vulgui. <emphasis
+>Cada espai contindrà múltiples trames</emphasis
+> de diferents colors, intervals i tipus. </para>
+</sect2>
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Com crear funcions de trama en el &khipu;?</title
+> 
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>Afegir un espai en 2D/3D en el &khipu;</phrase>
+    </textobject>
+    <caption>
+      <para
+>Afegir un espai en 2D/3D en el &khipu;</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Com s'ha esmentat anteriorment, el &khipu; dibuixa funcions en l'espai. Llavors, hi ha dues formes d'afegir un espai en el &khipu; en funció de la dimensió de la trama. Quan estigueu a la finestra principal del &khipu; (Tauler en termes de terminologia en el &khipu;), veureu una <guilabel
+>Barra d'eines principal</guilabel
+> que conté els botons <guilabel
+>Afegeix un espai en 2D</guilabel
+> i <guilabel
+>Afegeix un espai en 3D</guilabel
+>. L'usuari podrà seleccionar qualsevol d'ells depenent de la funció que vulgui traçar. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Afegir una trama en un espai</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Afegir una trama en un espai</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Trames representades en 2 dimensions</title
+> 
+<para
+>Quan l'usuari fa clic a <guibutton
+>Afegeix un espai en 2D</guibutton
+>, es redirigirà a la interfície d'usuari de l'espai en 2D. Després, haureu de fer clic sobre el <guilabel
+>botó verd</guilabel
+>, el qual permetrà a l'usuari afegir una trama. Després, l'usuari haurà de seleccionar el tipus de trama (per exemple, feu clic sobre el <guilabel
+>Gràfic</guilabel
+> a la secció Cartesiana si voleu traçar una corba sinusoidal!). Podeu afegir un nom de la trama marcant la casella de selecció per al nom de la trama. Després, l'usuari haurà d'<guilabel
+>afegir una equació apropiada</guilabel
+> (equació del tipus &analitza;) per a veure la trama. Si no voleu res més, <emphasis
+>simplement premeu &Intro;</emphasis
+>. Fins i tot podreu establir el color de la trama canviant l'opció des de la llista de colors que hi ha a sota i establir un interval apropiat per als arguments de la funció. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Gràfic d'exemple en 2D</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Gràfic d'exemple en 2D</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Trames representades en 3 dimensions</title>
+<para
+>Quan l'usuari fa clic a <guibutton
+>Afegeix un espai en 3D</guibutton
+>, es redirigirà a la interfície d'usuari de l'espai en 3D. Després, haureu de fer clic sobre el <guilabel
+>botó verd</guilabel
+>, el qual permetrà a l'usuari afegir una trama. Després, l'usuari haurà de seleccionar el tipus de trama (per exemple, feu clic sobre <guilabel
+>Gràfic</guilabel
+> a la secció Cartesiana si voleu traçar una superfície senzilla!). Podeu afegir un nom de trama marcant la casella de selecció per al nom de la trama. Després, l'usuari haurà d'<guilabel
+>afegir una equació apropiada</guilabel
+> (equació del tipus &analitza;) per a veure la trama. Si no voleu res més, <emphasis
+>simplement premeu &Intro;</emphasis
+>. Fins i tot podreu establir el color de la trama canviant l'opció des de la llista de colors que hi ha a sota. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Editar/Eliminar les trames</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Editar/Eliminar les trames</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Com editar/eliminar les funcions des del &khipu;?</title
+> 
+<para
+>L'usuari pot editar o eliminar les trames ja afegides. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Editar una trama ja afegida</title
+> 
+<para
+>Podeu editar una trama <emphasis
+>fent doble clic sobre l'entrada de la trama</emphasis
+> a la vista de trames o podeu seleccionar l'entrada corresponent allà i després fer clic al botó d'edició que es mostra a sota. </para>
+</sect3>
+<sect3 id="removing-a-plot"
+><title
+>Eliminar una trama</title
+> 
+<para
+>Podeu eliminar una trama seleccionant-la a la vista i després feu clic al botó <guilabel
+>Elimina</guilabel
+> que es mostra a sota. </para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Reproduir amb un diccionari de trames</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>Què és un diccionari de trames?</title
+> 
+<para
+>Un diccionari de trames és un tipus de fitxer de text (<filename role="extension"
+>.plots</filename
+>), el qual conté el nom d'una trama juntament amb la seva equació. La idea bàsica dels fitxers de diccionari és afegir trames en el &khipu; sense escriure grans equacions. L'usuari podrà afegir les trames en funció del seu nom utilitzant els diccionaris. Ja tenim alguns diccionaris predefinits que permeten a l'usuari introduir algunes trames famoses (&ead;, corbes i superfícies). L'usuari podrà fins i tot descarregar els diccionaris utilitzant Internet. </para>
+<sect3 id="syntax"
+><title
+>Sintaxi</title
+> 
+<para
+>La sintaxi d'un fitxer de diccionari segueix la sintaxi de l'&analitza;. Cada línia en un fitxer contindrà un nom i l'equació corresponent. </para>
+<para
+>Per exemple: un fitxer de diccionari típic tindria línies de la següent manera: </para>
+<itemizedlist>
+<listitem
+><para
+>sinus := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plane1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
+</itemizedlist>
+</sect3>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Afegir el vostre propi fitxer de diccionari</title
+> 
+<para
+>La sintaxi flexible de l'&analitza; permet a l'usuari crear el seu propi fitxer de diccionari! L'usuari haurà de desar un fitxer de text amb l'extensió <filename role="extension"
+>.plots</filename
+> amb el nom de la trama i les equacions correctes en cada línia. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Diccionari de trames a la barra d'eines principal</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Diccionari de trames a la barra d'eines principal</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Donem una ullada a les trames dels fitxers de diccionari.</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig6.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: IU del diccionari de trames</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: IU del diccionari de trames</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Si voleu veure com el &khipu; fa servir el diccionari, simplement premeu la pestanya <guilabel
+>Diccionari de trames</guilabel
+> que es mostra a la barra d'eines principal del &khipu;. Després, canvieu a diferents noms a la llista desplegable etiquetada amb <emphasis
+>col·lecció</emphasis
+>. Feu clic sobre qualsevol dels noms de trama i veureu la trama corresponent a la part dreta de la finestra. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: IU del diccionari de trames</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: IU del diccionari de trames</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Afegir trames des del diccionari</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Afegir trames des del diccionari</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Afegir trames des del diccionari</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>El principal avantatge dels diccionaris és afegir les trames sense escriure grans equacions. Per això, afegiu qualsevol espai en el &khipu;. Després, canvieu a la pestanya <guilabel
+>Afegeix des del diccionari</guilabel
+>. Hi podreu afegir el fitxer de diccionari segons allò que vulgueu. Només haureu de fer doble clic sobre el nom de la trama per afegir-la a l'espai actual del &khipu;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig9.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Importar/baixar el diccionari</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Importar/baixar el diccionari</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Importar un fitxer de diccionari des d'un disc local</title>
+<para
+>No és que només pugueu afegir/veure la trama des dels diccionaris predefinits disponibles per l'&analitza;. Fins i tot podreu importar qualsevol diccionari descarregat/creat manualment en el &khipu;, i podreu afegir les trames des del diccionari a l'espai del &khipu;. </para>
+</sect2>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Baixa un fitxer de diccionari des d'Internet</title>
+<para
+>L'ús de l'<guilabel
+>API per a Obtén les novetats candents</guilabel
+> en el &khipu; permet a l'usuari descarregar aquests fitxers de diccionari des del web. D'aquesta manera, un usuari podrà tenir una rica col·lecció de diccionaris descarregats des de tot el món. Podreu aconseguir-ho simplement fent clic a <guilabel
+>Obtén fitxers de diccionari de trames</guilabel
+> des de la interfície d'usuari del diccionari. </para>
+</sect2>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Exportar un espai com un diccionari</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig11.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Exportar un espai com un diccionari</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Exportar un espai com un diccionari</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>L'usuari fins i tot podrà exportar tot un espai al diccionari amb els noms i equacions de les trames desades en aquest espai en particular. Per això, haureu de fer clic a anar a <guilabel
+>Inici</guilabel
+> i després, fer clic sobre el <emphasis
+>botó d'eina</emphasis
+> a la miniatura de l'espai que informa sobre la importació de l'espai al diccionari. </para>
+</sect2>
+</sect1>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: més enllà de només traçar</title>
+<sect2 id="khipus-application-actions"
+><title
+>Accions de l'aplicació &khipu;</title
+> 
+<para
+>Un dels avantatges clau del &khipu; és tenir <emphasis
+>algunes altres funcionalitats útils</emphasis
+> per tractar el traçat de la funció matemàtica a part de només traçar. Les diverses accions de l'aplicació i altres característiques fan que el &khipu; sigui més fàcil d'utilitzar. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Nou/Obre/Desa/Desa com a</title>
+<para
+>Les accions normals de Nou, Obre, Desa i Desa com a permeten als usuaris treballar amb diferents sessions i <emphasis
+>desar el seu treball en fitxers de persistència (fitxers <filename role="extension"
+>.khipu</filename
+>)</emphasis
+>, els quals podreu obrir més endavant. El fitxer de persistència segueix un <emphasis
+>format de fitxer QJson</emphasis
+>, el qual desa informació important sobre la sessió actual. Aquesta informació inclou el nom dels espais afegits, el nom i les equacions de les trames afegides a cada espai, l'interval de les trames i el seu color. </para>
+</sect3>
+<sect3 id="save-plot-as-image"
+><title
+>Desar una trama com una imatge</title>
+<para
+>En el &khipu;, cada espai tindrà la seva imatge corresponent, la qual contindrà les trames sol·licitades per l'usuari. La imatge de l'espai es pot desar (fitxer <acronym
+>PNG</acronym
+>) en el disc local utilitzant aquesta acció de l'aplicació. </para>
+</sect3>
+<sect3 id="take-snapshot"
+><title
+>Prendre una captura de pantalla</title>
+<para
+>Amb aquesta acció fins i tot podreu copiar la imatge de l'espai a dins del porta-retalls. </para>
+</sect3>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>Vol veure només un gràfic en tota la pantalla?</title>
+<para
+>L'opció de pantalla completa en el &khipu; permetrà a l'usuari veure només l'espai de la trama. Tots els altres acobladors i barres d'eines seran invisibles en activar el mode de pantalla completa! </para>
+</sect3>
+<sect3 id="space-navigation"
+><title
+>Navegar per l'espai</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig12.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Opcions de Navegació per l'espai</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Opcions de Navegació per l'espai</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Mentre un usuari es troba en qualsevol espai (2D o 3D), podrà canviar al següent/anterior/primer/últim espai amb només prémer una tecla. Les dreceres per això són les següents: </para>
+<itemizedlist>
+<listitem
+><para
+>Navega a l'espai següent -&gt; &PgUp;</para
+></listitem>
+<listitem
+><para
+>Navega a l'espai anterior -&gt; &PgDn;</para
+></listitem>
+<listitem
+><para
+>Navega fins al primer espai -&gt; <keycombo
+>&Ctrl;&Home;</keycombo
+></para
+></listitem>
+<listitem
+><para
+>Navega fins a l'últim espai -&gt; <keycombo
+>&Ctrl;&End;</keycombo
+></para
+></listitem>
+</itemizedlist>
+</sect3>
+</sect2>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Tauler: tot el treball disponible a les mans</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig13.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Tauler principal</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Tauler principal</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>El tauler principal del &khipu; conté tots els espais creats per l'usuari amb la seva miniatura i el nom de l'espai. Per tant, un usuari pot saber quin espai vol modificar o veure les seves trames. </para>
+</sect2>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Filtre d'espai basat en el Títol, Descripció i Dimensió</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig14.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Filtratge de l'espai</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Filtratge de l'espai</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>La característica de filtratge que hi ha disponible al tauler permet a l'usuari filtrar els espais en funció del seu títol i/o descripció. Fins i tot podreu filtrar l'espai en funció de la dimensió triada a la llista desplegable que es mostra a la cantonada superior dreta de la interfície d'usuari del tauler. </para>
+</sect2>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Acoblador de dreceres: una manera fàcil de traçar</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig15.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;: Acoblador de les dreceres</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;: Acoblador de les dreceres</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Si un usuari vol traçar amb rapidesa sense preocupar-se pels espais, l'acoblador Dreceres us permetrà fer-ho. Per això, caldrà prémer <keycap
+>S</keycap
+> i després seleccionar el tipus de trama des d'aquest acoblador, escriviu l'equació, premeu &Intro; i llest! </para>
+</sect2>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>Apropar/allunyar i fer girs a la vista de les trames</title>
+<para
+>L'espai en 2D i 3D té una funcionalitat des de la qual podreu apropar i/o allunyar l'espai de la trama simplement desplaçant cap amunt/avall respectivament. L'espai en 3D admet els girs i ombres, les quals permetran a l'usuari analitzar les trames en 3D des de diferents angles! </para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="credits-and-license"
+><title
+>Crèdits i llicència</title
+> 
+<sect1 id="program-copyright"
+><title
+>Copyright del programa</title>
+<para
+>Copyright del programa 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi </para>
+</sect1>
+<sect1 id="documentation-copyright"
+><title
+>Copyright de la documentació</title
+> 
+<para
+><note
+><para
+>Afegiu aquí el vostre nom si heu col·laborat amb el manual. Si us plau, respecteu l'ordre alfabètic.</para
+></note>
+</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
+</sect1>
+<sect1 id="licenses"
+><title
+>Llicències</title
+> 
+<para
+>Aquesta documentació està llicenciada sota els termes de la <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>llicència de documentació lliure de &GNU; (&GNU; Free Documentation License)</ulink
+>. </para>
+<para
+>Aquest programa està llicenciat sota els termes de la <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+>llicència pública general de &GNU;</ulink
+>. </para>
+
+<!--userbase-content-->
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; </sect1>
+</chapter>
+&documentation.index;
+</book>

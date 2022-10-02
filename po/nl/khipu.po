@@ -1,0 +1,1549 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2012, 2016, 2019, 2022.
+# Jaap Woldringh <jjhwoldringh@kde.nl>, 2012, 2013, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"PO-Revision-Date: 2022-07-14 14:26+0200\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 22.04.3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Freek de Kruijf - t/m 2019;2022, Jaap Woldringh"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "freekdekruijf@kde.nl, jjhwoldringh@kde.nl"
+
+#: src/dashboard.cpp:117
+#, kde-format
+msgid ""
+"Please make sure that the dictionary (.plots) files are correctly installed"
+msgstr ""
+"Zorg er voor dat de woordenboekbestanden (.plots) goed zijn geïnstalleerd"
+
+#: src/dashboard.cpp:118
+#, kde-format
+msgid "No Dictionary found!"
+msgstr "Geen woordenboek gevonden!"
+
+#: src/dashboard.cpp:229 src/mainwindow.cpp:506
+#, kde-format
+msgid "Open"
+msgstr "Openen"
+
+#: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
+#, kde-format
+msgid "Dictionary Files (*.plots);;All Files (*)"
+msgstr "Woordenboekbestanden (*.plots);;Alle bestanden (*)"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "Where to export"
+msgstr "Waarnaar te exporteren"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "PNG Image File (*.png)"
+msgstr "PNG Afbeeldingsbestand (*.png)"
+
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: src/dashboard.ui:20
+#, kde-format
+msgid "StackedWidget"
+msgstr "StackedWidget"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/dashboard.ui:64
+#, kde-format
+msgid "Plot Dictionary (.plots file) Options"
+msgstr "Opties plotwoordenboek (.plots bestand)"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dashboard.ui:72
+#, kde-format
+msgid "Collection:"
+msgstr "Verzameling:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:80
+#, kde-format
+msgid "Main"
+msgstr "Hoofd"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:85
+#, kde-format
+msgid "Famous Algebraic Curves"
+msgstr "Bekende algebraïsche krommen"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:90
+#, kde-format
+msgid "..."
+msgstr "..."
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Export the space as a Dictionary"
+msgstr "Ruimte exporteren als woordenboek"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
+msgstr "Plot Woordenboekbestanden (*.plots);;bestanden (*)"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving file, no plots available for this space"
+msgstr "Fout bij opslaan bestand. In deze ruimte geen plots beschikbaar"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving a dictionary"
+msgstr "Fout bij opslaan woordenboek"
+
+#: src/dictionarycollection.cpp:152
+#, kde-format
+msgid "Select Dictionary to import"
+msgstr "Te importeren woordenboek selecteren"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
+#: src/dictionarycollection.ui:14
+#, kde-format
+msgid "Add from Dictionary"
+msgstr "Uit woordenboek toevoegen"
+
+#. i18n: ectx: property (text), widget (QPushButton, importDictionary)
+#: src/dictionarycollection.ui:21
+#, kde-format
+msgid "Import Dictionary"
+msgstr "Woordenboek importeren"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dictionarycollection.ui:91
+#, kde-format
+msgid "Collection: "
+msgstr "Collectie: "
+
+#. i18n: ectx: property (text), widget (QPushButton, AddButton)
+#: src/dictionarycollection.ui:101
+#, kde-format
+msgid "Add"
+msgstr "Toevoegen"
+
+#: src/filter.cpp:29
+#, kde-format
+msgid "Dimension All"
+msgstr "Dimensie alle"
+
+#: src/filter.cpp:30
+#, kde-format
+msgid "Dimension 2D"
+msgstr "Dimensie 2D"
+
+#: src/filter.cpp:31
+#, kde-format
+msgid "Dimension 3D"
+msgstr "Dimensie 3D"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
+#: src/filter.ui:42
+#, kde-format
+msgid "Filter by space name or description..."
+msgstr "Filteren naar naam ruimte of beschrijving..."
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Khipu"
+msgstr "Khipu"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Advanced Mathematical Function Plotter"
+msgstr "Gevorderd plotprogramma voor wiskundige functies"
+
+#: src/main.cpp:33
+#, kde-format
+msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+msgstr "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Percy Camilo Triveño Aucahuasi"
+msgstr "Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Main developer"
+msgstr "Hoofdontwikkelaar"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Punit Mehta"
+msgstr "Punit Mehta"
+
+#: src/main.cpp:37
+#, kde-format
+msgid ""
+"GSoC-2013 student - Persistance file support. Plot-dictionary support. "
+"Worked for application actions, command-line improvements and space "
+"filtering. Several bug fixings"
+msgstr ""
+"Student GSoC-2013 - ondersteuning blijvend zijn (persistence) van bestanden. "
+"Ondersteunung van plot-woordenboeken. Werkte aan acties van applicaties, "
+"verbeteringen opdrachtregel en ruimtefiltering. Diverse "
+"programmaverbeteringen (bugfixes)."
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Manuel Álvarez Blanco"
+msgstr "Manuel Álvarez Blanco"
+
+#: src/main.cpp:38
+#, kde-format
+msgid ""
+"Thesis mentor - Guide and supervision during project conception. "
+"Bibliographical support. Numeric Mathematics and Algorithms support"
+msgstr ""
+"Mentor proefschrift - Begeleiding en toezicht tijdens de opzet van het "
+"project. Ondersteuning bij bibliografisch onderzoek, numerieke wiskunde en "
+"algoritmen."
+
+#: src/main.cpp:39
+#, kde-format
+msgid "José Ignacio Cuevas Gonzáles"
+msgstr "José Ignacio Cuevas Gonzáles"
+
+#: src/main.cpp:39
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Product Guide, Product promotion and former "
+"Client"
+msgstr ""
+"Mentor proefschrift - Toezicht, begeleiding en promotie product, en eerder "
+"programma."
+
+#: src/main.cpp:40
+#, kde-format
+msgid "Eduardo Fernandini Capurro"
+msgstr "Eduardo Fernandini Capurro"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
+"former Client"
+msgstr ""
+"Mentor proefschrift - Toezicht, ondersteuning bibliografisch onderzoek, "
+"product begeleiding en eerder programma"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Jaime Urbina Pereyra"
+msgstr "Jaime Urbina Pereyra"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Thesis mentor - Supervision and former Main Project Mentor"
+msgstr ""
+"Mentor proefschrift - Toezicht en eerder de belangrijkste mentor van het "
+"project. "
+
+#: src/main.cpp:43
+#, kde-format
+msgid "Aleix Pol Gonzalez"
+msgstr "Aleix Pol Gonzalez"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "KAlgebra and Analitza parser author, both vitals for the project"
+msgstr ""
+"De maker van KAlgebra en Analitza, beide van vitaal belang voor dit project"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "José Fernando Ramos Ramirez"
+msgstr "José Fernando Ramos Ramirez"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "First version of Famous Curves Database. Build former windows installer"
+msgstr "Eerste versie van de gegevensbank voor bekende krommen."
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Susan Pamela Rios Sarmiento"
+msgstr "Susan Pamela Rios Sarmiento"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "First version of Famous Curves Database"
+msgstr "Eerste versie van de gegevensbank voor bekende krommen"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Edgar Velasquez"
+msgstr "Edgar Velasquez"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "2D Improvements"
+msgstr "Verbeteringen 2D"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Jose Torres Cardenas"
+msgstr "Jose Torres Cardenas"
+
+#: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
+#, kde-format
+msgid "3D Improvements"
+msgstr "Verbeteringen 3D"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "Elizabeth Portilla Flores"
+msgstr "Elizabeth Portilla Flores"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Paul Murat Landauro Minaya"
+msgstr "Paul Murat Landauro Minaya"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Khipu files to open"
+msgstr "Te openen Khipu-bestanden"
+
+#: src/main.cpp:58
+#, kde-format
+msgid "Always start with a new file, ignoring any autosaved file"
+msgstr ""
+"Altijd met een nieuw bestand beginnen, negeren van elke automatisch "
+"opgeslagen bestand"
+
+#: src/mainwindow.cpp:142
+#, kde-format
+msgid "&Shortcuts"
+msgstr "&Sneltoetsen"
+
+#: src/mainwindow.cpp:226
+#, kde-format
+msgid "&Save Plot as PNG"
+msgstr "&Plot opslaan als PNG"
+
+#: src/mainwindow.cpp:229
+#, kde-format
+msgid "Add Space &2D"
+msgstr "&2D-ruimte toevoegen"
+
+#: src/mainwindow.cpp:230
+#, kde-format
+msgid "Add Space &3D"
+msgstr "&3D-ruimte toevoegen"
+
+#: src/mainwindow.cpp:235
+#, kde-format
+msgid "Create a plot in a new space"
+msgstr "Plot in een nieuwe ruimte aanmaken"
+
+#: src/mainwindow.cpp:238
+#, kde-format
+msgid "Plot &Dictionaries"
+msgstr "&Woordenboeken plotten"
+
+#: src/mainwindow.cpp:263
+#, kde-format
+msgid "&Go First Space"
+msgstr "&Gaan eerste ruimte"
+
+#: src/mainwindow.cpp:268
+#, kde-format
+msgid "&Go Previous Space"
+msgstr "&Gaan vorige ruimte"
+
+#: src/mainwindow.cpp:273
+#, kde-format
+msgid "&Go Next Space"
+msgstr "&Gaan volgende ruimte"
+
+#: src/mainwindow.cpp:278
+#, kde-format
+msgid "&Go Last Space"
+msgstr "&Gaan laatste ruimte"
+
+#: src/mainwindow.cpp:284
+#, kde-format
+msgid "&Remove Current Space"
+msgstr "&Verwijderen huidige ruimte"
+
+#: src/mainwindow.cpp:286
+#, kde-format
+msgid "&Take Snapshot"
+msgstr "&Foto maken"
+
+#: src/mainwindow.cpp:287
+#, kde-format
+msgid "&Get Plot-Dictionary files"
+msgstr "&Ophalen Plot-woordenboek bestanden"
+
+#: src/mainwindow.cpp:288
+#, kde-format
+msgid "&Import Plot-Dictionary file"
+msgstr "&Importeren Plot-woordenboek bestand"
+
+#: src/mainwindow.cpp:333 src/mainwindow.cpp:376
+#, kde-format
+msgid "There is not any space available to show!"
+msgstr "Er is geen enkele te tonen ruimte aanwezig!"
+
+#: src/mainwindow.cpp:337
+#, kde-format
+msgid "Currently you are on the first space!"
+msgstr "Nu, bent in de eerste ruimte!"
+
+#: src/mainwindow.cpp:348
+#, kde-format
+msgid "You are already on the first space!"
+msgstr "U bent al in de eerste ruimte!"
+
+#: src/mainwindow.cpp:360
+#, kde-format
+msgid "You are already on the last space!"
+msgstr "U bent al in de laatste ruimte!"
+
+#: src/mainwindow.cpp:380
+#, kde-format
+msgid "Currently you are on the last space!"
+msgstr "Nu, bent u in de laatste ruimte!"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Press Ctrl + M to make menubar visible again"
+msgstr "Klik op ctrl + M om de menubalk weer zichtbaar te maken"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Menubar Visibility"
+msgstr "Zichtbaarheid menubalk"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid "No need to create New Window"
+msgstr "Nieuw venster is niet nodig"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid ""
+"There are not any plots available. So, you do not need to create a new Plot "
+"Window"
+msgstr ""
+"Er zijn geen plots beschikbaar.  U hoeft dus geen nieuw plotvenster nodig"
+
+#: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Khipu Files (*.khipu);;All Files (*)"
+msgstr "Khipu Bestanden (*.khipu);;Alle bestanden (*)"
+
+#: src/mainwindow.cpp:528
+#, kde-format
+msgid "The file does not exist."
+msgstr "Het bestand bestaat niet."
+
+#: src/mainwindow.cpp:536
+#, kde-format
+msgid "An error appeared when opening this file (%1)"
+msgstr "Er trad een fout op bij het openen van dit bestand (%1)"
+
+#: src/mainwindow.cpp:550
+#, kde-format
+msgid "Do you want to recover the file you have not saved last time?"
+msgstr "Wilt u het bestand herstellen dat u vorige keer niet heeft opgeslagen?"
+
+#: src/mainwindow.cpp:550 src/mainwindow.cpp:578
+#, kde-format
+msgid "Autosaved .khipu file"
+msgstr "Auto opgeslagen .khipu bestand"
+
+#: src/mainwindow.cpp:578
+#, kde-format
+msgid ""
+"There are some unsaved changes in the file %1. Do you want to recover them?"
+msgstr ""
+"Er zijn enkele veranderingen in bestand %1 niet opgeslagen. Wilt u die "
+"herstellen?"
+
+#: src/mainwindow.cpp:589
+#, kde-format
+msgid "Error while reading file, maybe path is not found."
+msgstr "Fout bij lezen bestand, mogelijk geen pad gevonden."
+
+#: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading"
+msgstr "Fout bij lezen"
+
+#: src/mainwindow.cpp:592
+#, kde-format
+msgid "%1 could not be opened"
+msgstr "%1 kon niet worden geopend"
+
+#: src/mainwindow.cpp:606
+#, kde-format
+msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
+msgstr ""
+"Probleem bij lezen van de inhoud van het bestand, mogelijk een verkeerd "
+"khipu bestand."
+
+#: src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Save As"
+msgstr "Opslaan als"
+
+#: src/mainwindow.cpp:675
+#, kde-format
+msgid ""
+"The file which you want to save, already exists. Do you want to overwrite "
+"this file?"
+msgstr ""
+"Het bestand dat u wilt opslaan bestaat al. Wilt u dit bestand overschrijven?"
+
+#: src/mainwindow.cpp:676
+#, kde-format
+msgid "Warning: File already exists"
+msgstr "Waarschuwing: bestand bestaat al"
+
+#: src/mainwindow.cpp:695
+#, kde-format
+msgid "The current file contains some unsaved work. Do you want to save it?"
+msgstr "Het huidige bestand bevat onopgeslagen werk. Wilt u dit opslaan?"
+
+#: src/mainwindow.cpp:696
+#, kde-format
+msgid "Warning: Unsaved changes"
+msgstr "Waarschuwing: onopgeslagen veranderingen"
+
+#: src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading file, file may be empty"
+msgstr "Fout bij het lezen van bestand, is mogelijk leeg"
+
+#: src/mainwindow.cpp:815
+#, kde-format
+msgid "Could not open %1 for writing"
+msgstr "Kon %1 niet openen voor schrijven"
+
+#: src/mainwindow.cpp:815 src/mainwindow.cpp:826
+#, kde-format
+msgid "Error while writing"
+msgstr "Fout bij schrijven"
+
+#: src/mainwindow.cpp:826
+#, kde-format
+msgid "Could not open %1 for writing %2"
+msgstr "Kon %1 niet openen voor schrijven %2"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving file. Maybe path is not found"
+msgstr "Fout bij opslaan bestand. Pad mogelijk niet gevonden"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving"
+msgstr "Fout bij opslaan"
+
+#: src/mainwindow.cpp:857
+#, kde-format
+msgid "File %1 [%2] is saved successfully"
+msgstr "Bestand: %1 [%2] is met succes opgeslagen"
+
+#: src/mainwindow.cpp:1005
+#, kde-format
+msgid "The diagram was copied to clipboard"
+msgstr "Het diagram is naar het klembord gekopieerd"
+
+#: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
+#, kde-format
+msgid "Untitled %1"
+msgstr "%1 naamloos"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
+#: src/plotsbuilder.ui:17
+#, kde-format
+msgid "Build a Cartesian Curve"
+msgstr "Een Cartesische kromme maken"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:99 src/plotsbuilder.ui:173
+#: src/plotsbuilder.ui:231 src/plotsbuilder.ui:265
+#, kde-format
+msgid "Graph"
+msgstr "Grafiek"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
+#: src/plotsbuilder.ui:53 src/plotsbuilder.ui:185
+#, kde-format
+msgid "Implicit"
+msgstr "Impliciet"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
+#: src/plotsbuilder.ui:65 src/plotsbuilder.ui:133 src/plotsbuilder.ui:197
+#, kde-format
+msgid "Parametric"
+msgstr "Parametrisch"
+
+#. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
+#: src/plotsbuilder.ui:93
+#, kde-format
+msgid "Build a Polar Curve"
+msgstr "Een polaire kromme maken"
+
+#. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
+#: src/plotsbuilder.ui:127
+#, kde-format
+msgid "Build a Space Curve"
+msgstr "Een ruimtelijke kromme maken"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
+#: src/plotsbuilder.ui:167
+#, kde-format
+msgid "Build a Cartesian Surface"
+msgstr "Een Cartesisch oppervlak maken"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
+#: src/plotsbuilder.ui:225
+#, kde-format
+msgid "Build a Cylindrical Surface"
+msgstr "Een cilindrisch oppervlak maken"
+
+#. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
+#: src/plotsbuilder.ui:259
+#, kde-format
+msgid "Build a Spherical Surface"
+msgstr "Een sferisch oppervlak maken"
+
+#: src/plotseditor.cpp:67
+#, kde-format
+msgid "check/uncheck to show/hide the Axes"
+msgstr "aan/uitzetten tonen van de assen"
+
+#: src/plotseditor.cpp:70
+#, kde-format
+msgid "Click to edit the plot"
+msgstr "Klik voor bewerken van plot"
+
+#: src/plotseditor.cpp:71
+#, kde-format
+msgid "Click to remove the plot"
+msgstr "Klik voor verwijderen van plot"
+
+#: src/plotseditor.cpp:1020
+#, kde-format
+msgid "plot %1"
+msgstr "plot %1"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
+#: src/plotseditor.ui:20
+#, kde-format
+msgid "Plots"
+msgstr "Plots"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
+#: src/plotseditor.ui:36
+#, kde-format
+msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
+msgstr "<html><head/><body><p>Klik her voor toevoegen plot</p></body></html>"
+
+#. i18n: ectx: property (text), widget (QPushButton, editPlot)
+#: src/plotseditor.ui:114
+#, kde-format
+msgid "Edit"
+msgstr "Bewerken"
+
+#. i18n: ectx: property (text), widget (QPushButton, removePlot)
+#: src/plotseditor.ui:124 src/spacesdelegate.cpp:74
+#, kde-format
+msgid "Remove"
+msgstr "Verwijderen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
+#: src/plotseditor.ui:156
+#, kde-format
+msgid "Plot Name"
+msgstr "Naam plot"
+
+#. i18n: ectx: property (text), widget (QLabel, plotIcon)
+#: src/plotseditor.ui:163
+#, kde-format
+msgid "TextLabel"
+msgstr "TextLabel"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/plotseditor.ui:397
+#, kde-format
+msgid "Color:"
+msgstr "Kleur:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/plotseditor.ui:413
+#, kde-format
+msgid "Style"
+msgstr "Stijl"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:421
+#, kde-format
+msgid "Solid"
+msgstr "Aaneengesloten"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:426
+#, kde-format
+msgid "Wired"
+msgstr "Draad"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:431
+#, kde-format
+msgid "Dots"
+msgstr "Stippen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, intervals)
+#: src/plotseditor.ui:457
+#, kde-format
+msgid "Use Intervals"
+msgstr "Intervallen"
+
+#. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:659
+#, kde-format
+msgid "asdsada"
+msgstr "asdsada"
+
+#. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:662
+#, kde-format
+msgid "asdad"
+msgstr "asdad"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
+#: src/spaceinformation.ui:41
+#, kde-format
+msgid "Notes"
+msgstr "Notities"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/spaceinformation.ui:50
+#, kde-format
+msgid "Title:"
+msgstr "Titel:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: src/spaceinformation.ui:80
+#, kde-format
+msgid "Description:"
+msgstr "Beschrijving:"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
+#: src/spaceoptions.ui:38
+#, kde-format
+msgid "Diagram"
+msgstr "Diagram"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/spaceoptions.ui:57
+#, kde-format
+msgid "Grid Options"
+msgstr "Roosteropties"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:87
+#, kde-format
+msgid "None"
+msgstr "Geen"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:92
+#, kde-format
+msgid "Lines"
+msgstr "Lijnen"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:97
+#, kde-format
+msgid "Polar"
+msgstr "Polair"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/spaceoptions.ui:105
+#, kde-format
+msgid "Grid Style:"
+msgstr "Roosterstijl:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
+#: src/spaceoptions.ui:115
+#, kde-format
+msgid "Grid Ticks"
+msgstr "Streepjes"
+
+#. i18n: ectx: property (text), widget (QLabel, label_14)
+#: src/spaceoptions.ui:127
+#, kde-format
+msgid "Scale:"
+msgstr "Schaal:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
+#: src/spaceoptions.ui:159
+#, kde-format
+msgid "More Options"
+msgstr "Meer opties"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
+#: src/spaceoptions.ui:173
+#, kde-format
+msgid "Horizontal Label:"
+msgstr "Horizontale tekst:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
+#: src/spaceoptions.ui:183
+#, kde-format
+msgid "x"
+msgstr "x"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
+#: src/spaceoptions.ui:193
+#, kde-format
+msgid "Vertical Label:"
+msgstr "Verticale tekst:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
+#: src/spaceoptions.ui:203
+#, kde-format
+msgid "y"
+msgstr "y"
+
+#. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
+#: src/spaceoptions.ui:215
+#, kde-format
+msgid "Horizontal and Vertical Marks"
+msgstr "Horizontale en verticale merktekens"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: src/spaceoptions.ui:254
+#, kde-format
+msgid "Axis"
+msgstr "As"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showGrid)
+#: src/spaceoptions.ui:270
+#, kde-format
+msgid "Grid"
+msgstr "Raster"
+
+#. i18n: ectx: property (text), widget (QLabel, label_16)
+#: src/spaceoptions.ui:289
+#, kde-format
+msgid "Size:"
+msgstr "Grootte:"
+
+#: src/spacesdelegate.cpp:81
+#, kde-format
+msgid "Rename"
+msgstr "Hernoemen"
+
+#: src/spacesdelegate.cpp:88
+#, kde-format
+msgid "Export as dictionary"
+msgstr "Exporteren als woordenboek"
+
+#: src/spacesmodel.cpp:41
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Naam"
+
+#: src/spacesmodel.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Description"
+msgstr "Beschrijving"
+
+#~ msgid ""
+#~ "*.plots|Plot-Dictionary Files (*.plots)\n"
+#~ "*|All Files"
+#~ msgstr ""
+#~ "*.plots|Plot-woordenboek bestanden (*.plots)\n"
+#~ "*|Alle bestanden"
+
+#~ msgid "Hover to see the description:"
+#~ msgstr "Muisaanwijzer er boven houden voor beschrijving:"
+
+#~ msgctxt "grid style"
+#~ msgid "Lines"
+#~ msgstr "Lijnen"
+
+#~ msgctxt "grid style"
+#~ msgid "None"
+#~ msgstr "Geen"
+
+#~ msgctxt "grid style"
+#~ msgid "Polar"
+#~ msgstr "Polair"
+
+#~ msgid "Show"
+#~ msgstr "Tonen"
+
+#~ msgid "Error while opening file. Maybe path is not found."
+#~ msgstr "Fout bij openen bestand. Pad mogelijk niet gevonden."
+
+#~ msgid "Error in opening file,may be path not found."
+#~ msgstr "Fout bij openen bestand, mogelijk geen pad gevonden."
+
+#~ msgid "Error in opening"
+#~ msgstr "Fout bij openen"
+
+#~ msgid "Mathematical Objects Manager"
+#~ msgstr "Beheer wiskundige objecten"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Download new mathematical objects from internet</"
+#~ "p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Nieuwe wiskundige objecten ophalen</p></body></html>"
+
+#~ msgid "Get Mathematical Objects..."
+#~ msgstr "Wiskundige objecten verkrijgen..."
+
+#~ msgid "Import Mathematical objects..."
+#~ msgstr "Wiskundige objecten importeren..."
+
+#~ msgid "Create a Collection of Mathematical Objects"
+#~ msgstr "Een verzameling van wiskundige objecten aanleggen"
+
+#~ msgid "Show plot in space"
+#~ msgstr "Plot in ruimte tonen"
+
+#~ msgid "Remove plot"
+#~ msgstr "Plot verwijderen"
+
+#~ msgid "Export"
+#~ msgstr "Exporteren"
+
+#~ msgid "in dictionary"
+#~ msgstr "in woordenboek"
+
+#~ msgid "Import to Current Document"
+#~ msgstr "In huidig document importeren"
+
+#~ msgid "Show Details"
+#~ msgstr "Details tonen"
+
+#~ msgid "Filter..."
+#~ msgstr "Filter..."
+
+#~ msgid "DimAll"
+#~ msgstr "DimAll"
+
+#~ msgid "Dim2D"
+#~ msgstr "Dim2D"
+
+#~ msgid "Dim3D"
+#~ msgstr "Dim3D"
+
+#~ msgctxt "@title:column"
+#~ msgid "Function"
+#~ msgstr "Functie"
+
+#~ msgctxt "@title:column"
+#~ msgid "Arguments"
+#~ msgstr "Argumenten"
+
+#~ msgid "&Add Random Plot"
+#~ msgstr "&Willekeurige plot toevoegen"
+
+#~ msgid "&Show Plots"
+#~ msgstr "&Plots tonen"
+
+#~ msgid "&Show Spaces"
+#~ msgstr "&Ruimtes tonen"
+
+#~ msgid "&Mathematical Objects"
+#~ msgstr "&Wiskundige objecten"
+
+#~ msgid "PushButton"
+#~ msgstr "PushButton"
+
+#~ msgid "Name:"
+#~ msgstr "Naam:"
+
+#~ msgid "Space"
+#~ msgstr "Ruimte"
+
+#~ msgid "Use Symbols"
+#~ msgstr "Symbolen gebruiken"
+
+#~ msgid "Vertical Marks"
+#~ msgstr "Verticale streepjes"
+
+#~ msgid "Form"
+#~ msgstr "Formulier"
+
+#~ msgid "Space Information"
+#~ msgstr "Ruimte-informatie"
+
+#~ msgid "Diagram Appearance"
+#~ msgstr "Uiterlijk diagram"
+
+#~ msgid "findico"
+#~ msgstr "findico"
+
+#~ msgid "Find:"
+#~ msgstr "Zoeken:"
+
+#~ msgid "Search"
+#~ msgstr "Zoeken"
+
+#~ msgid "All  Dimensions"
+#~ msgstr "Alle dimensies"
+
+#~ msgid "2D"
+#~ msgstr "2D"
+
+#~ msgid "3D"
+#~ msgstr "3D"
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
+#~ "\"></p></body></html>"
+
+#~ msgid "Build Plots"
+#~ msgstr "Plots maken"
+
+#~ msgid "&Export Space Snapshot"
+#~ msgstr "Ruimtebeeld &exporteren"
+
+#~ msgid "S&how Space Plots"
+#~ msgstr "R&uimteplots tonen"
+
+#~ msgid "&Show Space Information"
+#~ msgstr "Ruimte-&informatie tonen"
+
+#~ msgid "Configuración del Área de Dibujo"
+#~ msgstr "Configuratie van het tekengebied"
+
+#~ msgid "Sistema de Coordenadas"
+#~ msgstr "Coördinatenstelsel"
+
+#~ msgid "Cartesianas"
+#~ msgstr "Cartesiaans"
+
+#~ msgid "Polares"
+#~ msgstr "Polair"
+
+#~ msgid "Propiedades"
+#~ msgstr "Eigenschappen"
+
+#~ msgid "Dibujar fondo"
+#~ msgstr "Achtergrond tekenen"
+
+#~ msgid "Escala:"
+#~ msgstr "Schaal:"
+
+#~ msgid "Opciones de los ejes"
+#~ msgstr "Opties voor de assen"
+
+#~ msgid "Eje x:"
+#~ msgstr "x-as:"
+
+#~ msgid "Eje y:"
+#~ msgstr "y-as:"
+
+#~ msgid "Mostrar marcas horizontales"
+#~ msgstr "Horizontale merktekens tonen"
+
+#~ msgid "Mostrar marcas verticales"
+#~ msgstr "Verticale merktekens tonen"
+
+#~ msgid "No disponible para curvas paramétricas:"
+#~ msgstr "Niet beschikbaar voor parametrische krommen:"
+
+#~ msgid "Mostrar Recta Tangente"
+#~ msgstr "Raaklijn tonen"
+
+#~ msgid "Mostrar Recta Normal"
+#~ msgstr "Normaal tonen"
+
+#~ msgid "Mostrar ejes"
+#~ msgstr "Assen tonen"
+
+#~ msgid "Mostrar plano de referencia XY"
+#~ msgstr "Referentievlak XY tonen"
+
+#~ msgid "Tamaño del espacio:"
+#~ msgstr "Grootte van de ruimte:"
+
+#~ msgid "import"
+#~ msgstr "importeren"
+
+#~ msgid "in currentdoc"
+#~ msgstr "in currentdoc"
+
+#~ msgid "View and Tools:"
+#~ msgstr "Beeld en hulpmiddelen:"
+
+#~ msgid "Todos"
+#~ msgstr "Taken"
+
+#~ msgid "DockWidget"
+#~ msgstr "DockWidget"
+
+#~ msgid "foc"
+#~ msgstr "foc"
+
+#~ msgid "Cartesian"
+#~ msgstr "Cartesiaans"
+
+#~ msgid "Cylindrical"
+#~ msgstr "Cilindrisch"
+
+#~ msgid "Spherical"
+#~ msgstr "Bolvormig"
+
+#~ msgid "Información del Espacio"
+#~ msgstr "Gegevens van ruimte"
+
+#~ msgid "Titulo"
+#~ msgstr "Titel"
+
+#~ msgid "Elejir la vista:"
+#~ msgstr "Beeld selecteren:"
+
+#~ msgid "Espacios o Grupos de Funciones"
+#~ msgstr "Ruimten of Functiegroepen"
+
+#~ msgid "Lista Total de Funciones"
+#~ msgstr "Lijst van alle functies"
+
+#~ msgid "Buscar:"
+#~ msgstr "Zoeken:"
+
+#~ msgid ""
+#~ "*.png|PNG Image File\n"
+#~ "*.jpg|JPG Image File"
+#~ msgstr ""
+#~ "*.png|PNG Afbeeldingsbestand File\n"
+#~ "*.jpg|JPG Afbeeldingsbestand"
+
+#~ msgid "Funciones"
+#~ msgstr "Functies"
+
+#, fuzzy
+#~| msgid "Crear"
+#~ msgctxt ""
+#~ msgid "Crear"
+#~ msgstr "Aanmaken"
+
+#~ msgid "Area"
+#~ msgstr "Oppervlak"
+
+#~ msgid "&Crear"
+#~ msgstr "&Aanmaken"
+
+#~ msgid "Add variable"
+#~ msgstr "Variabele toevoegen"
+
+#~ msgid "Ocultar Función '%1'"
+#~ msgstr "Functie '%1' verbergen"
+
+#~ msgid "Mostrar Función '%1'"
+#~ msgstr "Functie '%1' tonen"
+
+#~ msgid "Eliminar Función '%1'"
+#~ msgstr "Functie '%1' verwijderen"
+
+#~ msgid ""
+#~ "The document \"%1\" has been modified.\n"
+#~ "Do you want to save your changes or discard them?"
+#~ msgstr ""
+#~ "Het document \"%1\" is gewijzigd.\n"
+#~ "Wilt u de wijzigingen opslaan of verwerpen?"
+
+#~ msgid "Close Document"
+#~ msgstr "Document sluiten"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Alle ondersteunde bestanden"
+
+#~ msgid "GPLACS standard file format"
+#~ msgstr "Standaard bestandsformaat van GPLACS"
+
+#~ msgid "Overwrite"
+#~ msgstr "Overschrijven"
+
+#~ msgid "[modificado]"
+#~ msgstr "[gewijzigd]"
+
+#~ msgid "Mostrar Espacio"
+#~ msgstr "Ruimte tonen"
+
+#~ msgid "Eliminar Espacio '%1'"
+#~ msgstr "Ruimte '%1' verwijderen"
+
+#~ msgid "Abrir"
+#~ msgstr "Openen"
+
+#~ msgid "Guardar"
+#~ msgstr "Opslaan"
+
+#~ msgid "Crear Nuevo Espacio 2D"
+#~ msgstr "Nieuw 2D-ruimte aanmaken"
+
+#~ msgid "Crear Nuevo Espacio 3D"
+#~ msgstr "Nieuw 3D-ruimte aanmaken"
+
+#~ msgid "Acerca de GPLACS"
+#~ msgstr "Over GPLACS"
+
+#~ msgid "Volver a la Vista Principal"
+#~ msgstr "Terug naar hoofdbeeld"
+
+#~ msgid "Administrador de Funciones"
+#~ msgstr "Functiebeheer"
+
+#~ msgid "Copiar Imagen"
+#~ msgstr "Afbeelding kopiëren"
+
+#~ msgid "Guardar Imagen"
+#~ msgstr "Afbeelding opslaan"
+
+#~ msgid "Page"
+#~ msgstr "Pagina"
+
+#~ msgid "Información de la Función"
+#~ msgstr "Functiegegevens"
+
+#~ msgid "Nombre"
+#~ msgstr "Nummer"
+
+#~ msgid "También puede elejir el nombre una función famosa"
+#~ msgstr "Hier kunt u het nummer kiezen van een bepaalde functie"
+
+#~ msgid "Función"
+#~ msgstr "Functie"
+
+#~ msgid "Octante"
+#~ msgstr "Octant"
+
+#~ msgid "Eje"
+#~ msgstr "As"
+
+#~ msgid "En el espacio"
+#~ msgstr "In de ruimte"
+
+#~ msgid "TextLabel2"
+#~ msgstr "TextLabel2"
+
+#~ msgid "Ecuación"
+#~ msgstr "Vergelijking"
+
+#~ msgid "Y=F(x) Donde x es el argumento"
+#~ msgstr "Y=F(x) waarin x het argument is"
+
+#~ msgid "X=F(y) Donde y es el argumento"
+#~ msgstr "X=F(y) waarin y het argument is"
+
+#~ msgid "F(x,y)=0 Curva implícita"
+#~ msgstr "F(x,y)=0 Impliciete kromme"
+
+#~ msgid "Ecuaciones"
+#~ msgstr "Vergelijkingen"
+
+#~ msgid "Donde t es el argumento, X=F(t) e Y=F(t)"
+#~ msgstr "Waarin t het argument is, X=F(t) en Y=F(t)"
+
+#~ msgid "Y="
+#~ msgstr "Y="
+
+#~ msgid "X="
+#~ msgstr "X="
+
+#~ msgid "Activar Modo Animación"
+#~ msgstr "Animeren activeren"
+
+#~ msgid "Animar/Detener"
+#~ msgstr "Animeren aan/uit"
+
+#~ msgid "Reiniciar"
+#~ msgstr "Herstarten"
+
+#~ msgid "Z="
+#~ msgstr "Z="
+
+#~ msgid "Argumentos u,v X=F(u,v) Y=F(u,v) Z=F(u,v)"
+#~ msgstr "Argumenten u,v X=F(u,v) Y=F(u,v) Z=F(u,v)"
+
+#~ msgid "t como argumento, X=F(t) Y=F(t) Z=F(t)"
+#~ msgstr "t als argument, X=F(t) Y=F(t) Z=F(t)"
+
+#~ msgid "Apariencia de la Curva"
+#~ msgstr "Uiterlijk van de kromme"
+
+#~ msgid "Color de la curva"
+#~ msgstr "Kleur van de kromme"
+
+#~ msgid "Ancho del pincel:"
+#~ msgstr "Penseelbreedte:"
+
+#~ msgid "Ancho de la linea en milimetros"
+#~ msgstr "Dikte van de lijn in millimeters"
+
+#~ msgid " mm"
+#~ msgstr " mm"
+
+#~ msgid "Presición:"
+#~ msgstr "Precisie:"
+
+#~ msgid "Resolucion al dibujar la curva"
+#~ msgstr "Resolutie tekenen van de kromme"
+
+#~ msgid "Apariencia de la Superficie"
+#~ msgstr "Uiterlijk van het oppervlak"
+
+#~ msgid "Color de la superficie"
+#~ msgstr "Kleur van het oppervlak"
+
+#~ msgid "Tipo de dibujo:"
+#~ msgstr "Manier van tekenen:"
+
+#~ msgid "Tipo dibujo de la superficie"
+#~ msgstr "Manier van tekenen van het oppervlak"
+
+#~ msgid "Sólido"
+#~ msgstr "Lichaam"
+
+#~ msgid "Puntos"
+#~ msgstr "Punten"
+
+#~ msgid "Precisión:"
+#~ msgstr "Precisie:"
+
+#~ msgid "Resolución de la superficie"
+#~ msgstr "Resolutie van het oppervlak"
+
+#~ msgid "Min"
+#~ msgstr "Min"
+
+#~ msgid "Max"
+#~ msgstr "Max"
+
+#~ msgid "Ok"
+#~ msgstr "OK"
+
+#~ msgid "Cancelar"
+#~ msgstr "Verwerpen"
+
+#~ msgid "Puede elejir insertar una función famosa"
+#~ msgstr "Hier kunt u een bepaalde functie invoegen"
+
+#~ msgid "Crear curvas cartesianas"
+#~ msgstr "Cartesiaanse krommen aanmaken"
+
+#~ msgid "Crear curvas polares"
+#~ msgstr "Polaire krommen aanmaken"
+
+#~ msgid "Crear curvas paramétricas"
+#~ msgstr "Parametrische krommen aanmaken"
+
+#~ msgid "Crear superficies cartesianas"
+#~ msgstr "Cartesiaanse oppervlakken aanmaken"
+
+#~ msgid "Crear superficies en coordenadas cilíndricas"
+#~ msgstr "Oppervlakken aanmaken in cilindrische coördinaten"
+
+#~ msgid "Crear superficies en coordenadas esféricas"
+#~ msgstr "Oppervlakken aanmaken in sferische coördinaten"
+
+#~ msgid "Crear superficies paramétricas"
+#~ msgstr "Parametrische oppervlakken aanmaken"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Análisis de Áreas"
+#~ msgstr "Oppervlakanalyse"
+
+#~ msgid "Función 1:"
+#~ msgstr "Functie 1:"
+
+#~ msgid "Función 2:"
+#~ msgstr "Functie 2:"
+
+#~ msgid "Límite Inferior:"
+#~ msgstr "Ondergrens:"
+
+#~ msgid "Límite Superior:"
+#~ msgstr "Bovengrens:"
+
+#~ msgid "Hacer Calculos"
+#~ msgstr "Berekenen"
+
+#~ msgid "Resultados"
+#~ msgstr "Antwoorden"
+
+#~ msgid "Valor del área:"
+#~ msgstr "Grootte oppervlak:"
+
+#~ msgid "Ejemplos para Areas"
+#~ msgstr "Oppervlakvoorbeelden"
+
+#~ msgid "Ejemplo:"
+#~ msgstr "Voorbeeld:"
+
+#~ msgid "Divisiones:"
+#~ msgstr "Afstanden:"
+
+#~ msgid "Aceptar"
+#~ msgstr "Accepteren"
+
+#~ msgid "Área por defecto:"
+#~ msgstr "Standaardoppervlak:"
+
+#~ msgid "Graficador de Curvas y Superficies Matemáticas"
+#~ msgstr "Tekenprogramma voor Wiskundige krommen en oppervlakten"
+
+#~ msgid "Bertha Nérida Triveño Aucahuasi"
+#~ msgstr "Bertha Nérida Triveño Aucahuasi"
+
+#~ msgid "Diseño del Ícono de GPLACS"
+#~ msgstr "Ontwerper van het pictogram van GPLACS"
+
+#~ msgid "La ecuación está vacia"
+#~ msgstr "De vergelijking is leeg"
+
+#~ msgid "Se necesita un argumento: x"
+#~ msgstr "Er is een argument nodig: x"
+
+#~ msgid "El argumento debe ser x"
+#~ msgstr "Het argument moet x zijn"
+
+#~ msgid "Se necesita un argumento: y"
+#~ msgstr "Er is een argument nodig: y"
+
+#~ msgid "El argumento debe ser y"
+#~ msgstr "Het  argument moet y zijn"
+
+#~ msgid "Se necesitan dos argumentos: x e y"
+#~ msgstr "Er zijn twee argumenten nodig: x en y"
+
+#~ msgid "Los argumentos deben ser x e y"
+#~ msgstr "De argumenten moeten x en y zijn"
+
+#~ msgid "La ecuación no es correcta"
+#~ msgstr "De vergelijking is niet goed"
+
+#~ msgid "Se necesita un argumento: q (theta)"
+#~ msgstr "Er is een argument nodig: q (theta)"
+
+#~ msgid "El argumento debe ser q (theta)"
+#~ msgstr "Het argument moet q (theta) zijn"
+
+#~ msgid "Se necesita un argumento: t"
+#~ msgstr "Er is een argument nodig: t"
+
+#~ msgid "El argumento debe ser t"
+#~ msgstr "Het argument moet t zijn"
+
+#~ msgid "The arguments must be x or y"
+#~ msgstr "De argumenten moeten x of y zijn"
+
+#~ msgid "Wrong number of arguments for z=f(x,y)"
+#~ msgstr "Verkeerd aantal argumenten voor z=f(x,y)"
+
+#~ msgid "The arguments must be r or t"
+#~ msgstr "De argumenten moeten r of t zijn"
+
+#~ msgid "Wrong number of arguments for z=f(r,t)"
+#~ msgstr "Verkeerd aantal argumenten voor z=f(r,t)"
+
+#~ msgid "The arguments must be s or t"
+#~ msgstr "De argumenten moeten s of t zijn"
+
+#~ msgid "Wrong number of arguments for r=f(s,t)"
+#~ msgstr "Verkeerd aantal argumenten voor r=f(s,t)"
+
+#~ msgid "Wrong number of arguments for f(u,v)"
+#~ msgstr "Verkeerd aantal argumenten voor f(u,v)"
+
+#~ msgid "The arguments are u,v"
+#~ msgstr "De argumenten zijn u,v"
+
+#~ msgid "Min to be a surf is 2 arguments"
+#~ msgstr "Voor een opp zijn minstens 2 argumenten nodig"
+
+#~ msgid "Surface"
+#~ msgstr "Oppervlakte"
+
+#~ msgid "Function type not recognized"
+#~ msgstr "Onbekend functietype"
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid "Function type not correct for Functions depending on %1"
+#~ msgstr "Onjuist type voor functies afhankelijk van %1"
+
+#~ msgid "The expression is not correct"
+#~ msgstr "De uitdrukking is niet goed"
+
+#~ msgid "%1 function added"
+#~ msgstr "functie %1 toegevoegd"
+
+#~ msgid "We can only draw Real results."
+#~ msgstr "Alleen reële resultaten kunnen worden weergegeven."
+
+#~ msgid "center"
+#~ msgstr "midden"
+
+#~ msgid "Selected viewport too small"
+#~ msgstr "Het geselecteerde op in te zoomen gebied is te klein"

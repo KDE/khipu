@@ -1,0 +1,1226 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Marek Laane <bald@smail.ee>, 2012, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"PO-Revision-Date: 2020-01-22 22:13+0200\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
+"Language-Team: Estonian <kde-et@lists.linux.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.08.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Marek Laane"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "qiilaq69@gmail.com"
+
+#: src/dashboard.cpp:117
+#, kde-format
+msgid ""
+"Please make sure that the dictionary (.plots) files are correctly installed"
+msgstr ""
+"Palun kontrolli, kas sõnaraamatufailid (.plots) on ikka korrektselt "
+"paigaldatud"
+
+#: src/dashboard.cpp:118
+#, kde-format
+msgid "No Dictionary found!"
+msgstr "Sõnaraamatut ei leitud!"
+
+#: src/dashboard.cpp:229 src/mainwindow.cpp:506
+#, kde-format
+msgid "Open"
+msgstr ""
+
+#: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
+#, kde-format
+msgid "Dictionary Files (*.plots);;All Files (*)"
+msgstr "Sõnaraamatufailid (*.plots);;Kõik failid (*)"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "Where to export"
+msgstr "Kuhu eksportida"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "PNG Image File (*.png)"
+msgstr "PNG-pildifail (*.png)"
+
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: src/dashboard.ui:20
+#, kde-format
+msgid "StackedWidget"
+msgstr "StackedWidget"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/dashboard.ui:64
+#, kde-format
+msgid "Plot Dictionary (.plots file) Options"
+msgstr "Joonise sõnaraamatu (.plots-faili) valikud"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dashboard.ui:72
+#, kde-format
+msgid "Collection:"
+msgstr "Kogu:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:80
+#, kde-format
+msgid "Main"
+msgstr "Peamine"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:85
+#, kde-format
+msgid "Famous Algebraic Curves"
+msgstr "Famous Algebraic Curves"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:90
+#, kde-format
+msgid "..."
+msgstr "..."
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Export the space as a Dictionary"
+msgstr ""
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
+msgstr "Joonise sõnaraamatufailid (*.plots);;Kõik failid (*)"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving file, no plots available for this space"
+msgstr ""
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving a dictionary"
+msgstr "Tõrge sõnaraamatu salvestamisel"
+
+#: src/dictionarycollection.cpp:152
+#, kde-format
+msgid "Select Dictionary to import"
+msgstr "Imporditava sõnaraamatu valimine"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
+#: src/dictionarycollection.ui:14
+#, kde-format
+msgid "Add from Dictionary"
+msgstr "Lisamine sõnaraamatust"
+
+#. i18n: ectx: property (text), widget (QPushButton, importDictionary)
+#: src/dictionarycollection.ui:21
+#, kde-format
+msgid "Import Dictionary"
+msgstr "Impordi sõnaraamat"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dictionarycollection.ui:91
+#, kde-format
+msgid "Collection: "
+msgstr "Kogu: "
+
+#. i18n: ectx: property (text), widget (QPushButton, AddButton)
+#: src/dictionarycollection.ui:101
+#, kde-format
+msgid "Add"
+msgstr "Lisa"
+
+#: src/filter.cpp:29
+#, kde-format
+msgid "Dimension All"
+msgstr ""
+
+#: src/filter.cpp:30
+#, kde-format
+msgid "Dimension 2D"
+msgstr "2D mõõde"
+
+#: src/filter.cpp:31
+#, kde-format
+msgid "Dimension 3D"
+msgstr "3D mõõde"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
+#: src/filter.ui:42
+#, kde-format
+msgid "Filter by space name or description..."
+msgstr "Filtreeri ruumi nime või kirjelduse järgi ..."
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Khipu"
+msgstr "Khipu"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Advanced Mathematical Function Plotter"
+msgstr "Täiustatud matemaatiliste funktsioonide graafiku joonistaja"
+
+#: src/main.cpp:33
+#, kde-format
+msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+msgstr "(C) 2010-2012: Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Percy Camilo Triveño Aucahuasi"
+msgstr "Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Main developer"
+msgstr "Põhiarendaja"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Punit Mehta"
+msgstr "Punit Mehta"
+
+#: src/main.cpp:37
+#, kde-format
+msgid ""
+"GSoC-2013 student - Persistance file support. Plot-dictionary support. "
+"Worked for application actions, command-line improvements and space "
+"filtering. Several bug fixings"
+msgstr ""
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Manuel Álvarez Blanco"
+msgstr "Manuel Álvarez Blanco"
+
+#: src/main.cpp:38
+#, kde-format
+msgid ""
+"Thesis mentor - Guide and supervision during project conception. "
+"Bibliographical support. Numeric Mathematics and Algorithms support"
+msgstr ""
+"Projekti mentor: juhendamine projekti algfaasis. Bibliograafia toetus. "
+"Algebra ja algoritmide toetus."
+
+#: src/main.cpp:39
+#, kde-format
+msgid "José Ignacio Cuevas Gonzáles"
+msgstr "José Ignacio Cuevas Gonzáles"
+
+#: src/main.cpp:39
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Product Guide, Product promotion and former "
+"Client"
+msgstr "Projekti mentor: juhendamine, toote reklaamimine ja varasem tarbimine"
+
+#: src/main.cpp:40
+#, kde-format
+msgid "Eduardo Fernandini Capurro"
+msgstr "Eduardo Fernandini Capurro"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
+"former Client"
+msgstr ""
+"Projekti mentor: juhendamine, bibliograafia toetus, toote varasem klient"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Jaime Urbina Pereyra"
+msgstr "Jaime Urbina Pereyra"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Thesis mentor - Supervision and former Main Project Mentor"
+msgstr "Projekti mentor: juhendamine ja varasem põhiprojekti mentor"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "Aleix Pol Gonzalez"
+msgstr "Aleix Pol Gonzalez"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "KAlgebra and Analitza parser author, both vitals for the project"
+msgstr ""
+"KAlgebra ja Analitza parseri autor, mis mõlemad on projektile hädavajalikud"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "José Fernando Ramos Ramirez"
+msgstr "José Fernando Ramos Ramirez"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "First version of Famous Curves Database. Build former windows installer"
+msgstr ""
+"Andmebaasi \"Famous Curves\" esimene versioon. Endise Windowsi "
+"paigaldusprogrammi looja."
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Susan Pamela Rios Sarmiento"
+msgstr "Susan Pamela Rios Sarmiento"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "First version of Famous Curves Database"
+msgstr "Andmebaasi \"Famous Curves\" esimene versioon"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Edgar Velasquez"
+msgstr "Edgar Velasquez"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "2D Improvements"
+msgstr "2D parandused"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Jose Torres Cardenas"
+msgstr "Jose Torres Cardenas"
+
+#: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
+#, kde-format
+msgid "3D Improvements"
+msgstr "3D parandused"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "Elizabeth Portilla Flores"
+msgstr "Elizabeth Portilla Flores"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Paul Murat Landauro Minaya"
+msgstr "Paul Murat Landauro Minaya"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Khipu files to open"
+msgstr "Avatavad Khipu failid"
+
+#: src/main.cpp:58
+#, kde-format
+msgid "Always start with a new file, ignoring any autosaved file"
+msgstr ""
+
+#: src/mainwindow.cpp:142
+#, kde-format
+msgid "&Shortcuts"
+msgstr "&Kiirklahvid"
+
+#: src/mainwindow.cpp:226
+#, kde-format
+msgid "&Save Plot as PNG"
+msgstr ""
+
+#: src/mainwindow.cpp:229
+#, kde-format
+msgid "Add Space &2D"
+msgstr "Lisa &2D ruum"
+
+#: src/mainwindow.cpp:230
+#, kde-format
+msgid "Add Space &3D"
+msgstr "Lisa &3D ruum"
+
+#: src/mainwindow.cpp:235
+#, kde-format
+msgid "Create a plot in a new space"
+msgstr "Joonise loomine uues ruumis"
+
+#: src/mainwindow.cpp:238
+#, kde-format
+msgid "Plot &Dictionaries"
+msgstr ""
+
+#: src/mainwindow.cpp:263
+#, kde-format
+msgid "&Go First Space"
+msgstr "Lii&gu esimesse ruumi"
+
+#: src/mainwindow.cpp:268
+#, kde-format
+msgid "&Go Previous Space"
+msgstr "Lii&gu eelmisse ruumi"
+
+#: src/mainwindow.cpp:273
+#, kde-format
+msgid "&Go Next Space"
+msgstr "Lii&gu järgmisse ruumi"
+
+#: src/mainwindow.cpp:278
+#, kde-format
+msgid "&Go Last Space"
+msgstr "Lii&gu viimasesse ruumi"
+
+#: src/mainwindow.cpp:284
+#, kde-format
+msgid "&Remove Current Space"
+msgstr "&Eemalda aktiivne ruum"
+
+#: src/mainwindow.cpp:286
+#, kde-format
+msgid "&Take Snapshot"
+msgstr "&Tee hetkvõte"
+
+#: src/mainwindow.cpp:287
+#, kde-format
+msgid "&Get Plot-Dictionary files"
+msgstr ""
+
+#: src/mainwindow.cpp:288
+#, kde-format
+msgid "&Import Plot-Dictionary file"
+msgstr ""
+
+#: src/mainwindow.cpp:333 src/mainwindow.cpp:376
+#, kde-format
+msgid "There is not any space available to show!"
+msgstr "Pole ühtegi ruumi näidata!"
+
+#: src/mainwindow.cpp:337
+#, kde-format
+msgid "Currently you are on the first space!"
+msgstr "Praegu viibid esimeses ruumis!"
+
+#: src/mainwindow.cpp:348
+#, kde-format
+msgid "You are already on the first space!"
+msgstr "Sa juba oled esimeses ruumis!"
+
+#: src/mainwindow.cpp:360
+#, kde-format
+msgid "You are already on the last space!"
+msgstr "Sa juba oled viimases ruumis!"
+
+#: src/mainwindow.cpp:380
+#, kde-format
+msgid "Currently you are on the last space!"
+msgstr "Praegu viibid viimases ruumis!"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Press Ctrl + M to make menubar visible again"
+msgstr "Ctrl+M toob menüüriba taas nähtavale"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Menubar Visibility"
+msgstr "Menüüriba nähtavus"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid "No need to create New Window"
+msgstr "Uue akna loomise järele pole tarvidust"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid ""
+"There are not any plots available. So, you do not need to create a new Plot "
+"Window"
+msgstr ""
+
+#: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Khipu Files (*.khipu);;All Files (*)"
+msgstr "Khipu failid (*.khipu);;Kõik failid (*)"
+
+#: src/mainwindow.cpp:528
+#, kde-format
+msgid "The file does not exist."
+msgstr "Faili ei ole olemas."
+
+#: src/mainwindow.cpp:536
+#, kde-format
+msgid "An error appeared when opening this file (%1)"
+msgstr "Tõrge faili avamisel (%1)"
+
+#: src/mainwindow.cpp:550
+#, kde-format
+msgid "Do you want to recover the file you have not saved last time?"
+msgstr "Kas taastada fail, mida sa viimasel korral ei salvestanud?"
+
+#: src/mainwindow.cpp:550 src/mainwindow.cpp:578
+#, kde-format
+msgid "Autosaved .khipu file"
+msgstr "Automaatsalvestatud .khipu-fail"
+
+#: src/mainwindow.cpp:578
+#, kde-format
+msgid ""
+"There are some unsaved changes in the file %1. Do you want to recover them?"
+msgstr "Failis %1 on salvestamata muudatusi. Kas taastada need?"
+
+#: src/mainwindow.cpp:589
+#, kde-format
+msgid "Error while reading file, maybe path is not found."
+msgstr "Tõrge faili lugemisel, võib-olla ei leitud asukohta."
+
+#: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading"
+msgstr "Tõrge lugemisel"
+
+#: src/mainwindow.cpp:592
+#, kde-format
+msgid "%1 could not be opened"
+msgstr "%1 avamine nurjus"
+
+#: src/mainwindow.cpp:606
+#, kde-format
+msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
+msgstr "Probleem faili sisu parsimisel, võib olla vale khipu-fail."
+
+#: src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Save As"
+msgstr "Salvestamine"
+
+#: src/mainwindow.cpp:675
+#, kde-format
+msgid ""
+"The file which you want to save, already exists. Do you want to overwrite "
+"this file?"
+msgstr "Fail, mida soovid salvestada, on juba olemas. Kas kirjutada see üle?"
+
+#: src/mainwindow.cpp:676
+#, kde-format
+msgid "Warning: File already exists"
+msgstr "Hoiatus: fail on juba olemas"
+
+#: src/mainwindow.cpp:695
+#, kde-format
+msgid "The current file contains some unsaved work. Do you want to save it?"
+msgstr "Aktiivne fail sisaldab veidi salvestamata tööd. Kas salvestad see?"
+
+#: src/mainwindow.cpp:696
+#, kde-format
+msgid "Warning: Unsaved changes"
+msgstr "Hoiatus: salvestamata muudatused"
+
+#: src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading file, file may be empty"
+msgstr "Tõrge faili lugemisel, fail võib olla tühi"
+
+#: src/mainwindow.cpp:815
+#, kde-format
+msgid "Could not open %1 for writing"
+msgstr "%1 avamine kirjutamiseks nurjus"
+
+#: src/mainwindow.cpp:815 src/mainwindow.cpp:826
+#, kde-format
+msgid "Error while writing"
+msgstr "Tõrge kirjutamisel"
+
+#: src/mainwindow.cpp:826
+#, kde-format
+msgid "Could not open %1 for writing %2"
+msgstr "%1 avamine %2 kirjutamiseks nurjus"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving file. Maybe path is not found"
+msgstr "Tõrge faili salvestamisel. Võib-olla ei leitud asukohta"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving"
+msgstr "Tõrge salvestamisel "
+
+#: src/mainwindow.cpp:857
+#, kde-format
+msgid "File %1 [%2] is saved successfully"
+msgstr "Fail %1 [%2] salvestati edukalt"
+
+#: src/mainwindow.cpp:1005
+#, kde-format
+msgid "The diagram was copied to clipboard"
+msgstr "Skeem kopeeriti lõikepuhvrisse"
+
+#: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
+#, kde-format
+msgid "Untitled %1"
+msgstr "Nimetu %1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
+#: src/plotsbuilder.ui:17
+#, kde-format
+msgid "Build a Cartesian Curve"
+msgstr "Descartes'i kõvera loomine"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:99 src/plotsbuilder.ui:173
+#: src/plotsbuilder.ui:231 src/plotsbuilder.ui:265
+#, kde-format
+msgid "Graph"
+msgstr "Graaf"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
+#: src/plotsbuilder.ui:53 src/plotsbuilder.ui:185
+#, kde-format
+msgid "Implicit"
+msgstr "Implitsiitne"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
+#: src/plotsbuilder.ui:65 src/plotsbuilder.ui:133 src/plotsbuilder.ui:197
+#, kde-format
+msgid "Parametric"
+msgstr "Parameetriline"
+
+#. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
+#: src/plotsbuilder.ui:93
+#, kde-format
+msgid "Build a Polar Curve"
+msgstr "Polaarse kõvera loomine"
+
+#. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
+#: src/plotsbuilder.ui:127
+#, kde-format
+msgid "Build a Space Curve"
+msgstr "Ruumikõvera loomine"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
+#: src/plotsbuilder.ui:167
+#, kde-format
+msgid "Build a Cartesian Surface"
+msgstr "Descartes'i pinna loomine"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
+#: src/plotsbuilder.ui:225
+#, kde-format
+msgid "Build a Cylindrical Surface"
+msgstr "Silindrilise kõvera loomine"
+
+#. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
+#: src/plotsbuilder.ui:259
+#, kde-format
+msgid "Build a Spherical Surface"
+msgstr "Sfääripinna loomine"
+
+#: src/plotseditor.cpp:67
+#, kde-format
+msgid "check/uncheck to show/hide the Axes"
+msgstr "märgi/eemalda märge telgede näitamiseks/peitmiseks"
+
+#: src/plotseditor.cpp:70
+#, kde-format
+msgid "Click to edit the plot"
+msgstr "Klõpsa joonise muutmiseks"
+
+#: src/plotseditor.cpp:71
+#, kde-format
+msgid "Click to remove the plot"
+msgstr "Klõpsa joonise eemaldamiseks"
+
+#: src/plotseditor.cpp:1020
+#, kde-format
+msgid "plot %1"
+msgstr "joonis %1"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
+#: src/plotseditor.ui:20
+#, kde-format
+msgid "Plots"
+msgstr "Joonised"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
+#: src/plotseditor.ui:36
+#, kde-format
+msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
+msgstr "<html><head/><body><p>Klõpsa siia joonise lisamiseks</p></body></html>"
+
+#. i18n: ectx: property (text), widget (QPushButton, editPlot)
+#: src/plotseditor.ui:114
+#, kde-format
+msgid "Edit"
+msgstr "Muuda"
+
+#. i18n: ectx: property (text), widget (QPushButton, removePlot)
+#: src/plotseditor.ui:124 src/spacesdelegate.cpp:74
+#, kde-format
+msgid "Remove"
+msgstr "Eemalda"
+
+#. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
+#: src/plotseditor.ui:156
+#, kde-format
+msgid "Plot Name"
+msgstr "Joonise nimi"
+
+#. i18n: ectx: property (text), widget (QLabel, plotIcon)
+#: src/plotseditor.ui:163
+#, kde-format
+msgid "TextLabel"
+msgstr "Tekstipealdis"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/plotseditor.ui:397
+#, kde-format
+msgid "Color:"
+msgstr "Värv:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/plotseditor.ui:413
+#, kde-format
+msgid "Style"
+msgstr "Stiil"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:421
+#, kde-format
+msgid "Solid"
+msgstr "Ühtlane"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:426
+#, kde-format
+msgid "Wired"
+msgstr "Sõrestik"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:431
+#, kde-format
+msgid "Dots"
+msgstr "Punktid"
+
+#. i18n: ectx: property (title), widget (QGroupBox, intervals)
+#: src/plotseditor.ui:457
+#, kde-format
+msgid "Use Intervals"
+msgstr "Intervalli kasutamine"
+
+#. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:659
+#, kde-format
+msgid "asdsada"
+msgstr "asdsada"
+
+#. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:662
+#, kde-format
+msgid "asdad"
+msgstr "asdad"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
+#: src/spaceinformation.ui:41
+#, kde-format
+msgid "Notes"
+msgstr "Märkused"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/spaceinformation.ui:50
+#, kde-format
+msgid "Title:"
+msgstr "Nimi:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: src/spaceinformation.ui:80
+#, kde-format
+msgid "Description:"
+msgstr "Kirjeldus:"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
+#: src/spaceoptions.ui:38
+#, kde-format
+msgid "Diagram"
+msgstr "Skeem"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/spaceoptions.ui:57
+#, kde-format
+msgid "Grid Options"
+msgstr "Alusvõrgu valikud"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:87
+#, kde-format
+msgid "None"
+msgstr "Puudub"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:92
+#, kde-format
+msgid "Lines"
+msgstr "Jooned"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:97
+#, kde-format
+msgid "Polar"
+msgstr "Polaarne"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/spaceoptions.ui:105
+#, kde-format
+msgid "Grid Style:"
+msgstr "Alusvõrgu stiil:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
+#: src/spaceoptions.ui:115
+#, kde-format
+msgid "Grid Ticks"
+msgstr "Alusvõrgu jaotised"
+
+#. i18n: ectx: property (text), widget (QLabel, label_14)
+#: src/spaceoptions.ui:127
+#, kde-format
+msgid "Scale:"
+msgstr "Skaala:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
+#: src/spaceoptions.ui:159
+#, kde-format
+msgid "More Options"
+msgstr "Muud valikud"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
+#: src/spaceoptions.ui:173
+#, kde-format
+msgid "Horizontal Label:"
+msgstr "Horisontaalse telje tähis:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
+#: src/spaceoptions.ui:183
+#, kde-format
+msgid "x"
+msgstr "x"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
+#: src/spaceoptions.ui:193
+#, kde-format
+msgid "Vertical Label:"
+msgstr "Püstine telg:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
+#: src/spaceoptions.ui:203
+#, kde-format
+msgid "y"
+msgstr "y"
+
+#. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
+#: src/spaceoptions.ui:215
+#, kde-format
+msgid "Horizontal and Vertical Marks"
+msgstr "Rõht- ja püsttelje tähised"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: src/spaceoptions.ui:254
+#, kde-format
+msgid "Axis"
+msgstr "Telg"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showGrid)
+#: src/spaceoptions.ui:270
+#, kde-format
+msgid "Grid"
+msgstr "Alusvõrk"
+
+#. i18n: ectx: property (text), widget (QLabel, label_16)
+#: src/spaceoptions.ui:289
+#, kde-format
+msgid "Size:"
+msgstr "Suurus:"
+
+#: src/spacesdelegate.cpp:81
+#, kde-format
+msgid "Rename"
+msgstr "Muuda nime"
+
+#: src/spacesdelegate.cpp:88
+#, kde-format
+msgid "Export as dictionary"
+msgstr "Ekspordi sõnaraamatuna"
+
+#: src/spacesmodel.cpp:41
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Nimi"
+
+#: src/spacesmodel.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Description"
+msgstr "Kirjeldus"
+
+#~ msgid "Hover to see the description:"
+#~ msgstr "Kirjeldust näeb hiirekursori all:"
+
+#, fuzzy
+#~| msgid "Lines"
+#~ msgctxt "grid style"
+#~ msgid "Lines"
+#~ msgstr "Jooned"
+
+#, fuzzy
+#~| msgid "None"
+#~ msgctxt "grid style"
+#~ msgid "None"
+#~ msgstr "Puudub"
+
+#, fuzzy
+#~| msgid "Polar"
+#~ msgctxt "grid style"
+#~ msgid "Polar"
+#~ msgstr "Polaarne"
+
+#~ msgid "Show"
+#~ msgstr "Näita"
+
+#~ msgid "Mathematical Objects Manager"
+#~ msgstr "Matemaatiliste objektide haldur"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Download new mathematical objects from internet</"
+#~ "p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Uute matemaatiliste objektide allalaadimine "
+#~ "internetist</p></body></html>"
+
+#~ msgid "Get Mathematical Objects..."
+#~ msgstr "Hangi matemaatilisi objekte..."
+
+#~ msgid "Import Mathematical objects..."
+#~ msgstr "Impordi matemaatilised objektid..."
+
+#~ msgid "Create a Collection of Mathematical Objects"
+#~ msgstr "Loo matemaatiliste objektide kogu"
+
+#~ msgid "Show plot in space"
+#~ msgstr "Näita joonist ruumis"
+
+#~ msgid "Remove plot"
+#~ msgstr "Eemalda joonis"
+
+#~ msgid "Export"
+#~ msgstr "Ekspordi"
+
+#~ msgid "in dictionary"
+#~ msgstr "sõnaraamatus"
+
+#~ msgid "Import to Current Document"
+#~ msgstr "Impordi aktiivsesse dokumenti"
+
+#~ msgid "Show Details"
+#~ msgstr "Üksikasjade näitamine"
+
+#~ msgid "Filter..."
+#~ msgstr "Filter..."
+
+#~ msgid "DimAll"
+#~ msgstr "Kõik mõõtmed"
+
+#~ msgid "Dim2D"
+#~ msgstr "2D mõõtmed"
+
+#~ msgid "Dim3D"
+#~ msgstr "3D mõõtmed"
+
+#~ msgctxt "@title:column"
+#~ msgid "Function"
+#~ msgstr "Funktsioon"
+
+#~ msgctxt "@title:column"
+#~ msgid "Arguments"
+#~ msgstr "Argumendid"
+
+#~ msgid "&Add Random Plot"
+#~ msgstr "Lis&a juhuslik joonis"
+
+#~ msgid "&Show Plots"
+#~ msgstr "&Näita jooniseid"
+
+#~ msgid "&Show Spaces"
+#~ msgstr "&Näita ruume"
+
+#~ msgid "&Mathematical Objects"
+#~ msgstr "&Matemaatilised objektid"
+
+#~ msgid "PushButton"
+#~ msgstr "Nupp"
+
+#~ msgid "Name:"
+#~ msgstr "Nimi:"
+
+#~ msgid "Space"
+#~ msgstr "Ruum"
+
+#~ msgid "Use Symbols"
+#~ msgstr "Sümbolite kasutamine"
+
+#~ msgid "Vertical Marks"
+#~ msgstr "Püstise telje tähised"
+
+#~ msgid "Form"
+#~ msgstr "Vorm"
+
+#~ msgid "Diagram Appearance"
+#~ msgstr "Skeemi välimus"
+
+#~ msgid "Find:"
+#~ msgstr "Otsing:"
+
+#~ msgid "2D"
+#~ msgstr "2D"
+
+#~ msgid "3D"
+#~ msgstr "3D"
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+
+#~ msgid "Build Plots"
+#~ msgstr "Jooniste loomine"
+
+#~ msgid "Sistema de Coordenadas"
+#~ msgstr "Koordinaatide süsteem"
+
+#~ msgid "Cartesianas"
+#~ msgstr "Descartes'i"
+
+#~ msgid "Polares"
+#~ msgstr "Polaarne"
+
+#~ msgid "Opciones de los ejes"
+#~ msgstr "Telgede valikud"
+
+#~ msgid "Eje x:"
+#~ msgstr "X-telg:"
+
+#~ msgid "Eje y:"
+#~ msgstr "Y-telg:"
+
+#~ msgid "import"
+#~ msgstr "Impordi"
+
+#~ msgid "in currentdoc"
+#~ msgstr "aktiivses dokumendis"
+
+#~ msgid "View and Tools:"
+#~ msgstr "Vaade ja tööriistad:"
+
+#~ msgid "DockWidget"
+#~ msgstr "Dokividin"
+
+#~ msgid "Cartesian"
+#~ msgstr "Descartes'i"
+
+#~ msgid "Cylindrical"
+#~ msgstr "Silindriline"
+
+#~ msgid "Spherical"
+#~ msgstr "Sfääriline"
+
+#~ msgid ""
+#~ "*.png|PNG Image File\n"
+#~ "*.jpg|JPG Image File"
+#~ msgstr ""
+#~ "*.png|PNG-pildifail\n"
+#~ "*.jpg|JPG-pildifail"
+
+#~ msgid "Funciones"
+#~ msgstr "Funktsioonid"
+
+#~ msgid "Add variable"
+#~ msgstr "Lisa muutuja"
+
+#~ msgid ""
+#~ "The document \"%1\" has been modified.\n"
+#~ "Do you want to save your changes or discard them?"
+#~ msgstr ""
+#~ "Dokumenti \"%1\" on muudetud.\n"
+#~ "Kas soovid muudatused salvestada või need unustada?"
+
+#~ msgid "Close Document"
+#~ msgstr "Dokumendi sulgemine"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Kõik toetatud failid"
+
+#~ msgid "GPLACS standard file format"
+#~ msgstr "GPLACS-i standardne failivorming"
+
+#~ msgid "Overwrite"
+#~ msgstr "Kirjuta üle"
+
+#~ msgid "[modificado]"
+#~ msgstr "[muudetud]"
+
+#~ msgid "Función"
+#~ msgstr "Funktsioon"
+
+#~ msgid "TextLabel2"
+#~ msgstr "Tekstipealdis2"
+
+#~ msgid "Y="
+#~ msgstr "Y="
+
+#~ msgid "X="
+#~ msgstr "X="
+
+#~ msgid "Z="
+#~ msgstr "Z="
+
+#~ msgid " mm"
+#~ msgstr " mm"
+
+#~ msgid "Min"
+#~ msgstr "Min"
+
+#~ msgid "Max"
+#~ msgstr "Maks"
+
+#~ msgid "Ok"
+#~ msgstr "OK"
+
+#~ msgid "Cancelar"
+#~ msgstr "Loobu"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Función 1:"
+#~ msgstr "Funktsioon 1:"
+
+#~ msgid "Función 2:"
+#~ msgstr "Funktsioon 2:"
+
+#~ msgid "Límite Inferior:"
+#~ msgstr "Alumine raja:"
+
+#~ msgid "Límite Superior:"
+#~ msgstr "Ülemine raja:"
+
+#~ msgid "Resultados"
+#~ msgstr "Tulemused"
+
+#~ msgid "Ejemplo:"
+#~ msgstr "Näide:"
+
+#~ msgid "Jefe de Proyecto y Desarrollador Principal"
+#~ msgstr "Jefe de Proyecto y Desarrollador Principal"
+
+#~ msgid "Bertha Nérida Triveño Aucahuasi"
+#~ msgstr "Bertha Nérida Triveño Aucahuasi"
+
+#~ msgid "Diseño del Ícono de GPLACS"
+#~ msgstr "GPLACS-i ikooni kujundamine"
+
+#~ msgid "El argumento debe ser x"
+#~ msgstr "Argument peab olema x"
+
+#~ msgid "El argumento debe ser y"
+#~ msgstr "Argument peab olema y"
+
+#~ msgid "The arguments must be x or y"
+#~ msgstr "Argumendid peavad olema x või y"
+
+#~ msgid "Wrong number of arguments for z=f(x,y)"
+#~ msgstr "Vale argumentide arv z=f(x,y) jaoks"
+
+#~ msgid "The arguments must be r or t"
+#~ msgstr "Argumendid peavad olema r või t"
+
+#~ msgid "Wrong number of arguments for z=f(r,t)"
+#~ msgstr "Vale argumentide arv z=f(r,t) jaoks"
+
+#~ msgid "The arguments must be s or t"
+#~ msgstr "Argumendid peavad olema s või t"
+
+#~ msgid "Wrong number of arguments for r=f(s,t)"
+#~ msgstr "Vale argumentide arv z=f(s,t) jaoks"
+
+#~ msgid "Wrong number of arguments for f(u,v)"
+#~ msgstr "Vale argumentide arv z=f(u,v) jaoks"
+
+#~ msgid "The arguments are u,v"
+#~ msgstr "Argumendid on u,v"
+
+#~ msgid "Function type not recognized"
+#~ msgstr "Funktsiooni tüüp on tundmatu"
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid "Function type not correct for Functions depending on %1"
+#~ msgstr ""
+#~ "Funktsiooni tüüp ei ole õige funktsioonide puhul, mille sõltuvuseks on %1"
+
+#~ msgid "The expression is not correct"
+#~ msgstr "Avaldis ei ole korrektne"
+
+#~ msgctxt "@title:column"
+#~ msgid "Ecuación"
+#~ msgstr "Võrrand"
+
+#~ msgid "%1 function added"
+#~ msgstr "%1 funktsioon lisatud"
+
+#~ msgid "We can only draw Real results."
+#~ msgstr "Joonistada saab ainult tegelikke tulemusi."
+
+#~ msgctxt "if the specified function is not a vector"
+#~ msgid "The parametric function does not return a vector"
+#~ msgstr "Parameeterfunktsioon ei tagasta vektorit"
+
+#~ msgctxt "If it is a vector but the wrong size. We work in R2 here"
+#~ msgid "A two-dimensional vector is needed"
+#~ msgstr "Vajalik on kahemõõtmeline vektor"
+
+#~ msgctxt "The vector has to be composed by integer members"
+#~ msgid "The parametric function items should be scalars"
+#~ msgstr "Parameeterfunktsiooni elemendid peavad olema skalaarid"
+
+#~ msgid "Selected viewport too small"
+#~ msgstr "Valitud vaade on liiga väike"

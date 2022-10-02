@@ -1,0 +1,682 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title
+>Handbok &khipu;</title>
+<authorgroup>
+<author>
+<personname
+><firstname
+>Det här dokumentet är konverterat från &kde;:s användarbas sida <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction"
+>&khipu;/Manual</ulink
+>.</firstname
+> <surname
+></surname
+> </personname>
+      </author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+      </authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2013-09-18</date>
+      <releaseinfo
+>1.0</releaseinfo>
+<abstract>
+<para
+></para>
+      </abstract>
+      <keywordset>
+<keyword
+>KDE</keyword>
+</keywordset>
+</bookinfo>
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>&khipu; - Rita diagram är bara så kul</title>
+<para
+>&khipu; är ett avancerat matematiskt funktionsritprogram. </para>
+<para
+>Det är en del av <ulink url="http://edu.kde.org"
+>&kde;:s utbildningsprojekt</ulink
+> och ersätter det tidigare funktionsritprogrammet &kmplot;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="khipu_space3d.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; tredimensionellt rum</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; tredimensionellt rum</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect1 id="quick-start-guide"
+><title
+>Snabbstartsguide</title>
+<sect2 id="idea-of-space"
+><title
+>Rumskonceptet</title
+> 
+<para
+>&khipu; använder abstrakta <emphasis
+>rum</emphasis
+> för att spara diagrammen som användaren begär. Ett rum har ett namn och tillhörande beskrivning som användaren senare kan identifiera det med. &khipu; har två typer av rum (två- och tredimensionella). Användare kan <emphasis
+>spara diagram</emphasis
+> i endera av rummen beroende på önskemål. <emphasis
+>Varje rum innehåller flera diagram</emphasis
+> av olika färger, intervall och typer. </para>
+</sect2>
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Hur ritar man funktioner med &khipu;?</title
+> 
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - lägg till två- eller tredimensionellt rum</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - lägg till två- eller tredimensionellt rum</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Som nämndes ovan, ritar &khipu; funktioner i rum. Det finns två sätt att lägga till ett rum i &khipu; baserat på diagrammets dimension. När man är i &khipu;s huvudfönster (med &khipu;s terminologi, instrumentpanelen), visas en <guilabel
+>Huvudverktygsrad</guilabel
+> som innehåller knapparna <guilabel
+>Lägg till tvådimensionellt rum</guilabel
+> och <guilabel
+>Lägg till tredimensionellt rum</guilabel
+>. Användaren kan välja någon av dem beroende på funktionen som ska ritas upp. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Lägg till diagram i ett rum</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Lägg till diagram i ett rum</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Diagram representerade i två dimensioner</title
+> 
+<para
+>När användaren klickar på <guibutton
+>Lägg till tvådimensionellt rum</guibutton
+> omdirigeras han till användargränssnittet för tvådimensionella rum. Därefter måste han klicka på den <guilabel
+>gröna knappen</guilabel
+> som låter användaren lägga till ett diagram. Sedan måste användaren välja diagramtyp (klicka till exempel på <guilabel
+>Graf</guilabel
+> i den kartesiska delen om du vill rita upp en sinuskurva). Man kan lägga till ett diagramnamn genom att markera diagramnamnets kryssruta. Därefter måste användaren <guilabel
+>lägga till en lämplig ekvation</guilabel
+> (av &analitza;-typ) för att visa dess diagram. Om man inte vill göra något mer, ska man bara <emphasis
+>trycka på returtangenten</emphasis
+>. Man kan till och med ställa in diagrammets färg genom att ändra alternativ i listan med färger som anges nedan, och ställa in ett lämpligt intervall för funktionens argument. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - exempel på tvådimensionellt diagram</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - exempel på tvådimensionellt diagram</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Diagram representerade i tre dimensioner</title>
+<para
+>När användaren klickar på <guibutton
+>Lägg till tredimensionellt rum</guibutton
+> omdirigeras han till användargränssnittet för tredimensionella rum. Därefter måste han klicka på den <guilabel
+>gröna knappen</guilabel
+> som låter användaren lägga till ett diagram. Sedan måste användaren välja diagramtyp (klicka till exempel på <guilabel
+>Graf</guilabel
+> i den kartesiska delen om du vill rita upp en enkel yta). Man kan lägga till ett diagramnamn genom att markera diagramnamnets kryssruta. Därefter måste användaren <guilabel
+>lägga till en lämplig ekvation</guilabel
+> (av &analitza;-typ) för att visa dess diagram. Om man inte vill göra något mer, ska man bara <emphasis
+>trycka på returtangenten</emphasis
+>. Man kan till och med ställa in diagrammets färg genom att ändra alternativ i listan med färger som anges nedan. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - redigera och ta bort diagram</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - redigera och ta bort diagram</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Hur redigerar eller tar man bort funktioner i &khipu;?</title
+> 
+<para
+>Användare kan redigera och/eller ta bort diagrammen som redan har lagts till. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Redigera ett redan tillagt diagram</title
+> 
+<para
+>Du kan redigera ett diagram genom att bara <emphasis
+>dubbelklicka på diagrammets post</emphasis
+> i diagramvyn eller markera lämplig post där och därefter klicka på redigeringsknappen som visas nedan. </para>
+</sect3>
+<sect3 id="removing-a-plot"
+><title
+>Ta bort ett diagram</title
+> 
+<para
+>Du kan ta bort ett diagram genom att markera önskat diagram i vyn och därefter klicka på knappen <guilabel
+>Ta bort</guilabel
+> som visas nedan. </para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Arbeta med diagramlexikon</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>Vad är ett diagramlexikon?</title
+> 
+<para
+>Ett diagramlexikon är en typ av textfil (<filename role="extension"
+>.plots</filename
+>) som innehåller namn på ett diagram samt dess ekvation. Grundidén med lexikonfiler är att lägga till diagram i &khipu; utan att faktiskt skriva in långa ekvationer. Användare kan lägga till diagram baserat på namn med lexikonen. Det finns redan ett antal fördefinierade diagram som låter användare mata in några berömda diagram (dvs. kurvor och ytor). Användare kan till och med ladda ner lexikon via Internet. </para>
+<sect3 id="syntax"
+><title
+>Syntax</title
+> 
+<para
+>Syntaxen hos en lexikonfil följer &analitza;s syntax. Varje rad i en fil innehåller ett namn och motsvarande ekvation. </para>
+<para
+>Exempelvis skulle en typisk lexikonfil kunna innehålla följande rader: </para>
+<itemizedlist>
+<listitem
+><para
+>sinus := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plan1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
+</itemizedlist>
+</sect3>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Lägga till en egen lexikonfil</title
+> 
+<para
+>Den flexibla syntaxen för &analitza; låter användaren skapa sin egen lexikonfil. Användare måste spara en textfil med filändelsen <filename role="extension"
+>.plots</filename
+> med rätt diagramnamn och ekvationer på varje rad. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - diagramlexikon i huvudverktygsraden</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - diagramlexikon i huvudverktygsraden</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Låt oss ta en titt på lexikonfilernas diagram</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig6.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Användargränssnitt för diagramlexikon</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Användargränssnitt för diagramlexikon</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Om du vill se hur &khipu; använder lexikon, gå bara till fliken <guilabel
+>Diagramlexikon</guilabel
+> som visas i &khipu;s huvudverktygsrad. Byt därefter till andra namn i kombinationsrutan med beteckningen <emphasis
+>samling</emphasis
+>. Klicka på något diagramnamn så visas motsvarade diagram på höger sida i fönstret. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Användargränssnitt för diagramlexikon</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Användargränssnitt för diagramlexikon</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Lägga till diagram från lexikonet</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Lägga till diagram från lexikonet</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Lägga till diagram från lexikonet</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Den huvudsakliga fördelen med lexikon är att kunna lägga till diagrammen utan att skriva in långa ekvationer. För att göra det, lägg till ett rum i &khipu;, och gå därefter till fliken <guilabel
+>Lägg till från lexikon</guilabel
+>. Där kan man lägga till lexikonfilen som önskas. Man behöver bara dubbelklicka på diagramnamnet för att lägga till det i &khipu;s aktuella rum. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig9.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Importera och ladda ner lexikon</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Importera och ladda ner lexikon</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Importera lexikonfiler från en lokal disk</title>
+<para
+>Det är inte så att man bara kan lägga till eller visa diagrammet från de fördefinierade lexikonen tillgängliga via &analitza;. Man kan till och med importera alla nerladdade eller manuellt skapade lexikon i &khipu; och kan lägga till diagrammen från det i &khipu;s rum. </para>
+</sect2>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Ladda ner lexikonfiler från Internet</title>
+<para
+>Användning av programgränssnittet <guilabel
+>Hämta heta nyheter</guilabel
+> i &khipu; gör det möjligt för användaren att ladda ner dessa lexikonfiler från webben. På så sätt kan en användare ha en omfattande samling lexikon nerladdade från hela världen. Det åstadkoms genom att helt enkelt klicka på <guilabel
+>Hämta diagramlexikonfiler</guilabel
+> i lexikonets användargränssnitt. </para>
+</sect2>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Exportera rummet som ett lexikon</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig11.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Exportera rummet som ett lexikon</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Exportera rummet som ett lexikon</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Användare kan till och med exportera hela rum till lexikonet med namn och ekvationer för diagram sparade i det rummet. För detta måste man klicka på <guilabel
+>Hem</guilabel
+> och därefter klicka på <emphasis
+>verktygsknappen</emphasis
+> på rummets miniatyrbild, vilket talar om hur rummet kan exporteras till lexikonet. </para>
+</sect2>
+</sect1>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: Mer en bara rita diagram</title>
+<sect2 id="khipus-application-actions"
+><title
+>&khipu;s programalternativ</title
+> 
+<para
+>En av de viktigaste fördelarna med &khipu; är att det finns <emphasis
+>vissa andra användbara funktioner</emphasis
+> för att hantera diagram av matematiska funktioner, mer än bara rita upp dem. De olika programåtgärderna och andra funktionerna gör &khipu; mer användarvänligt. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Ny, Öppna, Spara, Spara som</title>
+<para
+>De normala åtgärderna Ny, Öppna, Spara och Spara som låter användare arbeta med olika sessioner och <emphasis
+>spara sitt arbete i bestående filer (<filename role="extension"
+>.khipu</filename
+>-filer)</emphasis
+> som kan öppnas vid ett senare tillfälle. De bestående filerna följer filformatet <emphasis
+>QJson</emphasis
+>, som sparar viktig information från aktuell session. Informationen omfattar namn på tillagda rum, namn och ekvationer för diagram tillagda i varje rum, diagrammens intervall och deras färg. </para>
+</sect3>
+<sect3 id="save-plot-as-image"
+><title
+>Spara diagram som bild</title>
+<para
+>Varje rum i &khipu; har motsvarande bild som innehåller diagrammen begärda av användaren. Rummets bild kan sparas (i en <acronym
+>PNG</acronym
+>-fil) på den lokala disken med detta programalternativ. </para>
+</sect3>
+<sect3 id="take-snapshot"
+><title
+>Ta skärmbild</title>
+<para
+>Det går till och med att kopiera rumbilden till klippbordet med åtgärden. </para>
+</sect3>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>Vill du bara se ett diagram på hela skärmen?</title>
+<para
+>Fullskärmsalternativet i &khipu; låter användaren visa bara diagrammets rum. Alla andra fönster och verktygsrader är osynliga medan fullskärmsläget är aktiverat. </para>
+</sect3>
+<sect3 id="space-navigation"
+><title
+>Navigera i rum</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig12.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Alternativ för att navigering i rum</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Alternativ för navigering i rum</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Medan användare visar något rum (två- eller tredimensionellt) kan de gå till nästa, föregående, första eller sista rummet med bara en tangent. Genvägarna för detta är följande: </para>
+<itemizedlist>
+<listitem
+><para
+>Gå till nästa rum -&gt; <keycap
+>Page Up</keycap
+></para
+></listitem>
+<listitem
+><para
+>Gå till föregående rum -&gt; <keycap
+>Page Down</keycap
+></para
+></listitem>
+<listitem
+><para
+>Gå till första rummet -&gt; <keycombo
+>&Ctrl;<keycap
+>Home</keycap
+></keycombo
+></para
+></listitem>
+<listitem
+><para
+>Gå till sista rummet -&gt; <keycombo
+>&Ctrl;<keycap
+>End</keycap
+></keycombo
+></para
+></listitem>
+</itemizedlist>
+</sect3>
+</sect2>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Instrumentpanel: Allt arbete till hands</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig13.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Huvudinstrumentpanel</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Huvudinstrumentpanel</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Huvudinstrumentpanelen i &khipu; innehåller alla rum skapade av användaren, med miniatyrbild och rummets namn. En användare kan alltså se vilka rum som ska ändras eller vars diagram ska visas. </para>
+</sect2>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Rumsfilter baserat på titel, beskrivning och dimension</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig14.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - rumsfilter</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - rumsfilter</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Filterfunktionen som är tillgänglig via instrumentpanelen låter användaren filtrera rummen baserat på deras rubrik och/eller beskrivning. Det går till och med att filtrera rum baserat på deras dimension vald i kombinationsrutan som visas i övre högra hörnet av instrumentpanelens användargränssnitt. </para>
+</sect2>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Snabbtangentfönster: Ett enkelt sätt att skapa diagram</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig15.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - snabbtangentfönster</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - snabbtangentfönster</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Om en användare snabbt vill skapa ett diagram utan att bekymra sig om rummen, gör fönstret med snabbkommandon det möjligt. För att göra detta ska man skriva <keycap
+>S</keycap
+> välja diagramtyp i fönstret, skriva in ekvationen, trycka på returtangenten, och det är allt. </para>
+</sect2>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>Zooma in/ut och rotation av diagramvisningen</title>
+<para
+>De två- och tredimensionella rummen har en funktion som gör att man kan zooma in eller zooma ut diagrammets rum genom att bara rulla uppåt eller neråt. Det tredimensionella rummet har stöd för rotationer och skuggor som låter användaren analysera tredimensionella diagram från olika vinklar. </para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="credits-and-license"
+><title
+>Tack till och licens</title
+> 
+<sect1 id="program-copyright"
+><title
+>Program copyright</title>
+<para
+>Program copyright 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi </para>
+</sect1>
+<sect1 id="documentation-copyright"
+><title
+>Dokumentation Copyright</title
+> 
+<para
+><note
+><para
+>Lägg till ditt namn här om du bidrar till handboken. Var vänlig och respektera den alfabetiska ordningen.</para
+></note>
+</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
+</sect1>
+<sect1 id="licenses"
+><title
+>Licenser</title
+> 
+<para
+>Den här dokumentationen licensieras enligt villkoren i <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>&GNU; Free Documentation License</ulink
+>. </para>
+<para
+>Det här programmet licensieras enligt villkoren i <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+>&GNU; General Public License</ulink
+>. </para>
+
+<!--userbase-content-->
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; </sect1>
+</chapter>
+&documentation.index;
+</book>

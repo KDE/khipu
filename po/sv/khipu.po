@@ -1,0 +1,1640 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2012, 2013, 2019, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"PO-Revision-Date: 2022-08-03 10:01+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.08.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Stefan Asserhäll"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "stefan.asserhall@bredband.net"
+
+#: src/dashboard.cpp:117
+#, kde-format
+msgid ""
+"Please make sure that the dictionary (.plots) files are correctly installed"
+msgstr "Försäkra dig om att lexikonfiler (.plots) är riktigt installerade"
+
+#: src/dashboard.cpp:118
+#, kde-format
+msgid "No Dictionary found!"
+msgstr "Inget lexikon hittades."
+
+#: src/dashboard.cpp:229 src/mainwindow.cpp:506
+#, kde-format
+msgid "Open"
+msgstr "Öppna"
+
+#: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
+#, kde-format
+msgid "Dictionary Files (*.plots);;All Files (*)"
+msgstr "Lexikonfiler (*.plots);;Alla filer (*)"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "Where to export"
+msgstr "Var att exportera"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "PNG Image File (*.png)"
+msgstr "PNG-bildfiler (*.png)"
+
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: src/dashboard.ui:20
+#, kde-format
+msgid "StackedWidget"
+msgstr "Grafisk stackkomponent"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/dashboard.ui:64
+#, kde-format
+msgid "Plot Dictionary (.plots file) Options"
+msgstr "Alternativ för diagramlexikon (.plots-fil)"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dashboard.ui:72
+#, kde-format
+msgid "Collection:"
+msgstr "Samling:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:80
+#, kde-format
+msgid "Main"
+msgstr "Huvudfönster"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:85
+#, kde-format
+msgid "Famous Algebraic Curves"
+msgstr "Välkända algebraiska kurvor"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:90
+#, kde-format
+msgid "..."
+msgstr "..."
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Export the space as a Dictionary"
+msgstr "Exportera rummet som ett lexikon"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
+msgstr "Plot-lexikonfiler (*.plots);;Alla filer (*)"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving file, no plots available for this space"
+msgstr ""
+"Fel när filen skulle sparas, inga diagram tillgängliga för det här rummet"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving a dictionary"
+msgstr "Fel när ett lexikon skulle sparas"
+
+#: src/dictionarycollection.cpp:152
+#, kde-format
+msgid "Select Dictionary to import"
+msgstr "Välj ordlista att importera"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
+#: src/dictionarycollection.ui:14
+#, kde-format
+msgid "Add from Dictionary"
+msgstr "Lägg till från lexikon"
+
+#. i18n: ectx: property (text), widget (QPushButton, importDictionary)
+#: src/dictionarycollection.ui:21
+#, kde-format
+msgid "Import Dictionary"
+msgstr "Importera lexikon"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dictionarycollection.ui:91
+#, kde-format
+msgid "Collection: "
+msgstr "Samling: "
+
+#. i18n: ectx: property (text), widget (QPushButton, AddButton)
+#: src/dictionarycollection.ui:101
+#, kde-format
+msgid "Add"
+msgstr "Lägg till"
+
+#: src/filter.cpp:29
+#, kde-format
+msgid "Dimension All"
+msgstr "Alla dimensioner"
+
+#: src/filter.cpp:30
+#, kde-format
+msgid "Dimension 2D"
+msgstr "Tvådimensionella"
+
+#: src/filter.cpp:31
+#, kde-format
+msgid "Dimension 3D"
+msgstr "Tredimensionella"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
+#: src/filter.ui:42
+#, kde-format
+msgid "Filter by space name or description..."
+msgstr "Filtrera enligt rumsnamn eller beskrivning..."
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Khipu"
+msgstr "Khipu"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Advanced Mathematical Function Plotter"
+msgstr "Avancerad matematisk funktionsritare"
+
+#: src/main.cpp:33
+#, kde-format
+msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+msgstr "© 2010-2012, Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Percy Camilo Triveño Aucahuasi"
+msgstr "Percy Camilo Triveño Aucahuasi"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Main developer"
+msgstr "Huvudutvecklare"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Punit Mehta"
+msgstr "Punit Mehta"
+
+#: src/main.cpp:37
+#, kde-format
+msgid ""
+"GSoC-2013 student - Persistance file support. Plot-dictionary support. "
+"Worked for application actions, command-line improvements and space "
+"filtering. Several bug fixings"
+msgstr ""
+"Google Summer of Code 2013-student: Stöd för beständiga filer. Stöd för "
+"diagramlexikon. Arbetade med programåtgärder, förbättringar av kommandorad "
+"och rumsfiltrering. Flera felrättningar."
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Manuel Álvarez Blanco"
+msgstr "Manuel Álvarez Blanco"
+
+#: src/main.cpp:38
+#, kde-format
+msgid ""
+"Thesis mentor - Guide and supervision during project conception. "
+"Bibliographical support. Numeric Mathematics and Algorithms support"
+msgstr ""
+"Avhandlingens handledare - Handledning och översyn vid projektets "
+"utformning. Bibliografiskt stöd. Hjälp med matematiska och numeriska "
+"algoritmer"
+
+#: src/main.cpp:39
+#, kde-format
+msgid "José Ignacio Cuevas Gonzáles"
+msgstr "José Ignacio Cuevas Gonzáles"
+
+#: src/main.cpp:39
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Product Guide, Product promotion and former "
+"Client"
+msgstr ""
+"Avhandlingens handledare - Översyn, produktguide, marknadsföring av "
+"produkten och före detta kund"
+
+#: src/main.cpp:40
+#, kde-format
+msgid "Eduardo Fernandini Capurro"
+msgstr "Eduardo Fernandini Capurro"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
+"former Client"
+msgstr ""
+"Avhandlingens handledare - Översyn, bibliografiskt stöd, produktguide och "
+"före detta kund"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Jaime Urbina Pereyra"
+msgstr "Jaime Urbina Pereyra"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Thesis mentor - Supervision and former Main Project Mentor"
+msgstr ""
+"Avhandlingens handledare - Översyn och projektets före detta huvudsakliga "
+"mentor"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "Aleix Pol Gonzalez"
+msgstr "Aleix Pol Gonzalez"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "KAlgebra and Analitza parser author, both vitals for the project"
+msgstr ""
+"Upphovsman till Kalgebra och Analitza-tolken, båda nödvändiga för projektet"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "José Fernando Ramos Ramirez"
+msgstr "José Fernando Ramos Ramirez"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "First version of Famous Curves Database. Build former windows installer"
+msgstr ""
+"Första versionen av databasen över välkända kurvor. Skapade tidigare "
+"installationsverktyg för Windows"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Susan Pamela Rios Sarmiento"
+msgstr "Susan Pamela Rios Sarmiento"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "First version of Famous Curves Database"
+msgstr "Första versionen av databasen över välkända kurvor"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Edgar Velasquez"
+msgstr "Edgar Velasquez"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "2D Improvements"
+msgstr "Förbättringar av 2D"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Jose Torres Cardenas"
+msgstr "Jose Torres Cardenas"
+
+#: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
+#, kde-format
+msgid "3D Improvements"
+msgstr "Förbättringar av 3D"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "Elizabeth Portilla Flores"
+msgstr "Elizabeth Portilla Flores"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Paul Murat Landauro Minaya"
+msgstr "Paul Murat Landauro Minaya"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Khipu files to open"
+msgstr "Khipu-filer att öppna"
+
+#: src/main.cpp:58
+#, kde-format
+msgid "Always start with a new file, ignoring any autosaved file"
+msgstr ""
+"Starta alltid med en ny fil, och ignorera eventuell automatiskt sparad fil"
+
+#: src/mainwindow.cpp:142
+#, kde-format
+msgid "&Shortcuts"
+msgstr "&Genvägar"
+
+#: src/mainwindow.cpp:226
+#, kde-format
+msgid "&Save Plot as PNG"
+msgstr "&Spara diagram som PNG"
+
+#: src/mainwindow.cpp:229
+#, kde-format
+msgid "Add Space &2D"
+msgstr "Lägg till &tvådimensionellt rum"
+
+#: src/mainwindow.cpp:230
+#, kde-format
+msgid "Add Space &3D"
+msgstr "Lägg till t&redimensionellt rum"
+
+#: src/mainwindow.cpp:235
+#, kde-format
+msgid "Create a plot in a new space"
+msgstr "Skapa ett diagram i ett nytt rum"
+
+#: src/mainwindow.cpp:238
+#, kde-format
+msgid "Plot &Dictionaries"
+msgstr "&Diagram av lexikon"
+
+#: src/mainwindow.cpp:263
+#, kde-format
+msgid "&Go First Space"
+msgstr "&Gå till första rum"
+
+#: src/mainwindow.cpp:268
+#, kde-format
+msgid "&Go Previous Space"
+msgstr "&Gå till föregående rum"
+
+#: src/mainwindow.cpp:273
+#, kde-format
+msgid "&Go Next Space"
+msgstr "&Gå till nästa rum"
+
+#: src/mainwindow.cpp:278
+#, kde-format
+msgid "&Go Last Space"
+msgstr "&Gå till sista rum"
+
+#: src/mainwindow.cpp:284
+#, kde-format
+msgid "&Remove Current Space"
+msgstr "&Ta bort aktuell rum"
+
+#: src/mainwindow.cpp:286
+#, kde-format
+msgid "&Take Snapshot"
+msgstr "&Ta skärmbild"
+
+#: src/mainwindow.cpp:287
+#, kde-format
+msgid "&Get Plot-Dictionary files"
+msgstr "&Hämta diagramlexikonfiler"
+
+#: src/mainwindow.cpp:288
+#, kde-format
+msgid "&Import Plot-Dictionary file"
+msgstr "&Importera diagramlexikonfil"
+
+#: src/mainwindow.cpp:333 src/mainwindow.cpp:376
+#, kde-format
+msgid "There is not any space available to show!"
+msgstr "Det finns inget rum tillgängligt att visa."
+
+#: src/mainwindow.cpp:337
+#, kde-format
+msgid "Currently you are on the first space!"
+msgstr "För närvarande befinner du dig i det första rummet."
+
+#: src/mainwindow.cpp:348
+#, kde-format
+msgid "You are already on the first space!"
+msgstr "Du befinner dig redan i det första rummet."
+
+#: src/mainwindow.cpp:360
+#, kde-format
+msgid "You are already on the last space!"
+msgstr "Du befinner dig redan i det sista rummet."
+
+#: src/mainwindow.cpp:380
+#, kde-format
+msgid "Currently you are on the last space!"
+msgstr "För närvarande befinner du dig i det sista rummet."
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Press Ctrl + M to make menubar visible again"
+msgstr "Tryck på Ctrl+M för att göra menyraden synlig igen"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Menubar Visibility"
+msgstr "Menyradens synlighet"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid "No need to create New Window"
+msgstr "Det finns inget behov av att skapa nytt fönster"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid ""
+"There are not any plots available. So, you do not need to create a new Plot "
+"Window"
+msgstr ""
+"Det finns inte några diagram tillgängliga, alltså behöver du inte skapa ett "
+"nytt diagramfönster"
+
+#: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Khipu Files (*.khipu);;All Files (*)"
+msgstr "Khipu-filer (*.khipu);;Alla filer (*)"
+
+#: src/mainwindow.cpp:528
+#, kde-format
+msgid "The file does not exist."
+msgstr "Filen finns inte."
+
+#: src/mainwindow.cpp:536
+#, kde-format
+msgid "An error appeared when opening this file (%1)"
+msgstr "Ett fel uppstod när filen skulle öppnas (%1)"
+
+#: src/mainwindow.cpp:550
+#, kde-format
+msgid "Do you want to recover the file you have not saved last time?"
+msgstr "Vill du återställa filen som du inte sparade förra gången?"
+
+#: src/mainwindow.cpp:550 src/mainwindow.cpp:578
+#, kde-format
+msgid "Autosaved .khipu file"
+msgstr "Automatiskt sparad .khipu-fil"
+
+#: src/mainwindow.cpp:578
+#, kde-format
+msgid ""
+"There are some unsaved changes in the file %1. Do you want to recover them?"
+msgstr "Det finns några osparade ändringar i filen %1. Vill du återställa dem?"
+
+#: src/mainwindow.cpp:589
+#, kde-format
+msgid "Error while reading file, maybe path is not found."
+msgstr "Fel när filen skulle läsas, kanske hittades inte sökvägen."
+
+#: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading"
+msgstr "Fel vid läsning"
+
+#: src/mainwindow.cpp:592
+#, kde-format
+msgid "%1 could not be opened"
+msgstr "%1 kunde inte öppnas"
+
+#: src/mainwindow.cpp:606
+#, kde-format
+msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
+msgstr "Problem vid tolkning av filens innehåll, kanske en felaktig khipu-fil."
+
+#: src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Save As"
+msgstr "Spara som"
+
+#: src/mainwindow.cpp:675
+#, kde-format
+msgid ""
+"The file which you want to save, already exists. Do you want to overwrite "
+"this file?"
+msgstr ""
+"Filen som du vill spara finns redan. Är du säker på att du vill skriva över "
+"den?"
+
+#: src/mainwindow.cpp:676
+#, kde-format
+msgid "Warning: File already exists"
+msgstr "Varning: Filen finns redan"
+
+#: src/mainwindow.cpp:695
+#, kde-format
+msgid "The current file contains some unsaved work. Do you want to save it?"
+msgstr ""
+"Den aktuella filen innehåller en del osparat arbete. Vill du spara den?"
+
+#: src/mainwindow.cpp:696
+#, kde-format
+msgid "Warning: Unsaved changes"
+msgstr "Varning: Osparade ändringar"
+
+#: src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading file, file may be empty"
+msgstr "Fel vid läsning av filen, den kan vara tom"
+
+#: src/mainwindow.cpp:815
+#, kde-format
+msgid "Could not open %1 for writing"
+msgstr "Kunde inte öppna %1 för skrivning"
+
+#: src/mainwindow.cpp:815 src/mainwindow.cpp:826
+#, kde-format
+msgid "Error while writing"
+msgstr "Fel vid skrivning"
+
+#: src/mainwindow.cpp:826
+#, kde-format
+msgid "Could not open %1 for writing %2"
+msgstr "Kunde inte öppna %1 för skrivning %2"
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving file. Maybe path is not found"
+msgstr "Fel när filen skulle sparas. Kanske hittades inte sökvägen."
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving"
+msgstr "Fel vid spara"
+
+#: src/mainwindow.cpp:857
+#, kde-format
+msgid "File %1 [%2] is saved successfully"
+msgstr "Filen %1 [%2] sparades med lyckat resultat"
+
+#: src/mainwindow.cpp:1005
+#, kde-format
+msgid "The diagram was copied to clipboard"
+msgstr "Diagrammet har kopierats till klippbordet"
+
+#: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
+#, kde-format
+msgid "Untitled %1"
+msgstr "Namnlös %1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
+#: src/plotsbuilder.ui:17
+#, kde-format
+msgid "Build a Cartesian Curve"
+msgstr "Skapa en kartesisk kurva"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:99 src/plotsbuilder.ui:173
+#: src/plotsbuilder.ui:231 src/plotsbuilder.ui:265
+#, kde-format
+msgid "Graph"
+msgstr "Graf"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
+#: src/plotsbuilder.ui:53 src/plotsbuilder.ui:185
+#, kde-format
+msgid "Implicit"
+msgstr "Implicit"
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
+#: src/plotsbuilder.ui:65 src/plotsbuilder.ui:133 src/plotsbuilder.ui:197
+#, kde-format
+msgid "Parametric"
+msgstr "Parametrisk"
+
+#. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
+#: src/plotsbuilder.ui:93
+#, kde-format
+msgid "Build a Polar Curve"
+msgstr "Skapa en polär kurva"
+
+#. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
+#: src/plotsbuilder.ui:127
+#, kde-format
+msgid "Build a Space Curve"
+msgstr "Skapa en rumskurva"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
+#: src/plotsbuilder.ui:167
+#, kde-format
+msgid "Build a Cartesian Surface"
+msgstr "Skapa en kartesisk yta"
+
+#. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
+#: src/plotsbuilder.ui:225
+#, kde-format
+msgid "Build a Cylindrical Surface"
+msgstr "Skapa en cylindrisk yta"
+
+#. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
+#: src/plotsbuilder.ui:259
+#, kde-format
+msgid "Build a Spherical Surface"
+msgstr "Skapa en sfärisk yta"
+
+#: src/plotseditor.cpp:67
+#, kde-format
+msgid "check/uncheck to show/hide the Axes"
+msgstr "Markera eller avmarkera för att visa eller dölja axlarna"
+
+#: src/plotseditor.cpp:70
+#, kde-format
+msgid "Click to edit the plot"
+msgstr "Klicka för att redigera diagrammet"
+
+#: src/plotseditor.cpp:71
+#, kde-format
+msgid "Click to remove the plot"
+msgstr "Klicka för att ta bort diagrammet"
+
+#: src/plotseditor.cpp:1020
+#, kde-format
+msgid "plot %1"
+msgstr "diagram %1"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
+#: src/plotseditor.ui:20
+#, kde-format
+msgid "Plots"
+msgstr "Diagram"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
+#: src/plotseditor.ui:36
+#, kde-format
+msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Klicka här för att lägga till ett diagram</p></body></"
+"html>"
+
+#. i18n: ectx: property (text), widget (QPushButton, editPlot)
+#: src/plotseditor.ui:114
+#, kde-format
+msgid "Edit"
+msgstr "Redigera"
+
+#. i18n: ectx: property (text), widget (QPushButton, removePlot)
+#: src/plotseditor.ui:124 src/spacesdelegate.cpp:74
+#, kde-format
+msgid "Remove"
+msgstr "Ta bort"
+
+#. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
+#: src/plotseditor.ui:156
+#, kde-format
+msgid "Plot Name"
+msgstr "Diagramnamn"
+
+#. i18n: ectx: property (text), widget (QLabel, plotIcon)
+#: src/plotseditor.ui:163
+#, kde-format
+msgid "TextLabel"
+msgstr "Textetikett"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/plotseditor.ui:397
+#, kde-format
+msgid "Color:"
+msgstr "Färg:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/plotseditor.ui:413
+#, kde-format
+msgid "Style"
+msgstr "Stil"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:421
+#, kde-format
+msgid "Solid"
+msgstr "Solid"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:426
+#, kde-format
+msgid "Wired"
+msgstr "Trådram"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:431
+#, kde-format
+msgid "Dots"
+msgstr "Punkter"
+
+#. i18n: ectx: property (title), widget (QGroupBox, intervals)
+#: src/plotseditor.ui:457
+#, kde-format
+msgid "Use Intervals"
+msgstr "Använd intervaller"
+
+#. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:659
+#, kde-format
+msgid "asdsada"
+msgstr "asdsada"
+
+#. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:662
+#, kde-format
+msgid "asdad"
+msgstr "asdad"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
+#: src/spaceinformation.ui:41
+#, kde-format
+msgid "Notes"
+msgstr "Anteckningar"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/spaceinformation.ui:50
+#, kde-format
+msgid "Title:"
+msgstr "Rubrik:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: src/spaceinformation.ui:80
+#, kde-format
+msgid "Description:"
+msgstr "Beskrivning:"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
+#: src/spaceoptions.ui:38
+#, kde-format
+msgid "Diagram"
+msgstr "Diagram"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/spaceoptions.ui:57
+#, kde-format
+msgid "Grid Options"
+msgstr "Rutnätsalternativ"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:87
+#, kde-format
+msgid "None"
+msgstr "Inget"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:92
+#, kde-format
+msgid "Lines"
+msgstr "Linjer"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:97
+#, kde-format
+msgid "Polar"
+msgstr "Polärt"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/spaceoptions.ui:105
+#, kde-format
+msgid "Grid Style:"
+msgstr "Rutnätsstil:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
+#: src/spaceoptions.ui:115
+#, kde-format
+msgid "Grid Ticks"
+msgstr "Rutnätsmarkeringar"
+
+#. i18n: ectx: property (text), widget (QLabel, label_14)
+#: src/spaceoptions.ui:127
+#, kde-format
+msgid "Scale:"
+msgstr "Skala:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
+#: src/spaceoptions.ui:159
+#, kde-format
+msgid "More Options"
+msgstr "Fler alternativ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
+#: src/spaceoptions.ui:173
+#, kde-format
+msgid "Horizontal Label:"
+msgstr "Horisontell beteckning:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
+#: src/spaceoptions.ui:183
+#, kde-format
+msgid "x"
+msgstr "x"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
+#: src/spaceoptions.ui:193
+#, kde-format
+msgid "Vertical Label:"
+msgstr "Vertikal beteckning:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
+#: src/spaceoptions.ui:203
+#, kde-format
+msgid "y"
+msgstr "y"
+
+#. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
+#: src/spaceoptions.ui:215
+#, kde-format
+msgid "Horizontal and Vertical Marks"
+msgstr "Horisontella och vertikala markeringar"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: src/spaceoptions.ui:254
+#, kde-format
+msgid "Axis"
+msgstr "Axlar"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showGrid)
+#: src/spaceoptions.ui:270
+#, kde-format
+msgid "Grid"
+msgstr "Rutnät"
+
+#. i18n: ectx: property (text), widget (QLabel, label_16)
+#: src/spaceoptions.ui:289
+#, kde-format
+msgid "Size:"
+msgstr "Storlek:"
+
+#: src/spacesdelegate.cpp:81
+#, kde-format
+msgid "Rename"
+msgstr "Byt namn"
+
+#: src/spacesdelegate.cpp:88
+#, kde-format
+msgid "Export as dictionary"
+msgstr "Exportera som lexikon"
+
+#: src/spacesmodel.cpp:41
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr "Namn"
+
+#: src/spacesmodel.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Description"
+msgstr "Beskrivning"
+
+#~ msgid ""
+#~ "*.plots|Plot-Dictionary Files (*.plots)\n"
+#~ "*|All Files"
+#~ msgstr ""
+#~ "*.plots|Diagramlexikonfiler (*.plots)\n"
+#~ "*|Alla filer"
+
+#~ msgid "Hover to see the description:"
+#~ msgstr "Håll musen över för att se beskrivningen:"
+
+#~ msgctxt "grid style"
+#~ msgid "Lines"
+#~ msgstr "Linjer"
+
+#~ msgctxt "grid style"
+#~ msgid "None"
+#~ msgstr "Inget"
+
+#~ msgctxt "grid style"
+#~ msgid "Polar"
+#~ msgstr "Polärt"
+
+#~ msgid "Show"
+#~ msgstr "Visa"
+
+#~ msgid "Error while opening file. Maybe path is not found."
+#~ msgstr "Fel när filen skulle öppnas. Kanske hittades inte sökvägen."
+
+#~ msgid "Mathematical Objects Manager"
+#~ msgstr "Hantera matematiska objekt"
+
+#~ msgid "Get Mathematical Objects..."
+#~ msgstr "Hämta matematiska objekt..."
+
+#~ msgid "Import Mathematical objects..."
+#~ msgstr "Importera matematiska objekt..."
+
+#~ msgid "Create a Collection of Mathematical Objects"
+#~ msgstr "Skapa en samling av matematiska objekt"
+
+#~ msgid "Show plot in space"
+#~ msgstr "Visa diagram i rum"
+
+#~ msgid "Remove plot"
+#~ msgstr "Ta bort diagram"
+
+#~ msgid "Export"
+#~ msgstr "Exportera"
+
+#~ msgid "in dictionary"
+#~ msgstr "i lexikon"
+
+#~ msgid "Import to Current Document"
+#~ msgstr "Importera i aktuellt dokument"
+
+#~ msgid "Show Details"
+#~ msgstr "Visa information"
+
+#~ msgid "Filter..."
+#~ msgstr "Filter..."
+
+#~ msgid "DimAll"
+#~ msgstr "Dim-alla"
+
+#~ msgid "Dim2D"
+#~ msgstr "Dim-2D"
+
+#~ msgid "Dim3D"
+#~ msgstr "Dim-3D"
+
+#~ msgctxt "@title:column"
+#~ msgid "Function"
+#~ msgstr "Funktion"
+
+#~ msgctxt "@title:column"
+#~ msgid "Arguments"
+#~ msgstr "Argument"
+
+#~ msgid "&Add Random Plot"
+#~ msgstr "&Lägg till slumpmässigt diagram"
+
+#~ msgid "&Show Plots"
+#~ msgstr "Visa &diagram"
+
+#~ msgid "&Show Spaces"
+#~ msgstr "&Visa rum"
+
+#~ msgid "&Mathematical Objects"
+#~ msgstr "&Matematiska objekt"
+
+#~ msgid "PushButton"
+#~ msgstr "Tryckknapp"
+
+#~ msgid "Name:"
+#~ msgstr "Namn:"
+
+#~ msgid "Space"
+#~ msgstr "Rum"
+
+#~ msgid "Use Symbols"
+#~ msgstr "Använd symboler"
+
+#~ msgid "Vertical Marks"
+#~ msgstr "Vertikala markeringar"
+
+#~ msgid "Form"
+#~ msgstr "Formulär"
+
+#~ msgid "Space Information"
+#~ msgstr "Rumsinformation"
+
+#~ msgid "Diagram Appearance"
+#~ msgstr "Diagrammets utseende"
+
+#~ msgid "findico"
+#~ msgstr "findico"
+
+#~ msgid "Find:"
+#~ msgstr "Sök:"
+
+#~ msgid "Search"
+#~ msgstr "Sök"
+
+#~ msgid "All  Dimensions"
+#~ msgstr "Alla dimensioner"
+
+#~ msgid "2D"
+#~ msgstr "Tvådimensionell"
+
+#~ msgid "3D"
+#~ msgstr "Tredimensionell"
+
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'DejaVu Sans'; font-size:9pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+#~ "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; "
+#~ "font-family:'MS Shell Dlg 2'; font-size:8pt;\"><br /></p></body></html>"
+
+#~ msgid "Build Plots"
+#~ msgstr "Skapa diagram"
+
+#~ msgid "&Export Space Snapshot"
+#~ msgstr "&Exportera rumsbild"
+
+#~ msgid "S&how Space Plots"
+#~ msgstr "Visa &rumsdiagram"
+
+#~ msgid "&Show Space Information"
+#~ msgstr "&Visa rumsinformation"
+
+#~ msgid "Configuración del Área de Dibujo"
+#~ msgstr "Inställning av arbetsytan"
+
+#~ msgid "Sistema de Coordenadas"
+#~ msgstr "Koordinatsystem"
+
+#~ msgid "Cartesianas"
+#~ msgstr "Kartesisk"
+
+#~ msgid "Polares"
+#~ msgstr "Polärt"
+
+#~ msgid "Propiedades"
+#~ msgstr "Egenskaper"
+
+#~ msgid "Dibujar fondo"
+#~ msgstr "Rita bakgrund"
+
+#~ msgid "Escala:"
+#~ msgstr "Skala:"
+
+#~ msgid "Opciones de los ejes"
+#~ msgstr "Alternativ för axlar"
+
+#~ msgid "Eje x:"
+#~ msgstr "X-axel:"
+
+#~ msgid "Eje y:"
+#~ msgstr "Y-axel:"
+
+#~ msgid "Mostrar marcas horizontales"
+#~ msgstr "Visa horisontella streck"
+
+#~ msgid "Mostrar marcas verticales"
+#~ msgstr "Visa vertikala streck"
+
+#~ msgid "No disponible para curvas paramétricas:"
+#~ msgstr "Inte tillgängligt för parametriska kurvor:"
+
+#~ msgid "Mostrar Recta Tangente"
+#~ msgstr "Visa tangenten"
+
+#~ msgid "Mostrar Recta Normal"
+#~ msgstr "Visa normalen"
+
+#~ msgid "Mostrar ejes"
+#~ msgstr "Visa axlar"
+
+#~ msgid "Mostrar plano de referencia XY"
+#~ msgstr "Visa XY referensplan"
+
+#~ msgid "Tamaño del espacio:"
+#~ msgstr "Rummets storlek:"
+
+#~ msgid "import"
+#~ msgstr "Importera"
+
+#~ msgid "in currentdoc"
+#~ msgstr "i aktuellt dokument"
+
+#~ msgid "Todos"
+#~ msgstr "Alla"
+
+#~ msgid "DockWidget"
+#~ msgstr "Grafisk panelkomponent"
+
+#, fuzzy
+#~| msgid "Cartesianas"
+#~ msgid "Cartesian"
+#~ msgstr "Kartesiskt"
+
+#~ msgid "Información del Espacio"
+#~ msgstr "Information om rymden"
+
+#~ msgid "Titulo"
+#~ msgstr "Titel"
+
+#~ msgid "Elejir la vista:"
+#~ msgstr "Välj vy:"
+
+#~ msgid "Espacios o Grupos de Funciones"
+#~ msgstr "Funktionsrymder och -grupper"
+
+#~ msgid "Lista Total de Funciones"
+#~ msgstr "Fullständig lista över funktioner"
+
+#~ msgid "Buscar:"
+#~ msgstr "Sök:"
+
+#~ msgid ""
+#~ "*.png|PNG Image File\n"
+#~ "*.jpg|JPG Image File"
+#~ msgstr ""
+#~ "*.png|PNG-bildfil\n"
+#~ "*.jpg|JPG-bildfil"
+
+#~ msgid "Funciones"
+#~ msgstr "Funktioner"
+
+#~| msgid "Crear"
+#~ msgid "Crear"
+#~ msgstr "Skapa"
+
+#~ msgid "Area"
+#~ msgstr "Area"
+
+#~ msgid "&Crear"
+#~ msgstr "&Skapa"
+
+#~ msgid "Add variable"
+#~ msgstr "Lägg till variabel"
+
+#~ msgid "Incongruencia en el dominio"
+#~ msgstr "Inkonsekvent område"
+
+#~ msgid "Ocultar Función '%1'"
+#~ msgstr "Dölj funktion '%1'"
+
+#~ msgid "Mostrar Función '%1'"
+#~ msgstr "Visa funktion '%1'"
+
+#~ msgid "Eliminar Función '%1'"
+#~ msgstr "Ta bort funktion '%1'"
+
+#~ msgid "&Clear"
+#~ msgstr "&Rensa"
+
+#~ msgid ""
+#~ "The document \"%1\" has been modified.\n"
+#~ "Do you want to save your changes or discard them?"
+#~ msgstr ""
+#~ "Dokumentet \"%1\" har ändrats.\n"
+#~ "Vill du spara ändringarna eller kasta dem?"
+
+#~ msgid "Close Document"
+#~ msgstr "Stäng dokument"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Alla filer som stöds"
+
+#~ msgid "GPLACS standard file format"
+#~ msgstr "GPLACS-standardfilformat"
+
+#~ msgid "Overwrite"
+#~ msgstr "Skriv över"
+
+#~ msgid "[modificado]"
+#~ msgstr "[ändrad]"
+
+#~ msgid "Mostrar Espacio"
+#~ msgstr "Visa utrymme"
+
+#~ msgid "Eliminar Espacio '%1'"
+#~ msgstr "Ta bort utrymme '%1'"
+
+#~ msgid "Abrir"
+#~ msgstr "Öppna"
+
+#~ msgid "Guardar"
+#~ msgstr "Spara"
+
+#~ msgid "Crear Nuevo Espacio 2D"
+#~ msgstr "Skapa ny tvådimensionell rymd"
+
+#~ msgid "Crear Nuevo Espacio 3D"
+#~ msgstr "Skapa ny tredimensionell rymd"
+
+#~ msgid "Acerca de GPLACS"
+#~ msgstr "Om GPLACS"
+
+#~ msgid "Volver a la Vista Principal"
+#~ msgstr "Tillbaka till huvudvyn"
+
+#~ msgid "Administrador de Funciones"
+#~ msgstr "Hantering av funktioner"
+
+#~ msgid "Copiar Imagen"
+#~ msgstr "Kopiera bild"
+
+#~ msgid "Guardar Imagen"
+#~ msgstr "Spara bild"
+
+#~ msgid "Page"
+#~ msgstr "Sida"
+
+#~ msgid "Información de la Función"
+#~ msgstr "Information om funktionen"
+
+#~ msgid "Nombre"
+#~ msgstr "Namn"
+
+#~ msgid "También puede elejir el nombre una función famosa"
+#~ msgstr "Du kan också välja namnet på en välkänd funktion"
+
+#~ msgid "Función"
+#~ msgstr "Funktion"
+
+#~ msgid "Octante"
+#~ msgstr "Oktant"
+
+#~ msgid "Eje"
+#~ msgstr "Axel"
+
+#~ msgid "Curvas de nivel"
+#~ msgstr "Konturer"
+
+#~ msgid "Sobre XY"
+#~ msgstr "På XY"
+
+#~ msgid "En el espacio"
+#~ msgstr "I rymden"
+
+#~ msgid "TextLabel2"
+#~ msgstr "Textetikett 2"
+
+#~ msgid "Ecuación"
+#~ msgstr "Ekvation"
+
+#~ msgid "Y=F(x) Donde x es el argumento"
+#~ msgstr "Y=F(x) där x är argumentet"
+
+#~ msgid "X=F(y) Donde y es el argumento"
+#~ msgstr "X=F(y) där y är argumentet"
+
+#~ msgid "F(x,y)=0 Curva implícita"
+#~ msgstr "F(x,y)=0 implicit kurva"
+
+#~ msgid "Ecuaciones"
+#~ msgstr "Ekvationer"
+
+#~ msgid "Donde t es el argumento, X=F(t) e Y=F(t)"
+#~ msgstr "Där t är argumentet, X=F(t) e Y=F(t)"
+
+#~ msgid "Y="
+#~ msgstr "Y="
+
+#~ msgid "X="
+#~ msgstr "X="
+
+#~ msgid "Activar Modo Animación"
+#~ msgstr "Aktivera animeringsläge"
+
+#~ msgid "Animar/Detener"
+#~ msgstr "Animera/Paus"
+
+#~ msgid "Reiniciar"
+#~ msgstr "Starta om"
+
+#~ msgid "Z="
+#~ msgstr "Z="
+
+#~ msgid "Argumentos u,v X=F(u,v) Y=F(u,v) Z=F(u,v)"
+#~ msgstr "Argument u,v X=F(u,v) Y=F(u,v) Z=F(u,v)"
+
+#~ msgid "t como argumento, X=F(t) Y=F(t) Z=F(t)"
+#~ msgstr "t som argument, X=F(t) Y=F(t) Z=F(t)"
+
+#~ msgid "Apariencia de la Curva"
+#~ msgstr "Kurvans utseende"
+
+#~ msgid "Color de la curva"
+#~ msgstr "Kurvans färg"
+
+#~ msgid "Ancho del pincel:"
+#~ msgstr "Linjebredd"
+
+#~ msgid "Ancho de la linea en milimetros"
+#~ msgstr "Linjebredd i millimeter"
+
+#~ msgid " mm"
+#~ msgstr " mm"
+
+#~ msgid "Presición:"
+#~ msgstr "Noggrannhet:"
+
+#~ msgid "Resolucion al dibujar la curva"
+#~ msgstr "Upplösning som kurvan ritas med"
+
+#~ msgid "Apariencia de la Superficie"
+#~ msgstr "Ytornas utseende"
+
+#~ msgid "Color de la superficie"
+#~ msgstr "Ytans färg"
+
+#~ msgid "Tipo de dibujo:"
+#~ msgstr "Uppritningstyp:"
+
+#~ msgid "Tipo dibujo de la superficie"
+#~ msgstr "Uppritningstyp för ytorna"
+
+#~ msgid "Sólido"
+#~ msgstr "Solida"
+
+#~ msgid "Mallas"
+#~ msgstr "Rutnät"
+
+#~ msgid "Puntos"
+#~ msgstr "Punkter"
+
+#~ msgid "Precisión:"
+#~ msgstr "Noggrannhet:"
+
+#~ msgid "Resolución de la superficie"
+#~ msgstr "Ytornas upplösning"
+
+#~ msgid "Dominio"
+#~ msgstr "Domän"
+
+#~ msgid "Min"
+#~ msgstr "Minimum"
+
+#~ msgid "Max"
+#~ msgstr "Maximum"
+
+#~ msgid "Ok"
+#~ msgstr "Ok"
+
+#~ msgid "Cancelar"
+#~ msgstr "Avbryt"
+
+#~ msgid "Puede elejir insertar una función famosa"
+#~ msgstr "Du kan välja att infoga en välkänd funktion"
+
+#~ msgid "Crear curvas cartesianas"
+#~ msgstr "Skapa kartesiska kurvor"
+
+#~ msgid "Crear curvas polares"
+#~ msgstr "Skapa polära kurvor"
+
+#~ msgid "Crear curvas paramétricas"
+#~ msgstr "Skapa parametriska kurvor"
+
+#~ msgid "Crear superficies cartesianas"
+#~ msgstr "Skapa kartesiska ytor"
+
+#~ msgid "Crear superficies en coordenadas cilíndricas"
+#~ msgstr "Skapa ytor med cylindriska koordinater"
+
+#~ msgid "Crear superficies en coordenadas esféricas"
+#~ msgstr "Skapa ytor med sfäriska koordinater"
+
+#~ msgid "Crear superficies paramétricas"
+#~ msgstr "Skapa parametriska ytor"
+
+#~ msgid "X"
+#~ msgstr "X"
+
+#~ msgid "Análisis de Áreas"
+#~ msgstr "Analys av area"
+
+#~ msgid "Función 1:"
+#~ msgstr "Funktion 1:"
+
+#~ msgid "Función 2:"
+#~ msgstr "Funktion 2:"
+
+#~ msgid "Límite Inferior:"
+#~ msgstr "Undre gräns:"
+
+#~ msgid "Límite Superior:"
+#~ msgstr "Övre gräns:"
+
+#~ msgid "Hacer Calculos"
+#~ msgstr "Utför beräkning"
+
+#~ msgid "Resultados"
+#~ msgstr "Resultat"
+
+#~ msgid "Valor del área:"
+#~ msgstr "Areans värde:"
+
+#~ msgid "Ejemplos para Areas"
+#~ msgstr "Exempel på areor:"
+
+#~ msgid "Ejemplo:"
+#~ msgstr "Exempel:"
+
+#~ msgid "Divisiones:"
+#~ msgstr "Delar:"
+
+#~ msgid "Aceptar"
+#~ msgstr "Acceptera"
+
+#~ msgid "Área por defecto:"
+#~ msgstr "Standardarea:"
+
+#~ msgid "Área mas exacta"
+#~ msgstr "Noggrannare area"
+
+#~ msgid "Área por exceso:"
+#~ msgstr "Överskjutande area:"
+
+#~ msgid "Área real aproximada:"
+#~ msgstr "Ungefärlig verklig area:"
+
+#~ msgid "Graficador de Curvas y Superficies Matemáticas"
+#~ msgstr "Plotta matematiska kurvor och ytor"
+
+#~ msgid "Jefe de Proyecto y Desarrollador Principal"
+#~ msgstr "Projektledare och huvudutvecklare"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Guía y Supervisión durante la concepción del Proyecto, "
+#~ "Apoyo Bibliográfico, Soporte en Matemática Numérica y Algoritmos (2009)"
+#~ msgstr ""
+#~ "Avhandlingens handledare - Vägledning och uppsikt vid projektets "
+#~ "utformning. Bibliografiskt stöd, hjälp med matematiska och numeriska "
+#~ "algoritmer (2009)"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Supervisión, Guía del Producto, Promoción del Proyecto "
+#~ "dentro del Área de Ciencias y Cliente Principal (2009-2010)"
+#~ msgstr ""
+#~ "Avhandlingens handledare - Översyn, produktguide, främjande av projektet "
+#~ "inom vetenskapsområdet, och huvudsaklig användare (2009-2010)"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Supervisión, Apoyo Bibliográfico, Guia del Producto y "
+#~ "Cliente Principal (2009-2010)"
+#~ msgstr ""
+#~ "Avhandlingens handledare - Översyn, bibliografiskt stöd, produktguide, "
+#~ "och huvudsaklig användare (2009-2010)"
+
+#~ msgid ""
+#~ "Asesor de Tesis - Supervisor y Mentor Principal del Proyecto (2009-2010)"
+#~ msgstr ""
+#~ "Avhandlingens handledare - Översyn och projektets huvudsakliga mentor "
+#~ "(2009-2010)"
+
+#~ msgid "Autor de KAlgera y el parser Analitza, ambos vitales para GPLACS"
+#~ msgstr ""
+#~ "Upphovsman till Kalgebra och Analitza-tolken, båda nödvändiga för GPLACS"
+
+#~ msgid ""
+#~ "Construcción de la Base de Datos de Curvas Famosas y Desarrollo del "
+#~ "Instalador"
+#~ msgstr ""
+#~ "Konstruktion av databasen över välkända kurvor, och utveckling av "
+#~ "installationsverktyget"
+
+#~ msgid "Construcción de la Base de Datos de Curvas Famosas y Traducción"
+#~ msgstr "Konstruktion av databasen över välkända kurvor, och översättning"
+
+#~ msgid "Bertha Nérida Triveño Aucahuasi"
+#~ msgstr "Bertha Nérida Triveño Aucahuasi"
+
+#~ msgid "Diseño del Ícono de GPLACS"
+#~ msgstr "Design av GPLACS ikon"
+
+#~ msgid "Mejoras en GPLACS 2D"
+#~ msgstr "Förbättringar av tvådimensionella GPLACS"
+
+#~ msgid "Mejoras en GPLACS 3D"
+#~ msgstr "Förbättringar av tredimensionella GPLACS"
+
+#~ msgid "La ecuación está vacia"
+#~ msgstr "Ekvationen är tom"
+
+#~ msgid "Se necesita un argumento: x"
+#~ msgstr "Ett argument är nödvändigt: x"
+
+#~ msgid "El argumento debe ser x"
+#~ msgstr "Argumentet ska vara x"
+
+#~ msgid "Se necesita un argumento: y"
+#~ msgstr "Ett argument är nödvändigt: y"
+
+#~ msgid "El argumento debe ser y"
+#~ msgstr "Argumentet ska vara y"
+
+#~ msgid "Se necesitan dos argumentos: x e y"
+#~ msgstr "Två argument är nödvändiga: x och y"
+
+#~ msgid "Los argumentos deben ser x e y"
+#~ msgstr "Argumenten ska vara x och y"
+
+#~ msgid "La ecuación no es correcta"
+#~ msgstr "Ekvationen är inte riktig"
+
+#~ msgid "Se necesita un argumento: q (theta)"
+#~ msgstr "Ett argument är nödvändigt: q (θ)"
+
+#~ msgid "El argumento debe ser q (theta)"
+#~ msgstr "Argumentet ska vara q (θ)"
+
+#~ msgid "Se necesita un argumento: t"
+#~ msgstr "Ett argument är nödvändigt: t"
+
+#~ msgid "El argumento debe ser t"
+#~ msgstr "Argumentet ska vara t"
+
+#~ msgid "The arguments must be x or y"
+#~ msgstr "Argumenten ska vara x och y"
+
+#~ msgid "Wrong number of arguments for z=f(x,y)"
+#~ msgstr "Fel antal argument för z=f(x,y)"
+
+#~ msgid "The arguments must be r or t"
+#~ msgstr "Argumenten ska vara r eller t"
+
+#~ msgid "Wrong number of arguments for z=f(r,t)"
+#~ msgstr "Fel antal argument för z=f(r,t)"
+
+#~ msgid "The arguments must be s or t"
+#~ msgstr "Argumenten ska vara s eller t"
+
+#~ msgid "Wrong number of arguments for r=f(s,t)"
+#~ msgstr "Fel antal argument för r=f(s,t)"
+
+#~ msgid "Wrong number of arguments for f(u,v)"
+#~ msgstr "Fel antal argument för f(u,v)"
+
+#~ msgid "The arguments are u,v"
+#~ msgstr "Argumenten är u, v"
+
+#~ msgid "Min to be a surf is 2 arguments"
+#~ msgstr "Minimum för att erhålla en yta är två argument"
+
+#~ msgid "Surface"
+#~ msgstr "Yta"
+
+#~ msgid "Function type not recognized"
+#~ msgstr "Funktionstypen kändes inte igen"
+
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid "Function type not correct for Functions depending on %1"
+#~ msgstr "Funktionstypen inte riktig för funktioner som beror på %1"
+
+#~ msgid "The expression is not correct"
+#~ msgstr "Uttrycket är inte riktigt"
+
+#~ msgctxt "@title:column"
+#~ msgid "Nombre"
+#~ msgstr "Namn"
+
+#~ msgctxt "@title:column"
+#~ msgid "Ecuación"
+#~ msgstr "Ekvation"
+
+#~ msgctxt "@title:column"
+#~ msgid "Dimensión"
+#~ msgstr "Dimension"
+
+#~ msgctxt "@title:column"
+#~ msgid "Fecha"
+#~ msgstr "Datum"
+
+#~ msgid "%1 function added"
+#~ msgstr "%1 funktion tillagd"
+
+#~ msgid "We can only draw Real results."
+#~ msgstr "Bara reella resultat kan ritas upp."
+
+#~ msgctxt "if the specified function is not a vector"
+#~ msgid "The parametric function does not return a vector"
+#~ msgstr "Den parametriska funktionen returnerar inte en vektor"
+
+#~ msgctxt "If it is a vector but the wrong size. We work in R2 here"
+#~ msgid "A two-dimensional vector is needed"
+#~ msgstr "En tvådimensionell vektor behövs"
+
+#~ msgctxt "The vector has to be composed by integer members"
+#~ msgid "The parametric function items should be scalars"
+#~ msgstr "De parametriska funktionsobjekten ska vara skalärer"
+
+#~ msgid "center"
+#~ msgstr "centrera"
+
+#~ msgid "Selected viewport too small"
+#~ msgstr "Valt visningsområde för litet"
+
+#~ msgid "El archivo no existe."
+#~ msgstr "Filen finns inte."
+
+#~ msgid "No se pudo abrir el archivo."
+#~ msgstr "Kunde inte öppna filen."
+
+#~ msgid "El documento no es válido."
+#~ msgstr "Dokumentet är inte giltigt."
