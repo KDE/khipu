@@ -18,6 +18,7 @@
   <name xml:lang="hi">Khipu</name>
   <name xml:lang="id">Khipu</name>
   <name xml:lang="it">Khipu</name>
+  <name xml:lang="ka">Khipu</name>
   <name xml:lang="ko">Khipu</name>
   <name xml:lang="nl">Khipu</name>
   <name xml:lang="pl">Khipu</name>
@@ -45,6 +46,7 @@
   <summary xml:lang="hi">उन्नत गणितीय फंक्शन प्लॉटर</summary>
   <summary xml:lang="id">Plotter Fungsi Matematika Canggih</summary>
   <summary xml:lang="it">Plotter avanzato di funzioni matematiche</summary>
+  <summary xml:lang="ka">მათემატიკური ფუნქციების გრაფიკების ხატვის გაუმჯობესებული პროგრამა</summary>
   <summary xml:lang="ko">고급 수학 함수 플로터</summary>
   <summary xml:lang="nl">Geavanceerde wiskundige functieplotter</summary>
   <summary xml:lang="pl">Rysowanie złożonych funkcji matematycznych</summary>
