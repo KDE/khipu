@@ -125,7 +125,7 @@ msgstr "S'ha produït un error en guardar un diccionari"
 #: src/dictionarycollection.cpp:152
 #, kde-format
 msgid "Select Dictionary to import"
-msgstr "Seleccioneu el diccionari que s'importarà"
+msgstr "Seleccioneu el diccionari que s'ha d'importar"
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
 #: src/dictionarycollection.ui:14
@@ -333,7 +333,7 @@ msgstr "Paul Murat Landauro Minaya"
 #: src/main.cpp:57
 #, kde-format
 msgid "Khipu files to open"
-msgstr "Fitxers Khipu que s'obrirà"
+msgstr "Fitxers Khipu que s'han d'obrir"
 
 #: src/main.cpp:58
 #, kde-format
