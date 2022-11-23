@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-13 00:42+0000\n"
-"PO-Revision-Date: 2022-07-30 05:03+0300\n"
+"PO-Revision-Date: 2022-11-22 16:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -364,22 +364,22 @@ msgstr "Çizim &Sözlükleri"
 #: src/mainwindow.cpp:263
 #, kde-format
 msgid "&Go First Space"
-msgstr "İ&lk Uzaya Git"
+msgstr "İlk Uzaya G&it"
 
 #: src/mainwindow.cpp:268
 #, kde-format
 msgid "&Go Previous Space"
-msgstr "Ö&nceki Uzaya Git"
+msgstr "Önceki Uzaya G&it"
 
 #: src/mainwindow.cpp:273
 #, kde-format
 msgid "&Go Next Space"
-msgstr "S&onraki Uzaya Git"
+msgstr "Sonraki Uzaya G&it"
 
 #: src/mainwindow.cpp:278
 #, kde-format
 msgid "&Go Last Space"
-msgstr "S&on Uzaya Git"
+msgstr "Son Uzaya G&it"
 
 #: src/mainwindow.cpp:284
 #, kde-format
