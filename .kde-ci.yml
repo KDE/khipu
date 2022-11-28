@@ -10,7 +10,7 @@ Dependencies:
     'frameworks/kguiaddons': '@stable'
     'frameworks/kwidgetsaddons': '@stable'
     'frameworks/kitemmodels': '@stable'
-    'frameworks/kitemmviews': '@stable'
+    'frameworks/kitemviews': '@stable'
     'frameworks/knewstuff': '@stable'
     'frameworks/kxmlgui': '@stable'
     'frameworks/kdelibs4support': '@stable'
