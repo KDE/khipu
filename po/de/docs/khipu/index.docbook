@@ -1,420 +1,674 @@
 <?xml version="1.0"?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY khipu "<application>Khipu</application>">
-  <!ENTITY analitza "<application>Analitza</application>">
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
   <!ENTITY % addindex "IGNORE">
-  <!ENTITY % English "INCLUDE">
+  <!ENTITY % German "INCLUDE">
 ]>
 <book lang="&language;">
 <bookinfo>
-<title>The &khipu; Handbook</title>
+<title
+>Handbuch zu &khipu;</title>
 <authorgroup>
 <author>
-<personname>
-      <firstname>This documentation was converted from the &kde; UserBase <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction">&khipu;/Manual</ulink> page.</firstname>
-<surname></surname>
-</personname>
+<personname
+><firstname
+>Dieses Handbuch wurde aus der <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction"
+>&khipu;/Manual</ulink
+>-Webseite der &kde;-Userbase erstellt.</firstname
+> <surname
+></surname
+> </personname>
       </author>
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
+<othercredit role="translator"
+><firstname
+>Burkhard</firstname
+><surname
+>Lück</surname
+><affiliation
+><address
+><email
+>lueck@hube-lueck.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
       </authorgroup>
-<legalnotice>&FDLNotice;</legalnotice>
-<date>2013-09-18</date>
-      <releaseinfo>1.0</releaseinfo>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2013-09-18</date>
+      <releaseinfo
+>1.0</releaseinfo>
 <abstract>
-<para></para>
+<para
+></para>
       </abstract>
       <keywordset>
-<keyword>KDE</keyword>
+<keyword
+>KDE</keyword>
 </keywordset>
 </bookinfo>
-<!--userbase <timestamp>2013-09-18T20:20:52Z</timestamp>-->
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
 
 <!--userbase-content-->
-<chapter id="khipu-plotting-is-just-a-fun"><title>&khipu; Plotting is Just a Fun</title>
-<para>&khipu; is an advanced mathematical function plotter application.
-</para>
-<para>It is part of the <ulink url="http://edu.kde.org">&kde; Education Project</ulink> and a replacement of an earlier function plotting application &kmplot;.
-</para>
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>&khipu; - Graphen zeichnen macht Spaß</title>
+<para
+>&khipu; ist ein fortgeschrittener mathematischer Funktionsplotter. </para>
+<para
+>Es ist Teil des <ulink url="http://edu.kde.org"
+>&kde;Edu-Projekts</ulink
+> und ist eine Ergänzung zum vorhandenen Programm &kmplot;. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="khipu_space3d.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; space-3D</phrase>
+      <phrase
+>&khipu; 3D-Bereich</phrase>
     </textobject>
     <caption>
-      <para>&khipu; space-3D</para>
+      <para
+>&khipu; 3D-Bereich</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<sect1 id="quick-start-guide"><title>Quick Start Guide</title>
-<sect2 id="idea-of-space"><title>Idea of Space</title> 
-<para>&khipu; uses an abstraction of <emphasis>space</emphasis> in order to save the plots requested by user. A space will have its name and corresponding description from which it can be identified by the user later in time. &khipu; has two types of spaces (2D and 3D). User can <emphasis>save the plot</emphasis> in either of the spaces depending on his/her wish. <emphasis>Every space will contain multiple plots</emphasis> of different colors, intervals and types.
-</para>
+<sect1 id="quick-start-guide"
+><title
+>Erste Schritte</title>
+<sect2 id="idea-of-space"
+><title
+>Der Bereich</title
+> 
+<para
+>&khipu; verwendet einen <emphasis
+>Bereich</emphasis
+>, um die vom Benutzer angeforderten Graphen zu speichern. Ein Bereich hat einen eindeutigen Namen und eine zugehörige Beschreibung, durch die er durch den Benutzer später wieder identifiziert werden kann. &khipu; verwendet zwei Arten von Bereichen, 2D und 3D. Die Graphen in jedem der beiden Bereiche können durch den Benutzer <emphasis
+>gespeichert</emphasis
+> werden. <emphasis
+>Jeder Bereich kann mehrere Graphen</emphasis
+> in unterschiedlichen Farben, Intervallen und Arten enthalten. </para>
 </sect2>
-<sect2 id="how-to-plot-functions-in-khipu-"><title>How to plot functions in &khipu;?</title> 
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Wie werden Graphen in &khipu; gezeichnet?</title
+> 
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig1.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu;-Add Space 2D/3D</phrase>
+      <phrase
+>&khipu; 2D/3D-Bereich hinzufügen</phrase>
     </textobject>
     <caption>
-      <para>&khipu;-Add Space 2D/3D</para>
+      <para
+>&khipu; 2D/3D-Bereich hinzufügen</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>As mentioned above, &khipu; draws functions in Space. So, there are two ways of adding a Space in &khipu; based on the plot's dimension. When you are on the main window of &khipu; (Dashboard in terms of &khipu;'s terminology), you will see a <guilabel>Main Toolbar</guilabel> which contains buttons of <guilabel>Add Space 2D</guilabel> and <guilabel>Add Space 3D</guilabel>. User can select either of them depending on the function he/she wants to plot.
-</para>
+<para
+>Wie bereits vorher erwähnt, werden in &khipu; Funktionen in Bereichen gezeichnet. Daher gibt es zwei Möglichkeiten, einen Bereich in &khipu; abhängig von den Dimensionen des Graphen einzufügen. Befinden Sie sich im Hauptfenster von &khipu; und sehen die Startseite, wird eine <guilabel
+>Haupt-Werkzeugleiste</guilabel
+> angezeigt. Diese Werkzeugleiste enthält Knöpfe, um die Aktionen <guilabel
+>2D-Bereich hinzufügen</guilabel
+> oder <guilabel
+>3D-Bereich hinzufügen</guilabel
+> auszuführen. Es kann eine dieser Aktionen benutzt werden, um gewünschte Funktionen hinzuzufügen. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig2.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Add Plot in Space</phrase>
+      <phrase
+>&khipu; - Graph zum Bereich hinzufügen</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Add Plot in Space</para>
+      <para
+>&khipu; - Graph zum Bereich hinzufügen</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<sect3 id="plots-represented-in-two-dimension"><title>Plots represented in 2-Dimension</title> 
-<para>When the user clicks on <guibutton>Add Space 2D</guibutton>, it will redirect to the 2D space UI. Then he/she needs to click on the <guilabel>green button</guilabel> which will let the user to add a plot. Then, user needs to select a plot's type (for example, click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a sine curve!) You can add a plot's name by checking the plot name's check box. Then, user has to <guilabel>add an appropriate equation</guilabel> (&analitza;-type equation) to see it's plot. If you don't want anything else, <emphasis>just hit &Enter;</emphasis>. You can even set the color of the plot by changing the option from the list of colors given below and set an appropriate interval for the arguments of the function.
-</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Graphen-Darstellung in 2 Dimensionen</title
+> 
+<para
+>Wenn Sie auf den Knopf <guibutton
+>2D-Bereich hinzufügen</guibutton
+> klicken, wird das Fenster zur Eingabe eines 2D-Bereichs angezeigt. Klicken Sie auf den Knopf mit dem grünen Kreuz, um einen Graphen hinzuzufügen. Dann können Sie die Art des Graphen auswählen, zum Beispiel durch Klicken auf <guilabel
+>Graph</guilabel
+> im Abschnitt für kartesische Oberflächen um eine Sinus-Kurve einzugeben. Kreuzen Sie <guilabel
+>Namen des Graphen</guilabel
+> an, um einen eigenen Namen zu vergeben. Dann müssen Sie eine syntaktisch richtige Gleichung wie in &analitza; eingeben und die Taste &Enter; drücken, um den Graphen anzuzeigen. Unter der Gleichung können Sie eine Farbe für den Graphen und Intervalle für die Funktion einstellen. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig3.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - 2D-Graph example</phrase>
+      <phrase
+>&khipu; - 2D-Graph-Beispiel</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - 2D-Graph example</para>
+      <para
+>&khipu; - 2D-Graph-Beispiel</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
 </sect3>
-<sect3 id="plots-represented-in-three-dimension"><title>Plots represented in 3-Dimension</title>
-<para>When the user clicks on <guibutton>Add Space 3D</guibutton>, it will redirect to the 3D space UI. Then he/she needs to click on the <guilabel>green button</guilabel> which will let the user to add a plot. Then user needs to select a plot's type (for example, click on <guilabel>Graph</guilabel> in Cartesian section if you want to plot a simple surface!) You can add a plot's name by checking the plot name's check box. Then, user has to <guilabel>add an appropriate equation</guilabel> (&analitza;-type equation) to see it's plot. If you don't want anything else, <emphasis>just hit &Enter;</emphasis>. You can even set the color of the plot by changing the option from the list of colors given below.
-</para>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Graphen-Darstellung in 3 Dimensionen</title>
+<para
+>Wenn Sie auf den Knopf <guibutton
+>3D-Bereich hinzufügen</guibutton
+> klicken, wird das Fenster zur Eingabe eines 3D-Bereichs angezeigt. Klicken Sie auf den Knopf mit dem grünen Kreuz, um einen Graphen hinzuzufügen. Dann können Sie die Art des Graphen auswählen, zum Beispiel durch Klicken auf <guilabel
+>Graph</guilabel
+> im Abschnitt für kartesische Oberflächen. Kreuzen Sie <guilabel
+>Namen des Graphen</guilabel
+> an, um einen eigenen Namen zu vergeben. Dann müssen Sie eine syntaktisch richtige Gleichung wie in &analitza; eingeben und die Taste &Enter; drücken, um den Graphen anzuzeigen. Unter der Gleichung können Sie eine Farbe für den Graphen und Intervalle für die Funktion einstellen. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig4.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Edit/Remove plots</phrase>
+      <phrase
+>&khipu; - Graphen bearbeiten/entfernen</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Edit/Remove plots</para>
+      <para
+>&khipu; - Graphen bearbeiten/entfernen</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
 </sect3>
 </sect2>
-<sect2 id="how-to-edit-remove-functions-from-khipu-"><title>How to edit/remove functions from &khipu;?</title> 
-<para>User can edit or/and remove the already added plots.
-</para>
-<sect3 id="editing-an-already-added-plot"><title>Editing an already added plot</title> 
-<para>You can edit a plot by just <emphasis>double-clicking on the plot's entry</emphasis> in the plots view or you can select the appropriate entry there and then click on the edit button shown below.
-</para>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Bearbeiten/Entfernen von Funktionen in &khipu;</title
+> 
+<para
+>Der Benutzer kann bereits erstellte Graphen bearbeiten oder auch entfernen. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Bearbeitung eines bereits hinzugefügten Graphen</title
+> 
+<para
+>Um einen Graphen zu bearbeiten, doppelklicken Sie auf den Eintag in der Karteikarte Graphen oder wählen Sie einen Eintrag und klicken Sie dann auf den Knopf <guibutton
+>Bearbeiten</guibutton
+>. </para>
 </sect3>
-<sect3 id="removing-a-plot"><title>Removing a plot</title> 
-<para>You can remove a plot by selecting a desired plot in the view and then click on the <guilabel>Remove</guilabel> button shown below.
-</para>
+<sect3 id="removing-a-plot"
+><title
+>Einen Graph entfernen</title
+> 
+<para
+>Sie können einen Graphen entfernen, indem sie ihn in der Ansicht auswählen und dann auf den unten gezeigten Knopf <guilabel
+>Entfernen</guilabel
+> drücken. </para>
 </sect3>
 </sect2>
 </sect1>
-<sect1 id="playing-with-plot-dictionary"><title>Playing with Plot Dictionary</title>
-<sect2 id="what-is-a-plot-dictionary-"><title>What is a Plot Dictionary?</title> 
-<para>A plot dictionary is a kind of text file (<filename role="extension">.plots</filename>) which contains a name of a plot along with its equation. The basic idea of dictionary files is to add plots in &khipu; without actually typing big equations. User can add the plots based on its name using the dictionaries. We already have some predefined dictionaries which let a user enter some famous plots (&ie; curves and surfaces). User can even download the dictionaries using Internet.
-</para>
-<sect3 id="syntax"><title>Syntax</title> 
-<para>A syntax of a dictionary file follows &analitza; syntax. Every line in a file will contain a name and the corresponding equation.
-</para>
-<para>For example: A typical dictionary file would have lines as follows:
-</para>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Benutzung der Graphen-Sammlung</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>Was ist eine Graphen-Sammlung?</title
+> 
+<para
+>Eine Graphen-Sammlung ist eine Art von Textdatei mit der Erweiterung <filename role="extension"
+>.plots</filename
+>, die den Namen des Graphen zusammen mit der zugehörigen Gleichung. Die grundlegende Idee von Sammlungsdateien ist es, dass Graphen in &khipu; eingefügt werden können ohne tatsächlich lange Gleichungen einzugeben. Der Benutzer kann Graphen anhand des Namens unter Verwendung von Sammlungen hinzufügen. Es gibt bereits einige vordefinierte Sammlungen, mit denen der Benutzer einige bekannte Graphen, &ie; Kurven und Oberflächen, benutzen kann. Es können auch Sammlungen aus dem Internet heruntergeladen werden. </para>
+<sect3 id="syntax"
+><title
+>Syntax</title
+> 
+<para
+>Die Syntax einer Sammlungsdatei entspricht der Syntax von &analitza;. Jede Zeile in der Datei besteht aus einem Namen und der zugehörigen Gleichung. </para>
+<para
+>Eine typische Sammlungsdatei enthält zum Beispiel folgende Zeilen: </para>
 <itemizedlist>
-<listitem><para>sinus := x-&gt;sin x</para></listitem>
-<listitem><para>plane1 := (x, y, z)-&gt;(x+y+z)-1</para></listitem>
+<listitem
+><para
+>sinus := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plane1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
 </itemizedlist>
 </sect3>
-<sect3 id="adding-your-own-dictionary-file"><title>Adding your own dictionary file</title> 
-<para>The flexible &analitza; syntax would allow the user to create his/her own dictionary file! User needs to save a text file with <filename role="extension">.plots</filename> extension with correct plot name and equations in each line.
-</para>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Hinzufügen eigener Sammlungsdateien</title
+> 
+<para
+>Die flexible Syntax von &analitza; erlaubt dem Benutzer, eigene Sanmmlungsdateien zu erstellen. Diese Dateien müssen als Textdatei mit der Erweiterung <filename role="extension"
+>.plots</filename
+> mit dem richtigen Namen des Graphen und einer Gleichung in jeder Zeile gespeichert werden. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig5.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Plot-Dictionary in main-toolbar</phrase>
+      <phrase
+>&khipu; - Graphen-Sammlung in der Werkzeugleiste</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Plot-Dictionary in main-toolbar</para>
+      <para
+>&khipu; - Graphen-Sammlung in der Werkzeugleiste</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
 </sect3>
-<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"><title>Let's have a look at the plots of the Dictionary files</title>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Mehr über Graphen von Sammlungsdateien</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig6.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Plot-Dictionary UI</phrase>
+      <phrase
+>&khipu; - Bedienungsoberfläche der Graphen-Sammlung</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Plot-Dictionary UI</para>
+      <para
+>&khipu; - Bedienungsoberfläche der Graphen-Sammlung</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>If you want to see how &khipu; uses dictionary, just hit <guilabel>Plot Dictionary</guilabel> tab shown on the main toolbar of &khipu;. Then switch to different names in the drop down box tagged by <emphasis>collection</emphasis>. Click on any of the plot's name and you will see a corresponding plot on the right side of the window.
-</para>
+<para
+>Um Sammlungen zu verwenden, klicken Sie auf den Knopf <guibutton
+>Graphen-Sammlung</guibutton
+> in der Haupt-Werkzeugleiste von &khipu;. Nun können Sie verschiedene Arten im Auswahlfeld <guilabel
+>Sammlung</guilabel
+> auswählen. Die zugehörigen Graphen werden darunter angezeigt. Wählen Sie einen Namen in dieser Liste, dann wird der Graph rechts im Fenster gezeichnet. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig7.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Plot-Dictionary UI</phrase>
+      <phrase
+>&khipu; - Bedienungsoberfläche der Graphen-Sammlung</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Plot-Dictionary UI</para>
+      <para
+>&khipu; - Bedienungsoberfläche der Graphen-Sammlung</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
 </sect3>
 </sect2>
-<sect2 id="adding-plots-from-the-dictionary"><title>Adding plots from the Dictionary</title>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Graphen aus der Sammlung hinzufügen</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig8.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Add plots from dictionary</phrase>
+      <phrase
+>&khipu; - Graphen aus der Sammlung hinzufügen</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Add plots from dictionary</para>
+      <para
+>&khipu; - Graphen aus der Sammlung hinzufügen</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>The main advantage of the dictionaries is to add the plots without typing big equations. For that, add any space in &khipu;. Then switch to the <guilabel>Add from Dictionary</guilabel> tab. You can add the dictionary file there according to your wish. You just need to double click on the name of the plot to add it in the current &khipu; Space.
-</para>
+<para
+>Der wichtigste Vorteil von Sammlungen ist es, dass Graphen ohne die Eingabe von Gleichungen eingefügt werden können. Fügen Sie dazu einen beliebigen Bereich in &khipu; hinzu. Wechseln Sie dann zu <guilabel
+>Aus Sammlung hinzufügen</guilabel
+> und fügen Sie eine Sammlungsdatei nach Ihnen Wünschen hinzu. Durch Doppelklicken fügen Sie den Graphen in der aktuellen Bereich in &khipu; ein. </para>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig9.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Import/Download dictionary</phrase>
+      <phrase
+>&khipu; - Sammlung importieren/herunterladen</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Import/Download dictionary</para>
+      <para
+>&khipu; - Sammlung importieren/herunterladen</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
 </sect2>
-<sect2 id="import-dictionary-file-from-a-local-disk"><title>Import Dictionary File from a local disk</title>
-<para>It is not that you can only add/see the plot from the predefined dictionaries available by &analitza;. You can even import any downloaded/manually created dictionary in &khipu; and can add the plots from it in &khipu; Space!
-</para>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Import von Sammlungsdateien von der lokalen Festplatte</title>
+<para
+>Sie können nicht nur die Graphen aus den vordefinierten Sammlungen für &analitza; benutzen. Sie können auch jede beliebige heruntergeladene oder manuell erstellte Sammlung in &khipu; importieren und dann Graphen daraus in einen &khipu;-Bereich einfügen. </para>
 </sect2>
-<sect2 id="download-dictionary-file-from-the-internet"><title>Download Dictionary File from the Internet</title>
-<para>The use of <guilabel>Get Hot New Stuff API</guilabel> in &khipu; will allow the user to download these dictionary files from the web. In this way, a user can have a rich collection of dictionaries downloaded across the globe. You can achieve this by simply clicking on the <guilabel>Get Plot Dictionary Files</guilabel> from the Dictionary UI.
-</para>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Herunterladen von Sammlungsdateien aus dem Internet</title>
+<para
+>Mit der Funktion <guilabel
+>Neue Erweiterungen</guilabel
+> in &khipu; können Sie diese Sammlungsdateien aus dem Internet herunterladen. Dazu gehen Sie zur <guilabel
+>Graphen-Sammlung</guilabel
+> und wählen Sie dann im Menü <menuchoice
+><guimenu
+>Extras</guimenu
+><guimenuitem
+>Graphen-Sammlungsdateien holen</guimenuitem
+></menuchoice
+>. </para>
 </sect2>
-<sect2 id="export-a-space-as-a-dictionary"><title>Export a space as a Dictionary</title>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Export eines Bereichs als Sammlung</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig11.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Export a space as dictionary</phrase>
+      <phrase
+>&khipu; - Export eines Bereichs als Sammlung</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Export a space as dictionary</para>
+      <para
+>&khipu; - Export eines Bereichs als Sammlung</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>User can even export a whole space into the dictionary with the names and equations of the plots saved in that particular space. For this, you have to click on go <guilabel>Home</guilabel> and then click on the <emphasis>tool button</emphasis> on the space thumbnail which tells you about exporting the space in dictionary.
-</para>
+<para
+>Ein gesamter Bereich mit den Namen und Gleichungen aller darin enthaltenen Graphen kann als Sammlung gespeichert werden. Wechseln Sie dazu zur <guilabel
+>Startseite</guilabel
+> und klicken Sie dann auf das rechte Symbol unter dem Vorschaubild mit der Kurzinfo <guilabel
+>Als Sammlung exportieren</guilabel
+>. </para>
 </sect2>
 </sect1>
-<sect1 id="khipu---beyond-just-plotting"><title>&khipu;: Beyond just plotting</title>
-<sect2 id="khipus-application-actions"><title>&khipu;'s Application Actions</title> 
-<para>One of the key advantage of &khipu; is to have <emphasis>some other useful functionaries</emphasis> to deal with the mathematical function's plotting apart from just plotting them. The various application actions and other features make &khipu; more user-friendly.
-</para>
-<sect3 id="new-open-save-saveas"><title>New/Open/Save/SaveAs</title>
-<para>The normal actions of New, Open, Save and SaveAs allow the users to work with different sessions and <emphasis>saving their work in persistence files (<filename role="extension">.khipu</filename> files)</emphasis> which he/she can open later in time. The persistence file follows a <emphasis>QJson file format</emphasis> which saves important information from the current session. This information includes name of spaces added, name and equations of the plots added in each space, plots' interval and their color.
-</para>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: Weitere Funktionen</title>
+<sect2 id="khipus-application-actions"
+><title
+>Programmaktionen von &khipu;</title
+> 
+<para
+>Neben der Funktion zum Zeichen und Bearbeiten von Graphen gibt es in &khipu; noch weitere Aktionen, die die Arbeit in &khipu; erleichtern. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Neu / Öffnen /Speichern / Speichern unter</title>
+<para
+>Mit diesen bekannten Funktionen können Sie mit verschiedenen Sitzungen arbeiten, sie in Dateien mit der Erweiterung <filename role="extension"
+>.khipu</filename
+> speichern und später wiederverwenden. Diese Dateien haben ein <emphasis
+>QJson-Dateiformat</emphasis
+>, mit dem die wichtigen Informationen der aktuellen Sitzung gespeichert werden. Dies umfasst den Namen der Bereiche sowie die Namen, Gleichungen, Intervalle und Farben aller Graphen in den Bereichen. </para>
 </sect3>
-<sect3 id="save-plot-as-image"><title>Save Plot as Image</title>
-<para>In &khipu;, every space will have its corresponding image which contains the plots requested by the user. The space image can be saved (<acronym>PNG</acronym> file) into the local disk using this application action.
-</para>
+<sect3 id="save-plot-as-image"
+><title
+>Graph als Bild speichern</title>
+<para
+>In &khipu; hat jeder Bereich ein zugehöriges Bild, das die vom Benutzer angeforderten Graphen enthält. Ein Bild des Bereichs kann als <acronym
+>PNG</acronym
+>-Datei auf der lokalen Festplatte gespeichert werden. </para>
 </sect3>
-<sect3 id="take-snapshot"><title>Take Snapshot</title>
-<para>You can even copy the space image into clipboard using this action.
-</para>
+<sect3 id="take-snapshot"
+><title
+>Graph aufnehmen</title>
+<para
+>Mit dieser Aktion können Sie ein Bild des Bereichs in die Zwischenablage kopieren. </para>
 </sect3>
-<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"><title>Want to see only a graph in the entire screen?</title>
-<para>The full screen option in &khipu; will allow the user to just only see the plot space. All the other docks and toolbars will be invisible while activating a full screen!
-</para>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>Möchten Sie den Graphen auf dem gesamten Bildschirm sehen?</title>
+<para
+>Im Vollbildmodus von &khipu; werden nur die Graphen angezeigt, alle Elemente der Bedienungsoberfläche werden ausgeblendet. </para>
 </sect3>
-<sect3 id="space-navigation"><title>Space Navigation</title>
+<sect3 id="space-navigation"
+><title
+>Navigation zwischen Bereichen</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig12.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Space Navigation Options</phrase>
+      <phrase
+>&khipu; - Aktionen zur Navigation zwischen Bereichen</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Space Navigation Options</para>
+      <para
+>&khipu; - Aktionen zur Navigation zwischen Bereichen</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>While a user is on any space (2D or 3D), he can switch to next/previous/first/last space in just one key stroke. The shortcuts for this are as follows:
-</para>
+<para
+>Befindet sich der Benutzer in einem beliebigen 2D- oder 3D-Bereich, kann  er zum nächsten, vorherigen, ersten, und letzten Bereich mit einem einzelnen Tastendruck wechseln. Dafür gibt es folgende Kurzbefehle: </para>
 <itemizedlist>
-<listitem><para>Navigate to the next space -&gt; &PgUp;</para></listitem>
-<listitem><para>Navigate to the previous space -&gt; &PgDn;</para></listitem>
-<listitem><para>Navigate to the first space -&gt; <keycombo>&Ctrl;&Home;</keycombo></para></listitem>
-<listitem><para>Navigate to the last space -&gt; <keycombo>&Ctrl;&End;</keycombo></para></listitem>
+<listitem
+><para
+>Gehe zum nächsten Bereich -&gt; &PgUp;</para
+></listitem>
+<listitem
+><para
+>Gehe zum vorherigen Bereich -&gt; &PgDn;</para
+></listitem>
+<listitem
+><para
+>Gehe zum ersten Bereich -&gt; <keycombo
+>&Ctrl;&Home;</keycombo
+></para
+></listitem>
+<listitem
+><para
+>Gehe zum letzten Bereich -&gt; <keycombo
+>&Ctrl;&End;</keycombo
+></para
+></listitem>
 </itemizedlist>
 </sect3>
 </sect2>
-<sect2 id="dashboard--all-the-work-available-on-the-hands"><title>Dashboard: All the work available on the hands</title>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Startseite als Übersicht</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig13.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Main Dashboard</phrase>
+      <phrase
+>&khipu; - Startseite</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Main Dashboard</para>
+      <para
+>&khipu; - Startseite</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>The main dashboard of &khipu; contains all the spaces created by the user with its thumbnail and space's name. So a user can know which space he/she wants to modify or see their plots.
-</para>
+<para
+>Die Startseite von &khipu; enthält alle vom Benutzer erstellten Bereiche mit einem Vorschaubild und dem Namen des Bereichs. Dadurch kann der Benutzer die Bereiche erkenne, deren Graphen er bearbeiten oder ansehen möchte. </para>
 </sect2>
-<sect2 id="space-filter-based-on-titledescription-and-dimension"><title>Space filter based on Title, Description and Dimension</title>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Bereichsfilterung nach Titel, Beschreibung und Dimension</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig14.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Space filter</phrase>
+      <phrase
+>&khipu; - Bereichsfilter</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Space filter</para>
+      <para
+>&khipu; - Bereichsfilter</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>The filter feature available on the dashboard will allow the user to filter the spaces based on their title and/or description. You can even filter the space based on the dimension chosen from the drop down box shown on the top-right corner on the Dashboard UI.
-</para>
+<para
+>Mit den Filterfeld auf der Startseite können Bereiche nach Namen und Beschreibung oder Dimension gefiltert werden. Zur Filterung nach der Dimension benutzen Sie das Auswahlfeld rechts in der Werkzeugleiste. </para>
 </sect2>
-<sect2 id="shortcuts-dock---an-easy-way-of-plotting"><title>Shortcuts Dock: An easy way of plotting</title>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Graphen-Leiste</title>
 <para>
 <screenshot>
-<screeninfo></screeninfo>
+<screeninfo
+></screeninfo>
   <mediaobject>
     <imageobject>
       <imagedata fileref="myfig15.png" format="PNG"/>
     </imageobject>
     <textobject>
-      <phrase>&khipu; - Shortcuts Dock</phrase>
+      <phrase
+>&khipu; - Graphen-Leiste</phrase>
     </textobject>
     <caption>
-      <para>&khipu; - Shortcuts Dock</para>
+      <para
+>&khipu; - Graphen-Leiste</para>
     </caption>
   </mediaobject>
 </screenshot>
 </para>
-<para>If a user wants to plot quickly without worrying about the spaces, the shortcuts dock will allow him/her to do so. For this, you need to type <keycap>S</keycap> and then select your plot type from that dock, type the equation, hit &Enter; and that's it!
-</para>
+<para
+>Möchten Sie einen Graphen direkt ohne vorherige Auswahl eines Bereichs erstellen, wählen Sie auf der Startseite um Menü <menuchoice
+><guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Graphen-Leiste</guimenuitem
+></menuchoice
+> oder benutzen Sie den Kurzbefehl <keycap
+>S</keycap
+>. Wählen Sie dann den Typ des Graphen, geben die Gleichung ein und drücken Sie die Taste &Enter;. </para>
 </sect2>
-<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"><title>Zoom In/out and Rotations in the plots view</title>
-<para>The 2D and 3D space have a functionality from which you can zoom-in and/or zoom-out the plot-space by just scrolling up/down respectively. The 3D space has a support of rotations and shadows which let a user analyse the 3D plots from different angles!
-</para>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>Vergrößern/Verkleinern und Drehen in der Graphen-Ansicht</title>
+<para
+>Im 2D- und 3D-Bereich können Sie die Ansicht mit dem Mausrad vergrößern und verkleinern. Im 2D-Bereich können Sie mit gedrückter &LMBr; ein Rechteck zur Vergrößern auswählen und mit der Taste &Ctrl; und der &LMBn; Maustaste den Graphen verschieben. Im 3D-Bereich kann mit gedrückter &LMBr; der Graph im Raum gedreht werden. </para>
 </sect2>
 </sect1>
 </chapter>
-<chapter id="credits-and-license"><title>Credits and License</title> 
-<sect1 id="program-copyright"><title>Program copyright</title>
-<para>Program copyright 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi
-</para>
+<chapter id="credits-and-license"
+><title
+>Danksagungen und Lizenz</title
+> 
+<sect1 id="program-copyright"
+><title
+>Copyright des Programms</title>
+<para
+>Copyright des Programms 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi </para>
 </sect1>
-<sect1 id="documentation-copyright"><title>Documentation copyright</title> 
-<para><note><para>Please add your name here if you contribute to the handbook. Please respect alphabetical order</para></note>
+<sect1 id="documentation-copyright"
+><title
+>Copyright der Dokumentation </title
+> 
+<para
+><note
+><para
+>Fügen Sie bitte Ihren Namen hier ein, wenn Sie zum Handbuch beigetragen haben. Bitte beachten Sie die alphabetische Reihenfolge.</para
+></note>
 </para>
-<para>Punit Mehta (punit9462 gmail.com)
-</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
 </sect1>
-<sect1 id="licenses"><title>Licenses</title> 
-<para>This documentation is licensed under the terms of the <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights">&GNU; Free Documentation License</ulink>.
-</para>
-<para>This program is licensed under the terms of the <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt">&GNU; General Public License</ulink>.
-</para>
+<sect1 id="licenses"
+><title
+>Lizenz</title
+> 
+<para
+>This documentation is licensed under the terms of the <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>&GNU; Free Documentation License</ulink
+>. </para>
+<para
+>Diese Programm wird unter den Bedingungen der <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+>&GNU; General Public Lizenz</ulink
+> veröffentlicht. </para>
 
 <!--userbase-content-->
-<!-- TRANS:CREDIT_FOR_TRANSLATORS -->  
-&underFDL;
-</sect1>
+<para
+>Übersetzung Burkhard Lück<email
+>lueck@hube-lueck.de</email
+></para
+> &underFDL; </sect1>
 </chapter>
 &documentation.index;
 </book>
