@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-13 00:42+0000\n"
-"PO-Revision-Date: 2023-01-11 09:35+0100\n"
+"PO-Revision-Date: 2023-01-24 07:20+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -178,12 +178,12 @@ msgstr "მათემატიკური ფუნქციების გ�
 #: src/main.cpp:33
 #, kde-format
 msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
-msgstr ""
+msgstr "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
 
 #: src/main.cpp:35
 #, kde-format
 msgid "Percy Camilo Triveño Aucahuasi"
-msgstr ""
+msgstr "Percy Camilo Triveño Aucahuasi"
 
 #: src/main.cpp:35
 #, kde-format
@@ -193,7 +193,7 @@ msgstr "მთავარი დეველოპერი"
 #: src/main.cpp:37
 #, kde-format
 msgid "Punit Mehta"
-msgstr ""
+msgstr "Punit Mehta"
 
 #: src/main.cpp:37
 #, kde-format
@@ -206,7 +206,7 @@ msgstr ""
 #: src/main.cpp:38
 #, kde-format
 msgid "Manuel Álvarez Blanco"
-msgstr ""
+msgstr "Manuel Álvarez Blanco"
 
 #: src/main.cpp:38
 #, kde-format
@@ -218,7 +218,7 @@ msgstr ""
 #: src/main.cpp:39
 #, kde-format
 msgid "José Ignacio Cuevas Gonzáles"
-msgstr ""
+msgstr "José Ignacio Cuevas Gonzáles"
 
 #: src/main.cpp:39
 #, kde-format
@@ -230,7 +230,7 @@ msgstr ""
 #: src/main.cpp:40
 #, kde-format
 msgid "Eduardo Fernandini Capurro"
-msgstr ""
+msgstr "Eduardo Fernandini Capurro"
 
 #: src/main.cpp:40
 #, kde-format
@@ -242,7 +242,7 @@ msgstr ""
 #: src/main.cpp:41
 #, kde-format
 msgid "Jaime Urbina Pereyra"
-msgstr ""
+msgstr "Jaime Urbina Pereyra"
 
 #: src/main.cpp:41
 #, kde-format
@@ -262,7 +262,7 @@ msgstr ""
 #: src/main.cpp:45
 #, kde-format
 msgid "José Fernando Ramos Ramirez"
-msgstr ""
+msgstr "José Fernando Ramos Ramirez"
 
 #: src/main.cpp:45
 #, kde-format
@@ -272,7 +272,7 @@ msgstr ""
 #: src/main.cpp:46
 #, kde-format
 msgid "Susan Pamela Rios Sarmiento"
-msgstr ""
+msgstr "Susan Pamela Rios Sarmiento"
 
 #: src/main.cpp:46
 #, kde-format
@@ -282,32 +282,32 @@ msgstr ""
 #: src/main.cpp:48
 #, kde-format
 msgid "Edgar Velasquez"
-msgstr ""
+msgstr "Edgar Velasquez"
 
 #: src/main.cpp:48
 #, kde-format
 msgid "2D Improvements"
-msgstr ""
+msgstr "2D გაუმჯობესებები"
 
 #: src/main.cpp:49
 #, kde-format
 msgid "Jose Torres Cardenas"
-msgstr ""
+msgstr "Jose Torres Cardenas"
 
 #: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
 #, kde-format
 msgid "3D Improvements"
-msgstr ""
+msgstr "3D გაუმჯობესებები"
 
 #: src/main.cpp:50
 #, kde-format
 msgid "Elizabeth Portilla Flores"
-msgstr ""
+msgstr "Elizabeth Portilla Flores"
 
 #: src/main.cpp:51
 #, kde-format
 msgid "Paul Murat Landauro Minaya"
-msgstr ""
+msgstr "Paul Murat Landauro Minaya"
 
 #: src/main.cpp:57
 #, kde-format
@@ -502,7 +502,7 @@ msgstr ""
 #: src/mainwindow.cpp:676
 #, kde-format
 msgid "Warning: File already exists"
-msgstr ""
+msgstr "გაფრთხილება: ფაილი უკვე არსებობს"
 
 #: src/mainwindow.cpp:695
 #, kde-format
@@ -512,7 +512,7 @@ msgstr ""
 #: src/mainwindow.cpp:696
 #, kde-format
 msgid "Warning: Unsaved changes"
-msgstr ""
+msgstr "გაფრთხილება: შეუნახავი ცვლილებები"
 
 #: src/mainwindow.cpp:750
 #, kde-format
@@ -522,7 +522,7 @@ msgstr ""
 #: src/mainwindow.cpp:815
 #, kde-format
 msgid "Could not open %1 for writing"
-msgstr ""
+msgstr "%1-ის ჩასაწერად გახსნის შეცდომა"
 
 #: src/mainwindow.cpp:815 src/mainwindow.cpp:826
 #, kde-format
@@ -547,12 +547,12 @@ msgstr "შეცდომა შენახვისას"
 #: src/mainwindow.cpp:857
 #, kde-format
 msgid "File %1 [%2] is saved successfully"
-msgstr ""
+msgstr "ფაილის (%1 [%2]) შენახვა წარმატებულია"
 
 #: src/mainwindow.cpp:1005
 #, kde-format
 msgid "The diagram was copied to clipboard"
-msgstr ""
+msgstr "დიაგრამა ბუფერში დაკოპირდა"
 
 #: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
 #, kde-format
