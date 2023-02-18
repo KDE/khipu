@@ -41,7 +41,6 @@
 #include <QPainter>
 
 //KDE includes
-#include <KLocale>
 #include <KRandom>
 
 #include <cmath>
