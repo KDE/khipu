@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kde 49i410\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"POT-Creation-Date: 2023-02-19 00:54+0000\n"
 "PO-Revision-Date: 2014-10-20 19:29+0000\n"
 "Last-Translator: Fahrudin Brbutovic <fbrbutovic1@etf.unsa.ba>\n"
 "Language-Team: Bosnian\n"
@@ -658,22 +658,22 @@ msgstr "Napravite cilindričnu krivu"
 msgid "Build a Spherical Surface"
 msgstr "Napravite sfernu površinu"
 
-#: src/plotseditor.cpp:67
+#: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
 msgstr "uključite/isključite za prikaz ili sakrivanje osa"
 
-#: src/plotseditor.cpp:70
+#: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
 msgstr "Kliknite za uređivanje crtanja"
 
-#: src/plotseditor.cpp:71
+#: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
 msgstr "Kliknite za uklanjanje crtanja"
 
-#: src/plotseditor.cpp:1020
+#: src/plotseditor.cpp:1019
 #, kde-format
 msgid "plot %1"
 msgstr "crtež %1"

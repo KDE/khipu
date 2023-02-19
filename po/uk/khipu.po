@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"POT-Creation-Date: 2023-02-19 00:54+0000\n"
 "PO-Revision-Date: 2022-07-13 08:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -649,22 +649,22 @@ msgstr "Побудувати поверхню у циліндричних коо
 msgid "Build a Spherical Surface"
 msgstr "Побудувати поверхню у сферичних координатах"
 
-#: src/plotseditor.cpp:67
+#: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
 msgstr "Позначте або зніміть позначення, щоб побачити або приховати вісі"
 
-#: src/plotseditor.cpp:70
+#: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
 msgstr "Натисніть, щоб змінити креслення"
 
-#: src/plotseditor.cpp:71
+#: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
 msgstr "Натисніть, щоб вилучити креслення"
 
-#: src/plotseditor.cpp:1020
+#: src/plotseditor.cpp:1019
 #, kde-format
 msgid "plot %1"
 msgstr "креслення %1"

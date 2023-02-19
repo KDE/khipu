@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"POT-Creation-Date: 2023-02-19 00:54+0000\n"
 "PO-Revision-Date: 2023-01-24 07:20+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -621,22 +621,22 @@ msgstr "ცილინდრული ზედაპირის აგებ�
 msgid "Build a Spherical Surface"
 msgstr "სფერული ზედაპირის აგება"
 
-#: src/plotseditor.cpp:67
+#: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
 msgstr ""
 
-#: src/plotseditor.cpp:70
+#: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
 msgstr ""
 
-#: src/plotseditor.cpp:71
+#: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
 msgstr ""
 
-#: src/plotseditor.cpp:1020
+#: src/plotseditor.cpp:1019
 #, kde-format
 msgid "plot %1"
 msgstr ""

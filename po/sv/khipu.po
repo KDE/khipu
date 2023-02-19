@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"POT-Creation-Date: 2023-02-19 00:54+0000\n"
 "PO-Revision-Date: 2022-08-03 10:01+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -642,22 +642,22 @@ msgstr "Skapa en cylindrisk yta"
 msgid "Build a Spherical Surface"
 msgstr "Skapa en sfärisk yta"
 
-#: src/plotseditor.cpp:67
+#: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
 msgstr "Markera eller avmarkera för att visa eller dölja axlarna"
 
-#: src/plotseditor.cpp:70
+#: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
 msgstr "Klicka för att redigera diagrammet"
 
-#: src/plotseditor.cpp:71
+#: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
 msgstr "Klicka för att ta bort diagrammet"
 
-#: src/plotseditor.cpp:1020
+#: src/plotseditor.cpp:1019
 #, kde-format
 msgid "plot %1"
 msgstr "diagram %1"

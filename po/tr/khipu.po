@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-13 00:42+0000\n"
+"POT-Creation-Date: 2023-02-19 00:54+0000\n"
 "PO-Revision-Date: 2022-11-22 16:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -640,22 +640,22 @@ msgstr "Bir Silindirik Alan Yap"
 msgid "Build a Spherical Surface"
 msgstr "Bir Küresel Alan Yap"
 
-#: src/plotseditor.cpp:67
+#: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
 msgstr "eksenleri göstermek/gizlemek için imle/imini kaldır"
 
-#: src/plotseditor.cpp:70
+#: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
 msgstr "Çizimi düzenlemek için tıkla"
 
-#: src/plotseditor.cpp:71
+#: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
 msgstr "Çizimi kaldırmak için tıkla"
 
-#: src/plotseditor.cpp:1020
+#: src/plotseditor.cpp:1019
 #, kde-format
 msgid "plot %1"
 msgstr "plot %1"
