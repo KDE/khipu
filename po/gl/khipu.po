@@ -1,15 +1,15 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Marce Villarino <mvillarino@kde-espana.es>, 2013.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-19 00:54+0000\n"
-"PO-Revision-Date: 2019-09-29 09:05+0200\n"
+"PO-Revision-Date: 2023-04-23 08:03+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -89,7 +89,7 @@ msgstr "Principal"
 #: src/dashboard.ui:85
 #, kde-format
 msgid "Famous Algebraic Curves"
-msgstr "Curvas alxebraicas famosas"
+msgstr "Curvas alxébricas famosas"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
 #: src/dashboard.ui:90
@@ -208,7 +208,7 @@ msgid ""
 msgstr ""
 "Estudante de GSoC 2013. Funcionalidade de ficheiro de persistencia e "
 "dicionario de gráfico. Traballou nas accións das aplicacións, melloras da "
-"iña de ordes, e filtraxe de espazos. Tamén realizou varias correccións de "
+"iña de ordes, e filtración de espazos. Tamén realizou varias correccións de "
 "fallos."
 
 #: src/main.cpp:38
@@ -335,6 +335,8 @@ msgstr "Ficheiros de Khipu para abrir"
 #, kde-format
 msgid "Always start with a new file, ignoring any autosaved file"
 msgstr ""
+"Comezar sempre cun ficheiro novo, ignorando calquera ficheiro gardado "
+"automaticamente"
 
 #: src/mainwindow.cpp:142
 #, kde-format
