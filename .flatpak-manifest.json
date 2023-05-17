@@ -2,7 +2,7 @@
     "id": "org.kde.khipu",
     "branch": "master",
     "runtime": "org.kde.Platform",
-    "runtime-version": "5.15",
+    "runtime-version": "5.15-22.08",
     "sdk": "org.kde.Sdk",
     "command": "khipu",
     "tags": ["nightly"],
@@ -14,7 +14,7 @@
         {
             "name": "kdelibs4support",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "https://invent.kde.org/frameworks/kdelibs4support", "branch": "v5.85.0" } ]
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/frameworks/kdelibs4support", "branch": "v5.105.0" } ]
         },
         {
             "name": "analitza",
@@ -28,4 +28,3 @@
         }
     ]
 }
-
