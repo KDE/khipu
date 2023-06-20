@@ -411,7 +411,7 @@ msgstr "&Importar un ficheiro de dicionario de gráfico"
 #: src/mainwindow.cpp:333 src/mainwindow.cpp:376
 #, kde-format
 msgid "There is not any space available to show!"
-msgstr "Non hai ningún espazo dispoñíbel para mostrar!"
+msgstr "Non hai ningún espazo dispoñíbel para amosar!"
 
 #: src/mainwindow.cpp:337
 #, kde-format
@@ -648,7 +648,7 @@ msgstr "Construír unha superficie esférica"
 #: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
-msgstr "Marque ou desmarque para mostrar ou agochar os eixos."
+msgstr "Marque ou desmarque para amosar ou agochar os eixos."
 
 #: src/plotseditor.cpp:69
 #, kde-format
