@@ -9,6 +9,7 @@
   <name xml:lang="cs">Khipu</name>
   <name xml:lang="de">Khipu</name>
   <name xml:lang="en-GB">Khipu</name>
+  <name xml:lang="eo">Khipu</name>
   <name xml:lang="es">Khipu</name>
   <name xml:lang="et">Khipu</name>
   <name xml:lang="fi">Khipu</name>
@@ -37,6 +38,7 @@
   <summary xml:lang="cs">Pokročilý souřadnicový zapisovač matematických funkcí</summary>
   <summary xml:lang="de">Fortgeschrittener mathematischer Funktionsplotter</summary>
   <summary xml:lang="en-GB">Advanced Mathematical Function Plotter</summary>
+  <summary xml:lang="eo">Altnivela Grafikilo por Matematikaj Funkcioj</summary>
   <summary xml:lang="es">Trazador avanzado de funciones matemáticas</summary>
   <summary xml:lang="et">Täiustatud matemaatilise funktsioonide graafiku joonistaja</summary>
   <summary xml:lang="fi">Kehittynyt matemaattisten funktioiden kaavionpiirto</summary>
@@ -63,6 +65,7 @@
     <p xml:lang="ca-valencia">Un programari especialitzat en mantindre els gràfics en ordre i visualitzar-los quan siga necessari.</p>
     <p xml:lang="de">Anwendung, um Ihre Plots in Ordnung zu halten und sie bei Bedarf zu durchsuchen.</p>
     <p xml:lang="en-GB">Great software for keeping your plots in order and browse them as needed.</p>
+    <p xml:lang="eo">Bonega programo por teni viajn grafikojn en ordo kaj trafoliumi ilin laŭvole.</p>
     <p xml:lang="es">Buen software para tener sus gráficos en orden y examinarlos cuando lo necesite.</p>
     <p xml:lang="et">Võimas tarkvara jooniste korraldamiseks ja sirvimiseks.</p>
     <p xml:lang="fi">Mahtava ohjelma kaavioidesi järjestämiseen ja selaamiseen tarvittaessa.</p>
