@@ -57,3 +57,5 @@ void SpaceInformation::clear()
     m_widget->spaceTitle->clear();
     m_widget->spaceDescription->clear();
 }
+
+#include "moc_spaceinformation.cpp"

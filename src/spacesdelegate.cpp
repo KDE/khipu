@@ -421,3 +421,5 @@ void SpacesView::resizeEvent(QResizeEvent* e)
     
     QListView::resizeEvent(e);
 }
+
+#include "moc_spacesdelegate.cpp"

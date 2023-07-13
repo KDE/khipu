@@ -102,3 +102,5 @@ void DataStoreTest::testCorrect()
     // remove the last spaceitem
     m_document->spacesModel()->removeRows(m_document->spacesModel()->rowCount() - 1, 0);
 }
+
+#include "moc_datastoretest.cpp"

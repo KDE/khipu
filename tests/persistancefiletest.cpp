@@ -126,3 +126,5 @@ void PersistanceFileTest::testCorrect()
 
     delete document;
 }
+
+#include "moc_persistancefiletest.cpp"

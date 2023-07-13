@@ -58,3 +58,5 @@ void Filter::setFilterVisible(bool b)
     m_ui->filterText->setVisible(b);
     m_ui->filterOptions->setVisible(b);
 }
+
+#include "moc_filter.cpp"

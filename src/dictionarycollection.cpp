@@ -190,3 +190,5 @@ void DictionaryCollection::setSpaceDimension(Analitza::Dimension dim) {
     m_currentDimension=dim;
     setDictionaryData(m_widget->dictionaryNames->currentIndex());
 }
+
+#include "moc_dictionarycollection.cpp"

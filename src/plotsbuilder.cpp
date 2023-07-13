@@ -246,3 +246,5 @@ void PlotsBuilder::setupTypes()
     else
         m_widget->sphericalSurfacesLinks->hide();
 }
+
+#include "moc_plotsbuilder.cpp"

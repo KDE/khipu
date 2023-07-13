@@ -118,3 +118,5 @@ void SpaceOptions::updateTicks()
     
     emit ticksShown(o);
 }
+
+#include "moc_spaceoptions.cpp"

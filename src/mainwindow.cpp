@@ -1208,3 +1208,5 @@ void MainWindow::createPlot(const QModelIndex &ind)
             errors = req.errors();
     }
 }
+
+#include "moc_mainwindow.cpp"

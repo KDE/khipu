@@ -424,3 +424,5 @@ void Dashboard::getDictionaryClicked()
 void Dashboard::activateDictionaryData() {
     setDictionaryData(m_ui->comboBox->currentIndex());
 }
+
+#include "moc_dashboard.cpp"

@@ -223,3 +223,4 @@ void DataStore::clearAllData()
     connect(m_spacePlotsFilterProxyModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(plotDataChanged(QModelIndex)));
 }
 
+#include "moc_datastore.cpp"

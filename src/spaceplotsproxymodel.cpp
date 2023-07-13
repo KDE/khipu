@@ -115,3 +115,5 @@ bool SpacePlotsFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelInd
     PlotItem* item = sourceModel()->index(sourceRow, 0, sourceParent).data(PlotsModel::PlotRole).value<PlotItem*>();
     return m_dataStore->isMapped(m_space, item);
 }
+
+#include "moc_spaceplotsproxymodel.cpp"

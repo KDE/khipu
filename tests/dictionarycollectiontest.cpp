@@ -157,3 +157,5 @@ void DictionaryCollectionTest::testAddPlot()
 }
 
 #include "dictionarycollectiontest.moc"
+
+#include "moc_dictionarycollectiontest.cpp"

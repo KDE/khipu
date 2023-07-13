@@ -1024,3 +1024,5 @@ void PlotsEditor::plotnamecheckClicked(bool state)
         m_widget->plotName->hide();
     }
 }
+
+#include "moc_plotseditor.cpp"

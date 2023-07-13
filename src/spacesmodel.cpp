@@ -149,3 +149,5 @@ void SpacesModel::emitChanged(SpaceItem* it)
     QModelIndex idx = index(row);
     emit dataChanged(idx, idx);
 }
+
+#include "moc_spacesmodel.cpp"
