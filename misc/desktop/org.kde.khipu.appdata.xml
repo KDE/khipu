@@ -31,6 +31,7 @@
   <name xml:lang="tr">Kipu</name>
   <name xml:lang="uk">Khipu</name>
   <name xml:lang="x-test">xxKhipuxx</name>
+  <name xml:lang="zh-CN">Khipu</name>
   <name xml:lang="zh-TW">Khipu</name>
   <summary>Advanced Mathematical Function Plotter</summary>
   <summary xml:lang="ca">Traçador avançat de funcions matemàtiques</summary>
@@ -59,6 +60,7 @@
   <summary xml:lang="tr">Gelişmiş Matematiksel İşlev Çizici</summary>
   <summary xml:lang="uk">Графобудівник математичних функцій з додатковими можливостями</summary>
   <summary xml:lang="x-test">xxAdvanced Mathematical Function Plotterxx</summary>
+  <summary xml:lang="zh-CN">高级数学函数绘图器</summary>
   <description>
     <p>Great software for keeping your plots in order and browse them as needed.</p>
     <p xml:lang="ca">Un programari especialitzat a mantenir els gràfics en ordre i visualitzar-los quan sigui necessari.</p>
