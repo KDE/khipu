@@ -35,9 +35,7 @@
          <string>Graph</string>
         </property>
         <property name="icon">
-         <iconset theme="newfunction">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newfunction"/>
         </property>
         <property name="iconSize">
          <size>
@@ -53,9 +51,7 @@
          <string>Implicit</string>
         </property>
         <property name="icon">
-         <iconset theme="newimplicit">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newimplicit"/>
         </property>
        </widget>
       </item>
@@ -65,9 +61,7 @@
          <string>Parametric</string>
         </property>
         <property name="icon">
-         <iconset theme="newparametric">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newparametric"/>
         </property>
        </widget>
       </item>
@@ -99,9 +93,7 @@
          <string>Graph</string>
         </property>
         <property name="icon">
-         <iconset theme="newpolar">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newpolar"/>
         </property>
        </widget>
       </item>
@@ -133,9 +125,7 @@
          <string>Parametric</string>
         </property>
         <property name="icon">
-         <iconset theme="newparametric3d">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newparametric3d"/>
         </property>
         <property name="iconSize">
          <size>
@@ -173,9 +163,7 @@
          <string>Graph</string>
         </property>
         <property name="icon">
-         <iconset theme="newfunction3d">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newfunction3d"/>
         </property>
        </widget>
       </item>
@@ -185,9 +173,7 @@
          <string>Implicit</string>
         </property>
         <property name="icon">
-         <iconset theme="draw-square-inverted-corners">
-          <normaloff/>
-         </iconset>
+         <iconset theme="draw-square-inverted-corners"/>
         </property>
        </widget>
       </item>
@@ -197,9 +183,7 @@
          <string>Parametric</string>
         </property>
         <property name="icon">
-         <iconset theme="draw-donut">
-          <normaloff/>
-         </iconset>
+         <iconset theme="draw-donut"/>
         </property>
        </widget>
       </item>
@@ -231,9 +215,7 @@
          <string>Graph</string>
         </property>
         <property name="icon">
-         <iconset theme="newcylindrical">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newcylindrical"/>
         </property>
        </widget>
       </item>
@@ -265,9 +247,7 @@
          <string>Graph</string>
         </property>
         <property name="icon">
-         <iconset theme="newspherical">
-          <normaloff/>
-         </iconset>
+         <iconset theme="newspherical"/>
         </property>
        </widget>
       </item>
