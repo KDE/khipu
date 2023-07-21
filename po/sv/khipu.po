@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-19 00:54+0000\n"
+"POT-Creation-Date: 2023-07-21 00:43+0000\n"
 "PO-Revision-Date: 2022-08-03 10:01+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -133,13 +133,13 @@ msgid "Import Dictionary"
 msgstr "Importera lexikon"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: src/dictionarycollection.ui:91
+#: src/dictionarycollection.ui:89
 #, kde-format
 msgid "Collection: "
 msgstr "Samling: "
 
 #. i18n: ectx: property (text), widget (QPushButton, AddButton)
-#: src/dictionarycollection.ui:101
+#: src/dictionarycollection.ui:99
 #, kde-format
 msgid "Add"
 msgstr "Lägg till"
@@ -591,15 +591,15 @@ msgstr "Skapa en kartesisk kurva"
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
 #. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
 #. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
-#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:99 src/plotsbuilder.ui:173
-#: src/plotsbuilder.ui:231 src/plotsbuilder.ui:265
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:93 src/plotsbuilder.ui:163
+#: src/plotsbuilder.ui:215 src/plotsbuilder.ui:247
 #, kde-format
 msgid "Graph"
 msgstr "Graf"
 
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
-#: src/plotsbuilder.ui:53 src/plotsbuilder.ui:185
+#: src/plotsbuilder.ui:51 src/plotsbuilder.ui:173
 #, kde-format
 msgid "Implicit"
 msgstr "Implicit"
@@ -607,37 +607,37 @@ msgstr "Implicit"
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
-#: src/plotsbuilder.ui:65 src/plotsbuilder.ui:133 src/plotsbuilder.ui:197
+#: src/plotsbuilder.ui:61 src/plotsbuilder.ui:125 src/plotsbuilder.ui:183
 #, kde-format
 msgid "Parametric"
 msgstr "Parametrisk"
 
 #. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
-#: src/plotsbuilder.ui:93
+#: src/plotsbuilder.ui:87
 #, kde-format
 msgid "Build a Polar Curve"
 msgstr "Skapa en polär kurva"
 
 #. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
-#: src/plotsbuilder.ui:127
+#: src/plotsbuilder.ui:119
 #, kde-format
 msgid "Build a Space Curve"
 msgstr "Skapa en rumskurva"
 
 #. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
-#: src/plotsbuilder.ui:167
+#: src/plotsbuilder.ui:157
 #, kde-format
 msgid "Build a Cartesian Surface"
 msgstr "Skapa en kartesisk yta"
 
 #. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
-#: src/plotsbuilder.ui:225
+#: src/plotsbuilder.ui:209
 #, kde-format
 msgid "Build a Cylindrical Surface"
 msgstr "Skapa en cylindrisk yta"
 
 #. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
-#: src/plotsbuilder.ui:259
+#: src/plotsbuilder.ui:241
 #, kde-format
 msgid "Build a Spherical Surface"
 msgstr "Skapa en sfärisk yta"
@@ -677,73 +677,73 @@ msgstr ""
 "html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, editPlot)
-#: src/plotseditor.ui:114
+#: src/plotseditor.ui:110
 #, kde-format
 msgid "Edit"
 msgstr "Redigera"
 
 #. i18n: ectx: property (text), widget (QPushButton, removePlot)
-#: src/plotseditor.ui:124 src/spacesdelegate.cpp:74
+#: src/plotseditor.ui:120 src/spacesdelegate.cpp:74
 #, kde-format
 msgid "Remove"
 msgstr "Ta bort"
 
 #. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
-#: src/plotseditor.ui:156
+#: src/plotseditor.ui:152
 #, kde-format
 msgid "Plot Name"
 msgstr "Diagramnamn"
 
 #. i18n: ectx: property (text), widget (QLabel, plotIcon)
-#: src/plotseditor.ui:163
+#: src/plotseditor.ui:159
 #, kde-format
 msgid "TextLabel"
 msgstr "Textetikett"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: src/plotseditor.ui:397
+#: src/plotseditor.ui:393
 #, kde-format
 msgid "Color:"
 msgstr "Färg:"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: src/plotseditor.ui:413
+#: src/plotseditor.ui:409
 #, kde-format
 msgid "Style"
 msgstr "Stil"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
-#: src/plotseditor.ui:421
+#: src/plotseditor.ui:417
 #, kde-format
 msgid "Solid"
 msgstr "Solid"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
-#: src/plotseditor.ui:426
+#: src/plotseditor.ui:422
 #, kde-format
 msgid "Wired"
 msgstr "Trådram"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
-#: src/plotseditor.ui:431
+#: src/plotseditor.ui:427
 #, kde-format
 msgid "Dots"
 msgstr "Punkter"
 
 #. i18n: ectx: property (title), widget (QGroupBox, intervals)
-#: src/plotseditor.ui:457
+#: src/plotseditor.ui:453
 #, kde-format
 msgid "Use Intervals"
 msgstr "Använd intervaller"
 
 #. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
-#: src/plotseditor.ui:659
+#: src/plotseditor.ui:655
 #, kde-format
 msgid "asdsada"
 msgstr "asdsada"
 
 #. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
-#: src/plotseditor.ui:662
+#: src/plotseditor.ui:658
 #, kde-format
 msgid "asdad"
 msgstr "asdad"
