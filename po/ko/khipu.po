@@ -201,8 +201,8 @@ msgid ""
 "Worked for application actions, command-line improvements and space "
 "filtering. Several bug fixings"
 msgstr ""
-"GSoC 2013 학생 - 영구적 파일 지원. 플롯 사전 지원. 프로그램 동작, 명령행 개"
-"선, 공간 필터링 및 기타 버그 수정"
+"GSoC 2013 학생 - 영구적 파일 지원. 플롯 사전 지원. 앱 동작, 명령행 개선, 공"
+"간 필터링 및 기타 버그 수정"
 
 #: src/main.cpp:38
 #, kde-format
