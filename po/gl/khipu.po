@@ -436,12 +436,12 @@ msgstr "Non está no último espazo!"
 #: src/mainwindow.cpp:400
 #, kde-format
 msgid "Press Ctrl + M to make menubar visible again"
-msgstr "Prema Ctrl+M para facer de novo visíbel a barra do menú."
+msgstr "Prema Ctrl+M para facer de novo visíbel a barra de menú."
 
 #: src/mainwindow.cpp:400
 #, kde-format
 msgid "Menubar Visibility"
-msgstr "Visibilidade da barra do menú"
+msgstr "Visibilidade da barra de menú"
 
 #: src/mainwindow.cpp:446
 #, kde-format
