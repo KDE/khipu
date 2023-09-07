@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-07-21 00:43+0000\n"
-"PO-Revision-Date: 2023-01-24 07:20+0100\n"
+"PO-Revision-Date: 2023-09-06 07:57+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -32,7 +32,7 @@ msgstr "Temuri.doghonadze@gmail.com"
 #, kde-format
 msgid ""
 "Please make sure that the dictionary (.plots) files are correctly installed"
-msgstr ""
+msgstr "დარწმუნდით, რომ ლექსიკონის ფაილები (.plots) სწორად აყენია"
 
 #: src/dashboard.cpp:118
 #, kde-format
@@ -63,7 +63,7 @@ msgstr "PNG სურათები (*.png)"
 #: src/dashboard.ui:20
 #, kde-format
 msgid "StackedWidget"
-msgstr ""
+msgstr "StackedWidget"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/dashboard.ui:64
@@ -163,7 +163,7 @@ msgstr "განზომილება 3D"
 #: src/filter.ui:42
 #, kde-format
 msgid "Filter by space name or description..."
-msgstr ""
+msgstr "სივრცის სახელით ან აღწერით გაფილტვრა..."
 
 #: src/main.cpp:32
 #, kde-format
