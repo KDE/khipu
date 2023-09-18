@@ -440,7 +440,7 @@ msgstr "Actualment esteu al últim espai!"
 #: src/mainwindow.cpp:400
 #, kde-format
 msgid "Press Ctrl + M to make menubar visible again"
-msgstr "Premeu Ctrl + M per a tornar a fer visible la barra de menús"
+msgstr "Premeu «Ctrl+M» per a tornar a fer visible la barra de menús"
 
 #: src/mainwindow.cpp:400
 #, kde-format
