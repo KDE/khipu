@@ -23,7 +23,10 @@ add_library(libkhipu STATIC ${libkhipu_SRCS}
   dashboard.cpp
   mainwindow.cpp)
 
-add_executable(khipu main.cpp)
+add_executable(khipu
+  main.cpp
+  ${CMAKE_SOURCE_DIR}/misc/desktop/khipu.qrc
+)
 
 target_link_libraries(khipu libkhipu)
 
