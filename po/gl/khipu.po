@@ -501,7 +501,7 @@ msgstr "Ocorreu un erro ao ler"
 #: src/mainwindow.cpp:592
 #, kde-format
 msgid "%1 could not be opened"
-msgstr "Non se puido abrir %1"
+msgstr "Non foi posíbel abrir %1"
 
 #: src/mainwindow.cpp:606
 #, kde-format
@@ -545,7 +545,7 @@ msgstr "Produciuse un erro ao ler o ficheiro, pode que estea baleiro."
 #: src/mainwindow.cpp:815
 #, kde-format
 msgid "Could not open %1 for writing"
-msgstr "Non se puido acceder a %1 para escritura"
+msgstr "Non foi posíbel acceder a %1 para escritura"
 
 #: src/mainwindow.cpp:815 src/mainwindow.cpp:826
 #, kde-format
@@ -555,7 +555,7 @@ msgstr "Ocorreu un erro ao gardar"
 #: src/mainwindow.cpp:826
 #, kde-format
 msgid "Could not open %1 for writing %2"
-msgstr "Non se puido acceder a %1 para gardar %2."
+msgstr "Non foi posíbel acceder a %1 para gardar %2."
 
 #: src/mainwindow.cpp:835
 #, kde-format
