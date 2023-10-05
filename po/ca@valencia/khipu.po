@@ -209,7 +209,7 @@ msgid ""
 "Worked for application actions, command-line improvements and space "
 "filtering. Several bug fixings"
 msgstr ""
-"Estudiant del GSoC-2013 - Implementació de la persistència de fitxers. "
+"Estudiant de la GSoC de 2013 - Implementació de la persistència de fitxers. "
 "Implementació del diccionari de gràfics. Va treballar en les accions "
 "d'aplicació, millores de la línia d'ordres i filtratge d'espais. Diverses "
 "solucions d'errors"
@@ -580,7 +580,7 @@ msgstr "El fitxer %1 [%2] s'ha guardat correctament"
 #: src/mainwindow.cpp:1005
 #, kde-format
 msgid "The diagram was copied to clipboard"
-msgstr "El diagrama s'ha copiat al porta-retalls"
+msgstr "El diagrama s'ha copiat a dins del porta-retalls"
 
 #: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
 #, kde-format
