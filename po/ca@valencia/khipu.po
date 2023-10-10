@@ -512,8 +512,8 @@ msgstr "No s'ha pogut obrir %1"
 #, kde-format
 msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
 msgstr ""
-"Problema en analitzar el contingut del fitxer, potser és un fitxer «khipu» "
-"incorrecte."
+"Problema en l'anàlisi sintàctica del contingut del fitxer, potser és un "
+"fitxer «khipu» incorrecte."
 
 #: src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
