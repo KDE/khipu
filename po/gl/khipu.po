@@ -470,7 +470,7 @@ msgstr "O ficheiro non existe."
 #: src/mainwindow.cpp:536
 #, kde-format
 msgid "An error appeared when opening this file (%1)"
-msgstr "Ocorreu un erro ao abrir este ficheiro (%1)"
+msgstr "Produciuse un erro ao abrir este ficheiro (%1)"
 
 #: src/mainwindow.cpp:550
 #, kde-format
@@ -496,7 +496,7 @@ msgstr "Produciuse un erro ao ler o ficheiro, pode que a ruta non se atopase."
 #: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
 #, kde-format
 msgid "Error while reading"
-msgstr "Ocorreu un erro ao ler"
+msgstr "Produciuse un erro ao ler"
 
 #: src/mainwindow.cpp:592
 #, kde-format
@@ -550,7 +550,7 @@ msgstr "Non foi posíbel acceder a %1 para escritura"
 #: src/mainwindow.cpp:815 src/mainwindow.cpp:826
 #, kde-format
 msgid "Error while writing"
-msgstr "Ocorreu un erro ao gardar"
+msgstr "Produciuse un erro ao gardar"
 
 #: src/mainwindow.cpp:826
 #, kde-format
