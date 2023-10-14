@@ -375,22 +375,22 @@ msgstr "&Diccionaris de gràfics"
 #: src/mainwindow.cpp:263
 #, kde-format
 msgid "&Go First Space"
-msgstr "&Ves al primer espai"
+msgstr "&Ves fins al primer espai"
 
 #: src/mainwindow.cpp:268
 #, kde-format
 msgid "&Go Previous Space"
-msgstr "&Ves a l'espai anterior"
+msgstr "&Ves fins a l'espai anterior"
 
 #: src/mainwindow.cpp:273
 #, kde-format
 msgid "&Go Next Space"
-msgstr "&Ves a l'espai següent"
+msgstr "&Ves fins a l'espai següent"
 
 #: src/mainwindow.cpp:278
 #, kde-format
 msgid "&Go Last Space"
-msgstr "&Ves al últim espai"
+msgstr "&Ves fins a l'últim espai"
 
 #: src/mainwindow.cpp:284
 #, kde-format
@@ -430,12 +430,12 @@ msgstr "Ja esteu al primer espai!"
 #: src/mainwindow.cpp:360
 #, kde-format
 msgid "You are already on the last space!"
-msgstr "Ja esteu al últim espai!"
+msgstr "Ja esteu a l'últim espai!"
 
 #: src/mainwindow.cpp:380
 #, kde-format
 msgid "Currently you are on the last space!"
-msgstr "Actualment esteu al últim espai!"
+msgstr "Actualment esteu a l'últim espai!"
 
 #: src/mainwindow.cpp:400
 #, kde-format
