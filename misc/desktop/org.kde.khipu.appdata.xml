@@ -30,6 +30,7 @@
   <name xml:lang="sv">Khipu</name>
   <name xml:lang="tr">Kipu</name>
   <name xml:lang="uk">Khipu</name>
+  <name xml:lang="x-test">xxKhipuxx</name>
   <name xml:lang="zh-CN">Khipu</name>
   <name xml:lang="zh-TW">Khipu</name>
   <summary>Advanced Mathematical Function Plotter</summary>
@@ -58,6 +59,7 @@
   <summary xml:lang="sv">Avancerad matematisk funktionsritare</summary>
   <summary xml:lang="tr">Gelişmiş Matematiksel İşlev Çizicisi</summary>
   <summary xml:lang="uk">Графобудівник математичних функцій з додатковими можливостями</summary>
+  <summary xml:lang="x-test">xxAdvanced Mathematical Function Plotterxx</summary>
   <summary xml:lang="zh-CN">高级数学函数绘图器</summary>
   <description>
     <p>Great software for keeping your plots in order and browse them as needed.</p>
@@ -84,6 +86,7 @@
     <p xml:lang="sv">Utmärkt programvara för att hålla ordning på diagram och bläddra bland dem efter behov</p>
     <p xml:lang="tr">Çizimlerinizi düzgünce tutmak ve gerektiğinde göz atmak için harika bir yazılım.</p>
     <p xml:lang="uk">Чудове програмне забезпечення для упорядковування та навігації вашими графіками функцій.</p>
+    <p xml:lang="x-test">xxGreat software for keeping your plots in order and browse them as needed.xx</p>
   </description>
   <url type="homepage">https://userbase.kde.org/Khipu</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=khipu</url>
