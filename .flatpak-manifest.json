@@ -19,12 +19,13 @@
         {
             "name": "analitza",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "https://invent.kde.org/education/analitza" } ]
+            "sources": [ { "type": "git", "url": "https://invent.kde.org/education/analitza", "branch": "release/23.08" } ]
         },
         {
             "name": "khipu",
             "buildsystem": "cmake-ninja",
-            "sources": [ { "type": "git", "url": "https://invent.kde.org/education/khipu" } ]
+            "sources": [ { "type": "dir", "path": "." } ]
+
         }
     ]
 }
