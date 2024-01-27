@@ -370,7 +370,7 @@
 <para
 >El principal avantatge dels diccionaris és afegir les trames sense escriure grans equacions. Per això, afegiu qualsevol espai en el &khipu;. Després, canvieu a la pestanya <guilabel
 >Afegeix des del diccionari</guilabel
->. Hi podreu afegir el fitxer de diccionari segons allò que vulgueu. Només haureu de fer doble clic sobre el nom de la trama per afegir-la a l'espai actual del &khipu;. </para>
+>. Hi podreu afegir el fitxer de diccionari segons allò que vulgueu. Només haureu de fer doble clic sobre el nom de la trama per a afegir-la a l'espai actual del &khipu;. </para>
 <para>
 <screenshot>
 <screeninfo
@@ -447,7 +447,7 @@
 <para
 >Un dels avantatges clau del &khipu; és tenir <emphasis
 >algunes altres funcionalitats útils</emphasis
-> per tractar el traçat de la funció matemàtica a part de només traçar. Les diverses accions de l'aplicació i altres característiques fan que el &khipu; sigui més fàcil d'utilitzar. </para>
+> per a tractar el traçat de la funció matemàtica a part de només traçar. Les diverses accions de l'aplicació i altres característiques fan que el &khipu; sigui més fàcil d'utilitzar. </para>
 <sect3 id="new-open-save-saveas"
 ><title
 >Nou/Obre/Desa/Desa com a</title>
