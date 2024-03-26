@@ -1,0 +1,674 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY khipu "<application
+>Khipu</application
+>">
+  <!ENTITY analitza "<application
+>Analitza</application
+>">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE">
+]>
+<book lang="&language;">
+<bookinfo>
+<title
+>&khipu; Priročnik</title>
+<authorgroup>
+<author>
+<personname
+><firstname
+>Ta dokumentacija je bila pretvorjena iz &kde; UserBase <ulink url=" https://userbase.kde.org/Khipu/Manual/Introduction"
+>strani &khipu;/Manual</ulink
+>.</firstname
+> <surname
+></surname
+> </personname>
+      </author>
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+      </authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>18.09.2013</date>
+      <releaseinfo
+>1.0</releaseinfo>
+<abstract>
+<para
+></para>
+      </abstract>
+      <keywordset>
+<keyword
+>KDE</keyword>
+</keywordset>
+</bookinfo>
+<!--userbase <timestamp
+>2013-09-18T20:20:52Z</timestamp
+>-->
+
+<!--userbase-content-->
+<chapter id="khipu-plotting-is-just-a-fun"
+><title
+>&khipu; Risanje je samo zabava</title>
+<para
+>&khipu; je napredna aplikacija za risalnik matematičnih funkcij. </para>
+<para
+>Je del <ulink url="http://edu.kde.org"
+>&kde; Izobraževalni projekt</ulink
+> in zamenjava prejšnje aplikacije za risanje funkcij &kmplot;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="khipu_space3d.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; 3D prostor</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; 3D prostor</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect1 id="quick-start-guide"
+><title
+>Vodnik za hiter začetek</title>
+<sect2 id="idea-of-space"
+><title
+>Ideja prostora</title
+> 
+<para
+>&khipu; uporablja abstrakcijo <emphasis
+>prostora</emphasis
+>, da shrani izrise, ki jih zahteva uporabnik. Prostor bo imel svoje ime in ustrezen opis, po katerem ga bo uporabnik kasneje lahko prepoznal. &khipu; ima dve vrsti prostorov (2D in 3D). Uporabnik lahko <emphasis
+>ploskev shrani</emphasis
+> v enega od prostorov, odvisno od svoje želje. <emphasis
+>Vsak prostor bo vseboval več risb</emphasis
+> različnih barv, intervalov in vrst. </para>
+</sect2>
+<sect2 id="how-to-plot-functions-in-khipu-"
+><title
+>Kako narisati funkcije v &khipu;?</title
+> 
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig1.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu;-Dodaj prostor 2D/3D</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu;-Dodaj prostor 2D/3D</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Kot že omenjeno, &khipu; riše funkcije v prostoru. Torej obstajata dva načina za dodajanje prostora v &khipu; glede na dimenzijo risbe. Ko ste v glavnem oknu &khipu; (Na nadzorni plošči v smislu terminologije &khipu;) boste videli <guilabel
+>Glavno orodno vrstico</guilabel
+>, ki vsebuje gumba <guilabel
+>Dodaj prostor 2D</guilabel
+> in <guilabel
+>Dodaj prostor 3D</guilabel
+> . Uporabnik lahko izbere enega od njih, odvisno od funkcije, ki jo želi narisati. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig2.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Dodaj risbo v prostoru</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Dodaj risbo v prostoru</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<sect3 id="plots-represented-in-two-dimension"
+><title
+>Risbe, predstavljene v 2-dimenzijah</title
+> 
+<para
+>Ko uporabnik klikne <guibutton
+>Dodaj prostor 2D</guibutton
+>, bo preusmerjen na uporabniški vmesnik 2D prostora. Nato mora klikniti na <guilabel
+>zeleni gumb</guilabel
+>, ki bo uporabniku omogočil dodajanje risbe. Nato mora uporabnik izbrati vrsto grafa (na primer kliknite <guilabel
+>Graf</guilabel
+> v kartezičnem razdelku, če želite narisati sinusno krivuljo!) Ime grafa lahko dodate tako, da označite potrditveno polje imena grafa. Nato mora uporabnik <guilabel
+>dodati ustrezno enačbo</guilabel
+> (enačba tipa &analitza;), da vidi njen izris. Če ne želite ničesar drugega, <emphasis
+>samo pritisnite &Enter;</emphasis
+>. Nastavite lahko celo barvo risbe, tako da spremenite možnost na spodnjem seznamu barv in nastavite ustrezen interval za argumente funkcije. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig3.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Primer 2D-grafa</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Primer 2D-grafa</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="plots-represented-in-three-dimension"
+><title
+>Risbe predstavljene v 3-dimenzijah</title>
+<para
+>Ko uporabnik klikne <guibutton
+>Dodaj prostor 3D</guibutton
+>, bo preusmerjen na uporabniški vmesnik 3D prostora. Nato mora klikniti na <guilabel
+>zeleni gumb</guilabel
+>, ki bo uporabniku omogočil dodajanje risbe. Nato mora uporabnik izbrati vrsto izrisa (na primer, kliknite <guilabel
+>Graf</guilabel
+> v kartezičnem razdelku, če želite izrisati preprosto površino!) Ime izrisa lahko dodate tako, da označite potrditveno polje imena izrisa. Nato mora uporabnik <guilabel
+>dodati ustrezno enačbo</guilabel
+> (enačba tipa &analitza;), da vidi njen izris. Če ne želite ničesar drugega, <emphasis
+>samo pritisnite &Enter;</emphasis
+>. Nastavite lahko celo barvo risbe, tako da spremenite možnost na spodnjem seznamu barv. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig4.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Uredi/Odstrani risbe</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Uredi/Odstrani risbe</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="how-to-edit-remove-functions-from-khipu-"
+><title
+>Kako urediti/odstraniti funkcije iz &khipu;?</title
+> 
+<para
+>Uporabnik lahko ureja in/ali odstrani že dodane ploskve. </para>
+<sect3 id="editing-an-already-added-plot"
+><title
+>Urejanje že dodane ploskve</title
+> 
+<para
+>Graf lahko uredite tako, da samo <emphasis
+>dvokliknete na vnos ploskve</emphasis
+> v pogledu ploskev ali pa tam izberete ustrezen vnos in nato kliknete gumb za urejanje, prikazan spodaj. </para>
+</sect3>
+<sect3 id="removing-a-plot"
+><title
+>Odstranitev risbe</title
+> 
+<para
+>Izris lahko odstranite tako, da v pogledu izberete želeni izris in nato kliknete spodaj prikazan gumb <guilabel
+>Odstrani</guilabel
+>. </para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="playing-with-plot-dictionary"
+><title
+>Igranje s slovarjem Plot</title>
+<sect2 id="what-is-a-plot-dictionary-"
+><title
+>Kaj je slovar risb?</title
+> 
+<para
+>Slovar risb je neke vrste besedilna datoteka (<filename role="extension"
+>.plots</filename
+>), ki vsebuje ime risbe skupaj z njegovo enačbo. Osnovna ideja slovarskih datotek je dodajanje risb v &khipu; ne da bi dejansko vtipkali velike enačbe. Uporabnik lahko doda ploskve glede na njegovo ime z uporabo slovarjev. Imamo že nekaj vnaprej določenih slovarjev, ki uporabniku omogočajo vnos nekaterih znanih risb (&ie; krivulj in površin). Uporabnik lahko celo prenese slovarje prek interneta. </para>
+<sect3 id="syntax"
+><title
+>Sintaksa</title
+> 
+<para
+>Sintaksa slovarske datoteke sledi sintaksi &analitza;. Vsaka vrstica v datoteki bo vsebovala ime in ustrezno enačbo. </para>
+<para
+>Na primer: Tipična slovarska datoteka bi imela naslednje vrstice: </para>
+<itemizedlist>
+<listitem
+><para
+>sinus := x-&gt;sin x</para
+></listitem>
+<listitem
+><para
+>plane1 := (x, y, z)-&gt;(x+y+z)-1</para
+></listitem>
+</itemizedlist>
+</sect3>
+<sect3 id="adding-your-own-dictionary-file"
+><title
+>Dodajanje lastne datoteke s slovarjem</title
+> 
+<para
+>Prilagodljiva sintaksa &analitza; bi uporabniku omogočila ustvarjanje lastne slovarske datoteke! Uporabnik mora shraniti besedilno datoteko s pripono <filename role="extension"
+>.plots</filename
+> s pravilnim imenom grafa in enačbami v vsaki vrstici. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig5.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Slovar risb v glavni orodni vrstici</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Slovar risb v glavni orodni vrstici</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+<sect3 id="lets-have-a-look-at-the-plots-of-the-dictionary-files"
+><title
+>Oglejmo si risbe slovarskih datotek</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig6.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Uporabniški vmesnik Slovar risb</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Uporabniški vmesnik Slovar risb</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Če želite videti, kako &khipu; uporablja slovar, pritisnite zavihek <guilabel
+>Slovar risb</guilabel
+>, prikazan v glavni orodni vrstici &khipu;. Nato preklopite na druga imena v spustnem polju z oznako <emphasis
+>zbirka</emphasis
+>. Kliknite katero koli ime ploskve in na desni strani okna boste videli ustrezno ploskev. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig7.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Uporabniški vmesnik Slovar risb</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Uporabniški vmesnik Slovar risb</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect3>
+</sect2>
+<sect2 id="adding-plots-from-the-dictionary"
+><title
+>Dodajanje ploskev iz Slovarja</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig8.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Dodajte risbe iz slovarja</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Dodajte risbe iz slovarja</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Glavna prednost slovarjev je dodajanje risb brez vnašanja velikih enačb. Za to dodajte poljuben prostor v &khipu;. Nato preklopite na zavihek <guilabel
+>Dodaj iz slovarja</guilabel
+>. Tja lahko po želji dodate slovarsko datoteko. Samo dvokliknite na ime ploskve, da jo dodate v trenutni prostor v &khipu;. </para>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig9.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Uvozi/prenesi slovar</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Uvoz/prenos slovarja</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+</sect2>
+<sect2 id="import-dictionary-file-from-a-local-disk"
+><title
+>Uvozi slovarsko datoteko z lokalnega diska</title>
+<para
+>Ne gre za to, da lahko samo dodate/vidite risbo iz vnaprej določenih slovarjev, ki jih ponuja &analitza;. Lahko celo uvozite kateri koli preneseni/ročno ustvarjeni slovar v &khipu; in lahko doda izrise iz njega na prostor v &khipu;! </para>
+</sect2>
+<sect2 id="download-dictionary-file-from-the-internet"
+><title
+>Prenesite slovarsko datoteko z interneta</title>
+<para
+>Uporaba <guilabel
+>API dobi vroče nove stvari</guilabel
+> v &khipu; bo uporabniku omogočil prenos teh slovarskih datotek s spleta. Na ta način ima lahko uporabnik na voljo bogato zbirko slovarjev po vsem svetu. To lahko dosežete tako, da v uporabniškem vmesniku slovarja preprosto kliknete <guilabel
+>Dobi risbe datotek slovarja</guilabel
+>. </para>
+</sect2>
+<sect2 id="export-a-space-as-a-dictionary"
+><title
+>Izvozi prostor kot slovar</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig11.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Izvozi prostor kot slovar</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Izvozi prostor kot slovar</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Uporabnik lahko celo izvozi cel prostor v slovar z imeni in enačbami ploskev, shranjenih v tem določenem prostoru. Za to morate klikniti pojdi <guilabel
+>Domov</guilabel
+> in nato klikniti <emphasis
+>orodni gumb</emphasis
+> na sličici presledka, ki vam pove o izvozu prostora v slovarju. </para>
+</sect2>
+</sect1>
+<sect1 id="khipu---beyond-just-plotting"
+><title
+>&khipu;: Poleg načrtovanja</title>
+<sect2 id="khipus-application-actions"
+><title
+>Dejanja aplikacije &khipu;</title
+> 
+<para
+>Ena od ključnih prednosti &khipu; je imeti <emphasis
+>nekaj drugih uporabnih funkcionarjev</emphasis
+>, ki se ukvarjajo z risanjem matematičnih funkcij, ne le z njihovim risanjem. Zaradi različnih aplikacijskih dejanj in drugih funkcij &khipu; uporabniku prijaznejši. </para>
+<sect3 id="new-open-save-saveas"
+><title
+>Novo/Odpri/Shrani/Shrani kot</title>
+<para
+>Običajna dejanja Novo, Odpri, Shrani in Shrani kot omogočajo uporabnikom, da delajo z različnimi sejami in <emphasis
+>shranjujejo svoje delo v obstojne datoteke (datoteke <filename role="extension"
+>.khipu</filename
+>)</emphasis
+> ki jih lahko odpre pozneje. Datoteka obstojnosti sledi <emphasis
+>formatu datoteke QJson</emphasis
+>, ki shrani pomembne informacije iz trenutne seje. Te informacije vključujejo ime dodanih prostorov, ime in enačbe ploskev, dodanih v vsak prostor, interval ploskev in njihovo barvo. </para>
+</sect3>
+<sect3 id="save-plot-as-image"
+><title
+>Shrani risbo kot sliko</title>
+<para
+>V &khipu; bo imel vsak prostor svojo ustrezno sliko, ki vsebuje risbe, ki jih zahteva uporabnik. Sliko prostora lahko shranite (datoteka <acronym
+>PNG</acronym
+>) na lokalni disk s tem dejanjem aplikacije. </para>
+</sect3>
+<sect3 id="take-snapshot"
+><title
+>Napravite posnetek</title>
+<para
+>S tem dejanjem lahko celo kopirate sliko prostora v odložišče. </para>
+</sect3>
+<sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
+><title
+>Želite na celotnem zaslonu videti le risbo?</title>
+<para
+>Celozaslonska možnost v &khipu; bo uporabniku omogočil samo ogled prostora risbe. Vsi drugi doki in orodne vrstice bodo med aktiviranjem celozaslonskega načina nevidni! </para>
+</sect3>
+<sect3 id="space-navigation"
+><title
+>Prostorska navigacija</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig12.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Možnosti prostorske navigacije</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Možnosti prostorske navigacije</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Ko je uporabnik na poljubnem prostoru (2D ali 3D), lahko z enim pritiskom na tipko preklopi na naslednji/prejšnji/prvi/zadnji prostor. Bližnjice za to so naslednje: </para>
+<itemizedlist>
+<listitem
+><para
+>Pomik na naslednji prostor -&gt; &PgUp;</para
+></listitem>
+<listitem
+><para
+>Pomik na prejšnji prostor -&gt; &PgDn;</para
+></listitem>
+<listitem
+><para
+>Pomaknite se do prvega prostora -&gt; <keycombo
+>&Ctrl;&Home;</keycombo
+></para
+></listitem>
+<listitem
+><para
+>Pomakni se na zadnji prostor -&gt; <keycombo
+>&Ctrl;&End;</keycombo
+></para
+></listitem>
+</itemizedlist>
+</sect3>
+</sect2>
+<sect2 id="dashboard--all-the-work-available-on-the-hands"
+><title
+>Armaturna plošča: vse delo na voljo na rokah</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig13.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Glavna nadzorna plošča</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Glavna nadzorna plošča</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Glavna nadzorna plošča &khipu; vsebuje vse prostore, ki jih je ustvaril uporabnik s svojo sličico in imenom prostora. Tako lahko uporabnik ve, kateri prostor želi spremeniti ali vidi svoje risbe. </para>
+</sect2>
+<sect2 id="space-filter-based-on-titledescription-and-dimension"
+><title
+>Filter prostora na podlagi naslova, opisa in dimenzije</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig14.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Prostorski filter</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Prostorski filter</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Funkcija filtra, ki je na voljo na nadzorni plošči, bo uporabniku omogočila filtriranje prostorov glede na njihov naslov in/ali opis. Prostor lahko celo filtrirate glede na dimenzijo, izbrano v spustnem polju, prikazanem v zgornjem desnem kotu uporabniškega vmesnika nadzorne plošče. </para>
+</sect2>
+<sect2 id="shortcuts-dock---an-easy-way-of-plotting"
+><title
+>Bližnjice Dok: preprost način risanja</title>
+<para>
+<screenshot>
+<screeninfo
+></screeninfo>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="myfig15.png" format="PNG"/>
+    </imageobject>
+    <textobject>
+      <phrase
+>&khipu; - Dok za bližnjice</phrase>
+    </textobject>
+    <caption>
+      <para
+>&khipu; - Dok za bližnjice</para>
+    </caption>
+  </mediaobject>
+</screenshot>
+</para>
+<para
+>Če želi uporabnik hitro risati, ne da bi skrbel za prostore, mu/ji bo to omogočila vrstica za bližnjice. Za to morate vnesti <keycap
+>S</keycap
+> in nato v tem doku izbrati vrsto risbe, vnesti enačbo, pritisniti &Enter; in to je to! </para>
+</sect2>
+<sect2 id="zoom-in-out-and-rotations-in-the-plots-view"
+><title
+>Povečava/pomanjšanje in rotacije v pogledu risb</title>
+<para
+>2D in 3D prostor imata funkcionalnost, s katero lahko povečate in/ali pomanjšate prostor ploskve tako, da se samo pomaknete gor/dol. 3D prostor ima podporo za rotacije in sence, ki uporabniku omogočajo analizo 3D risb iz različnih zornih kotov! </para>
+</sect2>
+</sect1>
+</chapter>
+<chapter id="credits-and-license"
+><title
+>Zasluge in licenca</title
+> 
+<sect1 id="program-copyright"
+><title
+>Avtorske pravice programa</title>
+<para
+>Avtorske pravice za program 2010-2012 Percy Camilo Trive&ntilde;o Aucahuasi </para>
+</sect1>
+<sect1 id="documentation-copyright"
+><title
+>Avtorske pravice za dokumentacijo</title
+> 
+<para
+><note
+><para
+>Če prispevate k priročniku, dodajte svoje ime. Prosimo, upoštevajte abecedni vrstni red</para
+></note>
+</para>
+<para
+>Punit Mehta (punit9462 gmail.com) </para>
+</sect1>
+<sect1 id="licenses"
+><title
+>Licence</title
+> 
+<para
+>Ta dokumentacija je licencirana pod pogoji <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>&GNU; Licenca za prosto dokumentacijo</ulink
+>. </para>
+<para
+>Ta program je licenciran pod pogoji <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
+>&GNU; Splošna javna licenca</ulink
+>. </para>
+
+<!--userbase-content-->
+<para
+>Prevod: Matjaž Jeran <email
+>matjaz.jeran@amis.net</email
+></para
+> &underFDL; </sect1>
+</chapter>
+&documentation.index;
+</book>
