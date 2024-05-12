@@ -98,7 +98,7 @@ msgstr "Corbes algebraiques famoses"
 #: src/dashboard.ui:90
 #, kde-format
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #: src/datastore.cpp:168
 #, kde-format
@@ -170,7 +170,7 @@ msgstr "Dimensió 3D"
 #: src/filter.ui:42
 #, kde-format
 msgid "Filter by space name or description..."
-msgstr "Filtra per noms d'espai o descripció..."
+msgstr "Filtra per noms d'espai o descripció…"
 
 #: src/main.cpp:32
 #, kde-format
