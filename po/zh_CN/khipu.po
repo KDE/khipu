@@ -107,7 +107,7 @@ msgstr "绘图词典文件 (*.plots);;所有文件 (*)"
 #: src/datastore.cpp:178
 #, kde-format
 msgid "Error while saving file, no plots available for this space"
-msgstr "保存文件时出错，此空间无可用绘图。"
+msgstr "保存文件时发生错误，此空间没有可用的绘图。"
 
 #: src/datastore.cpp:178
 #, kde-format
