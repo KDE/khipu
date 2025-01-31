@@ -856,7 +856,7 @@ msgstr "Marcas horizontais e verticais"
 #: src/spaceoptions.ui:254
 #, kde-format
 msgid "Axis"
-msgstr "Eixo"
+msgstr "Eixe"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showGrid)
 #: src/spaceoptions.ui:270
