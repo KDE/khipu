@@ -680,7 +680,7 @@ msgstr "Gràfics"
 #, kde-format
 msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Feu clic ací per a afegir un gràfic</p></body></html>"
+"<html><head/><body><p>Cliqueu ací per a afegir un gràfic</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, editPlot)
 #: src/plotseditor.ui:110
