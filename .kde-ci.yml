@@ -16,3 +16,6 @@ Dependencies:
     'frameworks/kdelibs4support': '@stable'
     'frameworks/kdoctools': '@stable'
     'education/analitza': '@stable'
+
+Options:
+  require-passing-tests-on: [ '@all' ]
