@@ -125,7 +125,7 @@ msgstr "S'ha produït un error en guardar un diccionari"
 #: src/dictionarycollection.cpp:152
 #, kde-format
 msgid "Select Dictionary to import"
-msgstr "Seleccioneu el diccionari que s'ha d'importar"
+msgstr "Trieu el diccionari que s'ha d'importar"
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
 #: src/dictionarycollection.ui:14
