@@ -15,6 +15,7 @@
   <name xml:lang="fi">Khipu</name>
   <name xml:lang="fr">Khipu</name>
   <name xml:lang="gl">Khipu</name>
+  <name xml:lang="he">Khipu</name>
   <name xml:lang="hi">Khipu</name>
   <name xml:lang="id">Khipu</name>
   <name xml:lang="it">Khipu</name>
@@ -45,6 +46,7 @@
   <summary xml:lang="fi">Kehittynyt matemaattisten funktioiden kaavionpiirto</summary>
   <summary xml:lang="fr">Traceur avancé de fonctions mathématiques</summary>
   <summary xml:lang="gl">Representación gráfica avanzada de funcións</summary>
+  <summary xml:lang="he">משרטט מתקדם לפונקציות מתמטיות</summary>
   <summary xml:lang="hi">उन्नत गणितीय फंक्शन प्लॉटर</summary>
   <summary xml:lang="id">Plotter Fungsi Matematika Canggih</summary>
   <summary xml:lang="it">Plotter avanzato di funzioni matematiche</summary>
@@ -73,6 +75,7 @@
     <p xml:lang="fi">Mahtava ohjelma kaavioidesi järjestämiseen ja selaamiseen tarvittaessa.</p>
     <p xml:lang="fr">Un logiciel génial qui vous permet de classer vos tracés et de les retrouver quand vous en avez besoin.</p>
     <p xml:lang="gl">Gran programa para manter as gráficas organizadas e examinalas cando se necesite.</p>
+    <p xml:lang="he">תוכנה נהדרת לסידור השרטוטים שלך ולעיין בהם לפי הצורך.</p>
     <p xml:lang="hi">एक बढिया साफ्टवेयर जो आपके प्लोट को व्यवस्थित, व जरूरत पर ब्रउज करने देता है.</p>
     <p xml:lang="id">Software yang bagus untuk menjaga plot-plotmu dalam urutan dan menelusurinya kalau diperlukan.</p>
     <p xml:lang="it">Un ottimo software per mantenere in ordine i tuoi grafici e sfogliarli quando necessario.</p>
