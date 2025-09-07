@@ -1,0 +1,867 @@
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the khipu package.
+#
+# SPDX-FileCopyrightText: 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: khipu\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-11-05 12:23+0000\n"
+"PO-Revision-Date: 2025-09-06 10:57+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.08.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "צוות התרגום של KDE ישראל"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde-l10n-he@kde.org"
+
+#: src/dashboard.cpp:117
+#, kde-format
+msgid ""
+"Please make sure that the dictionary (.plots) files are correctly installed"
+msgstr "נא לוודא שקובצי המילון (‎.plots) מותקנים כראוי"
+
+#: src/dashboard.cpp:118
+#, kde-format
+msgid "No Dictionary found!"
+msgstr "לא נמצא מילון!"
+
+#: src/dashboard.cpp:229 src/mainwindow.cpp:506
+#, kde-format
+msgid "Open"
+msgstr "פתיחה"
+
+#: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
+#, kde-format
+msgid "Dictionary Files (*.plots);;All Files (*)"
+msgstr "קובצי מילון (‎*.plots);;כל הקבצים (*)"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "Where to export"
+msgstr "להיכן לייצא"
+
+#: src/dashboard.cpp:253
+#, kde-format
+msgid "PNG Image File (*.png)"
+msgstr "קובצי תמונות PNG‏ (‎*.png)"
+
+#. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
+#: src/dashboard.ui:20
+#, kde-format
+msgid "StackedWidget"
+msgstr "וידג׳ט_מוערם"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/dashboard.ui:64
+#, kde-format
+msgid "Plot Dictionary (.plots file) Options"
+msgstr "אפשרויות מילוני שרטוט (קובץ ‎.plots)"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dashboard.ui:72
+#, kde-format
+msgid "Collection:"
+msgstr "אוסף:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:80
+#, kde-format
+msgid "Main"
+msgstr "ראשי"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:85
+#, kde-format
+msgid "Famous Algebraic Curves"
+msgstr "עקומים אלגבריים מפורסמים"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
+#: src/dashboard.ui:90
+#, kde-format
+msgid "..."
+msgstr "…"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Export the space as a Dictionary"
+msgstr "ייצוא המרחב כמילון"
+
+#: src/datastore.cpp:168
+#, kde-format
+msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
+msgstr "קובצי יומן שרטוט (‎*.plots);;כל הקבצים (*)"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving file, no plots available for this space"
+msgstr "שגיאה בשמירת קובץ, אין שרטוטים זמינים למרחב הזה"
+
+#: src/datastore.cpp:178
+#, kde-format
+msgid "Error while saving a dictionary"
+msgstr "שגיאה בשמירת מילון"
+
+#: src/dictionarycollection.cpp:152
+#, kde-format
+msgid "Select Dictionary to import"
+msgstr "נא לבחור יומן לייבוא"
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
+#: src/dictionarycollection.ui:14
+#, kde-format
+msgid "Add from Dictionary"
+msgstr "הוספה ממילון"
+
+#. i18n: ectx: property (text), widget (QPushButton, importDictionary)
+#: src/dictionarycollection.ui:21
+#, kde-format
+msgid "Import Dictionary"
+msgstr "ייבוא מילון"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/dictionarycollection.ui:89
+#, kde-format
+msgid "Collection: "
+msgstr "אוסף: "
+
+#. i18n: ectx: property (text), widget (QPushButton, AddButton)
+#: src/dictionarycollection.ui:99
+#, kde-format
+msgid "Add"
+msgstr "הוספה"
+
+#: src/filter.cpp:29
+#, kde-format
+msgid "Dimension All"
+msgstr "ממד הכול"
+
+#: src/filter.cpp:30
+#, kde-format
+msgid "Dimension 2D"
+msgstr "ממד דו־ממדי"
+
+#: src/filter.cpp:31
+#, kde-format
+msgid "Dimension 3D"
+msgstr "ממד תלת־ממדי"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
+#: src/filter.ui:42
+#, kde-format
+msgid "Filter by space name or description..."
+msgstr "סינון לפי שם או תיאור מרחב…"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Khipu"
+msgstr "Khipu"
+
+#: src/main.cpp:32
+#, kde-format
+msgid "Advanced Mathematical Function Plotter"
+msgstr "משרטט מתקדם לפונקציות מתמטיות"
+
+#: src/main.cpp:33
+#, kde-format
+msgid "(C) 2010-2012, Percy Camilo Triveño Aucahuasi"
+msgstr "‏(C) 2010‏-2012, פרסי קילו טריבניו אוקאהוסאי"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Percy Camilo Triveño Aucahuasi"
+msgstr "פרסי קילו טריבניו אוקאהוסאי"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Main developer"
+msgstr "המפתח הראשי"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Punit Mehta"
+msgstr "פוניט מהטה"
+
+#: src/main.cpp:37
+#, kde-format
+msgid ""
+"GSoC-2013 student - Persistance file support. Plot-dictionary support. "
+"Worked for application actions, command-line improvements and space "
+"filtering. Several bug fixings"
+msgstr ""
+
+#: src/main.cpp:38
+#, kde-format
+msgid "Manuel Álvarez Blanco"
+msgstr "מנואל אלברז בלנקו"
+
+#: src/main.cpp:38
+#, kde-format
+msgid ""
+"Thesis mentor - Guide and supervision during project conception. "
+"Bibliographical support. Numeric Mathematics and Algorithms support"
+msgstr ""
+
+#: src/main.cpp:39
+#, kde-format
+msgid "José Ignacio Cuevas Gonzáles"
+msgstr "חוזה איגנסיו קואבז גונזלס"
+
+#: src/main.cpp:39
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Product Guide, Product promotion and former "
+"Client"
+msgstr ""
+
+#: src/main.cpp:40
+#, kde-format
+msgid "Eduardo Fernandini Capurro"
+msgstr "אדוארדו פרננדיני קאפורו"
+
+#: src/main.cpp:40
+#, kde-format
+msgid ""
+"Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
+"former Client"
+msgstr ""
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Jaime Urbina Pereyra"
+msgstr "ג׳ם אורבינה פריירה"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Thesis mentor - Supervision and former Main Project Mentor"
+msgstr ""
+
+#: src/main.cpp:43
+#, kde-format
+msgid "Aleix Pol Gonzalez"
+msgstr "אלש פול גונזלז"
+
+#: src/main.cpp:43
+#, kde-format
+msgid "KAlgebra and Analitza parser author, both vitals for the project"
+msgstr ""
+
+#: src/main.cpp:45
+#, kde-format
+msgid "José Fernando Ramos Ramirez"
+msgstr "חוזה פרננדו ראמוס רמירז"
+
+#: src/main.cpp:45
+#, kde-format
+msgid "First version of Famous Curves Database. Build former windows installer"
+msgstr ""
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Susan Pamela Rios Sarmiento"
+msgstr "סוזן פמלה ריוס סרמיינטו"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "First version of Famous Curves Database"
+msgstr ""
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Edgar Velasquez"
+msgstr "אדגר ולאסקז"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "2D Improvements"
+msgstr "שיפורי דו־ממד"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Jose Torres Cardenas"
+msgstr "חוזה טורס קרדנאס"
+
+#: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
+#, kde-format
+msgid "3D Improvements"
+msgstr "שיפורי תלת־ממד"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "Elizabeth Portilla Flores"
+msgstr "אליזבת פורטייה פלורס"
+
+#: src/main.cpp:51
+#, kde-format
+msgid "Paul Murat Landauro Minaya"
+msgstr "פול מוראט לנדוארו מינאיה"
+
+#: src/main.cpp:57
+#, kde-format
+msgid "Khipu files to open"
+msgstr "קובצי Khipu לפתיחה"
+
+#: src/main.cpp:58
+#, kde-format
+msgid "Always start with a new file, ignoring any autosaved file"
+msgstr "תמיד להתחיל עם קובץ חדש, תוך התעלמות מקבצים שנשמרו אוטומטית"
+
+#: src/mainwindow.cpp:142
+#, kde-format
+msgid "&Shortcuts"
+msgstr "&קיצורי דרך"
+
+#: src/mainwindow.cpp:226
+#, kde-format
+msgid "&Save Plot as PNG"
+msgstr "&שמירת שרטוט כ־PNG"
+
+#: src/mainwindow.cpp:229
+#, kde-format
+msgid "Add Space &2D"
+msgstr ""
+
+#: src/mainwindow.cpp:230
+#, kde-format
+msgid "Add Space &3D"
+msgstr ""
+
+#: src/mainwindow.cpp:235
+#, kde-format
+msgid "Create a plot in a new space"
+msgstr "יצירת שרטוט במרחב חדש"
+
+#: src/mainwindow.cpp:238
+#, kde-format
+msgid "Plot &Dictionaries"
+msgstr "מי&לוני שרטוטים"
+
+#: src/mainwindow.cpp:263
+#, kde-format
+msgid "&Go First Space"
+msgstr "מעבר למרחב ה&ראשון"
+
+#: src/mainwindow.cpp:268
+#, kde-format
+msgid "&Go Previous Space"
+msgstr "מ&עבר למרחב הקודם"
+
+#: src/mainwindow.cpp:273
+#, kde-format
+msgid "&Go Next Space"
+msgstr "מ&עבר למרחב הבא"
+
+#: src/mainwindow.cpp:278
+#, kde-format
+msgid "&Go Last Space"
+msgstr "מ&עבר למרחב האחרון"
+
+#: src/mainwindow.cpp:284
+#, kde-format
+msgid "&Remove Current Space"
+msgstr "ה&סרת המרחב הנוכחי"
+
+#: src/mainwindow.cpp:286
+#, kde-format
+msgid "&Take Snapshot"
+msgstr "&צילום המסך"
+
+#: src/mainwindow.cpp:287
+#, kde-format
+msgid "&Get Plot-Dictionary files"
+msgstr ""
+
+#: src/mainwindow.cpp:288
+#, kde-format
+msgid "&Import Plot-Dictionary file"
+msgstr ""
+
+#: src/mainwindow.cpp:333 src/mainwindow.cpp:376
+#, kde-format
+msgid "There is not any space available to show!"
+msgstr ""
+
+#: src/mainwindow.cpp:337
+#, kde-format
+msgid "Currently you are on the first space!"
+msgstr "המרחב הנוכחי הוא הראשון!"
+
+#: src/mainwindow.cpp:348
+#, kde-format
+msgid "You are already on the first space!"
+msgstr "המרחב הנוכחי הוא כבר הראשון!"
+
+#: src/mainwindow.cpp:360
+#, kde-format
+msgid "You are already on the last space!"
+msgstr "המרחב הנוכחי הוא כבר האחרון!"
+
+#: src/mainwindow.cpp:380
+#, kde-format
+msgid "Currently you are on the last space!"
+msgstr "המרחב הנוכחי הוא האחרון!"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Press Ctrl + M to make menubar visible again"
+msgstr "יש ללחוץ על Ctrl +M כדי שסרגל התפריטים ישוב להופיע"
+
+#: src/mainwindow.cpp:400
+#, kde-format
+msgid "Menubar Visibility"
+msgstr "חשיפת סרגל תפריטים"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid "No need to create New Window"
+msgstr "לא צריך ליצור חלון חדש"
+
+#: src/mainwindow.cpp:446
+#, kde-format
+msgid ""
+"There are not any plots available. So, you do not need to create a new Plot "
+"Window"
+msgstr "אין שרטוטים זמינים. לן, לא צריך ליצור חלון שרטוט חדש"
+
+#: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Khipu Files (*.khipu);;All Files (*)"
+msgstr "קובצי Khipu‏ (‎*.khipu);;כל הקבצים (*)"
+
+#: src/mainwindow.cpp:528
+#, kde-format
+msgid "The file does not exist."
+msgstr "הקובץ לא קיים."
+
+#: src/mainwindow.cpp:536
+#, kde-format
+msgid "An error appeared when opening this file (%1)"
+msgstr "אירעה שגיאה בפתיחת הקובץ (%1)"
+
+#: src/mainwindow.cpp:550
+#, kde-format
+msgid "Do you want to recover the file you have not saved last time?"
+msgstr "לשחזר את הקובץ שלא שמרת בפעם הקודמת?"
+
+#: src/mainwindow.cpp:550 src/mainwindow.cpp:578
+#, kde-format
+msgid "Autosaved .khipu file"
+msgstr "קובץ ‎.khipu שנשמר אוטומטית"
+
+#: src/mainwindow.cpp:578
+#, kde-format
+msgid ""
+"There are some unsaved changes in the file %1. Do you want to recover them?"
+msgstr ""
+
+#: src/mainwindow.cpp:589
+#, kde-format
+msgid "Error while reading file, maybe path is not found."
+msgstr ""
+
+#: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading"
+msgstr ""
+
+#: src/mainwindow.cpp:592
+#, kde-format
+msgid "%1 could not be opened"
+msgstr ""
+
+#: src/mainwindow.cpp:606
+#, kde-format
+msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
+msgstr ""
+
+#: src/mainwindow.cpp:667 src/mainwindow.cpp:712
+#, kde-format
+msgid "Save As"
+msgstr ""
+
+#: src/mainwindow.cpp:675
+#, kde-format
+msgid ""
+"The file which you want to save, already exists. Do you want to overwrite "
+"this file?"
+msgstr ""
+
+#: src/mainwindow.cpp:676
+#, kde-format
+msgid "Warning: File already exists"
+msgstr ""
+
+#: src/mainwindow.cpp:695
+#, kde-format
+msgid "The current file contains some unsaved work. Do you want to save it?"
+msgstr ""
+
+#: src/mainwindow.cpp:696
+#, kde-format
+msgid "Warning: Unsaved changes"
+msgstr ""
+
+#: src/mainwindow.cpp:750
+#, kde-format
+msgid "Error while reading file, file may be empty"
+msgstr ""
+
+#: src/mainwindow.cpp:815
+#, kde-format
+msgid "Could not open %1 for writing"
+msgstr ""
+
+#: src/mainwindow.cpp:815 src/mainwindow.cpp:826
+#, kde-format
+msgid "Error while writing"
+msgstr ""
+
+#: src/mainwindow.cpp:826
+#, kde-format
+msgid "Could not open %1 for writing %2"
+msgstr ""
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving file. Maybe path is not found"
+msgstr ""
+
+#: src/mainwindow.cpp:835
+#, kde-format
+msgid "Error while saving"
+msgstr ""
+
+#: src/mainwindow.cpp:857
+#, kde-format
+msgid "File %1 [%2] is saved successfully"
+msgstr ""
+
+#: src/mainwindow.cpp:1005
+#, kde-format
+msgid "The diagram was copied to clipboard"
+msgstr ""
+
+#: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
+#, kde-format
+msgid "Untitled %1"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
+#: src/plotsbuilder.ui:17
+#, kde-format
+msgid "Build a Cartesian Curve"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildCylindricalGraphSurface)
+#. i18n: ectx: property (text), widget (QPushButton, buildSphericalGraphSurface)
+#: src/plotsbuilder.ui:35 src/plotsbuilder.ui:93 src/plotsbuilder.ui:163
+#: src/plotsbuilder.ui:215 src/plotsbuilder.ui:247
+#, kde-format
+msgid "Graph"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
+#: src/plotsbuilder.ui:51 src/plotsbuilder.ui:173
+#, kde-format
+msgid "Implicit"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
+#. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricSurface)
+#: src/plotsbuilder.ui:61 src/plotsbuilder.ui:125 src/plotsbuilder.ui:183
+#, kde-format
+msgid "Parametric"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
+#: src/plotsbuilder.ui:87
+#, kde-format
+msgid "Build a Polar Curve"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
+#: src/plotsbuilder.ui:119
+#, kde-format
+msgid "Build a Space Curve"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
+#: src/plotsbuilder.ui:157
+#, kde-format
+msgid "Build a Cartesian Surface"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
+#: src/plotsbuilder.ui:209
+#, kde-format
+msgid "Build a Cylindrical Surface"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
+#: src/plotsbuilder.ui:241
+#, kde-format
+msgid "Build a Spherical Surface"
+msgstr ""
+
+#: src/plotseditor.cpp:66
+#, kde-format
+msgid "check/uncheck to show/hide the Axes"
+msgstr ""
+
+#: src/plotseditor.cpp:69
+#, kde-format
+msgid "Click to edit the plot"
+msgstr ""
+
+#: src/plotseditor.cpp:70
+#, kde-format
+msgid "Click to remove the plot"
+msgstr ""
+
+#: src/plotseditor.cpp:1019
+#, kde-format
+msgid "plot %1"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
+#: src/plotseditor.ui:20
+#, kde-format
+msgid "Plots"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
+#: src/plotseditor.ui:36
+#, kde-format
+msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, editPlot)
+#: src/plotseditor.ui:110
+#, kde-format
+msgid "Edit"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, removePlot)
+#: src/plotseditor.ui:120 src/spacesdelegate.cpp:74
+#, kde-format
+msgid "Remove"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
+#: src/plotseditor.ui:152
+#, kde-format
+msgid "Plot Name"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, plotIcon)
+#: src/plotseditor.ui:159
+#, kde-format
+msgid "TextLabel"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: src/plotseditor.ui:393
+#, kde-format
+msgid "Color:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/plotseditor.ui:409
+#, kde-format
+msgid "Style"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:417
+#, kde-format
+msgid "Solid"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:422
+#, kde-format
+msgid "Wired"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
+#: src/plotseditor.ui:427
+#, kde-format
+msgid "Dots"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, intervals)
+#: src/plotseditor.ui:453
+#, kde-format
+msgid "Use Intervals"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:655
+#, kde-format
+msgid "asdsada"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
+#: src/plotseditor.ui:658
+#, kde-format
+msgid "asdad"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
+#: src/spaceinformation.ui:41
+#, kde-format
+msgid "Notes"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: src/spaceinformation.ui:50
+#, kde-format
+msgid "Title:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: src/spaceinformation.ui:80
+#, kde-format
+msgid "Description:"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
+#: src/spaceoptions.ui:38
+#, kde-format
+msgid "Diagram"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: src/spaceoptions.ui:57
+#, kde-format
+msgid "Grid Options"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:87
+#, kde-format
+msgid "None"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:92
+#, kde-format
+msgid "Lines"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
+#: src/spaceoptions.ui:97
+#, kde-format
+msgid "Polar"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: src/spaceoptions.ui:105
+#, kde-format
+msgid "Grid Style:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
+#: src/spaceoptions.ui:115
+#, kde-format
+msgid "Grid Ticks"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_14)
+#: src/spaceoptions.ui:127
+#, kde-format
+msgid "Scale:"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
+#: src/spaceoptions.ui:159
+#, kde-format
+msgid "More Options"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
+#: src/spaceoptions.ui:173
+#, kde-format
+msgid "Horizontal Label:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
+#: src/spaceoptions.ui:183
+#, kde-format
+msgid "x"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
+#: src/spaceoptions.ui:193
+#, kde-format
+msgid "Vertical Label:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
+#: src/spaceoptions.ui:203
+#, kde-format
+msgid "y"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
+#: src/spaceoptions.ui:215
+#, kde-format
+msgid "Horizontal and Vertical Marks"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showAxis)
+#: src/spaceoptions.ui:254
+#, kde-format
+msgid "Axis"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showGrid)
+#: src/spaceoptions.ui:270
+#, kde-format
+msgid "Grid"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_16)
+#: src/spaceoptions.ui:289
+#, kde-format
+msgid "Size:"
+msgstr ""
+
+#: src/spacesdelegate.cpp:81
+#, kde-format
+msgid "Rename"
+msgstr ""
+
+#: src/spacesdelegate.cpp:88
+#, kde-format
+msgid "Export as dictionary"
+msgstr ""
+
+#: src/spacesmodel.cpp:41
+#, kde-format
+msgctxt "@title:column"
+msgid "Name"
+msgstr ""
+
+#: src/spacesmodel.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Description"
+msgstr ""
