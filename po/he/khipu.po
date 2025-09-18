@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:23+0000\n"
-"PO-Revision-Date: 2025-09-06 10:57+0300\n"
+"PO-Revision-Date: 2025-09-17 15:19+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 25.08.0\n"
 
 #, kde-format
@@ -256,7 +256,7 @@ msgstr "אלש פול גונזלז"
 #: src/main.cpp:43
 #, kde-format
 msgid "KAlgebra and Analitza parser author, both vitals for the project"
-msgstr ""
+msgstr "יוצר מפענח KAlgebra ו־Analitza, שניהם חיוניים למיזם"
 
 #: src/main.cpp:45
 #, kde-format
@@ -267,6 +267,7 @@ msgstr "חוזה פרננדו ראמוס רמירז"
 #, kde-format
 msgid "First version of Famous Curves Database. Build former windows installer"
 msgstr ""
+"הגרסה הראשונה של מסד נתוני העקומים המפורסמים. בניית המתקין ב־Windows לשעבר"
 
 #: src/main.cpp:46
 #, kde-format
@@ -276,7 +277,7 @@ msgstr "סוזן פמלה ריוס סרמיינטו"
 #: src/main.cpp:46
 #, kde-format
 msgid "First version of Famous Curves Database"
-msgstr ""
+msgstr "הגרסה הראשונה של מסד נתוני העקומים המפורסמים"
 
 #: src/main.cpp:48
 #, kde-format
@@ -391,7 +392,7 @@ msgstr ""
 #: src/mainwindow.cpp:333 src/mainwindow.cpp:376
 #, kde-format
 msgid "There is not any space available to show!"
-msgstr ""
+msgstr "אין מרחב זמין להצגה!"
 
 #: src/mainwindow.cpp:337
 #, kde-format
@@ -464,22 +465,22 @@ msgstr "קובץ ‎.khipu שנשמר אוטומטית"
 #, kde-format
 msgid ""
 "There are some unsaved changes in the file %1. Do you want to recover them?"
-msgstr ""
+msgstr "יש כמה שינויים שלא נשמרו לקובץ %1. לשחזר אותם?"
 
 #: src/mainwindow.cpp:589
 #, kde-format
 msgid "Error while reading file, maybe path is not found."
-msgstr ""
+msgstr "שגיאה בקריאת הקובץ, אולי הנתיב לא נמצא."
 
 #: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
 #, kde-format
 msgid "Error while reading"
-msgstr ""
+msgstr "שגיאה בקריאה"
 
 #: src/mainwindow.cpp:592
 #, kde-format
 msgid "%1 could not be opened"
-msgstr ""
+msgstr "לא ניתן לפתוח את %1"
 
 #: src/mainwindow.cpp:606
 #, kde-format
@@ -489,74 +490,74 @@ msgstr ""
 #: src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
 msgid "Save As"
-msgstr ""
+msgstr "שמירה בשם"
 
 #: src/mainwindow.cpp:675
 #, kde-format
 msgid ""
 "The file which you want to save, already exists. Do you want to overwrite "
 "this file?"
-msgstr ""
+msgstr "הקבצים האלה שמיועדים לשמירה, כבר קיימים. לדרוס אותם?"
 
 #: src/mainwindow.cpp:676
 #, kde-format
 msgid "Warning: File already exists"
-msgstr ""
+msgstr "אזהרה: קובץ כבר קיים"
 
 #: src/mainwindow.cpp:695
 #, kde-format
 msgid "The current file contains some unsaved work. Do you want to save it?"
-msgstr ""
+msgstr "הקובץ הנוכחי מכיל תוכן שלא נשמר. לשמור אותו?"
 
 #: src/mainwindow.cpp:696
 #, kde-format
 msgid "Warning: Unsaved changes"
-msgstr ""
+msgstr "אזהרה: שינויים שלא נשמרו"
 
 #: src/mainwindow.cpp:750
 #, kde-format
 msgid "Error while reading file, file may be empty"
-msgstr ""
+msgstr "שגיאה בקריאת הקובץ, הקובץ עלול להיות ריק"
 
 #: src/mainwindow.cpp:815
 #, kde-format
 msgid "Could not open %1 for writing"
-msgstr ""
+msgstr "לא ניתן לפתוח את %1 לכתיבה"
 
 #: src/mainwindow.cpp:815 src/mainwindow.cpp:826
 #, kde-format
 msgid "Error while writing"
-msgstr ""
+msgstr "שגיאה בזמן הכתיבה"
 
 #: src/mainwindow.cpp:826
 #, kde-format
 msgid "Could not open %1 for writing %2"
-msgstr ""
+msgstr "לא ניתן לפתוח את %1 לכתיבת %2"
 
 #: src/mainwindow.cpp:835
 #, kde-format
 msgid "Error while saving file. Maybe path is not found"
-msgstr ""
+msgstr "שגיאה בשמירת קובץ. אולי הנתיב לא נמצא"
 
 #: src/mainwindow.cpp:835
 #, kde-format
 msgid "Error while saving"
-msgstr ""
+msgstr "שגיאה בשמירה"
 
 #: src/mainwindow.cpp:857
 #, kde-format
 msgid "File %1 [%2] is saved successfully"
-msgstr ""
+msgstr "הקובץ %1 [%2] נשמר בהצלחה"
 
 #: src/mainwindow.cpp:1005
 #, kde-format
 msgid "The diagram was copied to clipboard"
-msgstr ""
+msgstr "התרשים הועתק ללוח הגזירים"
 
 #: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
 #, kde-format
 msgid "Untitled %1"
-msgstr ""
+msgstr "%1 ללא כותרת"
 
 #. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
 #: src/plotsbuilder.ui:17
@@ -573,14 +574,14 @@ msgstr ""
 #: src/plotsbuilder.ui:215 src/plotsbuilder.ui:247
 #, kde-format
 msgid "Graph"
-msgstr ""
+msgstr "תרשים"
 
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitCurve)
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianImplicitSurface)
 #: src/plotsbuilder.ui:51 src/plotsbuilder.ui:173
 #, kde-format
 msgid "Implicit"
-msgstr ""
+msgstr "מרומז"
 
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve2D)
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianParametricCurve3D)
@@ -588,7 +589,7 @@ msgstr ""
 #: src/plotsbuilder.ui:61 src/plotsbuilder.ui:125 src/plotsbuilder.ui:183
 #, kde-format
 msgid "Parametric"
-msgstr ""
+msgstr "לפי משתנים"
 
 #. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
 #: src/plotsbuilder.ui:87
@@ -623,94 +624,94 @@ msgstr ""
 #: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
-msgstr ""
+msgstr "יש לסמן/לבטל סימון כדי להציג/להסתיר את הצירים"
 
 #: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
-msgstr ""
+msgstr "יש ללחוץ כדי לערוך את השרטוט"
 
 #: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
-msgstr ""
+msgstr "יש ללחוץ כדי להסיר את השרטוט"
 
 #: src/plotseditor.cpp:1019
 #, kde-format
 msgid "plot %1"
-msgstr ""
+msgstr "שרטוט %1"
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, PlotsEditorWidget)
 #: src/plotseditor.ui:20
 #, kde-format
 msgid "Plots"
-msgstr ""
+msgstr "שרטוטים"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
 #: src/plotseditor.ui:36
 #, kde-format
 msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
-msgstr ""
+msgstr "<html><head/><body><p>יש ללחוץ כאן כדי להוסיף שרטוט</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, editPlot)
 #: src/plotseditor.ui:110
 #, kde-format
 msgid "Edit"
-msgstr ""
+msgstr "עריכה"
 
 #. i18n: ectx: property (text), widget (QPushButton, removePlot)
 #: src/plotseditor.ui:120 src/spacesdelegate.cpp:74
 #, kde-format
 msgid "Remove"
-msgstr ""
+msgstr "הסרה"
 
 #. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
 #: src/plotseditor.ui:152
 #, kde-format
 msgid "Plot Name"
-msgstr ""
+msgstr "שם השרטוט"
 
 #. i18n: ectx: property (text), widget (QLabel, plotIcon)
 #: src/plotseditor.ui:159
 #, kde-format
 msgid "TextLabel"
-msgstr ""
+msgstr "תווית טקסט"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: src/plotseditor.ui:393
 #, kde-format
 msgid "Color:"
-msgstr ""
+msgstr "צבע:"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/plotseditor.ui:409
 #, kde-format
 msgid "Style"
-msgstr ""
+msgstr "סגנון"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
 #: src/plotseditor.ui:417
 #, kde-format
 msgid "Solid"
-msgstr ""
+msgstr "אחיד"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
 #: src/plotseditor.ui:422
 #, kde-format
 msgid "Wired"
-msgstr ""
+msgstr "קווי"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, plotStyle)
 #: src/plotseditor.ui:427
 #, kde-format
 msgid "Dots"
-msgstr ""
+msgstr "נקודות"
 
 #. i18n: ectx: property (title), widget (QGroupBox, intervals)
 #: src/plotseditor.ui:453
 #, kde-format
 msgid "Use Intervals"
-msgstr ""
+msgstr "להשתמש במרווחים"
 
 #. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
 #: src/plotseditor.ui:655
@@ -728,140 +729,140 @@ msgstr ""
 #: src/spaceinformation.ui:41
 #, kde-format
 msgid "Notes"
-msgstr ""
+msgstr "הערות"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: src/spaceinformation.ui:50
 #, kde-format
 msgid "Title:"
-msgstr ""
+msgstr "כותרת:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: src/spaceinformation.ui:80
 #, kde-format
 msgid "Description:"
-msgstr ""
+msgstr "תיאור:"
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceOptionsWidget)
 #: src/spaceoptions.ui:38
 #, kde-format
 msgid "Diagram"
-msgstr ""
+msgstr "תרשים"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/spaceoptions.ui:57
 #, kde-format
 msgid "Grid Options"
-msgstr ""
+msgstr "אפשרויות רשת"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
 #: src/spaceoptions.ui:87
 #, kde-format
 msgid "None"
-msgstr ""
+msgstr "ללא"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
 #: src/spaceoptions.ui:92
 #, kde-format
 msgid "Lines"
-msgstr ""
+msgstr "קווים"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, gridStyle)
 #: src/spaceoptions.ui:97
 #, kde-format
 msgid "Polar"
-msgstr ""
+msgstr "קוטבי"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/spaceoptions.ui:105
 #, kde-format
 msgid "Grid Style:"
-msgstr ""
+msgstr "סגנון רשת:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
 #: src/spaceoptions.ui:115
 #, kde-format
 msgid "Grid Ticks"
-msgstr ""
+msgstr "שנתות רשת"
 
 #. i18n: ectx: property (text), widget (QLabel, label_14)
 #: src/spaceoptions.ui:127
 #, kde-format
 msgid "Scale:"
-msgstr ""
+msgstr "קנה מידה:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, moreOptions)
 #: src/spaceoptions.ui:159
 #, kde-format
 msgid "More Options"
-msgstr ""
+msgstr "אפשרויות נוספות"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showXAxis)
 #: src/spaceoptions.ui:173
 #, kde-format
 msgid "Horizontal Label:"
-msgstr ""
+msgstr "תווית אופקית:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
 #: src/spaceoptions.ui:183
 #, kde-format
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showYAxis)
 #: src/spaceoptions.ui:193
 #, kde-format
 msgid "Vertical Label:"
-msgstr ""
+msgstr "תווית אנכית:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
 #: src/spaceoptions.ui:203
 #, kde-format
 msgid "y"
-msgstr ""
+msgstr "y"
 
 #. i18n: ectx: property (text), widget (QCheckBox, marksVisible)
 #: src/spaceoptions.ui:215
 #, kde-format
 msgid "Horizontal and Vertical Marks"
-msgstr ""
+msgstr "סימונים אופקיים ואנכיים"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showAxis)
 #: src/spaceoptions.ui:254
 #, kde-format
 msgid "Axis"
-msgstr ""
+msgstr "ציר"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showGrid)
 #: src/spaceoptions.ui:270
 #, kde-format
 msgid "Grid"
-msgstr ""
+msgstr "רשת"
 
 #. i18n: ectx: property (text), widget (QLabel, label_16)
 #: src/spaceoptions.ui:289
 #, kde-format
 msgid "Size:"
-msgstr ""
+msgstr "גודל:"
 
 #: src/spacesdelegate.cpp:81
 #, kde-format
 msgid "Rename"
-msgstr ""
+msgstr "שינוי שם"
 
 #: src/spacesdelegate.cpp:88
 #, kde-format
 msgid "Export as dictionary"
-msgstr ""
+msgstr "ייצוא כמילון"
 
 #: src/spacesmodel.cpp:41
 #, kde-format
 msgctxt "@title:column"
 msgid "Name"
-msgstr ""
+msgstr "שם"
 
 #: src/spacesmodel.cpp:42
 #, kde-format
 msgctxt "@title:column"
 msgid "Description"
-msgstr ""
+msgstr "תיאור"
