@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: khipu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:23+0000\n"
-"PO-Revision-Date: 2025-09-17 15:19+0300\n"
+"PO-Revision-Date: 2025-09-18 22:08+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 25.08.0\n"
 
 #, kde-format
@@ -201,6 +201,8 @@ msgid ""
 "Worked for application actions, command-line improvements and space "
 "filtering. Several bug fixings"
 msgstr ""
+"סטודנט GSoC-2013 - תמיכה בקובצי קביעות. תמיכה ביומן שרטוט. עבודה על פעולות "
+"יישום, שיפורי שורת פקודות וסינון מרחבים. תיקון של כמה תקלות"
 
 #: src/main.cpp:38
 #, kde-format
@@ -213,6 +215,8 @@ msgid ""
 "Thesis mentor - Guide and supervision during project conception. "
 "Bibliographical support. Numeric Mathematics and Algorithms support"
 msgstr ""
+"הנחיית עבודת חקר - הנחייה ופיקוח במהלך הגיית המיזם. תמיכה ביבליוגרפית. תמיכה "
+"באנליזה נומרית ואלגוריתמים"
 
 #: src/main.cpp:39
 #, kde-format
@@ -224,7 +228,7 @@ msgstr "חוזה איגנסיו קואבז גונזלס"
 msgid ""
 "Thesis mentor - Supervision, Product Guide, Product promotion and former "
 "Client"
-msgstr ""
+msgstr "הנחיית עבודת חקר - פיקוח, הנחיית התנהלות מוצר, קידום מוצר ולקוח לשעבר"
 
 #: src/main.cpp:40
 #, kde-format
@@ -237,6 +241,8 @@ msgid ""
 "Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
 "former Client"
 msgstr ""
+"הנחיית עבודת חקר - פיקוח, תמיכה בביבליוגרפיה (מקורות), הנחיית התנהלות מוצר "
+"ולקוח לשעבר"
 
 #: src/main.cpp:41
 #, kde-format
@@ -246,7 +252,7 @@ msgstr "ג׳ם אורבינה פריירה"
 #: src/main.cpp:41
 #, kde-format
 msgid "Thesis mentor - Supervision and former Main Project Mentor"
-msgstr ""
+msgstr "הנחיית עבודת חקר - פיקוח והנחיית המיזם העיקרית בעבר"
 
 #: src/main.cpp:43
 #, kde-format
@@ -332,12 +338,12 @@ msgstr "&שמירת שרטוט כ־PNG"
 #: src/mainwindow.cpp:229
 #, kde-format
 msgid "Add Space &2D"
-msgstr ""
+msgstr "הוספת מרחב &דו־ממדי"
 
 #: src/mainwindow.cpp:230
 #, kde-format
 msgid "Add Space &3D"
-msgstr ""
+msgstr "הוספת מרחב &תלת־ממדי"
 
 #: src/mainwindow.cpp:235
 #, kde-format
@@ -382,12 +388,12 @@ msgstr "&צילום המסך"
 #: src/mainwindow.cpp:287
 #, kde-format
 msgid "&Get Plot-Dictionary files"
-msgstr ""
+msgstr "משי&כת קובץ יומן שרטוט"
 
 #: src/mainwindow.cpp:288
 #, kde-format
 msgid "&Import Plot-Dictionary file"
-msgstr ""
+msgstr "ייבוא קובץ מילון &שרטוט"
 
 #: src/mainwindow.cpp:333 src/mainwindow.cpp:376
 #, kde-format
@@ -485,7 +491,7 @@ msgstr "לא ניתן לפתוח את %1"
 #: src/mainwindow.cpp:606
 #, kde-format
 msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
-msgstr ""
+msgstr "תקלה בפענוח תוכן הקובץ, אולי זה קובץ khipu שגוי."
 
 #: src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
@@ -563,7 +569,7 @@ msgstr "%1 ללא כותרת"
 #: src/plotsbuilder.ui:17
 #, kde-format
 msgid "Build a Cartesian Curve"
-msgstr ""
+msgstr "בניית עקום קרטזי"
 
 #. i18n: ectx: property (text), widget (QPushButton, buildCartesianGraphCurve)
 #. i18n: ectx: property (text), widget (QPushButton, buildPolarGraphCurve)
@@ -595,31 +601,31 @@ msgstr "לפי משתנים"
 #: src/plotsbuilder.ui:87
 #, kde-format
 msgid "Build a Polar Curve"
-msgstr ""
+msgstr "בניית עקום קוטבי"
 
 #. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
 #: src/plotsbuilder.ui:119
 #, kde-format
 msgid "Build a Space Curve"
-msgstr ""
+msgstr "בניית עקום מרחבי"
 
 #. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
 #: src/plotsbuilder.ui:157
 #, kde-format
 msgid "Build a Cartesian Surface"
-msgstr ""
+msgstr "בניית משטח קרטזי"
 
 #. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
 #: src/plotsbuilder.ui:209
 #, kde-format
 msgid "Build a Cylindrical Surface"
-msgstr ""
+msgstr "בניית משטח גלילי"
 
 #. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
 #: src/plotsbuilder.ui:241
 #, kde-format
 msgid "Build a Spherical Surface"
-msgstr ""
+msgstr "בניית משטח כדורי"
 
 #: src/plotseditor.cpp:66
 #, kde-format
@@ -717,13 +723,13 @@ msgstr "להשתמש במרווחים"
 #: src/plotseditor.ui:655
 #, kde-format
 msgid "asdsada"
-msgstr ""
+msgstr "asdsada"
 
 #. i18n: ectx: property (toolTip), widget (KDialogButtonBox, editorDialogBox)
 #: src/plotseditor.ui:658
 #, kde-format
 msgid "asdad"
-msgstr ""
+msgstr "asdad"
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, SpaceInformationWidget)
 #: src/spaceinformation.ui:41
