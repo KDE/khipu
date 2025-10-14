@@ -1,13 +1,13 @@
 # KDE Finnish translation sprint participants:
 # Author: Artnay
+# SPDX-FileCopyrightText: 2021, 2023, 2025 Tommi Nieminen <translator@legisign.org>
 # Lasse Liehu <lasse.liehu@gmail.com>, 2013.
-# Tommi Nieminen <translator@legisign.org>, 2021, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gplacs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:23+0000\n"
-"PO-Revision-Date: 2023-05-05 21:19+0300\n"
+"PO-Revision-Date: 2025-07-28 10:07+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -96,7 +97,7 @@ msgstr "…"
 #: src/datastore.cpp:168
 #, kde-format
 msgid "Export the space as a Dictionary"
-msgstr ""
+msgstr "Vie tila sanastoksi"
 
 #: src/datastore.cpp:168
 #, kde-format
@@ -145,17 +146,17 @@ msgstr "Lisää"
 #: src/filter.cpp:29
 #, kde-format
 msgid "Dimension All"
-msgstr ""
+msgstr "Kaikki ulottuvuudet"
 
 #: src/filter.cpp:30
 #, kde-format
 msgid "Dimension 2D"
-msgstr ""
+msgstr "Kaksiulotteinen"
 
 #: src/filter.cpp:31
 #, kde-format
 msgid "Dimension 3D"
-msgstr ""
+msgstr "Kolmiulotteinen"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
 #: src/filter.ui:42
@@ -256,6 +257,7 @@ msgstr "Aleix Pol Gonzalez"
 #, kde-format
 msgid "KAlgebra and Analitza parser author, both vitals for the project"
 msgstr ""
+"KAlgebra- ja Analitza-jäsentimen tekijä; kumpikin on projektille olennainen"
 
 #: src/main.cpp:45
 #, kde-format
@@ -266,6 +268,8 @@ msgstr "José Fernando Ramos Ramirez"
 #, kde-format
 msgid "First version of Famous Curves Database. Build former windows installer"
 msgstr ""
+"Ensimmäisen versio kuuluisien käyrien tietokannasta. Koosti ensimmäisen "
+"Windows-asentimen"
 
 #: src/main.cpp:46
 #, kde-format
@@ -275,7 +279,7 @@ msgstr "Susan Pamela Rios Sarmiento"
 #: src/main.cpp:46
 #, kde-format
 msgid "First version of Famous Curves Database"
-msgstr ""
+msgstr "Ensimmäinen versio kuuluisien käyrien tietokannasta"
 
 #: src/main.cpp:48
 #, kde-format
@@ -316,6 +320,8 @@ msgstr "Avattavat Khipu-tiedostot"
 #, kde-format
 msgid "Always start with a new file, ignoring any autosaved file"
 msgstr ""
+"Käynnistä aina uuteen tiedostoon sivuuttaen mahdolliset "
+"automaattitallennukset"
 
 #: src/mainwindow.cpp:142
 #, kde-format
@@ -330,17 +336,17 @@ msgstr "Tallenna kaavio PN&G:ksi"
 #: src/mainwindow.cpp:229
 #, kde-format
 msgid "Add Space &2D"
-msgstr ""
+msgstr "Lisää k&aksiulotteinen tila"
 
 #: src/mainwindow.cpp:230
 #, kde-format
 msgid "Add Space &3D"
-msgstr ""
+msgstr "Lisää k&olmiulotteinen tila"
 
 #: src/mainwindow.cpp:235
 #, kde-format
 msgid "Create a plot in a new space"
-msgstr ""
+msgstr "Luo uuteen tilaan kaavio"
 
 #: src/mainwindow.cpp:238
 #, kde-format
@@ -350,27 +356,27 @@ msgstr "Plot-&sanastot"
 #: src/mainwindow.cpp:263
 #, kde-format
 msgid "&Go First Space"
-msgstr ""
+msgstr "Siirry &ensimmäiseen tilaan"
 
 #: src/mainwindow.cpp:268
 #, kde-format
 msgid "&Go Previous Space"
-msgstr ""
+msgstr "Siirry e&delliseen tilaan"
 
 #: src/mainwindow.cpp:273
 #, kde-format
 msgid "&Go Next Space"
-msgstr ""
+msgstr "&Siirry seuraavaan tilaan"
 
 #: src/mainwindow.cpp:278
 #, kde-format
 msgid "&Go Last Space"
-msgstr ""
+msgstr "Siirry &viimeiseen tilaan"
 
 #: src/mainwindow.cpp:284
 #, kde-format
 msgid "&Remove Current Space"
-msgstr ""
+msgstr "&Poista nykyinen tila"
 
 #: src/mainwindow.cpp:286
 #, kde-format
@@ -395,22 +401,22 @@ msgstr ""
 #: src/mainwindow.cpp:337
 #, kde-format
 msgid "Currently you are on the first space!"
-msgstr ""
+msgstr "Olet ensimmäisessä tilassa!"
 
 #: src/mainwindow.cpp:348
 #, kde-format
 msgid "You are already on the first space!"
-msgstr ""
+msgstr "Olet jo ensimmäisessä tilassa!"
 
 #: src/mainwindow.cpp:360
 #, kde-format
 msgid "You are already on the last space!"
-msgstr ""
+msgstr "Olet jo viimeisessä tilassa!"
 
 #: src/mainwindow.cpp:380
 #, kde-format
 msgid "Currently you are on the last space!"
-msgstr ""
+msgstr "Olet viimeisessä tilassa!"
 
 #: src/mainwindow.cpp:400
 #, kde-format
@@ -433,6 +439,7 @@ msgid ""
 "There are not any plots available. So, you do not need to create a new Plot "
 "Window"
 msgstr ""
+"Kaavioita ei ole saatavilla, joten uutta kaavioikkunaa ei tarvitse luoda"
 
 #: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
@@ -540,7 +547,7 @@ msgstr "Tiedostoa %1 ei voitu avata tiedoston %2 kirjoittamiseksi"
 #: src/mainwindow.cpp:835
 #, kde-format
 msgid "Error while saving file. Maybe path is not found"
-msgstr ""
+msgstr "Virhe tallennettaessa tiedostoa. Sijaintia ei ehkä löytynyt"
 
 #: src/mainwindow.cpp:835
 #, kde-format
@@ -592,7 +599,7 @@ msgstr "Implisiittinen"
 #: src/plotsbuilder.ui:61 src/plotsbuilder.ui:125 src/plotsbuilder.ui:183
 #, kde-format
 msgid "Parametric"
-msgstr ""
+msgstr "Parametrinen"
 
 #. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
 #: src/plotsbuilder.ui:87
