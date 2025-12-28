@@ -17,7 +17,7 @@
 <author>
 <personname
 ><firstname
->Esta documentação foi convertida a partir da página <ulink url="http://userbase.kde.org/Khipu/Manual/Introduction"
+>Esta documentação foi convertida a partir da página <ulink url="https://userbase.kde.org/Khipu/Manual/Introduction"
 >Manual do &khipu;</ulink
 >.</firstname
 > <surname
@@ -416,9 +416,9 @@
 >Baixando um arquivo de dicionário a partir da Internet</title>
 <para
 >O uso da <guilabel
->API Obter novidades</guilabel
+>API do Baixar novidades</guilabel
 > no &khipu; irá permitir ao usuário baixar esses arquivos de dicionário a partir da Web. Dessa forma, um usuário poderá ter uma grande coleção de dicionários baixados a partir de todo o mundo. Poderá conseguir isto se clicar na opção <guilabel
->Obter arquivos de dicionário de gráficos</guilabel
+>Baixar arquivos de dicionário de gráficos</guilabel
 > da interface de dicionários. </para>
 </sect2>
 <sect2 id="export-a-space-as-a-dictionary"
@@ -490,9 +490,9 @@
 </sect3>
 <sect3 id="want-to-see-only-a-graph-in-the-entire-screen-"
 ><title
->Deseja ver apenas um gráfico na tela inteira?</title>
+>Deseja ver apenas um gráfico na tela cheia?</title>
 <para
->A opção de tela inteira no &khipu; irá permitir ao usuário ver apenas o espaço do gráfico. Todas as outras áreas e barras de ferramentas ficarão invisíveis ao ativar a tela inteira! </para>
+>A opção de tela cheia no &khipu; irá permitir ao usuário ver apenas o espaço do gráfico. Todas as outras áreas e barras de ferramentas ficarão invisíveis ao ativar a tela cheia! </para>
 </sect3>
 <sect3 id="space-navigation"
 ><title
@@ -521,15 +521,11 @@
 <itemizedlist>
 <listitem
 ><para
->Navegar para o próximo espaço -&gt; <keycap
->Page Up</keycap
-></para
+>Navegar para o próximo espaço -&gt; &PgUp;</para
 ></listitem>
 <listitem
 ><para
->Navegar para o espaço anterior -&gt; <keycap
->Page Down</keycap
-></para
+>Navegar para o espaço anterior -&gt; &PgDn;</para
 ></listitem>
 <listitem
 ><para
@@ -663,11 +659,11 @@
 >Licenças</title
 > 
 <para
->Esta documentação está licenciada segundo os termos da <ulink url="http://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
+>Esta documentação está licenciada segundo os termos da <ulink url="https://userbase.kde.org/Special:myLanguage/KDE_UserBase_Wiki:Copyrights"
 > Licença de Documentação Livre da &GNU;</ulink
 >. </para>
 <para
->Este programa está licenciado segundo os termos da <ulink url="http://www.gnu.org/licenses/gpl-2.0.txt"
+>Este programa está licenciado segundo os termos da <ulink url="https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt"
 >Licença Pública Geral da &GNU; (GPL)</ulink
 >. </para>
 
