@@ -114,13 +114,13 @@ msgstr "Fitxers de diccionari de gràfics (*.plots);;Tots els fitxers (*)"
 #, kde-format
 msgid "Error while saving file, no plots available for this space"
 msgstr ""
-"S'ha produït un error en guardar el fitxer, no hi ha cap gràfic disponible "
-"per a este espai"
+"S'ha produït un error mentre es guardava el fitxer, no hi ha cap gràfic "
+"disponible per a este espai"
 
 #: src/datastore.cpp:178
 #, kde-format
 msgid "Error while saving a dictionary"
-msgstr "S'ha produït un error en guardar un diccionari"
+msgstr "S'ha produït un error mentre es guardava un diccionari"
 
 #: src/dictionarycollection.cpp:152
 #, kde-format
@@ -474,7 +474,7 @@ msgstr "El fitxer no existix."
 #: src/mainwindow.cpp:536
 #, kde-format
 msgid "An error appeared when opening this file (%1)"
-msgstr "S'ha produït un error en obrir este fitxer (%1)"
+msgstr "S'ha produït un error mentre s'obria este fitxer (%1)"
 
 #: src/mainwindow.cpp:550
 #, kde-format
@@ -496,7 +496,8 @@ msgstr ""
 #: src/mainwindow.cpp:589
 #, kde-format
 msgid "Error while reading file, maybe path is not found."
-msgstr "S'ha produït un error en llegir el fitxer, potser no es troba el camí."
+msgstr ""
+"S'ha produït un error mentre es llegia el fitxer, potser no es troba el camí."
 
 #: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
 #, kde-format
@@ -512,8 +513,8 @@ msgstr "No s'ha pogut obrir %1"
 #, kde-format
 msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
 msgstr ""
-"Problema en l'anàlisi sintàctica del contingut del fitxer, potser és un "
-"fitxer «khipu» incorrecte."
+"Problema durant l'anàlisi del contingut del fitxer, potser és un fitxer "
+"«khipu» incorrecte."
 
 #: src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
@@ -545,7 +546,7 @@ msgstr "Avís: Canvis sense guardar"
 #: src/mainwindow.cpp:750
 #, kde-format
 msgid "Error while reading file, file may be empty"
-msgstr "S'ha produït un error en llegir el fitxer, potser està buit"
+msgstr "S'ha produït un error mentre es llegia el fitxer, potser està buit"
 
 #: src/mainwindow.cpp:815
 #, kde-format
@@ -555,7 +556,7 @@ msgstr "No s'ha pogut obrir %1 per a escriure"
 #: src/mainwindow.cpp:815 src/mainwindow.cpp:826
 #, kde-format
 msgid "Error while writing"
-msgstr "S'ha produït un error en escriure"
+msgstr "S'ha produït un error mentre s'escrivia"
 
 #: src/mainwindow.cpp:826
 #, kde-format
@@ -565,12 +566,13 @@ msgstr "No s'ha pogut obrir %1 per a escriure %2"
 #: src/mainwindow.cpp:835
 #, kde-format
 msgid "Error while saving file. Maybe path is not found"
-msgstr "S'ha produït un error en llegir el fitxer. Potser no es troba el camí"
+msgstr ""
+"S'ha produït un error mentre es llegia el fitxer. Potser no es troba el camí"
 
 #: src/mainwindow.cpp:835
 #, kde-format
 msgid "Error while saving"
-msgstr "S'ha produït un error en guardar"
+msgstr "S'ha produït un error mentre es guardava"
 
 #: src/mainwindow.cpp:857
 #, kde-format
