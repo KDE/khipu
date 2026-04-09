@@ -12,8 +12,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 2.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -32,8 +32,7 @@ msgid ""
 msgstr ""
 
 #: src/dashboard.cpp:118
-#, fuzzy, kde-format
-#| msgid "in dictionary"
+#, kde-format
 msgid "No Dictionary found!"
 msgstr "v slovníku"
 
@@ -94,8 +93,7 @@ msgid "..."
 msgstr "..."
 
 #: src/datastore.cpp:168
-#, fuzzy, kde-format
-#| msgid "Export as dictionary"
+#, kde-format
 msgid "Export the space as a Dictionary"
 msgstr "Exportovať ako slovník"
 
@@ -110,8 +108,7 @@ msgid "Error while saving file, no plots available for this space"
 msgstr ""
 
 #: src/datastore.cpp:178
-#, fuzzy, kde-format
-#| msgid "Export as dictionary"
+#, kde-format
 msgid "Error while saving a dictionary"
 msgstr "Exportovať ako slovník"
 
@@ -122,8 +119,7 @@ msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
 #: src/dictionarycollection.ui:14
-#, fuzzy, kde-format
-#| msgid "in dictionary"
+#, kde-format
 msgid "Add from Dictionary"
 msgstr "v slovníku"
 
@@ -229,7 +225,7 @@ msgid ""
 msgstr ""
 
 #: src/main.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 msgid "Eduardo Fernandini Capurro"
 msgstr "Eduardo Robles Elvira"
 
@@ -341,8 +337,7 @@ msgid "Add Space &3D"
 msgstr ""
 
 #: src/mainwindow.cpp:235
-#, fuzzy, kde-format
-#| msgid "Definition"
+#, kde-format
 msgid "Create a plot in a new space"
 msgstr "Definícia"
 
@@ -527,7 +522,7 @@ msgid "Could not open %1 for writing"
 msgstr "Nepodarilo sa otvoriť %1 na zápis"
 
 #: src/mainwindow.cpp:815 src/mainwindow.cpp:826
-#, fuzzy, kde-format
+#, kde-format
 msgid "Error while writing"
 msgstr "Chyba počas zapisovania."
 
@@ -563,7 +558,7 @@ msgstr "Bez názvu %1"
 
 #. i18n: ectx: property (title), widget (QGroupBox, cartesianCurvesLinks)
 #: src/plotsbuilder.ui:17
-#, fuzzy, kde-format
+#, kde-format
 msgid "Build a Cartesian Curve"
 msgstr "Vytvoriť osobnú &pozvánku..."
 
@@ -595,31 +590,31 @@ msgstr "Parametrické"
 
 #. i18n: ectx: property (title), widget (QGroupBox, polarCurvesLinks)
 #: src/plotsbuilder.ui:87
-#, fuzzy, kde-format
+#, kde-format
 msgid "Build a Polar Curve"
 msgstr "Vytvoriť osobnú &pozvánku..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, spaceCurvesLinks)
 #: src/plotsbuilder.ui:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Build a Space Curve"
 msgstr "Vytvoriť osobnú &pozvánku..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, cartesianSurfacesLinks)
 #: src/plotsbuilder.ui:157
-#, fuzzy, kde-format
+#, kde-format
 msgid "Build a Cartesian Surface"
 msgstr "Vytvoriť osobnú &pozvánku..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, cylindricalSurfacesLinks)
 #: src/plotsbuilder.ui:209
-#, fuzzy, kde-format
+#, kde-format
 msgid "Build a Cylindrical Surface"
 msgstr "Vytvoriť osobnú &pozvánku..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, sphericalSurfacesLinks)
 #: src/plotsbuilder.ui:241
-#, fuzzy, kde-format
+#, kde-format
 msgid "Build a Spherical Surface"
 msgstr "Vytvoriť osobnú &pozvánku..."
 
@@ -647,7 +642,7 @@ msgstr "kresliť %1"
 #: src/plotseditor.ui:20
 #, kde-format
 msgid "Plots"
-msgstr ""
+msgstr "Grafy"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, addPlots)
 #: src/plotseditor.ui:36
@@ -669,9 +664,7 @@ msgstr "Odstrániť"
 
 #. i18n: ectx: property (text), widget (QCheckBox, plotnamecheck)
 #: src/plotseditor.ui:152
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Name"
+#, kde-format
 msgid "Plot Name"
 msgstr "Meno"
 
@@ -755,8 +748,7 @@ msgstr "Diagram"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/spaceoptions.ui:57
-#, fuzzy, kde-format
-#| msgid "More Options"
+#, kde-format
 msgid "Grid Options"
 msgstr "Viac možností"
 
@@ -786,8 +778,7 @@ msgstr "Štýl mriežky:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, gridstylecontainer)
 #: src/spaceoptions.ui:115
-#, fuzzy, kde-format
-#| msgid "More Options"
+#, kde-format
 msgid "Grid Ticks"
 msgstr "Viac možností"
 
