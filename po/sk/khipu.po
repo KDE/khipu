@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: gplacs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 08:59+0000\n"
-"PO-Revision-Date: 2019-03-01 10:13+0100\n"
+"PO-Revision-Date: 2026-04-10 12:00+0200\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
@@ -29,7 +29,7 @@ msgstr "wizzardsk@gmail.com"
 #, kde-format
 msgid ""
 "Please make sure that the dictionary (.plots) files are correctly installed"
-msgstr ""
+msgstr "Uistite sa, že súbory slovníka (.plots) sú správne nainštalované"
 
 #: src/dashboard.cpp:118
 #, kde-format
@@ -44,29 +44,29 @@ msgstr "Otvoriť"
 #: src/dashboard.cpp:230 src/dictionarycollection.cpp:153
 #, kde-format
 msgid "Dictionary Files (*.plots);;All Files (*)"
-msgstr ""
+msgstr "Súbory slovníka (*.plots);;Všetky súbory (*)"
 
 #: src/dashboard.cpp:253
 #, kde-format
 msgid "Where to export"
-msgstr ""
+msgstr "Kam exportovať"
 
 #: src/dashboard.cpp:253
 #, kde-format
 msgid "PNG Image File (*.png)"
-msgstr ""
+msgstr "Súbor obrázka PNG (*.png)"
 
 #. i18n: ectx: property (windowTitle), widget (QStackedWidget, DashboardWidget)
 #: src/dashboard.ui:20
 #, kde-format
 msgid "StackedWidget"
-msgstr ""
+msgstr "StackedWidget"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: src/dashboard.ui:64
 #, kde-format
 msgid "Plot Dictionary (.plots file) Options"
-msgstr ""
+msgstr "Možnosti slovníka grafov (súbor .plots)"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: src/dashboard.ui:72
@@ -84,7 +84,7 @@ msgstr "Hlavné"
 #: src/dashboard.ui:85
 #, kde-format
 msgid "Famous Algebraic Curves"
-msgstr ""
+msgstr "Známe algebraické krivky"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
 #: src/dashboard.ui:90
@@ -100,12 +100,13 @@ msgstr "Exportovať ako slovník"
 #: src/datastore.cpp:168
 #, kde-format
 msgid "Plot-Dictionary Files (*.plots);;All Files (*)"
-msgstr ""
+msgstr "Súbory slovníka grafov (*.plots);;Všetky súbory (*)"
 
 #: src/datastore.cpp:178
 #, kde-format
 msgid "Error while saving file, no plots available for this space"
 msgstr ""
+"Chyba pri ukladaní súboru, pre tento priestor nie sú dostupné žiadne grafy"
 
 #: src/datastore.cpp:178
 #, kde-format
@@ -115,7 +116,7 @@ msgstr "Exportovať ako slovník"
 #: src/dictionarycollection.cpp:152
 #, kde-format
 msgid "Select Dictionary to import"
-msgstr ""
+msgstr "Vyberte slovník na importovanie"
 
 #. i18n: ectx: property (windowTitle), widget (QDockWidget, DictionaryCollectionWidget)
 #: src/dictionarycollection.ui:14
@@ -144,23 +145,23 @@ msgstr "Pridať"
 #: src/filter.cpp:29
 #, kde-format
 msgid "Dimension All"
-msgstr ""
+msgstr "Všetky dimenzie"
 
 #: src/filter.cpp:30
 #, kde-format
 msgid "Dimension 2D"
-msgstr ""
+msgstr "Dimenzia 2D"
 
 #: src/filter.cpp:31
 #, kde-format
 msgid "Dimension 3D"
-msgstr ""
+msgstr "Dimenzia 3D"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, filterText)
 #: src/filter.ui:42
 #, kde-format
 msgid "Filter by space name or description..."
-msgstr ""
+msgstr "Filtrovať podľa názvu priestoru alebo popisu..."
 
 #: src/main.cpp:32
 #, kde-format
@@ -190,7 +191,7 @@ msgstr "Hlavný vývojár"
 #: src/main.cpp:37
 #, kde-format
 msgid "Punit Mehta"
-msgstr ""
+msgstr "Punit Mehta"
 
 #: src/main.cpp:37
 #, kde-format
@@ -199,6 +200,9 @@ msgid ""
 "Worked for application actions, command-line improvements and space "
 "filtering. Several bug fixings"
 msgstr ""
+"Študent GSoC-2013 - Podpora trvalých súborov. Podpora slovníka grafov. Práca "
+"na akciách aplikácie, vylepšeniach príkazového riadka a filtrovaní "
+"priestorov. Niekoľko opráv chýb"
 
 #: src/main.cpp:38
 #, kde-format
@@ -211,6 +215,8 @@ msgid ""
 "Thesis mentor - Guide and supervision during project conception. "
 "Bibliographical support. Numeric Mathematics and Algorithms support"
 msgstr ""
+"Vedúci diplomovej práce - Vedenie a dohľad počas koncepcie projektu. "
+"Bibliografická podpora. Podpora numerickej matematiky a algoritmov"
 
 #: src/main.cpp:39
 #, kde-format
@@ -223,6 +229,8 @@ msgid ""
 "Thesis mentor - Supervision, Product Guide, Product promotion and former "
 "Client"
 msgstr ""
+"Vedúci diplomovej práce - Dohľad, sprievodca produktom, propagácia produktu "
+"a bývalý klient"
 
 #: src/main.cpp:40
 #, kde-format
@@ -235,6 +243,8 @@ msgid ""
 "Thesis mentor - Supervision, Bibliographical Support, Product Guide and "
 "former Client"
 msgstr ""
+"Vedúci diplomovej práce - Dohľad, bibliografická podpora, sprievodca "
+"produktom a bývalý klient"
 
 #: src/main.cpp:41
 #, kde-format
@@ -244,7 +254,7 @@ msgstr "Jaime Urbina Pereyra"
 #: src/main.cpp:41
 #, kde-format
 msgid "Thesis mentor - Supervision and former Main Project Mentor"
-msgstr ""
+msgstr "Vedúci diplomovej práce - Dohľad a bývalý hlavný mentor projektu"
 
 #: src/main.cpp:43
 #, kde-format
@@ -254,7 +264,7 @@ msgstr "Aleix Pol Gonzalez"
 #: src/main.cpp:43
 #, kde-format
 msgid "KAlgebra and Analitza parser author, both vitals for the project"
-msgstr ""
+msgstr "Autor analyzátora KAlgebra a Analitza, oba kľúčové pre projekt"
 
 #: src/main.cpp:45
 #, kde-format
@@ -265,6 +275,8 @@ msgstr "José Fernando Ramos Ramirez"
 #, kde-format
 msgid "First version of Famous Curves Database. Build former windows installer"
 msgstr ""
+"Prvá verzia databázy známych kriviek. Vytvorenie predchádzajúceho "
+"inštalátora pre Windows"
 
 #: src/main.cpp:46
 #, kde-format
@@ -274,7 +286,7 @@ msgstr "Susan Pamela Rios Sarmiento"
 #: src/main.cpp:46
 #, kde-format
 msgid "First version of Famous Curves Database"
-msgstr ""
+msgstr "Prvá verzia databázy známych kriviek"
 
 #: src/main.cpp:48
 #, kde-format
@@ -284,17 +296,17 @@ msgstr "Edgar Velasquez"
 #: src/main.cpp:48
 #, kde-format
 msgid "2D Improvements"
-msgstr ""
+msgstr "Vylepšenia 2D"
 
 #: src/main.cpp:49
 #, kde-format
 msgid "Jose Torres Cardenas"
-msgstr ""
+msgstr "Jose Torres Cardenas"
 
 #: src/main.cpp:49 src/main.cpp:50 src/main.cpp:51
 #, kde-format
 msgid "3D Improvements"
-msgstr ""
+msgstr "Vylepšenia 3D"
 
 #: src/main.cpp:50
 #, kde-format
@@ -304,17 +316,18 @@ msgstr "Elizabeth Portilla Flores"
 #: src/main.cpp:51
 #, kde-format
 msgid "Paul Murat Landauro Minaya"
-msgstr ""
+msgstr "Paul Murat Landauro Minaya"
 
 #: src/main.cpp:57
 #, kde-format
 msgid "Khipu files to open"
-msgstr ""
+msgstr "Súbory Khipu na otvorenie"
 
 #: src/main.cpp:58
 #, kde-format
 msgid "Always start with a new file, ignoring any autosaved file"
 msgstr ""
+"Vždy začať s novým súborom, ignorujúc akýkoľvek automaticky uložený súbor"
 
 #: src/mainwindow.cpp:142
 #, kde-format
@@ -324,17 +337,17 @@ msgstr "Skratky"
 #: src/mainwindow.cpp:226
 #, kde-format
 msgid "&Save Plot as PNG"
-msgstr ""
+msgstr "&Uložiť graf ako PNG"
 
 #: src/mainwindow.cpp:229
 #, kde-format
 msgid "Add Space &2D"
-msgstr ""
+msgstr "Pridať priestor &2D"
 
 #: src/mainwindow.cpp:230
 #, kde-format
 msgid "Add Space &3D"
-msgstr ""
+msgstr "Pridať priestor &3D"
 
 #: src/mainwindow.cpp:235
 #, kde-format
@@ -344,99 +357,99 @@ msgstr "Definícia"
 #: src/mainwindow.cpp:238
 #, kde-format
 msgid "Plot &Dictionaries"
-msgstr ""
+msgstr "Slovníky &grafov"
 
 #: src/mainwindow.cpp:263
 #, kde-format
 msgid "&Go First Space"
-msgstr ""
+msgstr "&Ísť na prvý priestor"
 
 #: src/mainwindow.cpp:268
 #, kde-format
 msgid "&Go Previous Space"
-msgstr ""
+msgstr "&Ísť na predchádzajúci priestor"
 
 #: src/mainwindow.cpp:273
 #, kde-format
 msgid "&Go Next Space"
-msgstr ""
+msgstr "&Ísť na nasledujúci priestor"
 
 #: src/mainwindow.cpp:278
 #, kde-format
 msgid "&Go Last Space"
-msgstr ""
+msgstr "&Ísť na posledný priestor"
 
 #: src/mainwindow.cpp:284
 #, kde-format
 msgid "&Remove Current Space"
-msgstr ""
+msgstr "&Odstrániť aktuálny priestor"
 
 #: src/mainwindow.cpp:286
 #, kde-format
 msgid "&Take Snapshot"
-msgstr ""
+msgstr "&Vytvoriť snímku"
 
 #: src/mainwindow.cpp:287
 #, kde-format
 msgid "&Get Plot-Dictionary files"
-msgstr ""
+msgstr "&Získať súbory slovníka grafov"
 
 #: src/mainwindow.cpp:288
 #, kde-format
 msgid "&Import Plot-Dictionary file"
-msgstr ""
+msgstr "&Importovať súbor slovníka grafov"
 
 #: src/mainwindow.cpp:333 src/mainwindow.cpp:376
 #, kde-format
 msgid "There is not any space available to show!"
-msgstr ""
+msgstr "Nie je dostupný žiadny priestor na zobrazenie!"
 
 #: src/mainwindow.cpp:337
 #, kde-format
 msgid "Currently you are on the first space!"
-msgstr ""
+msgstr "Momentálne ste na prvom priestore!"
 
 #: src/mainwindow.cpp:348
 #, kde-format
 msgid "You are already on the first space!"
-msgstr ""
+msgstr "Už ste na prvom priestore!"
 
 #: src/mainwindow.cpp:360
 #, kde-format
 msgid "You are already on the last space!"
-msgstr ""
+msgstr "Už ste na poslednom priestore!"
 
 #: src/mainwindow.cpp:380
 #, kde-format
 msgid "Currently you are on the last space!"
-msgstr ""
+msgstr "Momentálne ste na poslednom priestore!"
 
 #: src/mainwindow.cpp:400
 #, kde-format
 msgid "Press Ctrl + M to make menubar visible again"
-msgstr ""
+msgstr "Stlačte Ctrl + M pre opätovné zobrazenie panela s ponukou"
 
 #: src/mainwindow.cpp:400
 #, kde-format
 msgid "Menubar Visibility"
-msgstr ""
+msgstr "Viditeľnosť panela s ponukou"
 
 #: src/mainwindow.cpp:446
 #, kde-format
 msgid "No need to create New Window"
-msgstr ""
+msgstr "Nie je potrebné vytvoriť nové okno"
 
 #: src/mainwindow.cpp:446
 #, kde-format
 msgid ""
 "There are not any plots available. So, you do not need to create a new Plot "
 "Window"
-msgstr ""
+msgstr "Nie sú dostupné žiadne grafy. Preto nemusíte vytvárať nové okno grafu"
 
 #: src/mainwindow.cpp:507 src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
 msgid "Khipu Files (*.khipu);;All Files (*)"
-msgstr ""
+msgstr "Súbory Khipu (*.khipu);;Všetky súbory (*)"
 
 #: src/mainwindow.cpp:528
 #, kde-format
@@ -451,23 +464,23 @@ msgstr "Vyskytla sa chyba počas otvárania tohto súboru (%1)"
 #: src/mainwindow.cpp:550
 #, kde-format
 msgid "Do you want to recover the file you have not saved last time?"
-msgstr ""
+msgstr "Chcete obnoviť súbor, ktorý ste naposledy neuložili?"
 
 #: src/mainwindow.cpp:550 src/mainwindow.cpp:578
 #, kde-format
 msgid "Autosaved .khipu file"
-msgstr ""
+msgstr "Automaticky uložený súbor .khipu"
 
 #: src/mainwindow.cpp:578
 #, kde-format
 msgid ""
 "There are some unsaved changes in the file %1. Do you want to recover them?"
-msgstr ""
+msgstr "V súbore %1 sú neuložené zmeny. Chcete ich obnoviť?"
 
 #: src/mainwindow.cpp:589
 #, kde-format
 msgid "Error while reading file, maybe path is not found."
-msgstr ""
+msgstr "Chyba pri čítaní súboru, cesta pravdepodobne nebola nájdená."
 
 #: src/mainwindow.cpp:589 src/mainwindow.cpp:606 src/mainwindow.cpp:750
 #, kde-format
@@ -483,6 +496,7 @@ msgstr "%1 nie je možné otvoriť"
 #, kde-format
 msgid "Problem in parsing the contents of the file, maybe a wrong khipu file."
 msgstr ""
+"Problém pri analýze obsahu súboru, pravdepodobne nesprávny súbor khipu."
 
 #: src/mainwindow.cpp:667 src/mainwindow.cpp:712
 #, kde-format
@@ -494,17 +508,17 @@ msgstr "Uložiť ako"
 msgid ""
 "The file which you want to save, already exists. Do you want to overwrite "
 "this file?"
-msgstr ""
+msgstr "Súbor, ktorý chcete uložiť, už existuje. Chcete tento súbor prepísať?"
 
 #: src/mainwindow.cpp:676
 #, kde-format
 msgid "Warning: File already exists"
-msgstr ""
+msgstr "Varovanie: Súbor už existuje"
 
 #: src/mainwindow.cpp:695
 #, kde-format
 msgid "The current file contains some unsaved work. Do you want to save it?"
-msgstr ""
+msgstr "Aktuálny súbor obsahuje neuloženú prácu. Chcete ju uložiť?"
 
 #: src/mainwindow.cpp:696
 #, kde-format
@@ -514,7 +528,7 @@ msgstr "Upozornenie: Neuložené zmeny"
 #: src/mainwindow.cpp:750
 #, kde-format
 msgid "Error while reading file, file may be empty"
-msgstr ""
+msgstr "Chyba pri čítaní súboru, súbor môže byť prázdny"
 
 #: src/mainwindow.cpp:815
 #, kde-format
@@ -534,7 +548,7 @@ msgstr "Nepodarilo sa otvoriť %1 na zápis %2"
 #: src/mainwindow.cpp:835
 #, kde-format
 msgid "Error while saving file. Maybe path is not found"
-msgstr ""
+msgstr "Chyba pri ukladaní súboru. Cesta pravdepodobne nebola nájdená"
 
 #: src/mainwindow.cpp:835
 #, kde-format
@@ -544,12 +558,12 @@ msgstr "Chyba počas ukladania"
 #: src/mainwindow.cpp:857
 #, kde-format
 msgid "File %1 [%2] is saved successfully"
-msgstr ""
+msgstr "Súbor %1 [%2] bol úspešne uložený"
 
 #: src/mainwindow.cpp:1005
 #, kde-format
 msgid "The diagram was copied to clipboard"
-msgstr ""
+msgstr "Diagram bol skopírovaný do schránky"
 
 #: src/mainwindow.cpp:1052 src/mainwindow.cpp:1063
 #, kde-format
@@ -621,17 +635,17 @@ msgstr "Vytvoriť osobnú &pozvánku..."
 #: src/plotseditor.cpp:66
 #, kde-format
 msgid "check/uncheck to show/hide the Axes"
-msgstr ""
+msgstr "zaškrtnúť/odškrtnúť pre zobrazenie/skrytie osí"
 
 #: src/plotseditor.cpp:69
 #, kde-format
 msgid "Click to edit the plot"
-msgstr ""
+msgstr "Kliknite pre úpravu grafu"
 
 #: src/plotseditor.cpp:70
 #, kde-format
 msgid "Click to remove the plot"
-msgstr ""
+msgstr "Kliknite pre odstránenie grafu"
 
 #: src/plotseditor.cpp:1019
 #, kde-format
@@ -649,6 +663,7 @@ msgstr "Grafy"
 #, kde-format
 msgid "<html><head/><body><p>Click here to add a plot</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Kliknite sem pre pridanie grafu</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, editPlot)
 #: src/plotseditor.ui:110
@@ -708,7 +723,7 @@ msgstr "Bodky"
 #: src/plotseditor.ui:453
 #, kde-format
 msgid "Use Intervals"
-msgstr ""
+msgstr "Použiť intervaly"
 
 #. i18n: ectx: property (text), widget (KDialogButtonBox, editorDialogBox)
 #: src/plotseditor.ui:655
@@ -798,7 +813,7 @@ msgstr "Viac možností"
 #: src/spaceoptions.ui:173
 #, kde-format
 msgid "Horizontal Label:"
-msgstr ""
+msgstr "Vodorovný popis:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, horizontalLabel)
 #: src/spaceoptions.ui:183
@@ -810,7 +825,7 @@ msgstr "x"
 #: src/spaceoptions.ui:193
 #, kde-format
 msgid "Vertical Label:"
-msgstr ""
+msgstr "Zvislý popis:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, verticalLabel)
 #: src/spaceoptions.ui:203
@@ -822,7 +837,7 @@ msgstr "y"
 #: src/spaceoptions.ui:215
 #, kde-format
 msgid "Horizontal and Vertical Marks"
-msgstr ""
+msgstr "Vodorovné a zvislé značky"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showAxis)
 #: src/spaceoptions.ui:254
